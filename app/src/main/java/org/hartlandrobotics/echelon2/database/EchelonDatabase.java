@@ -1,20 +1,15 @@
 package org.hartlandrobotics.echelon2.database;
 
-
-
-        import android.content.Context;
+import android.content.Context;
 import org.hartlandrobotics.echelon2.database.entities.Evt;
-
-        import androidx.annotation.NonNull;
-        import androidx.room.Database;
-        import androidx.room.Room;
-        import androidx.room.RoomDatabase;
-        import androidx.sqlite.db.SupportSQLiteDatabase;
-
-        import org.hartlandrobotics.echelon2.database.dao.EvtDao;
-
-        import java.util.concurrent.ExecutorService;
-        import java.util.concurrent.Executors;
+import androidx.annotation.NonNull;
+import androidx.room.Database;
+import androidx.room.Room;
+import androidx.room.RoomDatabase;
+import androidx.sqlite.db.SupportSQLiteDatabase;
+import org.hartlandrobotics.echelon2.database.dao.EvtDao;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 
 @Database(entities = {
         Evt.class,
@@ -53,6 +48,7 @@ public abstract class EchelonDatabase extends RoomDatabase {
             databaseWriteExecutor.execute(() -> {
                 //any initialization stuff goes here
                 //DistrictDao districtDao = _instance.districtDao();
+                EvtDao eventDao = _instance.eventDao();
             } );
         }
     };
