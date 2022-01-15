@@ -9,6 +9,8 @@ import androidx.room.Query;
 import androidx.room.Transaction;
 import androidx.room.Update;
 
+import org.hartlandrobotics.echelon2.database.entities.PitScout;
+
 @Dao
 public abstract class PitScoutDao {
     @Insert(onConflict = OnConflictStrategy.IGNORE)
@@ -18,7 +20,7 @@ public abstract class PitScoutDao {
     public abstract void update(PitScout pitScout);
 
     public void upsert(PitScout pitScout){
-        long id == insert(pitScout);
+        long id = insert(pitScout);
         if(id == -1){
             update(pitScout);
         }
