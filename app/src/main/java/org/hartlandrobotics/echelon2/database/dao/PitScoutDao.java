@@ -25,4 +25,9 @@ public abstract class PitScoutDao {
             update(pitScout);
         }
     }
+
+    @Transaction
+    @Query("SELECT * FROM pit_scout")
+    public abstract LiveData<PitScout> getPitScout();
+
 }
