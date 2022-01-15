@@ -1,12 +1,12 @@
 package org.hartlandrobotics.echelon2.database.entities;
 
-
-import android.text.TextUtils;
-
 import androidx.annotation.NonNull;
 import androidx.room.ColumnInfo;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
+
+
+import org.apache.commons.lang3.StringUtils;
 
 import java.util.UUID;
 
@@ -38,8 +38,8 @@ public class PitScout {
     private boolean helpCreatingAuto;
 
     @NonNull
-    @ColumnInfo(name = "coding_langauge")
-    private String codingLangauge;
+    @ColumnInfo(name = "coding_language")
+    private String codingLanguage;
 
     @NonNull
     @ColumnInfo(name = "shoots_in_auto")
@@ -101,8 +101,8 @@ public class PitScout {
     @ColumnInfo(name = "extra_notes")
     private String extraNotes;
 
-    public PitScout(@NonNull String pitScoutKey, @NonNull String eventKey, @NonNull String teamKey, boolean hasBeenSynced, boolean hasAutonomous, boolean helpCreatingAuto, @NonNull String codingLangauge, boolean shootsInAuto, double percentAutoShots, int ballsPickedOrShotInAuto, boolean canShoot, double shootingAccuracy, @NonNull String preferredGoal, boolean canPlayDefense, boolean canRobotHang, int highestHangBar, int hangTime, @NonNull String preferredHangingSpot, int sideSwing, int driverExperience, int operatorExperience, @NonNull String extraNotes) {
-        if(pitScoutKey == null || TextUtils.isEmpty(pitScoutKey)){
+    public PitScout(@NonNull String pitScoutKey, @NonNull String eventKey, @NonNull String teamKey, boolean hasBeenSynced, boolean hasAutonomous, boolean helpCreatingAuto, @NonNull String codingLanguage, boolean shootsInAuto, double percentAutoShots, int ballsPickedOrShotInAuto, boolean canShoot, double shootingAccuracy, @NonNull String preferredGoal, boolean canPlayDefense, boolean canRobotHang, int highestHangBar, int hangTime, @NonNull String preferredHangingSpot, int sideSwing, int driverExperience, int operatorExperience, @NonNull String extraNotes) {
+        if(StringUtils.isBlank(pitScoutKey)){
             pitScoutKey = UUID.randomUUID().toString();
         }
 
@@ -112,7 +112,7 @@ public class PitScout {
         this.hasBeenSynced = hasBeenSynced;
         this.hasAutonomous = hasAutonomous;
         this.helpCreatingAuto = helpCreatingAuto;
-        this.codingLangauge = codingLangauge;
+        this.codingLanguage = codingLanguage;
         this.shootsInAuto = shootsInAuto;
         this.percentAutoShots = percentAutoShots;
         this.ballsPickedOrShotInAuto = ballsPickedOrShotInAuto;
@@ -182,12 +182,12 @@ public class PitScout {
     }
 
     @NonNull
-    public String getCodingLangauge() {
-        return codingLangauge;
+    public String getCodingLanguage() {
+        return codingLanguage;
     }
 
-    public void setCodingLangauge(@NonNull String codingLangauge) {
-        this.codingLangauge = codingLangauge;
+    public void setCodingLanguage(@NonNull String codingLanguage) {
+        this.codingLanguage = codingLanguage;
     }
 
     public boolean isShootsInAuto() {
