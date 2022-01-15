@@ -45,10 +45,16 @@ public class BlueAllianceActivity extends AppCompatActivity {
                         try {
                             if (!response.isSuccessful()) {
                                 System.out.println("Failed");
+                                errorTextDisplay.setText("Blue Alliance Offline");
 
                             } else {
-                                //SyncStatus status = response.body();
-                                System.out.println("Failed");
+                                SyncStatus status = response.body();
+                                if(status.isDatafeedDown()){
+                                    errorTextDisplay.setText("Can't reach blue alliance");
+                                }
+                                else {
+                                    errorTextDisplay.setText("Blue Alliance Online");
+                                }
                             }
                         }
                         catch(Exception e){

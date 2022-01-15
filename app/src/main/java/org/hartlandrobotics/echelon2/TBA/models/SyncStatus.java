@@ -11,7 +11,7 @@ public class SyncStatus {
     private int maxSeason;
 
     @JsonProperty("is_datafeed_down")
-    public boolean isDatafeedDown;
+    private boolean isDatafeedDown;
 
     @JsonProperty("down_events")
     private String[] downEvents;

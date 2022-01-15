@@ -2,6 +2,9 @@ package org.hartlandrobotics.echelon2.TBA;
 
 import android.content.Context;
 
+import com.fasterxml.jackson.databind.DeserializationFeature;
+import com.fasterxml.jackson.databind.ObjectMapper;
+
 import org.hartlandrobotics.echelon2.configuration.AdminSettingsProvider;
 import org.hartlandrobotics.echelon2.configuration.AdminSettingsViewModel;
 
@@ -33,9 +36,11 @@ public class Api {
             });
 
             OkHttpClient client = httpClient.build();
+            ObjectMapper mapper = new ObjectMapper();
+            mapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
             Retrofit retrofit = new Retrofit.Builder()
                     .baseUrl("https://thebluealliance.com/api/v3/")
-                    .addConverterFactory(JacksonConverterFactory.create())
+                    .addConverterFactory(JacksonConverterFactory.create(mapper))
                     .client(client)
                     .build();
 
