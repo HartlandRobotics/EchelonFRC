@@ -44,13 +44,12 @@ public class BlueAllianceActivity extends AppCompatActivity {
                     public void onResponse(Call<SyncStatus> call, Response<SyncStatus> response) {
                         try {
                             if (!response.isSuccessful()) {
-                                System.out.println("Failed");
-                                errorTextDisplay.setText("Blue Alliance Offline");
+                                errorTextDisplay.setText("Can't reach Blue Alliance");
 
                             } else {
                                 SyncStatus status = response.body();
                                 if(status.isDatafeedDown()){
-                                    errorTextDisplay.setText("Can't reach blue alliance");
+                                    errorTextDisplay.setText("Blue Alliance Offline");
                                 }
                                 else {
                                     errorTextDisplay.setText("Blue Alliance Online");
@@ -58,13 +57,12 @@ public class BlueAllianceActivity extends AppCompatActivity {
                             }
                         }
                         catch(Exception e){
-                            System.out.println("Failed");
                         }
                     }
 
                     @Override
                     public void onFailure(Call<SyncStatus> call, Throwable t) {
-                        errorTextDisplay.setText("Failue");
+                        errorTextDisplay.setText("Invalid call to Blue Alliance");
                     }
                 });
             }
