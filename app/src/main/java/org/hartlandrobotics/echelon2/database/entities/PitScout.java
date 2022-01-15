@@ -157,7 +157,7 @@ public class PitScout {
         this.teamKey = teamKey;
     }
 
-    public boolean isHasBeenSynced() {
+    public boolean getHasBeenSynced() {
         return hasBeenSynced;
     }
 
@@ -165,7 +165,7 @@ public class PitScout {
         this.hasBeenSynced = hasBeenSynced;
     }
 
-    public boolean isHasAutonomous() {
+    public boolean getHasAutonomous() {
         return hasAutonomous;
     }
 
@@ -173,7 +173,7 @@ public class PitScout {
         this.hasAutonomous = hasAutonomous;
     }
 
-    public boolean isHelpCreatingAuto() {
+    public boolean getHelpCreatingAuto() {
         return helpCreatingAuto;
     }
 
@@ -190,7 +190,7 @@ public class PitScout {
         this.codingLanguage = codingLanguage;
     }
 
-    public boolean isShootsInAuto() {
+    public boolean getShootsInAuto() {
         return shootsInAuto;
     }
 
@@ -214,7 +214,7 @@ public class PitScout {
         this.ballsPickedOrShotInAuto = ballsPickedOrShotInAuto;
     }
 
-    public boolean isCanShoot() {
+    public boolean getCanShoot() {
         return canShoot;
     }
 
@@ -239,7 +239,7 @@ public class PitScout {
         this.preferredGoal = preferredGoal;
     }
 
-    public boolean isCanPlayDefense() {
+    public boolean getCanPlayDefense() {
         return canPlayDefense;
     }
 
@@ -247,7 +247,7 @@ public class PitScout {
         this.canPlayDefense = canPlayDefense;
     }
 
-    public boolean isCanRobotHang() {
+    public boolean getCanRobotHang() {
         return canRobotHang;
     }
 
