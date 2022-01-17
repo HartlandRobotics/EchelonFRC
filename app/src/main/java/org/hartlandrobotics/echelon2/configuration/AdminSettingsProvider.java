@@ -65,12 +65,31 @@ public class AdminSettingsProvider {
 
     private static AdminSettings settingsFromPrefs(Context appContext, AdminSettings fileSettings){
         SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(appContext);
+        SharedPreferences.Editor prefEditor = preferences.edit();
+
         String blueAllianceKey = preferences.getString(BLUE_ALLIANCE_KEY, null);
         if(StringUtils.isEmpty(blueAllianceKey)){
+            blueAllianceKey = fileSettings.getBlueAllianceApiKey();
+            prefEditor.putString(BLUE_ALLIANCE_KEY, blueAllianceKey );
         }
+
         String scoutingYear = preferences.getString(SCOUTING_YEAR, null);
+        if(StringUtils.isEmpty(scoutingYear)){
+            scoutingYear = fileSettings.getScoutingYear();
+            prefEditor.putString(SCOUTING_YEAR, scoutingYear);
+        }
+
+        prefEditor.apply();
 
         return new AdminSettings(blueAllianceKey, scoutingYear);
+    }
+
+    public static void setBlueAllianceApiKey(Context context, String blueAllianceApiKey){
+        SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(context);
+        SharedPreferences.Editor prefEditor = preferences.edit();
+        prefEditor.putString(BLUE_ALLIANCE_KEY, blueAllianceApiKey );
+        prefEditor.apply();
+
     }
 
 

@@ -52,6 +52,11 @@ public class AdminSettingsActivity extends AppCompatActivity {
         if( !vm.isBlueAllianceApikeySynced() ){
             setOutOfSync(blueAllianceText, vm.getFileSettings().getBlueAllianceApiKey());
         }
+        blueAllianceText.setEndIconOnClickListener( v -> {
+            String fileBlueAllianceApiKey = vm.getFileSettings().getBlueAllianceApiKey();
+            AdminSettingsProvider.setBlueAllianceApiKey( AdminSettingsActivity.this, fileBlueAllianceApiKey);
+            vm.setBlueAllianceApiKey(fileBlueAllianceApiKey);
+        });
     }
 
     public void initializeScoutingYear(AdminSettingsViewModel vm){
@@ -69,13 +74,13 @@ public class AdminSettingsActivity extends AppCompatActivity {
 
     private void setOutOfSync(TextInputLayout layout, String fileValue ){
         layout.setEndIconMode(TextInputLayout.END_ICON_CUSTOM);
-        layout.setEndIconDrawable(R.drawable.ic_menu_refresh);
+        layout.setEndIconDrawable(android.R.drawable.ic_menu_save);
         layout.setHelperText(fileValue);
     }
 
     private void showError( String errorMessage ){
         errorText.setErrorEnabled(true);
         errorText.setError(errorMessage);
-        errorText.getEditText().setText("Admin Settings not available");
+        errorText.getEditText().setText("could not load settings");
     }
 }
