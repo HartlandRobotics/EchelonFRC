@@ -1,3 +1,8 @@
 <resources>
     <string name="app_name">Echelon2</string>
+    <string-array name="programming_languages">
+        <item>LabView</item>
+        <item>Java</item>
+        <item>C++</item>
+    </string-array>
 </resources>

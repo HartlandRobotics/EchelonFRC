@@ -4,11 +4,14 @@ import android.content.Context;
 import android.content.Intent;
 import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.View;
+
 import com.google.android.material.button.MaterialButton;
 
 public class MainActivity extends AppCompatActivity {
 
     private MaterialButton startScouting;
+    private MaterialButton pitScouting;
     private MaterialButton adminSettings;
     private MaterialButton tbaStatus;
 
@@ -23,12 +26,18 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         setupStartScoutingButton();
+        setupPitScoutingButton();
         setupAdminSettingsButton();
         setupTbaStatusButton();
     }
 
     private void setupStartScoutingButton(){
         startScouting = this.findViewById(R.id.main_admin_start_scouting);
+    }
+
+    private void setupPitScoutingButton(){
+        pitScouting = findViewById(R.id.pitScoutingButton);
+        pitScouting.setOnClickListener( v -> PitScoutAutoActivity.launch(MainActivity.this ));
     }
 
     private void setupAdminSettingsButton(){
