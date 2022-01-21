@@ -4,6 +4,8 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.widget.ArrayAdapter;
+import android.widget.AutoCompleteTextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -21,6 +23,7 @@ public class AdminSettingsActivity extends AppCompatActivity {
     private TextInputLayout blueAllianceText;
     private TextInputLayout scoutingYearText;
     private TextInputLayout errorText;
+    private AutoCompleteTextView scoutingYearsAutoComplete;
 
     public static void launch(Context context){
         Intent intent = new Intent( context, AdminSettingsActivity.class );
@@ -33,6 +36,7 @@ public class AdminSettingsActivity extends AppCompatActivity {
         setContentView(R.layout.activity_admin_settings);
 
         errorText = this.findViewById(R.id.errorText);
+        scoutingYearsAutoComplete = findViewById(R.id.scoutingYearDropDown);
 
         AdminSettingsViewModel viewModel = AdminSettingsProvider.getAdminSettings(getApplicationContext());
         if( viewModel == null ){
@@ -41,11 +45,17 @@ public class AdminSettingsActivity extends AppCompatActivity {
             return;
         }
 
+        setupScoutingYearDropDown();
         initializeBlueAllianceKey(viewModel);
         initializeScoutingYear(viewModel);
 
     }
 
+    public void setupScoutingYearDropDown(){
+        String[] scoutingYears = getResources().getStringArray(R.array.scouting_years);
+        ArrayAdapter adapter = new ArrayAdapter(this, R.layout.season_dropdown_item, scoutingYears);
+        scoutingYearsAutoComplete.setAdapter(adapter);
+    }
     public void initializeBlueAllianceKey(AdminSettingsViewModel vm){
         blueAllianceText = this.findViewById(R.id.blueAllianceApiText);
         setDisplayText( blueAllianceText, vm.getBlueAllianceApiKey() );
