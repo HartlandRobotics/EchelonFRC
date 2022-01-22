@@ -24,16 +24,16 @@
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/scoutingYearText"
+        android:id="@+id/scoutingSeasonText"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
 
-        android:hint="Scouting Year"
+        android:hint="Scouting Season"
         app:layout_constraintTop_toBottomOf="@id/blueAllianceApiText"
 
         >
         <AutoCompleteTextView
-            android:id="@+id/scoutingYearDropDown"
+            android:id="@+id/scoutingSeasonDropDown"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:inputType="none"
