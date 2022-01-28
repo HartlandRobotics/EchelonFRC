@@ -3,6 +3,9 @@ package org.hartlandrobotics.echelon2.database;
 import android.content.Context;
 
 import org.hartlandrobotics.echelon2.database.dao.DistrictDao;
+import org.hartlandrobotics.echelon2.database.dao.PitScoutDao;
+import org.hartlandrobotics.echelon2.database.dao.SeasonDao;
+import org.hartlandrobotics.echelon2.database.dao.TeamDao;
 import org.hartlandrobotics.echelon2.database.entities.District;
 import org.hartlandrobotics.echelon2.database.entities.Evt;
 import androidx.annotation.NonNull;
@@ -11,20 +14,29 @@ import androidx.room.Room;
 import androidx.room.RoomDatabase;
 import androidx.sqlite.db.SupportSQLiteDatabase;
 import org.hartlandrobotics.echelon2.database.dao.EvtDao;
+import org.hartlandrobotics.echelon2.database.entities.PitScout;
+import org.hartlandrobotics.echelon2.database.entities.Season;
+import org.hartlandrobotics.echelon2.database.entities.Team;
+
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
 @Database(entities = {
         Evt.class,
-        District.class
+        District.class,
+        Team.class,
+        PitScout.class,
+        Season.class
 
-}, version = 1,
+}, version = 3,
         exportSchema = false
 )
 public abstract class EchelonDatabase extends RoomDatabase {
     public abstract EvtDao eventDao();
-
+    public abstract TeamDao teamDao();
     public abstract DistrictDao districtDao();
+    public abstract PitScoutDao pitScoutDao();
+    public abstract SeasonDao seasonDao();
 
     private static volatile EchelonDatabase _instance;
     private static final int NUMBER_OF_THREADS = 4;
@@ -46,15 +58,33 @@ public abstract class EchelonDatabase extends RoomDatabase {
         return _instance;
     }
 
+
+
     private static RoomDatabase.Callback roomDatabaseCallback = new RoomDatabase.Callback(){
         @Override
+        public void onCreate(@NonNull SupportSQLiteDatabase db){
+            super.onCreate(db);
+
+            Season s1 = new Season("Rapid React", 2022 );
+            Season s2 = new Season("Infinite Recharge", 2020);
+            SeasonDao sd = _instance.seasonDao();
+            sd.insert(s1);
+            sd.insert(s2);
+        }
+
+        @Override
         public void onOpen(@NonNull SupportSQLiteDatabase db){
+
             super.onOpen(db);
 
             databaseWriteExecutor.execute(() -> {
                 //any initialization stuff goes here
                 //DistrictDao districtDao = _instance.districtDao();
-                EvtDao eventDao = _instance.eventDao();
+                EvtDao evtDao = _instance.eventDao();
+                TeamDao teamDao = _instance.teamDao();
+                DistrictDao districtDao = _instance.districtDao();
+                PitScoutDao pitScoutDao = _instance.pitScoutDao();
+                SeasonDao seasonDao = _instance.seasonDao();
             } );
         }
     };

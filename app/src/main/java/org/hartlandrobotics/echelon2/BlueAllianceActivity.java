@@ -12,7 +12,9 @@ import org.hartlandrobotics.echelon2.TBA.Api;
 import org.hartlandrobotics.echelon2.TBA.ApiInterface;
 import org.hartlandrobotics.echelon2.TBA.models.SyncDistrict;
 import org.hartlandrobotics.echelon2.TBA.models.SyncStatus;
+import org.hartlandrobotics.echelon2.TBA.models.SyncTeam;
 import org.hartlandrobotics.echelon2.database.repositories.DistrictRepo;
+import org.hartlandrobotics.echelon2.database.repositories.TeamRepo;
 
 import java.util.List;
 
@@ -29,6 +31,10 @@ public class BlueAllianceActivity extends AppCompatActivity {
     private TextView errorTextDistrict;
 
     private DistrictRepo districtRepo;
+    private TeamRepo teamRepo;
+
+    private Button teamButton;
+    private TextView errorTextTeam;
 
     public static void launch(Context context){
         Intent intent = new Intent(context, BlueAllianceActivity.class);
@@ -41,10 +47,12 @@ public class BlueAllianceActivity extends AppCompatActivity {
         setContentView(R.layout.activity_blue_alliance);
 
         districtRepo = new DistrictRepo(this.getApplication());
+        teamRepo = new TeamRepo(this.getApplication());
 
 
         errorTextDistrict = findViewById(R.id.errorTextDistricts);
         errorTextDisplay = findViewById(R.id.errorText);
+        errorTextTeam = findViewById(R.id.errorTextTeams);
 
 
         statusButton = findViewById(R.id.syncButton);
@@ -120,6 +128,43 @@ public class BlueAllianceActivity extends AppCompatActivity {
             }
             catch(Exception e){
                 errorTextDistrict.setText("Error second catch " + e.getMessage());
+            }
+        });
+
+        teamButton = findViewById(R.id.syncTeams);
+        teamButton.setOnClickListener((view) -> {
+            ApiInterface api = Api.getApiClient(getApplicationContext());
+
+            try{
+                Call<List<SyncTeam>> call = api.getTeamsByEvent("2022milan");
+                call.enqueue(new Callback<List<SyncTeam>>() {
+                    @Override
+                    public void onResponse(Call<List<SyncTeam>> call, Response<List<SyncTeam>> response) {
+                        try{
+                            if(!response.isSuccessful()){
+                                errorTextTeam.setText("Couldn't pull teams");
+                            }
+                            else{
+                                List<SyncTeam> teams = response.body();
+                                errorTextTeam.setText("Got teams " + teams.size());
+                                teams.stream()
+                                        .map(team -> team.toTeam())
+                                        .forEach(team -> teamRepo.upsert(team));
+                            }
+                        }
+                        catch(Exception e){
+                            errorTextTeam.setText("Error " + e.getMessage());
+                        }
+                    }
+
+                    @Override
+                    public void onFailure(Call<List<SyncTeam>> call, Throwable t) {
+                        errorTextTeam.setText("Couldn't pull teams");
+                    }
+                });
+            }
+            catch(Exception e){
+                errorTextTeam.setText("Error second catch " + e.getMessage());
             }
         });
 
