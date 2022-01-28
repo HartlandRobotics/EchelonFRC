@@ -20,6 +20,7 @@ public class PitScoutAutoActivity extends AppCompatActivity {
     AutoCompleteTextView programmingLanguageAutoComplete;
     LinearLayout missingAutoLayout;
     LinearLayout hasAutoLayout;
+    TextInputLayout autoLanguage;
 
     public static void launch(Context context){
         Intent intent = new Intent(context, PitScoutAutoActivity.class);
@@ -37,16 +38,29 @@ public class PitScoutAutoActivity extends AppCompatActivity {
         programmingLanguageAutoComplete = findViewById(R.id.autoLanguageAutoComplete);
         missingAutoLayout = findViewById(R.id.missingAutoLayout);
         hasAutoLayout = findViewById(R.id.hasAutoLayout);
+        autoLanguage = findViewById(R.id.autoLanguage);
 
         hasAutoGroup.setOnCheckedChangeListener((group, checkedId) -> {
            if( checkedId == R.id.hasAutoYes ){
                missingAutoLayout.setVisibility(View.GONE);
                hasAutoLayout.setVisibility(View.VISIBLE);
+
            }
            if( checkedId == R.id.hasAutoNo ){
                missingAutoLayout.setVisibility(View.VISIBLE);
                hasAutoLayout.setVisibility(View.GONE);
            }
+        });
+
+        helpAutoGroup.setOnCheckedChangeListener((group, checkedId) -> {
+            if( checkedId == R.id.helpAutoNo ){
+                autoLanguage.setVisibility(View.GONE);
+
+            }
+            if( checkedId == R.id.helpAutoYes ){
+                autoLanguage.setVisibility(View.VISIBLE);
+
+            }
         });
 
 
