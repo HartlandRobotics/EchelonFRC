@@ -18,7 +18,6 @@
         app:layout_constraintTop_toTopOf="parent"
 
         />
-    j
     <com.google.android.material.button.MaterialButton
         android:id="@+id/pitScoutingButton"
         android:layout_width="wrap_content"
@@ -40,7 +39,7 @@
         app:layout_constraintTop_toBottomOf="@id/pitScoutingButton"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintBottom_toBottomOf="@id/status"
+        app:layout_constraintBottom_toTopOf="@id/status"
         />
 
     <com.google.android.material.button.MaterialButton
@@ -51,8 +50,18 @@
         app:layout_constraintTop_toBottomOf="@id/main_admin_settings"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/tabtest"
         />
 
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/tabtest"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Tab Test"
+        app:layout_constraintTop_toBottomOf="@id/status"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

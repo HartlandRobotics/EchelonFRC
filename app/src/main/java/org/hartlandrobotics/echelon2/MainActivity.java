@@ -14,6 +14,7 @@ public class MainActivity extends AppCompatActivity {
     private MaterialButton pitScouting;
     private MaterialButton adminSettings;
     private MaterialButton tbaStatus;
+    private MaterialButton tabTest;
 
     public static void launch(Context context){
         Intent intent = new Intent(context, MainActivity.class);
@@ -29,6 +30,7 @@ public class MainActivity extends AppCompatActivity {
         setupPitScoutingButton();
         setupAdminSettingsButton();
         setupTbaStatusButton();
+        setupTabTestButton();
     }
 
     private void setupStartScoutingButton(){
@@ -48,5 +50,10 @@ public class MainActivity extends AppCompatActivity {
     private void setupTbaStatusButton(){
         tbaStatus = this.findViewById(R.id.status);
         tbaStatus.setOnClickListener(view -> BlueAllianceActivity.launch(MainActivity.this));
+    }
+
+    private void setupTabTestButton(){
+        tabTest = this.findViewById(R.id.tabtest);
+        tabTest.setOnClickListener(view -> TabTestActivity.launch(MainActivity.this) );
     }
 }
