@@ -19,11 +19,6 @@ import com.google.android.material.textfield.TextInputLayout;
 import org.hartlandrobotics.echelon2.R;
 import org.hartlandrobotics.echelon2.database.entities.PitScout;
 
-/**
- * A simple {@link Fragment} subclass.
- * Use the {@link PitScoutAutoFragment#newInstance} factory method to
- * create an instance of this fragment.
- */
 public class PitScoutAutoFragment extends Fragment {
     RadioGroup hasAutoGroup;
     RadioGroup helpAutoGroup;
