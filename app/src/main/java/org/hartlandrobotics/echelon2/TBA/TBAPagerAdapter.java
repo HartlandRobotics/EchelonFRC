@@ -12,9 +12,6 @@ import org.hartlandrobotics.echelon2.TBA.fragments.DistrictsFragment;
 import org.hartlandrobotics.echelon2.TBA.fragments.EventsFragment;
 import org.hartlandrobotics.echelon2.TBA.fragments.MatchesFragment;
 import org.hartlandrobotics.echelon2.TBA.fragments.TeamsFragment;
-import org.hartlandrobotics.echelon2.pitScouting.AutoFragment;
-import org.hartlandrobotics.echelon2.pitScouting.EndGameFragment;
-import org.hartlandrobotics.echelon2.pitScouting.TeleOpFragment;
 
 import java.util.HashMap;
 import java.util.Map;

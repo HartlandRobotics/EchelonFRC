@@ -63,8 +63,10 @@ public class TeamsFragment extends Fragment {
                                 TeamRepo teamRepo = new TeamRepo(TeamsFragment.this.getActivity().getApplication());
                                 List<SyncTeam> teams = response.body();
                                 teams.stream()
-                                        .map(team -> team.toTeam());
-                                //.forEach(team -> teamRepo.upsert(team));
+
+                                        .map(team -> team.toTeam())
+                                .forEach(team -> teamRepo.upsert(team));
+
                                 errorTextDisplay.setText("Got districts " + teams.size());
                             }
                         }

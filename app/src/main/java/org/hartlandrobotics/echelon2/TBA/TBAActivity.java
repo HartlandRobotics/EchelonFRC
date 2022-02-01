@@ -12,10 +12,20 @@ import com.google.android.material.tabs.TabLayoutMediator;
 
 import org.hartlandrobotics.echelon2.R;
 
+import org.hartlandrobotics.echelon2.TBA.fragments.DistrictsFragment;
+import org.hartlandrobotics.echelon2.database.entities.District;
+import org.hartlandrobotics.echelon2.database.repositories.DistrictRepo;
+
+import java.util.List;
+
+
 public class TBAActivity extends AppCompatActivity {
     TabLayout tabLayout;
     ViewPager2 viewPager;
     TBAPagerAdapter tbaPagerAdapter;
+
+
+    DistrictRepo districtRepo;
 
 
     public static void launch(Context context){
@@ -36,5 +46,13 @@ public class TBAActivity extends AppCompatActivity {
 
         new TabLayoutMediator(tabLayout, viewPager,
                 (tab, position) -> tab.setText(tbaPagerAdapter.getTabTitle(position))).attach();
+
+
+        districtRepo = new DistrictRepo(getApplication());
+    }
+
+    public void updateDistricts(List<District> districts){
+        districtRepo.upsert(districts);
+
     }
 }
