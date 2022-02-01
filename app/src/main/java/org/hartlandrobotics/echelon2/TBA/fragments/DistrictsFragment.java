@@ -12,10 +12,13 @@ import androidx.fragment.app.Fragment;
 import org.hartlandrobotics.echelon2.R;
 import org.hartlandrobotics.echelon2.TBA.Api;
 import org.hartlandrobotics.echelon2.TBA.ApiInterface;
+import org.hartlandrobotics.echelon2.TBA.TBAActivity;
 import org.hartlandrobotics.echelon2.TBA.models.SyncDistrict;
+import org.hartlandrobotics.echelon2.database.entities.District;
 import org.hartlandrobotics.echelon2.database.repositories.DistrictRepo;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -62,12 +65,12 @@ public class DistrictsFragment extends Fragment {
                                 errorTextDisplay.setText("Couldn't pull districts");
                             }
                             else{
-                                DistrictRepo districtRepo = new DistrictRepo(DistrictsFragment.this.getActivity().getApplication());
-                                List<SyncDistrict> districts = response.body();
-                                districts.stream()
-                                        .map(district -> district.toDistrict());
-                                        //.forEach(district -> districtRepo.upsert(district));
-                                errorTextDisplay.setText("Got districts " + districts.size());
+                                List<SyncDistrict> syncDistricts = response.body();
+                                List<District> districts = syncDistricts.stream()
+                                        .map(district -> district.toDistrict())
+                                        .collect(Collectors.toList());
+                                ((TBAActivity)getActivity()).updateDistricts(districts);
+                                errorTextDisplay.setText("Got districts " + syncDistricts.size());
                             }
                         }
                         catch(Exception e){
