@@ -14,10 +14,12 @@ import org.hartlandrobotics.echelon2.TBA.Api;
 import org.hartlandrobotics.echelon2.TBA.ApiInterface;
 import org.hartlandrobotics.echelon2.TBA.models.SyncDistrict;
 import org.hartlandrobotics.echelon2.TBA.models.SyncTeam;
+import org.hartlandrobotics.echelon2.database.entities.Team;
 import org.hartlandrobotics.echelon2.database.repositories.DistrictRepo;
 import org.hartlandrobotics.echelon2.database.repositories.TeamRepo;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -61,11 +63,12 @@ public class TeamsFragment extends Fragment {
                             }
                             else{
                                 TeamRepo teamRepo = new TeamRepo(TeamsFragment.this.getActivity().getApplication());
-                                List<SyncTeam> teams = response.body();
-                                teams.stream()
-
+                                List<SyncTeam> syncTeam = response.body();
+                                List<Team> teams = syncTeam.stream()
                                         .map(team -> team.toTeam())
-                                .forEach(team -> teamRepo.upsert(team));
+                                        .collect(Collectors.toList());
+
+                                teamRepo.upsert(teams);
 
                                 errorTextDisplay.setText("Got districts " + teams.size());
                             }

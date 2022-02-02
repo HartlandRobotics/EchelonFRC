@@ -28,4 +28,10 @@ public class TeamRepo {
             teamDao.upsert(team);
         });
     }
+
+    public void upsert(List<Team> teams){
+        for(Team team : teams){
+            upsert(team);
+        }
+    }
 }

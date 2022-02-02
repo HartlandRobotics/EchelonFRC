@@ -48,11 +48,5 @@ public class TBAActivity extends AppCompatActivity {
                 (tab, position) -> tab.setText(tbaPagerAdapter.getTabTitle(position))).attach();
 
 
-        districtRepo = new DistrictRepo(getApplication());
-    }
-
-    public void updateDistricts(List<District> districts){
-        districtRepo.upsert(districts);
-
     }
 }
