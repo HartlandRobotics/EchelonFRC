@@ -11,7 +11,7 @@ import org.hartlandrobotics.echelon2.database.dao.EvtWithTeamsDao;
 import org.hartlandrobotics.echelon2.database.entities.Evt;
 import org.hartlandrobotics.echelon2.database.entities.EvtMatchCrossRef;
 import org.hartlandrobotics.echelon2.database.entities.EvtTeamCrossRef;
-import org.hartlandrobotics.echelon2.database.entities.EvtWithMatches;
+//import org.hartlandrobotics.echelon2.database.entities.EvtWithMatches;
 import org.hartlandrobotics.echelon2.database.entities.EvtWithTeams;
 
 import java.util.List;
@@ -43,9 +43,9 @@ public class EventRepo {
         return mEventWithTeamsDao.getEventTeams( eventKey );
     }
 
-    public LiveData<EvtWithMatches> getMatchesForEvent(String eventKey) {
+   /* public LiveData<EvtWithMatches> getMatchesForEvent(String eventKey) {
         return mEventWithMatchesDao.getEventMatches( eventKey );
-    }
+    }*/
 
     public void upsert(Evt event) {
         EchelonDatabase.databaseWriteExecutor.execute( () -> mEventDao.upsert( event ) );

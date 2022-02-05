@@ -8,7 +8,7 @@ import androidx.lifecycle.LiveData;
 import org.hartlandrobotics.echelon2.database.entities.Evt;
 import org.hartlandrobotics.echelon2.database.entities.EvtMatchCrossRef;
 import org.hartlandrobotics.echelon2.database.entities.EvtTeamCrossRef;
-import org.hartlandrobotics.echelon2.database.entities.EvtWithMatches;
+//import org.hartlandrobotics.echelon2.database.entities.EvtWithMatches;
 import org.hartlandrobotics.echelon2.database.entities.EvtWithTeams;
 import org.hartlandrobotics.echelon2.database.repositories.EventRepo;
 
@@ -40,9 +40,9 @@ public class EvtViewModel extends AndroidViewModel {
       return mEventWithTeams;
    }
 
-   public LiveData<EvtWithMatches> getMatchesForEvent(String eventKey) {
+   /*public LiveData<EvtWithMatches> getMatchesForEvent(String eventKey) {
       return mEventRepo.getMatchesForEvent( eventKey );
-   }
+   }*/
 
    public void upsert(Evt event) {
       mEventRepo.upsert( event );
