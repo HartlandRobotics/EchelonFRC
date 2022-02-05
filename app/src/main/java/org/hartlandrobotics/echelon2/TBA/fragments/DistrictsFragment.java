@@ -6,6 +6,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -13,6 +14,8 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+
+import com.google.android.material.textfield.TextInputLayout;
 
 import org.hartlandrobotics.echelon2.R;
 import org.hartlandrobotics.echelon2.TBA.Api;
@@ -112,23 +115,40 @@ public class DistrictsFragment extends Fragment {
     }
 
     public class DistrictViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
-        private final TextView districtName;
+        private final TextInputLayout districtNameLayout;
+        private EditText districtName;
         String districtKey;
-
+        boolean isChecked = false;
         private District district;
 
         private DistrictViewHolder(View itemView) {
             super(itemView);
             itemView.setOnClickListener(this);
 
-            districtName = itemView.findViewById(R.id.list_item_textview);
+            districtNameLayout = itemView.findViewById(R.id.list_item_textview);
+            districtNameLayout.setEndIconDrawable(android.R.drawable.checkbox_off_background);
+            districtName = districtNameLayout.getEditText();
+
+            districtNameLayout.setEndIconOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    isChecked = !isChecked;
+                    if(isChecked){
+                        districtNameLayout.setEndIconDrawable(android.R.drawable.checkbox_on_background);
+                        
+                    }
+                    else{
+                        districtNameLayout.setEndIconDrawable(android.R.drawable.checkbox_off_background);
+                    }
+                }
+            });
         }
 
         public void setDistrict(District district) {
             this.district = district;
 
             districtName.setText(district.getDisplayName());
-            districtKey = district.getDistrictKey();
+            districtNameLayout.setHelperText(district.getDistrictKey());
         }
 
         public void setDisplayText(String displayText) {
