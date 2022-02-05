@@ -34,7 +34,7 @@ import java.util.concurrent.Executors;
         EvtTeamCrossRef.class,
         EvtMatchCrossRef.class
 
-}, version = 4,
+}, version = 5,
         exportSchema = false
 )
 public abstract class EchelonDatabase extends RoomDatabase {
