@@ -12,6 +12,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.LiveData;
+import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -78,6 +79,7 @@ public class DistrictsFragment extends Fragment {
         districtRecycler = view.findViewById(R.id.district_recycler);
         districtRecycler.setLayoutManager(new LinearLayoutManager(getActivity()));
         districtRecycler.setAdapter(districtListAdapter);
+        districtRecycler.addItemDecoration(new DividerItemDecoration(view.getContext(), LinearLayoutManager.VERTICAL));
     }
 
     public void setupCurrentDistricts(){
