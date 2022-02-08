@@ -14,10 +14,13 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 import android.widget.LinearLayout;
+import android.widget.RadioButton;
 import android.widget.RadioGroup;
 
 import com.google.android.material.textfield.TextInputLayout;
+import com.google.android.material.textview.MaterialTextView;
 
+import org.hartlandrobotics.echelon2.PitScoutActivity;
 import org.hartlandrobotics.echelon2.R;
 import org.hartlandrobotics.echelon2.database.entities.PitScout;
 
@@ -160,6 +163,13 @@ public class PitScoutAutoFragment extends Fragment {
     }
 
     public void setVisibility(){
+        PitScoutActivity activity = (PitScoutActivity)getActivity();
+        if(activity.hasSelectedTeam()){
+
+        }else {
+            disableRadioGroup(hasAutoGroup, false);
+            disableRadioGroup(helpAutoGroup, false);
+        }
         if( hasAutoGroup.getCheckedRadioButtonId() == R.id.hasAutoYes ){
             missingAutoLayout.setVisibility(View.GONE);
             hasAutoLayout.setVisibility(View.VISIBLE);
@@ -174,6 +184,12 @@ public class PitScoutAutoFragment extends Fragment {
             autoLanguage.setVisibility(View.GONE);
         } else {
             autoLanguage.setVisibility(View.VISIBLE);
+        }
+    }
+
+    private void disableRadioGroup(RadioGroup group, boolean enabled) {
+        for(int i = 0; i < group.getChildCount(); i++){
+            group.getChildAt(i).setEnabled(enabled);
         }
     }
 }

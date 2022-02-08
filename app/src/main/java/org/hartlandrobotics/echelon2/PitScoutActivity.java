@@ -7,6 +7,10 @@ import androidx.viewpager2.widget.ViewPager2;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 
@@ -14,6 +18,7 @@ import com.google.android.material.tabs.TabLayout;
 import com.google.android.material.tabs.TabLayoutMediator;
 
 import org.hartlandrobotics.echelon2.database.entities.PitScout;
+import org.hartlandrobotics.echelon2.database.entities.Team;
 import org.hartlandrobotics.echelon2.models.TeamViewModel;
 import org.hartlandrobotics.echelon2.pitScouting.PitScoutingPagerAdapter;
 
@@ -27,7 +32,9 @@ public class PitScoutActivity extends AppCompatActivity {
     AutoCompleteTextView teamNumberAutoComplete;
 
     TeamViewModel teamViewModel;
-    List<String> teamNumbers;
+    List<Team> teams;
+    List<String> teamNames;
+    Team currentTeam;
 
     public static void launch(Context context){
         Intent intent = new Intent( context, PitScoutActivity.class );
@@ -45,16 +52,23 @@ public class PitScoutActivity extends AppCompatActivity {
         teamNumberAutoComplete = findViewById(R.id.teamSelectionAutoComplete);
 
         teamViewModel = new ViewModelProvider(this).get(TeamViewModel.class);
-        teamViewModel.getAllTeams().observe( this, teams -> {
-            int size = teams.size();
-            teamNumbers = teams.stream()
-                    .map( t -> t.getTeamNumber() )
+        teamViewModel.getAllTeams().observe( this, ts -> {
+
+            teams = ts;
+
+            teamNames = teams.stream()
+                    .map( t -> t.getTeamNumber() + " - " + t.getNickname())
                     .sorted()
-                    .map(t -> t.toString())
                     .collect(Collectors.toList());
 
-            ArrayAdapter adapter = new ArrayAdapter(this, R.layout.dropdown_item, teamNumbers);
+            ArrayAdapter adapter = new ArrayAdapter(this, R.layout.dropdown_item, teamNames);
             teamNumberAutoComplete.setAdapter(adapter);
+            teamNumberAutoComplete.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                @Override
+                public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                    currentTeam = teams.get(position);
+                }
+            });
         });
 
         data = new PitScout();
@@ -71,5 +85,19 @@ public class PitScoutActivity extends AppCompatActivity {
         new TabLayoutMediator(tabLayout, viewPager,
                 (tab, position) -> tab.setText(viewPagerAdapter.getTabTitle(position))
         ).attach();
+    }
+    public boolean hasSelectedTeam(){
+        return currentTeam != null;
+    }
+    private ViewGroup getTabViewGroup(TabLayout tabLayout){
+        ViewGroup viewGroup = null;
+
+        if(tabLayout != null && tabLayout.getChildCount() > 0){
+            View view = tabLayout.getChildAt(0);
+            if (view != null && view instanceof ViewGroup)
+                viewGroup = (ViewGroup) view;
+
+        }
+        return viewGroup;
     }
 }
