@@ -63,6 +63,8 @@ public class PitScoutAutoFragment extends Fragment {
         setupHasAuto( view );
         setupNoAuto( view );
 
+        // some comment for a commit
+
         setVisibility();
 
         return view;
