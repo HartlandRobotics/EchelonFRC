@@ -82,44 +82,27 @@ public class PitScoutAutoFragment extends Fragment {
         });
 
         shotCount.getEditText().addTextChangedListener(new TextWatcher() {
-            @Override
-            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-
-            }
+            @Override public void beforeTextChanged(CharSequence s, int start, int count, int after) { }
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-
                 int ballCount = Integer.parseInt(s.toString());
                 data.setBallsPickedOrShotInAuto(ballCount);
-
             }
 
-            @Override
-            public void afterTextChanged(Editable s) {
-
-            }
+            @Override public void afterTextChanged(Editable s) { }
         });
 
         shootingPercentage.getEditText().addTextChangedListener(new TextWatcher() {
-            @Override
-            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-
-
-            }
+            @Override public void beforeTextChanged(CharSequence s, int start, int count, int after) { }
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-
                 int shootingPercentage = Integer.parseInt(s.toString());
                 data.setPercentAutoShots(shootingPercentage);
-
             }
 
-            @Override
-            public void afterTextChanged(Editable s) {
-
-            }
+            @Override public void afterTextChanged(Editable s) { }
         });
 
     }
@@ -143,33 +126,19 @@ public class PitScoutAutoFragment extends Fragment {
 
         programmingLanguageAutoComplete.addTextChangedListener(
                 new TextWatcher() {
-                    @Override
-                    public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-
-                    }
+                    @Override public void beforeTextChanged(CharSequence s, int start, int count, int after) { }
 
                     @Override
                     public void onTextChanged(CharSequence s, int start, int before, int count) {
                         data.setCodingLanguage(s.toString());
                     }
 
-                    @Override
-                    public void afterTextChanged(Editable s) {
-
-                    }
+                    @Override public void afterTextChanged(Editable s) { }
                 }
         );
-
     }
 
     public void setVisibility(){
-        PitScoutActivity activity = (PitScoutActivity)getActivity();
-        if(activity.hasSelectedTeam()){
-
-        }else {
-            disableRadioGroup(hasAutoGroup, false);
-            disableRadioGroup(helpAutoGroup, false);
-        }
         if( hasAutoGroup.getCheckedRadioButtonId() == R.id.hasAutoYes ){
             missingAutoLayout.setVisibility(View.GONE);
             hasAutoLayout.setVisibility(View.VISIBLE);
@@ -184,12 +153,6 @@ public class PitScoutAutoFragment extends Fragment {
             autoLanguage.setVisibility(View.GONE);
         } else {
             autoLanguage.setVisibility(View.VISIBLE);
-        }
-    }
-
-    private void disableRadioGroup(RadioGroup group, boolean enabled) {
-        for(int i = 0; i < group.getChildCount(); i++){
-            group.getChildAt(i).setEnabled(enabled);
         }
     }
 }

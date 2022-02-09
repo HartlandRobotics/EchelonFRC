@@ -16,17 +16,20 @@ import android.widget.AutoCompleteTextView;
 
 import com.google.android.material.tabs.TabLayout;
 import com.google.android.material.tabs.TabLayoutMediator;
+import com.google.android.material.textview.MaterialTextView;
 
 import org.hartlandrobotics.echelon2.database.entities.PitScout;
 import org.hartlandrobotics.echelon2.database.entities.Team;
 import org.hartlandrobotics.echelon2.models.TeamViewModel;
 import org.hartlandrobotics.echelon2.pitScouting.PitScoutingPagerAdapter;
+import org.hartlandrobotics.echelon2.utilities.TabLayoutUtils;
 
 import java.util.List;
 import java.util.stream.Collectors;
 
 public class PitScoutActivity extends AppCompatActivity {
     TabLayout tabLayout;
+    MaterialTextView selectTextPrompt;
     ViewPager2 viewPager;
     PitScoutingPagerAdapter viewPagerAdapter;
     AutoCompleteTextView teamNumberAutoComplete;
@@ -35,14 +38,12 @@ public class PitScoutActivity extends AppCompatActivity {
     List<Team> teams;
     List<String> teamNames;
     Team currentTeam;
-
-    public static void launch(Context context){
-        Intent intent = new Intent( context, PitScoutActivity.class );
-        context.startActivity(intent);
-    }
-
     private PitScout data;
 
+    public static void launch(Context context) {
+        Intent intent = new Intent(context, PitScoutActivity.class);
+        context.startActivity(intent);
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,14 +51,18 @@ public class PitScoutActivity extends AppCompatActivity {
         setContentView(R.layout.activity_pit_scout);
 
         teamNumberAutoComplete = findViewById(R.id.teamSelectionAutoComplete);
+        viewPager = findViewById(R.id.viewPager);
+        tabLayout = findViewById(R.id.tabLayout);
+        selectTextPrompt = findViewById(R.id.select_team_text);
+
 
         teamViewModel = new ViewModelProvider(this).get(TeamViewModel.class);
-        teamViewModel.getAllTeams().observe( this, ts -> {
+        teamViewModel.getAllTeams().observe(this, ts -> {
 
             teams = ts;
 
             teamNames = teams.stream()
-                    .map( t -> t.getTeamNumber() + " - " + t.getNickname())
+                    .map(t -> t.getTeamNumber() + " - " + t.getNickname())
                     .sorted()
                     .collect(Collectors.toList());
 
@@ -67,15 +72,18 @@ public class PitScoutActivity extends AppCompatActivity {
                 @Override
                 public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                     currentTeam = teams.get(position);
+                    if (hasSelectedTeam()) {
+                        viewPager.setVisibility(View.VISIBLE);
+                        selectTextPrompt.setVisibility(View.GONE);
+
+                        viewPagerAdapter.notifyDataSetChanged();
+
+                    }
                 }
             });
         });
 
         data = new PitScout();
-
-        viewPager = findViewById(R.id.viewPager);
-        tabLayout = findViewById(R.id.tabLayout);
-
 
 
         viewPagerAdapter = new PitScoutingPagerAdapter(
@@ -85,19 +93,15 @@ public class PitScoutActivity extends AppCompatActivity {
         new TabLayoutMediator(tabLayout, viewPager,
                 (tab, position) -> tab.setText(viewPagerAdapter.getTabTitle(position))
         ).attach();
+
+        if (!hasSelectedTeam()) {
+            viewPager.setVisibility(View.INVISIBLE);
+        }
+
     }
-    public boolean hasSelectedTeam(){
+
+    public boolean hasSelectedTeam() {
         return currentTeam != null;
     }
-    private ViewGroup getTabViewGroup(TabLayout tabLayout){
-        ViewGroup viewGroup = null;
 
-        if(tabLayout != null && tabLayout.getChildCount() > 0){
-            View view = tabLayout.getChildAt(0);
-            if (view != null && view instanceof ViewGroup)
-                viewGroup = (ViewGroup) view;
-
-        }
-        return viewGroup;
-    }
 }
