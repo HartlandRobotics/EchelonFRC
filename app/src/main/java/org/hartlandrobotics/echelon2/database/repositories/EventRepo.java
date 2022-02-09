@@ -34,6 +34,11 @@ public class EventRepo {
         mEventWithMatchesDao = db.eventMatchesDao();
     }
 
+    /*public LiveData<List<Evt>> getEventsByYear(int year){
+        mAllEvents = mEventDao.getEvents(year);
+        return mAllEvents;
+    }*/
+
     public LiveData<List<Evt>> getAllEvents() {
         mAllEvents = mEventDao.getEvents();
         return mAllEvents;
@@ -59,5 +64,11 @@ public class EventRepo {
 
     public void upsert(EvtMatchCrossRef crossRef) {
         EchelonDatabase.databaseWriteExecutor.execute( () -> mEventWithMatchesDao.upsert( crossRef ) );
+    }
+
+    public void upsert(List<Evt> events){
+        for(Evt evt: events){
+            upsert(evt);
+        }
     }
 }
