@@ -15,7 +15,6 @@ import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.google.android.material.button.MaterialButton;
 import com.google.android.material.radiobutton.MaterialRadioButton;
 import com.google.android.material.textview.MaterialTextView;
 
@@ -24,9 +23,8 @@ import org.hartlandrobotics.echelon2.TBA.Api;
 import org.hartlandrobotics.echelon2.TBA.ApiInterface;
 import org.hartlandrobotics.echelon2.TBA.TBAActivity;
 import org.hartlandrobotics.echelon2.TBA.models.SyncEvent;
-import org.hartlandrobotics.echelon2.database.entities.District;
+import org.hartlandrobotics.echelon2.database.entities.DistrictEvtCrossRef;
 import org.hartlandrobotics.echelon2.database.entities.Evt;
-import org.hartlandrobotics.echelon2.database.repositories.DistrictRepo;
 import org.hartlandrobotics.echelon2.database.repositories.EventRepo;
 import org.hartlandrobotics.echelon2.status.BlueAllianceStatus;
 
@@ -59,6 +57,9 @@ public class EventsFragment extends Fragment {
 
         eventPull = fragmentView.findViewById(R.id.eventPullButton);
         errorTextDisplay = fragmentView.findViewById(R.id.errorTextDisplay);
+        errorTextDisplay.setVisibility(View.GONE);
+
+        setupCurrentEvents();
 
         setupEventPulls();
 
@@ -78,15 +79,15 @@ public class EventsFragment extends Fragment {
     }
 
     //Bring back later when filter events by year
-    /*public void setupCurrentEvents(){
+    public void setupCurrentEvents(){
         Context appContext = getActivity().getApplicationContext();
         BlueAllianceStatus status = new BlueAllianceStatus(appContext);
-        int currentYear = Integer.parseInt( status.getYear() );
+        String currentDistrict = status.getDistrictKey();
         EventRepo eventRepo = new EventRepo(EventsFragment.this.getActivity().getApplication());
-        eventRepo.getEventsByYear(currentYear).observe(getViewLifecycleOwner(), events -> {
-            eventListAdapter.setCurrentEvent(events);
+        eventRepo.getDistrictWithEvents(currentDistrict).observe(getViewLifecycleOwner(), district -> {
+            eventListAdapter.setEvents(district.events);
         });
-    }*/
+    }
 
     public void setupEventPulls(){
         eventPull.setOnClickListener((view) -> {
@@ -113,6 +114,13 @@ public class EventsFragment extends Fragment {
                                         .collect(Collectors.toList());
 
                                 eventRepo.upsert(events);
+
+                                for(Evt event: events){
+                                    DistrictEvtCrossRef crossRef = event.toDistrictEvent(districtKey);
+                                    eventRepo.upsert(crossRef);
+
+                                }
+
                                 eventListAdapter.setEvents(events);
                                 errorTextDisplay.setText("Got event: " + syncEvents.size());
                             }
@@ -169,17 +177,7 @@ public class EventsFragment extends Fragment {
         @Override
         public void onClick(View view) {
             eventListAdapter.setCurrentEvent(eventViewModel);
-            //districtSelectedCheckbox.setChecked(true);
-            //districtViewModel.setIsSelected(true);
-            // push up to activity to clear the rest?
-
         }
-
-        //private void onSelectDistrict(DistrictListViewModel viewModel){
-        //setDistrict(viewModel);
-
-        //}
-
     }
 
     public class EventListAdapter extends RecyclerView.Adapter<EventsFragment.EventsViewHolder> {
@@ -204,7 +202,7 @@ public class EventsFragment extends Fragment {
             if (eventViewModels != null) {
                 holder.setEvent(eventViewModels.get(position));
             } else {
-                holder.setDisplayText("No District Data Yet...");
+                holder.setDisplayText("No Event Data Yet...");
             }
         }
 
@@ -227,7 +225,7 @@ public class EventsFragment extends Fragment {
 
         void setCurrentEvent(EventsListViewModel currentViewModel){
             TBAActivity tbaActivity = (TBAActivity)getActivity();
-            tbaActivity.setDistrictKey(currentViewModel.getEventKey());
+            tbaActivity.setEventKey(currentViewModel.getEventKey());
 
             for(EventsListViewModel viewModel : eventViewModels){
                 viewModel.setIsSelected( currentViewModel.getEventKey().equals(viewModel.getEventKey()));
