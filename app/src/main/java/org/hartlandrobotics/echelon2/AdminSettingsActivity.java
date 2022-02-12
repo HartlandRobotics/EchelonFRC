@@ -4,20 +4,27 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.google.android.material.button.MaterialButton;
+import com.google.android.material.button.MaterialButtonToggleGroup;
 import com.google.android.material.textfield.TextInputLayout;
 
 import org.hartlandrobotics.echelon2.configuration.AdminSettingsProvider;
 import org.hartlandrobotics.echelon2.configuration.AdminSettingsViewModel;
 
+import java.util.HashMap;
+
 public class AdminSettingsActivity extends AppCompatActivity {
     private static final String LOG_TAG = AdminSettingsActivity.class.getSimpleName();
 
+    private MaterialButtonToggleGroup deviceRoleGroup;
+    private HashMap<Integer, String> buttonRoleById;
     private TextInputLayout blueAllianceText;
     private TextInputLayout scoutingSeasonText;
     private TextInputLayout errorText;
@@ -32,6 +39,30 @@ public class AdminSettingsActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_admin_settings);
+
+        buttonRoleById = new HashMap<>();
+        buttonRoleById.put(R.id.red1, "red1");
+        buttonRoleById.put(R.id.red2, "red2");
+        buttonRoleById.put(R.id.red3, "red3");
+        buttonRoleById.put(R.id.blue1, "blue1");
+        buttonRoleById.put(R.id.blue2, "blue2");
+        buttonRoleById.put(R.id.blue3, "blue3");
+
+        deviceRoleGroup = findViewById(R.id.deviceRoleSelection);
+        deviceRoleGroup.addOnButtonCheckedListener(new MaterialButtonToggleGroup.OnButtonCheckedListener() {
+            @Override
+            public void onButtonChecked(MaterialButtonToggleGroup group, int checkedId, boolean isChecked) {
+                for (Integer currentId :buttonRoleById.keySet()){
+                    MaterialButton view = group.findViewById(currentId);
+                    // view.set(false);
+                }
+                String buttonRoleText = buttonRoleById.get(checkedId);
+                MaterialButton view = group.findViewById(checkedId);
+                //view.setSelected(true);
+                int i;
+                i = 10;
+            }
+        });
 
         errorText = this.findViewById(R.id.errorText);
         scoutingSeasonsAutoComplete = findViewById(R.id.scoutingSeasonDropDown);
