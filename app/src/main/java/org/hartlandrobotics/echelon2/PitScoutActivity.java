@@ -31,6 +31,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public class PitScoutActivity extends AppCompatActivity {
+    private static final String TAG = "PitScoutActivity";
     private BlueAllianceStatus status;
     TabLayout tabLayout;
     MaterialTextView selectTextPrompt;
@@ -68,8 +69,13 @@ public class PitScoutActivity extends AppCompatActivity {
         saveButton.setOnClickListener(new View.OnClickListener() {
                                           @Override
                                           public void onClick(View v) {
-                                              if (data == null) return;
-                                                pitScoutViewModel.upsert(data);
+                                              if (data == null) {
+                                                  Log.e(TAG, "no pit scout data to save");
+                                                  return;
+                                              }
+
+                                              viewPagerAdapter.updatePitScoutData();
+                                              pitScoutViewModel.upsert(data);
                                           }
                                       });
         teamViewModel = new ViewModelProvider(this).get(TeamViewModel.class);
@@ -95,17 +101,18 @@ public class PitScoutActivity extends AppCompatActivity {
                         String eventKey = status.getEventKey();
                         pitScoutViewModel.getPitScout(eventKey, currentTeam.getTeamKey())
                                 .observe(PitScoutActivity.this, ps->{
-                                    data = ps;
+                                    if( ps == null ){
+                                        data = pitScoutViewModel.getDefault(status.getEventKey(), currentTeam.getTeamKey());
+                                    } else {
+                                        data = ps;
+                                    }
+                                    viewPagerAdapter.setData(data);
                                     viewPagerAdapter.notifyDataSetChanged();
                                 });
-
                     }
                 }
             });
         });
-
-        data = new PitScout();
-
 
         viewPagerAdapter = new PitScoutingPagerAdapter(
                 getSupportFragmentManager(), getLifecycle(), data);
