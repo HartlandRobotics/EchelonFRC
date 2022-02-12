@@ -53,10 +53,6 @@ public class EventRepo {
         return mEventWithTeamsDao.getEventTeams( eventKey );
     }
 
-   /* public LiveData<EvtWithMatches> getMatchesForEvent(String eventKey) {
-        return mEventWithMatchesDao.getEventMatches( eventKey );
-    }*/
-
     public void upsert(Evt event) {
         EchelonDatabase.databaseWriteExecutor.execute( () -> mEventDao.upsert( event ) );
     }

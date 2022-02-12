@@ -2,6 +2,7 @@ package org.hartlandrobotics.echelon2.TBA.fragments;
 
 import android.content.Context;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -126,7 +127,7 @@ public class EventsFragment extends Fragment {
                             }
                         }
                         catch(Exception e){
-                            System.out.println("Exception thrown inside onResponse");
+                            Log.e("Inside onResponse", "\"Exception thrown inside onResponse\"");
                         }
                     }
                     @Override
@@ -137,7 +138,7 @@ public class EventsFragment extends Fragment {
                 });
             }
             catch(Exception e){
-                System.out.println("Exception attempting to pull from TBA");
+                Log.e("Outside Onresponse", "Exception attempting to pull from TBA");
             }
         });
     }
