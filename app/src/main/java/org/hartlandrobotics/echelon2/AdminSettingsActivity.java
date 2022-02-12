@@ -15,6 +15,7 @@ import com.google.android.material.button.MaterialButton;
 import com.google.android.material.button.MaterialButtonToggleGroup;
 import com.google.android.material.textfield.TextInputLayout;
 
+import org.apache.commons.lang3.StringUtils;
 import org.hartlandrobotics.echelon2.configuration.AdminSettingsProvider;
 import org.hartlandrobotics.echelon2.configuration.AdminSettingsViewModel;
 
@@ -25,6 +26,7 @@ public class AdminSettingsActivity extends AppCompatActivity {
 
     private MaterialButtonToggleGroup deviceRoleGroup;
     private HashMap<Integer, String> buttonRoleById;
+    private HashMap<String, Integer> buttonRoleByText;
     private TextInputLayout blueAllianceText;
     private TextInputLayout scoutingSeasonText;
     private TextInputLayout errorText;
@@ -40,29 +42,7 @@ public class AdminSettingsActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_admin_settings);
 
-        buttonRoleById = new HashMap<>();
-        buttonRoleById.put(R.id.red1, "red1");
-        buttonRoleById.put(R.id.red2, "red2");
-        buttonRoleById.put(R.id.red3, "red3");
-        buttonRoleById.put(R.id.blue1, "blue1");
-        buttonRoleById.put(R.id.blue2, "blue2");
-        buttonRoleById.put(R.id.blue3, "blue3");
 
-        deviceRoleGroup = findViewById(R.id.deviceRoleSelection);
-        deviceRoleGroup.addOnButtonCheckedListener(new MaterialButtonToggleGroup.OnButtonCheckedListener() {
-            @Override
-            public void onButtonChecked(MaterialButtonToggleGroup group, int checkedId, boolean isChecked) {
-                for (Integer currentId :buttonRoleById.keySet()){
-                    MaterialButton view = group.findViewById(currentId);
-                    // view.set(false);
-                }
-                String buttonRoleText = buttonRoleById.get(checkedId);
-                MaterialButton view = group.findViewById(checkedId);
-                //view.setSelected(true);
-                int i;
-                i = 10;
-            }
-        });
 
         errorText = this.findViewById(R.id.errorText);
         scoutingSeasonsAutoComplete = findViewById(R.id.scoutingSeasonDropDown);
@@ -77,6 +57,7 @@ public class AdminSettingsActivity extends AppCompatActivity {
         setupScoutingSeasonDropDown();
         initializeBlueAllianceKey(viewModel);
         initializeScoutingSeason(viewModel);
+        initializeDeviceRole(viewModel);
 
     }
 
@@ -91,6 +72,41 @@ public class AdminSettingsActivity extends AppCompatActivity {
         if( !vm.isBlueAllianceApikeySynced() ){
             setOutOfSync(blueAllianceText, vm.getFileSettings().getBlueAllianceApiKey());
         }
+    }
+
+    public void initializeDeviceRole(AdminSettingsViewModel vm){
+        buttonRoleByText = new HashMap<>();
+        buttonRoleByText.put( "red1", R.id.red1);
+        buttonRoleByText.put("red2", R.id.red2);
+        buttonRoleByText.put("red3", R.id.red3);
+        buttonRoleByText.put("blue1", R.id.blue1);
+        buttonRoleByText.put("blue2", R.id.blue2);
+        buttonRoleByText.put("blue3", R.id.blue3);
+
+        buttonRoleById = new HashMap<>();
+        buttonRoleById.put( R.id.red1, "red1");
+        buttonRoleById.put(R.id.red2, "red2");
+        buttonRoleById.put(R.id.red3, "red3");
+        buttonRoleById.put(R.id.blue1, "blue1");
+        buttonRoleById.put(R.id.blue2, "blue2");
+        buttonRoleById.put(R.id.blue3, "blue3");
+
+        deviceRoleGroup = findViewById(R.id.deviceRoleSelection);
+        deviceRoleGroup.addOnButtonCheckedListener(new MaterialButtonToggleGroup.OnButtonCheckedListener() {
+            @Override
+            public void onButtonChecked(MaterialButtonToggleGroup group, int checkedId, boolean isChecked) {
+                if (isChecked) {
+                    String currentRole = buttonRoleById.get(checkedId);
+                    vm.setDeviceRole(AdminSettingsActivity.this, currentRole);
+                }
+
+            }
+        });
+
+        int currentButtonId = buttonRoleByText.get(StringUtils.defaultIfBlank(vm.getDeviceRole(),"red1"));
+        MaterialButton currentButton = deviceRoleGroup.findViewById(currentButtonId);
+        currentButton.toggle();
+
     }
 
     public void initializeScoutingSeason(AdminSettingsViewModel vm){
