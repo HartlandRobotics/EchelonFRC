@@ -23,11 +23,13 @@ import org.hartlandrobotics.echelon2.TBA.Api;
 import org.hartlandrobotics.echelon2.TBA.ApiInterface;
 import org.hartlandrobotics.echelon2.TBA.TBAActivity;
 import org.hartlandrobotics.echelon2.TBA.models.SyncMatch;
+import org.hartlandrobotics.echelon2.database.entities.EvtMatchCrossRef;
 import org.hartlandrobotics.echelon2.database.entities.Match;
 import org.hartlandrobotics.echelon2.database.repositories.MatchRepo;
 import org.hartlandrobotics.echelon2.status.BlueAllianceStatus;
 
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -109,15 +111,21 @@ public class MatchesFragment extends Fragment {
                                 MatchRepo matchRepo = new MatchRepo(MatchesFragment.this.getActivity().getApplication());
                                 List<SyncMatch> syncMatches = response.body();
                                 List<Match> matches = syncMatches.stream()
+                                        .filter( match -> match.getCompLevel().equalsIgnoreCase("qm"))
                                         .map(match -> match.toMatch())
                                         .collect(Collectors.toList());
 
                                 matchRepo.upsert(matches);
 
+                                for(Match m : matches){
+                                    EvtMatchCrossRef crossRef = new EvtMatchCrossRef(eventKey, m.getMatchKey());
+                                    matchRepo.upsert(crossRef);
+
+                                }
+
                                 matchListAdapter.setMatches(matches);
 
-                                Log.e(TAG, "Got matches " + syncMatches.size());
-
+                                Log.i(TAG, "Got matches " + syncMatches.size());
                             }
                         }catch(Exception e){
                             Log.e(TAG, "Error " + e.getMessage());
@@ -156,25 +164,24 @@ public class MatchesFragment extends Fragment {
 
             matchNumber = itemView.findViewById(R.id.match_number);
             red1 = itemView.findViewById(R.id.red1);
-            red1 = itemView.findViewById(R.id.red2);
-            red1 = itemView.findViewById(R.id.red3);
-            red1 = itemView.findViewById(R.id.blue1);
-            red1 = itemView.findViewById(R.id.blue2);
-            red1 = itemView.findViewById(R.id.blue3);
-
+            red2 = itemView.findViewById(R.id.red2);
+            red3 = itemView.findViewById(R.id.red3);
+            blue1 = itemView.findViewById(R.id.blue1);
+            blue2 = itemView.findViewById(R.id.blue2);
+            blue3 = itemView.findViewById(R.id.blue3);
 
         }
 
         public void setMatch(MatchListViewModel matchViewModel){
             this.matchViewModel = matchViewModel;
 
-            matchNumber.setText(matchViewModel.getMatchNumber());
-            red1.setText(matchViewModel.getRed1());
-            red2.setText(matchViewModel.getRed2());
-            red3.setText(matchViewModel.getRed3());
-            blue1.setText(matchViewModel.getBlue1());
-            blue2.setText(matchViewModel.getBlue2());
-            blue3.setText(matchViewModel.getBlue3());
+            matchNumber.setText(String.valueOf(matchViewModel.getMatchNumber()));
+            red1.setText("1: " + matchViewModel.getRed1());
+            red2.setText("2: " + matchViewModel.getRed2());
+            red3.setText("3: " + matchViewModel.getRed3());
+            blue1.setText("1: " + matchViewModel.getBlue1());
+            blue2.setText("2: " + matchViewModel.getBlue2());
+            blue3.setText("3: " + matchViewModel.getBlue3());
 
 
         }
@@ -211,29 +218,14 @@ public class MatchesFragment extends Fragment {
         }
 
         void setMatches(List<Match> matches){
-            Context appContext = getActivity().getApplicationContext();
-            BlueAllianceStatus status = new BlueAllianceStatus(appContext);
-            String currentMatchKey = status.getMatchKey();
+            matches = matches.stream()
+                    .sorted(Comparator.comparingInt( m -> m.getMatchNumber()))
+                    .collect(Collectors.toList());
 
             matchViewModels = new ArrayList<>();
             for(Match match : matches){
                 MatchListViewModel viewModel = new MatchListViewModel(match);
-                if(match.getMatchKey().equals(currentMatchKey)){
-                    viewModel.setIsSelected(true);
-                }
                 matchViewModels.add(viewModel);
-            }
-
-            notifyDataSetChanged();
-        }
-
-        void setCurrentMatch(MatchListViewModel currentViewModel){
-            TBAActivity tbaActivity = (TBAActivity)getActivity();
-            tbaActivity.setMatchKey(currentViewModel.getMatchKey());
-
-            for(MatchListViewModel viewModel : matchViewModels){
-                viewModel.setIsSelected(currentViewModel.getMatchKey().equals(viewModel.getMatchKey()));
-
             }
 
             notifyDataSetChanged();

@@ -14,7 +14,6 @@ public class BlueAllianceStatus {
     private final static String YEAR_KEY = "YearKey";
     private final static String DISTRICT_KEY = "DistrictKey";
     private final static String EVENT_KEY = "EventKey";
-    private final static String MATCH_KEY = "MatchKey";
 
     private Context appContext;
     private boolean online;
@@ -22,7 +21,6 @@ public class BlueAllianceStatus {
     private String year;
     private String districtKey;
     private String eventKey;
-    private String matchKey;
 
     public BlueAllianceStatus(
             Context appContext
@@ -65,13 +63,6 @@ public class BlueAllianceStatus {
         this.eventKey = eventKey;
         setPreferenceValue(EVENT_KEY, eventKey);
     }
-
-    public String getMatchKey(){return matchKey;}
-    public void setMatchKey(String matchKey){
-        this.matchKey = matchKey;
-    setPreferenceValue(MATCH_KEY, matchKey);
-    }
-
 
     private void loadSettingsFromPrefs(){
         Log.i(TAG, "Loading BlueAllianceStatus from preferences");

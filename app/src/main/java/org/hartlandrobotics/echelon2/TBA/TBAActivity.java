@@ -125,11 +125,4 @@ public class TBAActivity extends AppCompatActivity {
         setEventStatus(eventKey);
         tbaStatus.setEventKey(eventKey);
     }
-
-    public void setMatchKey(String matchKey){
-        setMatchStatus(matchKey);
-        tbaStatus.setMatchKey(matchKey);
-    }
-
-
 }

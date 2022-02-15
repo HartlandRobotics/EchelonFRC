@@ -2,89 +2,86 @@ package org.hartlandrobotics.echelon2.TBA.models;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
+import org.hartlandrobotics.echelon2.database.entities.EvtMatchCrossRef;
 import org.hartlandrobotics.echelon2.database.entities.Match;
 
-public class SyncMatch {
-    @JsonProperty( "match_key")
-    private String matchKey;
+import java.util.ArrayList;
 
-    @JsonProperty( "match_number")
+public class SyncMatch {
+    @JsonProperty("key")
+    private String matchKey;
+    //yyyy[EVENT_CODE]_[COMP_LEVEL]m[MATCH_NUMBER]
+
+    @JsonProperty("comp_level")
+    private String compLevel;
+    // possible values [ qm, ef, qf, sf, f ]
+
+    @JsonProperty("match_number")
     private int matchNumber;
 
-    @JsonProperty( "comp_level")
-    private String compLevel;
+    @JsonProperty("winning_alliance")
+    private String winningAlliance;
 
-    @JsonProperty( "match_time")
-    private int matchTime;
+    @JsonProperty("time")
+    private int time;
 
-    @JsonProperty( "predicted_time")
+    @JsonProperty("predicted_time")
     private int predictedTime;
 
-    @JsonProperty( "red_1_team_key")
-    private String red1TeamKey;
+    @JsonProperty("alliances")
+    private Alliances alliances;
 
-    @JsonProperty( "red_2_team_key")
-    private String red2TeamKey;
+    public static class Alliances {
+        @JsonProperty("blue")
+        private MatchAlliance blueAlliance;
 
-    @JsonProperty( "red_3_team_key")
-    private String red3TeamKey;
+        @JsonProperty("red")
+        private MatchAlliance redAlliance;
+    }
 
-    @JsonProperty( "blue_1_team_key")
-    private String blue1TeamKey;
+    public static class MatchAlliance {
+        @JsonProperty("team_keys")
+        ArrayList<String> teamKeys;
+    }
 
-    @JsonProperty( "blue_2_team_key")
-    private String blue2TeamKey;
+    public Match toMatch() {
+        Match match = new Match(
+                getMatchKey(), getMatchNumber(),
+                getCompLevel(), getTime(), getPredictedTime(),
+                alliances.redAlliance.teamKeys.get( 0 ),
+                alliances.redAlliance.teamKeys.get( 1 ),
+                alliances.redAlliance.teamKeys.get( 2 ),
+                alliances.blueAlliance.teamKeys.get( 0 ),
+                alliances.blueAlliance.teamKeys.get( 1 ),
+                alliances.blueAlliance.teamKeys.get( 2 )
+        );
+        return match;
+    }
 
-    @JsonProperty( "blue_3_team_key")
-    private String blue3TeamKey;
+    public EvtMatchCrossRef toEvtMatch(String eventKey) {
+        EvtMatchCrossRef crossRef = new EvtMatchCrossRef( eventKey, getMatchKey() );
+        return crossRef;
+    }
 
+    //yyyy[EVENT_CODE]_[COMP_LEVEL]m[MATCH_NUMBER]
     public String getMatchKey() {
         return matchKey;
+    }
+
+    // possible values [ qm, ef, qf, sf, f ]
+    public String getCompLevel() {
+        return compLevel;
     }
 
     public int getMatchNumber() {
         return matchNumber;
     }
 
-    public String getCompLevel() {
-        return compLevel;
-    }
-
-    public int getMatchTime() {
-        return matchTime;
+    public int getTime() {
+        return time;
     }
 
     public int getPredictedTime() {
         return predictedTime;
-    }
-
-    public String getRed1TeamKey() {
-        return red1TeamKey;
-    }
-
-    public String getRed2TeamKey() {
-        return red2TeamKey;
-    }
-
-    public String getRed3TeamKey() {
-        return red3TeamKey;
-    }
-
-    public String getBlue1TeamKey() {
-        return blue1TeamKey;
-    }
-
-    public String getBlue2TeamKey() {
-        return blue2TeamKey;
-    }
-
-    public String getBlue3TeamKey() {
-        return blue3TeamKey;
-    }
-
-    public Match toMatch(){
-        Match match = new Match(
-                getMatchKey(), getMatchNumber(), getCompLevel(), getMatchTime(), getPredictedTime(), getRed1TeamKey(), getRed2TeamKey(), getRed3TeamKey(), getBlue1TeamKey(), getBlue2TeamKey(), getBlue3TeamKey());
-        return match;
     }
 }
