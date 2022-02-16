@@ -14,6 +14,8 @@ import android.widget.Spinner;
 import com.google.android.material.textfield.TextInputLayout;
 import com.google.android.material.textview.MaterialTextView;
 
+import org.hartlandrobotics.echelon2.configuration.AdminSettings;
+import org.hartlandrobotics.echelon2.configuration.AdminSettingsProvider;
 import org.hartlandrobotics.echelon2.database.entities.EvtWithMatches;
 import org.hartlandrobotics.echelon2.database.entities.Match;
 import org.hartlandrobotics.echelon2.database.repositories.MatchRepo;
@@ -65,6 +67,7 @@ public class MatchDropdownActivity extends AppCompatActivity {
     }
     public void setupMatchDropdown(){
         Context appContext = this.getApplicationContext();
+        AdminSettings settings = AdminSettingsProvider.getAdminSettings(appContext);
         BlueAllianceStatus status = new BlueAllianceStatus(appContext);
         String eventKey = status.getEventKey();
         MatchRepo matchRepo = new MatchRepo(this.getApplication());
@@ -73,7 +76,7 @@ public class MatchDropdownActivity extends AppCompatActivity {
 
             matchNumbers = matches.stream()
                     .sorted( Comparator.comparingInt(m->m.getMatchNumber()))
-                    .map(m -> String.valueOf(m.getMatchNumber()) + " - " + getTeamNumber(m, "red1"))
+                    .map(m -> String.valueOf(m.getMatchNumber()) + " - " + getTeamNumber(m, settings.getDeviceRole()))
                     .collect(Collectors.toList());
 
             ArrayAdapter adapter = new ArrayAdapter(this, R.layout.dropdown_item, matchNumbers);
