@@ -12,11 +12,15 @@
         <activity
             android:name=".AutoMatchScoutingActivity"
             android:exported="false" />
-        android:screenOrientation="landscape" />
+            android:screenOrientation="landscape" />
         <activity
             android:name=".MatchScoutingActvity"
             android:exported="false"
             android:screenOrientation="landscape" />
+        <activity
+            android:name=".MatchDropdownActivity"
+            android:exported="false"
+            android:screenOrientation="landscape"/>
         <activity
             android:name=".PitScoutActivity"
             android:exported="false"
