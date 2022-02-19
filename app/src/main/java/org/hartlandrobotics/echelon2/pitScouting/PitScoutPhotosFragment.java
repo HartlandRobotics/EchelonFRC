@@ -38,6 +38,8 @@ public class PitScoutPhotosFragment extends Fragment {
     }
 
     private Button cameraButton;
+    private Button nextPicture;
+    private Button backPicture;
     private ViewPager robotImagesPager;
     RobotImage robotImageAdapter;
     private int teamNumber = 6;
@@ -52,9 +54,21 @@ public class PitScoutPhotosFragment extends Fragment {
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_pitscout_photos, container, false);
 
+        nextPicture = view.findViewById(R.id.nextPic);
+        backPicture = view.findViewById(R.id.backPic);
         SetupImagesArea(view);
+        setupNextAndBackButton();
 
         return view;
+    }
+
+    public void setupNextAndBackButton(){
+        nextPicture.setOnClickListener(view -> {
+            robotImagesPager.setCurrentItem(Math.min(robotImagesPager.getCurrentItem() + 1, robotImageAdapter.getCount() - 1));
+        });
+        backPicture.setOnClickListener(view -> {
+            robotImagesPager.setCurrentItem(Math.max(0, robotImagesPager.getCurrentItem() - 1));
+        });
     }
 
     @Override

@@ -23,4 +23,21 @@
        app:layout_constraintTop_toBottomOf="@+id/photoButton"
        app:layout_constraintLeft_toLeftOf="parent"
        />
+
+   <com.google.android.material.button.MaterialButton
+       android:id="@+id/nextPic"
+       android:layout_width="wrap_content"
+       android:layout_height="wrap_content"
+       app:layout_constraintTop_toTopOf="@+id/picture_view_pager"
+       app:layout_constraintLeft_toRightOf="@+id/backPic"
+       android:text="Next" />
+
+   <com.google.android.material.button.MaterialButton
+       android:id="@+id/backPic"
+       android:layout_width="wrap_content"
+       android:layout_height="wrap_content"
+       app:layout_constraintLeft_toRightOf="@+id/picture_view_pager"
+       app:layout_constraintTop_toTopOf="@+id/picture_view_pager"
+       android:text="Back"/>
+
 </androidx.constraintlayout.widget.ConstraintLayout>

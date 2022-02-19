@@ -54,7 +54,7 @@ public class RobotImage extends PagerAdapter {
       imageView.setScaleType(ImageView.ScaleType.CENTER_CROP);
       Bitmap bitmap = BitmapFactory.decodeFile(currentFileName);
       imageView.setImageBitmap( bitmap );
-      container.addView(imageView, 0);
+      container.addView(imageView, position);
 
       return imageView;
    }
