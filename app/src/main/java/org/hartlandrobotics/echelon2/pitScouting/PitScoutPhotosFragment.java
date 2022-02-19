@@ -1,5 +1,6 @@
 package org.hartlandrobotics.echelon2.pitScouting;
 
+import static android.app.Activity.RESULT_OK;
 import static android.content.Intent.ACTION_GET_CONTENT;
 
 import android.app.Activity;
@@ -39,7 +40,7 @@ public class PitScoutPhotosFragment extends Fragment {
     private Button cameraButton;
     private ViewPager robotImagesPager;
     RobotImage robotImageAdapter;
-    private int teamNumber;
+    private int teamNumber = 6;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -49,18 +50,23 @@ public class PitScoutPhotosFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.fragment_pitscout_photos, container, false);
+        View view = inflater.inflate(R.layout.fragment_pitscout_photos, container, false);
 
-        SetupImagesArea(); // need to figure out why it's unreachable...
-        populateImagesArea();
+        SetupImagesArea(view);
 
-
+        return view;
     }
 
-    private void SetupImagesArea(){
-        cameraButton.findViewById(R.id.photoButton);
-        robotImagesPager.findViewById(R.id.picture_view_pager);
-        robotImageAdapter = new RobotImage(getActivity().getApplicationContext(), 3536);
+    @Override
+    public void onStart(){
+        super.onStart();
+        populateImagesArea();
+    }
+
+    private void SetupImagesArea(View view){
+        cameraButton = view.findViewById(R.id.photoButton);
+        robotImagesPager = view.findViewById(R.id.picture_view_pager);
+        robotImageAdapter = new RobotImage(getActivity().getApplicationContext(), teamNumber);
     }
 
     private void populateImagesArea(){
@@ -69,33 +75,18 @@ public class PitScoutPhotosFragment extends Fragment {
         cameraButton.setOnClickListener(view -> {
             try{
                 Intent cameraIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-                //registerForActivityResult(ActivityResultContracts.StartActivityForResult(cameraIntent, CAMERA_PIC_REQUEST) );
-                //getPreviewImage.launch(cameraIntent);
-
-                ActivityResultLauncher<Intent> pictureActivityResultLauncher = registerForActivityResult(new ActivityResultContracts.StartActivityForResult(), new ActivityResultCallback<ActivityResult>() {
-                    @Override
-                    public void onActivityResult(ActivityResult result) {
-                        if(result.getResultCode() == Activity.RESULT_OK){
-                            Intent data = result.getData();
-                            Bitmap photo = (Bitmap) data.getExtras().get( "data" );
-                            SaveImage( photo );
-                        }
-                    }
-                });
-
-                pictureActivityResultLauncher.launch(cameraIntent);
+                startActivityForResult(cameraIntent, CAMERA_PIC_REQUEST);
             }
             catch(Exception e){
+                e.printStackTrace();
                 Toast.makeText(getActivity().getApplicationContext(), "Couldn't load photo", Toast.LENGTH_LONG).show();
             }
         });
     }
 
-/*
     private static final int CAMERA_PIC_REQUEST = 22;
-*/
 
-   /* @Override
+    @Override
     public void onActivityResult(final int requestCode, int resultCode, Intent data) {
         super.onActivityResult( requestCode, resultCode, data );
         try {
@@ -115,7 +106,7 @@ public class PitScoutPhotosFragment extends Fragment {
         } catch ( Exception e ) {
             Toast.makeText( getActivity(), e.getMessage(), Toast.LENGTH_LONG );
         }
-    }*/
+    }
 
 
     private void SaveImage(Bitmap finalBitmap) {
