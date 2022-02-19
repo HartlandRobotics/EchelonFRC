@@ -60,7 +60,7 @@ public class MainActivity extends AppCompatActivity {
 
     private void setupStartScoutingButton(){
         startScouting = this.findViewById(R.id.main_admin_start_scouting);
-        startScouting.setOnClickListener(view -> MatchScoutingActvity.launch(MainActivity.this));
+        startScouting.setOnClickListener(view -> AutoMatchScoutingActivity.launch(MainActivity.this));
     }
 
     private void setupPitScoutingButton(){

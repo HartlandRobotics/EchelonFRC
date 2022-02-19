@@ -21,4 +21,6 @@ public class MatchScoutingActvity extends AppCompatActivity {
         context.startActivity(intent);
     }
 
+
+
 }

@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MatchScoutingActvity">
+    tools:context=".AutoMatchScoutingActivity">
 
     <ImageButton
         android:id="@+id/topHub"
@@ -49,43 +49,12 @@
         />
 
     <com.google.android.material.button.MaterialButton
-        android:id="@+id/traversal"
-        android:layout_width="310dp"
-        android:layout_height="30dp"
-        android:backgroundTint="@color/blueAlliance"
-        app:layout_constraintTop_toTopOf="parent"
+        android:id="@+id/teleOp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="TeleOp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        android:layout_margin="50dp"
-        />
-
-    <com.google.android.material.button.MaterialButton
-        android:id="@+id/high"
-        android:layout_width="310dp"
-        android:layout_height="30dp"
-        android:backgroundTint="@color/blueAlliance"
-        app:layout_constraintTop_toBottomOf="@+id/traversal"
-        app:layout_constraintEnd_toEndOf="parent"
-        android:layout_margin="50dp"
-        />
-
-    <com.google.android.material.button.MaterialButton
-        android:id="@+id/medium"
-        android:layout_width="310dp"
-        android:layout_height="30dp"
-        android:backgroundTint="@color/blueAlliance"
-        app:layout_constraintTop_toBottomOf="@+id/high"
-        app:layout_constraintEnd_toEndOf="parent"
-        android:layout_margin="50dp"
-        />
-
-    <com.google.android.material.button.MaterialButton
-        android:id="@+id/Low"
-        android:layout_width="310dp"
-        android:layout_height="30dp"
-        android:backgroundTint="@color/blueAlliance"
-        app:layout_constraintTop_toBottomOf="@+id/medium"
-        app:layout_constraintEnd_toEndOf="parent"
-        android:layout_margin="50dp"
         />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
