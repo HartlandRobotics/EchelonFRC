@@ -125,7 +125,8 @@ public class MainActivity extends AppCompatActivity {
 
         AdminSettings adminSettings = AdminSettingsProvider.getAdminSettings(this);
         TextInputLayout deviceLayout = findViewById(R.id.device_status_layout);
-        deviceLayout.getEditText().setText(adminSettings.getDeviceRole());
+        String deviceRole = adminSettings.getDeviceRole();
+        deviceLayout.getEditText().setText(deviceRole);
     }
 
     List<Season> seasons = new ArrayList<>();

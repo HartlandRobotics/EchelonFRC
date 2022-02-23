@@ -4,7 +4,6 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 
@@ -29,6 +28,7 @@ public class AdminSettingsActivity extends AppCompatActivity {
     private HashMap<String, Integer> buttonRoleByText;
     private TextInputLayout blueAllianceText;
     private TextInputLayout scoutingSeasonText;
+    private TextInputLayout teamNumText;
     private TextInputLayout errorText;
     private AutoCompleteTextView scoutingSeasonsAutoComplete;
 
@@ -42,8 +42,7 @@ public class AdminSettingsActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_admin_settings);
 
-
-
+        teamNumText = this.findViewById(R.id.teamNumText);
         errorText = this.findViewById(R.id.errorText);
         scoutingSeasonsAutoComplete = findViewById(R.id.scoutingSeasonDropDown);
 
@@ -57,6 +56,7 @@ public class AdminSettingsActivity extends AppCompatActivity {
         setupScoutingSeasonDropDown();
         initializeBlueAllianceKey(viewModel);
         initializeScoutingSeason(viewModel);
+        initializeTeamNumText(viewModel);
         initializeDeviceRole(viewModel);
 
     }
@@ -72,6 +72,9 @@ public class AdminSettingsActivity extends AppCompatActivity {
         if( !vm.isBlueAllianceApikeySynced() ){
             setOutOfSync(blueAllianceText, vm.getFileSettings().getBlueAllianceApiKey());
         }
+    }
+    public void initializeTeamNumText(AdminSettingsViewModel vm){
+        setDisplayText(teamNumText, vm.getTeamNumber());
     }
 
     public void initializeDeviceRole(AdminSettingsViewModel vm){
