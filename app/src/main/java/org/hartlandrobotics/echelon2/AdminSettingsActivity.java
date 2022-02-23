@@ -42,6 +42,7 @@ public class AdminSettingsActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_admin_settings);
 
+
         teamNumText = this.findViewById(R.id.teamNumText);
         errorText = this.findViewById(R.id.errorText);
         scoutingSeasonsAutoComplete = findViewById(R.id.scoutingSeasonDropDown);
