@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".matchScouting.MatchScoutingSummaryActivity">
+
+    <TextView
+        android:id="@+id/autoHighLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="High:"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/autoHighDecrement"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="-"
+        app:layout_constraintStart_toStartOf="@id/autoHumanDecrement"
+        app:layout_constraintTop_toTopOf="@id/autoHighLabel"
+        />
+
+    <TextView
+        android:id="@+id/autoHighValue"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        tools:text="5"
+        app:layout_constraintStart_toEndOf="@id/autoHighDecrement"
+        app:layout_constraintTop_toTopOf="parent"
+        />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/autoHighIncrement"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="+"
+        app:layout_constraintStart_toEndOf="@id/autoHighValue"
+        app:layout_constraintTop_toTopOf="parent"
+        />
+
+    <!-- End of autoHigh -->
+
+    <TextView
+        android:id="@+id/autoLowLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Low:"
+        app:layout_constraintTop_toBottomOf="@id/autoHighDecrement"
+        app:layout_constraintStart_toStartOf="parent"
+        />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/autoLowDecrement"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="-"
+        app:layout_constraintTop_toBottomOf="@id/autoHighDecrement"
+        app:layout_constraintStart_toStartOf="@id/autoHumanDecrement"
+        />
+
+    <TextView
+        android:id="@+id/autoLowValue"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        tools:text="4"
+        app:layout_constraintTop_toBottomOf="@id/autoHighDecrement"
+        app:layout_constraintStart_toEndOf="@id/autoHumanDecrement"
+        />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/autoLowIncrement"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="+"
+        app:layout_constraintTop_toBottomOf="@id/autoHighIncrement"
+        app:layout_constraintStart_toStartOf="@id/autoHighIncrement"
+        />
+
+    <!-- End of autoLow -->
+
+    <TextView
+        android:id="@+id/autoHumanLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Human:"
+        app:layout_constraintTop_toBottomOf="@id/autoLowDecrement"
+        app:layout_constraintStart_toStartOf="parent"
+        />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/autoHumanDecrement"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="-"
+        app:layout_constraintTop_toBottomOf="@id/autoLowDecrement"
+        app:layout_constraintStart_toEndOf="@id/autoHumanLabel"
+        />
+
+    <TextView
+        android:id="@+id/autoHumanValue"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        tools:text="3"
+        app:layout_constraintTop_toBottomOf="@id/autoLowDecrement"
+        app:layout_constraintStart_toStartOf="@id/autoHighValue"
+        />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/autoHumanIncrement"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="+"
+        app:layout_constraintTop_toBottomOf="@id/autoLowIncrement"
+        app:layout_constraintStart_toStartOf="@id/autoHighIncrement"
+        />
+
+    <!-- End of autoHuman -->
+
+    <TextView
+        android:id="@+id/autoTarmac"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Tarmac:"
+        app:layout_constraintTop_toBottomOf="@id/autoHumanDecrement"
+        app:layout_constraintStart_toStartOf="parent"
+        />
+
+    <com.google.android.material.checkbox.MaterialCheckBox
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:checked="true"
+        app:layout_constraintTop_toBottomOf="@id/autoHumanDecrement"
+        app:layout_constraintStart_toEndOf="@id/autoTarmac"
+        />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
