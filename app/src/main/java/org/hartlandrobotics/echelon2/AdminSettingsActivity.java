@@ -4,12 +4,9 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 
-
-import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.android.material.button.MaterialButton;
 import com.google.android.material.button.MaterialButtonToggleGroup;
@@ -65,7 +62,7 @@ public class AdminSettingsActivity extends EchelonActivity {
 
     public void setupScoutingSeasonDropDown(){
         String[] scoutingSeasons = getResources().getStringArray(R.array.scouting_years);
-        ArrayAdapter adapter = new ArrayAdapter(this, R.layout.season_dropdown_item, scoutingSeasons);
+        ArrayAdapter adapter = new ArrayAdapter(this, R.layout.list_item_season_dropdown, scoutingSeasons);
         scoutingSeasonsAutoComplete.setAdapter(adapter);
     }
     public void initializeBlueAllianceKey(AdminSettingsViewModel vm){
