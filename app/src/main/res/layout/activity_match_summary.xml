@@ -121,7 +121,7 @@
     <!-- End of autoHuman -->
 
     <TextView
-        android:id="@+id/autoTarmac"
+        android:id="@+id/autoTarmacLabel"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Tarmac:"
@@ -134,7 +134,167 @@
         android:layout_height="wrap_content"
         android:checked="true"
         app:layout_constraintTop_toBottomOf="@id/autoHumanDecrement"
-        app:layout_constraintStart_toEndOf="@id/autoTarmac"
+        app:layout_constraintStart_toEndOf="@id/autoTarmacLabel"
         />
+
+    <!-- End of autoTarmac -->
+
+    <TextView
+        android:id="@+id/teleOpHighLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="High:"
+        app:layout_constraintStart_toEndOf="@id/autoHighIncrement"
+        app:layout_constraintTop_toTopOf="parent"
+        />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/teleOpHighDecrement"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="-"
+        app:layout_constraintStart_toEndOf="@id/teleOpHighLabel"
+        app:layout_constraintTop_toTopOf="parent"
+        />
+
+    <TextView
+        android:id="@+id/teleOpHighValue"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="1"
+        app:layout_constraintStart_toEndOf="@id/teleOpHighDecrement"
+        app:layout_constraintTop_toTopOf="parent"
+        />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/teleOpHighIncrement"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="+"
+        app:layout_constraintStart_toEndOf="@id/teleOpHighValue"
+        app:layout_constraintTop_toTopOf="parent"
+        />
+
+    <!-- End of teleOpHigh -->
+
+    <TextView
+        android:id="@+id/teleOpLowLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Low:"
+        app:layout_constraintTop_toBottomOf="@id/teleOpHighDecrement"
+        app:layout_constraintStart_toEndOf="@id/autoLowIncrement"
+        />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/teleOpLowDecrement"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="-"
+        app:layout_constraintTop_toBottomOf="@id/teleOpHighIncrement"
+        app:layout_constraintStart_toEndOf="@id/teleOpHighLabel"
+        />
+
+    <TextView
+        android:id="@+id/teleOpLowValue"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="2"
+        app:layout_constraintStart_toEndOf="@id/teleOpHighDecrement"
+        app:layout_constraintTop_toBottomOf="@id/teleOpHighDecrement"
+        />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/teleOpLowIncrement"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="+"
+        app:layout_constraintStart_toEndOf="@id/teleOpLowValue"
+        app:layout_constraintTop_toBottomOf="@id/teleOpHighDecrement"
+        />
+
+    <!-- End of teleOpLow -->
+
+    <TextView
+        android:id="@+id/endTraverseLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Traverse:"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toEndOf="@id/teleOpHighIncrement"
+        />
+
+    <com.google.android.material.checkbox.MaterialCheckBox
+        android:id="@+id/endTraverseCheckbox"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:checked="true"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toEndOf="@id/endTraverseLabel"
+        />
+
+    <!-- End of endTraverse -->
+
+    <TextView
+        android:id="@+id/endHighLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="High:"
+        app:layout_constraintTop_toBottomOf="@id/endTraverseCheckbox"
+        app:layout_constraintStart_toEndOf="@id/teleOpLowIncrement"
+        />
+
+    <com.google.android.material.checkbox.MaterialCheckBox
+        android:id="@+id/endHighCheckbox"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:checked="true"
+        app:layout_constraintTop_toBottomOf="@id/endTraverseCheckbox"
+        app:layout_constraintStart_toEndOf="@id/endTraverseLabel"
+        />
+
+    <!-- End of endHigh -->
+
+    <TextView
+        android:id="@+id/endMidLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Mid:"
+        app:layout_constraintTop_toBottomOf="@id/endHighCheckbox"
+        app:layout_constraintStart_toEndOf="@id/teleOpLowIncrement"
+        />
+
+    <com.google.android.material.checkbox.MaterialCheckBox
+        android:id="@+id/endMidCheckbox"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:checked="true"
+        app:layout_constraintTop_toBottomOf="@id/endHighCheckbox"
+        app:layout_constraintStart_toStartOf="@id/endHighCheckbox"
+        />
+
+    <!-- End of endMid -->
+
+    <TextView
+        android:id="@+id/endLowLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Low:"
+        app:layout_constraintStart_toStartOf="@id/endMidLabel"
+        app:layout_constraintTop_toBottomOf="@id/endMidCheckbox"
+        />
+
+    <com.google.android.material.checkbox.MaterialCheckBox
+        android:id="@+id/endLowCheckbox"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:checked="true"
+        app:layout_constraintTop_toBottomOf="@id/endMidCheckbox"
+        app:layout_constraintStart_toStartOf="@id/endMidCheckbox"
+        />
+
+    <!-- End of endLow -->
+
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
