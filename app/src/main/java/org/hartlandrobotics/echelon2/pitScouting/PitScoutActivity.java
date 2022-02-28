@@ -25,6 +25,7 @@ import org.hartlandrobotics.echelon2.models.PitScoutViewModel;
 import org.hartlandrobotics.echelon2.models.TeamViewModel;
 import org.hartlandrobotics.echelon2.status.BlueAllianceStatus;
 
+import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -78,12 +79,16 @@ public class PitScoutActivity extends EchelonActivity {
         teamViewModel = new ViewModelProvider(this).get(TeamViewModel.class);
         teamViewModel.getAllTeams().observe(this, ts -> {
 
-            teams = ts;
+            teams = ts.stream()
+                    .sorted(Comparator.comparingInt(t -> t.getTeamNumber()))
+                    .collect(Collectors.toList());
+
 
             teamNames = teams.stream()
                     .map(t -> t.getTeamNumber() + " - " + t.getNickname())
-                    .sorted()
+                    //.sorted(Comparator.comparingInt(t -> t.getTeamNumber()))
                     .collect(Collectors.toList());
+
 
             ArrayAdapter adapter = new ArrayAdapter(this, R.layout.dropdown_item, teamNames);
             teamNumberAutoComplete.setAdapter(adapter);
