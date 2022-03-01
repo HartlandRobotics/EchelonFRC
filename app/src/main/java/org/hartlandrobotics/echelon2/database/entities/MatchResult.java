@@ -60,6 +60,12 @@ public class MatchResult {
     @ColumnInfo(name = "end_hang_traverse")
     private boolean endHangTraverse;
 
+    @ColumnInfo(name = "additional_notes")
+    private String additionalNotes;
+
+    @Ignore
+    public MatchResult(){}
+
     public MatchResult(
             @NonNull String matchResultKey,
             @NonNull String eventKey,
@@ -75,7 +81,9 @@ public class MatchResult {
             boolean endHangLow,
             boolean endHangMid,
             boolean endHangHigh,
-            boolean endHangTraverse) {
+            boolean endHangTraverse,
+            String additionalNotes
+        ) {
 
         this.matchResultKey = StringUtils.defaultIfBlank(matchResultKey, UUID.randomUUID().toString());
         this.eventKey = eventKey;
@@ -92,6 +100,7 @@ public class MatchResult {
         this.endHangMid = endHangMid;
         this.endHangHigh = endHangHigh;
         this.endHangTraverse = endHangTraverse;
+        this.additionalNotes = additionalNotes;
     }
 
     public String getMatchResultKey() { return matchResultKey; }
@@ -160,5 +169,11 @@ public class MatchResult {
     public boolean getEndHangTraverse(){ return endHangTraverse; }
     public void setEndHangTravers(boolean endHangTraverse){
         this.endHangTraverse = endHangTraverse;
+
+    }
+
+    public String getAdditionalNotes(){ return additionalNotes; }
+    public void setAdditionalNotes(String additionalNotes){
+        this.additionalNotes = additionalNotes;
     }
 }
