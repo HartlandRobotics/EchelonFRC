@@ -89,7 +89,7 @@ public class BluetoothSyncActivity extends EchelonActivity {
         setContentView(R.layout.activity_bluetooth_sync);
 
 
-        setupToolbar("Bluetooth Sync Page");
+        setupToolbar("Bluetooth Sync");
         setupControls();
 
         setupDeviceMapping();
