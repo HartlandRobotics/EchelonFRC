@@ -12,14 +12,114 @@
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize" />
 
-    <com.google.android.material.textview.MaterialTextView
-        android:id="@+id/devicesHeader"
+    <!-- Match results display -->
+    <LinearLayout
+        android:id="@+id/matchResultsLayout"
+        android:orientation="horizontal"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Devices"
-        app:layout_constraintStart_toStartOf="parent"
+        android:layout_margin="15dp"
         app:layout_constraintTop_toBottomOf="@id/actionBar"
-        />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        >
+
+        <com.google.android.material.textview.MaterialTextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight=".20"
+            android:text="MatchResults Total"
+            android:textStyle="bold"
+            />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/totalMatchResults"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight=".20"
+            android:layout_marginRight="10dp"
+            tools:text="24"/>
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/unsyncedMatchResultsLabel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight=".20"
+            android:layout_marginRight="10dp"
+            android:text="Ready to Sync"
+            android:textStyle="bold"
+            />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/unsyncedMatchResults"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight=".20"
+            android:layout_marginRight="10dp"
+            tools:text="12"/>
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/resetSyncButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight=".20"
+            android:text="Reset Sync"/>
+
+    </LinearLayout>
+    <LinearLayout
+        android:id="@+id/pitScoutLayout"
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="15dp"
+        app:layout_constraintTop_toBottomOf="@id/matchResultsLayout"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        >
+
+        <com.google.android.material.textview.MaterialTextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight=".20"
+            android:text="PitScout Total"
+            android:textStyle="bold"
+            />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/totalPitScout"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight=".20"
+            android:layout_marginRight="10dp"
+            tools:text="24"/>
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/unsyncedPitScoutLabel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight=".20"
+            android:layout_marginRight="10dp"
+            android:text="Ready to Sync"
+            android:textStyle="bold"
+            />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/unsyncedPitScout"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight=".20"
+            android:layout_marginRight="10dp"
+            tools:text="12"/>
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/resetPitScoutSyncButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight=".20"
+            android:text="Reset Sync"/>
+
+    </LinearLayout>
+
 
     <!-- all devices -->
     <LinearLayout
@@ -27,7 +127,8 @@
         android:orientation="horizontal"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@id/devicesHeader"
+        android:layout_marginTop="30dp"
+        app:layout_constraintTop_toBottomOf="@id/pitScoutLayout"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         >
@@ -111,7 +212,7 @@
 
         <!-- Sub Devices -->
         <LinearLayout
-            android:id="@+id/subLayout"
+            android:id="@+id/altLayout"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="vertical"
@@ -119,28 +220,28 @@
             >
 
             <com.google.android.material.button.MaterialButton
-                android:id="@+id/sub1SyncButton"
+                android:id="@+id/alt1SyncButton"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Fetch Sub1 Data"
+                android:text="Fetch Alt1 Data"
                 app:icon="@drawable/outline_download_24"
                 android:layout_gravity="center"
                 />
 
             <com.google.android.material.button.MaterialButton
-                android:id="@+id/sub2SyncButton"
+                android:id="@+id/alt2SyncButton"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Fetch Sub2 Data"
+                android:text="Fetch Alt2 Data"
                 app:icon="@drawable/outline_download_24"
                 android:layout_gravity="center"
                 />
 
             <com.google.android.material.button.MaterialButton
-                android:id="@+id/sub3SyncButton"
+                android:id="@+id/alt3SyncButton"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Fetch Sub3 Data"
+                android:text="Fetch Alt3 Data"
                 app:icon="@drawable/outline_download_24"
                 android:layout_gravity="center"
                 />
@@ -157,7 +258,8 @@
         android:layout_height="wrap_content"
         android:text="Logs"
         app:layout_constraintTop_toBottomOf="@id/deviceLayout"
-        android:layout_marginTop="20dp"
+        android:layout_margin="15dp"
+        android:textStyle="bold"
         />
 
     <androidx.recyclerview.widget.RecyclerView
