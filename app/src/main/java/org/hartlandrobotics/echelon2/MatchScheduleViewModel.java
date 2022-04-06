@@ -138,34 +138,41 @@ class MatchScheduleViewModel {
         return blue1Average + blue2Average + blue3Average;
     }
 
-    public int getRed1Cargo() { return 1; }
+    public int getRed1Cargo() { return red1Cargo; }
     public void setRed1Cargo(int red1Cargo){ this.red1Cargo = red1Cargo; }
-    public int getRed1Hang() { return 10; }
+    public int getRed1Hang() { return red1Hang; }
     public void setRed1Hang(int red1Hang){ this.red1Hang = red1Hang; }
 
-    public int getRed2Cargo() { return 2; }
+    public int getRed2Cargo() { return red2Cargo; }
     public void setRed2Cargo(int red2Cargo){ this.red2Cargo = red2Cargo; }
-    public int getRed2Hang() { return 20; }
+    public int getRed2Hang() { return red2Hang; }
     public void setRed2Hang(int red2Hang){ this.red2Hang = red2Hang; }
 
-    public int getRed3Cargo() { return 3; }
+    public int getRed3Cargo() { return red3Cargo; }
     public void setRed3Cargo(int red3Cargo){ this.red3Cargo = red3Cargo; }
-    public int getRed3Hang() { return 30; }
+    public int getRed3Hang() { return red3Hang; }
     public void setRed3Hang(int red3Hang){ this.red3Hang = red3Hang; }
 
-    public int getBlue1Cargo() { return 4; }
+    public int getBlue1Cargo() { return blue1Cargo; }
     public void setBlue1Cargo(int blue1Cargo){ this.blue1Cargo = blue1Cargo; }
-    public int getBlue1Hang() { return 40; }
+    public int getBlue1Hang() { return blue1Hang; }
     public void setBlue1Hang(int blue1Hang){ this.blue1Hang = blue1Hang; }
 
-    public int getBlue2Cargo() { return 5; }
+    public int getBlue2Cargo() { return blue2Cargo; }
     public void setBlue2Cargo(int blue2Cargo){ this.blue2Cargo = blue2Cargo; }
-    public int getBlue2Hang() { return 50; }
+    public int getBlue2Hang() { return blue2Hang; }
     public void setBlue2Hang(int blue2Hang){ this.blue2Hang = blue2Hang; }
 
-    public int getBlue3Cargo() { return 6; }
+    public int getBlue3Cargo() { return blue3Cargo; }
     public void setBlue3Cargo(int blue3Cargo){ this.blue3Cargo = blue3Cargo; }
-    public int getBlue3Hang() { return 60; }
+    public int getBlue3Hang() { return blue3Hang; }
     public void setBlue3Hang(int blue3Hang){ this.blue3Hang = blue3Hang; }
+
+    public int getRedCargoTotal(){ return getRed1Cargo() + getRed2Cargo() + getRed3Cargo(); }
+    public int getBlueCargoTotal(){ return getBlue1Cargo() + getBlue2Cargo() + getBlue3Cargo(); }
+
+    public int getRedHangTotal() { return getRed1Hang() + getRed2Hang() + getRed3Hang(); }
+    public int getBlueHangTotal() { return getBlue1Hang() + getBlue2Hang() + getBlue3Hang(); }
+
 
 }

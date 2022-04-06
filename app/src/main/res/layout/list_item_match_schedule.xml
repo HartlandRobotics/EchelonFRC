@@ -3,6 +3,7 @@
     android:orientation="horizontal"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:paddingVertical="3dp"
     xmlns:tools="http://schemas.android.com/tools">
 
     <com.google.android.material.textview.MaterialTextView
@@ -52,18 +53,17 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:paddingHorizontal="2dp"
-            android:text="cargo:"
+            android:text="cargo: "
             />
 
         <com.google.android.material.textview.MaterialTextView
             android:id="@+id/red_cargo_count"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textColor="@color/design_default_color_primary_variant"
+            android:layout_height="match_parent"
+            android:minWidth="40dp"
             android:paddingHorizontal="2dp"
-            android:minWidth="22dp"
-            tools:text="12"
-            />
+            android:textColor="?attr/colorError"
+            tools:text="12" />
 
         <com.google.android.material.textview.MaterialTextView
             android:layout_width="wrap_content"
@@ -76,9 +76,9 @@
             android:id="@+id/red_hang_points"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textColor="@color/design_default_color_primary_variant"
+            android:textColor="?attr/colorError"
             android:paddingHorizontal="2dp"
-            android:minWidth="30dp"
+            android:minWidth="40dp"
             tools:text="20"
             />
 
@@ -123,7 +123,7 @@
             android:layout_height="wrap_content"
             android:textColor="@color/design_default_color_primary_variant"
             android:paddingHorizontal="2dp"
-            android:minWidth="22dp"
+            android:minWidth="40dp"
             tools:text="12"
             />
 
@@ -140,7 +140,7 @@
             android:layout_height="wrap_content"
             android:textColor="@color/design_default_color_primary_variant"
             android:paddingHorizontal="2dp"
-            android:minWidth="30dp"
+            android:minWidth="40dp"
             tools:text="20"
             />
 

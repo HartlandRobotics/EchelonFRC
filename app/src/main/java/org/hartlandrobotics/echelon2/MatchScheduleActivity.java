@@ -218,6 +218,10 @@ public class MatchScheduleActivity extends EchelonActivity {
         private MaterialTextView blue3;
         private MaterialTextView redPrediction;
         private MaterialTextView bluePrediction;
+        private MaterialTextView redCargoPrediction;
+        private MaterialTextView blueCargoPrediction;
+        private MaterialTextView redHangerPrediction;
+        private MaterialTextView blueHangerPrediction;
         private LinearLayout predictionLayout;
 
         private MatchScheduleViewModel matchScheduleViewModel;
@@ -235,6 +239,10 @@ public class MatchScheduleActivity extends EchelonActivity {
             blue3 = itemView.findViewById(R.id.blue3);
             redPrediction = itemView.findViewById(R.id.red_prediction);
             bluePrediction = itemView.findViewById(R.id.blue_prediction);
+            redCargoPrediction = itemView.findViewById(R.id.red_cargo_count);
+            blueCargoPrediction = itemView.findViewById(R.id.blue_cargo_count);
+            redHangerPrediction = itemView.findViewById(R.id.red_hang_points);
+            blueHangerPrediction = itemView.findViewById(R.id.blue_hang_points);
             predictionLayout = itemView.findViewById(R.id.prediction_layout);
             if( !( deviceName.contains("aptain" ) || deviceName.contains("oach"))){
                 predictionLayout.setVisibility(View.INVISIBLE);
@@ -254,6 +262,11 @@ public class MatchScheduleActivity extends EchelonActivity {
             blue3.setText("3: " + matchScheduleViewModel.getBlue3());
             redPrediction.setText( String.valueOf( matchScheduleViewModel.getRedTotal() ) );
             bluePrediction.setText( String.valueOf( matchScheduleViewModel.getBlueTotal() ) );
+
+            redCargoPrediction.setText( String.valueOf(matchScheduleViewModel.getRedCargoTotal()));
+            blueCargoPrediction.setText( String.valueOf(matchScheduleViewModel.getBlueCargoTotal()));
+            redHangerPrediction.setText( String.valueOf(matchScheduleViewModel.getRedHangTotal()));
+            blueHangerPrediction.setText( String.valueOf(matchScheduleViewModel.getBlueHangTotal()));
         }
 
         public void setDisplayText(String displayText){
