@@ -76,6 +76,18 @@
             android:minWidth="100dp"
             android:textColor="@color/design_default_color_primary_variant"
             tools:text="3536"/>
+        <com.google.android.material.textview.MaterialTextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="cargo: "/>
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/blue_cargo_count"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/design_default_color_primary_variant"
+            tools:text="12"
+            />
     </LinearLayout>
     </LinearLayout>
     <LinearLayout
