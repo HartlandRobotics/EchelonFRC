@@ -107,27 +107,39 @@ public class MatchScheduleActivity extends EchelonActivity {
                     int red1Average = getAverageByTeam(match.getRed1TeamKey());
                     matchScheduleViewModel.setRed1(match.getRed1TeamKey());
                     matchScheduleViewModel.setRed1Average(red1Average);
+                    matchScheduleViewModel.setRed1Cargo( getAverageCargoCountByTeam(match.getRed1TeamKey()) );
+                    matchScheduleViewModel.setRed1Hang( getAverageHangPointsByTeam(match.getRed1TeamKey()) );
 
                     int red2Average = getAverageByTeam(match.getRed2TeamKey());
                     matchScheduleViewModel.setRed2(match.getRed2TeamKey());
                     matchScheduleViewModel.setRed2Average(red2Average);
+                    matchScheduleViewModel.setRed2Cargo( getAverageCargoCountByTeam(match.getRed2TeamKey()) );
+                    matchScheduleViewModel.setRed2Hang( getAverageHangPointsByTeam(match.getRed2TeamKey()) );
 
                     int red3Average = getAverageByTeam(match.getRed3TeamKey());
                     matchScheduleViewModel.setRed3(match.getRed3TeamKey());
                     matchScheduleViewModel.setRed3Average(red3Average);
+                    matchScheduleViewModel.setRed3Cargo( getAverageCargoCountByTeam(match.getRed3TeamKey()) );
+                    matchScheduleViewModel.setRed3Hang( getAverageHangPointsByTeam(match.getRed3TeamKey()) );
 
 
                     int blue1Average = getAverageByTeam(match.getBlue1TeamKey());
                     matchScheduleViewModel.setBlue1(match.getBlue1TeamKey());
                     matchScheduleViewModel.setBlue1Average(blue1Average);
+                    matchScheduleViewModel.setBlue1Cargo( getAverageCargoCountByTeam(match.getBlue1TeamKey()) );
+                    matchScheduleViewModel.setBlue1Hang( getAverageHangPointsByTeam(match.getBlue1TeamKey()) );
 
                     int blue2Average = getAverageByTeam(match.getBlue2TeamKey());
                     matchScheduleViewModel.setBlue2(match.getBlue2TeamKey());
                     matchScheduleViewModel.setBlue2Average(blue2Average);
+                    matchScheduleViewModel.setBlue2Cargo( getAverageCargoCountByTeam(match.getBlue2TeamKey()) );
+                    matchScheduleViewModel.setBlue2Hang( getAverageHangPointsByTeam(match.getBlue2TeamKey()) );
 
                     int blue3Average = getAverageByTeam(match.getBlue3TeamKey());
                     matchScheduleViewModel.setBlue3(match.getBlue3TeamKey());
                     matchScheduleViewModel.setBlue3Average(blue3Average);
+                    matchScheduleViewModel.setBlue3Cargo( getAverageCargoCountByTeam(match.getBlue3TeamKey()) );
+                    matchScheduleViewModel.setBlue3Hang( getAverageHangPointsByTeam(match.getBlue3TeamKey()) );
 
                     viewModels.add(matchScheduleViewModel);
                 }
@@ -137,6 +149,34 @@ public class MatchScheduleActivity extends EchelonActivity {
             });
 
         });
+    }
+
+    private int getAverageCargoCountByTeam(String teamKey){
+        List<MatchResult> teamMatchResults = matchResultsByTeam.get(teamKey);
+        if( teamMatchResults == null || teamMatchResults.size() == 0 ) return 0;
+
+        int totalCargoCount = 0;
+        for(MatchResult matchResult : teamMatchResults ){
+            totalCargoCount += matchResult.getAutoLowBalls() + matchResult.getAutoHighBalls() +
+                    matchResult.getTeleOpLowBalls() + matchResult.getTeleOpHighBalls();
+        }
+        int averageCargoCount = totalCargoCount / teamMatchResults.size();
+        return averageCargoCount;
+    }
+
+    private int getAverageHangPointsByTeam(String teamKey){
+        List<MatchResult> teamMatchResults = matchResultsByTeam.get(teamKey);
+        if( teamMatchResults == null || teamMatchResults.size() == 0 ) return 0;
+
+        int totalHangPoints = 0;
+        for(MatchResult matchResult : teamMatchResults ){
+            totalHangPoints += (matchResult.getEndHangLow()? 1 : 0 ) * 4;
+            totalHangPoints += (matchResult.getEndHangMid()? 1 : 0 ) * 6;
+            totalHangPoints += (matchResult.getEndHangHigh()? 1 : 0 ) * 10;
+            totalHangPoints += (matchResult.getEndHangTraverse()? 1 : 0 ) * 15;
+        }
+        int averageHangPoints = totalHangPoints / teamMatchResults.size();
+        return averageHangPoints;
     }
 
     private int getAverageByTeam( String teamKey ){
@@ -196,7 +236,7 @@ public class MatchScheduleActivity extends EchelonActivity {
             redPrediction = itemView.findViewById(R.id.red_prediction);
             bluePrediction = itemView.findViewById(R.id.blue_prediction);
             predictionLayout = itemView.findViewById(R.id.prediction_layout);
-            if( !deviceName.contains("aptain")){
+            if( !( deviceName.contains("aptain" ) || deviceName.contains("oach"))){
                 predictionLayout.setVisibility(View.INVISIBLE);
             }
 
