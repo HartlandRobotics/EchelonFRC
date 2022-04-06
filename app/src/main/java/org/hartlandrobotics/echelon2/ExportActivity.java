@@ -83,7 +83,7 @@ public class ExportActivity extends EchelonActivity {
             matchResultViewModel.getMatchResultsWithTeamMatchByEvent(status.getEventKey()).observe(this, matchResults -> {
                 try {
                     FileOutputStream outputStream = new FileOutputStream(file);
-                    String header = "Event_Key,Match_Key,Team_Key,Match_Number,Team_Number,Auto_Taxi_Tarmac,Auto_High_Balls,Auto_Low_Balls,Auto_Human_Player_Shots,Teleop_High_Balls,Teleop_Low_Balls,Teleop_Defenses,End_Hang_Low,End_Hang_Mid,End_Hang_High,End_Hang_Traverse\n";
+                    String header = "Event_Key,Match_Key,Team_Key,Match_Number,Team_Number,Auto_Taxi_Tarmac,Auto_High_Balls,Auto_Low_Balls,Auto_Human_Player_Shots,Teleop_High_Balls,Teleop_Low_Balls,Teleop_Defenses,End_Hang_Low,End_Hang_Mid,End_Hang_High,End_Hang_Traverse,Match_Result_Key\n";
                     outputStream.write(header.getBytes());
                     for(MatchResultWithTeamMatch matchResultWithTeamMatch: matchResults){
                         MatchResult mr = matchResultWithTeamMatch.matchResult;
@@ -107,6 +107,7 @@ public class ExportActivity extends EchelonActivity {
                         dataForFile.add(String.valueOf(mr.getEndHangMid()));
                         dataForFile.add(String.valueOf(mr.getEndHangHigh()));
                         dataForFile.add(String.valueOf(mr.getEndHangTraverse()));
+                        dataForFile.add(mr.getMatchResultKey());
                         String outputString = dataForFile.stream().collect(Collectors.joining(",")) + "\n";
                         outputStream.write(outputString.getBytes());
                     }
@@ -217,7 +218,8 @@ public class ExportActivity extends EchelonActivity {
             if(columns[15].equals("TRUE")){
                 travHang = true;
             }
-            MatchResult matchResult = new MatchResult(StringUtils.EMPTY, eventKey, matchKey, teamKey, false, taxi, autoHigh, autoLow, autoHuman, teleHigh, teleLow, lowHang, midHang, highHang, travHang, " ", teleDef);
+            String matchResultKey = columns[16];
+            MatchResult matchResult = new MatchResult(matchResultKey, eventKey, matchKey, teamKey, false, taxi, autoHigh, autoLow, autoHuman, teleHigh, teleLow, lowHang, midHang, highHang, travHang, " ", teleDef);
             matchResultViewModel.upsert(matchResult);
         }
         Log.e("Test", "Times ran: " + timesRan);
