@@ -330,8 +330,7 @@ public class MatchScheduleActivity extends EchelonActivity {
 
             predictionLayout = itemView.findViewById(R.id.prediction_layout);
             if( !( deviceName.contains("aptain" ) || deviceName.contains("oach"))){
-                //System.out.println("Setting invisible");
-                //predictionLayout.setVisibility(View.INVISIBLE);
+                predictionLayout.setVisibility(View.INVISIBLE);
             }
 
         }
