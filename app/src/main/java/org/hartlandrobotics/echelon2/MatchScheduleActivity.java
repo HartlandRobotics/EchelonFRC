@@ -270,7 +270,7 @@ public class MatchScheduleActivity extends EchelonActivity {
             matchScore += (matchResult.getEndHangHigh()? 1 : 0 ) * 10;
             matchScore += (matchResult.getEndHangTraverse()? 1 : 0 ) * 15;
 
-            totalDeviation += (matchScore - totalScore) * (matchScore - totalScore);
+            totalDeviation += (matchScore - averageScore) * (matchScore - averageScore);
         }
 
         double stdDeviation = Math.sqrt(totalDeviation / teamMatchResults.size());

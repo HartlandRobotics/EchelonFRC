@@ -196,7 +196,7 @@ class MatchScheduleViewModel {
         if(matchCount < 2){
             return 50;
         }
-        double normalizedStat = (getRedTotal() - getBlueTotal()) / (double)getRedTotalStdDeviation();
+        double normalizedStat = (getRedTotal() - getBlueTotal()) / Math.sqrt(getRedTotalStdDeviation() * getRedTotalStdDeviation() + getBlueTotalStdDeviation() * getBlueTotalStdDeviation());
         TDistribution tDif = new TDistribution(matchCount - 1);
         //I'm pretty sure this is the right polarity, but avg might need to not be negative...
         //get the difference between the average scores, then put that in terms of standard deviations
@@ -209,7 +209,7 @@ class MatchScheduleViewModel {
         if(matchCount < 2){
             return 0;
         }
-        //60% confidence interval
+        //70% confidence interval
         return (int)(Math.abs(new TDistribution(matchCount - 1).
                 inverseCumulativeProbability(.15))
                 * getRedTotalStdDeviation());
@@ -219,15 +219,17 @@ class MatchScheduleViewModel {
             return 0;
         }
         return (int)(Math.abs(new TDistribution(matchCount - 1).
-                inverseCumulativeProbability(.125))
+                inverseCumulativeProbability(.15))
                 * getBlueTotalStdDeviation());
     }
 
     public double getRedTotalStdDeviation(){
+//        System.out.println("red std dev: " + Math.sqrt(red1StdDeviation * red1StdDeviation + red2StdDeviation * red2StdDeviation + red3StdDeviation * red3StdDeviation));
         return Math.sqrt(red1StdDeviation * red1StdDeviation + red2StdDeviation * red2StdDeviation + red3StdDeviation * red3StdDeviation);
     }
 
     public double getBlueTotalStdDeviation(){
+        //System.out.println("blue std dev: " + Math.sqrt(blue1StdDeviation * blue1StdDeviation + blue2StdDeviation * blue2StdDeviation + blue3StdDeviation * blue3StdDeviation));
         return Math.sqrt(blue1StdDeviation * blue1StdDeviation + blue2StdDeviation * blue2StdDeviation + blue3StdDeviation * blue3StdDeviation);
     }
     public double getRed1StdDeviation() {
