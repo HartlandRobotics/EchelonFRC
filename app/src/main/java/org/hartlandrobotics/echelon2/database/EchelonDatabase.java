@@ -69,7 +69,7 @@ public abstract class EchelonDatabase extends RoomDatabase {
             synchronized ( EchelonDatabase.class){
                 if(_instance == null){
                     _instance = Room.databaseBuilder(context.getApplicationContext(),
-                            EchelonDatabase.class, "echelon_database")
+                            EchelonDatabase.class,                                    "echelon_frc_database")
                             .fallbackToDestructiveMigration()
                             .addCallback(roomDatabaseCallback)
                             .build();
@@ -87,9 +87,9 @@ public abstract class EchelonDatabase extends RoomDatabase {
             super.onCreate(db);
 
             databaseWriteExecutor.execute(() -> {
-                Season rapidReactSeason = new Season("Rapid React", 2022);
+                Season crescendoSeason = new Season("Crescendo", 2024);
                 SeasonDao sd = _instance.seasonDao();
-                sd.insert(rapidReactSeason);
+                sd.insert(crescendoSeason);
             });
         }
 
