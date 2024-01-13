@@ -32,35 +32,50 @@ public class MatchResult {
     @ColumnInfo(name = "has_been_synced")
     private boolean hasBeenSynced;
 
-    @ColumnInfo(name="auto_taxi_tarmac")
-    private boolean taxiTarmac;
+    @ColumnInfo(name="auto_1")
+    private String auto1;
 
-    @ColumnInfo(name = "auto_high_balls")
-    private int autoHighBalls;
+    @ColumnInfo(name = "auto_2")
+    private String auto2;
 
-    @ColumnInfo( name = "auto_low_balls")
-    private int autoLowBalls;
+    @ColumnInfo( name = "auto_3")
+    private String auto3;
 
-    @ColumnInfo( name = "auto_human_player_shots")
-    private int autoHumanPlayerShots;
+    @ColumnInfo( name = "auto_4")
+    private String auto4;
 
-    @ColumnInfo( name = "teleop_high_balls")
-    private int teleOpHighBalls;
+    @ColumnInfo( name = "auto_5")
+    private String auto5;
 
-    @ColumnInfo( name = "teleop_low_balls")
-    private int teleOpLowBalls;
+    @ColumnInfo( name = "teleop_1")
+    private String teleOp1;
 
-    @ColumnInfo( name = "end_hang_low")
-    private boolean endHangLow;
+    @ColumnInfo( name = "teleop_2")
+    private String teleOp2;
 
-    @ColumnInfo(name = "end_hang_mid")
-    private boolean endHangMid;
+    @ColumnInfo( name = "teleop_3")
+    private String teleOp3;
 
-    @ColumnInfo(name = "end_hang_high")
-    private boolean endHangHigh;
+    @ColumnInfo( name = "teleop_4")
+    private String teleOp4;
 
-    @ColumnInfo(name = "end_hang_traverse")
-    private boolean endHangTraverse;
+    @ColumnInfo( name = "teleop_5")
+    private String teleOp5;
+
+    @ColumnInfo( name = "end_1")
+    private String end1;
+
+    @ColumnInfo(name = "end_2")
+    private String end2;
+
+    @ColumnInfo(name = "end_3")
+    private String end3;
+
+        @ColumnInfo(name = "end_4")
+    private String end4;
+
+    @ColumnInfo(name = "end_5")
+    private String end5;
 
     @ColumnInfo(name = "additional_notes")
     private String additionalNotes;
@@ -77,16 +92,21 @@ public class MatchResult {
             @NonNull String matchKey,
             @NonNull String teamKey,
             boolean hasBeenSynced,
-            boolean taxiTarmac,
-            int autoHighBalls,
-            int autoLowBalls,
-            int autoHumanPlayerShots,
-            int teleOpHighBalls,
-            int teleOpLowBalls,
-            boolean endHangLow,
-            boolean endHangMid,
-            boolean endHangHigh,
-            boolean endHangTraverse,
+            String auto1,
+            String auto2,
+            String auto3,
+            String auto4,
+            String auto5,
+            String teleOp1,
+            String teleOp2,
+            String teleOp3,
+            String teleOp4,
+            String teleOp5,
+            String end1,
+            String end2,
+            String end3,
+            String end4,
+            String end5,
             String additionalNotes,
             int defenseCount
     ) {
@@ -96,16 +116,21 @@ public class MatchResult {
         this.matchKey = matchKey;
         this.teamKey = teamKey;
         this.hasBeenSynced = hasBeenSynced;
-        this.taxiTarmac = taxiTarmac;
-        this.autoHighBalls = autoHighBalls;
-        this.autoLowBalls = autoLowBalls;
-        this.autoHumanPlayerShots = autoHumanPlayerShots;
-        this.teleOpHighBalls = teleOpHighBalls;
-        this.teleOpLowBalls = teleOpLowBalls;
-        this.endHangLow = endHangLow;
-        this.endHangMid = endHangMid;
-        this.endHangHigh = endHangHigh;
-        this.endHangTraverse = endHangTraverse;
+        this.auto1 = auto1;
+        this.auto2 = auto2;
+        this.auto3 = auto3;
+        this.auto4 = auto4;
+        this.auto5 = auto5;
+        this.teleOp1 = teleOp1;
+        this.teleOp2 = teleOp2;
+        this.teleOp3 = teleOp3;
+        this.teleOp4 = teleOp4;
+        this.teleOp5 = teleOp5;
+        this.end1 = end1;
+        this.end2 = end2;
+        this.end3 = end3;
+        this.end4 = end4;
+        this.end5 = end5;
         this.additionalNotes = additionalNotes;
         this.defenseCount = defenseCount;
     }
@@ -133,53 +158,50 @@ public class MatchResult {
         this.hasBeenSynced = hasBeenSynced;
     }
 
-    public boolean getTaxiTarmac(){ return taxiTarmac; }
-    public void setTaxiTarmac(boolean taxiTarmac){ this.taxiTarmac = taxiTarmac; }
+    public String getAuto1(){ return auto1; }
+    public void setAuto1(String auto1){ this.auto1 = auto1; }
 
-    public int getAutoHighBalls() { return autoHighBalls; }
-    public void setAutoHighBalls(int autoHighBalls){
-        this.autoHighBalls = autoHighBalls;
-    }
+    public String getAuto2(){ return auto2; }
+    public void setAuto2(String auto2){ this.auto2 = auto2; }
 
-    public int getAutoLowBalls(){ return autoLowBalls; }
-    public void setAutoLowBalls(int autoLowBalls){
-        this.autoLowBalls = autoLowBalls;
-    }
+    public String getAuto3(){ return auto3; }
+    public void setAuto3(String auto3){ this.auto3 = auto3; }
 
-    public int getAutoHumanPlayerShots(){ return autoHumanPlayerShots;}
-    public void setAutoHumanPlayerShots(int autoHumanPlayerShots){
-        this.autoHumanPlayerShots = autoHumanPlayerShots;
-    }
+    public String getAuto4(){ return auto4; }
+    public void setAuto4(String auto4){ this.auto4 = auto4; }
 
-    public int getTeleOpHighBalls() { return teleOpHighBalls; }
-    public void setTeleOpHighBalls( int teleOpHighBalls ){
-        this.teleOpHighBalls = teleOpHighBalls;
-    }
+    public String getAuto5(){ return auto5; }
+    public void setAuto5(String auto5){ this.auto5 = auto5; }
 
-    public int getTeleOpLowBalls(){ return teleOpLowBalls; }
-    public void setTeleOpLowBalls( int teleOpLowBalls ){
-        this.teleOpLowBalls = teleOpLowBalls;
-    }
+    public String getTeleOp1(){ return teleOp1; }
+    public void setTeleOp1(String teleOp1){ this.teleOp1 = teleOp1; }
 
-    public boolean getEndHangLow(){ return endHangLow; }
-    public void setEndHangLow(boolean endHangLow){
-        this.endHangLow = endHangLow;
-    }
+    public String getTeleOp2(){ return teleOp2; }
+    public void setTeleOp2(String teleOp2){ this.teleOp2 = teleOp2; }
 
-    public boolean getEndHangMid(){ return endHangMid; }
-    public void setEndHangMid(boolean endHangMid){
-        this.endHangMid = endHangMid;
-    }
+    public String getTeleOp3(){ return teleOp3; }
+    public void setTeleOp3(String teleOp3){ this.teleOp3 = teleOp3; }
 
-    public boolean getEndHangHigh(){ return endHangHigh; }
-    public void setEndHangHigh(boolean endHangHigh){
-        this.endHangHigh = endHangHigh;
-    }
+    public String getTeleOp4(){ return teleOp4; }
+    public void setTeleOp4(String teleOp4){ this.teleOp4 = teleOp4; }
 
-    public boolean getEndHangTraverse(){ return endHangTraverse; }
-    public void setEndHangTraverse(boolean endHangTraverse){
-        this.endHangTraverse = endHangTraverse;
-    }
+    public String getTeleOp5(){ return teleOp5; }
+    public void setTeleOp5(String teleOp5){ this.teleOp5 = teleOp5; }
+
+    public String getEnd1(){ return end1; }
+    public void setEnd1(String end1){ this.end1 = end1; }
+
+    public String getEnd2(){ return end2; }
+    public void setEnd2(String end2){ this.end2 = end2; }
+
+    public String getEnd3(){ return end3; }
+    public void setEnd3(String end3){ this.end3 = end3; }
+
+    public String getEnd4(){ return end4; }
+    public void setEnd4(String end4){ this.end4 = end4; }
+
+    public String getEnd5(){ return end5; }
+    public void setEnd5(String end5){ this.end5 = end5; }
 
     public String getAdditionalNotes(){ return additionalNotes; }
     public void setAdditionalNotes( String additionalNotes ){
