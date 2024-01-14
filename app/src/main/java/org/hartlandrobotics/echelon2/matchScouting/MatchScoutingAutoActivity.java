@@ -22,20 +22,36 @@ public class MatchScoutingAutoActivity extends AppCompatActivity {
     private static final String MATCH_KEY = "auto_match_key_param";
     private static final String TEAM_KEY = "auto_team_key_param";
 
-    private ImageButton topHubButton;
-    private ImageButton bottomHubButton;
-    private ImageButton humanPlayerButton;
-    private ImageButton exitTarmacButton;
+//    private ImageButton topHubButton;
+//    private ImageButton bottomHubButton;
+//    private ImageButton humanPlayerButton;
+//    private ImageButton exitTarmacButton;
 
-    private MaterialTextView topHubText;
-    private MaterialTextView bottomHubText;
-    private MaterialTextView humanPlayerText;
-    private MaterialTextView teamKeyText;
+    private ImageButton leavePark;
+    private ImageButton autoSpeaker;
+    private ImageButton autoAmp;
+    // the amp changes depending on if it's a red tablet or a blue tablet
 
-    int topHubButtonDrawable;
-    int bottomHubButtonDrawable;
-    int humanPlayoutButtonDrawable;
-    int tarmacButtonDrawable;
+    // we are finally going to use text buttons to let them take away things on the screen so they don't keep crying about it
+    private MaterialTextView subtractSpeaker;
+    private MaterialTextView subtractAmp;
+    private MaterialTextView speakerPoints;
+    private MaterialTextView ampPoints;
+
+//    private MaterialTextView topHubText;
+//    private MaterialTextView bottomHubText;
+//    private MaterialTextView humanPlayerText;
+//    private MaterialTextView teamKeyText;
+
+//    int topHubButtonDrawable;
+//    int bottomHubButtonDrawable;
+//    int humanPlayoutButtonDrawable;
+//    int tarmacButtonDrawable;
+
+    int leaveParkDrawable;
+    int autoSpeakerDrawable;
+    int autoAmpDrawable;
+
 
     MatchResultViewModel matchResultViewModel;
     MatchResult matchResult;
@@ -83,15 +99,20 @@ public class MatchScoutingAutoActivity extends AppCompatActivity {
                 });
     }
 
+
+    // all red text that refers from things from last year needs to be updated
     public void populateControlsFromData(){
-        topHubText.setText(String.valueOf(matchResult.getAutoHighBalls()));
-        bottomHubText.setText(String.valueOf(matchResult.getAutoLowBalls()));
-        humanPlayerText.setText(String.valueOf(matchResult.getAutoHumanPlayerShots()));
+//        topHubText.setText(String.valueOf(matchResult.getAutoHighBalls()));
+//        bottomHubText.setText(String.valueOf(matchResult.getAutoLowBalls()));
+//        humanPlayerText.setText(String.valueOf(matchResult.getAutoHumanPlayerShots()));
+        speakerPoints.setText(String.valueOf(matchResult.getAutoHumanPlayerShots()));
+        ampPoints.setText(String.valueOf(matchResult.getAutoHumanPlayerShots()));
 
         if( matchResult.getTaxiTarmac() ){
-            exitTarmacButton.setImageResource(R.drawable.taxi_tarmac_green);
+//            exitTarmacButton.setImageResource(R.drawable.taxi_tarmac_green);
+            leavePark.setImageResource(R.drawable.out_line);
         } else {
-            exitTarmacButton.setImageResource(tarmacButtonDrawable);
+            leavePark.setImageResource(leaveParkDrawable);
         }
 
     }
@@ -141,15 +162,17 @@ public class MatchScoutingAutoActivity extends AppCompatActivity {
         AdminSettings settings = AdminSettingsProvider.getAdminSettings(getApplicationContext());
 
         if (settings.getDeviceRole().startsWith("red")){
-            topHubButtonDrawable = R.drawable.frc_hub_top_red;
-            bottomHubButtonDrawable = R.drawable.frc_hub_bottom_red;
-            humanPlayoutButtonDrawable =R.drawable.human_player_red;
-            tarmacButtonDrawable = R.drawable.taxi_tarmac_red;
+//            topHubButtonDrawable = R.drawable.frc_hub_top_red;
+//            bottomHubButtonDrawable = R.drawable.frc_hub_bottom_red;
+//            humanPlayoutButtonDrawable =R.drawable.human_player_red;
+//            tarmacButtonDrawable = R.drawable.taxi_tarmac_red;
+            autoAmpDrawable = R.drawable.auto_red_amp;
         } else {
-            topHubButtonDrawable = R.drawable.frc_hub_top_blue;
-            bottomHubButtonDrawable = R.drawable.frc_hub_bottom_blue;
-            humanPlayoutButtonDrawable =R.drawable.human_player_blue;
-            tarmacButtonDrawable = R.drawable.taxi_tarmac_blue;
+//            topHubButtonDrawable = R.drawable.frc_hub_top_blue;
+//            bottomHubButtonDrawable = R.drawable.frc_hub_bottom_blue;
+//            humanPlayoutButtonDrawable =R.drawable.human_player_blue;
+//            tarmacButtonDrawable = R.drawable.taxi_tarmac_blue;
+            autoAmpDrawable = R.drawable.auto_blue_amp;
         }
     }
 

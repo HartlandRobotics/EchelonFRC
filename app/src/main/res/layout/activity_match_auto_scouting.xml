@@ -6,82 +6,71 @@
     android:layout_height="match_parent"
     tools:context=".matchScouting.MatchScoutingAutoActivity">
 
-    <ImageButton
-        android:id="@+id/topHub"
-        android:layout_width="500dp"
-        android:layout_height="wrap_content"
-        android:src="@drawable/frc_hub_top_blue"
-        android:background="@null"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        />
+<!--    I commented out the entirety of the previous year's code, but don't delete it yet, it's just easier to copy and paste... -->
 
-    <com.google.android.material.textview.MaterialTextView
-        android:id="@+id/topHubText"
+    <ImageButton
+        android:id="@+id/park"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:background="@null"
+        android:src="@drawable/in_line"
+        tools:layout_editor_absoluteX="252dp"
+        tools:layout_editor_absoluteY="16dp" />
+
+    <ImageButton
+        android:id="@+id/autoSpeaker"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/topHub"
-        android:layout_marginTop="30dp"
-        android:textSize="48sp"
-        tools:text="0"
-        />
+        android:background="@null"
+        android:src="@drawable/auto_speaker"
+        tools:layout_editor_absoluteX="27dp"
+        tools:layout_editor_absoluteY="100dp" />
 
     <ImageButton
-        android:id="@+id/bottomHub"
-        android:layout_width="500dp"
-        android:layout_height="wrap_content"
-        android:src="@drawable/frc_hub_bottom_blue"
-        android:background="@null"
-        app:layout_constraintTop_toBottomOf="@id/topHub"
-        app:layout_constraintStart_toStartOf="parent"
-        />
-
-    <com.google.android.material.textview.MaterialTextView
-        android:id="@+id/bottomHubText"
+        android:id="@+id/autoAmp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:layout_constraintStart_toEndOf="@+id/bottomHub"
-        app:layout_constraintTop_toTopOf="@+id/bottomHub"
-        android:textSize="48sp"
-        tools:text="0"
-        />
+        android:background="@null"
+        android:src="@drawable/auto_blue_amp"
+        tools:layout_editor_absoluteX="380dp"
+        tools:layout_editor_absoluteY="97dp" />
 
     <com.google.android.material.textview.MaterialTextView
-        android:id="@+id/humanPlayerText"
+        android:id="@+id/speakerPoints"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintBottom_toTopOf="@+id/humanPlayer"
-        app:layout_constraintEnd_toEndOf="@+id/humanPlayer"
-        app:layout_constraintStart_toStartOf="@+id/humanPlayer"
         android:textSize="48sp"
-        tools:text="0"
-        />
+        tools:layout_editor_absoluteX="279dp"
+        tools:layout_editor_absoluteY="223dp"
+        tools:text="0" />
 
-    <ImageButton
-        android:id="@+id/humanPlayer"
-        android:layout_width="150dp"
-        android:layout_height="200dp"
-        android:src="@drawable/human_player_blue"
-        android:scaleType="fitCenter"
-        android:background="@null"
-        app:layout_constraintTop_toBottomOf="@+id/humanPlayerText"
-        app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginRight="50dp"
-        />
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/subtractSpeakerPointsAuto"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="65sp"
+        tools:layout_editor_absoluteX="52dp"
+        tools:layout_editor_absoluteY="200dp"
+        tools:text="-" />
 
-    <ImageButton
-        android:id="@+id/taxiTarmac"
-        android:layout_width="150dp"
-        android:layout_height="150dp"
-        android:src="@drawable/taxi_tarmac_blue"
-        android:scaleType="fitCenter"
-        android:background="@null"
-        app:layout_constraintTop_toBottomOf="@+id/humanPlayer"
-        app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginRight="50dp"
-        />
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/ampPointsAuto"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="48sp"
+        tools:layout_editor_absoluteX="642dp"
+        tools:layout_editor_absoluteY="223dp"
+        tools:text="0" />
+
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/subtractAmpPoints"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="65sp"
+        tools:layout_editor_absoluteX="380dp"
+        tools:layout_editor_absoluteY="200dp"
+        tools:text="-" />
+
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/teleOp"
@@ -101,5 +90,86 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
         />
+
+
+
+
+
+    <!--    <ImageButton-->
+<!--        android:id="@+id/topHub"-->
+<!--        android:layout_width="500dp"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:src="@drawable/frc_hub_top_blue"-->
+<!--        android:background="@null"-->
+<!--        app:layout_constraintTop_toTopOf="parent"-->
+<!--        app:layout_constraintStart_toStartOf="parent"-->
+<!--        />-->
+
+<!--    <com.google.android.material.textview.MaterialTextView-->
+<!--        android:id="@+id/topHubText"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        app:layout_constraintTop_toTopOf="parent"-->
+<!--        app:layout_constraintStart_toEndOf="@+id/topHub"-->
+<!--        android:layout_marginTop="30dp"-->
+<!--        android:textSize="48sp"-->
+<!--        tools:text="0"-->
+<!--        />-->
+
+<!--    <ImageButton-->
+<!--        android:id="@+id/bottomHub"-->
+<!--        android:layout_width="500dp"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:src="@drawable/frc_hub_bottom_blue"-->
+<!--        android:background="@null"-->
+<!--        app:layout_constraintTop_toBottomOf="@id/topHub"-->
+<!--        app:layout_constraintStart_toStartOf="parent"-->
+<!--        />-->
+
+<!--    <com.google.android.material.textview.MaterialTextView-->
+<!--        android:id="@+id/bottomHubText"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        app:layout_constraintStart_toEndOf="@+id/bottomHub"-->
+<!--        app:layout_constraintTop_toTopOf="@+id/bottomHub"-->
+<!--        android:textSize="48sp"-->
+<!--        tools:text="0"-->
+<!--        />-->
+
+<!--    <com.google.android.material.textview.MaterialTextView-->
+<!--        android:id="@+id/humanPlayerText"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        app:layout_constraintTop_toTopOf="parent"-->
+<!--        app:layout_constraintBottom_toTopOf="@+id/humanPlayer"-->
+<!--        app:layout_constraintEnd_toEndOf="@+id/humanPlayer"-->
+<!--        app:layout_constraintStart_toStartOf="@+id/humanPlayer"-->
+<!--        android:textSize="48sp"-->
+<!--        tools:text="0"-->
+<!--        />-->
+
+<!--    <ImageButton-->
+<!--        android:id="@+id/humanPlayer"-->
+<!--        android:layout_width="150dp"-->
+<!--        android:layout_height="200dp"-->
+<!--        android:src="@drawable/human_player_blue"-->
+<!--        android:scaleType="fitCenter"-->
+<!--        android:background="@null"-->
+<!--        app:layout_constraintTop_toBottomOf="@+id/humanPlayerText"-->
+<!--        app:layout_constraintEnd_toEndOf="parent"-->
+<!--        android:layout_marginRight="50dp"-->
+<!--        />-->
+
+<!--    <ImageButton-->
+<!--        android:id="@+id/taxiTarmac"-->
+<!--        android:layout_width="150dp"-->
+<!--        android:layout_height="150dp"-->
+<!--        android:src="@drawable/taxi_tarmac_blue"-->
+<!--        android:scaleType="fitCenter"-->
+<!--        android:background="@null"-->
+<!--        app:layout_constraintTop_toBottomOf="@+id/humanPlayer"-->
+<!--        app:layout_constraintEnd_toEndOf="parent"-->
+<!--        android:layout_marginRight="50dp"-->
+<!--        />-->
 
 </androidx.constraintlayout.widget.ConstraintLayout>

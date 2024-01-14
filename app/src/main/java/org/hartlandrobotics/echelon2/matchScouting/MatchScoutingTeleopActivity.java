@@ -63,7 +63,7 @@ public class MatchScoutingTeleopActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_match_scouting);
+        setContentView(R.layout.activity_match_teleop_scouting);
 
         setupColor();
         setupControls();

@@ -212,4 +212,5 @@ public class MatchResult {
     public void setDefenseCount( int defenseCount ){
         this.defenseCount = defenseCount;
     }
+
 }

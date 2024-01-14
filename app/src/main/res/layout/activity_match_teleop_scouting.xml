@@ -1,0 +1,261 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".matchScouting.MatchScoutingTeleopActivity">
+
+
+    <ImageButton
+        android:id="@+id/amplifiedSpeaker"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@null"
+        android:src="@drawable/amplified_speaker_blue"
+        tools:layout_editor_absoluteX="34dp"
+        tools:layout_editor_absoluteY="16dp"
+        />
+
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/subtractAmplifiedSpeakerPointsTeleOp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="65sp"
+        tools:layout_editor_absoluteX="34dp"
+        tools:layout_editor_absoluteY="89dp"
+        tools:text="-"
+        />
+
+
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/teleOpAmplifiedSpeakerValue"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="48sp"
+        tools:layout_editor_absoluteX="222dp"
+        tools:layout_editor_absoluteY="104dp"
+        tools:text="0"
+        />
+
+    <ImageButton
+        android:id="@+id/teleOpDefenses"
+        android:layout_width="wrap_content"
+        android:layout_height="120dp"
+        android:background="@null"
+        android:src="@drawable/defense_blue"
+        tools:layout_editor_absoluteX="92dp"
+        tools:layout_editor_absoluteY="265dp"
+        />
+
+    <ImageButton
+        android:id="@+id/teleOpSpeaker"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@null"
+        android:src="@drawable/teleop_speaker"
+        tools:layout_editor_absoluteX="267dp"
+        tools:layout_editor_absoluteY="16dp"
+        />
+
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/subtractSpeakerPointsTeleOp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="65sp"
+        tools:layout_editor_absoluteX="267dp"
+        tools:layout_editor_absoluteY="89dp"
+        tools:text="-" />
+
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/teleOpSpeakerValue"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="48sp"
+        tools:layout_editor_absoluteX="455dp"
+        tools:layout_editor_absoluteY="104dp"
+        tools:text="0" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/scoutingDone"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Done"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        />
+
+
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/teleOpDefensesValue"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="48sp"
+        tools:layout_editor_absoluteX="213dp"
+        tools:layout_editor_absoluteY="290dp"
+        tools:text="0"
+        />
+
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/subtractDefense"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="65sp"
+        tools:layout_editor_absoluteX="52dp"
+        tools:layout_editor_absoluteY="276dp"
+        tools:text="-"
+        />
+
+    <ImageButton
+        android:id="@+id/teleOpAmp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@null"
+        android:src="@drawable/teleop_blue_amp"
+        tools:layout_editor_absoluteX="500dp"
+        tools:layout_editor_absoluteY="16dp"
+        />
+
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/subtractAmpPointsTeleOp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="65sp"
+        tools:layout_editor_absoluteX="500dp"
+        tools:layout_editor_absoluteY="89dp"
+        tools:text="-" />
+
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/teleOpAmpValue"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="48sp"
+        tools:layout_editor_absoluteX="688dp"
+        tools:layout_editor_absoluteY="104dp"
+        tools:text="0" />
+
+
+    <!--    <ImageButton-->
+<!--        android:id="@+id/topHub"-->
+<!--        android:layout_width="500dp"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:src="@drawable/frc_hub_top_blue"-->
+<!--        android:background="@null"-->
+<!--        app:layout_constraintTop_toTopOf="parent"-->
+<!--        app:layout_constraintStart_toStartOf="parent"-->
+<!--        />-->
+
+<!--    <com.google.android.material.textview.MaterialTextView-->
+<!--        android:id="@+id/topHubText"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:text="5"-->
+<!--        app:layout_constraintTop_toTopOf="parent"-->
+<!--        app:layout_constraintStart_toEndOf="@+id/topHub"-->
+<!--        android:layout_marginTop="30dp"-->
+<!--        android:textSize="48sp"-->
+<!--        />-->
+
+<!--    <ImageButton-->
+<!--        android:id="@+id/bottomHub"-->
+<!--        android:layout_width="500dp"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:src="@drawable/frc_hub_bottom_blue"-->
+<!--        android:background="@null"-->
+<!--        app:layout_constraintTop_toBottomOf="@id/topHub"-->
+<!--        app:layout_constraintStart_toStartOf="parent"-->
+<!--        />-->
+
+<!--    <com.google.android.material.textview.MaterialTextView-->
+<!--        android:id="@+id/bottomHubText"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:text="5"-->
+<!--        app:layout_constraintStart_toEndOf="@+id/bottomHub"-->
+<!--        app:layout_constraintBottom_toBottomOf="parent"-->
+<!--        android:layout_marginBottom="140dp"-->
+<!--        android:textSize="48sp"-->
+<!--        />-->
+
+<!--    <com.google.android.material.button.MaterialButton-->
+<!--        android:id="@+id/traversal"-->
+<!--        android:layout_width="310dp"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:backgroundTint="@color/blueAlliance"-->
+<!--        app:layout_constraintTop_toTopOf="parent"-->
+<!--        app:layout_constraintEnd_toEndOf="parent"-->
+<!--        android:layout_marginRight="50dp"-->
+<!--        android:layout_marginTop="60dp"-->
+<!--        android:text="traverse"-->
+<!--        />-->
+
+<!--    <com.google.android.material.button.MaterialButton-->
+<!--        android:id="@+id/high"-->
+<!--        android:layout_width="290dp"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:backgroundTint="@color/blueAlliance"-->
+<!--        app:layout_constraintTop_toBottomOf="@+id/traversal"-->
+<!--        app:layout_constraintStart_toStartOf="@+id/traversal"-->
+<!--        app:layout_constraintEnd_toEndOf="@+id/traversal"-->
+<!--        android:layout_marginTop="20dp"-->
+<!--        android:text="high"-->
+<!--        />-->
+
+<!--    <com.google.android.material.button.MaterialButton-->
+<!--        android:id="@+id/mid"-->
+<!--        android:layout_width="270dp"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:backgroundTint="@color/blueAlliance"-->
+<!--        app:layout_constraintTop_toBottomOf="@+id/high"-->
+<!--        app:layout_constraintStart_toStartOf="@+id/traversal"-->
+<!--        app:layout_constraintEnd_toEndOf="@+id/traversal"-->
+<!--        android:layout_marginTop="20dp"-->
+<!--        android:text="mid"-->
+<!--        />-->
+
+<!--    <com.google.android.material.button.MaterialButton-->
+<!--        android:id="@+id/low"-->
+<!--        android:layout_width="250dp"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:backgroundTint="@color/blueAlliance"-->
+<!--        app:layout_constraintTop_toBottomOf="@+id/mid"-->
+<!--        app:layout_constraintStart_toStartOf="@+id/traversal"-->
+<!--        app:layout_constraintEnd_toEndOf="@+id/traversal"-->
+<!--        android:layout_marginTop="20dp"-->
+<!--        android:text="Low"-->
+<!--        />-->
+
+<!--    <com.google.android.material.button.MaterialButton-->
+<!--        android:id="@+id/scoutingDone"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:text="Done"-->
+<!--        app:layout_constraintEnd_toEndOf="parent"-->
+<!--        app:layout_constraintBottom_toBottomOf="parent"-->
+<!--        />-->
+
+<!--    <ImageButton-->
+<!--        android:id="@+id/teleOpDefenses"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="120dp"-->
+<!--        android:src="@drawable/defense_blue"-->
+<!--        android:background="@null"-->
+<!--        app:layout_constraintTop_toBottomOf="@id/low"-->
+<!--        app:layout_constraintEnd_toEndOf="@id/low"-->
+<!--        app:layout_constraintStart_toStartOf="@id/low"-->
+<!--        android:layout_marginTop="40dp"-->
+<!--        />-->
+
+<!--    <com.google.android.material.textview.MaterialTextView-->
+<!--        android:id="@+id/teleOpDefensesValue"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_marginRight="20dp"-->
+<!--        tools:text="5"-->
+<!--        app:layout_constraintTop_toTopOf="@id/teleOpDefenses"-->
+<!--        app:layout_constraintBottom_toBottomOf="@id/teleOpDefenses"-->
+<!--        app:layout_constraintEnd_toStartOf="@id/teleOpDefenses"-->
+<!--        android:textSize="48sp"-->
+<!--        />-->
+
+</androidx.constraintlayout.widget.ConstraintLayout>
