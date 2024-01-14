@@ -18,10 +18,13 @@ import com.google.android.material.textfield.TextInputLayout;
 import com.google.android.material.textview.MaterialTextView;
 
 import org.hartlandrobotics.echelon2.R;
+import org.hartlandrobotics.echelon2.database.entities.CrescendoPoints;
+import org.hartlandrobotics.echelon2.database.entities.CrescendoResult;
 import org.hartlandrobotics.echelon2.database.entities.MatchResult;
 import org.hartlandrobotics.echelon2.models.MatchResultViewModel;
 import org.hartlandrobotics.echelon2.status.BlueAllianceStatus;
 
+import java.time.LocalDateTime;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -36,38 +39,49 @@ public class MatchScoutingSummaryActivity extends AppCompatActivity {
 
     MatchResultViewModel matchResultViewModel;
     MatchResult matchResult;
+    CrescendoResult crescendoResult;
 
     // auto
-    private MaterialButton autoHighDecrement;
-    private MaterialTextView autoHighValue;
-    private MaterialButton autoHighIncrement;
 
-    private MaterialButton autoLowDecrement;
-    private MaterialTextView autoLowValue;
-    private MaterialButton autoLowIncrement;
+    private MaterialCheckBox leaveLineAuto;
 
-    private MaterialButton autoHumanDecrement;
-    private MaterialTextView autoHumanValue;
-    private MaterialButton autoHumanIncrement;
+    private MaterialButton ampNoteAutoDecrement;
+    private MaterialTextView ampNoteAutoValue;
+    private MaterialButton ampNoteAutoIncrement;
 
-    private MaterialCheckBox autoTarmac;
+    private MaterialButton speakerNoteAutoDecrement;
+    private MaterialTextView speakerNoteAutoValue;
+    private MaterialButton speakerNoteAutoIncrement;
 
-    private MaterialButton teleOpHighDecrement;
-    private MaterialTextView teleOpHighValue;
-    private MaterialButton teleOpHighIncrement;
+    // TeleOp
 
-    private MaterialButton teleOpLowDecrement;
-    private MaterialTextView teleOpLowValue;
-    private MaterialButton teleOpLowIncrement;
+    private MaterialButton ampNoteTeleOpDecrement;
+    private MaterialTextView ampNoteTeleOpValue;
+    private MaterialButton ampNoteTeleOpIncrement;
+
+    private MaterialButton neutralSpeakerNoteTeleOpDecrement;
+    private MaterialTextView neutralSpeakerNoteTeleOpValue;
+    private MaterialButton neutralSpeakerNoteTeleOpIncrement;
+
+    private MaterialButton ampSpeakerNoteTeleOpDecrement;
+    private MaterialTextView ampSpeakerNoteTeleOpValue;
+    private MaterialButton ampSpeakerNoteTeleOpIncrement;
+
+    // Endgame
+
+    private MaterialCheckBox parkedEnd;
+    private MaterialCheckBox onstageEnd;
+
+    private MaterialButton spotlitEndDecrement;
+    private MaterialTextView spotlitEndValue;
+    private MaterialButton spotlitEndIncrement;
 
     private MaterialButton teleOpDefensesDecrement;
     private MaterialTextView teleOpDefensesValue;
     private MaterialButton teleOpDefensesIncrement;
 
-    private MaterialCheckBox endTraverseCheckbox;
-    private MaterialCheckBox endHighCheckBox;
-    private MaterialCheckBox endMidCheckBox;
-    private MaterialCheckBox endLowCheckBox;
+    private MaterialCheckBox harmonyEnd;
+    private MaterialCheckBox trapNoteEnd;
 
     private TextInputLayout additionalNotesLayout;
 
@@ -102,75 +116,114 @@ public class MatchScoutingSummaryActivity extends AppCompatActivity {
                     } else {
                         matchResult = mr;
                     }
+                    crescendoResult = new CrescendoResult( matchResult);
 
                     populateControlsFromData();
                 });
     }
 
     private void setupControls(){
-        autoHighValue = findViewById(R.id.autoHighValue);
-        autoHighDecrement = findViewById(R.id.autoHighDecrement);
-        autoHighDecrement.setOnClickListener(v -> {
-                matchResult.setAutoHighBalls( Math.max( matchResult.getAutoHighBalls() - 1, 0 ));
+        leaveLineAuto = findViewById(R.id.leaveLineAutoCheckBox);
+        leaveLineAuto.setOnCheckedChangeListener((buttonView, isChecked) -> {
+            matchResult.setLeaveLineAuto(isChecked);
+            populateControlsFromData();
+        });
+
+        ampNoteAutoValue = findViewById(R.id.ampNoteAutoValue);
+        ampNoteAutoDecrement = findViewById(R.id.ampNoteAutoDecrement);
+        ampNoteAutoDecrement.setOnClickListener(v -> {
+            crescendoResult.setAmpNoteAuto(crescendoResult.getAmpNoteAuto() - 1);
                 populateControlsFromData();
                 });
-        autoHighIncrement = findViewById(R.id.autoHighIncrement);
-        autoHighIncrement.setOnClickListener(v -> {
-            matchResult.setAutoHighBalls( matchResult.getAutoHighBalls() + 1);
+        ampNoteAutoIncrement = findViewById(R.id.ampNoteAutoIncrement);
+        ampNoteAutoIncrement.setOnClickListener(v -> {
+            crescendoResult.setAmpNoteAuto( crescendoResult.getAmpNoteAuto() + 1);
             populateControlsFromData();
         });
 
-        autoLowValue = findViewById(R.id.autoLowValue);
-        autoLowDecrement = findViewById(R.id.autoLowDecrement);
-        autoLowDecrement.setOnClickListener(v -> {
-            matchResult.setAutoLowBalls( Math.max(matchResult.getAutoLowBalls() -1, 0));
+        speakerNoteAutoValue = findViewById(R.id.speakerNoteAutoValue);
+        speakerNoteAutoDecrement = findViewById(R.id.speakerNoteAutoDecrement);
+        speakerNoteAutoDecrement.setOnClickListener(v -> {
+            crescendoResult.setSpeakerNoteAuto(crescendoResult.getSpeakerNoteAuto() - 1);
             populateControlsFromData();
         });
-        autoLowIncrement = findViewById(R.id.autoLowIncrement);
-        autoLowIncrement.setOnClickListener(v -> {
-            matchResult.setAutoLowBalls( matchResult.getAutoLowBalls() +1 );
-            populateControlsFromData();
-        });
-
-        autoHumanValue = findViewById(R.id.autoHumanValue);
-        autoHumanDecrement = findViewById(R.id.autoHumanDecrement);
-        autoHumanDecrement.setOnClickListener(v -> {
-            matchResult.setAutoHumanPlayerShots( Math.max( matchResult.getAutoHumanPlayerShots()-1,0));
-            populateControlsFromData();
-        });
-        autoHumanIncrement = findViewById(R.id.autoHumanIncrement);
-        autoHumanIncrement.setOnClickListener(v -> {
-            matchResult.setAutoHumanPlayerShots( matchResult.getAutoHumanPlayerShots()+1);
+        speakerNoteAutoIncrement = findViewById(R.id.speakerNoteAutoIncrement);
+        speakerNoteAutoIncrement.setOnClickListener(v -> {
+            crescendoResult.setSpeakerNoteAuto( crescendoResult.getSpeakerNoteAuto() + 1);
             populateControlsFromData();
         });
 
-        autoTarmac = findViewById(R.id.autoTarmacCheckBox);
-        autoTarmac.setOnCheckedChangeListener((buttonView, isChecked) -> {
-            matchResult.setTaxiTarmac(isChecked);
+        ampNoteTeleOpValue = findViewById(R.id.ampNoteTeleOpValue);
+        ampNoteTeleOpDecrement = findViewById(R.id.ampNoteTeleOpDecrement);
+        ampNoteTeleOpDecrement.setOnClickListener(v -> {
+            crescendoResult.setAmpNoteTeleOp(crescendoResult.getAmpNoteTeleOp() - 1);
+            populateControlsFromData();
+        });
+        ampNoteTeleOpIncrement = findViewById(R.id.ampNoteAutoIncrement);
+        ampNoteTeleOpIncrement.setOnClickListener(v -> {
+            crescendoResult.setAmpNoteTeleOp( crescendoResult.getAmpNoteTeleOp() + 1);
             populateControlsFromData();
         });
 
-        teleOpHighValue = findViewById(R.id.teleOpHighValue);
-        teleOpHighDecrement = findViewById(R.id.teleOpHighDecrement);
-        teleOpHighDecrement.setOnClickListener(v -> {
-            matchResult.setTeleOpHighBalls( Math.max( matchResult.getTeleOpHighBalls() -1, 0));
+        neutralSpeakerNoteTeleOpValue = findViewById(R.id.neutralSpeakerNoteTeleOpValue);
+        neutralSpeakerNoteTeleOpDecrement = findViewById(R.id.neutralSpeakerNoteTeleOpDecrement);
+        neutralSpeakerNoteTeleOpDecrement.setOnClickListener(v -> {
+            crescendoResult.setNeutralSpeakerNoteTeleOp(crescendoResult.getNeutralSpeakerNoteTeleOp() - 1);
             populateControlsFromData();
         });
-        teleOpHighIncrement = findViewById(R.id.teleOpHighIncrement);
-        teleOpHighIncrement.setOnClickListener(v -> {
-            matchResult.setTeleOpHighBalls( matchResult.getTeleOpHighBalls()+1);
+        neutralSpeakerNoteTeleOpIncrement = findViewById(R.id.neutralSpeakerNoteTeleOpIncrement);
+        neutralSpeakerNoteTeleOpIncrement.setOnClickListener(v -> {
+            crescendoResult.setNeutralSpeakerNoteTeleOp( crescendoResult.getNeutralSpeakerNoteTeleOp() + 1);
             populateControlsFromData();
         });
 
-        teleOpLowValue = findViewById(R.id.teleOpLowValue);
-        teleOpLowDecrement = findViewById(R.id.teleOpLowDecrement);
-        teleOpLowDecrement.setOnClickListener(v -> {
-            matchResult.setTeleOpLowBalls(Math.max(matchResult.getTeleOpLowBalls()-1, 0));
+        ampSpeakerNoteTeleOpValue = findViewById(R.id.ampSpeakerNoteTeleOpValue);
+        ampSpeakerNoteTeleOpDecrement = findViewById(R.id.ampSpeakerNoteTeleOpDecrement);
+        ampSpeakerNoteTeleOpDecrement.setOnClickListener(v -> {
+            crescendoResult.setAmpSpeakerNoteTeleOp(crescendoResult.getAmpSpeakerNoteTeleOp() - 1);
             populateControlsFromData();
         });
-        teleOpLowIncrement = findViewById(R.id.teleOpLowIncrement);
-        teleOpLowIncrement.setOnClickListener(v -> {
-            matchResult.setTeleOpLowBalls(matchResult.getTeleOpLowBalls()+1);
+
+        ampSpeakerNoteTeleOpIncrement = findViewById(R.id.ampSpeakerNoteTeleOpIncrement);
+        ampSpeakerNoteTeleOpIncrement.setOnClickListener(v -> {
+            crescendoResult.setAmpSpeakerNoteTeleOp( crescendoResult.getAmpSpeakerNoteTeleOp() + 1);
+            populateControlsFromData();
+        });
+
+        parkedEnd = findViewById(R.id.parkedEndCheckBox);
+        parkedEnd.setOnCheckedChangeListener((buttonView, isChecked) -> {
+            matchResult.setParkedEnd(isChecked);
+            populateControlsFromData();
+        });
+
+        onstageEnd = findViewById(R.id.onstageEndCheckBox);
+        onstageEnd.setOnCheckedChangeListener((buttonView, isChecked) -> {
+            matchResult.setOnstageEnd(isChecked);
+            populateControlsFromData();
+        });
+
+        spotlitEndValue = findViewById(R.id.spotlitEndValue);
+        spotlitEndDecrement = findViewById(R.id.spotlitEndDecrement);
+        spotlitEndDecrement.setOnClickListener(v -> {
+            crescendoResult.setSpotlitEnd(crescendoResult.getSpotlitEnd() - 1);
+            populateControlsFromData();
+        });
+
+        spotlitEndIncrement = findViewById(R.id.spotlitEndIncrement);
+        spotlitEndIncrement.setOnClickListener(v -> {
+            crescendoResult.setSpotlitEnd( crescendoResult.getSpotlitEnd() + 1);
+            populateControlsFromData();
+        });
+
+        harmonyEnd = findViewById(R.id.harmonyEndCheckBox);
+        harmonyEnd.setOnCheckedChangeListener((buttonView, isChecked) -> {
+            matchResult.setHarmonyEnd(isChecked);
+            populateControlsFromData();
+        });
+
+        trapNoteEnd = findViewById(R.id.trapNoteEndCheckBox);
+        trapNoteEnd.setOnCheckedChangeListener((buttonView, isChecked) -> {
+            matchResult.setTrapNoteEnd(isChecked);
             populateControlsFromData();
         });
 
@@ -183,28 +236,6 @@ public class MatchScoutingSummaryActivity extends AppCompatActivity {
         teleOpDefensesIncrement = findViewById(R.id.teleOpDefensesIncrement);
         teleOpDefensesIncrement.setOnClickListener(v -> {
             matchResult.setDefenseCount(matchResult.getDefenseCount()+1);
-            populateControlsFromData();
-        });
-
-
-        endTraverseCheckbox = findViewById(R.id.endTraverseCheckbox);
-        endTraverseCheckbox.setOnCheckedChangeListener((buttonView, isChecked) -> {
-            matchResult.setEndHangTraverse(isChecked);
-            populateControlsFromData();
-        });
-        endHighCheckBox = findViewById(R.id.endHighCheckbox);
-        endHighCheckBox.setOnCheckedChangeListener((buttonView, isChecked) -> {
-            matchResult.setEndHangHigh(isChecked);
-            populateControlsFromData();
-        });
-        endMidCheckBox = findViewById(R.id.endMidCheckbox);
-        endMidCheckBox.setOnCheckedChangeListener((buttonView, isChecked) -> {
-            matchResult.setEndHangMid(isChecked);
-            populateControlsFromData();
-        });
-        endLowCheckBox = findViewById(R.id.endLowCheckbox);
-        endLowCheckBox.setOnCheckedChangeListener((buttonView, isChecked) -> {
-            matchResult.setEndHangLow(isChecked);
             populateControlsFromData();
         });
 
@@ -239,12 +270,12 @@ public class MatchScoutingSummaryActivity extends AppCompatActivity {
     }
     private void populateControlsFromData() {
         if( matchResult == null ) return;
+        CrescendoResult crescendoResult = new CrescendoResult( matchResult);
 
-        autoHighValue.setText( String.valueOf( matchResult.getAutoHighBalls() ));
-        autoLowValue.setText( String.valueOf( matchResult.getAutoLowBalls() ));
-        autoHumanValue.setText( String.valueOf( matchResult.getAutoHumanPlayerShots() ));
+        leaveLineAuto.setChecked( crescendoResult.getLeaveLineAuto() );
+        ampNoteAutoValue.setText( String.valueOf( crescendoResult.getAmpNoteAuto() ));
+        speakerNoteAutoValue.setText( String.valueOf( crescendoResult.getSpeakerNoteAuto() ));
 
-        autoTarmac.setChecked( matchResult.getTaxiTarmac() );
 
         teleOpHighValue.setText( String.valueOf( matchResult.getTeleOpHighBalls() ));
         teleOpLowValue.setText( String.valueOf( matchResult.getTeleOpLowBalls() ));

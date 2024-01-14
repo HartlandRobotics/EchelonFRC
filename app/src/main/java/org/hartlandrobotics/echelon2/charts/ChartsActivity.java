@@ -11,6 +11,7 @@ import com.google.android.material.tabs.TabLayoutMediator;
 
 import org.hartlandrobotics.echelon2.EchelonActivity;
 import org.hartlandrobotics.echelon2.R;
+import org.hartlandrobotics.echelon2.database.entities.CrescendoPoints;
 import org.hartlandrobotics.echelon2.database.entities.MatchResult;
 import org.hartlandrobotics.echelon2.database.repositories.MatchResultRepo;
 import org.hartlandrobotics.echelon2.status.BlueAllianceStatus;
@@ -92,27 +93,22 @@ public class ChartsActivity extends EchelonActivity {
                 int teamNumber = Integer.valueOf( entry.getKey().substring(3) );
                 List<MatchResult> matchResults = entry.getValue();
                 for( MatchResult matchResult : matchResults ){
+                    CrescendoPoints crescendoPoints = new CrescendoPoints(matchResult);
                     Integer matchNumber = Integer.valueOf(matchResult.getMatchKey().replace( matchResult.getEventKey() + "_qm", ""));
                     int matchAuto = 0;
-                    matchAuto += matchResult.getAutoHighBalls() * 4;
-                    matchAuto += matchResult.getAutoLowBalls() * 2;
-                    matchAuto += matchResult.getTaxiTarmac() ? 2 : 0;
-                    autoTotal += matchAuto;
+                    matchAuto += crescendoPoints.getAuto();
                     autoScores.put(matchNumber, matchAuto);
+                    autoTotal += matchAuto;
 
 
                     int matchTeleOp = 0;
-                    matchTeleOp += matchResult.getTeleOpHighBalls() * 2;
-                    matchTeleOp += matchResult.getTeleOpLowBalls();
-                    teleOpTotal += matchTeleOp;
+                    matchTeleOp += crescendoPoints.getTeleOp();
                     teleOpScores.put(matchNumber, matchTeleOp);
+                    teleOpTotal += matchTeleOp;
 
 
                     int matchEndGame = 0;
-                    matchEndGame += matchResult.getEndHangLow() ? 4 : 0;
-                    matchEndGame += matchResult.getEndHangMid() ? 6 : 0;
-                    matchEndGame += matchResult.getEndHangHigh() ? 10 : 0;
-                    matchEndGame += matchResult.getEndHangTraverse() ? 15 : 0;
+                    matchEndGame += crescendoPoints.getEnd();
                     endGameTotal += matchEndGame;
                     endGameScores.put(matchNumber, matchEndGame);
 

@@ -13,28 +13,34 @@ class MatchScheduleViewModel {
     private String blue3;
 
     private int red1Average;
-    private int red1Cargo;
-    private int red1Hang;
+    private int red1Auto;
+    private int red1TeleOp;
+    private int red1End;
     private double red1StdDeviation;
     private int red2Average;
-    private int red2Cargo;
-    private int red2Hang;
+    private int red2Auto;
+    private int red2TeleOp;
+    private int red2End;
     private double red2StdDeviation;
     private int red3Average;
-    private int red3Cargo;
-    private int red3Hang;
+    private int red3Auto;
+    private int red3TeleOp;
+    private int red3End;
     private double red3StdDeviation;
     private int blue1Average;
-    private int blue1Cargo;
-    private int blue1Hang;
+    private int blue1Auto;
+    private int blue1TeleOp;
+    private int blue1End;
     private double blue1StdDeviation;
     private int blue2Average;
-    private int blue2Cargo;
-    private int blue2Hang;
+    private int blue2Auto;
+    private int blue2TeleOp;
+    private int blue2End;
     private double blue2StdDeviation;
     private int blue3Average;
-    private int blue3Cargo;
-    private int blue3Hang;
+    private int blue3Auto;
+    private int blue3TeleOp;
+    private int blue3End;
     private double blue3StdDeviation;
     private int matchCount;
 
@@ -144,48 +150,68 @@ class MatchScheduleViewModel {
     }
 
     public int getRedTotal() {
-        return red1Average + red2Average + red3Average;
+        return getRed1Average() + getRed2Average() + getRed3Average();
     }
 
     public int getBlueTotal() {
-        return blue1Average + blue2Average + blue3Average;
+        return getBlue1Average() + getBlue2Average() + getBlue3Average();
     }
 
-    public int getRed1Cargo() { return red1Cargo; }
-    public void setRed1Cargo(int red1Cargo){ this.red1Cargo = red1Cargo; }
-    public int getRed1Hang() { return red1Hang; }
-    public void setRed1Hang(int red1Hang){ this.red1Hang = red1Hang; }
+    public int getRed1Auto() { return red1Auto; }
+    public void setRed1Auto(int red1Auto){ this.red1Auto = red1Auto; }
+    public int getRed1TeleOp() { return red1TeleOp; }
+    public void setRed1TeleOp(int red1TeleOp){ this.red1TeleOp = red1TeleOp; }
+    public int getRed1End() { return red1End; }
+    public void setRed1End(int red1End){ this.red1End = red1End; }
 
-    public int getRed2Cargo() { return red2Cargo; }
-    public void setRed2Cargo(int red2Cargo){ this.red2Cargo = red2Cargo; }
-    public int getRed2Hang() { return red2Hang; }
-    public void setRed2Hang(int red2Hang){ this.red2Hang = red2Hang; }
 
-    public int getRed3Cargo() { return red3Cargo; }
-    public void setRed3Cargo(int red3Cargo){ this.red3Cargo = red3Cargo; }
-    public int getRed3Hang() { return red3Hang; }
-    public void setRed3Hang(int red3Hang){ this.red3Hang = red3Hang; }
+    public int getRed2Auto() { return red2Auto; }
+    public void setRed2Auto(int red2Auto){ this.red2Auto = red2Auto; }
+    public int getRed2TeleOp() { return red2TeleOp; }
+    public void setRed2TeleOp(int red2TeleOp){ this.red2TeleOp = red2TeleOp; }
+    public int getRed2End() { return red2End; }
+    public void setRed2End(int red2End){ this.red2End = red2End; }
 
-    public int getBlue1Cargo() { return blue1Cargo; }
-    public void setBlue1Cargo(int blue1Cargo){ this.blue1Cargo = blue1Cargo; }
-    public int getBlue1Hang() { return blue1Hang; }
-    public void setBlue1Hang(int blue1Hang){ this.blue1Hang = blue1Hang; }
 
-    public int getBlue2Cargo() { return blue2Cargo; }
-    public void setBlue2Cargo(int blue2Cargo){ this.blue2Cargo = blue2Cargo; }
-    public int getBlue2Hang() { return blue2Hang; }
-    public void setBlue2Hang(int blue2Hang){ this.blue2Hang = blue2Hang; }
+    public int getRed3Auto() { return red3Auto; }
+    public void setRed3Auto(int red3Auto){ this.red3Auto = red3Auto; }
+    public int getRed3TeleOp() { return red3TeleOp; }
+    public void setRed3TeleOp(int red3TeleOp){ this.red3TeleOp = red3TeleOp; }
+    public int getRed3End() { return red3End; }
+    public void setRed3End(int red3End){ this.red3End = red3End; }
 
-    public int getBlue3Cargo() { return blue3Cargo; }
-    public void setBlue3Cargo(int blue3Cargo){ this.blue3Cargo = blue3Cargo; }
-    public int getBlue3Hang() { return blue3Hang; }
-    public void setBlue3Hang(int blue3Hang){ this.blue3Hang = blue3Hang; }
+    public int getBlue1Auto() { return blue1Auto; }
+    public void setBlue1Auto(int blue1Auto){ this.blue1Auto = blue1Auto; }
+    public int getBlue1TeleOp() { return blue1TeleOp; }
+    public void setBlue1TeleOp(int blue1TeleOp){ this.blue1TeleOp = blue1TeleOp; }
+    public int getBlue1End() { return blue1End; }
+    public void setBlue1End(int blue1End){ this.blue1End = blue1End; }
 
-    public int getRedCargoTotal(){ return getRed1Cargo() + getRed2Cargo() + getRed3Cargo(); }
-    public int getBlueCargoTotal(){ return getBlue1Cargo() + getBlue2Cargo() + getBlue3Cargo(); }
 
-    public int getRedHangTotal() { return getRed1Hang() + getRed2Hang() + getRed3Hang(); }
-    public int getBlueHangTotal() { return getBlue1Hang() + getBlue2Hang() + getBlue3Hang(); }
+    public int getBlue2Auto() { return blue2Auto; }
+    public void setBlue2Auto(int blue2Auto){ this.blue2TeleOp = blue2TeleOp; }
+    public int getBlue2TeleOp() { return blue2TeleOp; }
+    public void setBlue2TeleOp(int blue2TeleOp){ this.blue2TeleOp = blue2TeleOp; }
+    public int getBlue2End() { return blue2End; }
+    public void setBlue2End(int blue2End){ this.blue2End = blue2End; }
+
+
+    public int getBlue3Auto() { return blue3Auto; }
+    public void setBlue3Auto(int blue3Auto){ this.blue3Auto = blue3Auto; }
+    public int getBlue3TeleOp() { return blue3TeleOp; }
+    public void setBlue3TeleOp(int blue3TeleOp){ this.blue3TeleOp = blue3TeleOp; }
+    public int getBlue3End() { return blue3End; }
+    public void setBlue3End(int blue3End){ this.blue3End = blue3End; }
+
+
+    public int getRedAutoTotal(){ return getRed1Auto() + getRed2Auto() + getRed3Auto(); }
+    public int getBlueAutoTotal(){ return getBlue1Auto() + getBlue2Auto() + getBlue3Auto(); }
+
+    public int getRedTeleOpTotal() { return getRed1TeleOp() + getRed2TeleOp() + getRed3TeleOp(); }
+    public int getBlueTeleOpTotal() { return getBlue1TeleOp() + getBlue2TeleOp() + getBlue3TeleOp(); }
+
+    public int getRedHangEnd() { return getRed1End() + getRed2End() + getRed3End(); }
+    public int getBlueEndTotal() { return getBlue1End() + getBlue2End() + getBlue3End(); }
 
     public int getRedConfidenceIntervalMin() { return Math.max(0,getRedTotal() - getRedMarginOfError()); }
     public int getBlueConfidenceIntervalMin() { return Math.max(0, getBlueTotal() - getBlueMarginOfError()); }
