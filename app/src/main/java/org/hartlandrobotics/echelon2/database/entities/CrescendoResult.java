@@ -1,0 +1,99 @@
+package org.hartlandrobotics.echelon2.database.entities;
+
+import android.icu.util.ULocale;
+
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.util.Calendar;
+import java.util.Date;
+
+public class CrescendoResult {
+    private MatchResult matchResult;
+    Boolean leaveLineAuto = Boolean.FALSE;
+    int ampNoteAuto = 0;
+    int speakerNoteAuto = 0;
+    int ampNoteTeleOp = 0;
+    int neutralSpeakerNoteTeleOp = 0;
+    int ampSpeakerNoteTeleOp = 0;
+    Boolean parkedEnd = Boolean.FALSE;
+    Boolean onstageEnd = Boolean.FALSE;
+    int spotlitEnd = 0;
+    Boolean harmonyEnd = Boolean.FALSE;
+    Boolean trapNoteEnd = Boolean.FALSE;
+
+
+    public CrescendoResult(MatchResult result) {
+        matchResult = result;
+        leaveLineAuto = result.getAuto1() == null ? Boolean.FALSE : Boolean.TRUE;
+        ampNoteAuto = result.getAuto2() == null ? 0:1;
+        speakerNoteAuto = result.getAuto3() == null ? 0:1;
+        ampNoteTeleOp = result.getTeleOp1() == null ? 0:1;
+        neutralSpeakerNoteTeleOp = result.getTeleOp2() == null ? 0:1;
+        ampSpeakerNoteTeleOp = result.getTeleOp3() == null ? 0:1;
+        parkedEnd = result.getEnd1() == null ? Boolean.FALSE : Boolean.TRUE;
+        onstageEnd = result.getEnd2() == null ? Boolean.FALSE : Boolean.TRUE;
+        spotlitEnd = result.getEnd3() == null ? 0:1;
+        harmonyEnd = result.getEnd4() == null ? Boolean.FALSE : Boolean.TRUE;
+        trapNoteEnd = result.getEnd5() == null ? Boolean.FALSE : Boolean.TRUE;
+
+    }
+    public Boolean getLeaveLineAuto(){
+        return leaveLineAuto;
+
+    }
+
+    public int getAmpNoteAuto(){
+        return ampNoteAuto;
+
+    }
+    public void setAmpNoteAuto(int result){
+        matchResult.setAuto2(result > 0 ? null : new Date().toString());
+    }
+
+    public int getSpeakerNoteAuto(){
+        return speakerNoteAuto;
+    }
+    public void setSpeakerNoteAuto(int result){
+        matchResult.setAuto3(result > 0 ? null : new Date().toString());
+    }
+
+    public int getAmpNoteTeleOp(){
+        return ampNoteTeleOp;
+    }
+    public void setAmpNoteTeleOp(int result){
+        matchResult.setTeleOp1(result > 0 ? null : new Date().toString());
+    }
+    public int getNeutralSpeakerNoteTeleOp(){
+        return neutralSpeakerNoteTeleOp;
+    }
+    public void setNeutralSpeakerNoteTeleOp(int result){
+        matchResult.setTeleOp2(result > 0 ? null : new Date().toString());
+    }
+    public int getAmpSpeakerNoteTeleOp(){
+        return ampSpeakerNoteTeleOp;
+    }
+    public void setAmpSpeakerNoteTeleOp(int result) {
+        matchResult.setTeleOp3(result > 0 ? null : new Date().toString());
+    }
+    public Boolean getParkedEnd(){
+        return parkedEnd;
+    }
+    public Boolean getOnstageEnd(){
+        return onstageEnd;
+
+    }
+    public int getSpotlitEnd(){
+        return spotlitEnd;
+    }
+    public void setSpotlitEnd(int result) {
+        matchResult.setEnd3(result > 0 ? null : new Date().toString());
+    }
+    public Boolean getHarmonyEnd(){
+        return harmonyEnd;
+    }
+    public Boolean getTrapNoteEnd(){
+        return trapNoteEnd;
+    }
+
+
+}
