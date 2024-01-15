@@ -189,7 +189,7 @@ class MatchScheduleViewModel {
 
 
     public int getBlue2Auto() { return blue2Auto; }
-    public void setBlue2Auto(int blue2Auto){ this.blue2TeleOp = blue2TeleOp; }
+    public void setBlue2Auto(int blue2Auto){ this.blue2Auto = blue2Auto; }
     public int getBlue2TeleOp() { return blue2TeleOp; }
     public void setBlue2TeleOp(int blue2TeleOp){ this.blue2TeleOp = blue2TeleOp; }
     public int getBlue2End() { return blue2End; }
