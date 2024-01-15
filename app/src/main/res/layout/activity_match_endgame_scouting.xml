@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".matchScouting.MatchScoutingEndgameActivity">
+
+
+    <ImageButton
+        android:id="@+id/spotlightButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@null"
+        android:src="@drawable/spotlight"
+        tools:layout_editor_absoluteX="533dp"
+        tools:layout_editor_absoluteY="77dp"
+        />
+
+    <ImageButton
+        android:id="@+id/trapButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@null"
+        android:src="@drawable/trap"
+        tools:layout_editor_absoluteX="358dp"
+        tools:layout_editor_absoluteY="31dp"
+        />
+
+    <ImageButton
+        android:id="@+id/harmonyButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@null"
+        android:src="@drawable/harmony"
+        tools:layout_editor_absoluteX="358dp"
+        tools:layout_editor_absoluteY="157dp"
+        />
+
+    <ImageButton
+        android:id="@+id/leftStage"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@null"
+        android:src="@drawable/blue_left_stage"
+        tools:layout_editor_absoluteX="36dp"
+        tools:layout_editor_absoluteY="16dp"
+        />
+
+    <ImageButton
+        android:id="@+id/leftPark"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@null"
+        android:src="@drawable/blue_left_park"
+        tools:layout_editor_absoluteX="-1dp"
+        tools:layout_editor_absoluteY="-1dp"
+        />
+
+    <ImageButton
+        android:id="@+id/centerStage"
+        android:layout_width="196dp"
+        android:layout_height="335dp"
+        android:background="@null"
+        android:src="@drawable/blue_center_stage"
+        tools:layout_editor_absoluteX="120dp"
+        tools:layout_editor_absoluteY="31dp"
+        />
+
+    <ImageButton
+        android:id="@+id/centerPark"
+        android:layout_width="125dp"
+        android:layout_height="336dp"
+        android:background="@null"
+        android:src="@drawable/blue_center_park"
+        tools:layout_editor_absoluteX="191dp"
+        tools:layout_editor_absoluteY="31dp"
+        />
+
+    <ImageButton
+        android:id="@+id/rightStage"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@null"
+        android:src="@drawable/blue_right_stage"
+        tools:layout_editor_absoluteX="36dp"
+        tools:layout_editor_absoluteY="178dp"
+        />
+
+    <ImageButton
+        android:id="@+id/rightPark"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@null"
+        android:src="@drawable/blue_right_park"
+        tools:layout_editor_absoluteX="0dp"
+        tools:layout_editor_absoluteY="200dp" />
+
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/subtractSpotlight"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="65sp"
+        tools:layout_editor_absoluteX="515dp"
+        tools:layout_editor_absoluteY="157dp"
+        tools:text="-"
+        />
+
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/spotlightValue"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="48sp"
+        tools:layout_editor_absoluteX="658dp"
+        tools:layout_editor_absoluteY="173dp"
+        tools:text="0"
+        />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/submit"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Submit"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        />
+
+
+
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

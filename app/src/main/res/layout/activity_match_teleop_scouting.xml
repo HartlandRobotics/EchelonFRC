@@ -77,10 +77,10 @@
         tools:text="0" />
 
     <com.google.android.material.button.MaterialButton
-        android:id="@+id/scoutingDone"
+        android:id="@+id/endgame"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Done"
+        android:text="Endgame"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
         />
