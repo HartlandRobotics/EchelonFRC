@@ -183,10 +183,10 @@ public class MatchScheduleActivity extends EchelonActivity {
         List<MatchResult> teamMatchResults = matchResultsByTeam.get(teamKey);
         if( teamMatchResults == null || teamMatchResults.size() == 0 ) return 0;
 
-        int totalCargoCount = 0;
+        int totalElementCount = 0;
         for(MatchResult matchResult : teamMatchResults ){
-                  totalCargoCount += matchResult.getAutoLowBalls() + matchResult.getAutoHighBalls() +
-                    matchResult.getTeleOpLowBalls() + matchResult.getTeleOpHighBalls();
+                  totalElementCount += matchResult.getAuto2() + matchResult.getAuto3() + matchResult.getAuto4() + matchResult.getAuto5() +
+                    matchResult.getTeleOp1() + matchResult.getTeleOp2() + matchResult.getTeleOp3() + matchResult.getTeleOp4() + matchResult.getTeleOp5();
         }
         int averageCargoCount = totalCargoCount / teamMatchResults.size();
         return averageCargoCount;
