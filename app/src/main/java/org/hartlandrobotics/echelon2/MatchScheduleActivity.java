@@ -22,6 +22,10 @@ import com.google.android.material.textview.MaterialTextView;
 import org.apache.commons.lang3.StringUtils;
 import org.hartlandrobotics.echelon2.blueAlliance.fragments.MatchListViewModel;
 import org.hartlandrobotics.echelon2.blueAlliance.fragments.MatchesFragment;
+import org.hartlandrobotics.echelon2.database.crescendo.CrescendoCounts;
+import org.hartlandrobotics.echelon2.database.crescendo.CrescendoPoints;
+import org.hartlandrobotics.echelon2.database.currentGame.CurrentGameCounts;
+import org.hartlandrobotics.echelon2.database.currentGame.CurrentGamePoints;
 import org.hartlandrobotics.echelon2.database.entities.Match;
 import org.hartlandrobotics.echelon2.database.entities.MatchResult;
 import org.hartlandrobotics.echelon2.database.repositories.EventRepo;
@@ -179,32 +183,35 @@ public class MatchScheduleActivity extends EchelonActivity {
         if( teamMatchResults ==null) return 0;
         return teamMatchResults.size();
     }
-    private int getAverageAutoCountByTeam(String teamKey){
+    private int getAverageCountByTeam(String teamKey){
         List<MatchResult> teamMatchResults = matchResultsByTeam.get(teamKey);
         if( teamMatchResults == null || teamMatchResults.size() == 0 ) return 0;
 
         int totalElementCount = 0;
         for(MatchResult matchResult : teamMatchResults ){
-                  totalElementCount += matchResult.getAuto2() + matchResult.getAuto3() + matchResult.getAuto4() + matchResult.getAuto5() +
-                    matchResult.getTeleOp1() + matchResult.getTeleOp2() + matchResult.getTeleOp3() + matchResult.getTeleOp4() + matchResult.getTeleOp5();
+            CurrentGameCounts currentGameCounts = new CurrentGameCounts(matchResult);
+            totalElementCount += currentGameCounts.getAutoCounts()
+            + currentGameCounts.getTeleOpCounts()
+            + currentGameCounts.getEndCounts();
         }
-        int averageCargoCount = totalCargoCount / teamMatchResults.size();
-        return averageCargoCount;
+        int averageElementCount = totalElementCount / teamMatchResults.size();
+        return averageElementCount;
     }
 
-    private int getAverageHangPointsByTeam(String teamKey){
+    private int getAveragePointsByTeam(String teamKey){
         List<MatchResult> teamMatchResults = matchResultsByTeam.get(teamKey);
         if( teamMatchResults == null || teamMatchResults.size() == 0 ) return 0;
 
-        int totalHangPoints = 0;
+        int totalPoints = 0;
         for(MatchResult matchResult : teamMatchResults ){
-            totalHangPoints += (matchResult.getEndHangLow()? 1 : 0 ) * 4;
-            totalHangPoints += (matchResult.getEndHangMid()? 1 : 0 ) * 6;
-            totalHangPoints += (matchResult.getEndHangHigh()? 1 : 0 ) * 10;
-            totalHangPoints += (matchResult.getEndHangTraverse()? 1 : 0 ) * 15;
+            CurrentGamePoints currentGamePoints = new CurrentGamePoints(matchResult);
+            totalPoints += currentGamePoints.getAutoPoints()
+                    + currentGamePoints.getTeleOpPoints()
+                    + currentGamePoints.getEndPoints();
+
         }
-        int averageHangPoints = totalHangPoints / teamMatchResults.size();
-        return averageHangPoints;
+        int averagePoints = totalPoints / teamMatchResults.size();
+        return averagePoints;
     }
 
     private int getAverageByTeam( String teamKey ){
@@ -213,19 +220,12 @@ public class MatchScheduleActivity extends EchelonActivity {
 
         int totalScore = 0;
         for( MatchResult matchResult : teamMatchResults ){
+            CurrentGamePoints points = new CurrentGamePoints(matchResult);
+
             int matchScore = 0;
-            matchScore += matchResult.getAutoHighBalls() * 4;
-            matchScore += matchResult.getAutoLowBalls() * 2;
-            matchScore += (matchResult.getTaxiTarmac()? 1 : 0) * 2;
-            matchScore += matchResult.getAutoHumanPlayerShots() * 4;
-
-            matchScore += matchResult.getTeleOpHighBalls() * 2;
-            matchScore += matchResult.getTeleOpLowBalls() * 1;
-
-            matchScore += (matchResult.getEndHangLow()? 1 : 0 ) * 4;
-            matchScore += (matchResult.getEndHangMid()? 1 : 0 ) * 6;
-            matchScore += (matchResult.getEndHangHigh()? 1 : 0 ) * 10;
-            matchScore += (matchResult.getEndHangTraverse()? 1 : 0 ) * 15;
+            matchScore += points.getAutoPoints();
+            matchScore += points.getTeleOpPoints();
+            matchScore += points.getEndPoints();
 
             totalScore += matchScore;
         }
@@ -241,19 +241,12 @@ public class MatchScheduleActivity extends EchelonActivity {
 
         int totalScore = 0;
         for( MatchResult matchResult : teamMatchResults ){
+            CurrentGamePoints currentGamePoints = new CurrentGamePoints(matchResult);
+
             int matchScore = 0;
-            matchScore += matchResult.getAutoHighBalls() * 4;
-            matchScore += matchResult.getAutoLowBalls() * 2;
-            matchScore += (matchResult.getTaxiTarmac()? 1 : 0) * 2;
-            matchScore += matchResult.getAutoHumanPlayerShots() * 4;
-
-            matchScore += matchResult.getTeleOpHighBalls() * 2;
-            matchScore += matchResult.getTeleOpLowBalls() * 1;
-
-            matchScore += (matchResult.getEndHangLow()? 1 : 0 ) * 4;
-            matchScore += (matchResult.getEndHangMid()? 1 : 0 ) * 6;
-            matchScore += (matchResult.getEndHangHigh()? 1 : 0 ) * 10;
-            matchScore += (matchResult.getEndHangTraverse()? 1 : 0 ) * 15;
+            matchScore += currentGamePoints.getAutoPoints();
+            matchScore += currentGamePoints.getTeleOpPoints();
+            matchScore += currentGamePoints.getEndPoints();
 
             totalScore += matchScore;
         }
@@ -262,19 +255,12 @@ public class MatchScheduleActivity extends EchelonActivity {
 
         int totalDeviation = 0;
         for( MatchResult matchResult : teamMatchResults ){
+            CurrentGamePoints currentGamePoints = new CurrentGamePoints(matchResult);
             int matchScore = 0;
-            matchScore += matchResult.getAutoHighBalls() * 4;
-            matchScore += matchResult.getAutoLowBalls() * 2;
-            matchScore += (matchResult.getTaxiTarmac()? 1 : 0) * 2;
-            matchScore += matchResult.getAutoHumanPlayerShots() * 4;
+            matchScore += currentGamePoints.getAutoPoints();
+            matchScore += currentGamePoints.getTeleOpPoints();
+            matchScore += currentGamePoints.getEndPoints();
 
-            matchScore += matchResult.getTeleOpHighBalls() * 2;
-            matchScore += matchResult.getTeleOpLowBalls() * 1;
-
-            matchScore += (matchResult.getEndHangLow()? 1 : 0 ) * 4;
-            matchScore += (matchResult.getEndHangMid()? 1 : 0 ) * 6;
-            matchScore += (matchResult.getEndHangHigh()? 1 : 0 ) * 10;
-            matchScore += (matchResult.getEndHangTraverse()? 1 : 0 ) * 15;
 
             totalDeviation += (matchScore - averageScore) * (matchScore - averageScore);
         }
@@ -282,7 +268,6 @@ public class MatchScheduleActivity extends EchelonActivity {
         double stdDeviation = Math.sqrt(totalDeviation / teamMatchResults.size());
 
         return stdDeviation;
-
     }
 
     public class MatchScheduleViewHolder extends RecyclerView.ViewHolder{

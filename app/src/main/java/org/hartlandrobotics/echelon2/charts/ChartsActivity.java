@@ -11,7 +11,7 @@ import com.google.android.material.tabs.TabLayoutMediator;
 
 import org.hartlandrobotics.echelon2.EchelonActivity;
 import org.hartlandrobotics.echelon2.R;
-import org.hartlandrobotics.echelon2.database.entities.CrescendoPoints;
+import org.hartlandrobotics.echelon2.database.crescendo.CrescendoPoints;
 import org.hartlandrobotics.echelon2.database.entities.MatchResult;
 import org.hartlandrobotics.echelon2.database.repositories.MatchResultRepo;
 import org.hartlandrobotics.echelon2.status.BlueAllianceStatus;

@@ -1,10 +1,6 @@
-package org.hartlandrobotics.echelon2.database.entities;
+package org.hartlandrobotics.echelon2.database.crescendo;
 
-import android.icu.util.ULocale;
-
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
-import java.util.Calendar;
+import org.hartlandrobotics.echelon2.database.entities.MatchResult;
 import java.util.Date;
 
 public class CrescendoResult {
@@ -39,12 +35,11 @@ public class CrescendoResult {
     }
     public Boolean getLeaveLineAuto(){
         return leaveLineAuto;
-
     }
+    //dburton need to implement setter
 
     public int getAmpNoteAuto(){
         return ampNoteAuto;
-
     }
     public void setAmpNoteAuto(int result){
         matchResult.setAuto2(result > 0 ? null : new Date().toString());
@@ -94,6 +89,5 @@ public class CrescendoResult {
     public Boolean getTrapNoteEnd(){
         return trapNoteEnd;
     }
-
 
 }
