@@ -9,8 +9,6 @@ import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Log;
-import android.view.View;
-import android.widget.CompoundButton;
 
 import com.google.android.material.button.MaterialButton;
 import com.google.android.material.checkbox.MaterialCheckBox;
@@ -18,15 +16,10 @@ import com.google.android.material.textfield.TextInputLayout;
 import com.google.android.material.textview.MaterialTextView;
 
 import org.hartlandrobotics.echelon2.R;
-import org.hartlandrobotics.echelon2.database.entities.CrescendoPoints;
-import org.hartlandrobotics.echelon2.database.entities.CrescendoResult;
+import org.hartlandrobotics.echelon2.database.crescendo.CrescendoResult;
 import org.hartlandrobotics.echelon2.database.entities.MatchResult;
 import org.hartlandrobotics.echelon2.models.MatchResultViewModel;
 import org.hartlandrobotics.echelon2.status.BlueAllianceStatus;
-
-import java.time.LocalDateTime;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
 public class MatchScoutingSummaryActivity extends AppCompatActivity {
     private static final String TAG = "MatchScoutingSummaryActivity";

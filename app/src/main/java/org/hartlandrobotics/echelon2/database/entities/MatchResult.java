@@ -8,6 +8,11 @@ import androidx.room.Ignore;
 import androidx.room.PrimaryKey;
 
 import org.apache.commons.lang3.StringUtils;
+import org.hartlandrobotics.echelon2.database.crescendo.CrescendoCounts;
+import org.hartlandrobotics.echelon2.database.crescendo.CrescendoPoints;
+import org.hartlandrobotics.echelon2.database.currentGame.CurrentGameCounts;
+import org.hartlandrobotics.echelon2.database.currentGame.CurrentGamePoints;
+
 import java.util.UUID;
 
 @Entity(tableName="match_result")
@@ -212,5 +217,14 @@ public class MatchResult {
     public void setDefenseCount( int defenseCount ){
         this.defenseCount = defenseCount;
     }
+
+    public CurrentGamePoints toCurrentGamePoints(MatchResult matchResult){
+        return new CrescendoPoints(matchResult);
+    }
+
+    public CurrentGameCounts toCurrentGameCounts(MatchResult matchResult){
+        return new CrescendoCounts(matchResult);
+    }
+
 
 }
