@@ -210,7 +210,7 @@ class MatchScheduleViewModel {
     public int getRedTeleOpTotal() { return getRed1TeleOp() + getRed2TeleOp() + getRed3TeleOp(); }
     public int getBlueTeleOpTotal() { return getBlue1TeleOp() + getBlue2TeleOp() + getBlue3TeleOp(); }
 
-    public int getRedHangEnd() { return getRed1End() + getRed2End() + getRed3End(); }
+    public int getRedEndTotal() { return getRed1End() + getRed2End() + getRed3End(); }
     public int getBlueEndTotal() { return getBlue1End() + getBlue2End() + getBlue3End(); }
 
     public int getRedConfidenceIntervalMin() { return Math.max(0,getRedTotal() - getRedMarginOfError()); }
