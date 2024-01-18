@@ -65,7 +65,8 @@
         android:textSize="65sp"
         tools:layout_editor_absoluteX="267dp"
         tools:layout_editor_absoluteY="89dp"
-        tools:text="-" />
+        tools:text="-"
+        />
 
     <com.google.android.material.textview.MaterialTextView
         android:id="@+id/teleOpSpeakerValue"
@@ -74,7 +75,8 @@
         android:textSize="48sp"
         tools:layout_editor_absoluteX="455dp"
         tools:layout_editor_absoluteY="104dp"
-        tools:text="0" />
+        tools:text="0"
+        />
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/endgame"
@@ -123,7 +125,8 @@
         android:textSize="65sp"
         tools:layout_editor_absoluteX="500dp"
         tools:layout_editor_absoluteY="89dp"
-        tools:text="-" />
+        tools:text="-"
+        />
 
     <com.google.android.material.textview.MaterialTextView
         android:id="@+id/teleOpAmpValue"
@@ -132,7 +135,8 @@
         android:textSize="48sp"
         tools:layout_editor_absoluteX="688dp"
         tools:layout_editor_absoluteY="104dp"
-        tools:text="0" />
+        tools:text="0"
+        />
 
 
     <!--    <ImageButton-->

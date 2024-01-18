@@ -69,7 +69,8 @@
         android:textSize="65sp"
         tools:layout_editor_absoluteX="380dp"
         tools:layout_editor_absoluteY="200dp"
-        tools:text="-" />
+        tools:text="-"
+        />
 
 
     <com.google.android.material.button.MaterialButton
