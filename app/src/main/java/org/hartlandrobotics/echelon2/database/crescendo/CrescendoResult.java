@@ -4,7 +4,7 @@ import org.hartlandrobotics.echelon2.database.entities.MatchResult;
 import java.util.Date;
 
 public class CrescendoResult {
-    private MatchResult matchResult;
+    public MatchResult matchResult;
     Boolean leaveLineAuto = Boolean.FALSE;
     int ampNoteAuto = 0;
     int speakerNoteAuto = 0;
@@ -35,6 +35,14 @@ public class CrescendoResult {
     }
     public Boolean getLeaveLineAuto(){
         return leaveLineAuto;
+    }
+    public void setLeaveLineAuto(boolean result){
+        if(result == Boolean.FALSE){
+            matchResult.setAuto1(null);
+        }
+        else{
+            matchResult.setAuto1(new Date().toString());
+        }
     }
     //dburton need to implement setter
 

@@ -116,9 +116,9 @@ public class MatchScoutingSummaryActivity extends AppCompatActivity {
     }
 
     private void setupControls(){
-        leaveLineAuto = findViewById(R.id.leaveLineAutoCheckBox);
+        leaveLineAuto = findViewById(R.id.park);
         leaveLineAuto.setOnCheckedChangeListener((buttonView, isChecked) -> {
-            matchResult.setLeaveLineAuto(isChecked);
+            crescendoResult.setLeaveLineAuto(!crescendoResult.getLeaveLineAuto());
             populateControlsFromData();
         });
 

@@ -14,6 +14,7 @@ import com.google.android.material.textview.MaterialTextView;
 import org.hartlandrobotics.echelon2.R;
 import org.hartlandrobotics.echelon2.configuration.AdminSettings;
 import org.hartlandrobotics.echelon2.configuration.AdminSettingsProvider;
+import org.hartlandrobotics.echelon2.database.crescendo.CrescendoResult;
 import org.hartlandrobotics.echelon2.database.entities.MatchResult;
 import org.hartlandrobotics.echelon2.models.MatchResultViewModel;
 import org.hartlandrobotics.echelon2.status.BlueAllianceStatus;
@@ -21,11 +22,6 @@ import org.hartlandrobotics.echelon2.status.BlueAllianceStatus;
 public class MatchScoutingAutoActivity extends AppCompatActivity {
     private static final String MATCH_KEY = "auto_match_key_param";
     private static final String TEAM_KEY = "auto_team_key_param";
-
-//    private ImageButton topHubButton;
-//    private ImageButton bottomHubButton;
-//    private ImageButton humanPlayerButton;
-//    private ImageButton exitTarmacButton;
 
     private ImageButton leavePark;
     private ImageButton autoSpeaker;
@@ -38,15 +34,7 @@ public class MatchScoutingAutoActivity extends AppCompatActivity {
     private MaterialTextView speakerPoints;
     private MaterialTextView ampPoints;
 
-//    private MaterialTextView topHubText;
-//    private MaterialTextView bottomHubText;
-//    private MaterialTextView humanPlayerText;
 //    private MaterialTextView teamKeyText;
-
-//    int topHubButtonDrawable;
-//    int bottomHubButtonDrawable;
-//    int humanPlayoutButtonDrawable;
-//    int tarmacButtonDrawable;
 
     int leaveParkDrawable;
     int autoSpeakerDrawable;
@@ -54,7 +42,8 @@ public class MatchScoutingAutoActivity extends AppCompatActivity {
 
 
     MatchResultViewModel matchResultViewModel;
-    MatchResult matchResult;
+   // MatchResult matchResult;
+    CrescendoResult crescendoResult;
 
     String matchKey;
     String teamKey;
@@ -81,8 +70,8 @@ public class MatchScoutingAutoActivity extends AppCompatActivity {
         matchKey = bundle.getString(MATCH_KEY);
         teamKey = bundle.getString(TEAM_KEY);
 
-        teamKeyText = findViewById(R.id.teamKeyText);
-        teamKeyText.setText(teamKey);
+        //teamKeyText = findViewById(R.id.teamKeyText);
+        //teamKeyText.setText(teamKey);
 
         BlueAllianceStatus blueAllianceStatus = new BlueAllianceStatus(getApplicationContext());
 
@@ -90,9 +79,9 @@ public class MatchScoutingAutoActivity extends AppCompatActivity {
         matchResultViewModel.getMatchResultByMatchTeam(matchKey, teamKey)
                 .observe(MatchScoutingAutoActivity.this, mr->{
                     if( mr == null ){
-                        matchResult = matchResultViewModel.getDefault(blueAllianceStatus.getEventKey(), matchKey, teamKey);
+                        crescendoResult = new CrescendoResult(matchResultViewModel.getDefault(blueAllianceStatus.getEventKey(), matchKey, teamKey));
                     } else {
-                        matchResult = mr;
+                        crescendoResult = new CrescendoResult(mr);
                     }
 
                     populateControlsFromData();
@@ -102,76 +91,57 @@ public class MatchScoutingAutoActivity extends AppCompatActivity {
 
     // all red text that refers from things from last year needs to be updated
     public void populateControlsFromData(){
-//        topHubText.setText(String.valueOf(matchResult.getAutoHighBalls()));
-//        bottomHubText.setText(String.valueOf(matchResult.getAutoLowBalls()));
-//        humanPlayerText.setText(String.valueOf(matchResult.getAutoHumanPlayerShots()));
-        speakerPoints.setText(String.valueOf(matchResult.getAutoHumanPlayerShots()));
-        ampPoints.setText(String.valueOf(matchResult.getAutoHumanPlayerShots()));
+        speakerPoints.setText(String.valueOf(crescendoResult.getSpeakerNoteAuto()));
+        ampPoints.setText(String.valueOf(crescendoResult.getAmpNoteAuto()));
 
-        if( matchResult.getTaxiTarmac() ){
-//            exitTarmacButton.setImageResource(R.drawable.taxi_tarmac_green);
+        if( crescendoResult.getLeaveLineAuto() ){
             leavePark.setImageResource(R.drawable.out_line);
         } else {
             leavePark.setImageResource(leaveParkDrawable);
         }
-
     }
 
     public void setupControls(){
 
         MaterialButton teleOpButton = findViewById(R.id.teleOp);
         teleOpButton.setOnClickListener(v -> {
-            matchResultViewModel.upsert(matchResult);
+            matchResultViewModel.upsert(crescendoResult.matchResult);
             MatchScoutingTeleopActivity.launch(MatchScoutingAutoActivity.this, matchKey, teamKey );
         });
 
-        topHubText = findViewById(R.id.topHubText);
-        topHubButton = findViewById(R.id.topHub);
-        topHubButton.setImageResource(topHubButtonDrawable);
-        topHubButton.setOnClickListener(v -> {
-            matchResult.setAutoHighBalls( matchResult.getAutoHighBalls() + 1);
+        leavePark = findViewById(R.id.park);
+        leavePark.setImageResource(leaveParkDrawable);
+        leavePark.setOnClickListener(v -> {
+            crescendoResult.setLeaveLineAuto(!crescendoResult.getLeaveLineAuto() );
             populateControlsFromData();
         });
 
-        bottomHubText = findViewById(R.id.bottomHubText);
-        bottomHubButton = findViewById(R.id.bottomHub);
-        bottomHubButton.setImageResource(bottomHubButtonDrawable);
-        bottomHubButton.setOnClickListener(v -> {
-            matchResult.setAutoLowBalls( matchResult.getAutoLowBalls() + 1);
+
+        autoSpeaker = findViewById(R.id.autoSpeaker);
+        speakerPoints = findViewById(R.id.speakerPoints);
+        subtractSpeaker = findViewById(R.id.subtractSpeakerPointsAuto);
+        autoSpeaker.setImageResource(autoSpeakerDrawable);
+        autoSpeaker.setOnClickListener(v -> {
+            crescendoResult.setSpeakerNoteAuto( crescendoResult.getSpeakerNoteAuto() + 1);
             populateControlsFromData();
         });
 
-        humanPlayerText = findViewById(R.id.humanPlayerText);
-        humanPlayerButton = findViewById(R.id.humanPlayer);
-        humanPlayerButton.setImageResource(humanPlayoutButtonDrawable);
-        humanPlayerButton.setOnClickListener(v -> {
-            matchResult.setAutoHumanPlayerShots( matchResult.getAutoHumanPlayerShots() + 1);
+        autoAmp = findViewById(R.id.autoAmp);
+        ampPoints = findViewById(R.id.ampPointsAuto);
+        subtractAmp = findViewById(R.id.subtractAmpPoints);
+        autoAmp.setImageResource(autoAmpDrawable);
+        autoAmp.setOnClickListener(v -> {
+            crescendoResult.setAmpNoteAuto( crescendoResult.getAmpNoteAuto() + 1);
             populateControlsFromData();
         });
-
-        exitTarmacButton = findViewById(R.id.taxiTarmac);
-        exitTarmacButton.setImageResource(humanPlayoutButtonDrawable);
-        exitTarmacButton.setOnClickListener(v -> {
-            matchResult.setTaxiTarmac( !matchResult.getTaxiTarmac() );
-            populateControlsFromData();
-        });
-
     }
 
     public void setupColor() {
         AdminSettings settings = AdminSettingsProvider.getAdminSettings(getApplicationContext());
 
         if (settings.getDeviceRole().startsWith("red")){
-//            topHubButtonDrawable = R.drawable.frc_hub_top_red;
-//            bottomHubButtonDrawable = R.drawable.frc_hub_bottom_red;
-//            humanPlayoutButtonDrawable =R.drawable.human_player_red;
-//            tarmacButtonDrawable = R.drawable.taxi_tarmac_red;
             autoAmpDrawable = R.drawable.auto_red_amp;
         } else {
-//            topHubButtonDrawable = R.drawable.frc_hub_top_blue;
-//            bottomHubButtonDrawable = R.drawable.frc_hub_bottom_blue;
-//            humanPlayoutButtonDrawable =R.drawable.human_player_blue;
-//            tarmacButtonDrawable = R.drawable.taxi_tarmac_blue;
             autoAmpDrawable = R.drawable.auto_blue_amp;
         }
     }
