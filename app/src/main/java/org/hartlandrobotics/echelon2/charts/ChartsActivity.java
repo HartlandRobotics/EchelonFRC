@@ -96,19 +96,19 @@ public class ChartsActivity extends EchelonActivity {
                     CrescendoPoints crescendoPoints = new CrescendoPoints(matchResult);
                     Integer matchNumber = Integer.valueOf(matchResult.getMatchKey().replace( matchResult.getEventKey() + "_qm", ""));
                     int matchAuto = 0;
-                    matchAuto += crescendoPoints.getAuto();
+                    matchAuto += crescendoPoints.getAutoPoints();
                     autoScores.put(matchNumber, matchAuto);
                     autoTotal += matchAuto;
 
 
                     int matchTeleOp = 0;
-                    matchTeleOp += crescendoPoints.getTeleOp();
+                    matchTeleOp += crescendoPoints.getTeleOpPoints();
                     teleOpScores.put(matchNumber, matchTeleOp);
                     teleOpTotal += matchTeleOp;
 
 
                     int matchEndGame = 0;
-                    matchEndGame += crescendoPoints.getEnd();
+                    matchEndGame += crescendoPoints.getEndPoints();
                     endGameTotal += matchEndGame;
                     endGameScores.put(matchNumber, matchEndGame);
 

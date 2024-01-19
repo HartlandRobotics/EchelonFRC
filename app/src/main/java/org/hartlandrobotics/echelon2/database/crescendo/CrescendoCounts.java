@@ -19,6 +19,8 @@ public class CrescendoCounts extends CurrentGameCounts {
     int trapNoteEnd = 0;
 
     public CrescendoCounts(MatchResult result){
+        super(result);
+
         leaveLineAuto   = result.getAuto1() == null?0:1;
         ampNoteAuto   = result.getAuto2() == null?0:1;
         speakerNoteAuto   = result.getAuto3() == null?0:1;
@@ -31,14 +33,18 @@ public class CrescendoCounts extends CurrentGameCounts {
         harmonyEnd   = result.getEnd4() == null?0:1;
         trapNoteEnd   = result.getEnd5() == null?0:1;
     }
+
+    @Override
     public int getAutoCounts(){
         return leaveLineAuto + ampNoteAuto + speakerNoteAuto;
     }
 
+    @Override
     public int getTeleOpCounts(){
         return ampNoteTeleOp + neutralSpeakerNoteTeleOp + ampSpeakerNoteTeleOp;
     }
 
+    @Override
     public int getEndCounts(){
         return parkedEnd + onstageEnd + spotlitEnd + harmonyEnd + trapNoteEnd;
     }
