@@ -19,7 +19,9 @@ public class CrescendoPoints extends CurrentGamePoints {
     int trapNoteEnd = 0;
 
     public CrescendoPoints(MatchResult result){
-      leaveLineAuto   = result.getAuto1() == null?0:2;
+        super(result);
+
+        leaveLineAuto   = result.getAuto1() == null?0:2;
         ampNoteAuto   = result.getAuto2() == null?0:2;
         speakerNoteAuto   = result.getAuto3() == null?0:5;
         ampNoteTeleOp   = result.getTeleOp1() == null?0:1;

@@ -9,10 +9,12 @@ import android.util.Log;
 import android.widget.Button;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.RequiresApi;
 import androidx.lifecycle.ViewModelProvider;
 
 import org.apache.commons.lang3.StringUtils;
+import org.hartlandrobotics.echelon2.database.currentGame.CurrentGameCounts;
 import org.hartlandrobotics.echelon2.database.entities.Match;
 import org.hartlandrobotics.echelon2.database.entities.MatchResult;
 import org.hartlandrobotics.echelon2.database.entities.MatchResultWithTeamMatch;
@@ -83,7 +85,10 @@ public class ExportActivity extends EchelonActivity {
             matchResultViewModel.getMatchResultsWithTeamMatchByEvent(status.getEventKey()).observe(this, matchResults -> {
                 try {
                     FileOutputStream outputStream = new FileOutputStream(file);
-                    String header = "Event_Key,Match_Key,Team_Key,Match_Number,Team_Number,Auto_Taxi_Tarmac,Auto_High_Balls,Auto_Low_Balls,Auto_Human_Player_Shots,Teleop_High_Balls,Teleop_Low_Balls,Teleop_Defenses,End_Hang_Low,End_Hang_Mid,End_Hang_High,End_Hang_Traverse,Match_Result_Key\n";
+                    String header = "Event_Key,Match_Key,Team_Key,Match_Number,Team_Number,  Auto1 ,Auto2, Auto3, Auto4, Auto5"
+                            + ",TeleOp1,TeleOp2,TeleOp3, TeleOp4, TeleOp5, Teleop_Defenses"
+                            + ",End1,End2,End3,End4, End5"
+                            + ",Match_Result_Key\n";
                     outputStream.write(header.getBytes());
                     for(MatchResultWithTeamMatch matchResultWithTeamMatch: matchResults){
                         MatchResult mr = matchResultWithTeamMatch.matchResult;
@@ -96,17 +101,24 @@ public class ExportActivity extends EchelonActivity {
                         dataForFile.add(mr.getTeamKey());
                         dataForFile.add(String.valueOf(m.getMatchNumber()));
                         dataForFile.add(String.valueOf(t.getTeamNumber()));
-                        dataForFile.add(String.valueOf(mr.getTaxiTarmac()));
-                        dataForFile.add(String.valueOf(mr.getAutoHighBalls()));
-                        dataForFile.add(String.valueOf(mr.getAutoLowBalls()));
-                        dataForFile.add(String.valueOf(mr.getAutoHumanPlayerShots()));
-                        dataForFile.add(String.valueOf(mr.getTeleOpHighBalls()));
-                        dataForFile.add(String.valueOf(mr.getTeleOpLowBalls()));
+                        dataForFile.add(String.valueOf(mr.getAuto1()));
+                        dataForFile.add(String.valueOf(mr.getAuto2()));
+                        dataForFile.add(String.valueOf(mr.getAuto3()));
+                        dataForFile.add(String.valueOf(mr.getAuto4()));
+                        dataForFile.add(String.valueOf(mr.getAuto5()));
+
+                        dataForFile.add(String.valueOf(mr.getTeleOp1()));
+                        dataForFile.add(String.valueOf(mr.getTeleOp2()));
+                        dataForFile.add(String.valueOf(mr.getTeleOp3()));
+                        dataForFile.add(String.valueOf(mr.getTeleOp4()));
+                        dataForFile.add(String.valueOf(mr.getTeleOp5()));
                         dataForFile.add(String.valueOf(mr.getDefenseCount()));
-                        dataForFile.add(String.valueOf(mr.getEndHangLow()));
-                        dataForFile.add(String.valueOf(mr.getEndHangMid()));
-                        dataForFile.add(String.valueOf(mr.getEndHangHigh()));
-                        dataForFile.add(String.valueOf(mr.getEndHangTraverse()));
+
+                        dataForFile.add(String.valueOf(mr.getEnd1()));
+                        dataForFile.add(String.valueOf(mr.getEnd2()));
+                        dataForFile.add(String.valueOf(mr.getEnd3()));
+                        dataForFile.add(String.valueOf(mr.getEnd4()));
+                        dataForFile.add(String.valueOf(mr.getEnd5()));
                         dataForFile.add(mr.getMatchResultKey());
                         String outputString = dataForFile.stream().collect(Collectors.joining(",")) + "\n";
                         outputStream.write(outputString.getBytes());
@@ -192,37 +204,53 @@ public class ExportActivity extends EchelonActivity {
             String teamKey = columns[2];
             int matchNum = Integer.parseInt(columns[3]);
             int teamNum = Integer.parseInt(columns[4]);
-            boolean taxi = false;
-            if(columns[5].equalsIgnoreCase("TRUE")) {
-                taxi = true;
-            }
-            int autoHigh = Integer.parseInt(columns[6]);
-            int autoLow = Integer.parseInt(columns[7]);
-            int autoHuman = Integer.parseInt(columns[8]);
-            int teleHigh = Integer.parseInt(columns[9]);
-            int teleLow = Integer.parseInt(columns[10]);
-            int teleDef = Integer.parseInt(columns[11]);
-            boolean lowHang = false;
-            if(columns[12].equalsIgnoreCase("TRUE")){
-                lowHang = true;
-            }
-            boolean midHang = false;
-            if(columns[13].equalsIgnoreCase("TRUE")){
-                midHang = true;
-            }
-            boolean highHang = false;
-            if(columns[14].equalsIgnoreCase("TRUE")){
-                highHang = true;
-            }
-            boolean travHang = false;
-            if(columns[15].equalsIgnoreCase("TRUE")){
-                travHang = true;
-            }
-            String matchResultKey = columns[16];
-            MatchResult matchResult = new MatchResult(matchResultKey, eventKey, matchKey, teamKey, false, taxi, autoHigh, autoLow, autoHuman, teleHigh, teleLow, lowHang, midHang, highHang, travHang, " ", teleDef);
+            String Auto1 = columns[5];
+            String Auto2 = columns[6];
+            String Auto3 = columns[7];
+            String Auto4 = columns[8];
+            String Auto5 = columns[9];
+
+            String TeleOp1 =columns[10];
+            String TeleOp2 =columns[11];
+            String TeleOp3 =columns[12];
+            String TeleOp4 =columns[13];
+            String TeleOp5 =columns[14];
+            int teleDef = Integer.parseInt(columns[15]);
+
+            String End1 =columns[16];
+            String End2 =columns[17];
+            String End3 =columns[18];
+            String End4 =columns[19];
+            String End5 =columns[20];
+
+            String matchResultKey = columns[21];
+            MatchResult matchResult = new MatchResult(
+                    matchResultKey,
+                    eventKey,
+                    matchKey,
+                    teamKey,
+                    false,
+                    Auto1,
+                    Auto2,
+                    Auto3,
+                    Auto4,
+                    Auto5,
+                    TeleOp1,
+                    TeleOp2,
+                    TeleOp3,
+                    TeleOp4,
+                    TeleOp5,
+                    End1,
+                    End2,
+                    End3,
+                    End4,
+                    End5,
+                    null,
+                    teleDef
+                 );
             matchResultViewModel.upsert(matchResult);
         }
-        Log.e("Test", "Times ran: " + timesRan);
+        Log.e(this.getLocalClassName(), "Times ran: " + timesRan);
     }
     @RequiresApi(api = Build.VERSION_CODES.O)
     public void setupCSVImportButton(){

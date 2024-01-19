@@ -7,15 +7,13 @@ public class CurrentGameCounts {
         super();
     }
 
-        public int getAutoCounts(){
+    public int getAutoCounts(){
             return 0;
         }
-
-        public int getTeleOpCounts(){
+    public int getTeleOpCounts(){
             return 0;
         }
-
-        public int getEndCounts(){
+    public int getEndCounts(){
             return 0;
         }
 }
