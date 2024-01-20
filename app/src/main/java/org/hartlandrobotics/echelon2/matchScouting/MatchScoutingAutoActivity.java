@@ -15,7 +15,6 @@ import org.hartlandrobotics.echelon2.R;
 import org.hartlandrobotics.echelon2.configuration.AdminSettings;
 import org.hartlandrobotics.echelon2.configuration.AdminSettingsProvider;
 import org.hartlandrobotics.echelon2.database.crescendo.CrescendoResult;
-import org.hartlandrobotics.echelon2.database.entities.MatchResult;
 import org.hartlandrobotics.echelon2.models.MatchResultViewModel;
 import org.hartlandrobotics.echelon2.status.BlueAllianceStatus;
 
@@ -23,26 +22,23 @@ public class MatchScoutingAutoActivity extends AppCompatActivity {
     private static final String MATCH_KEY = "auto_match_key_param";
     private static final String TEAM_KEY = "auto_team_key_param";
 
-    private ImageButton leavePark;
+    private ImageButton leaveLineAuto;
     private ImageButton autoSpeaker;
     private ImageButton autoAmp;
-    // the amp changes depending on if it's a red tablet or a blue tablet
 
     // we are finally going to use text buttons to let them take away things on the screen so they don't keep crying about it
-    private MaterialTextView subtractSpeaker;
-    private MaterialTextView subtractAmp;
+    private ImageButton subtractSpeaker;
+    private ImageButton subtractAmp;
     private MaterialTextView speakerPoints;
     private MaterialTextView ampPoints;
 
-//    private MaterialTextView teamKeyText;
+   private MaterialTextView teamKeyText;
 
-    int leaveParkDrawable;
     int autoSpeakerDrawable;
     int autoAmpDrawable;
 
 
     MatchResultViewModel matchResultViewModel;
-   // MatchResult matchResult;
     CrescendoResult crescendoResult;
 
     String matchKey;
@@ -70,8 +66,8 @@ public class MatchScoutingAutoActivity extends AppCompatActivity {
         matchKey = bundle.getString(MATCH_KEY);
         teamKey = bundle.getString(TEAM_KEY);
 
-        //teamKeyText = findViewById(R.id.teamKeyText);
-        //teamKeyText.setText(teamKey);
+        teamKeyText = findViewById(R.id.teamKeyText);
+        teamKeyText.setText(teamKey);
 
         BlueAllianceStatus blueAllianceStatus = new BlueAllianceStatus(getApplicationContext());
 
@@ -94,10 +90,10 @@ public class MatchScoutingAutoActivity extends AppCompatActivity {
         speakerPoints.setText(String.valueOf(crescendoResult.getSpeakerNoteAuto()));
         ampPoints.setText(String.valueOf(crescendoResult.getAmpNoteAuto()));
 
-        if( crescendoResult.getLeaveLineAuto() ){
-            leavePark.setImageResource(R.drawable.out_line);
+        if(crescendoResult.getLeaveLineAuto()){
+            leaveLineAuto.setImageResource(R.drawable.in_line);
         } else {
-            leavePark.setImageResource(leaveParkDrawable);
+            leaveLineAuto.setImageResource(R.drawable.out_line);
         }
     }
 
@@ -109,13 +105,14 @@ public class MatchScoutingAutoActivity extends AppCompatActivity {
             MatchScoutingTeleopActivity.launch(MatchScoutingAutoActivity.this, matchKey, teamKey );
         });
 
-        leavePark = findViewById(R.id.park);
-        leavePark.setImageResource(leaveParkDrawable);
-        leavePark.setOnClickListener(v -> {
-            crescendoResult.setLeaveLineAuto(!crescendoResult.getLeaveLineAuto() );
-            populateControlsFromData();
-        });
 
+        leaveLineAuto = findViewById(R.id.park);
+        leaveLineAuto.setImageResource(R.drawable.in_line);
+        leaveLineAuto.setOnClickListener(v -> {
+            crescendoResult.setLeaveLineAuto( !crescendoResult.getLeaveLineAuto() );
+            populateControlsFromData();
+
+        });
 
         autoSpeaker = findViewById(R.id.autoSpeaker);
         speakerPoints = findViewById(R.id.speakerPoints);
@@ -125,6 +122,10 @@ public class MatchScoutingAutoActivity extends AppCompatActivity {
             crescendoResult.setSpeakerNoteAuto( crescendoResult.getSpeakerNoteAuto() + 1);
             populateControlsFromData();
         });
+        subtractSpeaker.setOnClickListener(v -> {
+            crescendoResult.setSpeakerNoteAuto(Math.max(crescendoResult.getSpeakerNoteAuto()- 1,0));
+            populateControlsFromData();
+        });
 
         autoAmp = findViewById(R.id.autoAmp);
         ampPoints = findViewById(R.id.ampPointsAuto);
@@ -132,6 +133,10 @@ public class MatchScoutingAutoActivity extends AppCompatActivity {
         autoAmp.setImageResource(autoAmpDrawable);
         autoAmp.setOnClickListener(v -> {
             crescendoResult.setAmpNoteAuto( crescendoResult.getAmpNoteAuto() + 1);
+            populateControlsFromData();
+        });
+        subtractAmp.setOnClickListener(v -> {
+            crescendoResult.setAmpNoteAuto(Math.max(crescendoResult.getAmpNoteAuto()- 1,0));
             populateControlsFromData();
         });
     }
