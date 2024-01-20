@@ -33,6 +33,9 @@ public class MatchScoutingTeleopActivity extends AppCompatActivity {
     private ImageButton subtractAmpTeleOp;
     private ImageButton defensesButton;
     private MaterialTextView defensesText;
+    private MaterialTextView ampSpeakerTeleOpText;
+    private MaterialTextView speakerTeleOpText;
+    private MaterialTextView ampTeleOpText;
 
 
     private int ampSpeakerTeleOpDrawable;
@@ -86,6 +89,9 @@ public class MatchScoutingTeleopActivity extends AppCompatActivity {
 
     public void populateControlsFromData(){
         defensesText.setText(String.valueOf(crescendoResult.matchResult.getDefenseCount()));
+        ampSpeakerTeleOpText.setText(String.valueOf(crescendoResult.getAmpSpeakerNoteTeleOp()));
+        speakerTeleOpText.setText(String.valueOf(crescendoResult.getNeutralSpeakerNoteTeleOp()));
+        ampTeleOpText.setText(String.valueOf(crescendoResult.getAmpNoteTeleOp()));
 
 
 
@@ -107,6 +113,31 @@ public class MatchScoutingTeleopActivity extends AppCompatActivity {
             populateControlsFromData();
         });
 
+        ampSpeakerTeleOp = findViewById(R.id.amplifiedSpeaker);
+        ampSpeakerTeleOpText = findViewById(R.id.teleOpAmplifiedSpeakerValue);
+        subtractAmpSpeakerTeleOp = findViewById(R.id.subtractAmplifiedSpeakerPointsTeleOp);
+        ampSpeakerTeleOp.setImageResource(ampSpeakerTeleOpDrawable);
+        ampSpeakerTeleOp.setOnClickListener(v -> {
+                crescendoResult.setAmpSpeakerNoteTeleOp(crescendoResult.getAmpSpeakerNoteTeleOp() +1);
+                populateControlsFromData();
+        });
+
+        speakerTeleOp = findViewById(R.id.teleOpSpeaker);
+        speakerTeleOpText = findViewById(R.id.teleOpSpeakerValue);
+        subtractSpeakerTeleOp = findViewById(R.id.subtractSpeakerPointsTeleOp);
+        speakerTeleOp.setOnClickListener(v -> {
+            crescendoResult.setNeutralSpeakerNoteTeleOp(crescendoResult.getNeutralSpeakerNoteTeleOp() +1);
+            populateControlsFromData();
+        });
+
+        ampTeleOp = findViewById(R.id.teleOpAmp);
+        ampTeleOpText = findViewById(R.id.teleOpAmpValue);
+        subtractAmpTeleOp = findViewById(R.id.subtractAmpPointsTeleOp);
+        ampTeleOp.setImageResource(ampTeleOpDrawable);
+        ampTeleOp.setOnClickListener(v -> {
+            crescendoResult.setAmpNoteTeleOp(crescendoResult.getAmpNoteTeleOp() +1);
+            populateControlsFromData();
+        });
 
         defensesText = findViewById(R.id.teleOpDefensesValue);
     }
