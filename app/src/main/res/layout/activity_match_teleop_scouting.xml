@@ -13,8 +13,10 @@
         android:layout_height="wrap_content"
         android:background="@null"
         android:src="@drawable/amplified_speaker_blue"
-        tools:layout_editor_absoluteX="34dp"
-        tools:layout_editor_absoluteY="16dp"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/teleOpDefenses"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toLeftOf="@id/teleOpSpeaker"
         />
 
     <com.google.android.material.textview.MaterialTextView
@@ -22,9 +24,12 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textSize="65sp"
-        tools:layout_editor_absoluteX="34dp"
-        tools:layout_editor_absoluteY="89dp"
         tools:text="-"
+        app:layout_constraintTop_toBottomOf="@id/amplifiedSpeaker"
+        app:layout_constraintBottom_toTopOf="@id/teleOpDefenses"
+        app:layout_constraintLeft_toRightOf="@id/amplifiedSpeaker"
+        app:layout_constraintRight_toLeftOf="@id/teleOpAmplifiedSpeakerValue"
+        android:layout_margin="10dp"
         />
 
 
@@ -33,9 +38,13 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textSize="48sp"
-        tools:layout_editor_absoluteX="222dp"
-        tools:layout_editor_absoluteY="104dp"
         tools:text="0"
+        app:layout_constraintTop_toBottomOf="@id/amplifiedSpeaker"
+        app:layout_constraintBottom_toTopOf="@id/teleOpDefenses"
+        app:layout_constraintLeft_toRightOf="@id/subtractAmplifiedSpeakerPointsTeleOp"
+        app:layout_constraintRight_toLeftOf="@id/amplifiedSpeaker"
+        android:layout_margin="10dp"
+
         />
 
     <ImageButton
@@ -46,6 +55,10 @@
         android:src="@drawable/defense_blue"
         tools:layout_editor_absoluteX="92dp"
         tools:layout_editor_absoluteY="265dp"
+        app:layout_constraintTop_toBottomOf="@id/amplifiedSpeaker"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toRightOf="@id/subtractDefense"
+        app:layout_constraintRight_toLeftOf="@id/teleOpDefensesValue"
         />
 
     <ImageButton
@@ -54,8 +67,10 @@
         android:layout_height="wrap_content"
         android:background="@null"
         android:src="@drawable/teleop_speaker"
-        tools:layout_editor_absoluteX="267dp"
-        tools:layout_editor_absoluteY="16dp"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="@id/amplifiedSpeaker"
+        app:layout_constraintLeft_toRightOf="@id/amplifiedSpeaker"
+        app:layout_constraintRight_toLeftOf="@id/teleOpAmp"
         />
 
     <com.google.android.material.textview.MaterialTextView
@@ -63,9 +78,12 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textSize="65sp"
-        tools:layout_editor_absoluteX="267dp"
-        tools:layout_editor_absoluteY="89dp"
         tools:text="-"
+        app:layout_constraintTop_toBottomOf="@id/teleOpSpeaker"
+        app:layout_constraintBottom_toTopOf="@id/teleOpDefenses"
+        app:layout_constraintLeft_toRightOf="@id/teleOpSpeaker"
+        app:layout_constraintRight_toLeftOf="@id/teleOpSpeakerValue"
+        android:layout_margin="10dp"
         />
 
     <com.google.android.material.textview.MaterialTextView
@@ -76,6 +94,11 @@
         tools:layout_editor_absoluteX="455dp"
         tools:layout_editor_absoluteY="104dp"
         tools:text="0"
+        app:layout_constraintTop_toBottomOf="@id/teleOpSpeaker"
+        app:layout_constraintBottom_toTopOf="@id/teleOpDefenses"
+        app:layout_constraintLeft_toRightOf="@id/subtractSpeakerPointsTeleOp"
+        app:layout_constraintRight_toLeftOf="@id/teleOpSpeaker"
+        android:layout_margin="10dp"
         />
 
     <com.google.android.material.button.MaterialButton
@@ -96,6 +119,10 @@
         tools:layout_editor_absoluteX="213dp"
         tools:layout_editor_absoluteY="290dp"
         tools:text="0"
+        app:layout_constraintTop_toTopOf="@id/teleOpDefenses"
+        app:layout_constraintBottom_toBottomOf="@id/teleOpDefenses"
+        app:layout_constraintLeft_toRightOf="@id/teleOpDefenses"
+        app:layout_constraintRight_toLeftOf="@id/teleOpSpeaker"
         />
 
     <com.google.android.material.textview.MaterialTextView
@@ -106,6 +133,10 @@
         tools:layout_editor_absoluteX="52dp"
         tools:layout_editor_absoluteY="276dp"
         tools:text="-"
+        app:layout_constraintTop_toTopOf="@id/teleOpDefenses"
+        app:layout_constraintBottom_toBottomOf="@id/teleOpDefenses"
+        app:layout_constraintLeft_toLeftOf="@id/amplifiedSpeaker"
+        app:layout_constraintRight_toLeftOf="@id/teleOpDefenses"
         />
 
     <ImageButton
@@ -116,6 +147,10 @@
         android:src="@drawable/teleop_blue_amp"
         tools:layout_editor_absoluteX="500dp"
         tools:layout_editor_absoluteY="16dp"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="@id/amplifiedSpeaker"
+        app:layout_constraintLeft_toRightOf="@id/teleOpSpeaker"
+        app:layout_constraintRight_toRightOf="parent"
         />
 
     <com.google.android.material.textview.MaterialTextView
@@ -126,6 +161,11 @@
         tools:layout_editor_absoluteX="500dp"
         tools:layout_editor_absoluteY="89dp"
         tools:text="-"
+        app:layout_constraintTop_toBottomOf="@id/teleOpAmp"
+        app:layout_constraintBottom_toTopOf="@id/teleOpDefenses"
+        app:layout_constraintLeft_toRightOf="@id/teleOpAmp"
+        app:layout_constraintRight_toLeftOf="@id/teleOpAmpValue"
+        android:layout_margin="10dp"
         />
 
     <com.google.android.material.textview.MaterialTextView
@@ -136,6 +176,11 @@
         tools:layout_editor_absoluteX="688dp"
         tools:layout_editor_absoluteY="104dp"
         tools:text="0"
+        app:layout_constraintTop_toBottomOf="@id/teleOpAmp"
+        app:layout_constraintBottom_toTopOf="@id/teleOpDefenses"
+        app:layout_constraintLeft_toRightOf="@id/subtractAmpPointsTeleOp"
+        app:layout_constraintRight_toLeftOf="@id/teleOpAmp"
+        android:layout_margin="10dp"
         />
 
 
