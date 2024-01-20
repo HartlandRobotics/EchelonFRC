@@ -11,6 +11,8 @@ public class CrescendoResult {
     int ampNoteTeleOp = 0;
     int neutralSpeakerNoteTeleOp = 0;
     int ampSpeakerNoteTeleOp = 0;
+
+    int defenseCount = 0;
     Boolean parkedEnd = Boolean.FALSE;
     Boolean onstageEnd = Boolean.FALSE;
     int spotlitEnd = 0;
@@ -31,6 +33,7 @@ public class CrescendoResult {
         spotlitEnd = result.getEnd3() == null ? 0:1;
         harmonyEnd = result.getEnd4() == null ? Boolean.FALSE : Boolean.TRUE;
         trapNoteEnd = result.getEnd5() == null ? Boolean.FALSE : Boolean.TRUE;
+        defenseCount = result.getDefenseCount();
 
     }
     public Boolean getLeaveLineAuto(){
@@ -90,6 +93,10 @@ public class CrescendoResult {
     }
     public void setSpotlitEnd(int result) {
         matchResult.setEnd3(result > 0 ? null : new Date().toString());
+    }
+    public int getDefenseCount(){ return defenseCount; }
+    public void setDefenseCount( int defenseCount ){
+        this.matchResult.setDefenseCount(defenseCount);
     }
     public Boolean getHarmonyEnd(){
         return harmonyEnd;
