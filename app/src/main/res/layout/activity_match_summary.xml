@@ -34,8 +34,10 @@
         android:textColor="@color/cardview_dark_background"
         android:minWidth="70dp"
         android:text=" Autonomous"
-        tools:layout_editor_absoluteX="16dp"
-        tools:layout_editor_absoluteY="93dp"
+        app:layout_constraintTop_toBottomOf="@+id/additionalNotes"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/teleopLabel"
         />
 
 
@@ -418,8 +420,10 @@
         android:checked="true"
         android:text="Left Park Line"
         android:textColor="@color/cardview_dark_background"
-        tools:layout_editor_absoluteX="52dp"
-        tools:layout_editor_absoluteY="124dp"
+        app:layout_constraintTop_toTopOf="@+id/autoLabel"
+        app:layout_constraintBottom_toTopOf="@+id/autoSpeakerLabel"
+        app:layout_constraintStart_toStartOf="@+id/autoLabel"
+        app:layout_constraintEnd_toEndOf="@+id/autoLabel"
         />
 
     <com.google.android.material.textview.MaterialTextView
@@ -429,8 +433,10 @@
         android:background="#CCD1D1"
         android:minWidth="70dp"
         android:text=" Tele Op"
-        tools:layout_editor_absoluteX="258dp"
-        tools:layout_editor_absoluteY="93dp"
+        app:layout_constraintTop_toBottomOf="@+id/additionalNotes"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/autoLabel"
+        app:layout_constraintEnd_toStartOf="@+id/endLabel"
         />
 
     <com.google.android.material.textview.MaterialTextView
@@ -440,8 +446,10 @@
         android:background="#CCD1D1"
         android:minWidth="70dp"
         android:text=" End Game"
-        tools:layout_editor_absoluteX="501dp"
-        tools:layout_editor_absoluteY="93dp"
+        app:layout_constraintTop_toBottomOf="@id/additionalNotes"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/teleopLabel"
+        app:layout_constraintEnd_toEndOf="parent"
         />
 
     <com.google.android.material.button.MaterialButton
@@ -458,8 +466,10 @@
         android:layout_width="50dp"
         android:layout_height="wrap_content"
         android:text="-"
-        tools:layout_editor_absoluteX="28dp"
-        tools:layout_editor_absoluteY="186dp"
+        app:layout_constraintTop_toTopOf="@+id/autoSpeakerLabel"
+        app:layout_constraintBottom_toBottomOf="@+id/autoSpeakerValue"
+        app:layout_constraintStart_toStartOf="@+id/autoLabel"
+        app:layout_constraintEnd_toStartOf="@+id/autoSpeakerLabel"
         />
 
     <com.google.android.material.textview.MaterialTextView
@@ -470,8 +480,10 @@
         android:text="Speaker"
         android:textAlignment="center"
         android:textColor="@color/cardview_dark_background"
-        tools:layout_editor_absoluteX="86dp"
-        tools:layout_editor_absoluteY="186dp"
+        app:layout_constraintTop_toBottomOf="@+id/autoParkCheckbox"
+        app:layout_constraintBottom_toTopOf="@+id/autoSpeakerValue"
+        app:layout_constraintStart_toStartOf="@+id/autoLabel"
+        app:layout_constraintEnd_toEndOf="@+id/autoLabel"
         />
 
     <com.google.android.material.textview.MaterialTextView
@@ -483,8 +495,10 @@
         android:textSize="20dp"
         android:textAlignment="center"
         android:textColor="@color/cardview_dark_background"
-        tools:layout_editor_absoluteX="86dp"
-        tools:layout_editor_absoluteY="205dp"
+        app:layout_constraintTop_toTopOf="@+id/autoSpeakerLabel"
+        app:layout_constraintBottom_toTopOf="@+id/autoAmpLabel"
+        app:layout_constraintStart_toStartOf="@+id/autoLabel"
+        app:layout_constraintEnd_toEndOf="@+id/autoLabel"
         />
 
     <com.google.android.material.button.MaterialButton
@@ -492,8 +506,10 @@
         android:layout_width="50dp"
         android:layout_height="wrap_content"
         android:text="+"
-        tools:layout_editor_absoluteX="164dp"
-        tools:layout_editor_absoluteY="186dp"
+        app:layout_constraintTop_toTopOf="@+id/autoSpeakerLabel"
+        app:layout_constraintBottom_toBottomOf="@+id/autoSpeakerValue"
+        app:layout_constraintEnd_toEndOf="@+id/autoLabel"
+        app:layout_constraintStart_toEndOf="@+id/autoSpeakerLabel"
         />
 
     <com.google.android.material.button.MaterialButton
@@ -501,8 +517,10 @@
         android:layout_width="50dp"
         android:layout_height="wrap_content"
         android:text="-"
-        tools:layout_editor_absoluteX="28dp"
-        tools:layout_editor_absoluteY="258dp"
+        app:layout_constraintStart_toStartOf="@+id/autoLabel"
+        app:layout_constraintEnd_toStartOf="@+id/autoAmpLabel"
+        app:layout_constraintTop_toTopOf="@+id/autoAmpLabel"
+        app:layout_constraintBottom_toBottomOf="@+id/autoAmpEnd"
         />
 
     <com.google.android.material.textview.MaterialTextView
@@ -513,8 +531,10 @@
         android:text="AMP"
         android:textAlignment="center"
         android:textColor="@color/cardview_dark_background"
-        tools:layout_editor_absoluteX="86dp"
-        tools:layout_editor_absoluteY="258dp"
+        app:layout_constraintTop_toBottomOf="@+id/autoSpeakerValue"
+        app:layout_constraintBottom_toTopOf="@+id/autoAmpEnd"
+        app:layout_constraintStart_toStartOf="@+id/autoLabel"
+        app:layout_constraintEnd_toEndOf="@+id/autoLabel"
         />
 
     <com.google.android.material.textview.MaterialTextView
@@ -526,16 +546,21 @@
         android:textAlignment="center"
         android:textColor="@color/cardview_dark_background"
         android:textSize="20dp"
-        tools:layout_editor_absoluteX="86dp"
-        tools:layout_editor_absoluteY="277dp" />
+        app:layout_constraintTop_toTopOf="@+id/autoAmpLabel"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/autoLabel"
+        app:layout_constraintEnd_toEndOf="@+id/autoLabel"
+        />
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/autoAmpIncrement"
         android:layout_width="50dp"
         android:layout_height="wrap_content"
         android:text="+"
-        tools:layout_editor_absoluteX="164dp"
-        tools:layout_editor_absoluteY="258dp"
+        app:layout_constraintTop_toTopOf="@+id/autoAmpLabel"
+        app:layout_constraintBottom_toBottomOf="@+id/autoAmpEnd"
+        app:layout_constraintStart_toEndOf="@+id/autoAmpLabel"
+        app:layout_constraintEnd_toEndOf="@+id/autoLabel"
         />
 
     <!-- aaaaaaaaaaaaaaaaaaaaaaaaaa -->
@@ -545,8 +570,10 @@
         android:layout_width="50dp"
         android:layout_height="wrap_content"
         android:text="-"
-        tools:layout_editor_absoluteX="268dp"
-        tools:layout_editor_absoluteY="124dp"
+        app:layout_constraintTop_toTopOf="@+id/teleopAmplifiedSpeakerLabel"
+        app:layout_constraintBottom_toBottomOf="@+id/teleopAmplifiedSpeakerEnd"
+        app:layout_constraintStart_toStartOf="@+id/teleopLabel"
+        app:layout_constraintEnd_toStartOf="@+id/teleopAmplifiedSpeakerLabel"
         />
 
     <com.google.android.material.textview.MaterialTextView
@@ -557,8 +584,10 @@
         android:text="Amplified Speaker"
         android:textAlignment="center"
         android:textColor="@color/cardview_dark_background"
-        tools:layout_editor_absoluteX="324dp"
-        tools:layout_editor_absoluteY="106dp"
+        app:layout_constraintTop_toTopOf="@id/teleopLabel"
+        app:layout_constraintBottom_toBottomOf="@+id/teleopAmplifiedSpeakerEnd"
+        app:layout_constraintStart_toStartOf="@+id/teleopLabel"
+        app:layout_constraintEnd_toEndOf="@+id/teleopLabel"
         />
 
     <com.google.android.material.textview.MaterialTextView
@@ -570,8 +599,10 @@
         android:textAlignment="center"
         android:textColor="@color/cardview_dark_background"
         android:textSize="20dp"
-        tools:layout_editor_absoluteX="330dp"
-        tools:layout_editor_absoluteY="145dp"
+        app:layout_constraintTop_toBottomOf="@+id/teleopAmplifiedSpeakerLabel"
+        app:layout_constraintBottom_toTopOf="@+id/teleopSpeakerLabel"
+        app:layout_constraintStart_toStartOf="@+id/teleopLabel"
+        app:layout_constraintEnd_toEndOf="@+id/teleopLabel"
         />
 
     <com.google.android.material.button.MaterialButton
@@ -579,8 +610,10 @@
         android:layout_width="50dp"
         android:layout_height="wrap_content"
         android:text="+"
-        tools:layout_editor_absoluteX="412dp"
-        tools:layout_editor_absoluteY="126dp"
+        app:layout_constraintStart_toEndOf="@+id/teleopAmplifiedSpeakerLabel"
+        app:layout_constraintEnd_toEndOf="@+id/teleopLabel"
+        app:layout_constraintTop_toTopOf="@+id/teleopAmplifiedSpeakerLabel"
+        app:layout_constraintBottom_toBottomOf="@+id/teleopAmplifiedSpeakerEnd"
         />
 
 
@@ -589,8 +622,11 @@
         android:layout_width="50dp"
         android:layout_height="wrap_content"
         android:text="-"
-        tools:layout_editor_absoluteX="268dp"
-        tools:layout_editor_absoluteY="172dp" />
+        app:layout_constraintTop_toTopOf="@+id/teleopSpeakerLabel"
+        app:layout_constraintBottom_toBottomOf="@+id/teleopSpeakerEnd"
+        app:layout_constraintStart_toStartOf="@+id/teleopLabel"
+        app:layout_constraintEnd_toStartOf="@+id/teleopSpeakerLabel"
+        />
 
     <com.google.android.material.textview.MaterialTextView
         android:id="@+id/teleopSpeakerLabel"
@@ -600,8 +636,11 @@
         android:text="Speaker"
         android:textAlignment="center"
         android:textColor="@color/cardview_dark_background"
-        tools:layout_editor_absoluteX="324dp"
-        tools:layout_editor_absoluteY="172dp" />
+        app:layout_constraintTop_toBottomOf="@+id/teleopAmplifiedSpeakerEnd"
+        app:layout_constraintBottom_toTopOf="@+id/teleopSpeakerEnd"
+        app:layout_constraintStart_toStartOf="@+id/teleopLabel"
+        app:layout_constraintEnd_toEndOf="@+id/teleopLabel"
+        />
 
 
     <com.google.android.material.textview.MaterialTextView
@@ -613,24 +652,33 @@
         android:textAlignment="center"
         android:textColor="@color/cardview_dark_background"
         android:textSize="20dp"
-        tools:layout_editor_absoluteX="330dp"
-        tools:layout_editor_absoluteY="186dp" />
+        app:layout_constraintTop_toTopOf="@+id/teleopSpeakerLabel"
+        app:layout_constraintBottom_toTopOf="@+id/teleopAmpLabel"
+        app:layout_constraintStart_toStartOf="@+id/teleopLabel"
+        app:layout_constraintEnd_toEndOf="@+id/teleopLabel"
+        />
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/teleopSpeakerIncrement"
         android:layout_width="50dp"
         android:layout_height="wrap_content"
         android:text="+"
-        tools:layout_editor_absoluteX="412dp"
-        tools:layout_editor_absoluteY="172dp" />
+        app:layout_constraintTop_toTopOf="@+id/teleopSpeakerLabel"
+        app:layout_constraintBottom_toBottomOf="@+id/teleopSpeakerEnd"
+        app:layout_constraintStart_toEndOf="@+id/teleopSpeakerLabel"
+        app:layout_constraintEnd_toEndOf="@id/teleopLabel"
+        />
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/teleopAmpDecrement"
         android:layout_width="50dp"
         android:layout_height="wrap_content"
         android:text="-"
-        tools:layout_editor_absoluteX="268dp"
-        tools:layout_editor_absoluteY="222dp" />
+        app:layout_constraintTop_toTopOf="@+id/teleopAmpLabel"
+        app:layout_constraintBottom_toBottomOf="@+id/teleopAmpEnd"
+        app:layout_constraintStart_toStartOf="@+id/teleopLabel"
+        app:layout_constraintEnd_toStartOf="@+id/teleopAmpLabel"
+        />
 
     <com.google.android.material.textview.MaterialTextView
         android:id="@+id/teleopAmpLabel"
@@ -640,8 +688,11 @@
         android:text="AMP"
         android:textAlignment="center"
         android:textColor="@color/cardview_dark_background"
-        tools:layout_editor_absoluteX="324dp"
-        tools:layout_editor_absoluteY="222dp" />
+        app:layout_constraintTop_toBottomOf="@+id/teleopSpeakerEnd"
+        app:layout_constraintBottom_toBottomOf="@+id/teleopAmpEnd"
+        app:layout_constraintStart_toStartOf="@+id/teleopLabel"
+        app:layout_constraintEnd_toEndOf="@+id/teleopLabel"
+        />
 
 
     <com.google.android.material.textview.MaterialTextView
@@ -653,24 +704,33 @@
         android:textAlignment="center"
         android:textColor="@color/cardview_dark_background"
         android:textSize="20dp"
-        tools:layout_editor_absoluteX="331dp"
-        tools:layout_editor_absoluteY="234dp" />
+        app:layout_constraintTop_toTopOf="@+id/teleopAmpLabel"
+        app:layout_constraintBottom_toTopOf="@+id/teleopDefenseLabel"
+        app:layout_constraintStart_toStartOf="@+id/teleopLabel"
+        app:layout_constraintEnd_toEndOf="@+id/teleopLabel"
+        />
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/teleopAmpIncrement"
         android:layout_width="50dp"
         android:layout_height="wrap_content"
         android:text="+"
-        tools:layout_editor_absoluteX="412dp"
-        tools:layout_editor_absoluteY="220dp" />
+        app:layout_constraintTop_toTopOf="@+id/teleopAmpLabel"
+        app:layout_constraintBottom_toBottomOf="@+id/teleopAmpEnd"
+        app:layout_constraintStart_toEndOf="@+id/teleopAmpLabel"
+        app:layout_constraintEnd_toEndOf="@+id/teleopLabel"
+        />
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/teleopDefenseDecrement"
         android:layout_width="50dp"
         android:layout_height="wrap_content"
         android:text="-"
-        tools:layout_editor_absoluteX="268dp"
-        tools:layout_editor_absoluteY="270dp" />
+        app:layout_constraintTop_toTopOf="@+id/teleopDefenseLabel"
+        app:layout_constraintBottom_toBottomOf="@+id/teleopDefenseEnd"
+        app:layout_constraintStart_toStartOf="@+id/teleopLabel"
+        app:layout_constraintEnd_toStartOf="@+id/teleopDefenseLabel"
+        />
 
     <com.google.android.material.textview.MaterialTextView
         android:id="@+id/teleopDefenseLabel"
@@ -680,8 +740,11 @@
         android:text="Defense"
         android:textAlignment="center"
         android:textColor="@color/cardview_dark_background"
-        tools:layout_editor_absoluteX="323dp"
-        tools:layout_editor_absoluteY="277dp" />
+        app:layout_constraintTop_toBottomOf="@+id/teleopAmpEnd"
+        app:layout_constraintBottom_toTopOf="@+id/teleopDefenseEnd"
+        app:layout_constraintStart_toStartOf="@+id/teleopLabel"
+        app:layout_constraintEnd_toEndOf="@+id/teleopLabel"
+        />
 
     <com.google.android.material.textview.MaterialTextView
         android:id="@+id/teleopDefenseEnd"
@@ -692,77 +755,48 @@
         android:textAlignment="center"
         android:textColor="@color/cardview_dark_background"
         android:textSize="20dp"
-        tools:layout_editor_absoluteX="330dp"
-        tools:layout_editor_absoluteY="291dp" />
+        app:layout_constraintTop_toTopOf="@+id/teleopDefenseLabel"
+        app:layout_constraintBottom_toBottomOf="@+id/teleopLabel"
+        app:layout_constraintStart_toStartOf="@+id/teleopLabel"
+        app:layout_constraintEnd_toEndOf="@+id/teleopLabel"
+        />
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/teleopDefenseIncrement"
         android:layout_width="50dp"
         android:layout_height="wrap_content"
         android:text="+"
-        tools:layout_editor_absoluteX="412dp"
-        tools:layout_editor_absoluteY="270dp" />
+        app:layout_constraintTop_toTopOf="@+id/teleopDefenseLabel"
+        app:layout_constraintBottom_toBottomOf="@+id/teleopDefenseEnd"
+        app:layout_constraintStart_toEndOf="@+id/teleopDefenseLabel"
+        app:layout_constraintEnd_toEndOf="@+id/teleopLabel"
+        />
 
 
     <com.google.android.material.checkbox.MaterialCheckBox
-        android:id="@+id/endLeftStageCheckbox"
+        android:id="@+id/endHangCheckbox"
         android:layout_width="202dp"
         android:layout_height="45dp"
         android:checked="true"
-        android:text="Left Stage Hang"
+        android:text="Hanged"
         android:textColor="@color/cardview_dark_background"
-        tools:layout_editor_absoluteX="501dp"
-        tools:layout_editor_absoluteY="100dp" />
+        app:layout_constraintBottom_toTopOf="@+id/endParkCheckbox"
+        app:layout_constraintStart_toStartOf="@+id/endLabel"
+        app:layout_constraintTop_toTopOf="@+id/endLabel"
+        />
 
     <com.google.android.material.checkbox.MaterialCheckBox
-        android:id="@+id/endLeftParkCheckbox"
+        android:id="@+id/endParkCheckbox"
         android:layout_width="202dp"
         android:layout_height="45dp"
         android:checked="true"
-        android:text="Left Stage Parked"
+        android:text="Parked"
         android:textColor="@color/cardview_dark_background"
-        tools:layout_editor_absoluteX="502dp"
-        tools:layout_editor_absoluteY="123dp" />
+        app:layout_constraintTop_toBottomOf="@+id/endHangCheckbox"
+        app:layout_constraintBottom_toTopOf="@+id/trapCheckbox"
+        app:layout_constraintStart_toStartOf="@+id/endLabel"
+        />
 
-    <com.google.android.material.checkbox.MaterialCheckBox
-        android:id="@+id/endRightStageCheckbox"
-        android:layout_width="202dp"
-        android:layout_height="45dp"
-        android:checked="true"
-        android:text="Right Stage Hang"
-        android:textColor="@color/cardview_dark_background"
-        tools:layout_editor_absoluteX="502dp"
-        tools:layout_editor_absoluteY="145dp" />
-
-    <com.google.android.material.checkbox.MaterialCheckBox
-        android:id="@+id/endRightParkCheckbox"
-        android:layout_width="202dp"
-        android:layout_height="45dp"
-        android:checked="true"
-        android:text="Right Stage Parked"
-        android:textColor="@color/cardview_dark_background"
-        tools:layout_editor_absoluteX="502dp"
-        tools:layout_editor_absoluteY="168dp" />
-
-    <com.google.android.material.checkbox.MaterialCheckBox
-        android:id="@+id/endCenterStageCheckbox"
-        android:layout_width="202dp"
-        android:layout_height="45dp"
-        android:checked="true"
-        android:text="Center Stage Hang"
-        android:textColor="@color/cardview_dark_background"
-        tools:layout_editor_absoluteX="502dp"
-        tools:layout_editor_absoluteY="190dp" />
-
-    <com.google.android.material.checkbox.MaterialCheckBox
-        android:id="@+id/endCenterParkCheckbox"
-        android:layout_width="202dp"
-        android:layout_height="45dp"
-        android:checked="true"
-        android:text="Center Stage Parked"
-        android:textColor="@color/cardview_dark_background"
-        tools:layout_editor_absoluteX="502dp"
-        tools:layout_editor_absoluteY="213dp" />
 
     <com.google.android.material.checkbox.MaterialCheckBox
         android:id="@+id/trapCheckbox"
@@ -771,8 +805,10 @@
         android:checked="true"
         android:text="Trap"
         android:textColor="@color/cardview_dark_background"
-        tools:layout_editor_absoluteX="502dp"
-        tools:layout_editor_absoluteY="235dp" />
+        app:layout_constraintTop_toBottomOf="@+id/endParkCheckbox"
+        app:layout_constraintBottom_toTopOf="@+id/harmonyCheckbox"
+        app:layout_constraintStart_toStartOf="@+id/endLabel"
+        />
 
     <com.google.android.material.checkbox.MaterialCheckBox
         android:id="@+id/harmonyCheckbox"
@@ -781,8 +817,10 @@
         android:checked="true"
         android:text="Harmony"
         android:textColor="@color/cardview_dark_background"
-        tools:layout_editor_absoluteX="502dp"
-        tools:layout_editor_absoluteY="258dp" />
+        app:layout_constraintTop_toBottomOf="@+id/trapCheckbox"
+        app:layout_constraintBottom_toBottomOf="@+id/endSpotlightLabel"
+        app:layout_constraintStart_toStartOf="@+id/endLabel"
+        />
 
 
     <com.google.android.material.button.MaterialButton
@@ -790,8 +828,11 @@
         android:layout_width="50dp"
         android:layout_height="wrap_content"
         android:text="-"
-        tools:layout_editor_absoluteX="519dp"
-        tools:layout_editor_absoluteY="291dp" />
+        app:layout_constraintTop_toTopOf="@+id/endSpotlightLabel"
+        app:layout_constraintBottom_toBottomOf="@+id/endLabel"
+        app:layout_constraintStart_toStartOf="@+id/endLabel"
+        app:layout_constraintEnd_toStartOf="@+id/endSpotlightLabel"
+        />
 
     <com.google.android.material.textview.MaterialTextView
         android:id="@+id/endSpotlightLabel"
@@ -801,8 +842,11 @@
         android:text="Spotlight"
         android:textAlignment="center"
         android:textColor="@color/cardview_dark_background"
-        tools:layout_editor_absoluteX="569dp"
-        tools:layout_editor_absoluteY="291dp" />
+        app:layout_constraintTop_toBottomOf="@+id/harmonyCheckbox"
+        app:layout_constraintBottom_toTopOf="@+id/endSpotlightEnd"
+        app:layout_constraintStart_toStartOf="@+id/endLabel"
+        app:layout_constraintEnd_toEndOf="@+id/endLabel"
+        />
 
     <com.google.android.material.textview.MaterialTextView
         android:id="@+id/endSpotlightEnd"
@@ -813,16 +857,22 @@
         android:textAlignment="center"
         android:textColor="@color/cardview_dark_background"
         android:textSize="20dp"
-        tools:layout_editor_absoluteX="570dp"
-        tools:layout_editor_absoluteY="306dp" />
+        app:layout_constraintTop_toTopOf="@+id/endSpotlightLabel"
+        app:layout_constraintBottom_toBottomOf="@+id/endLabel"
+        app:layout_constraintStart_toStartOf="@+id/endLabel"
+        app:layout_constraintEnd_toEndOf="@+id/endLabel"
+        />
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/endSpotlightIncrement"
         android:layout_width="50dp"
         android:layout_height="wrap_content"
         android:text="+"
-        tools:layout_editor_absoluteX="654dp"
-        tools:layout_editor_absoluteY="291dp" />
+        app:layout_constraintBottom_toBottomOf="@+id/endLabel"
+        app:layout_constraintEnd_toEndOf="@+id/endLabel"
+        app:layout_constraintStart_toEndOf="@+id/endSpotlightLabel"
+        app:layout_constraintTop_toTopOf="@+id/endSpotlightLabel"
+        />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
