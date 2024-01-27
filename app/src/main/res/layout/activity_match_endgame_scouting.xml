@@ -1,151 +1,93 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    tools:context=".matchScouting.MatchScoutingAutoActivity">
 
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/constraintLeft"
-        android:layout_width="300dp"
-        android:layout_height="match_parent">
+    <ImageButton
+        android:id="@+id/centerPark"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@null"
+        android:src="@drawable/blue_center_park"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toLeftOf="@id/centerStage"
+         />
 
-        <ImageButton
-            android:id="@+id/leftStage"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@drawable/blue_left_stage"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toLeftOf="@id/centerPark"
-            app:layout_constraintTop_toTopOf="parent" />
+    <ImageButton
+        android:id="@+id/centerStage"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@null"
+        android:src="@drawable/blue_center_stage"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toRightOf="@id/centerPark"
+        app:layout_constraintRight_toLeftOf="@id/trapButton"
 
-        <ImageButton
-            android:id="@+id/leftPark"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@drawable/blue_left_park"
-            app:layout_constraintBottom_toTopOf="@id/rightPark"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toLeftOf="@id/centerPark"
-            app:layout_constraintTop_toTopOf="parent" />
+        />
 
-        <ImageButton
-            android:id="@+id/centerStage"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:background="@null"
-            android:src="@drawable/blue_center_stage"
-            app:layout_constraintBottom_toTopOf="parent"
-            app:layout_constraintLeft_toRightOf="@id/leftStage"
-            app:layout_constraintRight_toLeftOf="@id/centerPark"
-            app:layout_constraintTop_toTopOf="parent"
+    <ImageButton
+        android:id="@+id/trapButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@null"
+        android:src="@drawable/trap"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/harmonyButton"
+        app:layout_constraintLeft_toRightOf="@id/centerStage"
+        app:layout_constraintRight_toLeftOf="@id/subtractSpotlight"
+        />
 
-            />
+    <ImageButton
+        android:id="@+id/harmonyButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@null"
+        android:src="@drawable/harmony"
+        app:layout_constraintTop_toBottomOf="@id/trapButton"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toRightOf="@id/centerStage"
+        app:layout_constraintRight_toLeftOf="@id/subtractSpotlight"
+         />
 
-        <ImageButton
-            android:id="@+id/centerPark"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:background="@null"
-            android:src="@drawable/blue_center_park"
-            app:layout_constraintBottom_toTopOf="parent"
-            app:layout_constraintLeft_toRightOf="@id/centerStage"
-            app:layout_constraintRight_toLeftOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/subtractSpotlight"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="65sp"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toRightOf="@id/harmonyButton"
+        app:layout_constraintRight_toLeftOf="@id/spotlightButton"
+        tools:text="-" />
 
-        <ImageButton
-            android:id="@+id/rightStage"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:background="@null"
-            android:src="@drawable/blue_right_stage"
-            app:layout_constraintBottom_toTopOf="@id/rightPark"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toLeftOf="@id/centerStage"
-            app:layout_constraintTop_toBottomOf="@id/leftStage" />
+    <ImageButton
+        android:id="@+id/spotlightButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@null"
+        android:src="@drawable/spotlight"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toRightOf="@id/subtractSpotlight"
+        app:layout_constraintRight_toLeftOf="@id/spotlightValue"
+         />
 
-        <ImageButton
-            android:id="@+id/rightPark"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:background="@null"
-            android:src="@drawable/blue_right_park"
-            app:layout_constraintBottom_toTopOf="parent"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toLeftOf="@id/centerStage"
-            app:layout_constraintTop_toBottomOf="@id/rightStage" />
-
-    </androidx.constraintlayout.widget.ConstraintLayout>
-
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/constraintCenter"
-        android:layout_width="300dp"
-        android:layout_height="match_parent">
-
-        <ImageButton
-            android:id="@+id/trapButton"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:background="@null"
-            android:src="@drawable/trap"
-            app:layout_constraintBottom_toTopOf="@id/harmonyButton"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <ImageButton
-            android:id="@+id/harmonyButton"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:background="@null"
-            android:src="@drawable/harmony"
-            app:layout_constraintBottom_toTopOf="parent"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toLeftOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/trapButton" />
-
-
-    </androidx.constraintlayout.widget.ConstraintLayout>
-
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/constraintRight"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
-
-        <com.google.android.material.textview.MaterialTextView
-            android:id="@+id/subtractSpotlight"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textSize="65sp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintLeft_toRightOf="parent"
-            app:layout_constraintRight_toLeftOf="@id/spotlightButton"
-            app:layout_constraintTop_toTopOf="parent"
-            tools:text="-" />
-
-
-        <ImageButton
-            android:id="@+id/spotlightButton"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:background="@null"
-            android:src="@drawable/spotlight"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintLeft_toLeftOf="@id/"
-            app:layout_constraintRight_toLeftOf="@id/spotlightValue"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <com.google.android.material.textview.MaterialTextView
-            android:id="@+id/spotlightValue"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textSize="48sp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintLeft_toRightOf="@id/spotlightButton"
-            app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            tools:text="0" />
-    </androidx.constraintlayout.widget.ConstraintLayout>
-
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/spotlightValue"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="48sp"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toRightOf="@id/spotlightButton"
+        app:layout_constraintRight_toRightOf="parent"
+        tools:text="0" />
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/submit"
@@ -156,4 +98,4 @@
         app:layout_constraintEnd_toEndOf="parent" />
 
 
-</LinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>
