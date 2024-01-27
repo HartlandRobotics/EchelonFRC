@@ -84,9 +84,16 @@ public class CrescendoResult {
     public Boolean getParkedEnd(){
         return parkedEnd;
     }
+    public void setParkedEnd(int result){
+        matchResult.setEnd1(result > 0 ? null : new Date().toString());
+    }
+
     public Boolean getOnstageEnd(){
         return onstageEnd;
 
+    }
+    public void setOnstageEnd(int result){
+        matchResult.setEnd2(result > 0 ? null : new Date().toString());
     }
     public int getSpotlitEnd(){
         return spotlitEnd;
@@ -101,8 +108,14 @@ public class CrescendoResult {
     public Boolean getHarmonyEnd(){
         return harmonyEnd;
     }
+    public void setHarmonyEnd(int result){
+        matchResult.setEnd4(result > 0 ? null : new Date().toString());
+    }
     public Boolean getTrapNoteEnd(){
         return trapNoteEnd;
+    }
+    public void setTrapNoteEnd(int result){
+        matchResult.setEnd5(result > 0 ? null : new Date().toString());
     }
 
 }
