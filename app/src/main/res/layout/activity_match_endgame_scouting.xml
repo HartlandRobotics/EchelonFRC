@@ -24,12 +24,12 @@
         android:layout_height="wrap_content"
         android:background="@null"
         android:src="@drawable/blue_center_stage"
-        app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toRightOf="@id/centerPark"
         app:layout_constraintRight_toLeftOf="@id/trapButton"
+        app:layout_constraintTop_toTopOf="parent"
 
-        />
+        app:layout_constraintVertical_bias="0.498" />
 
     <ImageButton
         android:id="@+id/trapButton"
