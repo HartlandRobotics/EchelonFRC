@@ -20,6 +20,7 @@
         app:layout_constraintBottom_toTopOf="@id/autoSpeaker"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
+        android:contentDescription="moving in auto button"
         />
 
     <ImageButton
@@ -34,6 +35,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="@id/subtractSpeakerPointsAuto"
         app:layout_constraintRight_toRightOf="@id/speakerPoints"
+        android:contentDescription=""
         />
 
 
@@ -77,6 +79,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toRightOf="@id/subtractAmpPoints"
         app:layout_constraintRight_toRightOf="@id/ampPointsAuto"
+        android:contentDescription=""
         />
 
     <com.google.android.material.textview.MaterialTextView

@@ -16,6 +16,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toLeftOf="@id/centerStage"
+        android:contentDescription="parking on the stage"
          />
 
     <ImageButton
@@ -28,8 +29,9 @@
         app:layout_constraintLeft_toRightOf="@id/centerPark"
         app:layout_constraintRight_toLeftOf="@id/trapButton"
         app:layout_constraintTop_toTopOf="parent"
-
-        app:layout_constraintVertical_bias="0.498" />
+        app:layout_constraintVertical_bias="0.498"
+        android:contentDescription="hanging on the chains"
+        />
 
     <ImageButton
         android:id="@+id/trapButton"
@@ -41,6 +43,7 @@
         app:layout_constraintBottom_toTopOf="@id/harmonyButton"
         app:layout_constraintLeft_toRightOf="@id/centerStage"
         app:layout_constraintRight_toLeftOf="@id/subtractSpotlight"
+        android:contentDescription="scoring the trap note"
         />
 
     <ImageButton
@@ -53,6 +56,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toRightOf="@id/centerStage"
         app:layout_constraintRight_toLeftOf="@id/subtractSpotlight"
+        android:contentDescription="harmony when two robots are on one chain"
          />
 
     <com.google.android.material.textview.MaterialTextView
@@ -76,6 +80,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toRightOf="@id/subtractSpotlight"
         app:layout_constraintRight_toLeftOf="@id/spotlightValue"
+        android:contentDescription="spotlight points from human player throw"
          />
 
     <com.google.android.material.textview.MaterialTextView
