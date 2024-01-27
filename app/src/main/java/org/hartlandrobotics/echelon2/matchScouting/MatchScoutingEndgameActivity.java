@@ -20,28 +20,26 @@ import org.hartlandrobotics.echelon2.database.entities.MatchResult;
 import org.hartlandrobotics.echelon2.models.MatchResultViewModel;
 import org.hartlandrobotics.echelon2.status.BlueAllianceStatus;
 
-public class MatchScoutingTeleopActivity extends AppCompatActivity {
-    private static final String MATCH_KEY = "auto_match_key_param";
-    private static final String TEAM_KEY = "auto_team_key_param";
+public class MatchScoutingEndgameActivity extends AppCompatActivity {
+    private static final String MATCH_KEY = "endgame_match_key_param";
+    private static final String TEAM_KEY = "endgame_team_key_param";
 
     MaterialButton scoutingDoneButton;
-    private ImageButton ampSpeakerTeleOp;
-    private ImageButton subtractAmpSpeakerTeleOp;
-    private ImageButton speakerTeleOp;
-    private ImageButton subtractSpeakerTeleOp;
-    private ImageButton ampTeleOp;
-    private ImageButton subtractAmpTeleOp;
-    private ImageButton defensesButton;
-    private MaterialTextView defensesText;
-    private MaterialTextView ampSpeakerTeleOpText;
-    private MaterialTextView speakerTeleOpText;
-    private MaterialTextView ampTeleOpText;
+    private ImageButton parkButton;
+    private ImageButton onstageButton;
+    private ImageButton trapButton;
+    private ImageButton harmonyButton;
+    private ImageButton subtractSpotlightButton;
+    private ImageButton spotlightButton;
 
+    private MaterialTextView spotlightValueText;
+    private MaterialTextView buttonSelectedTextColor;
+    private MaterialTextView buttonColor;
 
-    private int ampTeleOpDrawable;
-    private int buttonColor;
-    private int buttonSelectedTextColor;
-    private int defenseDrawable;
+    private int parkButtonDrawable;
+    private int onstageButtonDrawable;
+    private int trapButtonDrawable;
+    private int harmonyButtonDrawable;
 
     MatchResultViewModel matchResultViewModel;
     CrescendoResult crescendoResult;
@@ -50,7 +48,7 @@ public class MatchScoutingTeleopActivity extends AppCompatActivity {
     String teamKey;
 
     public static void launch(Context context, String matchKey, String teamKey){
-        Intent intent = new Intent(context, MatchScoutingTeleopActivity.class);
+        Intent intent = new Intent(context, MatchScoutingEndgameActivity.class);
         Bundle bundle = new Bundle();
         bundle.putString(MATCH_KEY, matchKey);
         bundle.putString(TEAM_KEY, teamKey);
@@ -61,7 +59,7 @@ public class MatchScoutingTeleopActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_match_teleop_scouting);
+        setContentView(R.layout.activity_match_endgame_scouting);
 
         setupColor();
         setupControls();
@@ -74,7 +72,7 @@ public class MatchScoutingTeleopActivity extends AppCompatActivity {
 
         matchResultViewModel = new ViewModelProvider(this).get(MatchResultViewModel.class);
         matchResultViewModel.getMatchResultByMatchTeam(matchKey, teamKey)
-                .observe(MatchScoutingTeleopActivity.this, mr->{
+                .observe(MatchScoutingEndgameActivity.this, mr->{
                     if( mr == null ){
                         crescendoResult = new CrescendoResult(matchResultViewModel.getDefault(blueAllianceStatus.getEventKey(), matchKey, teamKey));
                     } else {
@@ -87,12 +85,7 @@ public class MatchScoutingTeleopActivity extends AppCompatActivity {
 
 
     public void populateControlsFromData(){
-        defensesText.setText(String.valueOf(crescendoResult.matchResult.getDefenseCount()));
-        ampSpeakerTeleOpText.setText(String.valueOf(crescendoResult.getAmpSpeakerNoteTeleOp()));
-        speakerTeleOpText.setText(String.valueOf(crescendoResult.getNeutralSpeakerNoteTeleOp()));
-        ampTeleOpText.setText(String.valueOf(crescendoResult.getAmpNoteTeleOp()));
-
-
+        spotlightValueText.setText(String.valueOf(crescendoResult.getSpotlightEnd()));
 
     }
 
@@ -100,62 +93,60 @@ public class MatchScoutingTeleopActivity extends AppCompatActivity {
         scoutingDoneButton = findViewById(R.id.endgame);
         scoutingDoneButton.setOnClickListener(v -> {
             matchResultViewModel.upsert(crescendoResult.matchResult);
-            MatchScoutingSummaryActivity.launch(MatchScoutingTeleopActivity.this, matchKey, teamKey);
+            MatchScoutingSummaryActivity.launch(MatchScoutingEndgameActivity.this, matchKey, teamKey);
         });
 
 
 
-        defensesButton = findViewById(R.id.teleOpDefenses);
-        defensesButton.setImageResource(defenseDrawable);
-        defensesButton.setOnClickListener( v -> {
-            crescendoResult.setDefenseCount( crescendoResult.getDefenseCount() + 1);
+        parkButton = findViewById(R.id.centerPark);
+        parkButton.setImageResource(parkButtonDrawable);
+        parkButton.setOnClickListener( v -> {
+            crescendoResult.setParkedEnd( !crescendoResult.getParkedEnd());
             populateControlsFromData();
         });
 
-        ampSpeakerTeleOp = findViewById(R.id.amplifiedSpeaker);
-        ampSpeakerTeleOpText = findViewById(R.id.teleOpAmplifiedSpeakerValue);
-        subtractAmpSpeakerTeleOp = findViewById(R.id.subtractAmplifiedSpeakerPointsTeleOp);
-        ampSpeakerTeleOp.setImageResource(ampSpeakerTeleOpDrawable);
-        ampSpeakerTeleOp.setOnClickListener(v -> {
-                crescendoResult.setAmpSpeakerNoteTeleOp(crescendoResult.getAmpSpeakerNoteTeleOp() +1);
+        onstageButton = findViewById(R.id.centerStage);
+        onstageButton.setImageResource(onstageButtonDrawable);
+        onstageButton.setOnClickListener(v -> {
+                crescendoResult.setOnstageEnd(!crescendoResult.getOnstageEnd());
                 populateControlsFromData();
         });
 
-        speakerTeleOp = findViewById(R.id.teleOpSpeaker);
-        speakerTeleOpText = findViewById(R.id.teleOpSpeakerValue);
-        subtractSpeakerTeleOp = findViewById(R.id.subtractSpeakerPointsTeleOp);
-        speakerTeleOp.setOnClickListener(v -> {
-            crescendoResult.setNeutralSpeakerNoteTeleOp(crescendoResult.getNeutralSpeakerNoteTeleOp() +1);
+        trapButton = findViewById(R.id.trapButton);
+        trapButton.setImageResource(trapButtonDrawable);
+        trapButton.setOnClickListener(v -> {
+            crescendoResult.setTrapNoteEnd(crescendoResult.getTrapNoteEnd());
             populateControlsFromData();
         });
 
-        ampTeleOp = findViewById(R.id.teleOpAmp);
-        ampTeleOpText = findViewById(R.id.teleOpAmpValue);
-        subtractAmpTeleOp = findViewById(R.id.subtractAmpPointsTeleOp);
-        ampTeleOp.setImageResource(ampTeleOpDrawable);
-        ampTeleOp.setOnClickListener(v -> {
-            crescendoResult.setAmpNoteTeleOp(crescendoResult.getAmpNoteTeleOp() +1);
+        harmonyButton = findViewById(R.id.harmonyButton);
+        harmonyButton.setImageResource(harmonyButtonDrawable);
+        harmonyButton.setOnClickListener(v -> {
+            crescendoResult.setHarmonyEnd(crescendoResult.getHarmonyEnd());
+            populateControlsFromData();
+        });
+        spotlightButton = findViewById(R.id.spotlightButton);
+        spotlightButton.setOnClickListener(v -> {
+            crescendoResult.setSpotlightEnd(crescendoResult.getSpotlightEnd()+1);
+            populateControlsFromData();
+        });
+        subtractSpotlightButton = findViewById(R.id.subtractSpotlight);
+        subtractSpotlightButton.setOnClickListener(v -> {
+            crescendoResult.setSpotlightEnd(Math.max(crescendoResult.getSpotlightEnd()-1,0));
             populateControlsFromData();
         });
 
-        defensesText = findViewById(R.id.teleOpDefensesValue);
+        spotlightValueText = findViewById(R.id.spotlightValue);
     }
 
     public void setupColor() {
         AdminSettings settings = AdminSettingsProvider.getAdminSettings(getApplicationContext());
 
-        buttonSelectedTextColor = R.color.primaryDarkColor;
 
         if (settings.getDeviceRole().startsWith("red")){
-            ampSpeakerTeleOpDrawable = R.drawable.amplified_speaker_red;
-            ampTeleOpDrawable = R.drawable.teleop_red_amp;
-            defenseDrawable = R.drawable.defense_red;
-            buttonColor = R.color.redAlliance;
+            onstageButtonDrawable = R.drawable.red_center_stage;
         } else {
-            ampSpeakerTeleOpDrawable = R.drawable.amplified_speaker_blue;
-            ampTeleOpDrawable = R.drawable.auto_blue_amp;
-            defenseDrawable = R.drawable.defense_blue;
-            buttonColor = R.color.blueAlliance;
+            onstageButtonDrawable = R.drawable.blue_center_stage;
         }
     }
 }

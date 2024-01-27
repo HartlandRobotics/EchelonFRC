@@ -15,7 +15,7 @@ public class CrescendoResult {
     int defenseCount = 0;
     Boolean parkedEnd = Boolean.FALSE;
     Boolean onstageEnd = Boolean.FALSE;
-    int spotlitEnd = 0;
+    int spotlightEnd = 0;
     Boolean harmonyEnd = Boolean.FALSE;
     Boolean trapNoteEnd = Boolean.FALSE;
 
@@ -30,7 +30,7 @@ public class CrescendoResult {
         ampSpeakerNoteTeleOp = result.getTeleOp3() == null ? 0:1;
         parkedEnd = result.getEnd1() == null ? Boolean.FALSE : Boolean.TRUE;
         onstageEnd = result.getEnd2() == null ? Boolean.FALSE : Boolean.TRUE;
-        spotlitEnd = result.getEnd3() == null ? 0:1;
+        spotlightEnd = result.getEnd3() == null ? 0:1;
         harmonyEnd = result.getEnd4() == null ? Boolean.FALSE : Boolean.TRUE;
         trapNoteEnd = result.getEnd5() == null ? Boolean.FALSE : Boolean.TRUE;
         defenseCount = result.getDefenseCount();
@@ -84,21 +84,27 @@ public class CrescendoResult {
     public Boolean getParkedEnd(){
         return parkedEnd;
     }
-    public void setParkedEnd(int result){
-        matchResult.setEnd1(result > 0 ? null : new Date().toString());
+    public void setParkedEnd(boolean result) {
+        if (result == Boolean.FALSE) {
+            matchResult.setEnd1(null);
+        } else {
+            matchResult.setEnd1(new Date().toString());
+        }
     }
-
     public Boolean getOnstageEnd(){
         return onstageEnd;
-
     }
-    public void setOnstageEnd(int result){
-        matchResult.setEnd2(result > 0 ? null : new Date().toString());
+    public void setOnstageEnd(boolean result) {
+        if (result == Boolean.FALSE) {
+            matchResult.setEnd2(null);
+        } else {
+            matchResult.setEnd2(new Date().toString());
+        }
     }
-    public int getSpotlitEnd(){
-        return spotlitEnd;
+    public int getSpotlightEnd(){
+        return spotlightEnd;
     }
-    public void setSpotlitEnd(int result) {
+    public void setSpotlightEnd(int result) {
         matchResult.setEnd3(result > 0 ? null : new Date().toString());
     }
     public int getDefenseCount(){ return defenseCount; }
@@ -108,14 +114,21 @@ public class CrescendoResult {
     public Boolean getHarmonyEnd(){
         return harmonyEnd;
     }
-    public void setHarmonyEnd(int result){
-        matchResult.setEnd4(result > 0 ? null : new Date().toString());
+    public void setHarmonyEnd(boolean result) {
+        if (result == Boolean.FALSE) {
+            matchResult.setEnd4(null);
+        } else {
+            matchResult.setEnd4(new Date().toString());
+        }
     }
     public Boolean getTrapNoteEnd(){
         return trapNoteEnd;
     }
-    public void setTrapNoteEnd(int result){
-        matchResult.setEnd5(result > 0 ? null : new Date().toString());
+    public void setTrapNoteEnd(boolean result) {
+        if (result == Boolean.FALSE) {
+            matchResult.setEnd5(null);
+        } else {
+            matchResult.setEnd5(new Date().toString());
+        }
     }
-
 }
