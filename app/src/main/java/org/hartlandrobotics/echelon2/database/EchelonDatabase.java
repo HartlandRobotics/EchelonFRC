@@ -87,8 +87,13 @@ public abstract class EchelonDatabase extends RoomDatabase {
             super.onCreate(db);
 
             databaseWriteExecutor.execute(() -> {
-                Season crescendoSeason = new Season("Crescendo", 2024);
                 SeasonDao sd = _instance.seasonDao();
+
+
+                Season rapidReactSeason = new Season("Rapid React", 2022);
+                sd.insert(rapidReactSeason);
+
+                Season crescendoSeason = new Season("Crescendo", 2024);
                 sd.insert(crescendoSeason);
             });
         }
