@@ -85,7 +85,7 @@ public class MatchScoutingEndgameActivity extends AppCompatActivity {
 
 
     public void populateControlsFromData(){
-        spotlightValueText.setText(String.valueOf(crescendoResult.getSpotlightEnd()));
+        spotlightValueText.setText(String.valueOf(crescendoResult.getEndSpotlight()));
 
     }
 
@@ -101,38 +101,38 @@ public class MatchScoutingEndgameActivity extends AppCompatActivity {
         parkButton = findViewById(R.id.centerPark);
         parkButton.setImageResource(parkButtonDrawable);
         parkButton.setOnClickListener( v -> {
-            crescendoResult.setParkedEnd( !crescendoResult.getParkedEnd());
+            crescendoResult.setEndParked( !crescendoResult.getEndParked());
             populateControlsFromData();
         });
 
         onstageButton = findViewById(R.id.centerStage);
         onstageButton.setImageResource(onstageButtonDrawable);
         onstageButton.setOnClickListener(v -> {
-                crescendoResult.setOnstageEnd(!crescendoResult.getOnstageEnd());
+                crescendoResult.setEndOnstage(!crescendoResult.getEndOnstage());
                 populateControlsFromData();
         });
 
         trapButton = findViewById(R.id.trapButton);
         trapButton.setImageResource(trapButtonDrawable);
         trapButton.setOnClickListener(v -> {
-            crescendoResult.setTrapNoteEnd(crescendoResult.getTrapNoteEnd());
+            crescendoResult.setEndTrapNote(crescendoResult.getEndTrapNote());
             populateControlsFromData();
         });
 
         harmonyButton = findViewById(R.id.harmonyButton);
         harmonyButton.setImageResource(harmonyButtonDrawable);
         harmonyButton.setOnClickListener(v -> {
-            crescendoResult.setHarmonyEnd(crescendoResult.getHarmonyEnd());
+            crescendoResult.setEndHarmony(crescendoResult.getEndHarmony());
             populateControlsFromData();
         });
         spotlightButton = findViewById(R.id.spotlightButton);
         spotlightButton.setOnClickListener(v -> {
-            crescendoResult.setSpotlightEnd(crescendoResult.getSpotlightEnd()+1);
+            crescendoResult.setEndSpotlight(crescendoResult.getEndSpotlight()+1);
             populateControlsFromData();
         });
         subtractSpotlightButton = findViewById(R.id.subtractSpotlight);
         subtractSpotlightButton.setOnClickListener(v -> {
-            crescendoResult.setSpotlightEnd(Math.max(crescendoResult.getSpotlightEnd()-1,0));
+            crescendoResult.setEndSpotlight(Math.max(crescendoResult.getEndSpotlight()-1,0));
             populateControlsFromData();
         });
 

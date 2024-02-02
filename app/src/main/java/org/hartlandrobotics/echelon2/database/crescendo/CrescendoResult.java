@@ -13,11 +13,11 @@ public class CrescendoResult {
     int ampSpeakerNoteTeleOp = 0;
 
     int defenseCount = 0;
-    Boolean parkedEnd = Boolean.FALSE;
-    Boolean onstageEnd = Boolean.FALSE;
-    int spotlightEnd = 0;
-    Boolean harmonyEnd = Boolean.FALSE;
-    Boolean trapNoteEnd = Boolean.FALSE;
+    Boolean endParked = Boolean.FALSE;
+    Boolean endOnstage = Boolean.FALSE;
+    int endSpotlight = 0;
+    Boolean endHarmony = Boolean.FALSE;
+    Boolean endTrapNote = Boolean.FALSE;
 
 
     public CrescendoResult(MatchResult result) {
@@ -28,11 +28,11 @@ public class CrescendoResult {
         ampNoteTeleOp = result.getTeleOp1() == null ? 0:1;
         neutralSpeakerNoteTeleOp = result.getTeleOp2() == null ? 0:1;
         ampSpeakerNoteTeleOp = result.getTeleOp3() == null ? 0:1;
-        parkedEnd = result.getEnd1() == null ? Boolean.FALSE : Boolean.TRUE;
-        onstageEnd = result.getEnd2() == null ? Boolean.FALSE : Boolean.TRUE;
-        spotlightEnd = result.getEnd3() == null ? 0:1;
-        harmonyEnd = result.getEnd4() == null ? Boolean.FALSE : Boolean.TRUE;
-        trapNoteEnd = result.getEnd5() == null ? Boolean.FALSE : Boolean.TRUE;
+        endParked = result.getEnd1() == null ? Boolean.FALSE : Boolean.TRUE;
+        endOnstage = result.getEnd2() == null ? Boolean.FALSE : Boolean.TRUE;
+        endSpotlight = result.getEnd3() == null ? 0:1;
+        endHarmony = result.getEnd4() == null ? Boolean.FALSE : Boolean.TRUE;
+        endTrapNote = result.getEnd5() == null ? Boolean.FALSE : Boolean.TRUE;
         defenseCount = result.getDefenseCount();
 
     }
@@ -81,50 +81,50 @@ public class CrescendoResult {
     public void setAmpSpeakerNoteTeleOp(int result) {
         matchResult.setTeleOp3(result > 0 ? null : new Date().toString());
     }
-    public Boolean getParkedEnd(){
-        return parkedEnd;
+    public Boolean getEndParked(){
+        return endParked;
     }
-    public void setParkedEnd(boolean result) {
+    public void setEndParked(boolean result) {
         if (result == Boolean.FALSE) {
             matchResult.setEnd1(null);
         } else {
             matchResult.setEnd1(new Date().toString());
         }
     }
-    public Boolean getOnstageEnd(){
-        return onstageEnd;
+    public Boolean getEndOnstage(){
+        return endOnstage;
     }
-    public void setOnstageEnd(boolean result) {
+    public void setEndOnstage(boolean result) {
         if (result == Boolean.FALSE) {
             matchResult.setEnd2(null);
         } else {
             matchResult.setEnd2(new Date().toString());
         }
     }
-    public int getSpotlightEnd(){
-        return spotlightEnd;
+    public int getEndSpotlight(){
+        return endSpotlight;
     }
-    public void setSpotlightEnd(int result) {
+    public void setEndSpotlight(int result) {
         matchResult.setEnd3(result > 0 ? null : new Date().toString());
     }
     public int getDefenseCount(){ return defenseCount; }
     public void setDefenseCount( int defenseCount ){
         this.matchResult.setDefenseCount(defenseCount);
     }
-    public Boolean getHarmonyEnd(){
-        return harmonyEnd;
+    public Boolean getEndHarmony(){
+        return endHarmony;
     }
-    public void setHarmonyEnd(boolean result) {
+    public void setEndHarmony(boolean result) {
         if (result == Boolean.FALSE) {
             matchResult.setEnd4(null);
         } else {
             matchResult.setEnd4(new Date().toString());
         }
     }
-    public Boolean getTrapNoteEnd(){
-        return trapNoteEnd;
+    public Boolean getEndTrapNote(){
+        return endTrapNote;
     }
-    public void setTrapNoteEnd(boolean result) {
+    public void setEndTrapNote(boolean result) {
         if (result == Boolean.FALSE) {
             matchResult.setEnd5(null);
         } else {

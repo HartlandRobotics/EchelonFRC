@@ -62,23 +62,26 @@ public class MatchScoutingSummaryActivity extends AppCompatActivity {
 
     // Endgame
 
-    private MaterialCheckBox parkedEnd;
-    private MaterialCheckBox onstageEnd;
+    private MaterialCheckBox endPark;
+    private MaterialCheckBox endOnstage;
 
-    private MaterialButton spotlitEndDecrement;
-    private MaterialTextView spotlitEndValue;
-    private MaterialButton spotlitEndIncrement;
+    private MaterialButton endSpotlightDecrement;
+    private MaterialTextView endSpotlightValue;
+    private MaterialButton endSpotlightIncrement;
 
     private MaterialButton teleOpDefensesDecrement;
     private MaterialTextView teleOpDefensesValue;
     private MaterialButton teleOpDefensesIncrement;
 
-    private MaterialCheckBox harmonyEnd;
-    private MaterialCheckBox trapNoteEnd;
+    private MaterialCheckBox endHarmony;
+    private MaterialCheckBox endTrapNote;
 
     private TextInputLayout additionalNotesLayout;
 
     private MaterialButton submitButton;
+
+    public MatchScoutingSummaryActivity() {
+    }
 
     public static void launch(Context context, String matchKey, String teamKey){
         Intent intent = new Intent(context, MatchScoutingSummaryActivity.class);
@@ -116,117 +119,117 @@ public class MatchScoutingSummaryActivity extends AppCompatActivity {
     }
 
     private void setupControls(){
-        leaveLineAuto = findViewById(R.id.park);
+        leaveLineAuto = findViewById(R.id.autoParkCheckbox);
         leaveLineAuto.setOnCheckedChangeListener((buttonView, isChecked) -> {
             crescendoResult.setLeaveLineAuto(!crescendoResult.getLeaveLineAuto());
             populateControlsFromData();
         });
 
-        ampNoteAutoValue = findViewById(R.id.ampNoteAutoValue);
-        ampNoteAutoDecrement = findViewById(R.id.ampNoteAutoDecrement);
+        ampNoteAutoValue = findViewById(R.id.autoAmpValue);
+        ampNoteAutoDecrement = findViewById(R.id.autoAmpDecrement);
         ampNoteAutoDecrement.setOnClickListener(v -> {
             crescendoResult.setAmpNoteAuto(crescendoResult.getAmpNoteAuto() - 1);
                 populateControlsFromData();
                 });
-        ampNoteAutoIncrement = findViewById(R.id.ampNoteAutoIncrement);
+        ampNoteAutoIncrement = findViewById(R.id.autoAmpIncrement);
         ampNoteAutoIncrement.setOnClickListener(v -> {
             crescendoResult.setAmpNoteAuto( crescendoResult.getAmpNoteAuto() + 1);
             populateControlsFromData();
         });
 
-        speakerNoteAutoValue = findViewById(R.id.speakerNoteAutoValue);
-        speakerNoteAutoDecrement = findViewById(R.id.speakerNoteAutoDecrement);
+        speakerNoteAutoValue = findViewById(R.id.autoSpeakerValue);
+        speakerNoteAutoDecrement = findViewById(R.id.autoSpeakerDecrement);
         speakerNoteAutoDecrement.setOnClickListener(v -> {
             crescendoResult.setSpeakerNoteAuto(crescendoResult.getSpeakerNoteAuto() - 1);
             populateControlsFromData();
         });
-        speakerNoteAutoIncrement = findViewById(R.id.speakerNoteAutoIncrement);
+        speakerNoteAutoIncrement = findViewById(R.id.autoSpeakerIncrement);
         speakerNoteAutoIncrement.setOnClickListener(v -> {
             crescendoResult.setSpeakerNoteAuto( crescendoResult.getSpeakerNoteAuto() + 1);
             populateControlsFromData();
         });
 
-        ampNoteTeleOpValue = findViewById(R.id.ampNoteTeleOpValue);
-        ampNoteTeleOpDecrement = findViewById(R.id.ampNoteTeleOpDecrement);
+        ampNoteTeleOpValue = findViewById(R.id.teleOpAmpValue);
+        ampNoteTeleOpDecrement = findViewById(R.id.teleopAmpDecrement);
         ampNoteTeleOpDecrement.setOnClickListener(v -> {
             crescendoResult.setAmpNoteTeleOp(crescendoResult.getAmpNoteTeleOp() - 1);
             populateControlsFromData();
         });
-        ampNoteTeleOpIncrement = findViewById(R.id.ampNoteAutoIncrement);
+        ampNoteTeleOpIncrement = findViewById(R.id.teleopAmpIncrement);
         ampNoteTeleOpIncrement.setOnClickListener(v -> {
             crescendoResult.setAmpNoteTeleOp( crescendoResult.getAmpNoteTeleOp() + 1);
             populateControlsFromData();
         });
 
-        neutralSpeakerNoteTeleOpValue = findViewById(R.id.neutralSpeakerNoteTeleOpValue);
-        neutralSpeakerNoteTeleOpDecrement = findViewById(R.id.neutralSpeakerNoteTeleOpDecrement);
+        neutralSpeakerNoteTeleOpValue = findViewById(R.id.teleOpSpeakerValue);
+        neutralSpeakerNoteTeleOpDecrement = findViewById(R.id.teleopSpeakerDecrement);
         neutralSpeakerNoteTeleOpDecrement.setOnClickListener(v -> {
             crescendoResult.setNeutralSpeakerNoteTeleOp(crescendoResult.getNeutralSpeakerNoteTeleOp() - 1);
             populateControlsFromData();
         });
-        neutralSpeakerNoteTeleOpIncrement = findViewById(R.id.neutralSpeakerNoteTeleOpIncrement);
+        neutralSpeakerNoteTeleOpIncrement = findViewById(R.id.teleopSpeakerIncrement);
         neutralSpeakerNoteTeleOpIncrement.setOnClickListener(v -> {
             crescendoResult.setNeutralSpeakerNoteTeleOp( crescendoResult.getNeutralSpeakerNoteTeleOp() + 1);
             populateControlsFromData();
         });
 
-        ampSpeakerNoteTeleOpValue = findViewById(R.id.ampSpeakerNoteTeleOpValue);
-        ampSpeakerNoteTeleOpDecrement = findViewById(R.id.ampSpeakerNoteTeleOpDecrement);
+        ampSpeakerNoteTeleOpValue = findViewById(R.id.teleOpAmplifiedSpeakerValue);
+        ampSpeakerNoteTeleOpDecrement = findViewById(R.id.teleopAmplifiedSpeakerDecrement);
         ampSpeakerNoteTeleOpDecrement.setOnClickListener(v -> {
             crescendoResult.setAmpSpeakerNoteTeleOp(crescendoResult.getAmpSpeakerNoteTeleOp() - 1);
             populateControlsFromData();
         });
 
-        ampSpeakerNoteTeleOpIncrement = findViewById(R.id.ampSpeakerNoteTeleOpIncrement);
+        ampSpeakerNoteTeleOpIncrement = findViewById(R.id.teleopAmplifiedSpeakerIncrement);
         ampSpeakerNoteTeleOpIncrement.setOnClickListener(v -> {
             crescendoResult.setAmpSpeakerNoteTeleOp( crescendoResult.getAmpSpeakerNoteTeleOp() + 1);
             populateControlsFromData();
         });
 
-        parkedEnd = findViewById(R.id.parkedEndCheckBox);
-        parkedEnd.setOnCheckedChangeListener((buttonView, isChecked) -> {
-            matchResult.setParkedEnd(isChecked);
+        endPark = findViewById(R.id.endParkCheckbox);
+        endPark.setOnCheckedChangeListener((buttonView, isChecked) -> {
+            crescendoResult.setEndParked(isChecked);
             populateControlsFromData();
         });
 
-        onstageEnd = findViewById(R.id.onstageEndCheckBox);
-        onstageEnd.setOnCheckedChangeListener((buttonView, isChecked) -> {
-            matchResult.setOnstageEnd(isChecked);
+        endOnstage = findViewById(R.id.endOnstageCheckbox);
+        endOnstage.setOnCheckedChangeListener((buttonView, isChecked) -> {
+            crescendoResult.setEndOnstage(isChecked);
             populateControlsFromData();
         });
 
-        spotlitEndValue = findViewById(R.id.spotlitEndValue);
-        spotlitEndDecrement = findViewById(R.id.spotlitEndDecrement);
-        spotlitEndDecrement.setOnClickListener(v -> {
-            crescendoResult.setSpotlitEnd(crescendoResult.getSpotlitEnd() - 1);
+        endSpotlightValue = findViewById(R.id.endSpotlightValue);
+        endSpotlightDecrement = findViewById(R.id.endSpotlightDecrement);
+        endSpotlightDecrement.setOnClickListener(v -> {
+            crescendoResult.setEndSpotlight(crescendoResult.getEndSpotlight() - 1);
             populateControlsFromData();
         });
 
-        spotlitEndIncrement = findViewById(R.id.spotlitEndIncrement);
-        spotlitEndIncrement.setOnClickListener(v -> {
-            crescendoResult.setSpotlitEnd( crescendoResult.getSpotlitEnd() + 1);
+        endSpotlightIncrement = findViewById(R.id.endSpotlightIncrement);
+        endSpotlightIncrement.setOnClickListener(v -> {
+            crescendoResult.setEndSpotlight( crescendoResult.getEndSpotlight() + 1);
             populateControlsFromData();
         });
 
-        harmonyEnd = findViewById(R.id.harmonyEndCheckBox);
-        harmonyEnd.setOnCheckedChangeListener((buttonView, isChecked) -> {
-            matchResult.setHarmonyEnd(isChecked);
+        endHarmony = findViewById(R.id.harmonyCheckbox);
+        endHarmony.setOnCheckedChangeListener((buttonView, isChecked) -> {
+            crescendoResult.setEndHarmony(isChecked);
             populateControlsFromData();
         });
 
-        trapNoteEnd = findViewById(R.id.trapNoteEndCheckBox);
-        trapNoteEnd.setOnCheckedChangeListener((buttonView, isChecked) -> {
-            matchResult.setTrapNoteEnd(isChecked);
+        endTrapNote = findViewById(R.id.trapCheckbox);
+        endTrapNote.setOnCheckedChangeListener((buttonView, isChecked) -> {
+            crescendoResult.setEndTrapNote(isChecked);
             populateControlsFromData();
         });
 
         teleOpDefensesValue = findViewById(R.id.teleOpDefensesValue);
-        teleOpDefensesDecrement = findViewById(R.id.teleOpDefensesDecrement);
+        teleOpDefensesDecrement = findViewById(R.id.teleopDefenseDecrement);
         teleOpDefensesDecrement.setOnClickListener(v -> {
             matchResult.setDefenseCount(Math.max(matchResult.getDefenseCount()-1, 0));
             populateControlsFromData();
         });
-        teleOpDefensesIncrement = findViewById(R.id.teleOpDefensesIncrement);
+        teleOpDefensesIncrement = findViewById(R.id.teleopDefenseIncrement);
         teleOpDefensesIncrement.setOnClickListener(v -> {
             matchResult.setDefenseCount(matchResult.getDefenseCount()+1);
             populateControlsFromData();
@@ -270,14 +273,14 @@ public class MatchScoutingSummaryActivity extends AppCompatActivity {
         speakerNoteAutoValue.setText( String.valueOf( crescendoResult.getSpeakerNoteAuto() ));
 
 
-        teleOpHighValue.setText( String.valueOf( matchResult.getTeleOpHighBalls() ));
-        teleOpLowValue.setText( String.valueOf( matchResult.getTeleOpLowBalls() ));
+
         teleOpDefensesValue.setText( String.valueOf( matchResult.getDefenseCount() ));
 
-        endTraverseCheckbox.setChecked( matchResult.getEndHangTraverse() );
-        endHighCheckBox.setChecked( matchResult.getEndHangHigh() );
-        endMidCheckBox.setChecked( matchResult.getEndHangMid() );
-        endLowCheckBox.setChecked( matchResult.getEndHangLow() );
+        endOnstage.setChecked(crescendoResult.getEndOnstage());
+        endSpotlightValue.setText( String.valueOf(crescendoResult.getEndSpotlight()));
+        endHarmony.setChecked(crescendoResult.getEndHarmony());
+        endTrapNote.setChecked(crescendoResult.getEndTrapNote());
+
 
         additionalNotesLayout.getEditText().setText(matchResult.getAdditionalNotes());
     }
