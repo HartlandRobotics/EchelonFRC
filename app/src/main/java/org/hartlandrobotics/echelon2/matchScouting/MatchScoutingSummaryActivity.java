@@ -270,7 +270,7 @@ public class MatchScoutingSummaryActivity extends AppCompatActivity {
         CrescendoResult crescendoResult = new CrescendoResult( matchResult);
 
         leaveLineAuto.setChecked( crescendoResult.getLeaveLineAuto() );
-        //ampNoteAutoValue.setText( String.valueOf( crescendoResult.getAmpNoteAuto() ));
+        ampNoteAutoValue.setText( String.valueOf( crescendoResult.getAmpNoteAuto() ));
         speakerNoteAutoValue.setText( String.valueOf( crescendoResult.getSpeakerNoteAuto() ));
 
 
