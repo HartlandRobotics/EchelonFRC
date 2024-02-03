@@ -86,11 +86,25 @@ public class MatchScoutingEndgameActivity extends AppCompatActivity {
 
     public void populateControlsFromData(){
         spotlightValueText.setText(String.valueOf(crescendoResult.getEndSpotlight()));
+        if( crescendoResult.getEndParked()){
+            parkButtonDrawable = R.drawable.center_yes;
+        }
+        else{
+            parkButtonDrawable = R.drawable.center_park;
+        }
+        if( crescendoResult.getEndOnstage()){
+            onstageButtonDrawable = R.drawable.center_yes;
+        }
+        else{
+            onstageButtonDrawable = R.drawable.red_center_stage;
+        }
+        parkButton.setImageResource(parkButtonDrawable);
+
 
     }
 
     private void setupControls(){
-        scoutingDoneButton = findViewById(R.id.endgame);
+        scoutingDoneButton = findViewById(R.id.summary);
         scoutingDoneButton.setOnClickListener(v -> {
             matchResultViewModel.upsert(crescendoResult.matchResult);
             MatchScoutingSummaryActivity.launch(MatchScoutingEndgameActivity.this, matchKey, teamKey);
@@ -108,7 +122,7 @@ public class MatchScoutingEndgameActivity extends AppCompatActivity {
         onstageButton = findViewById(R.id.centerStage);
         onstageButton.setImageResource(onstageButtonDrawable);
         onstageButton.setOnClickListener(v -> {
-                crescendoResult.setEndOnstage(!crescendoResult.getEndOnstage());
+                crescendoResult.setEndOnstage( !crescendoResult.getEndOnstage());
                 populateControlsFromData();
         });
 
@@ -125,6 +139,7 @@ public class MatchScoutingEndgameActivity extends AppCompatActivity {
             crescendoResult.setEndHarmony(crescendoResult.getEndHarmony());
             populateControlsFromData();
         });
+
         spotlightButton = findViewById(R.id.spotlightButton);
         spotlightButton.setOnClickListener(v -> {
             crescendoResult.setEndSpotlight(crescendoResult.getEndSpotlight()+1);

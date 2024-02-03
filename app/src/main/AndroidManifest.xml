@@ -47,6 +47,9 @@
             android:name=".matchScouting.MatchScoutingTeleopActivity"
             android:exported="false"
             android:screenOrientation="landscape" />
+        <activity android:name=".matchScouting.MatchScoutingEndgameActivity"
+            android:exported="false"
+            android:screenOrientation="landscape"/>
         <activity
             android:name=".matchScouting.MatchSelectionActivity"
             android:exported="false"

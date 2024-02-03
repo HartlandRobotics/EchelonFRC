@@ -108,7 +108,11 @@ public class CrescendoResult {
         matchResult.setTeleOp3(result > 0 ? new Date().toString() : null);
     }
     public Boolean getEndParked(){
-        return endParked;
+        if(matchResult.getEnd1() == null ){
+            return Boolean.FALSE;
+        }else{
+            return Boolean.TRUE;
+        }
     }
     public void setEndParked(boolean result) {
         if (result == Boolean.FALSE) {
@@ -118,12 +122,17 @@ public class CrescendoResult {
         }
     }
     public Boolean getEndOnstage(){
-        return endOnstage;
+        if(matchResult.getEnd2() == null ){
+            return Boolean.FALSE;
+        }else{
+            return Boolean.TRUE;
+        }
     }
     public void setEndOnstage(boolean result) {
         if (result == Boolean.FALSE) {
             matchResult.setEnd2(null);
-        } else {
+        }
+        else {
             matchResult.setEnd2(new Date().toString());
         }
     }
