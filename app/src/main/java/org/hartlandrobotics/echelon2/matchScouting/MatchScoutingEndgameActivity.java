@@ -119,7 +119,6 @@ public class MatchScoutingEndgameActivity extends AppCompatActivity {
         }
         harmonyButton.setImageResource(harmonyButtonDrawable);
 
-
     }
 
     private void setupControls(){
