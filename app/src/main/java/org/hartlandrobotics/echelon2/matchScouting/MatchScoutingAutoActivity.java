@@ -130,7 +130,7 @@ public class MatchScoutingAutoActivity extends AppCompatActivity {
         autoAmp = findViewById(R.id.autoAmp);
         ampPoints = findViewById(R.id.ampPointsAuto);
         subtractAmp = findViewById(R.id.subtractAmpPoints);
-        autoAmp.setImageResource(autoAmpDrawable);
+        //autoAmp.setImageResource(autoAmpDrawable);
         autoAmp.setOnClickListener(v -> {
             crescendoResult.setAmpNoteAuto( crescendoResult.getAmpNoteAuto() + 1);
             populateControlsFromData();

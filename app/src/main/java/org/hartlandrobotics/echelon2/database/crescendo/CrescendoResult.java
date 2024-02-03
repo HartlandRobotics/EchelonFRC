@@ -37,7 +37,11 @@ public class CrescendoResult {
 
     }
     public Boolean getLeaveLineAuto(){
-        return leaveLineAuto;
+        if(matchResult.getAuto1() == null ){
+            return Boolean.FALSE;
+        }else{
+            return Boolean.TRUE;
+        }
     }
     public void setLeaveLineAuto(boolean result){
         if(result == Boolean.FALSE){
@@ -47,20 +51,23 @@ public class CrescendoResult {
             matchResult.setAuto1(new Date().toString());
         }
     }
-    //dburton need to implement setter
 
     public int getAmpNoteAuto(){
-        return ampNoteAuto;
+        if(matchResult.getAuto2() == null ){
+            return 0;
+        }else{
+            return 1;
+        }
     }
     public void setAmpNoteAuto(int result){
-        matchResult.setAuto2(result > 0 ? null : new Date().toString());
+        matchResult.setAuto2(result > 0 ? new Date().toString() : null);
     }
 
     public int getSpeakerNoteAuto(){
         return speakerNoteAuto;
     }
     public void setSpeakerNoteAuto(int result){
-        matchResult.setAuto3(result > 0 ? null : new Date().toString());
+        matchResult.setAuto3(result > 0 ? new Date().toString() : null);
     }
 
     public int getAmpNoteTeleOp(){
