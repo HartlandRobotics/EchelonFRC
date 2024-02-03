@@ -122,6 +122,10 @@ public class MatchScoutingTeleopActivity extends AppCompatActivity {
         ampSpeakerTeleOp = findViewById(R.id.amplifiedSpeaker);
         ampSpeakerTeleOpText = findViewById(R.id.teleOpAmplifiedSpeakerValue);
         subtractAmpSpeakerTeleOp = findViewById(R.id.subtractAmplifiedSpeakerPointsTeleOp);
+        subtractAmpSpeakerTeleOp.setOnClickListener(v->{
+            crescendoResult.setAmpSpeakerNoteTeleOp(crescendoResult.getAmpSpeakerNoteTeleOp() -1);
+            populateControlsFromData();
+        });
         ampSpeakerTeleOp.setImageResource(ampSpeakerTeleOpDrawable);
         ampSpeakerTeleOp.setOnClickListener(v -> {
                 crescendoResult.setAmpSpeakerNoteTeleOp(crescendoResult.getAmpSpeakerNoteTeleOp() +1);
@@ -131,6 +135,10 @@ public class MatchScoutingTeleopActivity extends AppCompatActivity {
         speakerTeleOp = findViewById(R.id.teleOpSpeaker);
         speakerTeleOpText = findViewById(R.id.teleOpSpeakerValue);
         subtractSpeakerTeleOp = findViewById(R.id.subtractSpeakerPointsTeleOp);
+        subtractSpeakerTeleOp.setOnClickListener(v-> {
+            crescendoResult.setNeutralSpeakerNoteTeleOp(crescendoResult.getNeutralSpeakerNoteTeleOp() - 1);
+            populateControlsFromData();
+        });
         speakerTeleOp.setOnClickListener(v -> {
             crescendoResult.setNeutralSpeakerNoteTeleOp(crescendoResult.getNeutralSpeakerNoteTeleOp() +1);
             populateControlsFromData();
@@ -139,6 +147,10 @@ public class MatchScoutingTeleopActivity extends AppCompatActivity {
         ampTeleOp = findViewById(R.id.teleOpAmp);
         ampTeleOpText = findViewById(R.id.teleOpAmpValue);
         subtractAmpTeleOp = findViewById(R.id.subtractAmpPointsTeleOp);
+        subtractAmpTeleOp.setOnClickListener(v-> {
+            crescendoResult.setAmpNoteTeleOp(crescendoResult.getAmpNoteTeleOp() - 1);
+            populateControlsFromData();
+        });
         ampTeleOp.setImageResource(ampTeleOpDrawable);
         ampTeleOp.setOnClickListener(v -> {
             crescendoResult.setAmpNoteTeleOp(crescendoResult.getAmpNoteTeleOp() +1);

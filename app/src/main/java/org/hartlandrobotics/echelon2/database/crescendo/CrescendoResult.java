@@ -85,7 +85,7 @@ public class CrescendoResult {
         }
     }
     public void setAmpNoteTeleOp(int result){
-        matchResult.setTeleOp1(result > 0 ? null : new Date().toString());
+        matchResult.setTeleOp1(result > 0 ? new Date().toString() : null);
     }
     public int getNeutralSpeakerNoteTeleOp(){
         if(matchResult.getTeleOp2() == null ){
@@ -95,7 +95,7 @@ public class CrescendoResult {
         }
     }
     public void setNeutralSpeakerNoteTeleOp(int result){
-        matchResult.setTeleOp2(result > 0 ? null : new Date().toString());
+        matchResult.setTeleOp2(result > 0 ?  new Date().toString() : null);
     }
     public int getAmpSpeakerNoteTeleOp(){
         if(matchResult.getTeleOp3() == null ){
@@ -105,7 +105,7 @@ public class CrescendoResult {
         }
     }
     public void setAmpSpeakerNoteTeleOp(int result) {
-        matchResult.setTeleOp3(result > 0 ? null : new Date().toString());
+        matchResult.setTeleOp3(result > 0 ? new Date().toString() : null);
     }
     public Boolean getEndParked(){
         return endParked;
@@ -131,7 +131,7 @@ public class CrescendoResult {
         return endSpotlight;
     }
     public void setEndSpotlight(int result) {
-        matchResult.setEnd3(result > 0 ? null : new Date().toString());
+        matchResult.setEnd3(result > 0 ?  new Date().toString() : null);
     }
     public Boolean getEndHarmony(){
         return endHarmony;
