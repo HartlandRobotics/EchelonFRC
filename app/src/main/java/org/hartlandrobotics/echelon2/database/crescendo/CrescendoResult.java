@@ -136,14 +136,22 @@ public class CrescendoResult {
             matchResult.setEnd2(new Date().toString());
         }
     }
-    public int getEndSpotlight(){
-        return endSpotlight;
+    public int getEndSpotlight() {
+        if (matchResult.getEnd3() == null) {
+            return 0;
+        } else {
+            return 1;
+        }
     }
     public void setEndSpotlight(int result) {
         matchResult.setEnd3(result > 0 ?  new Date().toString() : null);
     }
     public Boolean getEndHarmony(){
-        return endHarmony;
+        if(matchResult.getEnd4() == null ){
+            return Boolean.FALSE;
+        }else{
+            return Boolean.TRUE;
+        }
     }
     public void setEndHarmony(boolean result) {
         if (result == Boolean.FALSE) {
@@ -153,7 +161,11 @@ public class CrescendoResult {
         }
     }
     public Boolean getEndTrapNote(){
-        return endTrapNote;
+        if(matchResult.getEnd5() == null ){
+            return Boolean.FALSE;
+        }else{
+            return Boolean.TRUE;
+        }
     }
     public void setEndTrapNote(boolean result) {
         if (result == Boolean.FALSE) {

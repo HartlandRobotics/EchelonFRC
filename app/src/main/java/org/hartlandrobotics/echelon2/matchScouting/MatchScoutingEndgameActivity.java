@@ -86,19 +86,38 @@ public class MatchScoutingEndgameActivity extends AppCompatActivity {
 
     public void populateControlsFromData(){
         spotlightValueText.setText(String.valueOf(crescendoResult.getEndSpotlight()));
+
         if( crescendoResult.getEndParked()){
             parkButtonDrawable = R.drawable.center_yes;
         }
         else{
             parkButtonDrawable = R.drawable.center_park;
         }
+        parkButton.setImageResource(parkButtonDrawable);
+
         if( crescendoResult.getEndOnstage()){
-            onstageButtonDrawable = R.drawable.center_yes;
+            onstageButtonDrawable = R.drawable.stage_yes;
         }
         else{
-            onstageButtonDrawable = R.drawable.red_center_stage;
+            setupColor();
         }
-        parkButton.setImageResource(parkButtonDrawable);
+        onstageButton.setImageResource(onstageButtonDrawable);
+
+        if(crescendoResult.getEndTrapNote()){
+            trapButtonDrawable = R.drawable.trap_yes;
+        }
+        else {
+            trapButtonDrawable = R.drawable.trap;
+        }
+        trapButton.setImageResource(trapButtonDrawable);
+
+        if(crescendoResult.getEndHarmony()){
+            harmonyButtonDrawable = R.drawable.harmony_yes;
+        }
+        else {
+            harmonyButtonDrawable = R.drawable.harmony;
+        }
+        harmonyButton.setImageResource(harmonyButtonDrawable);
 
 
     }
@@ -129,14 +148,14 @@ public class MatchScoutingEndgameActivity extends AppCompatActivity {
         trapButton = findViewById(R.id.trapButton);
         trapButton.setImageResource(trapButtonDrawable);
         trapButton.setOnClickListener(v -> {
-            crescendoResult.setEndTrapNote(crescendoResult.getEndTrapNote());
+            crescendoResult.setEndTrapNote( !crescendoResult.getEndTrapNote());
             populateControlsFromData();
         });
 
         harmonyButton = findViewById(R.id.harmonyButton);
         harmonyButton.setImageResource(harmonyButtonDrawable);
         harmonyButton.setOnClickListener(v -> {
-            crescendoResult.setEndHarmony(crescendoResult.getEndHarmony());
+            crescendoResult.setEndHarmony( !crescendoResult.getEndHarmony());
             populateControlsFromData();
         });
 
