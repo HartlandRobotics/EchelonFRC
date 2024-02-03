@@ -9,6 +9,7 @@ import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Log;
+import android.widget.ImageButton;
 
 import com.google.android.material.button.MaterialButton;
 import com.google.android.material.checkbox.MaterialCheckBox;
@@ -38,40 +39,40 @@ public class MatchScoutingSummaryActivity extends AppCompatActivity {
 
     private MaterialCheckBox leaveLineAuto;
 
-    private MaterialButton ampNoteAutoDecrement;
+    private ImageButton ampNoteAutoDecrement;
     private MaterialTextView ampNoteAutoValue;
-    private MaterialButton ampNoteAutoIncrement;
+    private ImageButton ampNoteAutoIncrement;
 
-    private MaterialButton speakerNoteAutoDecrement;
+    private ImageButton speakerNoteAutoDecrement;
     private MaterialTextView speakerNoteAutoValue;
-    private MaterialButton speakerNoteAutoIncrement;
+    private ImageButton speakerNoteAutoIncrement;
 
     // TeleOp
 
-    private MaterialButton ampNoteTeleOpDecrement;
+    private ImageButton ampNoteTeleOpDecrement;
     private MaterialTextView ampNoteTeleOpValue;
-    private MaterialButton ampNoteTeleOpIncrement;
+    private ImageButton ampNoteTeleOpIncrement;
 
-    private MaterialButton neutralSpeakerNoteTeleOpDecrement;
+    private ImageButton neutralSpeakerNoteTeleOpDecrement;
     private MaterialTextView neutralSpeakerNoteTeleOpValue;
-    private MaterialButton neutralSpeakerNoteTeleOpIncrement;
+    private ImageButton neutralSpeakerNoteTeleOpIncrement;
 
-    private MaterialButton ampSpeakerNoteTeleOpDecrement;
+    private ImageButton ampSpeakerNoteTeleOpDecrement;
     private MaterialTextView ampSpeakerNoteTeleOpValue;
-    private MaterialButton ampSpeakerNoteTeleOpIncrement;
+    private ImageButton ampSpeakerNoteTeleOpIncrement;
 
     // Endgame
 
     private MaterialCheckBox endPark;
     private MaterialCheckBox endOnstage;
 
-    private MaterialButton endSpotlightDecrement;
+    private ImageButton endSpotlightDecrement;
     private MaterialTextView endSpotlightValue;
-    private MaterialButton endSpotlightIncrement;
+    private ImageButton endSpotlightIncrement;
 
-    private MaterialButton teleOpDefensesDecrement;
+    private ImageButton teleOpDefensesDecrement;
     private MaterialTextView teleOpDefensesValue;
-    private MaterialButton teleOpDefensesIncrement;
+    private ImageButton teleOpDefensesIncrement;
 
     private MaterialCheckBox endHarmony;
     private MaterialCheckBox endTrapNote;
@@ -246,42 +247,42 @@ public class MatchScoutingSummaryActivity extends AppCompatActivity {
             MatchSelectionActivity.launch(MatchScoutingSummaryActivity.this, nextMatchNumber);
         });
 
-        additionalNotesLayout = findViewById(R.id.additionalNotes);
-        additionalNotesLayout.getEditText().addTextChangedListener(new TextWatcher() {
-            @Override
-            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-
-            }
-
-            @Override
-            public void onTextChanged(CharSequence s, int start, int before, int count) {
-                matchResult.setAdditionalNotes(s.toString());
-            }
-
-            @Override
-            public void afterTextChanged(Editable s) {
-
-            }
-        });
+        //additionalNotesLayout = findViewById(R.id.additionalNotes);
+//        additionalNotesLayout.getEditText().addTextChangedListener(new TextWatcher() {
+//            @Override
+//            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+//
+//            }
+//
+//            @Override
+//            public void onTextChanged(CharSequence s, int start, int before, int count) {
+//                matchResult.setAdditionalNotes(s.toString());
+//            }
+//
+//            @Override
+//            public void afterTextChanged(Editable s) {
+//
+//            }
+//        });
     }
     private void populateControlsFromData() {
         if( matchResult == null ) return;
         CrescendoResult crescendoResult = new CrescendoResult( matchResult);
 
         leaveLineAuto.setChecked( crescendoResult.getLeaveLineAuto() );
-        ampNoteAutoValue.setText( String.valueOf( crescendoResult.getAmpNoteAuto() ));
+        //ampNoteAutoValue.setText( String.valueOf( crescendoResult.getAmpNoteAuto() ));
         speakerNoteAutoValue.setText( String.valueOf( crescendoResult.getSpeakerNoteAuto() ));
 
 
 
-        teleOpDefensesValue.setText( String.valueOf( matchResult.getDefenseCount() ));
+        //teleOpDefensesValue.setText( String.valueOf( matchResult.getDefenseCount() ));
 
         endOnstage.setChecked(crescendoResult.getEndOnstage());
         endSpotlightValue.setText( String.valueOf(crescendoResult.getEndSpotlight()));
         endHarmony.setChecked(crescendoResult.getEndHarmony());
-        endTrapNote.setChecked(crescendoResult.getEndTrapNote());
+        //endTrapNote.setChecked(crescendoResult.getEndTrapNote());
 
 
-        additionalNotesLayout.getEditText().setText(matchResult.getAdditionalNotes());
+        //additionalNotesLayout.getEditText().setText(matchResult.getAdditionalNotes());
     }
 }

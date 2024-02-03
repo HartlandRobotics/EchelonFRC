@@ -461,7 +461,7 @@
         tools:layout_editor_absoluteY="339dp"
         />
 
-    <com.google.android.material.button.MaterialButton
+    <ImageButton
         android:id="@+id/autoSpeakerDecrement"
         android:layout_width="50dp"
         android:layout_height="wrap_content"
@@ -501,7 +501,7 @@
         app:layout_constraintEnd_toEndOf="@+id/autoLabel"
         />
 
-    <com.google.android.material.button.MaterialButton
+    <ImageButton
         android:id="@+id/autoSpeakerIncrement"
         android:layout_width="50dp"
         android:layout_height="wrap_content"
@@ -512,7 +512,7 @@
         app:layout_constraintStart_toEndOf="@+id/autoSpeakerLabel"
         />
 
-    <com.google.android.material.button.MaterialButton
+    <ImageButton
         android:id="@+id/autoAmpDecrement"
         android:layout_width="50dp"
         android:layout_height="wrap_content"
@@ -552,7 +552,7 @@
         app:layout_constraintEnd_toEndOf="@+id/autoLabel"
         />
 
-    <com.google.android.material.button.MaterialButton
+    <ImageButton
         android:id="@+id/autoAmpIncrement"
         android:layout_width="50dp"
         android:layout_height="wrap_content"
@@ -565,7 +565,7 @@
 
     <!-- aaaaaaaaaaaaaaaaaaaaaaaaaa -->
 
-    <com.google.android.material.button.MaterialButton
+    <ImageButton
         android:id="@+id/teleopAmplifiedSpeakerDecrement"
         android:layout_width="50dp"
         android:layout_height="wrap_content"
@@ -605,7 +605,7 @@
         app:layout_constraintEnd_toEndOf="@+id/teleopLabel"
         />
 
-    <com.google.android.material.button.MaterialButton
+    <ImageButton
         android:id="@+id/teleopAmplifiedSpeakerIncrement"
         android:layout_width="50dp"
         android:layout_height="wrap_content"
@@ -617,7 +617,7 @@
         />
 
 
-    <com.google.android.material.button.MaterialButton
+    <ImageButton
         android:id="@+id/teleopSpeakerDecrement"
         android:layout_width="50dp"
         android:layout_height="wrap_content"
@@ -626,6 +626,9 @@
         app:layout_constraintBottom_toBottomOf="@+id/teleopSpeakerValue"
         app:layout_constraintStart_toStartOf="@+id/teleopLabel"
         app:layout_constraintEnd_toStartOf="@+id/teleopSpeakerLabel"
+
+        android:textSize="65sp"
+        android:layout_margin="10dp"
         />
 
     <com.google.android.material.textview.MaterialTextView
@@ -658,7 +661,7 @@
         app:layout_constraintEnd_toEndOf="@+id/teleopLabel"
         />
 
-    <com.google.android.material.button.MaterialButton
+    <ImageButton
         android:id="@+id/teleopSpeakerIncrement"
         android:layout_width="50dp"
         android:layout_height="wrap_content"
@@ -669,7 +672,7 @@
         app:layout_constraintEnd_toEndOf="@id/teleopLabel"
         />
 
-    <com.google.android.material.button.MaterialButton
+    <ImageButton
         android:id="@+id/teleopAmpDecrement"
         android:layout_width="50dp"
         android:layout_height="wrap_content"
@@ -710,7 +713,7 @@
         app:layout_constraintEnd_toEndOf="@+id/teleopLabel"
         />
 
-    <com.google.android.material.button.MaterialButton
+    <ImageButton
         android:id="@+id/teleopAmpIncrement"
         android:layout_width="50dp"
         android:layout_height="wrap_content"
@@ -721,7 +724,7 @@
         app:layout_constraintEnd_toEndOf="@+id/teleopLabel"
         />
 
-    <com.google.android.material.button.MaterialButton
+    <ImageButton
         android:id="@+id/teleopDefenseDecrement"
         android:layout_width="50dp"
         android:layout_height="wrap_content"
@@ -761,7 +764,7 @@
         app:layout_constraintEnd_toEndOf="@+id/teleopLabel"
         />
 
-    <com.google.android.material.button.MaterialButton
+    <ImageButton
         android:id="@+id/teleopDefenseIncrement"
         android:layout_width="50dp"
         android:layout_height="wrap_content"
@@ -823,7 +826,7 @@
         />
 
 
-    <com.google.android.material.button.MaterialButton
+    <ImageButton
         android:id="@+id/endSpotlightDecrement"
         android:layout_width="50dp"
         android:layout_height="wrap_content"
@@ -863,7 +866,7 @@
         app:layout_constraintEnd_toEndOf="@+id/endLabel"
         />
 
-    <com.google.android.material.button.MaterialButton
+    <ImageButton
         android:id="@+id/endSpotlightIncrement"
         android:layout_width="50dp"
         android:layout_height="wrap_content"
