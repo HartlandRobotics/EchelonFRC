@@ -162,6 +162,6 @@ public class CrescendoResult {
         }
     }
     public void setDefenseCount(int result) {
-        matchResult.setDefenseCount(result > 0 ? null : new Date().toString());
+        matchResult.setDefenseCount(result > 0 ? new Date().toString() :null);
     }
 }

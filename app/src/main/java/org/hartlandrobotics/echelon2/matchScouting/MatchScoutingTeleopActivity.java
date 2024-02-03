@@ -32,6 +32,7 @@ public class MatchScoutingTeleopActivity extends AppCompatActivity {
     private ImageButton ampTeleOp;
     private ImageButton subtractAmpTeleOp;
     private ImageButton defensesButton;
+    private ImageButton defensesSubtractButton;
     private MaterialTextView defensesText;
     private MaterialTextView ampSpeakerTeleOpText;
     private MaterialTextView speakerTeleOpText;
@@ -88,7 +89,7 @@ public class MatchScoutingTeleopActivity extends AppCompatActivity {
 
 
     public void populateControlsFromData(){
-        defensesText.setText(String.valueOf(crescendoResult.matchResult.getDefenseCount()));
+        defensesText.setText(String.valueOf(crescendoResult.getDefenseCount()));
         ampSpeakerTeleOpText.setText(String.valueOf(crescendoResult.getAmpSpeakerNoteTeleOp()));
         speakerTeleOpText.setText(String.valueOf(crescendoResult.getNeutralSpeakerNoteTeleOp()));
         ampTeleOpText.setText(String.valueOf(crescendoResult.getAmpNoteTeleOp()));
@@ -110,6 +111,11 @@ public class MatchScoutingTeleopActivity extends AppCompatActivity {
         defensesButton.setImageResource(defenseDrawable);
         defensesButton.setOnClickListener( v -> {
             crescendoResult.setDefenseCount( crescendoResult.getDefenseCount() + 1);
+            populateControlsFromData();
+        });
+        defensesSubtractButton = findViewById(R.id.subtractDefense);
+        defensesSubtractButton.setOnClickListener( v -> {
+            crescendoResult.setDefenseCount(crescendoResult.getDefenseCount() - 1);
             populateControlsFromData();
         });
 
