@@ -19,8 +19,8 @@ import org.hartlandrobotics.echelon2.models.MatchResultViewModel;
 import org.hartlandrobotics.echelon2.status.BlueAllianceStatus;
 
 public class MatchScoutingAutoActivity extends AppCompatActivity {
-    private static final String MATCH_KEY = "auto_match_key_param";
-    private static final String TEAM_KEY = "auto_team_key_param";
+    private static final String MATCH_KEY = "match_key_param";
+    private static final String TEAM_KEY = "team_key_param";
 
     private ImageButton leaveLineAuto;
     private ImageButton autoSpeaker;
@@ -117,7 +117,6 @@ public class MatchScoutingAutoActivity extends AppCompatActivity {
         autoSpeaker = findViewById(R.id.autoSpeaker);
         speakerPoints = findViewById(R.id.speakerPoints);
         subtractSpeaker = findViewById(R.id.subtractSpeakerPointsAuto);
-        autoSpeaker.setImageResource(autoSpeakerDrawable);
         autoSpeaker.setOnClickListener(v -> {
             crescendoResult.setSpeakerNoteAuto( crescendoResult.getSpeakerNoteAuto() + 1);
             populateControlsFromData();
@@ -130,7 +129,6 @@ public class MatchScoutingAutoActivity extends AppCompatActivity {
         autoAmp = findViewById(R.id.autoAmp);
         ampPoints = findViewById(R.id.ampPointsAuto);
         subtractAmp = findViewById(R.id.subtractAmpPoints);
-        //autoAmp.setImageResource(autoAmpDrawable);
         autoAmp.setOnClickListener(v -> {
             crescendoResult.setAmpNoteAuto( crescendoResult.getAmpNoteAuto() + 1);
             populateControlsFromData();

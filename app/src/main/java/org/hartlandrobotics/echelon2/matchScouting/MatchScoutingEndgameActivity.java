@@ -21,8 +21,8 @@ import org.hartlandrobotics.echelon2.models.MatchResultViewModel;
 import org.hartlandrobotics.echelon2.status.BlueAllianceStatus;
 
 public class MatchScoutingEndgameActivity extends AppCompatActivity {
-    private static final String MATCH_KEY = "endgame_match_key_param";
-    private static final String TEAM_KEY = "endgame_team_key_param";
+    private static final String MATCH_KEY = "match_key_param";
+    private static final String TEAM_KEY = "team_key_param";
 
     MaterialButton scoutingDoneButton;
     private ImageButton parkButton;

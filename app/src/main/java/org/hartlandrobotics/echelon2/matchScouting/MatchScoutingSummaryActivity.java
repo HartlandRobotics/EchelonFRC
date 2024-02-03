@@ -24,8 +24,8 @@ import org.hartlandrobotics.echelon2.status.BlueAllianceStatus;
 public class MatchScoutingSummaryActivity extends AppCompatActivity {
     private static final String TAG = "MatchScoutingSummaryActivity";
 
-    private static final String MATCH_KEY = "auto_match_key_param";
-    private static final String TEAM_KEY = "auto_team_key_param";
+    private static final String MATCH_KEY = "match_key_param";
+    private static final String TEAM_KEY = "team_key_param";
 
     private String matchKey;
     private String teamKey;

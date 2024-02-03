@@ -64,7 +64,11 @@ public class CrescendoResult {
     }
 
     public int getSpeakerNoteAuto(){
-        return speakerNoteAuto;
+        if(matchResult.getAuto3() == null ){
+            return 0;
+        }else{
+            return 1;
+        }
     }
     public void setSpeakerNoteAuto(int result){
         matchResult.setAuto3(result > 0 ? new Date().toString() : null);
