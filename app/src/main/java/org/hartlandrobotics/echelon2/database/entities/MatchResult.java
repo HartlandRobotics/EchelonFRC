@@ -86,7 +86,7 @@ public class MatchResult {
     private String additionalNotes;
 
     @ColumnInfo(name = "defense_count")
-    private int defenseCount;
+    private String defenseCount;
 
     @Ignore
     public MatchResult(){}
@@ -113,7 +113,7 @@ public class MatchResult {
             @NonNull String end4,
             @NonNull String end5,
             String additionalNotes,
-            int defenseCount
+            @NonNull String defenseCount
     ) {
 
         this.matchResultKey = StringUtils.defaultIfBlank(matchResultKey, UUID.randomUUID().toString());
@@ -213,8 +213,8 @@ public class MatchResult {
         this.additionalNotes = additionalNotes;
     }
 
-    public int getDefenseCount(){ return defenseCount; }
-    public void setDefenseCount( int defenseCount ){
+    public String getDefenseCount(){ return defenseCount; }
+    public void setDefenseCount( String defenseCount ){
         this.defenseCount = defenseCount;
     }
 

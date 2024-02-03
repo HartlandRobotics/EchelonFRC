@@ -215,7 +215,7 @@ public class ExportActivity extends EchelonActivity {
             String TeleOp3 =columns[12];
             String TeleOp4 =columns[13];
             String TeleOp5 =columns[14];
-            int teleDef = Integer.parseInt(columns[15]);
+            String teleDef =columns[15];
 
             String End1 =columns[16];
             String End2 =columns[17];

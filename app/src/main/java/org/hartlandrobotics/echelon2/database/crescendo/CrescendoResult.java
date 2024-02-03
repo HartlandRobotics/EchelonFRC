@@ -25,15 +25,18 @@ public class CrescendoResult {
         leaveLineAuto = result.getAuto1() == null ? Boolean.FALSE : Boolean.TRUE;
         ampNoteAuto = result.getAuto2() == null ? 0:1;
         speakerNoteAuto = result.getAuto3() == null ? 0:1;
+
         ampNoteTeleOp = result.getTeleOp1() == null ? 0:1;
         neutralSpeakerNoteTeleOp = result.getTeleOp2() == null ? 0:1;
         ampSpeakerNoteTeleOp = result.getTeleOp3() == null ? 0:1;
+
         endParked = result.getEnd1() == null ? Boolean.FALSE : Boolean.TRUE;
         endOnstage = result.getEnd2() == null ? Boolean.FALSE : Boolean.TRUE;
         endSpotlight = result.getEnd3() == null ? 0:1;
         endHarmony = result.getEnd4() == null ? Boolean.FALSE : Boolean.TRUE;
         endTrapNote = result.getEnd5() == null ? Boolean.FALSE : Boolean.TRUE;
-        defenseCount = result.getDefenseCount();
+
+        defenseCount = result.getDefenseCount()== null ? 0:1;
 
     }
     public Boolean getLeaveLineAuto(){
@@ -75,19 +78,31 @@ public class CrescendoResult {
     }
 
     public int getAmpNoteTeleOp(){
-        return ampNoteTeleOp;
+        if(matchResult.getTeleOp1() == null ){
+            return 0;
+        }else{
+            return 1;
+        }
     }
     public void setAmpNoteTeleOp(int result){
         matchResult.setTeleOp1(result > 0 ? null : new Date().toString());
     }
     public int getNeutralSpeakerNoteTeleOp(){
-        return neutralSpeakerNoteTeleOp;
+        if(matchResult.getTeleOp2() == null ){
+            return 0;
+        }else{
+            return 1;
+        }
     }
     public void setNeutralSpeakerNoteTeleOp(int result){
         matchResult.setTeleOp2(result > 0 ? null : new Date().toString());
     }
     public int getAmpSpeakerNoteTeleOp(){
-        return ampSpeakerNoteTeleOp;
+        if(matchResult.getTeleOp3() == null ){
+            return 0;
+        }else{
+            return 1;
+        }
     }
     public void setAmpSpeakerNoteTeleOp(int result) {
         matchResult.setTeleOp3(result > 0 ? null : new Date().toString());
@@ -118,10 +133,6 @@ public class CrescendoResult {
     public void setEndSpotlight(int result) {
         matchResult.setEnd3(result > 0 ? null : new Date().toString());
     }
-    public int getDefenseCount(){ return defenseCount; }
-    public void setDefenseCount( int defenseCount ){
-        this.matchResult.setDefenseCount(defenseCount);
-    }
     public Boolean getEndHarmony(){
         return endHarmony;
     }
@@ -141,5 +152,16 @@ public class CrescendoResult {
         } else {
             matchResult.setEnd5(new Date().toString());
         }
+
+    }
+    public int getDefenseCount(){
+        if(matchResult.getDefenseCount() == null ){
+            return 0;
+        }else{
+            return 1;
+        }
+    }
+    public void setDefenseCount(int result) {
+        matchResult.setDefenseCount(result > 0 ? null : new Date().toString());
     }
 }

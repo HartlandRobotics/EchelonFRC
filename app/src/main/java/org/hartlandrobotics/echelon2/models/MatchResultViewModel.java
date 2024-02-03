@@ -49,7 +49,7 @@ public class MatchResultViewModel extends AndroidViewModel {
                 null,
                 null,
                 StringUtils.EMPTY,
-                0
+                null
         );
 
         return matchResult;

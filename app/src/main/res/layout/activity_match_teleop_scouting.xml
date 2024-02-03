@@ -20,7 +20,7 @@
         android:contentDescription="points when the speaker is amplified"
         />
 
-    <com.google.android.material.textview.MaterialTextView
+    <ImageButton
         android:id="@+id/subtractAmplifiedSpeakerPointsTeleOp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -76,7 +76,7 @@
         android:contentDescription="points scored in a normal speaker"
         />
 
-    <com.google.android.material.textview.MaterialTextView
+    <ImageButton
         android:id="@+id/subtractSpeakerPointsTeleOp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -128,7 +128,7 @@
         app:layout_constraintRight_toLeftOf="@id/teleOpSpeaker"
         />
 
-    <com.google.android.material.textview.MaterialTextView
+    <ImageButton
         android:id="@+id/subtractDefense"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -157,7 +157,7 @@
         android:contentDescription="AMP points in teleop"
         />
 
-    <com.google.android.material.textview.MaterialTextView
+    <ImageButton
         android:id="@+id/subtractAmpPointsTeleOp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

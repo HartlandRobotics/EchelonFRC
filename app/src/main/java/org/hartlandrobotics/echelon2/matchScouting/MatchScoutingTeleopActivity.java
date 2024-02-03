@@ -101,7 +101,7 @@ public class MatchScoutingTeleopActivity extends AppCompatActivity {
         scoutingDoneButton = findViewById(R.id.endgame);
         scoutingDoneButton.setOnClickListener(v -> {
             matchResultViewModel.upsert(crescendoResult.matchResult);
-            MatchScoutingSummaryActivity.launch(MatchScoutingTeleopActivity.this, matchKey, teamKey);
+            MatchScoutingEndgameActivity.launch(MatchScoutingTeleopActivity.this, matchKey, teamKey);
         });
 
 

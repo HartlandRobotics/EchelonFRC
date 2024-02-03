@@ -226,12 +226,12 @@ public class MatchScoutingSummaryActivity extends AppCompatActivity {
         teleOpDefensesValue = findViewById(R.id.teleOpDefensesValue);
         teleOpDefensesDecrement = findViewById(R.id.teleopDefenseDecrement);
         teleOpDefensesDecrement.setOnClickListener(v -> {
-            matchResult.setDefenseCount(Math.max(matchResult.getDefenseCount()-1, 0));
+            crescendoResult.setDefenseCount(crescendoResult.getDefenseCount()-1);
             populateControlsFromData();
         });
         teleOpDefensesIncrement = findViewById(R.id.teleopDefenseIncrement);
         teleOpDefensesIncrement.setOnClickListener(v -> {
-            matchResult.setDefenseCount(matchResult.getDefenseCount()+1);
+            crescendoResult.setDefenseCount(crescendoResult.getDefenseCount()+1);
             populateControlsFromData();
         });
 
