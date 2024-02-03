@@ -452,14 +452,6 @@
         app:layout_constraintEnd_toEndOf="parent"
         />
 
-    <com.google.android.material.button.MaterialButton
-        android:id="@+id/matchSummarySaveButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Submit"
-        tools:layout_editor_absoluteX="640dp"
-        tools:layout_editor_absoluteY="339dp"
-        />
 
     <ImageButton
         android:id="@+id/autoSpeakerDecrement"
@@ -891,5 +883,15 @@
         app:layout_constraintTop_toTopOf="@+id/endSpotlightLabel"
         />
 
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/matchSummarySaveButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Submit"
+        tools:layout_editor_absoluteX="640dp"
+        tools:layout_editor_absoluteY="339dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
