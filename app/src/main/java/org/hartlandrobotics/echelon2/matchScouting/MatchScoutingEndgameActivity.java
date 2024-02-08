@@ -122,13 +122,6 @@ public class MatchScoutingEndgameActivity extends AppCompatActivity {
     }
 
     private void setupControls(){
-        scoutingDoneButton = findViewById(R.id.summary);
-        scoutingDoneButton.setOnClickListener(v -> {
-            matchResultViewModel.upsert(crescendoResult.matchResult);
-            MatchScoutingSummaryActivity.launch(MatchScoutingEndgameActivity.this, matchKey, teamKey);
-        });
-
-
 
         parkButton = findViewById(R.id.centerPark);
         parkButton.setImageResource(parkButtonDrawable);
@@ -170,6 +163,12 @@ public class MatchScoutingEndgameActivity extends AppCompatActivity {
         });
 
         spotlightValueText = findViewById(R.id.spotlightValue);
+
+        scoutingDoneButton = findViewById(R.id.summary);
+        scoutingDoneButton.setOnClickListener(v -> {
+            matchResultViewModel.upsert(crescendoResult.matchResult);
+            MatchScoutingSummaryActivity.launch(MatchScoutingEndgameActivity.this, matchKey, teamKey);
+        });
     }
 
     public void setupColor() {

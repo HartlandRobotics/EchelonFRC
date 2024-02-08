@@ -99,13 +99,6 @@ public class MatchScoutingTeleopActivity extends AppCompatActivity {
     }
 
     private void setupControls(){
-        scoutingDoneButton = findViewById(R.id.endgame);
-        scoutingDoneButton.setOnClickListener(v -> {
-            matchResultViewModel.upsert(crescendoResult.matchResult);
-            MatchScoutingEndgameActivity.launch(MatchScoutingTeleopActivity.this, matchKey, teamKey);
-        });
-
-
 
         defensesButton = findViewById(R.id.teleOpDefenses);
         defensesButton.setImageResource(defenseDrawable);
@@ -158,6 +151,12 @@ public class MatchScoutingTeleopActivity extends AppCompatActivity {
         });
 
         defensesText = findViewById(R.id.teleOpDefensesValue);
+
+        scoutingDoneButton = findViewById(R.id.endgame);
+        scoutingDoneButton.setOnClickListener(v -> {
+            matchResultViewModel.upsert(crescendoResult.matchResult);
+            MatchScoutingEndgameActivity.launch(MatchScoutingTeleopActivity.this, matchKey, teamKey);
+        });
     }
 
     public void setupColor() {

@@ -90,19 +90,15 @@ public class MatchScoutingAutoActivity extends AppCompatActivity {
         ampPoints.setText(String.valueOf(crescendoResult.getAmpNoteAuto()));
 
         if(crescendoResult.getLeaveLineAuto()){
-            leaveLineAuto.setImageResource(R.drawable.in_line);
-        } else {
             leaveLineAuto.setImageResource(R.drawable.out_line);
+        } else {
+            leaveLineAuto.setImageResource(R.drawable.in_line);
         }
     }
 
     public void setupControls(){
 
-        MaterialButton teleOpButton = findViewById(R.id.teleOp);
-        teleOpButton.setOnClickListener(v -> {
-            matchResultViewModel.upsert(crescendoResult.matchResult);
-            MatchScoutingTeleopActivity.launch(MatchScoutingAutoActivity.this, matchKey, teamKey );
-        });
+
 
 
         leaveLineAuto = findViewById(R.id.park);
@@ -136,6 +132,12 @@ public class MatchScoutingAutoActivity extends AppCompatActivity {
         subtractAmp.setOnClickListener(v -> {
             crescendoResult.setAmpNoteAuto(Math.max(crescendoResult.getAmpNoteAuto()- 1,0));
             populateControlsFromData();
+        });
+
+        MaterialButton teleOpButton = findViewById(R.id.teleOp);
+        teleOpButton.setOnClickListener(v -> {
+            matchResultViewModel.upsert(crescendoResult.matchResult);
+            MatchScoutingTeleopActivity.launch(MatchScoutingAutoActivity.this, matchKey, teamKey );
         });
     }
 
