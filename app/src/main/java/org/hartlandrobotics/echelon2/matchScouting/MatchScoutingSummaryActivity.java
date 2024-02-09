@@ -122,7 +122,7 @@ public class MatchScoutingSummaryActivity extends AppCompatActivity {
     private void setupControls(){
         leaveLineAuto = findViewById(R.id.autoParkCheckbox);
         leaveLineAuto.setOnCheckedChangeListener((buttonView, isChecked) -> {
-            crescendoResult.setLeaveLineAuto(!crescendoResult.getLeaveLineAuto());
+            crescendoResult.setLeaveLineAuto(isChecked);
             populateControlsFromData();
         });
 
@@ -156,32 +156,32 @@ public class MatchScoutingSummaryActivity extends AppCompatActivity {
             crescendoResult.setAmpNoteTeleOp(crescendoResult.getAmpNoteTeleOp() - 1);
             populateControlsFromData();
         });
-        ampNoteTeleOpIncrement = findViewById(R.id.teleopAmpIncrement);
+        ampNoteTeleOpIncrement = findViewById(R.id.teleOpAmpIncrement);
         ampNoteTeleOpIncrement.setOnClickListener(v -> {
             crescendoResult.setAmpNoteTeleOp( crescendoResult.getAmpNoteTeleOp() + 1);
             populateControlsFromData();
         });
 
         neutralSpeakerNoteTeleOpValue = findViewById(R.id.teleOpSpeakerValue);
-        neutralSpeakerNoteTeleOpDecrement = findViewById(R.id.teleopSpeakerDecrement);
+        neutralSpeakerNoteTeleOpDecrement = findViewById(R.id.teleOpSpeakerDecrement);
         neutralSpeakerNoteTeleOpDecrement.setOnClickListener(v -> {
             crescendoResult.setNeutralSpeakerNoteTeleOp(crescendoResult.getNeutralSpeakerNoteTeleOp() - 1);
             populateControlsFromData();
         });
-        neutralSpeakerNoteTeleOpIncrement = findViewById(R.id.teleopSpeakerIncrement);
+        neutralSpeakerNoteTeleOpIncrement = findViewById(R.id.teleOpSpeakerIncrement);
         neutralSpeakerNoteTeleOpIncrement.setOnClickListener(v -> {
             crescendoResult.setNeutralSpeakerNoteTeleOp( crescendoResult.getNeutralSpeakerNoteTeleOp() + 1);
             populateControlsFromData();
         });
 
         ampSpeakerNoteTeleOpValue = findViewById(R.id.teleOpAmplifiedSpeakerValue);
-        ampSpeakerNoteTeleOpDecrement = findViewById(R.id.teleopAmplifiedSpeakerDecrement);
+        ampSpeakerNoteTeleOpDecrement = findViewById(R.id.teleOpAmplifiedSpeakerDecrement);
         ampSpeakerNoteTeleOpDecrement.setOnClickListener(v -> {
             crescendoResult.setAmpSpeakerNoteTeleOp(crescendoResult.getAmpSpeakerNoteTeleOp() - 1);
             populateControlsFromData();
         });
 
-        ampSpeakerNoteTeleOpIncrement = findViewById(R.id.teleopAmplifiedSpeakerIncrement);
+        ampSpeakerNoteTeleOpIncrement = findViewById(R.id.teleOpAmplifiedSpeakerIncrement);
         ampSpeakerNoteTeleOpIncrement.setOnClickListener(v -> {
             crescendoResult.setAmpSpeakerNoteTeleOp( crescendoResult.getAmpSpeakerNoteTeleOp() + 1);
             populateControlsFromData();
@@ -225,12 +225,12 @@ public class MatchScoutingSummaryActivity extends AppCompatActivity {
         });
 
         teleOpDefensesValue = findViewById(R.id.teleOpDefensesValue);
-        teleOpDefensesDecrement = findViewById(R.id.teleopDefenseDecrement);
+        teleOpDefensesDecrement = findViewById(R.id.teleOpDefensesDecrement);
         teleOpDefensesDecrement.setOnClickListener(v -> {
             crescendoResult.setDefenseCount(crescendoResult.getDefenseCount()-1);
             populateControlsFromData();
         });
-        teleOpDefensesIncrement = findViewById(R.id.teleopDefenseIncrement);
+        teleOpDefensesIncrement = findViewById(R.id.teleOpDefensesIncrement);
         teleOpDefensesIncrement.setOnClickListener(v -> {
             crescendoResult.setDefenseCount(crescendoResult.getDefenseCount()+1);
             populateControlsFromData();
@@ -247,23 +247,23 @@ public class MatchScoutingSummaryActivity extends AppCompatActivity {
             MatchSelectionActivity.launch(MatchScoutingSummaryActivity.this, nextMatchNumber);
         });
 
-        //additionalNotesLayout = findViewById(R.id.additionalNotes);
-//        additionalNotesLayout.getEditText().addTextChangedListener(new TextWatcher() {
-//            @Override
-//            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-//
-//            }
-//
-//            @Override
-//            public void onTextChanged(CharSequence s, int start, int before, int count) {
-//                matchResult.setAdditionalNotes(s.toString());
-//            }
-//
-//            @Override
-//            public void afterTextChanged(Editable s) {
-//
-//            }
-//        });
+        additionalNotesLayout = findViewById(R.id.additionalNotes);
+        additionalNotesLayout.getEditText().addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                matchResult.setAdditionalNotes(s.toString());
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+            }
+        });
     }
     private void populateControlsFromData() {
         if( matchResult == null ) return;
@@ -273,16 +273,19 @@ public class MatchScoutingSummaryActivity extends AppCompatActivity {
         ampNoteAutoValue.setText( String.valueOf( crescendoResult.getAmpNoteAuto() ));
         speakerNoteAutoValue.setText( String.valueOf( crescendoResult.getSpeakerNoteAuto() ));
 
+        ampSpeakerNoteTeleOpValue.setText( String.valueOf( crescendoResult.getAmpSpeakerNoteTeleOp() ));
+        neutralSpeakerNoteTeleOpValue.setText( String.valueOf(crescendoResult.getNeutralSpeakerNoteTeleOp()));
+        ampNoteTeleOpValue.setText( String.valueOf(crescendoResult.getAmpNoteTeleOp()));
 
-
-        //teleOpDefensesValue.setText( String.valueOf( matchResult.getDefenseCount() ));
+        teleOpDefensesValue.setText( String.valueOf( crescendoResult.getDefenseCount() ));
 
         endOnstage.setChecked(crescendoResult.getEndOnstage());
+        endPark.setChecked(crescendoResult.getEndParked());
         endSpotlightValue.setText( String.valueOf(crescendoResult.getEndSpotlight()));
         endHarmony.setChecked(crescendoResult.getEndHarmony());
-        //endTrapNote.setChecked(crescendoResult.getEndTrapNote());
+       endTrapNote.setChecked(crescendoResult.getEndTrapNote());
 
 
-        //additionalNotesLayout.getEditText().setText(matchResult.getAdditionalNotes());
+        additionalNotesLayout.getEditText().setText(matchResult.getAdditionalNotes());
     }
 }
