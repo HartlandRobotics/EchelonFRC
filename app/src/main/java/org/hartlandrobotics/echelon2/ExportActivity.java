@@ -14,7 +14,7 @@ import androidx.annotation.RequiresApi;
 import androidx.lifecycle.ViewModelProvider;
 
 import org.apache.commons.lang3.StringUtils;
-import org.hartlandrobotics.echelon2.database.currentGame.CurrentGameCounts;
+//import org.hartlandrobotics.echelon2.database.currentGame.CurrentGameCounts;
 import org.hartlandrobotics.echelon2.database.entities.Match;
 import org.hartlandrobotics.echelon2.database.entities.MatchResult;
 import org.hartlandrobotics.echelon2.database.entities.MatchResultWithTeamMatch;

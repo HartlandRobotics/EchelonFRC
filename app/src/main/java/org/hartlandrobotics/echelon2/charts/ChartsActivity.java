@@ -11,7 +11,7 @@ import com.google.android.material.tabs.TabLayoutMediator;
 
 import org.hartlandrobotics.echelon2.EchelonActivity;
 import org.hartlandrobotics.echelon2.R;
-import org.hartlandrobotics.echelon2.database.crescendo.CrescendoPoints;
+import org.hartlandrobotics.echelon2.database.currentGame.CurrentGamePoints;
 import org.hartlandrobotics.echelon2.database.entities.MatchResult;
 import org.hartlandrobotics.echelon2.database.repositories.MatchResultRepo;
 import org.hartlandrobotics.echelon2.status.BlueAllianceStatus;
@@ -91,24 +91,27 @@ public class ChartsActivity extends EchelonActivity {
                 Map<Integer, Integer> endGameScores = new HashMap<>();
                 String key = entry.getKey();
                 int teamNumber = Integer.valueOf( entry.getKey().substring(3) );
+
+//                List<MatchResult> matchResults = entry.getValue();
                 List<MatchResult> matchResults = entry.getValue();
-                for( MatchResult matchResult : matchResults ){
-                    CrescendoPoints crescendoPoints = new CrescendoPoints(matchResult);
-                    Integer matchNumber = Integer.valueOf(matchResult.getMatchKey().replace( matchResult.getEventKey() + "_qm", ""));
+                for( MatchResult matchResultz : matchResults ){
+                    CurrentGamePoints currentGamePoints = MatchResult.toCurrentGamePoints(matchResultz);
+                    Integer matchNumber = Integer.valueOf(matchResultz.getMatchKey().replace( matchResultz.getEventKey() + "_qm", ""));
+
                     int matchAuto = 0;
-                    matchAuto += crescendoPoints.getAutoPoints();
+                    matchAuto += currentGamePoints.getAutoPoints();
                     autoScores.put(matchNumber, matchAuto);
                     autoTotal += matchAuto;
 
 
                     int matchTeleOp = 0;
-                    matchTeleOp += crescendoPoints.getTeleOpPoints();
+                    matchTeleOp += currentGamePoints.getTeleOpPoints();
                     teleOpScores.put(matchNumber, matchTeleOp);
                     teleOpTotal += matchTeleOp;
 
 
                     int matchEndGame = 0;
-                    matchEndGame += crescendoPoints.getEndPoints();
+                    matchEndGame += currentGamePoints.getEndPoints();
                     endGameTotal += matchEndGame;
                     endGameScores.put(matchNumber, matchEndGame);
 
@@ -117,7 +120,7 @@ public class ChartsActivity extends EchelonActivity {
 
                 // size is only used to calculate averages.
                 // 1 is default since it is multiplicitive identity
-                int size = matchResults.size() == 0 ? 1 : matchResults.size();
+                int size = matchResults.size();// == 0 ? 1 : matchResults.size();
                 TeamDataViewModel teamData = new TeamDataViewModel(
                         teamNumber,
                         autoTotal/size,

@@ -126,7 +126,11 @@ public class ChartAutoTrendFragment extends Fragment {
 
         ArrayList<Entry> entries = new ArrayList<>();
 
-        List<Integer> matchNumbers = teamData.getAutoScores().keySet().stream().sorted().collect(Collectors.toList());
+        List<Integer> matchNumbers = teamData.getAutoScores()
+                .keySet()
+                .stream()
+                .sorted()
+                .collect(Collectors.toList());
 
         for( Integer matchNumber : matchNumbers ){
             entries.add( new Entry(matchNumber, teamData.getAutoScores().get(matchNumber)));

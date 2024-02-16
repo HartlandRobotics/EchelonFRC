@@ -8,9 +8,7 @@ import androidx.room.Ignore;
 import androidx.room.PrimaryKey;
 
 import org.apache.commons.lang3.StringUtils;
-import org.hartlandrobotics.echelon2.database.crescendo.CrescendoCounts;
-import org.hartlandrobotics.echelon2.database.crescendo.CrescendoPoints;
-import org.hartlandrobotics.echelon2.database.currentGame.CurrentGameCounts;
+//import org.hartlandrobotics.echelon2.database.currentGame.CurrentGameCounts;
 import org.hartlandrobotics.echelon2.database.currentGame.CurrentGamePoints;
 
 import java.util.UUID;
@@ -218,12 +216,8 @@ public class MatchResult {
         this.defenseCount = defenseCount;
     }
 
-    public CurrentGamePoints toCurrentGamePoints(MatchResult matchResult){
-        return new CrescendoPoints(matchResult);
-    }
-
-    public CurrentGameCounts toCurrentGameCounts(MatchResult matchResult){
-        return new CrescendoCounts(matchResult);
+    public static CurrentGamePoints toCurrentGamePoints(MatchResult matchResult){
+        return new CurrentGamePoints(matchResult);
     }
 
 

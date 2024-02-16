@@ -15,7 +15,9 @@ import com.google.android.material.textview.MaterialTextView;
 import org.hartlandrobotics.echelon2.R;
 import org.hartlandrobotics.echelon2.configuration.AdminSettings;
 import org.hartlandrobotics.echelon2.configuration.AdminSettingsProvider;
-import org.hartlandrobotics.echelon2.database.crescendo.CrescendoResult;
+//import org.hartlandrobotics.echelon2.database.crescendo.CrescendoResult;
+//import org.hartlandrobotics.echelon2.database.entities.MatchResult;
+import org.hartlandrobotics.echelon2.database.currentGame.CurrentGamePoints;
 import org.hartlandrobotics.echelon2.database.entities.MatchResult;
 import org.hartlandrobotics.echelon2.models.MatchResultViewModel;
 import org.hartlandrobotics.echelon2.status.BlueAllianceStatus;
@@ -46,7 +48,8 @@ public class MatchScoutingTeleopActivity extends AppCompatActivity {
     private int defenseDrawable;
 
     MatchResultViewModel matchResultViewModel;
-    CrescendoResult crescendoResult;
+    CurrentGamePoints currentResult;
+    //CrescendoResult crescendoResult;
 
     String matchKey;
     String teamKey;
@@ -77,11 +80,7 @@ public class MatchScoutingTeleopActivity extends AppCompatActivity {
         matchResultViewModel = new ViewModelProvider(this).get(MatchResultViewModel.class);
         matchResultViewModel.getMatchResultByMatchTeam(matchKey, teamKey)
                 .observe(MatchScoutingTeleopActivity.this, mr->{
-                    if( mr == null ){
-                        crescendoResult = new CrescendoResult(matchResultViewModel.getDefault(blueAllianceStatus.getEventKey(), matchKey, teamKey));
-                    } else {
-                        crescendoResult = new CrescendoResult(mr);
-                    }
+                        currentResult = MatchResult.toCurrentGamePoints(matchResultViewModel.getDefault(blueAllianceStatus.getEventKey(), matchKey, teamKey));
 
                     populateControlsFromData();
                 });
@@ -89,12 +88,10 @@ public class MatchScoutingTeleopActivity extends AppCompatActivity {
 
 
     public void populateControlsFromData(){
-        defensesText.setText(String.valueOf(crescendoResult.getDefenseCount()));
-        ampSpeakerTeleOpText.setText(String.valueOf(crescendoResult.getAmpSpeakerNoteTeleOp()));
-        speakerTeleOpText.setText(String.valueOf(crescendoResult.getNeutralSpeakerNoteTeleOp()));
-        ampTeleOpText.setText(String.valueOf(crescendoResult.getAmpNoteTeleOp()));
-
-
+        defensesText.setText(String.valueOf(currentResult.getDefenseCount()));
+        ampTeleOpText.setText(String.valueOf(currentResult.getTeleOp1()));
+        speakerTeleOpText.setText(String.valueOf(currentResult.getTeleOp2()));
+        ampSpeakerTeleOpText.setText(String.valueOf(currentResult.getTeleOp3()));
 
     }
 
@@ -103,12 +100,12 @@ public class MatchScoutingTeleopActivity extends AppCompatActivity {
         defensesButton = findViewById(R.id.teleOpDefenses);
         defensesButton.setImageResource(defenseDrawable);
         defensesButton.setOnClickListener( v -> {
-            crescendoResult.setDefenseCount( crescendoResult.getDefenseCount() + 1);
+            currentResult.setDefenseCount( !currentResult.getDefenseCount());
             populateControlsFromData();
         });
         defensesSubtractButton = findViewById(R.id.subtractDefense);
         defensesSubtractButton.setOnClickListener( v -> {
-            crescendoResult.setDefenseCount(crescendoResult.getDefenseCount() - 1);
+            currentResult.setDefenseCount(!currentResult.getDefenseCount());
             populateControlsFromData();
         });
 
@@ -116,12 +113,12 @@ public class MatchScoutingTeleopActivity extends AppCompatActivity {
         ampSpeakerTeleOpText = findViewById(R.id.teleOpAmplifiedSpeakerValue);
         subtractAmpSpeakerTeleOp = findViewById(R.id.subtractAmplifiedSpeakerPointsTeleOp);
         subtractAmpSpeakerTeleOp.setOnClickListener(v->{
-            crescendoResult.setAmpSpeakerNoteTeleOp(crescendoResult.getAmpSpeakerNoteTeleOp() -1);
+            currentResult.setTeleOp3(!currentResult.getTeleOp3());
             populateControlsFromData();
         });
         ampSpeakerTeleOp.setImageResource(ampSpeakerTeleOpDrawable);
         ampSpeakerTeleOp.setOnClickListener(v -> {
-                crescendoResult.setAmpSpeakerNoteTeleOp(crescendoResult.getAmpSpeakerNoteTeleOp() +1);
+                currentResult.setTeleOp3(!currentResult.getTeleOp3());
                 populateControlsFromData();
         });
 
@@ -129,11 +126,11 @@ public class MatchScoutingTeleopActivity extends AppCompatActivity {
         speakerTeleOpText = findViewById(R.id.teleOpSpeakerValue);
         subtractSpeakerTeleOp = findViewById(R.id.subtractSpeakerPointsTeleOp);
         subtractSpeakerTeleOp.setOnClickListener(v-> {
-            crescendoResult.setNeutralSpeakerNoteTeleOp(crescendoResult.getNeutralSpeakerNoteTeleOp() - 1);
+            currentResult.setTeleOp2(!currentResult.getTeleOp2());
             populateControlsFromData();
         });
         speakerTeleOp.setOnClickListener(v -> {
-            crescendoResult.setNeutralSpeakerNoteTeleOp(crescendoResult.getNeutralSpeakerNoteTeleOp() +1);
+            currentResult.setTeleOp2(currentResult.getTeleOp2());
             populateControlsFromData();
         });
 
@@ -141,12 +138,12 @@ public class MatchScoutingTeleopActivity extends AppCompatActivity {
         ampTeleOpText = findViewById(R.id.teleOpAmpValue);
         subtractAmpTeleOp = findViewById(R.id.subtractAmpPointsTeleOp);
         subtractAmpTeleOp.setOnClickListener(v-> {
-            crescendoResult.setAmpNoteTeleOp(crescendoResult.getAmpNoteTeleOp() - 1);
+            currentResult.setTeleOp1(!currentResult.getTeleOp1());
             populateControlsFromData();
         });
         ampTeleOp.setImageResource(ampTeleOpDrawable);
         ampTeleOp.setOnClickListener(v -> {
-            crescendoResult.setAmpNoteTeleOp(crescendoResult.getAmpNoteTeleOp() +1);
+            currentResult.setTeleOp1(!currentResult.getTeleOp1());
             populateControlsFromData();
         });
 
@@ -154,7 +151,7 @@ public class MatchScoutingTeleopActivity extends AppCompatActivity {
 
         scoutingDoneButton = findViewById(R.id.endgame);
         scoutingDoneButton.setOnClickListener(v -> {
-            matchResultViewModel.upsert(crescendoResult.matchResult);
+            matchResultViewModel.upsert(currentResult.result);
             MatchScoutingEndgameActivity.launch(MatchScoutingTeleopActivity.this, matchKey, teamKey);
         });
     }

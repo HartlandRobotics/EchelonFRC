@@ -14,7 +14,9 @@ import com.google.android.material.textview.MaterialTextView;
 import org.hartlandrobotics.echelon2.R;
 import org.hartlandrobotics.echelon2.configuration.AdminSettings;
 import org.hartlandrobotics.echelon2.configuration.AdminSettingsProvider;
-import org.hartlandrobotics.echelon2.database.crescendo.CrescendoResult;
+//import org.hartlandrobotics.echelon2.database.crescendo.CrescendoResult;
+import org.hartlandrobotics.echelon2.database.currentGame.CurrentGamePoints;
+import org.hartlandrobotics.echelon2.database.entities.MatchResult;
 import org.hartlandrobotics.echelon2.models.MatchResultViewModel;
 import org.hartlandrobotics.echelon2.status.BlueAllianceStatus;
 
@@ -38,7 +40,8 @@ public class MatchScoutingAutoActivity extends AppCompatActivity {
 
 
     MatchResultViewModel matchResultViewModel;
-    CrescendoResult crescendoResult;
+    //CrescendoResult crescendoResult;
+    CurrentGamePoints currentResult;
 
     String matchKey;
     String teamKey;
@@ -73,11 +76,13 @@ public class MatchScoutingAutoActivity extends AppCompatActivity {
         matchResultViewModel = new ViewModelProvider(this).get(MatchResultViewModel.class);
         matchResultViewModel.getMatchResultByMatchTeam(matchKey, teamKey)
                 .observe(MatchScoutingAutoActivity.this, mr->{
-                    if( mr == null ){
-                        crescendoResult = new CrescendoResult(matchResultViewModel.getDefault(blueAllianceStatus.getEventKey(), matchKey, teamKey));
-                    } else {
-                        crescendoResult = new CrescendoResult(mr);
-                    }
+                    //if( mr == null ){
+                        currentResult = MatchResult.toCurrentGamePoints(mr);
+                        //crescendoResult = new CrescendoResult(matchResultViewModel.getDefault(blueAllianceStatus.getEventKey(), matchKey, teamKey));
+                    //} else {
+                     //   currentRsult =
+                      //  crescendoResult = new CrescendoResult(mr);
+                    //}
 
                     populateControlsFromData();
                 });
@@ -86,10 +91,10 @@ public class MatchScoutingAutoActivity extends AppCompatActivity {
 
     // all red text that refers from things from last year needs to be updated
     public void populateControlsFromData(){
-        speakerPoints.setText(String.valueOf(crescendoResult.getSpeakerNoteAuto()));
-        ampPoints.setText(String.valueOf(crescendoResult.getAmpNoteAuto()));
+        speakerPoints.setText(String.valueOf(currentResult.getAuto3()));
+        ampPoints.setText(String.valueOf(currentResult.getAuto2  ()));
 
-        if(crescendoResult.getLeaveLineAuto()){
+        if(currentResult.getAuto1()){
             leaveLineAuto.setImageResource(R.drawable.out_line);
         } else {
             leaveLineAuto.setImageResource(R.drawable.in_line);
@@ -104,7 +109,7 @@ public class MatchScoutingAutoActivity extends AppCompatActivity {
         leaveLineAuto = findViewById(R.id.park);
         leaveLineAuto.setImageResource(R.drawable.in_line);
         leaveLineAuto.setOnClickListener(v -> {
-            crescendoResult.setLeaveLineAuto( !crescendoResult.getLeaveLineAuto() );
+            currentResult.setAuto1( !currentResult.getAuto1() );
             populateControlsFromData();
 
         });
@@ -113,11 +118,11 @@ public class MatchScoutingAutoActivity extends AppCompatActivity {
         speakerPoints = findViewById(R.id.speakerPoints);
         subtractSpeaker = findViewById(R.id.subtractSpeakerPointsAuto);
         autoSpeaker.setOnClickListener(v -> {
-            crescendoResult.setSpeakerNoteAuto( crescendoResult.getSpeakerNoteAuto() + 1);
+            currentResult.setAuto3( !currentResult.getAuto3());
             populateControlsFromData();
         });
         subtractSpeaker.setOnClickListener(v -> {
-            crescendoResult.setSpeakerNoteAuto(Math.max(crescendoResult.getSpeakerNoteAuto()- 1,0));
+            currentResult.setAuto3(!currentResult.getAuto3());
             populateControlsFromData();
         });
 
@@ -126,17 +131,17 @@ public class MatchScoutingAutoActivity extends AppCompatActivity {
         subtractAmp = findViewById(R.id.subtractAmpPoints);
         autoAmp.setImageResource(autoAmpDrawable);
         autoAmp.setOnClickListener(v -> {
-            crescendoResult.setAmpNoteAuto( crescendoResult.getAmpNoteAuto() + 1);
+            currentResult.setAuto2( !currentResult.getAuto2() );
             populateControlsFromData();
         });
         subtractAmp.setOnClickListener(v -> {
-            crescendoResult.setAmpNoteAuto(Math.max(crescendoResult.getAmpNoteAuto()- 1,0));
+            currentResult.setAuto2(currentResult.getAuto2());
             populateControlsFromData();
         });
 
         MaterialButton teleOpButton = findViewById(R.id.teleOp);
         teleOpButton.setOnClickListener(v -> {
-            matchResultViewModel.upsert(crescendoResult.matchResult);
+            matchResultViewModel.upsert(currentResult.result);
             MatchScoutingTeleopActivity.launch(MatchScoutingAutoActivity.this, matchKey, teamKey );
         });
     }

@@ -15,8 +15,9 @@ import com.google.android.material.textview.MaterialTextView;
 import org.hartlandrobotics.echelon2.R;
 import org.hartlandrobotics.echelon2.configuration.AdminSettings;
 import org.hartlandrobotics.echelon2.configuration.AdminSettingsProvider;
-import org.hartlandrobotics.echelon2.database.crescendo.CrescendoResult;
-import org.hartlandrobotics.echelon2.database.entities.MatchResult;
+//import org.hartlandrobotics.echelon2.database.crescendo.CrescendoResult;
+//import org.hartlandrobotics.echelon2.database.entities.MatchResult;
+import org.hartlandrobotics.echelon2.database.currentGame.CurrentGamePoints;
 import org.hartlandrobotics.echelon2.models.MatchResultViewModel;
 import org.hartlandrobotics.echelon2.status.BlueAllianceStatus;
 
@@ -42,7 +43,7 @@ public class MatchScoutingEndgameActivity extends AppCompatActivity {
     private int harmonyButtonDrawable;
 
     MatchResultViewModel matchResultViewModel;
-    CrescendoResult crescendoResult;
+    CurrentGamePoints currentResult;
 
     String matchKey;
     String teamKey;
@@ -73,21 +74,16 @@ public class MatchScoutingEndgameActivity extends AppCompatActivity {
         matchResultViewModel = new ViewModelProvider(this).get(MatchResultViewModel.class);
         matchResultViewModel.getMatchResultByMatchTeam(matchKey, teamKey)
                 .observe(MatchScoutingEndgameActivity.this, mr->{
-                    if( mr == null ){
-                        crescendoResult = new CrescendoResult(matchResultViewModel.getDefault(blueAllianceStatus.getEventKey(), matchKey, teamKey));
-                    } else {
-                        crescendoResult = new CrescendoResult(mr);
-                    }
-
+                        currentResult = new CurrentGamePoints(matchResultViewModel.getDefault(blueAllianceStatus.getEventKey(), matchKey, teamKey));
                     populateControlsFromData();
                 });
     }
 
 
     public void populateControlsFromData(){
-        spotlightValueText.setText(String.valueOf(crescendoResult.getEndSpotlight()));
+        spotlightValueText.setText(String.valueOf(currentResult.getEnd3()));
 
-        if( crescendoResult.getEndParked()){
+        if( currentResult.getEnd1()){
             parkButtonDrawable = R.drawable.center_yes;
         }
         else{
@@ -95,7 +91,7 @@ public class MatchScoutingEndgameActivity extends AppCompatActivity {
         }
         parkButton.setImageResource(parkButtonDrawable);
 
-        if( crescendoResult.getEndOnstage()){
+        if( currentResult.getEnd2()){
             onstageButtonDrawable = R.drawable.stage_yes;
         }
         else{
@@ -103,7 +99,7 @@ public class MatchScoutingEndgameActivity extends AppCompatActivity {
         }
         onstageButton.setImageResource(onstageButtonDrawable);
 
-        if(crescendoResult.getEndTrapNote()){
+        if(currentResult.getEnd5()){
             trapButtonDrawable = R.drawable.trap_yes;
         }
         else {
@@ -111,7 +107,7 @@ public class MatchScoutingEndgameActivity extends AppCompatActivity {
         }
         trapButton.setImageResource(trapButtonDrawable);
 
-        if(crescendoResult.getEndHarmony()){
+        if(currentResult.getEnd4()){
             harmonyButtonDrawable = R.drawable.harmony_yes;
         }
         else {
@@ -126,39 +122,39 @@ public class MatchScoutingEndgameActivity extends AppCompatActivity {
         parkButton = findViewById(R.id.centerPark);
         parkButton.setImageResource(parkButtonDrawable);
         parkButton.setOnClickListener( v -> {
-            crescendoResult.setEndParked( !crescendoResult.getEndParked());
+            currentResult.setEnd1( !currentResult.getEnd1());
             populateControlsFromData();
         });
 
         onstageButton = findViewById(R.id.centerStage);
         onstageButton.setImageResource(onstageButtonDrawable);
         onstageButton.setOnClickListener(v -> {
-                crescendoResult.setEndOnstage( !crescendoResult.getEndOnstage());
+                currentResult.setEnd2( !currentResult.getEnd2());
                 populateControlsFromData();
         });
 
         trapButton = findViewById(R.id.trapButton);
         trapButton.setImageResource(trapButtonDrawable);
         trapButton.setOnClickListener(v -> {
-            crescendoResult.setEndTrapNote( !crescendoResult.getEndTrapNote());
+            currentResult.setEnd5( !currentResult.getEnd5());
             populateControlsFromData();
         });
 
         harmonyButton = findViewById(R.id.harmonyButton);
         harmonyButton.setImageResource(harmonyButtonDrawable);
         harmonyButton.setOnClickListener(v -> {
-            crescendoResult.setEndHarmony( !crescendoResult.getEndHarmony());
+            currentResult.setEnd4( !currentResult.getEnd4());
             populateControlsFromData();
         });
 
         spotlightButton = findViewById(R.id.spotlightButton);
         spotlightButton.setOnClickListener(v -> {
-            crescendoResult.setEndSpotlight(crescendoResult.getEndSpotlight()+1);
+            currentResult.setEnd3(!currentResult.getEnd3());
             populateControlsFromData();
         });
         subtractSpotlightButton = findViewById(R.id.subtractSpotlight);
         subtractSpotlightButton.setOnClickListener(v -> {
-            crescendoResult.setEndSpotlight(Math.max(crescendoResult.getEndSpotlight()-1,0));
+            currentResult.setEnd3(currentResult.getEnd3());
             populateControlsFromData();
         });
 
@@ -166,7 +162,7 @@ public class MatchScoutingEndgameActivity extends AppCompatActivity {
 
         scoutingDoneButton = findViewById(R.id.summary);
         scoutingDoneButton.setOnClickListener(v -> {
-            matchResultViewModel.upsert(crescendoResult.matchResult);
+            matchResultViewModel.upsert(currentResult.result);
             MatchScoutingSummaryActivity.launch(MatchScoutingEndgameActivity.this, matchKey, teamKey);
         });
     }
