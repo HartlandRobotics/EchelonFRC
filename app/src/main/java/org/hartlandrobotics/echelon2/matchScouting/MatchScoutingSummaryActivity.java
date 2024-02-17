@@ -19,7 +19,6 @@ import com.google.android.material.textview.MaterialTextView;
 import org.hartlandrobotics.echelon2.R;
 //import org.hartlandrobotics.echelon2.database.crescendo.CrescendoResult;
 import org.hartlandrobotics.echelon2.database.currentGame.CurrentGamePoints;
-import org.hartlandrobotics.echelon2.database.entities.MatchResult;
 import org.hartlandrobotics.echelon2.models.MatchResultViewModel;
 import org.hartlandrobotics.echelon2.status.BlueAllianceStatus;
 
@@ -118,31 +117,31 @@ public class MatchScoutingSummaryActivity extends AppCompatActivity {
     private void setupControls(){
         leaveLineAuto = findViewById(R.id.autoParkCheckbox);
         leaveLineAuto.setOnCheckedChangeListener((buttonView, isChecked) -> {
-            currentResult.setAuto1(isChecked);
+            currentResult.result.setAutoFlag1(isChecked);
             populateControlsFromData();
         });
 
         ampNoteAutoValue = findViewById(R.id.autoAmpValue);
         ampNoteAutoDecrement = findViewById(R.id.autoAmpDecrement);
         ampNoteAutoDecrement.setOnClickListener(v -> {
-            currentResult.setAuto2(!currentResult.getAuto2());
+            currentResult.result.setAutoInt2(Math.max(currentResult.getAuto2Counts() - 1, 0));
                 populateControlsFromData();
                 });
         ampNoteAutoIncrement = findViewById(R.id.autoAmpIncrement);
         ampNoteAutoIncrement.setOnClickListener(v -> {
-            currentResult.setAuto2( !currentResult.getAuto2());
+            currentResult.result.setAutoInt2( Math.max(currentResult.getAuto2Counts() + 1, 0));
             populateControlsFromData();
         });
 
         speakerNoteAutoValue = findViewById(R.id.autoSpeakerValue);
         speakerNoteAutoDecrement = findViewById(R.id.autoSpeakerDecrement);
         speakerNoteAutoDecrement.setOnClickListener(v -> {
-            currentResult.setAuto3(!currentResult.getAuto3());
+            currentResult.result.setAutoInt3(Math.max(currentResult.getAuto3Counts() - 1, 0));
             populateControlsFromData();
         });
         speakerNoteAutoIncrement = findViewById(R.id.autoSpeakerIncrement);
         speakerNoteAutoIncrement.setOnClickListener(v -> {
-            currentResult.setAuto3( !currentResult.getAuto3());
+            currentResult.result.setAutoInt3( Math.max(currentResult.getAuto3Counts() + 1, 0));
             populateControlsFromData();
         });
 
@@ -264,9 +263,9 @@ public class MatchScoutingSummaryActivity extends AppCompatActivity {
     private void populateControlsFromData() {
         if( currentResult == null ) return;
 
-        leaveLineAuto.setChecked( currentResult.getAuto1() );
-        ampNoteAutoValue.setText( String.valueOf( currentResult.getAuto2() ));
-        speakerNoteAutoValue.setText( String.valueOf( currentResult.getAuto3() ));
+        leaveLineAuto.setChecked( currentResult.getAuto1Counts() >0 );
+        ampNoteAutoValue.setText( String.valueOf( currentResult.getAuto2Counts() ));
+        speakerNoteAutoValue.setText( String.valueOf( currentResult.getAuto3Counts() ));
 
         ampNoteTeleOpValue.setText( String.valueOf(currentResult.getTeleOp1()));
         neutralSpeakerNoteTeleOpValue.setText( String.valueOf(currentResult.getTeleOp2()));

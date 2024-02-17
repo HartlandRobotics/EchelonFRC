@@ -35,14 +35,14 @@ public class MatchResult {
     @ColumnInfo(name = "has_been_synced")
     private boolean hasBeenSynced;
 
-    @ColumnInfo(name="auto_1")
-    private String auto1;
+    @ColumnInfo(name="auto_flag_1")
+    private boolean autoFlag1;
 
-    @ColumnInfo(name = "auto_2")
-    private String auto2;
+    @ColumnInfo(name = "auto_int_2")
+    private int autoInt2;
 
-    @ColumnInfo( name = "auto_3")
-    private String auto3;
+    @ColumnInfo( name = "auto_int_3")
+    private int autoInt3;
 
     @ColumnInfo( name = "auto_4")
     private String auto4;
@@ -95,9 +95,9 @@ public class MatchResult {
             @NonNull String matchKey,
             @NonNull String teamKey,
             boolean hasBeenSynced,
-            @NonNull String auto1,
-            @NonNull String auto2,
-            @NonNull String auto3,
+            boolean autoFlag1,
+            int autoInt2,
+            int autoInt3,
             @NonNull String auto4,
             @NonNull String auto5,
             @NonNull String teleOp1,
@@ -119,9 +119,9 @@ public class MatchResult {
         this.matchKey = matchKey;
         this.teamKey = teamKey;
         this.hasBeenSynced = hasBeenSynced;
-        this.auto1 = auto1;
-        this.auto2 = auto2;
-        this.auto3 = auto3;
+        this.autoFlag1 = autoFlag1;
+        this.autoInt2 = autoInt2;
+        this.autoInt3 = autoInt3;
         this.auto4 = auto4;
         this.auto5 = auto5;
         this.teleOp1 = teleOp1;
@@ -161,14 +161,14 @@ public class MatchResult {
         this.hasBeenSynced = hasBeenSynced;
     }
 
-    public String getAuto1(){ return auto1; }
-    public void setAuto1(String auto1){ this.auto1 = auto1; }
+    public boolean getAutoFlag1(){ return autoFlag1; }
+    public void setAutoFlag1(boolean autoFlag1){ this.autoFlag1 = autoFlag1; }
 
-    public String getAuto2(){ return auto2; }
-    public void setAuto2(String auto2){ this.auto2 = auto2; }
+    public int getAutoInt2(){ return autoInt2; }
+    public void setAutoInt2(int autoInt2){ this.autoInt2 = autoInt2; }
 
-    public String getAuto3(){ return auto3; }
-    public void setAuto3(String auto3){ this.auto3 = auto3; }
+    public int getAutoInt3(){ return autoInt3; }
+    public void setAutoInt3(int autoInt3){ this.autoInt3 = autoInt3; }
 
     public String getAuto4(){ return auto4; }
     public void setAuto4(String auto4){ this.auto4 = auto4; }

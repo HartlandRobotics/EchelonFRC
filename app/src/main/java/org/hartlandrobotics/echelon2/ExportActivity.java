@@ -9,11 +9,9 @@ import android.util.Log;
 import android.widget.Button;
 import android.widget.Toast;
 
-import androidx.annotation.NonNull;
 import androidx.annotation.RequiresApi;
 import androidx.lifecycle.ViewModelProvider;
 
-import org.apache.commons.lang3.StringUtils;
 //import org.hartlandrobotics.echelon2.database.currentGame.CurrentGameCounts;
 import org.hartlandrobotics.echelon2.database.entities.Match;
 import org.hartlandrobotics.echelon2.database.entities.MatchResult;
@@ -85,7 +83,7 @@ public class ExportActivity extends EchelonActivity {
             matchResultViewModel.getMatchResultsWithTeamMatchByEvent(status.getEventKey()).observe(this, matchResults -> {
                 try {
                     FileOutputStream outputStream = new FileOutputStream(file);
-                    String header = "Event_Key,Match_Key,Team_Key,Match_Number,Team_Number,  Auto1 ,Auto2, Auto3, Auto4, Auto5"
+                    String header = "Event_Key,Match_Key,Team_Key,Match_Number,Team_Number,Auto1 ,Auto2, Auto3, Auto4, Auto5"
                             + ",TeleOp1,TeleOp2,TeleOp3, TeleOp4, TeleOp5, Teleop_Defenses"
                             + ",End1,End2,End3,End4, End5"
                             + ",Match_Result_Key\n";
@@ -101,9 +99,9 @@ public class ExportActivity extends EchelonActivity {
                         dataForFile.add(mr.getTeamKey());
                         dataForFile.add(String.valueOf(m.getMatchNumber()));
                         dataForFile.add(String.valueOf(t.getTeamNumber()));
-                        dataForFile.add(String.valueOf(mr.getAuto1()));
-                        dataForFile.add(String.valueOf(mr.getAuto2()));
-                        dataForFile.add(String.valueOf(mr.getAuto3()));
+                        dataForFile.add(String.valueOf(mr.getAutoFlag1()));
+                        dataForFile.add(String.valueOf(mr.getAutoInt2()));
+                        dataForFile.add(String.valueOf(mr.getAutoInt3()));
                         dataForFile.add(String.valueOf(mr.getAuto4()));
                         dataForFile.add(String.valueOf(mr.getAuto5()));
 
@@ -230,9 +228,9 @@ public class ExportActivity extends EchelonActivity {
                     matchKey,
                     teamKey,
                     false,
-                    Auto1,
-                    Auto2,
-                    Auto3,
+                    Auto1.equalsIgnoreCase("true"),
+                    Integer.parseInt(Auto2),
+                    Integer.parseInt(Auto3),
                     Auto4,
                     Auto5,
                     TeleOp1,

@@ -76,25 +76,22 @@ public class MatchScoutingAutoActivity extends AppCompatActivity {
         matchResultViewModel = new ViewModelProvider(this).get(MatchResultViewModel.class);
         matchResultViewModel.getMatchResultByMatchTeam(matchKey, teamKey)
                 .observe(MatchScoutingAutoActivity.this, mr->{
-                    //if( mr == null ){
-                        currentResult = MatchResult.toCurrentGamePoints(mr);
-                        //crescendoResult = new CrescendoResult(matchResultViewModel.getDefault(blueAllianceStatus.getEventKey(), matchKey, teamKey));
-                    //} else {
-                     //   currentRsult =
-                      //  crescendoResult = new CrescendoResult(mr);
-                    //}
+                    if( mr == null ){
+                        mr = matchResultViewModel.getDefault(blueAllianceStatus.getEventKey(), matchKey, teamKey);
+                    }
+                    currentResult = MatchResult.toCurrentGamePoints(mr);
+                        populateControlsFromData();
 
-                    populateControlsFromData();
                 });
     }
 
 
     // all red text that refers from things from last year needs to be updated
     public void populateControlsFromData(){
-        speakerPoints.setText(String.valueOf(currentResult.getAuto3()));
-        ampPoints.setText(String.valueOf(currentResult.getAuto2  ()));
+        speakerPoints.setText(String.valueOf(currentResult.getAuto3Counts()));
+        ampPoints.setText(String.valueOf(currentResult.getAuto2Counts()));
 
-        if(currentResult.getAuto1()){
+        if(currentResult.getAuto1Counts() > 0){
             leaveLineAuto.setImageResource(R.drawable.out_line);
         } else {
             leaveLineAuto.setImageResource(R.drawable.in_line);
@@ -109,7 +106,7 @@ public class MatchScoutingAutoActivity extends AppCompatActivity {
         leaveLineAuto = findViewById(R.id.park);
         leaveLineAuto.setImageResource(R.drawable.in_line);
         leaveLineAuto.setOnClickListener(v -> {
-            currentResult.setAuto1( !currentResult.getAuto1() );
+            currentResult.result.setAutoFlag1( !(currentResult.getAuto1Counts() > 0 ));
             populateControlsFromData();
 
         });
@@ -118,11 +115,11 @@ public class MatchScoutingAutoActivity extends AppCompatActivity {
         speakerPoints = findViewById(R.id.speakerPoints);
         subtractSpeaker = findViewById(R.id.subtractSpeakerPointsAuto);
         autoSpeaker.setOnClickListener(v -> {
-            currentResult.setAuto3( !currentResult.getAuto3());
+            currentResult.result.setAutoInt3( Math.max(currentResult.getAuto3Counts() + 1, 0));
             populateControlsFromData();
         });
         subtractSpeaker.setOnClickListener(v -> {
-            currentResult.setAuto3(!currentResult.getAuto3());
+            currentResult.result.setAutoInt3(Math.max(currentResult.getAuto3Counts() - 1, 0));
             populateControlsFromData();
         });
 
@@ -131,11 +128,11 @@ public class MatchScoutingAutoActivity extends AppCompatActivity {
         subtractAmp = findViewById(R.id.subtractAmpPoints);
         autoAmp.setImageResource(autoAmpDrawable);
         autoAmp.setOnClickListener(v -> {
-            currentResult.setAuto2( !currentResult.getAuto2() );
+            currentResult.result.setAutoInt2( Math.max(currentResult.getAuto2Counts() + 1, 0) );
             populateControlsFromData();
         });
         subtractAmp.setOnClickListener(v -> {
-            currentResult.setAuto2(currentResult.getAuto2());
+            currentResult.result.setAutoInt2(Math.max(currentResult.getAuto2Counts() - 1, 0));
             populateControlsFromData();
         });
 
