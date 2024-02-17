@@ -184,38 +184,38 @@ public class MatchScoutingSummaryActivity extends AppCompatActivity {
 
         endPark = findViewById(R.id.endParkCheckbox);
         endPark.setOnCheckedChangeListener((buttonView, isChecked) -> {
-            currentResult.setEnd1(isChecked);
+            currentResult.result.setEndFlag1(isChecked);
             populateControlsFromData();
         });
 
         endOnstage = findViewById(R.id.endOnstageCheckbox);
         endOnstage.setOnCheckedChangeListener((buttonView, isChecked) -> {
-            currentResult.setEnd2(isChecked);
+            currentResult.result.setEndFlag2(isChecked);
             populateControlsFromData();
         });
 
         endSpotlightValue = findViewById(R.id.endSpotlightValue);
         endSpotlightDecrement = findViewById(R.id.endSpotlightDecrement);
         endSpotlightDecrement.setOnClickListener(v -> {
-            currentResult.setEnd3(!currentResult.getEnd3());
+            currentResult.result.setEndFlag3(Math.max(currentResult.getEndFlag3Counts() -1,0));
             populateControlsFromData();
         });
 
         endSpotlightIncrement = findViewById(R.id.endSpotlightIncrement);
         endSpotlightIncrement.setOnClickListener(v -> {
-            currentResult.setEnd3( !currentResult.getEnd3());
+            currentResult.result.setEndFlag3( Math.max(currentResult.getEndFlag3Counts() + 1, 0));
             populateControlsFromData();
         });
 
         endHarmony = findViewById(R.id.harmonyCheckbox);
         endHarmony.setOnCheckedChangeListener((buttonView, isChecked) -> {
-            currentResult.setEnd4(isChecked);
+            currentResult.result.setEndFlag4(isChecked);
             populateControlsFromData();
         });
 
         endTrapNote = findViewById(R.id.trapCheckbox);
         endTrapNote.setOnCheckedChangeListener((buttonView, isChecked) -> {
-            currentResult.setEnd5(isChecked);
+            currentResult.result.setEndFlag5(isChecked);
             populateControlsFromData();
         });
 
@@ -274,11 +274,11 @@ public class MatchScoutingSummaryActivity extends AppCompatActivity {
 
         teleOpDefensesValue.setText( String.valueOf( currentResult.getDefenseCount() ));
 
-        endPark.setChecked(currentResult.getEnd1());
-        endOnstage.setChecked(currentResult.getEnd2());
-        endSpotlightValue.setText( String.valueOf(currentResult.getEnd3()));
-        endHarmony.setChecked(currentResult.getEnd4());
-       endTrapNote.setChecked(currentResult.getEnd5());
+        endPark.setChecked(currentResult.result.getEndFlag1());
+        endOnstage.setChecked(currentResult.result.getEndFlag2());
+        endSpotlightValue.setText( String.valueOf(currentResult.getEndFlag3Counts()));
+        endHarmony.setChecked(currentResult.result.getEndFlag4());
+       endTrapNote.setChecked(currentResult.result.getEndFlag5());
 
 
         additionalNotesLayout.getEditText().setText(currentResult.result.getAdditionalNotes());

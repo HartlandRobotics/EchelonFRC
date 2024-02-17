@@ -43,11 +43,11 @@ public class MatchResultViewModel extends AndroidViewModel {
                 0,
                 null,
                 null,
-                null,
-                null,
-                null,
-                null,
-                null,
+                false,
+                false,
+                0,
+                false,
+                false,
                 StringUtils.EMPTY,
                 0
         );

@@ -81,9 +81,9 @@ public class MatchScoutingEndgameActivity extends AppCompatActivity {
 
 
     public void populateControlsFromData(){
-        spotlightValueText.setText(String.valueOf(currentResult.getEnd3()));
+        spotlightValueText.setText(String.valueOf(currentResult.getEndFlag3Counts()));
 
-        if( currentResult.getEnd1()){
+        if( currentResult.result.getEndFlag1()){
             parkButtonDrawable = R.drawable.center_yes;
         }
         else{
@@ -91,7 +91,7 @@ public class MatchScoutingEndgameActivity extends AppCompatActivity {
         }
         parkButton.setImageResource(parkButtonDrawable);
 
-        if( currentResult.getEnd2()){
+        if( currentResult.result.getEndFlag2()){
             onstageButtonDrawable = R.drawable.stage_yes;
         }
         else{
@@ -99,7 +99,7 @@ public class MatchScoutingEndgameActivity extends AppCompatActivity {
         }
         onstageButton.setImageResource(onstageButtonDrawable);
 
-        if(currentResult.getEnd5()){
+        if(currentResult.result.getEndFlag5()){
             trapButtonDrawable = R.drawable.trap_yes;
         }
         else {
@@ -107,7 +107,7 @@ public class MatchScoutingEndgameActivity extends AppCompatActivity {
         }
         trapButton.setImageResource(trapButtonDrawable);
 
-        if(currentResult.getEnd4()){
+        if(currentResult.getEndFlag4Counts()>0){
             harmonyButtonDrawable = R.drawable.harmony_yes;
         }
         else {
@@ -122,39 +122,39 @@ public class MatchScoutingEndgameActivity extends AppCompatActivity {
         parkButton = findViewById(R.id.centerPark);
         parkButton.setImageResource(parkButtonDrawable);
         parkButton.setOnClickListener( v -> {
-            currentResult.setEnd1( !currentResult.getEnd1());
+            currentResult.result.setEndFlag1( !(currentResult.getEndFlag1Counts() > 0 ));
             populateControlsFromData();
         });
 
         onstageButton = findViewById(R.id.centerStage);
         onstageButton.setImageResource(onstageButtonDrawable);
         onstageButton.setOnClickListener(v -> {
-                currentResult.setEnd2( !currentResult.getEnd2());
+            currentResult.result.setEndFlag2( !(currentResult.getEndFlag2Counts() > 0 ));
                 populateControlsFromData();
         });
 
         trapButton = findViewById(R.id.trapButton);
         trapButton.setImageResource(trapButtonDrawable);
         trapButton.setOnClickListener(v -> {
-            currentResult.setEnd5( !currentResult.getEnd5());
+            currentResult.result.setEndFlag5( !(currentResult.getEndFlag5Counts() > 0 ));
             populateControlsFromData();
         });
 
         harmonyButton = findViewById(R.id.harmonyButton);
         harmonyButton.setImageResource(harmonyButtonDrawable);
         harmonyButton.setOnClickListener(v -> {
-            currentResult.setEnd4( !currentResult.getEnd4());
+            currentResult.result.setEndFlag4( !(currentResult.getEndFlag4Counts() > 0 ));
             populateControlsFromData();
         });
 
         spotlightButton = findViewById(R.id.spotlightButton);
         spotlightButton.setOnClickListener(v -> {
-            currentResult.setEnd3(!currentResult.getEnd3());
+            currentResult.result.setEndFlag3( Math.max(currentResult.getEndFlag3Counts() + 1, 0) );
             populateControlsFromData();
         });
         subtractSpotlightButton = findViewById(R.id.subtractSpotlight);
         subtractSpotlightButton.setOnClickListener(v -> {
-            currentResult.setEnd3(currentResult.getEnd3());
+            currentResult.result.setEndFlag3( Math.max(currentResult.getEndFlag3Counts() - 1, 0) );
             populateControlsFromData();
         });
 

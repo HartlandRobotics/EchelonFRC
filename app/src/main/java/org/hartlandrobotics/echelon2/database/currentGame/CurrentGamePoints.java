@@ -150,62 +150,61 @@ public class CurrentGamePoints {
     public int getEndPoints() {
 
         int endPoints = 0;
-        endPoints += result.getEnd1() == null ? 0 : 1;
-        endPoints += result.getEnd2() == null ? 0 : 3;
-        endPoints += result.getEnd3() == null ? 0 : 1;
-        endPoints += result.getEnd4() == null ? 0 : 2;
-        endPoints += result.getEnd1() == null ? 0 : 5;
+        endPoints += this.getEndFlag1Points();
+        endPoints += this.getEndFlag2Points();
+        endPoints += this.getEndFlag3Points();
+        endPoints += this.getEndFlag4Points();
+        endPoints += this.getEndFlag5Points();
         return endPoints;
     }
 
     public int getEndCounts() {
         int endCounts = 0;
-        endCounts += result.getEnd1() == null ? 0 : 1;
-        endCounts += result.getEnd2() == null ? 0 : 1;
-        endCounts += result.getEnd3() == null ? 0 : 1;
-        endCounts += result.getEnd4() == null ? 0 : 1;
-        endCounts += result.getEnd5() == null ? 0 : 1;
+        endCounts += this.getEndFlag1Counts();
+        endCounts += this.getEndFlag2Counts();
+        endCounts += this.getEndFlag3Counts();
+        endCounts += this.getEndFlag4Counts();
+        endCounts += this.getEndFlag5Counts();
         return endCounts;
     }
 
-    public boolean getEnd1(){
-        return result.getEnd1() == null ? Boolean.FALSE:Boolean.TRUE;
+    public int getEndFlag1Points(){
+        return result.getEndFlag1() ? 1:0;
     }
 
-    public void setEnd1(boolean isSet){
-        result.setEnd1(result.getEnd1() == null ? null : new Date().toString());
+    public int getEndFlag1Counts(){
+        return result.getEndFlag1() ? 1:0;
     }
 
-    public boolean getEnd2(){
-        return result.getEnd2() == null ? Boolean.FALSE:Boolean.TRUE;
+    public int getEndFlag2Points(){
+        return result.getEndFlag2() ? 3:0;
     }
 
-    public void setEnd2(boolean isSet){
-        result.setEnd2(result.getEnd2() == null ? null : new Date().toString());
+    public int getEndFlag2Counts(){
+        return result.getEndFlag2() ? 1:0;
     }
 
-    public boolean getEnd3(){
-        return result.getEnd3() == null ? Boolean.FALSE:Boolean.TRUE;
+    public int getEndFlag3Points(){
+        return result.getEndFlag3();
     }
 
-    public void setEnd3(boolean isSet){
-        result.setEnd3(result.getEnd3() == null ? null : new Date().toString());
+    public int getEndFlag3Counts(){
+        return result.getEndFlag3();
     }
 
-    public boolean getEnd4(){
-        return result.getEnd4() == null ? Boolean.FALSE:Boolean.TRUE;
+    public int getEndFlag4Points(){
+        return result.getEndFlag4()?2:0;
     }
 
-    public void setEnd4(boolean isSet){
-        result.setEnd4(result.getEnd4() == null ? null : new Date().toString());
+    public int getEndFlag4Counts(){
+        return result.getEndFlag4()? 1:0;
+    }
+    public int getEndFlag5Points(){
+        return result.getEndFlag5()?5:0;
     }
 
-    public boolean getEnd5(){
-        return result.getEnd5() == null ? Boolean.FALSE:Boolean.TRUE;
-    }
-
-    public void setEnd5(boolean isSet){
-        result.setEnd5(result.getEnd5() == null ? null : new Date().toString());
+    public int getEndFlag5Counts(){
+        return result.getEndFlag5()? 1:0;
     }
 
 

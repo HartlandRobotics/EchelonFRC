@@ -65,20 +65,20 @@ public class MatchResult {
     @ColumnInfo( name = "teleop_5")
     private String teleOp5;
 
-    @ColumnInfo( name = "end_1")
-    private String end1;
+    @ColumnInfo( name = "end_flag_1")
+    private boolean endFlag1;
 
-    @ColumnInfo(name = "end_2")
-    private String end2;
+    @ColumnInfo(name = "end_flag_2")
+    private boolean endFlag2;
 
-    @ColumnInfo(name = "end_3")
-    private String end3;
+    @ColumnInfo(name = "end_flag_3")
+    private int endFlag3;
 
-        @ColumnInfo(name = "end_4")
-    private String end4;
+    @ColumnInfo(name = "end_flag_4")
+    private boolean endFlag4;
 
-    @ColumnInfo(name = "end_5")
-    private String end5;
+    @ColumnInfo(name = "end_flag_5")
+    private boolean endFlag5;
 
     @ColumnInfo(name = "additional_notes")
     private String additionalNotes;
@@ -105,11 +105,11 @@ public class MatchResult {
             int teleOpInt3,
             @NonNull String teleOp4,
             @NonNull String teleOp5,
-            @NonNull String end1,
-            @NonNull String end2,
-            @NonNull String end3,
-            @NonNull String end4,
-            @NonNull String end5,
+            boolean endFlag1,
+            boolean endFlag2,
+            int endFlag3,
+            boolean endFlag4,
+            boolean endFlag5,
             String additionalNotes,
             int defenseCount
     ) {
@@ -129,11 +129,11 @@ public class MatchResult {
         this.teleOpInt3 = teleOpInt3;
         this.teleOp4 = teleOp4;
         this.teleOp5 = teleOp5;
-        this.end1 = end1;
-        this.end2 = end2;
-        this.end3 = end3;
-        this.end4 = end4;
-        this.end5 = end5;
+        this.endFlag1 = endFlag1;
+        this.endFlag2 = endFlag2;
+        this.endFlag3 = endFlag3;
+        this.endFlag4 = endFlag4;
+        this.endFlag5 = endFlag5;
         this.additionalNotes = additionalNotes;
         this.defenseCount = defenseCount;
     }
@@ -191,20 +191,20 @@ public class MatchResult {
     public String getTeleOp5(){ return teleOp5; }
     public void setTeleOp5(String teleOp5){ this.teleOp5 = teleOp5; }
 
-    public String getEnd1(){ return end1; }
-    public void setEnd1(String end1){ this.end1 = end1; }
+    public boolean getEndFlag1(){ return endFlag1; }
+    public void setEndFlag1(boolean endFlag1){ this.endFlag1 = endFlag1; }
 
-    public String getEnd2(){ return end2; }
-    public void setEnd2(String end2){ this.end2 = end2; }
+    public boolean getEndFlag2(){ return endFlag2; }
+    public void setEndFlag2(boolean endFlag2){ this.endFlag2 = endFlag2; }
 
-    public String getEnd3(){ return end3; }
-    public void setEnd3(String end3){ this.end3 = end3; }
+    public int getEndFlag3(){ return endFlag3; }
+    public void setEndFlag3(int endFlag3){ this.endFlag3 = endFlag3; }
 
-    public String getEnd4(){ return end4; }
-    public void setEnd4(String end4){ this.end4 = end4; }
+    public boolean getEndFlag4(){ return endFlag4; }
+    public void setEndFlag4(boolean endFlag4){ this.endFlag4 = endFlag4; }
 
-    public String getEnd5(){ return end5; }
-    public void setEnd5(String end5){ this.end5 = end5; }
+    public boolean getEndFlag5(){ return endFlag5; }
+    public void setEndFlag5(boolean endFlag5){ this.endFlag5 = endFlag5; }
 
     public String getAdditionalNotes(){ return additionalNotes; }
     public void setAdditionalNotes( String additionalNotes ){

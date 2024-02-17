@@ -112,11 +112,11 @@ public class ExportActivity extends EchelonActivity {
                         dataForFile.add(String.valueOf(mr.getTeleOp5()));
                         dataForFile.add(String.valueOf(mr.getDefenseCount()));
 
-                        dataForFile.add(String.valueOf(mr.getEnd1()));
-                        dataForFile.add(String.valueOf(mr.getEnd2()));
-                        dataForFile.add(String.valueOf(mr.getEnd3()));
-                        dataForFile.add(String.valueOf(mr.getEnd4()));
-                        dataForFile.add(String.valueOf(mr.getEnd5()));
+                        dataForFile.add(String.valueOf(mr.getEndFlag1()));
+                        dataForFile.add(String.valueOf(mr.getEndFlag2()));
+                        dataForFile.add(String.valueOf(mr.getEndFlag3()));
+                        dataForFile.add(String.valueOf(mr.getEndFlag4()));
+                        dataForFile.add(String.valueOf(mr.getEndFlag5()));
                         dataForFile.add(mr.getMatchResultKey());
                         String outputString = dataForFile.stream().collect(Collectors.joining(",")) + "\n";
                         outputStream.write(outputString.getBytes());
@@ -238,11 +238,11 @@ public class ExportActivity extends EchelonActivity {
                     Integer.parseInt(TeleOp3),
                     TeleOp4,
                     TeleOp5,
-                    End1,
-                    End2,
-                    End3,
-                    End4,
-                    End5,
+                    End1.equalsIgnoreCase("true"),
+                    End2.equalsIgnoreCase("true"),
+                    Integer.parseInt(End3),
+                    End4.equalsIgnoreCase("true"),
+                    End5.equalsIgnoreCase("true"),
                     null,
                     Integer.parseInt(teleDef)
                  );
