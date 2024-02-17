@@ -105,9 +105,9 @@ public class ExportActivity extends EchelonActivity {
                         dataForFile.add(String.valueOf(mr.getAuto4()));
                         dataForFile.add(String.valueOf(mr.getAuto5()));
 
-                        dataForFile.add(String.valueOf(mr.getTeleOp1()));
-                        dataForFile.add(String.valueOf(mr.getTeleOp2()));
-                        dataForFile.add(String.valueOf(mr.getTeleOp3()));
+                        dataForFile.add(String.valueOf(mr.getTeleOpInt1()));
+                        dataForFile.add(String.valueOf(mr.getTeleOpInt2()));
+                        dataForFile.add(String.valueOf(mr.getTeleOpInt3()));
                         dataForFile.add(String.valueOf(mr.getTeleOp4()));
                         dataForFile.add(String.valueOf(mr.getTeleOp5()));
                         dataForFile.add(String.valueOf(mr.getDefenseCount()));
@@ -233,9 +233,9 @@ public class ExportActivity extends EchelonActivity {
                     Integer.parseInt(Auto3),
                     Auto4,
                     Auto5,
-                    TeleOp1,
-                    TeleOp2,
-                    TeleOp3,
+                    Integer.parseInt(TeleOp1),
+                    Integer.parseInt(TeleOp2),
+                    Integer.parseInt(TeleOp3),
                     TeleOp4,
                     TeleOp5,
                     End1,
@@ -244,7 +244,7 @@ public class ExportActivity extends EchelonActivity {
                     End4,
                     End5,
                     null,
-                    teleDef
+                    Integer.parseInt(teleDef)
                  );
             matchResultViewModel.upsert(matchResult);
         }

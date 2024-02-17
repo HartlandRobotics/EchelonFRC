@@ -54,7 +54,7 @@ public class MatchScoutingTeleopActivity extends AppCompatActivity {
     String matchKey;
     String teamKey;
 
-    public static void launch(Context context, String matchKey, String teamKey){
+    public static void launch(Context context, String matchKey, String teamKey) {
         Intent intent = new Intent(context, MatchScoutingTeleopActivity.class);
         Bundle bundle = new Bundle();
         bundle.putString(MATCH_KEY, matchKey);
@@ -79,71 +79,73 @@ public class MatchScoutingTeleopActivity extends AppCompatActivity {
 
         matchResultViewModel = new ViewModelProvider(this).get(MatchResultViewModel.class);
         matchResultViewModel.getMatchResultByMatchTeam(matchKey, teamKey)
-                .observe(MatchScoutingTeleopActivity.this, mr->{
-                        currentResult = MatchResult.toCurrentGamePoints(matchResultViewModel.getDefault(blueAllianceStatus.getEventKey(), matchKey, teamKey));
-
+                .observe(MatchScoutingTeleopActivity.this, mr -> {
+                    if (mr == null) {
+                        mr = matchResultViewModel.getDefault(blueAllianceStatus.getEventKey(), matchKey, teamKey);
+                    }
+                    currentResult = MatchResult.toCurrentGamePoints(mr);
                     populateControlsFromData();
                 });
     }
 
 
-    public void populateControlsFromData(){
+    public void populateControlsFromData() {
         defensesText.setText(String.valueOf(currentResult.getDefenseCount()));
-        ampTeleOpText.setText(String.valueOf(currentResult.getTeleOp1()));
-        speakerTeleOpText.setText(String.valueOf(currentResult.getTeleOp2()));
-        ampSpeakerTeleOpText.setText(String.valueOf(currentResult.getTeleOp3()));
+        ampTeleOpText.setText(String.valueOf(currentResult.getTeleOpInt1Counts()));
+        speakerTeleOpText.setText(String.valueOf(currentResult.getTeleOpInt2Counts()));
+        ampSpeakerTeleOpText.setText(String.valueOf(currentResult.getTeleOpInt3Counts()));
 
     }
 
-    private void setupControls(){
+    private void setupControls() {
 
         defensesButton = findViewById(R.id.teleOpDefenses);
         defensesButton.setImageResource(defenseDrawable);
-        defensesButton.setOnClickListener( v -> {
-            currentResult.setDefenseCount( !currentResult.getDefenseCount());
+        defensesButton.setOnClickListener(v -> {
+            currentResult.result.setDefenseCount(currentResult.getDefenseCount()+1);
             populateControlsFromData();
         });
         defensesSubtractButton = findViewById(R.id.subtractDefense);
-        defensesSubtractButton.setOnClickListener( v -> {
-            currentResult.setDefenseCount(!currentResult.getDefenseCount());
+        defensesSubtractButton.setOnClickListener(v -> {
+            currentResult.result.setDefenseCount(Math.max(currentResult.getDefenseCount() -1, 0));
             populateControlsFromData();
         });
 
         ampSpeakerTeleOp = findViewById(R.id.amplifiedSpeaker);
         ampSpeakerTeleOpText = findViewById(R.id.teleOpAmplifiedSpeakerValue);
         subtractAmpSpeakerTeleOp = findViewById(R.id.subtractAmplifiedSpeakerPointsTeleOp);
-        subtractAmpSpeakerTeleOp.setOnClickListener(v->{
-            currentResult.setTeleOp3(!currentResult.getTeleOp3());
+        subtractAmpSpeakerTeleOp.setOnClickListener(v -> {
+            currentResult.result.setTeleOpInt3(Math.max(currentResult.getTeleOpInt3Counts() -1, 0));
             populateControlsFromData();
         });
         ampSpeakerTeleOp.setImageResource(ampSpeakerTeleOpDrawable);
         ampSpeakerTeleOp.setOnClickListener(v -> {
-                currentResult.setTeleOp3(!currentResult.getTeleOp3());
-                populateControlsFromData();
+            currentResult.result.setTeleOpInt3(currentResult.getTeleOpInt3Counts()+1);
+            populateControlsFromData();
         });
 
         speakerTeleOp = findViewById(R.id.teleOpSpeaker);
         speakerTeleOpText = findViewById(R.id.teleOpSpeakerValue);
         subtractSpeakerTeleOp = findViewById(R.id.subtractSpeakerPointsTeleOp);
-        subtractSpeakerTeleOp.setOnClickListener(v-> {
-            currentResult.setTeleOp2(!currentResult.getTeleOp2());
+        subtractSpeakerTeleOp.setOnClickListener(v -> {
+            currentResult.result.setTeleOpInt2(Math.max(currentResult.getTeleOpInt2Counts() - 1, 0));
             populateControlsFromData();
         });
         speakerTeleOp.setOnClickListener(v -> {
-            currentResult.setTeleOp2(currentResult.getTeleOp2());
+            currentResult.result.setTeleOpInt2(Math.max(currentResult.getTeleOpInt2Counts() + 1, 0));
             populateControlsFromData();
         });
 
         ampTeleOp = findViewById(R.id.teleOpAmp);
         ampTeleOpText = findViewById(R.id.teleOpAmpValue);
         subtractAmpTeleOp = findViewById(R.id.subtractAmpPointsTeleOp);
-        subtractAmpTeleOp.setOnClickListener(v-> {
-            currentResult.setTeleOp1(!currentResult.getTeleOp1());
+        subtractAmpTeleOp.setOnClickListener(v -> {
+            currentResult.result.setTeleOpInt1(Math.max(currentResult.getTeleOpInt1Counts() -1, 0));
             populateControlsFromData();
         });
         ampTeleOp.setImageResource(ampTeleOpDrawable);
         ampTeleOp.setOnClickListener(v -> {
-            currentResult.setTeleOp1(!currentResult.getTeleOp1());
+            currentResult.result.setTeleOpInt1(currentResult.getTeleOpInt1Counts()+1);
             populateControlsFromData();
         });
 
@@ -161,7 +163,7 @@ public class MatchScoutingTeleopActivity extends AppCompatActivity {
 
         buttonSelectedTextColor = R.color.primaryDarkColor;
 
-        if (settings.getDeviceRole().startsWith("red")){
+        if (settings.getDeviceRole().startsWith("red")) {
             ampSpeakerTeleOpDrawable = R.drawable.amplified_speaker_red;
             ampTeleOpDrawable = R.drawable.teleop_red_amp;
             defenseDrawable = R.drawable.defense_red;

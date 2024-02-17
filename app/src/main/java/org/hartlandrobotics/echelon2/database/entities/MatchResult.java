@@ -50,14 +50,14 @@ public class MatchResult {
     @ColumnInfo( name = "auto_5")
     private String auto5;
 
-    @ColumnInfo( name = "teleop_1")
-    private String teleOp1;
+    @ColumnInfo( name = "teleop_int_1")
+    private int teleOpInt1;
 
-    @ColumnInfo( name = "teleop_2")
-    private String teleOp2;
+    @ColumnInfo( name = "teleop_int_2")
+    private int teleOpInt2;
 
-    @ColumnInfo( name = "teleop_3")
-    private String teleOp3;
+    @ColumnInfo( name = "teleop_int_3")
+    private int teleOpInt3;
 
     @ColumnInfo( name = "teleop_4")
     private String teleOp4;
@@ -84,7 +84,7 @@ public class MatchResult {
     private String additionalNotes;
 
     @ColumnInfo(name = "defense_count")
-    private String defenseCount;
+    private int defenseCount;
 
     @Ignore
     public MatchResult(){}
@@ -100,9 +100,9 @@ public class MatchResult {
             int autoInt3,
             @NonNull String auto4,
             @NonNull String auto5,
-            @NonNull String teleOp1,
-            @NonNull String teleOp2,
-            @NonNull String teleOp3,
+            int teleOpInt1,
+            int teleOpInt2,
+            int teleOpInt3,
             @NonNull String teleOp4,
             @NonNull String teleOp5,
             @NonNull String end1,
@@ -111,7 +111,7 @@ public class MatchResult {
             @NonNull String end4,
             @NonNull String end5,
             String additionalNotes,
-            @NonNull String defenseCount
+            int defenseCount
     ) {
 
         this.matchResultKey = StringUtils.defaultIfBlank(matchResultKey, UUID.randomUUID().toString());
@@ -124,9 +124,9 @@ public class MatchResult {
         this.autoInt3 = autoInt3;
         this.auto4 = auto4;
         this.auto5 = auto5;
-        this.teleOp1 = teleOp1;
-        this.teleOp2 = teleOp2;
-        this.teleOp3 = teleOp3;
+        this.teleOpInt1 = teleOpInt1;
+        this.teleOpInt2 = teleOpInt2;
+        this.teleOpInt3 = teleOpInt3;
         this.teleOp4 = teleOp4;
         this.teleOp5 = teleOp5;
         this.end1 = end1;
@@ -176,14 +176,14 @@ public class MatchResult {
     public String getAuto5(){ return auto5; }
     public void setAuto5(String auto5){ this.auto5 = auto5; }
 
-    public String getTeleOp1(){ return teleOp1; }
-    public void setTeleOp1(String teleOp1){ this.teleOp1 = teleOp1; }
+    public int getTeleOpInt1(){ return teleOpInt1; }
+    public void setTeleOpInt1(int teleOpInt1){ this.teleOpInt1 = teleOpInt1; }
 
-    public String getTeleOp2(){ return teleOp2; }
-    public void setTeleOp2(String teleOp2){ this.teleOp2 = teleOp2; }
+    public int getTeleOpInt2(){ return teleOpInt2; }
+    public void setTeleOpInt2(int teleOpInt2){ this.teleOpInt2 = teleOpInt2; }
 
-    public String getTeleOp3(){ return teleOp3; }
-    public void setTeleOp3(String teleOp3){ this.teleOp3 = teleOp3; }
+    public int getTeleOpInt3(){ return teleOpInt3; }
+    public void setTeleOpInt3(int teleOpInt3){ this.teleOpInt3 = teleOpInt3; }
 
     public String getTeleOp4(){ return teleOp4; }
     public void setTeleOp4(String teleOp4){ this.teleOp4 = teleOp4; }
@@ -211,8 +211,8 @@ public class MatchResult {
         this.additionalNotes = additionalNotes;
     }
 
-    public String getDefenseCount(){ return defenseCount; }
-    public void setDefenseCount( String defenseCount ){
+    public int getDefenseCount(){ return defenseCount; }
+    public void setDefenseCount( int defenseCount ){
         this.defenseCount = defenseCount;
     }
 

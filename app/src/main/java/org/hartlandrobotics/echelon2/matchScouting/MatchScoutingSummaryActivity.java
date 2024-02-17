@@ -148,37 +148,37 @@ public class MatchScoutingSummaryActivity extends AppCompatActivity {
         ampNoteTeleOpValue = findViewById(R.id.teleOpAmpValue);
         ampNoteTeleOpDecrement = findViewById(R.id.teleopAmpDecrement);
         ampNoteTeleOpDecrement.setOnClickListener(v -> {
-            currentResult.setTeleOp1(!currentResult.getTeleOp1());
+            currentResult.result.setTeleOpInt1( Math.max(currentResult.getTeleOpInt1Counts() - 1, 0));
             populateControlsFromData();
         });
         ampNoteTeleOpIncrement = findViewById(R.id.teleOpAmpIncrement);
         ampNoteTeleOpIncrement.setOnClickListener(v -> {
-            currentResult.setTeleOp1( !currentResult.getTeleOp1());
+            currentResult.result.setTeleOpInt1(Math.max( currentResult.getTeleOpInt1Counts() + 1,0));
             populateControlsFromData();
         });
 
         neutralSpeakerNoteTeleOpValue = findViewById(R.id.teleOpSpeakerValue);
         neutralSpeakerNoteTeleOpDecrement = findViewById(R.id.teleOpSpeakerDecrement);
         neutralSpeakerNoteTeleOpDecrement.setOnClickListener(v -> {
-            currentResult.setTeleOp2(!currentResult.getTeleOp2());
+            currentResult.result.setTeleOpInt2(Math.max(currentResult.getTeleOpInt2Counts() - 1, 0));
             populateControlsFromData();
         });
         neutralSpeakerNoteTeleOpIncrement = findViewById(R.id.teleOpSpeakerIncrement);
         neutralSpeakerNoteTeleOpIncrement.setOnClickListener(v -> {
-            currentResult.setTeleOp2( !currentResult.getTeleOp2());
+            currentResult.result.setTeleOpInt2(Math.max(currentResult.getTeleOpInt2Counts() + 1, 0));
             populateControlsFromData();
         });
 
         ampSpeakerNoteTeleOpValue = findViewById(R.id.teleOpAmplifiedSpeakerValue);
         ampSpeakerNoteTeleOpDecrement = findViewById(R.id.teleOpAmplifiedSpeakerDecrement);
         ampSpeakerNoteTeleOpDecrement.setOnClickListener(v -> {
-            currentResult.setTeleOp3(!currentResult.getTeleOp3());
+            currentResult.result.setTeleOpInt3(Math.max(currentResult.getTeleOpInt3Counts() - 1, 0));
             populateControlsFromData();
         });
 
         ampSpeakerNoteTeleOpIncrement = findViewById(R.id.teleOpAmplifiedSpeakerIncrement);
         ampSpeakerNoteTeleOpIncrement.setOnClickListener(v -> {
-            currentResult.setTeleOp3( !currentResult.getTeleOp3());
+            currentResult.result.setTeleOpInt3(Math.max(currentResult.getTeleOpInt3Counts() + 1, 0));
             populateControlsFromData();
         });
 
@@ -222,12 +222,12 @@ public class MatchScoutingSummaryActivity extends AppCompatActivity {
         teleOpDefensesValue = findViewById(R.id.teleOpDefensesValue);
         teleOpDefensesDecrement = findViewById(R.id.teleOpDefensesDecrement);
         teleOpDefensesDecrement.setOnClickListener(v -> {
-            currentResult.setDefenseCount(!currentResult.getDefenseCount());
+            currentResult.result.setDefenseCount(currentResult.getDefenseCount());
             populateControlsFromData();
         });
         teleOpDefensesIncrement = findViewById(R.id.teleOpDefensesIncrement);
         teleOpDefensesIncrement.setOnClickListener(v -> {
-            currentResult.setDefenseCount(!currentResult.getDefenseCount());
+            currentResult.result.setDefenseCount(currentResult.getDefenseCount());
             populateControlsFromData();
         });
 
@@ -267,9 +267,9 @@ public class MatchScoutingSummaryActivity extends AppCompatActivity {
         ampNoteAutoValue.setText( String.valueOf( currentResult.getAuto2Counts() ));
         speakerNoteAutoValue.setText( String.valueOf( currentResult.getAuto3Counts() ));
 
-        ampNoteTeleOpValue.setText( String.valueOf(currentResult.getTeleOp1()));
-        neutralSpeakerNoteTeleOpValue.setText( String.valueOf(currentResult.getTeleOp2()));
-        ampSpeakerNoteTeleOpValue.setText( String.valueOf( currentResult.getTeleOp3() ));
+        ampNoteTeleOpValue.setText( String.valueOf(currentResult.getTeleOpInt1Counts()));
+        neutralSpeakerNoteTeleOpValue.setText( String.valueOf(currentResult.getTeleOpInt2Counts()));
+        ampSpeakerNoteTeleOpValue.setText( String.valueOf( currentResult.getTeleOpInt3Counts() ));
 
 
         teleOpDefensesValue.setText( String.valueOf( currentResult.getDefenseCount() ));

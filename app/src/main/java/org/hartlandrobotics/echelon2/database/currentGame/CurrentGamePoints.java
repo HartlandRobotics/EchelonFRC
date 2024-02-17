@@ -80,45 +80,50 @@ public class CurrentGamePoints {
     public int getTeleOpPoints() {
 
         int teleOpPoints = 0;
-        teleOpPoints += result.getTeleOp1() == null ? 0 : 1;
-        teleOpPoints += result.getTeleOp2() == null ? 0 : 2;
-        teleOpPoints += result.getTeleOp3() == null ? 0 : 5;
+        teleOpPoints += this.getTeleOpInt1Points();
+        teleOpPoints += this.getTeleOpInt2Points();
+        teleOpPoints += this.getTeleOpInt3Points();
         return teleOpPoints;
     }
 
     public int getTeleOpCounts() {
 
         int teleOpCounts = 0;
-        teleOpCounts += result.getTeleOp1() == null ? 0 : 1;
-        teleOpCounts += result.getTeleOp2() == null ? 0 : 1;
-        teleOpCounts += result.getTeleOp3() == null ? 0 : 1;
+        teleOpCounts += this.getTeleOpInt1Points();
+        teleOpCounts += this.getTeleOpInt2Points();
+        teleOpCounts += this.getTeleOpInt3Points();
         teleOpCounts += result.getTeleOp4() == null ? 0 : 1;
         teleOpCounts += result.getTeleOp5() == null ? 0 : 1;
         return teleOpCounts;
     }
 
-    public boolean getTeleOp1(){
-        return result.getTeleOp1() == null ? Boolean.FALSE:Boolean.TRUE;
+    public int getTeleOpInt1Counts(){
+        if( result == null ) return 0;
+        return result.getTeleOpInt1();
     }
 
-    public void setTeleOp1(boolean isSet){
-        result.setTeleOp1(result.getTeleOp1() == null ? null : new Date().toString());
+    public int getTeleOpInt1Points(){
+        if( result == null ) return 0;
+        return result.getTeleOpInt1()*1;
     }
 
-    public boolean getTeleOp2(){
-        return result.getTeleOp2() == null ? Boolean.FALSE:Boolean.TRUE;
+    public int getTeleOpInt2Counts(){
+        if( result == null ) return 0;
+        return result.getTeleOpInt2();
     }
 
-    public void setTeleOp2(boolean isSet){
-        result.setTeleOp2(result.getTeleOp2() == null ? null : new Date().toString());
+    public int getTeleOpInt2Points(){
+        if( result == null ) return 0;
+        return result.getTeleOpInt2() * 2;
     }
 
-    public boolean getTeleOp3(){
-        return result.getTeleOp3() == null ? Boolean.FALSE:Boolean.TRUE;
+    public int getTeleOpInt3Counts(){
+        if( result == null ) return 0;
+        return result.getTeleOpInt3();
     }
-
-    public void setTeleOp3(boolean isSet){
-        result.setTeleOp3(result.getTeleOp3() == null ? null : new Date().toString());
+    public int getTeleOpInt3Points(){
+        if( result == null ) return 0;
+        return result.getTeleOpInt3()*5;
     }
 
     public boolean getTeleOp4(){
@@ -137,12 +142,9 @@ public class CurrentGamePoints {
         result.setTeleOp5(result.getTeleOp5() == null ? null : new Date().toString());
     }
 
-    public boolean getDefenseCount(){
-        return result.getDefenseCount() == null ? Boolean.FALSE:Boolean.TRUE;
-    }
-    public void setDefenseCount( boolean isSet ){
-
-        result.setDefenseCount(result.getDefenseCount() == null ? null : new Date().toString());
+    public int getDefenseCount(){
+        if( result == null ) return 0;
+        return result.getDefenseCount();
     }
 
     public int getEndPoints() {

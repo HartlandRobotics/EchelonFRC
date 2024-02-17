@@ -14,7 +14,7 @@
         android:background="@null"
         android:src="@drawable/amplified_speaker_blue"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintBottom_toTopOf="@id/teleOpDefenses"
+        app:layout_constraintBottom_toBottomOf="@id/teleOpSpeaker"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toLeftOf="@id/teleOpSpeaker"
         android:contentDescription="points when the speaker is amplified"
