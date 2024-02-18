@@ -92,11 +92,10 @@ public class ChartsActivity extends EchelonActivity {
                 String key = entry.getKey();
                 int teamNumber = Integer.valueOf( entry.getKey().substring(3) );
 
-//                List<MatchResult> matchResults = entry.getValue();
                 List<MatchResult> matchResults = entry.getValue();
-                for( MatchResult matchResultz : matchResults ){
-                    CurrentGamePoints currentGamePoints = MatchResult.toCurrentGamePoints(matchResultz);
-                    Integer matchNumber = Integer.valueOf(matchResultz.getMatchKey().replace( matchResultz.getEventKey() + "_qm", ""));
+                for( MatchResult matchResult : matchResults ){
+                    CurrentGamePoints currentGamePoints = MatchResult.toCurrentGamePoints(matchResult);
+                    Integer matchNumber = Integer.valueOf(matchResult.getMatchKey().replace( matchResult.getEventKey() + "_qm", ""));
 
                     int matchAuto = 0;
                     matchAuto += currentGamePoints.getAutoPoints();

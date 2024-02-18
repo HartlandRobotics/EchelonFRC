@@ -81,7 +81,7 @@ public class MatchScoutingEndgameActivity extends AppCompatActivity {
 
 
     public void populateControlsFromData(){
-        spotlightValueText.setText(String.valueOf(currentResult.getEndFlag3Counts()));
+        spotlightValueText.setText(String.valueOf(currentResult.getEndInt3Counts()));
 
         if( currentResult.result.getEndFlag1()){
             parkButtonDrawable = R.drawable.center_yes;
@@ -149,12 +149,12 @@ public class MatchScoutingEndgameActivity extends AppCompatActivity {
 
         spotlightButton = findViewById(R.id.spotlightButton);
         spotlightButton.setOnClickListener(v -> {
-            currentResult.result.setEndFlag3( Math.max(currentResult.getEndFlag3Counts() + 1, 0) );
+            currentResult.result.setEndInt3( Math.max(currentResult.getEndInt3Counts() + 1, 0) );
             populateControlsFromData();
         });
         subtractSpotlightButton = findViewById(R.id.subtractSpotlight);
         subtractSpotlightButton.setOnClickListener(v -> {
-            currentResult.result.setEndFlag3( Math.max(currentResult.getEndFlag3Counts() - 1, 0) );
+            currentResult.result.setEndInt3( Math.max(currentResult.getEndInt3Counts() - 1, 0) );
             populateControlsFromData();
         });
 

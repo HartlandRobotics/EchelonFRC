@@ -197,13 +197,13 @@ public class MatchScoutingSummaryActivity extends AppCompatActivity {
         endSpotlightValue = findViewById(R.id.endSpotlightValue);
         endSpotlightDecrement = findViewById(R.id.endSpotlightDecrement);
         endSpotlightDecrement.setOnClickListener(v -> {
-            currentResult.result.setEndFlag3(Math.max(currentResult.getEndFlag3Counts() -1,0));
+            currentResult.result.setEndInt3(Math.max(currentResult.getEndInt3Counts() -1,0));
             populateControlsFromData();
         });
 
         endSpotlightIncrement = findViewById(R.id.endSpotlightIncrement);
         endSpotlightIncrement.setOnClickListener(v -> {
-            currentResult.result.setEndFlag3( Math.max(currentResult.getEndFlag3Counts() + 1, 0));
+            currentResult.result.setEndInt3( Math.max(currentResult.getEndInt3Counts() + 1, 0));
             populateControlsFromData();
         });
 
@@ -276,7 +276,7 @@ public class MatchScoutingSummaryActivity extends AppCompatActivity {
 
         endPark.setChecked(currentResult.result.getEndFlag1());
         endOnstage.setChecked(currentResult.result.getEndFlag2());
-        endSpotlightValue.setText( String.valueOf(currentResult.getEndFlag3Counts()));
+        endSpotlightValue.setText( String.valueOf(currentResult.getEndInt3Counts()));
         endHarmony.setChecked(currentResult.result.getEndFlag4());
        endTrapNote.setChecked(currentResult.result.getEndFlag5());
 

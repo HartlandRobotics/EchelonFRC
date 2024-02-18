@@ -83,12 +83,14 @@ public class ExportActivity extends EchelonActivity {
             matchResultViewModel.getMatchResultsWithTeamMatchByEvent(status.getEventKey()).observe(this, matchResults -> {
                 try {
                     FileOutputStream outputStream = new FileOutputStream(file);
-                    String header = "Event_Key,Match_Key,Team_Key,Match_Number,Team_Number,Auto1 ,Auto2, Auto3, Auto4, Auto5"
+                    String header = "Event_Key,Match_Key,Team_Key,Match_Number,Team_Number"
+                            + ",Auto1 ,Auto2, Auto3, Auto4, Auto5"
                             + ",TeleOp1,TeleOp2,TeleOp3, TeleOp4, TeleOp5, Teleop_Defenses"
                             + ",End1,End2,End3,End4, End5"
                             + ",Match_Result_Key\n";
                     outputStream.write(header.getBytes());
                     for(MatchResultWithTeamMatch matchResultWithTeamMatch: matchResults){
+
                         MatchResult mr = matchResultWithTeamMatch.matchResult;
                         Match m = matchResultWithTeamMatch.match;
                         Team t = matchResultWithTeamMatch.team;
@@ -114,7 +116,7 @@ public class ExportActivity extends EchelonActivity {
 
                         dataForFile.add(String.valueOf(mr.getEndFlag1()));
                         dataForFile.add(String.valueOf(mr.getEndFlag2()));
-                        dataForFile.add(String.valueOf(mr.getEndFlag3()));
+                        dataForFile.add(String.valueOf(mr.getEndInt3()));
                         dataForFile.add(String.valueOf(mr.getEndFlag4()));
                         dataForFile.add(String.valueOf(mr.getEndFlag5()));
                         dataForFile.add(mr.getMatchResultKey());

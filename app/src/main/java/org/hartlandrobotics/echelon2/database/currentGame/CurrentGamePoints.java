@@ -152,7 +152,7 @@ public class CurrentGamePoints {
         int endPoints = 0;
         endPoints += this.getEndFlag1Points();
         endPoints += this.getEndFlag2Points();
-        endPoints += this.getEndFlag3Points();
+        endPoints += this.getEndInt3Points();
         endPoints += this.getEndFlag4Points();
         endPoints += this.getEndFlag5Points();
         return endPoints;
@@ -162,7 +162,7 @@ public class CurrentGamePoints {
         int endCounts = 0;
         endCounts += this.getEndFlag1Counts();
         endCounts += this.getEndFlag2Counts();
-        endCounts += this.getEndFlag3Counts();
+        endCounts += this.getEndInt3Counts();
         endCounts += this.getEndFlag4Counts();
         endCounts += this.getEndFlag5Counts();
         return endCounts;
@@ -184,12 +184,12 @@ public class CurrentGamePoints {
         return result.getEndFlag2() ? 1:0;
     }
 
-    public int getEndFlag3Points(){
-        return result.getEndFlag3();
+    public int getEndInt3Points(){
+        return result.getEndInt3();
     }
 
-    public int getEndFlag3Counts(){
-        return result.getEndFlag3();
+    public int getEndInt3Counts(){
+        return result.getEndInt3();
     }
 
     public int getEndFlag4Points(){

@@ -71,8 +71,8 @@ public class MatchResult {
     @ColumnInfo(name = "end_flag_2")
     private boolean endFlag2;
 
-    @ColumnInfo(name = "end_flag_3")
-    private int endFlag3;
+    @ColumnInfo(name = "end_int_3")
+    private int endInt3;
 
     @ColumnInfo(name = "end_flag_4")
     private boolean endFlag4;
@@ -107,7 +107,7 @@ public class MatchResult {
             @NonNull String teleOp5,
             boolean endFlag1,
             boolean endFlag2,
-            int endFlag3,
+            int endInt3,
             boolean endFlag4,
             boolean endFlag5,
             String additionalNotes,
@@ -131,7 +131,7 @@ public class MatchResult {
         this.teleOp5 = teleOp5;
         this.endFlag1 = endFlag1;
         this.endFlag2 = endFlag2;
-        this.endFlag3 = endFlag3;
+        this.endInt3 = endInt3;
         this.endFlag4 = endFlag4;
         this.endFlag5 = endFlag5;
         this.additionalNotes = additionalNotes;
@@ -197,8 +197,8 @@ public class MatchResult {
     public boolean getEndFlag2(){ return endFlag2; }
     public void setEndFlag2(boolean endFlag2){ this.endFlag2 = endFlag2; }
 
-    public int getEndFlag3(){ return endFlag3; }
-    public void setEndFlag3(int endFlag3){ this.endFlag3 = endFlag3; }
+    public int getEndInt3(){ return endInt3; }
+    public void setEndInt3(int endFlag3){ this.endInt3 = endInt3; }
 
     public boolean getEndFlag4(){ return endFlag4; }
     public void setEndFlag4(boolean endFlag4){ this.endFlag4 = endFlag4; }
