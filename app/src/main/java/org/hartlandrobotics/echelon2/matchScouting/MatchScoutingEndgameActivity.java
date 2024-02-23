@@ -18,6 +18,7 @@ import org.hartlandrobotics.echelon2.configuration.AdminSettingsProvider;
 //import org.hartlandrobotics.echelon2.database.crescendo.CrescendoResult;
 //import org.hartlandrobotics.echelon2.database.entities.MatchResult;
 import org.hartlandrobotics.echelon2.database.currentGame.CurrentGamePoints;
+import org.hartlandrobotics.echelon2.database.entities.MatchResult;
 import org.hartlandrobotics.echelon2.models.MatchResultViewModel;
 import org.hartlandrobotics.echelon2.status.BlueAllianceStatus;
 
@@ -74,7 +75,10 @@ public class MatchScoutingEndgameActivity extends AppCompatActivity {
         matchResultViewModel = new ViewModelProvider(this).get(MatchResultViewModel.class);
         matchResultViewModel.getMatchResultByMatchTeam(matchKey, teamKey)
                 .observe(MatchScoutingEndgameActivity.this, mr->{
-                        currentResult = new CurrentGamePoints(matchResultViewModel.getDefault(blueAllianceStatus.getEventKey(), matchKey, teamKey));
+                    if(mr == null){
+                        mr = matchResultViewModel.getDefault(blueAllianceStatus.getEventKey(), matchKey, teamKey);
+                    }
+                    currentResult = MatchResult.toCurrentGamePoints(mr);
                     populateControlsFromData();
                 });
     }
@@ -149,7 +153,7 @@ public class MatchScoutingEndgameActivity extends AppCompatActivity {
 
         spotlightButton = findViewById(R.id.spotlightButton);
         spotlightButton.setOnClickListener(v -> {
-            currentResult.result.setEndInt3( Math.max(currentResult.getEndInt3Counts() + 1, 0) );
+            currentResult.result.setEndInt3( currentResult.getEndInt3Counts() + 1 );
             populateControlsFromData();
         });
         subtractSpotlightButton = findViewById(R.id.subtractSpotlight);

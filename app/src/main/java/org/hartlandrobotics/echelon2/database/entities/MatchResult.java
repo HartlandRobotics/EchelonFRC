@@ -198,7 +198,7 @@ public class MatchResult {
     public void setEndFlag2(boolean endFlag2){ this.endFlag2 = endFlag2; }
 
     public int getEndInt3(){ return endInt3; }
-    public void setEndInt3(int endFlag3){ this.endInt3 = endInt3; }
+    public void setEndInt3(int endInt3){ this.endInt3 = endInt3; }
 
     public boolean getEndFlag4(){ return endFlag4; }
     public void setEndFlag4(boolean endFlag4){ this.endFlag4 = endFlag4; }

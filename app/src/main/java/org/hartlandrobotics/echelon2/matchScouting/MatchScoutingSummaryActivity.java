@@ -19,6 +19,7 @@ import com.google.android.material.textview.MaterialTextView;
 import org.hartlandrobotics.echelon2.R;
 //import org.hartlandrobotics.echelon2.database.crescendo.CrescendoResult;
 import org.hartlandrobotics.echelon2.database.currentGame.CurrentGamePoints;
+import org.hartlandrobotics.echelon2.database.entities.MatchResult;
 import org.hartlandrobotics.echelon2.models.MatchResultViewModel;
 import org.hartlandrobotics.echelon2.status.BlueAllianceStatus;
 
@@ -109,7 +110,10 @@ public class MatchScoutingSummaryActivity extends AppCompatActivity {
         matchResultViewModel = new ViewModelProvider(this).get(MatchResultViewModel.class);
         matchResultViewModel.getMatchResultByMatchTeam(matchKey, teamKey)
                 .observe(MatchScoutingSummaryActivity.this, mr->{
-                    currentResult = new CurrentGamePoints(matchResultViewModel.getDefault(blueAllianceStatus.getEventKey(), matchKey, teamKey));
+                    if(mr == null){
+                        mr = matchResultViewModel.getDefault(blueAllianceStatus.getEventKey(), matchKey, teamKey);
+                    }
+                    currentResult = MatchResult.toCurrentGamePoints(mr);
                     populateControlsFromData();
                 });
     }
@@ -222,12 +226,12 @@ public class MatchScoutingSummaryActivity extends AppCompatActivity {
         teleOpDefensesValue = findViewById(R.id.teleOpDefensesValue);
         teleOpDefensesDecrement = findViewById(R.id.teleOpDefensesDecrement);
         teleOpDefensesDecrement.setOnClickListener(v -> {
-            currentResult.result.setDefenseCount(currentResult.getDefenseCount());
+            currentResult.result.setDefenseCount(currentResult.getDefenseCount() - 1);
             populateControlsFromData();
         });
         teleOpDefensesIncrement = findViewById(R.id.teleOpDefensesIncrement);
         teleOpDefensesIncrement.setOnClickListener(v -> {
-            currentResult.result.setDefenseCount(currentResult.getDefenseCount());
+            currentResult.result.setDefenseCount(currentResult.getDefenseCount() + 1 );
             populateControlsFromData();
         });
 

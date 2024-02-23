@@ -80,8 +80,7 @@ public class MatchScoutingAutoActivity extends AppCompatActivity {
                         mr = matchResultViewModel.getDefault(blueAllianceStatus.getEventKey(), matchKey, teamKey);
                     }
                     currentResult = MatchResult.toCurrentGamePoints(mr);
-                        populateControlsFromData();
-
+                    populateControlsFromData();
                 });
     }
 
