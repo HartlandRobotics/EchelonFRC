@@ -53,12 +53,10 @@
 
     <ImageButton
         android:id="@+id/subtractSpeakerPointsAuto"
+        android:src="@drawable/button_decrement"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textSize="65sp"
-        tools:layout_editor_absoluteX="52dp"
-        tools:layout_editor_absoluteY="200dp"
-        tools:text="-"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@id/autoSpeaker"
         app:layout_constraintBottom_toBottomOf="@id/autoSpeaker"
         app:layout_constraintLeft_toLeftOf="parent"
@@ -96,12 +94,9 @@
 
     <ImageButton
         android:id="@+id/subtractAmpPoints"
+        android:src="@drawable/button_decrement"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textSize="65sp"
-        tools:layout_editor_absoluteX="380dp"
-        tools:layout_editor_absoluteY="200dp"
-        tools:text="-"
         app:layout_constraintTop_toTopOf="@id/autoAmp"
         app:layout_constraintBottom_toBottomOf="@id/autoAmp"
         app:layout_constraintLeft_toRightOf="@id/speakerPoints"
