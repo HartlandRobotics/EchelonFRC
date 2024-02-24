@@ -64,6 +64,7 @@
         android:src="@drawable/button_decrement"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:background="@null"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toRightOf="@id/harmonyButton"
