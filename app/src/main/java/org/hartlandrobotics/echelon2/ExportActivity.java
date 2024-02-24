@@ -84,9 +84,9 @@ public class ExportActivity extends EchelonActivity {
                 try {
                     FileOutputStream outputStream = new FileOutputStream(file);
                     String header = "Event_Key,Match_Key,Team_Key,Match_Number,Team_Number"
-                            + ",Auto1 ,Auto2, Auto3, Auto4, Auto5"
-                            + ",TeleOp1,TeleOp2,TeleOp3, TeleOp4, TeleOp5, Teleop_Defenses"
-                            + ",End1,End2,End3,End4, End5"
+                            + ",AutoFlag1 ,AutoInt2, AutoInt3, Auto4, Auto5"
+                            + ",TeleOpInt1,TeleOpInt2,TeleOpInt3, TeleOp4, TeleOp5, DefensesCount"
+                            + ",EndFlag1,EndFlag2,EndInt3,EndFlag4, EndFlag5"
                             + ",Match_Result_Key\n";
                     outputStream.write(header.getBytes());
                     for(MatchResultWithTeamMatch matchResultWithTeamMatch: matchResults){
