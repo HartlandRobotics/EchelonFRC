@@ -87,7 +87,7 @@ public class ExportActivity extends EchelonActivity {
                             + ",AutoFlag1 ,AutoInt2, AutoInt3, Auto4, Auto5"
                             + ",TeleOpInt1,TeleOpInt2,TeleOpInt3, TeleOp4, TeleOp5, DefensesCount"
                             + ",EndFlag1,EndFlag2,EndInt3,EndFlag4, EndFlag5"
-                            + ",Match_Result_Key\n";
+                            + ",Match_Result_Key, AdditionalNotes\n";
                     outputStream.write(header.getBytes());
                     for(MatchResultWithTeamMatch matchResultWithTeamMatch: matchResults){
 
@@ -120,6 +120,7 @@ public class ExportActivity extends EchelonActivity {
                         dataForFile.add(String.valueOf(mr.getEndFlag4()));
                         dataForFile.add(String.valueOf(mr.getEndFlag5()));
                         dataForFile.add(mr.getMatchResultKey());
+                        dataForFile.add(mr.getAdditionalNotes());
                         String outputString = dataForFile.stream().collect(Collectors.joining(",")) + "\n";
                         outputStream.write(outputString.getBytes());
                     }

@@ -136,8 +136,10 @@ public class MainActivity extends EchelonActivity {
 
         AdminSettings adminSettings = AdminSettingsProvider.getAdminSettings(this);
         TextInputLayout deviceLayout = findViewById(R.id.device_status_layout);
-        String deviceRole = adminSettings.getDeviceRole();
-        deviceLayout.getEditText().setText(deviceRole);
+        //if(adminSettings != null) {
+            String deviceRole = adminSettings.getDeviceRole();
+         deviceLayout.getEditText().setText(deviceRole);
+        //}
     }
 
     List<Season> seasons = new ArrayList<>();
