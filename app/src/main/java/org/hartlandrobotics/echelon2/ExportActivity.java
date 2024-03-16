@@ -57,7 +57,8 @@ public class ExportActivity extends EchelonActivity {
         matchResultViewModel = new ViewModelProvider(this).get(MatchResultViewModel.class);
 
         exportMatchResultsButton = findViewById(R.id.exportMatchResults);
-        exportMatchResults();
+        //exportMatchResults();
+        setupExportCSVButton();
         exportPitScoutResultsButton = findViewById(R.id.exportPitScouting);
         exportPitScoutResults();
         importCSVMatchButton = findViewById(R.id.importMatchCSV);
@@ -65,8 +66,7 @@ public class ExportActivity extends EchelonActivity {
 
     }
 
-    public void exportMatchResults(){
-        exportMatchResultsButton.setOnClickListener((view) -> {
+    public void exportMatchResults() throws RuntimeException {
             Context appContext = getApplicationContext();
             BlueAllianceStatus status = new BlueAllianceStatus(appContext);
             File externalFilesDir = getFilePathForMatch();
@@ -81,15 +81,15 @@ public class ExportActivity extends EchelonActivity {
             File file = new File( externalFilesDir, fileName);
 
             matchResultViewModel.getMatchResultsWithTeamMatchByEvent(status.getEventKey()).observe(this, matchResults -> {
-                try {
-                    FileOutputStream outputStream = new FileOutputStream(file);
+
+                try (FileOutputStream outputStream = new FileOutputStream(file)) {
                     String header = "Event_Key,Match_Key,Team_Key,Match_Number,Team_Number"
                             + ",AutoFlag1 ,AutoInt2, AutoInt3, Auto4, Auto5"
                             + ",TeleOpInt1,TeleOpInt2,TeleOpInt3, TeleOp4, TeleOp5, DefensesCount"
                             + ",EndFlag1,EndFlag2,EndInt3,EndFlag4, EndFlag5"
                             + ",Match_Result_Key, AdditionalNotes\n";
                     outputStream.write(header.getBytes());
-                    for(MatchResultWithTeamMatch matchResultWithTeamMatch: matchResults){
+                    for (MatchResultWithTeamMatch matchResultWithTeamMatch : matchResults) {
 
                         MatchResult mr = matchResultWithTeamMatch.matchResult;
                         Match m = matchResultWithTeamMatch.match;
@@ -126,11 +126,24 @@ public class ExportActivity extends EchelonActivity {
                     }
                     outputStream.close();
                 } catch (FileNotFoundException e) {
-                    Log.e("Try catch for outputstream", "Can't fine Outputstream file");
+                    throw new RuntimeException(e);
                 } catch (IOException e) {
-                    e.printStackTrace();
+                    throw new RuntimeException(e);
                 }
+
             });
+ }
+
+    public void setupExportCSVButton(){
+        exportMatchResultsButton.setOnClickListener((view) -> {
+            try {
+                exportMatchResults();
+                Toast.makeText(this, "export Matches: ", Toast.LENGTH_LONG).show();
+
+            } catch (RuntimeException e) {
+                String message = e.getLocalizedMessage();
+                Toast.makeText(this, "export Matches error: " + message, Toast.LENGTH_LONG).show();
+            }
         });
     }
 
@@ -180,9 +193,13 @@ public class ExportActivity extends EchelonActivity {
                         outputStream.write(outputString.getBytes());
                     }
                     outputStream.close();
+
+                    Toast.makeText(this, "export Pit Scout: ", Toast.LENGTH_LONG).show();
                 }
                 catch(Exception e){
                     Log.e("In Catch for Pit Scout", "Exception trying to export pitscout data", e);
+                    String message = e.getLocalizedMessage();
+                    Toast.makeText(this, "export Pit Scout error: " + message, Toast.LENGTH_LONG).show();
                 }
             });
         });
@@ -225,6 +242,8 @@ public class ExportActivity extends EchelonActivity {
             String End5 =columns[20];
 
             String matchResultKey = columns[21];
+            String AdditionalNotes = columns[22];
+
             MatchResult matchResult = new MatchResult(
                     matchResultKey,
                     eventKey,
@@ -246,7 +265,7 @@ public class ExportActivity extends EchelonActivity {
                     Integer.parseInt(End3),
                     End4.equalsIgnoreCase("true"),
                     End5.equalsIgnoreCase("true"),
-                    null,
+                    AdditionalNotes,
                     Integer.parseInt(teleDef)
                  );
             matchResultViewModel.upsert(matchResult);
