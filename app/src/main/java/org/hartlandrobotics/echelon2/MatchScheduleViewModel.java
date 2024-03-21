@@ -250,11 +250,11 @@ class MatchScheduleViewModel {
     }
 
     public double getRedTotalStdDeviation(){
-        return Math.sqrt( Math.pow(red1StdDeviation,2) + Math.pow(red2StdDeviation,2) + Math.pow(red3StdDeviation,2) );
+        return Math.sqrt( Math.pow(getRed1StdDeviation(),2) + Math.pow(getRed2StdDeviation(),2) + Math.pow(getRed3StdDeviation(),2) );
     }
 
     public double getBlueTotalStdDeviation(){
-        return Math.sqrt( Math.pow(blue1StdDeviation,2) + Math.pow(blue2StdDeviation,2) + Math.pow(blue3StdDeviation,2) );
+        return Math.sqrt( Math.pow(getBlue1StdDeviation(),2) + Math.pow(getBlue2StdDeviation(),2) + Math.pow(getBlue3StdDeviation(),2) );
     }
     public double getRed1StdDeviation() {
         return red1StdDeviation;
