@@ -250,13 +250,11 @@ class MatchScheduleViewModel {
     }
 
     public double getRedTotalStdDeviation(){
-//        System.out.println("red std dev: " + Math.sqrt(red1StdDeviation * red1StdDeviation + red2StdDeviation * red2StdDeviation + red3StdDeviation * red3StdDeviation));
-        return Math.sqrt(red1StdDeviation * red1StdDeviation + red2StdDeviation * red2StdDeviation + red3StdDeviation * red3StdDeviation);
+        return Math.sqrt( Math.pow(red1StdDeviation,2) + Math.pow(red2StdDeviation,2) + Math.pow(red3StdDeviation,2) );
     }
 
     public double getBlueTotalStdDeviation(){
-        //System.out.println("blue std dev: " + Math.sqrt(blue1StdDeviation * blue1StdDeviation + blue2StdDeviation * blue2StdDeviation + blue3StdDeviation * blue3StdDeviation));
-        return Math.sqrt(blue1StdDeviation * blue1StdDeviation + blue2StdDeviation * blue2StdDeviation + blue3StdDeviation * blue3StdDeviation);
+        return Math.sqrt( Math.pow(blue1StdDeviation,2) + Math.pow(blue2StdDeviation,2) + Math.pow(blue3StdDeviation,2) );
     }
     public double getRed1StdDeviation() {
         return red1StdDeviation;
