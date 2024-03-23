@@ -12,35 +12,24 @@
         android:orientation="vertical"
         >
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
-            <RadioGroup
-                android:id="@+id/hasAutoGroup"
-                android:layout_width="wrap_content"
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/autoStartPositions"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:checkedButton="@id/hasAutoNo"
-                android:orientation="horizontal">
+                android:hint="What are your auto starting positions?"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                >
 
-                <com.google.android.material.textview.MaterialTextView
-                    android:layout_width="wrap_content"
+                <com.google.android.material.textfield.TextInputEditText
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Does your robot perform autonomous?" />
+                    android:text="none"
+                    android:inputType="number"
 
-                <com.google.android.material.radiobutton.MaterialRadioButton
-                    android:id="@+id/hasAutoYes"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Yes" />
+                    />
 
-                <com.google.android.material.radiobutton.MaterialRadioButton
-                    android:id="@+id/hasAutoNo"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="No" />
-            </RadioGroup>
-        </LinearLayout>
+            </com.google.android.material.textfield.TextInputLayout>
 
     <LinearLayout
         android:id="@+id/missingAutoLayout"
@@ -88,7 +77,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:inputType="none"
-                />
+                tools:ignore="LabelFor" />
         </com.google.android.material.textfield.TextInputLayout>
 
     </LinearLayout>
@@ -100,10 +89,10 @@
         android:orientation="vertical"
         >
         <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/autoBallCount"
+            android:id="@+id/autoCount"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="How much cargo do you shoot?"
+            android:hint="How many autos do you have?"
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
             >
 
@@ -118,19 +107,36 @@
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/shootingPercentage"
+            android:id="@+id/ringPickUp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="How many shots do you make out of 10?"
+            android:hint="How many rings can you pick up?"
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
             >
 
-        <com.google.android.material.textfield.TextInputEditText
+            <com.google.android.material.textfield.TextInputEditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="0"
+                android:inputType="number"
+                />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/ringScoring"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="0"
-            android:inputType="number"
-            />
+            android:hint="How many rings can you score?"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            >
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="0"
+                android:inputType="number"
+                />
 
         </com.google.android.material.textfield.TextInputLayout>
 

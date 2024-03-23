@@ -23,7 +23,7 @@ import org.hartlandrobotics.echelon2.database.entities.PitScout;
 public class PitScoutAutoFragment extends Fragment {
     private static final String TAG = "PitScoutAutoFragment";
 
-    RadioGroup hasAutoGroup;
+    TextInputLayout autoStartPositions;
     RadioGroup helpAutoGroup;
     TextInputLayout programmingLanguageLayout;
     AutoCompleteTextView programmingLanguageAutoComplete;
@@ -31,8 +31,9 @@ public class PitScoutAutoFragment extends Fragment {
     LinearLayout missingAutoLayout;
     LinearLayout hasAutoLayout;
     TextInputLayout autoLanguage;
-    TextInputLayout shotCount;
-    TextInputLayout shootingPercentage;
+    TextInputLayout autoCount;
+    TextInputLayout ringPickUp;
+    TextInputLayout ringShot;
 
 
     PitScout data;
@@ -77,16 +78,15 @@ public class PitScoutAutoFragment extends Fragment {
     }
 
     private void setupControls(View view) {
-        hasAutoLayout = view.findViewById(R.id.hasAutoLayout);
 
-        hasAutoGroup = view.findViewById(R.id.hasAutoGroup);
-        hasAutoGroup.setOnCheckedChangeListener((group, checkedId) -> {
-            setVisibility();
-        });
 
-        shotCount = view.findViewById(R.id.autoBallCount);
+        autoStartPositions = view.findViewById(R.id.autoStartPositions);
 
-        shootingPercentage = view.findViewById(R.id.shootingPercentage);
+        autoCount = view.findViewById(R.id.autoCount);
+
+        ringPickUp = view.findViewById(R.id.ringPickUp);
+
+        ringShot = view.findViewById(R.id.ringScoring);
 
         missingAutoLayout = view.findViewById(R.id.missingAutoLayout);
 
@@ -110,19 +110,20 @@ public class PitScoutAutoFragment extends Fragment {
     public void populateDataFromControls() {
 
         if( data == null ) return;
-        if( hasAutoGroup == null ) return;
+        String startingPositions = StringUtils.defaultIfBlank(autoStartPositions.getEditText().getText().toString(),"none");
+        data.setAutoStartPositions(startingPositions);
 
-        boolean hasAuto = hasAutoGroup.getCheckedRadioButtonId() == R.id.hasAutoYes;
-        data.setHasAutonomous(hasAuto);
+        String notePickUpString = StringUtils.defaultIfBlank(ringPickUp.getEditText().getText().toString(), "0");
+        int notePickUp = Integer.parseInt(notePickUpString.toString());
+        data.setRingsPickedUpInAuto(notePickUp);
 
-        String ballCountString = StringUtils.defaultIfBlank(shotCount.getEditText().getText().toString(), "0");
-        int ballCount = Integer.parseInt(ballCountString.toString());
-        data.setBallsPickedOrShotInAuto(ballCount);
+        String noteScoredString = StringUtils.defaultIfBlank(ringShot.getEditText().getText().toString(), "0");
+        int noteScored = Integer.parseInt(noteScoredString.toString());
+        data.setRingsPickedUpInAuto(noteScored);
 
-        double shootingPercentageText = Double.valueOf(StringUtils.defaultIfBlank(shootingPercentage.getEditText().getText().toString(), "0"));
-        data.setPercentAutoShots(shootingPercentageText);
 
-        boolean wantsHelp = hasAutoGroup.getCheckedRadioButtonId() == R.id.helpAutoYes;
+
+        boolean wantsHelp = startingPositions.equalsIgnoreCase("none");
         data.setHelpCreatingAuto(wantsHelp);
 
         String codingLanguage = StringUtils.defaultIfBlank(programmingLanguageAutoComplete.getEditableText().toString(), StringUtils.EMPTY);
@@ -134,17 +135,14 @@ public class PitScoutAutoFragment extends Fragment {
             return;
         }
 
-        if( hasAutoGroup == null ) return;
         Log.i(TAG, "populating controls from data");
 
-        int hasAutoCheckedButtonId = data.getHasAutonomous() ? R.id.hasAutoYes : R.id.hasAutoNo;
-        hasAutoGroup.check(hasAutoCheckedButtonId);
+        String autoStartPositionsValue = StringUtils.defaultIfBlank(String.valueOf(data.getAutoStartPositions()),"none");
+        int ringPickUp = Integer.parseInt(StringUtils.defaultIfBlank(String.valueOf(data.getRingsPickedUpInAuto()),"0"));
+        int ringScoring = Integer.parseInt(StringUtils.defaultIfBlank(String.valueOf(data.getRingsShotInAuto()),"0"));
 
-        double shootingPercentageValue = data.getPercentAutoShots();
-        shootingPercentage.getEditText().setText( String.valueOf(shootingPercentageValue));
+        
 
-        String ballsShotInAuto = StringUtils.defaultIfBlank(String.valueOf(data.getBallsPickedOrShotInAuto()), "0");
-        shotCount.getEditText().setText(ballsShotInAuto);
 
         boolean wantsHelpWithAuto = data.getHelpCreatingAuto();
         int wantsHelpCheckedButtonId = wantsHelpWithAuto ? R.id.helpAutoYes : R.id.helpAutoNo;
