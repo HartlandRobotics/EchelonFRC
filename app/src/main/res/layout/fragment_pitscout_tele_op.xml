@@ -12,51 +12,25 @@
         android:orientation="vertical">
 
         <RadioGroup
-            android:id="@+id/doesRobotShootSpeaker"
+            android:id="@+id/doesRobotShoot"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:checkedButton="@id/robotShootSpeakerNo"
+            android:checkedButton="@id/robotShootNo"
             android:orientation="horizontal">
 
             <com.google.android.material.textview.MaterialTextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Can your robot shoot in Speaker?"
+                android:text="Can your robot shoot?"
                 />
             <com.google.android.material.radiobutton.MaterialRadioButton
-                android:id="@+id/robotShootSpeakerYes"
+                android:id="@+id/robotShootYes"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Yes" />
 
             <com.google.android.material.radiobutton.MaterialRadioButton
-                android:id="@+id/robotShootSpeakerNo"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="No" />
-
-        </RadioGroup>
-
-        <RadioGroup
-            android:id="@+id/doesRobotShootAmp"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:checkedButton="@id/robotShootAmpNo"
-            android:orientation="horizontal">
-
-            <com.google.android.material.textview.MaterialTextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Can your robot shoot in Amp?"
-                />
-            <com.google.android.material.radiobutton.MaterialRadioButton
-                android:id="@+id/robotShootAmpYes"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Yes" />
-
-            <com.google.android.material.radiobutton.MaterialRadioButton
-                android:id="@+id/robotShootAmpNo"
+                android:id="@+id/robotShootNo"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="No" />
@@ -67,7 +41,7 @@
             android:id="@+id/shootingAccuracy"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="How many rings can you cycle per match?"
+            android:hint="How many shots do you make out of 10?"
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
 
             <com.google.android.material.textfield.TextInputEditText
@@ -92,16 +66,16 @@
                 />
 
             <com.google.android.material.radiobutton.MaterialRadioButton
-                android:id="@+id/goalPreferenceSpeaker"
+                android:id="@+id/goalPreferenceHigh"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Speaker" />
+                android:text="High" />
 
             <com.google.android.material.radiobutton.MaterialRadioButton
-                android:id="@+id/goalPreferenceAmp"
+                android:id="@+id/goalPreferenceLow"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Amp" />
+                android:text="Low" />
 
         </RadioGroup>
 
