@@ -91,7 +91,7 @@
         android:src="@drawable/in_line_blue"
         app:layout_constraintTop_toBottomOf="@id/processor"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toLeftOf="@id/processor"
+        app:layout_constraintLeft_toRightOf="@id/reef_level_one"
         app:layout_constraintRight_toLeftOf="@id/net"
         />
 
