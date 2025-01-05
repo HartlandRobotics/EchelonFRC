@@ -9,20 +9,65 @@
 <!--    I commented out the entirety of the previous year's code, but don't delete it yet, it's just easier to copy and paste... -->
 
     <ImageButton
+        android:id="@+id/reef"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:background="@null"
+        android:src="@drawable/reef"
+        tools:layout_editor_absoluteX="252dp"
+        tools:layout_editor_absoluteY="16dp"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toLeftOf="@id/park"
+        android:contentDescription="moving in auto button"
+        />
+
+    <ImageButton
+        android:id="@+id/processor"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:background="@null"
+        android:src="@drawable/processor_blue"
+        tools:layout_editor_absoluteX="252dp"
+        tools:layout_editor_absoluteY="16dp"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/park"
+        app:layout_constraintLeft_toLeftOf="@id/park"
+        app:layout_constraintRight_toRightOf="@id/park"
+        android:contentDescription="moving in auto button"
+        />
+
+
+    <ImageButton
         android:id="@+id/park"
         android:layout_width="200dp"
         android:layout_height="wrap_content"
         android:background="@null"
-        android:src="@drawable/in_line"
+        android:contentDescription="moving in auto button"
+        android:src="@drawable/in_line_blue"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="@id/processor"
+        app:layout_constraintRight_toLeftOf="@id/net"
+        app:layout_constraintTop_toBottomOf="@id/processor" />
+
+    <ImageButton
+        android:id="@+id/net"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:background="@null"
+        android:src="@drawable/net"
         tools:layout_editor_absoluteX="252dp"
         tools:layout_editor_absoluteY="16dp"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintBottom_toTopOf="@id/autoSpeaker"
-        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toRightOf="@id/park"
         app:layout_constraintRight_toRightOf="parent"
         android:contentDescription="moving in auto button"
         />
 
+
+<!--
     <ImageButton
         android:id="@+id/autoSpeaker"
         android:layout_width="wrap_content"
@@ -124,7 +169,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
         />
-
+-->
 
 
 
