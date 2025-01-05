@@ -6,7 +6,123 @@
     android:layout_height="match_parent"
     tools:context=".matchScouting.MatchScoutingTeleopActivity">
 
+    <ImageButton
+        android:id="@+id/reef_level_four"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:background="@null"
+        android:src="@drawable/reef_level_four"
+        tools:layout_editor_absoluteX="252dp"
+        tools:layout_editor_absoluteY="16dp"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/reef_level_three"
+        app:layout_constraintLeft_toLeftOf="@id/reef_level_one"
+        app:layout_constraintRight_toRightOf="@id/reef_level_one"
+        android:contentDescription="moving in auto button"
+        />
 
+    <ImageButton
+        android:id="@+id/reef_level_three"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:background="@null"
+        android:src="@drawable/reef_level_three"
+        tools:layout_editor_absoluteX="252dp"
+        tools:layout_editor_absoluteY="16dp"
+        app:layout_constraintTop_toBottomOf="@id/reef_level_four"
+        app:layout_constraintBottom_toTopOf="@id/reef_level_two"
+        app:layout_constraintLeft_toLeftOf="@id/reef_level_one"
+        app:layout_constraintRight_toRightOf="@id/reef_level_one"
+        android:contentDescription="moving in auto button"
+        />
+
+    <ImageButton
+        android:id="@+id/reef_level_two"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:background="@null"
+        android:src="@drawable/reef_level_two"
+        tools:layout_editor_absoluteX="252dp"
+        tools:layout_editor_absoluteY="16dp"
+        app:layout_constraintTop_toBottomOf="@id/reef_level_three"
+        app:layout_constraintBottom_toTopOf="@id/reef_level_one"
+        app:layout_constraintLeft_toLeftOf="@id/reef_level_one"
+        app:layout_constraintRight_toRightOf="@id/reef_level_one"
+        android:contentDescription="moving in auto button"
+        />
+
+    <ImageButton
+        android:id="@+id/reef_level_one"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:background="@null"
+        android:src="@drawable/reef_level_one"
+        tools:layout_editor_absoluteX="252dp"
+        tools:layout_editor_absoluteY="16dp"
+        app:layout_constraintTop_toBottomOf="@id/reef_level_two"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toLeftOf="@id/human_player"
+        android:contentDescription="moving in auto button"
+        />
+
+    <ImageButton
+        android:id="@+id/human_player"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:background="@null"
+        android:src="@drawable/human_player_net"
+        tools:layout_editor_absoluteX="252dp"
+        tools:layout_editor_absoluteY="16dp"
+        app:layout_constraintTop_toBottomOf="@id/processor"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toRightOf="@id/reef_level_one"
+        app:layout_constraintRight_toLeftOf="net"
+        android:contentDescription="moving in auto button"
+        />
+
+    <ImageButton
+        android:id="@+id/processor"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:background="@null"
+        android:src="@drawable/processor_blue"
+        tools:layout_editor_absoluteX="252dp"
+        tools:layout_editor_absoluteY="16dp"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/human_player"
+        app:layout_constraintLeft_toLeftOf="@id/human_player"
+        app:layout_constraintRight_toRightOf="@id/human_player"
+        android:contentDescription="moving in auto button"
+        />
+
+    <ImageButton
+        android:id="@+id/net"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@null"
+        android:src="@drawable/net"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toRightOf="@id/human_player"
+        app:layout_constraintRight_toRightOf="parent"
+        android:contentDescription="moving in auto button"
+        />
+
+    <!--    <ImageButton-->
+<!--        android:id="@+id/net"-->
+<!--        android:layout_width="200dp"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:background="@null"-->
+<!--        android:src="@drawable/net"-->
+<!--        app:layout_constraintTop_toTopOf="parent"-->
+<!--        app:layout_constraintBottom_toBottomOf="parent"-->
+<!--        app:layout_constraintLeft_toRightOf="@id/human_player"-->
+<!--        app:layout_constraintRight_toRightOf="parent"-->
+<!--        android:layout_marginLeft="300dp"-->
+<!--        android:contentDescription="moving in auto button"-->
+<!--        />-->
+<!--
     <ImageButton
         android:id="@+id/amplifiedSpeaker"
         android:layout_width="wrap_content"
@@ -198,7 +314,7 @@
         app:layout_constraintRight_toLeftOf="@id/teleOpAmp"
         android:layout_margin="10dp"
         />
-
+-->
 
     <!--    <ImageButton-->
 <!--        android:id="@+id/topHub"-->
