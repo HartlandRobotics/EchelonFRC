@@ -168,6 +168,20 @@
         />
 
     <ImageButton
+        android:id="@+id/processor_decrement"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@null"
+        android:src="@drawable/button_decrement"
+        app:layout_constraintTop_toBottomOf="@id/processor"
+        app:layout_constraintBottom_toTopOf="@id/park"
+        app:layout_constraintLeft_toLeftOf="@id/processor"
+        app:layout_constraintRight_toLeftOf="@id/processor_text"
+        android:layout_marginStart="60dp"
+        android:layout_marginEnd="30dp"
+        />
+
+    <ImageButton
         android:id="@+id/processor"
         android:layout_width="200dp"
         android:layout_height="wrap_content"
@@ -178,6 +192,20 @@
         app:layout_constraintLeft_toLeftOf="@id/park"
         app:layout_constraintRight_toRightOf="@id/park"
         android:contentDescription="moving in auto button"
+        />
+
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/processor_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/processor"
+        app:layout_constraintLeft_toLeftOf="@+id/processor_decrement"
+        app:layout_constraintRight_toRightOf="@id/processor"
+        app:layout_constraintBottom_toTopOf="@id/park"
+        android:layout_marginBottom="25dp"
+        android:textSize="32sp"
+        tools:text="0"
+        android:layout_marginTop="25dp"
         />
 
 
@@ -195,6 +223,33 @@
         />
 
     <ImageButton
+        android:id="@+id/net_decrement"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@null"
+        android:src="@drawable/button_decrement"
+        app:layout_constraintTop_toBottomOf="@id/net"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="@id/net"
+        app:layout_constraintRight_toLeftOf="@id/net_text"
+        android:layout_marginEnd="30dp"
+        />
+
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/net_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/net"
+        app:layout_constraintLeft_toRightOf="@+id/net_decrement"
+        app:layout_constraintRight_toRightOf="@id/net"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_marginBottom="25dp"
+        android:textSize="32sp"
+        tools:text="0"
+        android:layout_marginTop="25dp"
+        />
+
+    <ImageButton
         android:id="@+id/net"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -204,7 +259,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toRightOf="@id/park"
         app:layout_constraintRight_toRightOf="parent"
-        android:layout_marginTop="200dp"
+        android:layout_marginTop="175dp"
         android:contentDescription="moving in auto button"
         />
 
