@@ -28,6 +28,7 @@ import android.widget.Toast;
 import org.apache.commons.lang3.StringUtils;
 import org.hartlandrobotics.echelon2.R;
 import org.hartlandrobotics.echelon2.database.entities.PitScout;
+import org.hartlandrobotics.echelon2.utilities.FileUtilities;
 
 import java.io.File;
 import java.io.FileOutputStream;
@@ -195,7 +196,7 @@ public class PitScoutPhotosFragment extends Fragment {
 
     private File getImageFilePath(int teamNumber) {
         ContextWrapper cw = new ContextWrapper( getActivity().getApplicationContext() );
-        return cw.getExternalFilesDir( "scouting_images/team_" + teamNumber );
+        return FileUtilities.ensureDirectory(cw, "scouting_images/team_" + teamNumber );
     }
 
 }

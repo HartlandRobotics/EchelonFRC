@@ -11,6 +11,8 @@ import android.widget.ImageView;
 import androidx.annotation.NonNull;
 import androidx.viewpager.widget.PagerAdapter;
 
+import org.hartlandrobotics.echelon2.utilities.FileUtilities;
+
 import java.io.File;
 import java.util.ArrayList;
 
@@ -22,20 +24,22 @@ public class RobotImage extends PagerAdapter {
 
    RobotImage(Context context, int teamNum){
       ContextWrapper cw = new ContextWrapper(context.getApplicationContext());
-      filePath = cw.getExternalFilesDir("scouting_images/team_" + teamNumber);
+      teamNumber = teamNum;
+
+      filePath = FileUtilities.ensureDirectory(cw,"scouting_images/team_" + teamNumber);
       File[] files = filePath.listFiles();
       for(File file: files){
          fileNames.add(file.getAbsolutePath());
       }
       this.context = context;
-      teamNumber = teamNum;
    }
 
    static int lastCount = 0;
    @Override
    public int getCount(){
       ContextWrapper cw = new ContextWrapper(context.getApplicationContext());
-      filePath = cw.getExternalFilesDir("scouting_images/team_" + teamNumber);
+      filePath = FileUtilities.ensureDirectory(cw,"scouting_images/team_" + teamNumber);
+
       File[] files = filePath.listFiles();
          fileNames.clear();
          for(File file: files){

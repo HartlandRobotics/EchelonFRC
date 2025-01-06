@@ -24,6 +24,7 @@ import org.hartlandrobotics.echelon2.configuration.AdminSettingsProvider;
 import org.hartlandrobotics.echelon2.database.entities.Match;
 import org.hartlandrobotics.echelon2.database.repositories.EventRepo;
 import org.hartlandrobotics.echelon2.status.BlueAllianceStatus;
+import org.hartlandrobotics.echelon2.utilities.FileUtilities;
 
 import java.io.File;
 import java.util.ArrayList;
@@ -207,7 +208,7 @@ public class MatchSelectionActivity extends EchelonActivity {
 
     private File getImageFilePath(String teamNumber) {
         ContextWrapper cw = new ContextWrapper( getApplicationContext() );
-        return cw.getExternalFilesDir( "scouting_images/team_" + teamNumber );
+        return FileUtilities.ensureDirectory(cw, "scouting_images/team_" + teamNumber );
     }
 
 }
