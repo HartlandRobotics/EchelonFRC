@@ -42,6 +42,7 @@
         app:layout_constraintLeft_toRightOf="@+id/reef_level_four"
         android:textSize="32sp"
         tools:text="0"
+        android:layout_marginTop="25dp"
         />
 
 
