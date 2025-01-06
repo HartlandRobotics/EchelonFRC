@@ -31,6 +31,7 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintBottom_toTopOf="@id/reef_level_three"
         app:layout_constraintLeft_toRightOf="@id/reef_level_four_decrement"
+        app:layout_constraintRight_toRightOf="@id/reef_level_one"
         android:contentDescription="moving in auto button"
         />
 
@@ -47,6 +48,20 @@
 
 
     <ImageButton
+        android:id="@+id/reef_level_three_decrement"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@null"
+        android:src="@drawable/button_decrement"
+        app:layout_constraintTop_toTopOf="@id/reef_level_three"
+        app:layout_constraintBottom_toBottomOf="@id/reef_level_three"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toLeftOf="@id/reef_level_three"
+        android:layout_marginStart="30dp"
+        android:layout_marginEnd="30dp"
+        />
+
+    <ImageButton
         android:id="@+id/reef_level_three"
         android:layout_width="200dp"
         android:layout_height="wrap_content"
@@ -56,9 +71,34 @@
         tools:layout_editor_absoluteY="16dp"
         app:layout_constraintTop_toBottomOf="@id/reef_level_four"
         app:layout_constraintBottom_toTopOf="@id/reef_level_two"
-        app:layout_constraintLeft_toLeftOf="@id/reef_level_one"
+        app:layout_constraintLeft_toRightOf="@id/reef_level_three_decrement"
         app:layout_constraintRight_toRightOf="@id/reef_level_one"
         android:contentDescription="moving in auto button"
+        />
+
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/reef_level_three_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toTopOf="@id/reef_level_three"
+        app:layout_constraintLeft_toRightOf="@+id/reef_level_three"
+        android:textSize="32sp"
+        tools:text="0"
+        android:layout_marginTop="25dp"
+        />
+
+    <ImageButton
+        android:id="@+id/reef_level_two_decrement"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@null"
+        android:src="@drawable/button_decrement"
+        app:layout_constraintTop_toTopOf="@id/reef_level_two"
+        app:layout_constraintBottom_toBottomOf="@id/reef_level_two"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toLeftOf="@id/reef_level_two"
+        android:layout_marginStart="30dp"
+        android:layout_marginEnd="30dp"
         />
 
     <ImageButton
@@ -71,9 +111,34 @@
         tools:layout_editor_absoluteY="16dp"
         app:layout_constraintTop_toBottomOf="@id/reef_level_three"
         app:layout_constraintBottom_toTopOf="@id/reef_level_one"
-        app:layout_constraintLeft_toLeftOf="@id/reef_level_one"
+        app:layout_constraintLeft_toRightOf="@id/reef_level_two_decrement"
         app:layout_constraintRight_toRightOf="@id/reef_level_one"
         android:contentDescription="moving in auto button"
+        />
+
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/reef_level_two_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toTopOf="@id/reef_level_two"
+        app:layout_constraintLeft_toRightOf="@+id/reef_level_two"
+        android:textSize="32sp"
+        tools:text="0"
+        android:layout_marginTop="25dp"
+        />
+
+    <ImageButton
+        android:id="@+id/reef_level_one_decrement"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@null"
+        android:src="@drawable/button_decrement"
+        app:layout_constraintTop_toTopOf="@id/reef_level_one"
+        app:layout_constraintBottom_toBottomOf="@id/reef_level_one"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toLeftOf="@id/reef_level_one"
+        android:layout_marginStart="30dp"
+        android:layout_marginEnd="30dp"
         />
 
     <ImageButton
@@ -86,9 +151,20 @@
         tools:layout_editor_absoluteY="16dp"
         app:layout_constraintTop_toBottomOf="@id/reef_level_two"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toLeftOf="@id/park"
+        app:layout_constraintLeft_toRightOf="@id/reef_level_one_decrement"
+        app:layout_constraintRight_toLeftOf="@id/reef_level_one_text"
         android:contentDescription="moving in auto button"
+        />
+
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/reef_level_one_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toTopOf="@id/reef_level_one"
+        app:layout_constraintLeft_toRightOf="@+id/reef_level_one"
+        android:textSize="32sp"
+        tools:text="0"
+        android:layout_marginTop="25dp"
         />
 
     <ImageButton
