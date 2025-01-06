@@ -1,4 +1,4 @@
-package org.hartlandrobotics.echelon2.models;
+package org.hartlandrobotics.echelonFRC.models;
 
 public class MatchScoringSummaryModel {
     public String eventKey;

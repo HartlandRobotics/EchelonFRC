@@ -1,4 +1,4 @@
-package org.hartlandrobotics.echelon2.configuration;
+package org.hartlandrobotics.echelonFRC.configuration;
 
 import android.content.Context;
 import android.content.SharedPreferences;
@@ -11,7 +11,7 @@ import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import org.apache.commons.lang3.StringUtils;
-import org.hartlandrobotics.echelon2.utilities.FileUtilities;
+import org.hartlandrobotics.echelonFRC.utilities.FileUtilities;
 
 import java.io.File;
 import java.io.IOException;

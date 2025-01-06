@@ -1,4 +1,4 @@
-package org.hartlandrobotics.echelon2;
+package org.hartlandrobotics.echelonFRC;
 
 import android.content.Intent;
 import android.view.Menu;
@@ -8,9 +8,9 @@ import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
-import org.hartlandrobotics.echelon2.blueAlliance.BlueAllianceActivity;
-import org.hartlandrobotics.echelon2.bluetooth.BluetoothSyncActivity;
-import org.hartlandrobotics.echelon2.configuration.AdminSettings;
+import org.hartlandrobotics.echelonFRC.blueAlliance.BlueAllianceActivity;
+import org.hartlandrobotics.echelonFRC.bluetooth.BluetoothSyncActivity;
+import org.hartlandrobotics.echelonFRC.configuration.AdminSettings;
 
 public abstract class EchelonActivity extends AppCompatActivity {
     private TextView pageName;

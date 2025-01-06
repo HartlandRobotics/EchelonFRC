@@ -1,4 +1,4 @@
-package org.hartlandrobotics.echelon2.blueAlliance.fragments;
+package org.hartlandrobotics.echelonFRC.blueAlliance.fragments;
 
 import android.content.Context;
 import android.os.Bundle;
@@ -15,14 +15,14 @@ import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import org.hartlandrobotics.echelon2.R;
-import org.hartlandrobotics.echelon2.blueAlliance.Api;
-import org.hartlandrobotics.echelon2.blueAlliance.ApiInterface;
-import org.hartlandrobotics.echelon2.blueAlliance.models.SyncTeam;
-import org.hartlandrobotics.echelon2.database.entities.EvtTeamCrossRef;
-import org.hartlandrobotics.echelon2.database.entities.Team;
-import org.hartlandrobotics.echelon2.database.repositories.TeamRepo;
-import org.hartlandrobotics.echelon2.status.BlueAllianceStatus;
+import org.hartlandrobotics.echelonFRC.R;
+import org.hartlandrobotics.echelonFRC.blueAlliance.Api;
+import org.hartlandrobotics.echelonFRC.blueAlliance.ApiInterface;
+import org.hartlandrobotics.echelonFRC.blueAlliance.models.SyncTeam;
+import org.hartlandrobotics.echelonFRC.database.entities.EvtTeamCrossRef;
+import org.hartlandrobotics.echelonFRC.database.entities.Team;
+import org.hartlandrobotics.echelonFRC.database.repositories.TeamRepo;
+import org.hartlandrobotics.echelonFRC.status.BlueAllianceStatus;
 
 import java.util.ArrayList;
 import java.util.List;

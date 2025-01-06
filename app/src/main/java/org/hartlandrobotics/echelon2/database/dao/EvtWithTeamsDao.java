@@ -1,4 +1,4 @@
-package org.hartlandrobotics.echelon2.database.dao;
+package org.hartlandrobotics.echelonFRC.database.dao;
 
 import androidx.lifecycle.LiveData;
 import androidx.room.Dao;
@@ -8,8 +8,8 @@ import androidx.room.Query;
 import androidx.room.Transaction;
 import androidx.room.Update;
 
-import org.hartlandrobotics.echelon2.database.entities.EvtTeamCrossRef;
-import org.hartlandrobotics.echelon2.database.entities.EvtWithTeams;
+import org.hartlandrobotics.echelonFRC.database.entities.EvtTeamCrossRef;
+import org.hartlandrobotics.echelonFRC.database.entities.EvtWithTeams;
 
 @Dao
 public abstract class EvtWithTeamsDao {

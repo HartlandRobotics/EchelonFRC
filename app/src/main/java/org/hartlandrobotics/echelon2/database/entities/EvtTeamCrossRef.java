@@ -1,4 +1,4 @@
-package org.hartlandrobotics.echelon2.database.entities;
+package org.hartlandrobotics.echelonFRC.database.entities;
 
 import androidx.annotation.NonNull;
 import androidx.room.ColumnInfo;

@@ -1,12 +1,12 @@
-package org.hartlandrobotics.echelon2.database.repositories;
+package org.hartlandrobotics.echelonFRC.database.repositories;
 
 import android.app.Application;
 
 import androidx.lifecycle.LiveData;
 
-import org.hartlandrobotics.echelon2.database.EchelonDatabase;
-import org.hartlandrobotics.echelon2.database.dao.DistrictDao;
-import org.hartlandrobotics.echelon2.database.entities.District;
+import org.hartlandrobotics.echelonFRC.database.EchelonDatabase;
+import org.hartlandrobotics.echelonFRC.database.dao.DistrictDao;
+import org.hartlandrobotics.echelonFRC.database.entities.District;
 
 import java.util.List;
 

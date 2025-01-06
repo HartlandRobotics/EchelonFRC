@@ -1,4 +1,4 @@
-package org.hartlandrobotics.echelon2;
+package org.hartlandrobotics.echelonFRC;
 
 import android.content.Context;
 import android.content.Intent;
@@ -14,8 +14,8 @@ import com.google.android.material.button.MaterialButtonToggleGroup;
 import com.google.android.material.textfield.TextInputLayout;
 
 import org.apache.commons.lang3.StringUtils;
-import org.hartlandrobotics.echelon2.configuration.AdminSettingsProvider;
-import org.hartlandrobotics.echelon2.configuration.AdminSettingsViewModel;
+import org.hartlandrobotics.echelonFRC.configuration.AdminSettingsProvider;
+import org.hartlandrobotics.echelonFRC.configuration.AdminSettingsViewModel;
 
 import java.util.HashMap;
 

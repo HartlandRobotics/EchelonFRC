@@ -1,10 +1,10 @@
-package org.hartlandrobotics.echelon2.models;
+package org.hartlandrobotics.echelonFRC.models;
 
 import android.app.Application;
 import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.LiveData;
-import org.hartlandrobotics.echelon2.database.entities.Season;
-import org.hartlandrobotics.echelon2.database.repositories.SeasonRepo;
+import org.hartlandrobotics.echelonFRC.database.entities.Season;
+import org.hartlandrobotics.echelonFRC.database.repositories.SeasonRepo;
 import java.util.List;
 
 public class SeasonViewModel extends AndroidViewModel {

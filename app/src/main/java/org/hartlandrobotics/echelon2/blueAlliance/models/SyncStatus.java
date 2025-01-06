@@ -1,4 +1,4 @@
-package org.hartlandrobotics.echelon2.blueAlliance.models;
+package org.hartlandrobotics.echelonFRC.blueAlliance.models;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 

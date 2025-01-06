@@ -1,4 +1,4 @@
-package org.hartlandrobotics.echelon2.matchScouting;
+package org.hartlandrobotics.echelonFRC.matchScouting;
 
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -11,7 +11,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.viewpager2.widget.ViewPager2;
 
-import org.hartlandrobotics.echelon2.R;
+import org.hartlandrobotics.echelonFRC.R;
 
 import java.util.List;
 

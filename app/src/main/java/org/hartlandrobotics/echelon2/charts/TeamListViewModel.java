@@ -1,4 +1,4 @@
-package org.hartlandrobotics.echelon2.charts;
+package org.hartlandrobotics.echelonFRC.charts;
 
 public class TeamListViewModel {
     private String teamNumber;

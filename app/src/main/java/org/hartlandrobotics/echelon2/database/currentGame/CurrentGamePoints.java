@@ -1,6 +1,6 @@
-package org.hartlandrobotics.echelon2.database.currentGame;
+package org.hartlandrobotics.echelonFRC.database.currentGame;
 
-import org.hartlandrobotics.echelon2.database.entities.MatchResult;
+import org.hartlandrobotics.echelonFRC.database.entities.MatchResult;
 import org.apache.commons.lang3.StringUtils;
 
 import java.util.Date;

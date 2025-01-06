@@ -1,9 +1,9 @@
-package org.hartlandrobotics.echelon2.blueAlliance.models;
+package org.hartlandrobotics.echelonFRC.blueAlliance.models;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-import org.hartlandrobotics.echelon2.database.entities.EvtMatchCrossRef;
-import org.hartlandrobotics.echelon2.database.entities.Match;
+import org.hartlandrobotics.echelonFRC.database.entities.EvtMatchCrossRef;
+import org.hartlandrobotics.echelonFRC.database.entities.Match;
 
 import java.util.ArrayList;
 

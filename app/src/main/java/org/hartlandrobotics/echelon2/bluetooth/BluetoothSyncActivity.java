@@ -1,4 +1,4 @@
-package org.hartlandrobotics.echelon2.bluetooth;
+package org.hartlandrobotics.echelonFRC.bluetooth;
 
 import androidx.annotation.NonNull;
 import androidx.lifecycle.ViewModelProvider;
@@ -20,15 +20,15 @@ import android.widget.TextView;
 
 import com.google.android.material.button.MaterialButton;
 
-import org.hartlandrobotics.echelon2.EchelonActivity;
-import org.hartlandrobotics.echelon2.R;
-import org.hartlandrobotics.echelon2.configuration.AdminSettings;
-import org.hartlandrobotics.echelon2.configuration.AdminSettingsProvider;
-import org.hartlandrobotics.echelon2.database.entities.MatchResult;
-import org.hartlandrobotics.echelon2.database.entities.PitScout;
-import org.hartlandrobotics.echelon2.models.MatchResultViewModel;
-import org.hartlandrobotics.echelon2.models.PitScoutViewModel;
-import org.hartlandrobotics.echelon2.status.BlueAllianceStatus;
+import org.hartlandrobotics.echelonFRC.EchelonActivity;
+import org.hartlandrobotics.echelonFRC.R;
+import org.hartlandrobotics.echelonFRC.configuration.AdminSettings;
+import org.hartlandrobotics.echelonFRC.configuration.AdminSettingsProvider;
+import org.hartlandrobotics.echelonFRC.database.entities.MatchResult;
+import org.hartlandrobotics.echelonFRC.database.entities.PitScout;
+import org.hartlandrobotics.echelonFRC.models.MatchResultViewModel;
+import org.hartlandrobotics.echelonFRC.models.PitScoutViewModel;
+import org.hartlandrobotics.echelonFRC.status.BlueAllianceStatus;
 
 import java.util.ArrayList;
 import java.util.HashMap;

@@ -1,4 +1,4 @@
-package org.hartlandrobotics.echelon2.charts;
+package org.hartlandrobotics.echelonFRC.charts;
 
 import androidx.viewpager2.widget.ViewPager2;
 
@@ -9,12 +9,12 @@ import android.os.Bundle;
 import com.google.android.material.tabs.TabLayout;
 import com.google.android.material.tabs.TabLayoutMediator;
 
-import org.hartlandrobotics.echelon2.EchelonActivity;
-import org.hartlandrobotics.echelon2.R;
-import org.hartlandrobotics.echelon2.database.currentGame.CurrentGamePoints;
-import org.hartlandrobotics.echelon2.database.entities.MatchResult;
-import org.hartlandrobotics.echelon2.database.repositories.MatchResultRepo;
-import org.hartlandrobotics.echelon2.status.BlueAllianceStatus;
+import org.hartlandrobotics.echelonFRC.EchelonActivity;
+import org.hartlandrobotics.echelonFRC.R;
+import org.hartlandrobotics.echelonFRC.database.currentGame.CurrentGamePoints;
+import org.hartlandrobotics.echelonFRC.database.entities.MatchResult;
+import org.hartlandrobotics.echelonFRC.database.repositories.MatchResultRepo;
+import org.hartlandrobotics.echelonFRC.status.BlueAllianceStatus;
 
 import java.util.ArrayList;
 import java.util.Comparator;

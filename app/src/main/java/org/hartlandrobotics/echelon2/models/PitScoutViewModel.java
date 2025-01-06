@@ -1,12 +1,12 @@
-package org.hartlandrobotics.echelon2.models;
+package org.hartlandrobotics.echelonFRC.models;
 
 import android.app.Application;
 
 import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.LiveData;
 
-import org.hartlandrobotics.echelon2.database.entities.PitScout;
-import org.hartlandrobotics.echelon2.database.repositories.PitScoutRepo;
+import org.hartlandrobotics.echelonFRC.database.entities.PitScout;
+import org.hartlandrobotics.echelonFRC.database.repositories.PitScoutRepo;
 
 import java.util.List;
 import java.util.UUID;

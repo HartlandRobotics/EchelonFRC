@@ -1,4 +1,4 @@
-package org.hartlandrobotics.echelon2;
+package org.hartlandrobotics.echelonFRC;
 
 import org.junit.Test;
 

@@ -1,4 +1,4 @@
-package org.hartlandrobotics.echelon2.pitScouting;
+package org.hartlandrobotics.echelonFRC.pitScouting;
 
 import android.os.Bundle;
 
@@ -11,8 +11,8 @@ import android.view.ViewGroup;
 import com.google.android.material.textfield.TextInputLayout;
 
 import org.apache.commons.lang3.StringUtils;
-import org.hartlandrobotics.echelon2.R;
-import org.hartlandrobotics.echelon2.database.entities.PitScout;
+import org.hartlandrobotics.echelonFRC.R;
+import org.hartlandrobotics.echelonFRC.database.entities.PitScout;
 
 public class PitScoutTeamFragment extends Fragment {
     TextInputLayout seasonNumberLayout;

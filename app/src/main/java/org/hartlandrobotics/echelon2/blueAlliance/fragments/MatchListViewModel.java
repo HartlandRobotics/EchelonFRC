@@ -1,6 +1,6 @@
-package org.hartlandrobotics.echelon2.blueAlliance.fragments;
+package org.hartlandrobotics.echelonFRC.blueAlliance.fragments;
 
-import org.hartlandrobotics.echelon2.database.entities.Match;
+import org.hartlandrobotics.echelonFRC.database.entities.Match;
 
 public class MatchListViewModel {
     private int matchNumber;

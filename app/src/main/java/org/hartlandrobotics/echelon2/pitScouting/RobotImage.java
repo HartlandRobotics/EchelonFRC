@@ -1,4 +1,4 @@
-package org.hartlandrobotics.echelon2.pitScouting;
+package org.hartlandrobotics.echelonFRC.pitScouting;
 
 import android.content.Context;
 import android.content.ContextWrapper;
@@ -11,7 +11,7 @@ import android.widget.ImageView;
 import androidx.annotation.NonNull;
 import androidx.viewpager.widget.PagerAdapter;
 
-import org.hartlandrobotics.echelon2.utilities.FileUtilities;
+import org.hartlandrobotics.echelonFRC.utilities.FileUtilities;
 
 import java.io.File;
 import java.util.ArrayList;

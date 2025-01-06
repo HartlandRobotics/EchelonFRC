@@ -1,4 +1,4 @@
-package org.hartlandrobotics.echelon2.utilities;
+package org.hartlandrobotics.echelonFRC.utilities;
 
 import android.content.Context;
 import android.provider.Settings;

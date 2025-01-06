@@ -1,11 +1,11 @@
-package org.hartlandrobotics.echelon2.database.dao;
+package org.hartlandrobotics.echelonFRC.database.dao;
 
 import androidx.lifecycle.LiveData;
 import androidx.room.Dao;
 import androidx.room.Insert;
 import androidx.room.OnConflictStrategy;
 import androidx.room.Query;
-import org.hartlandrobotics.echelon2.database.entities.Season;
+import org.hartlandrobotics.echelonFRC.database.entities.Season;
 import java.util.List;
 
 @Dao

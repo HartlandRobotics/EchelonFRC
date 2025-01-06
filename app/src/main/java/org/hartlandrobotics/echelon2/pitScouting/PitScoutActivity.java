@@ -1,4 +1,4 @@
-package org.hartlandrobotics.echelon2.pitScouting;
+package org.hartlandrobotics.echelonFRC.pitScouting;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.ViewModelProvider;
@@ -17,13 +17,13 @@ import com.google.android.material.tabs.TabLayout;
 import com.google.android.material.tabs.TabLayoutMediator;
 import com.google.android.material.textview.MaterialTextView;
 
-import org.hartlandrobotics.echelon2.EchelonActivity;
-import org.hartlandrobotics.echelon2.R;
-import org.hartlandrobotics.echelon2.database.entities.PitScout;
-import org.hartlandrobotics.echelon2.database.entities.Team;
-import org.hartlandrobotics.echelon2.models.PitScoutViewModel;
-import org.hartlandrobotics.echelon2.models.TeamViewModel;
-import org.hartlandrobotics.echelon2.status.BlueAllianceStatus;
+import org.hartlandrobotics.echelonFRC.EchelonActivity;
+import org.hartlandrobotics.echelonFRC.R;
+import org.hartlandrobotics.echelonFRC.database.entities.PitScout;
+import org.hartlandrobotics.echelonFRC.database.entities.Team;
+import org.hartlandrobotics.echelonFRC.models.PitScoutViewModel;
+import org.hartlandrobotics.echelonFRC.models.TeamViewModel;
+import org.hartlandrobotics.echelonFRC.status.BlueAllianceStatus;
 
 import java.util.Comparator;
 import java.util.List;

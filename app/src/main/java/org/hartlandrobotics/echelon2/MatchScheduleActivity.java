@@ -1,4 +1,4 @@
-package org.hartlandrobotics.echelon2;
+package org.hartlandrobotics.echelonFRC;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.DividerItemDecoration;
@@ -20,12 +20,12 @@ import com.google.android.material.textfield.TextInputLayout;
 import com.google.android.material.textview.MaterialTextView;
 
 import org.apache.commons.lang3.StringUtils;
-import org.hartlandrobotics.echelon2.database.currentGame.CurrentGamePoints;
-import org.hartlandrobotics.echelon2.database.entities.Match;
-import org.hartlandrobotics.echelon2.database.entities.MatchResult;
-import org.hartlandrobotics.echelon2.database.repositories.EventRepo;
-import org.hartlandrobotics.echelon2.database.repositories.MatchResultRepo;
-import org.hartlandrobotics.echelon2.status.BlueAllianceStatus;
+import org.hartlandrobotics.echelonFRC.database.currentGame.CurrentGamePoints;
+import org.hartlandrobotics.echelonFRC.database.entities.Match;
+import org.hartlandrobotics.echelonFRC.database.entities.MatchResult;
+import org.hartlandrobotics.echelonFRC.database.repositories.EventRepo;
+import org.hartlandrobotics.echelonFRC.database.repositories.MatchResultRepo;
+import org.hartlandrobotics.echelonFRC.status.BlueAllianceStatus;
 
 import java.util.ArrayList;
 import java.util.Comparator;

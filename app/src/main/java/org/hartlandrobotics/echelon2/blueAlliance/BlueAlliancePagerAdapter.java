@@ -1,4 +1,4 @@
-package org.hartlandrobotics.echelon2.blueAlliance;
+package org.hartlandrobotics.echelonFRC.blueAlliance;
 
 import android.util.Log;
 
@@ -8,10 +8,10 @@ import androidx.fragment.app.FragmentManager;
 import androidx.lifecycle.Lifecycle;
 import androidx.viewpager2.adapter.FragmentStateAdapter;
 
-import org.hartlandrobotics.echelon2.blueAlliance.fragments.DistrictsFragment;
-import org.hartlandrobotics.echelon2.blueAlliance.fragments.EventsFragment;
-import org.hartlandrobotics.echelon2.blueAlliance.fragments.MatchesFragment;
-import org.hartlandrobotics.echelon2.blueAlliance.fragments.TeamsFragment;
+import org.hartlandrobotics.echelonFRC.blueAlliance.fragments.DistrictsFragment;
+import org.hartlandrobotics.echelonFRC.blueAlliance.fragments.EventsFragment;
+import org.hartlandrobotics.echelonFRC.blueAlliance.fragments.MatchesFragment;
+import org.hartlandrobotics.echelonFRC.blueAlliance.fragments.TeamsFragment;
 
 import java.util.HashMap;
 import java.util.Map;

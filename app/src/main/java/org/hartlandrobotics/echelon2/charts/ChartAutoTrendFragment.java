@@ -1,4 +1,4 @@
-package org.hartlandrobotics.echelon2.charts;
+package org.hartlandrobotics.echelonFRC.charts;
 
 import android.graphics.Color;
 import android.os.Bundle;
@@ -23,9 +23,9 @@ import com.github.mikephil.charting.data.LineData;
 import com.github.mikephil.charting.data.LineDataSet;
 import com.github.mikephil.charting.interfaces.datasets.ILineDataSet;
 
-import org.hartlandrobotics.echelon2.R;
-import org.hartlandrobotics.echelon2.database.dao.MatchResultDao;
-import org.hartlandrobotics.echelon2.pitScouting.PitScoutActivity;
+import org.hartlandrobotics.echelonFRC.R;
+import org.hartlandrobotics.echelonFRC.database.dao.MatchResultDao;
+import org.hartlandrobotics.echelonFRC.pitScouting.PitScoutActivity;
 
 import java.util.ArrayList;
 import java.util.Comparator;

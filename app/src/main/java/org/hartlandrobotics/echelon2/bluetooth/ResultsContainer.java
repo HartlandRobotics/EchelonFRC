@@ -1,7 +1,7 @@
-package org.hartlandrobotics.echelon2.bluetooth;
+package org.hartlandrobotics.echelonFRC.bluetooth;
 
-import org.hartlandrobotics.echelon2.database.entities.MatchResult;
-import org.hartlandrobotics.echelon2.database.entities.PitScout;
+import org.hartlandrobotics.echelonFRC.database.entities.MatchResult;
+import org.hartlandrobotics.echelonFRC.database.entities.PitScout;
 
 import java.util.ArrayList;
 import java.util.List;

@@ -1,4 +1,4 @@
-package org.hartlandrobotics.echelon2.blueAlliance;
+package org.hartlandrobotics.echelonFRC.blueAlliance;
 
 import android.content.Context;
 import android.content.Intent;
@@ -12,11 +12,11 @@ import com.google.android.material.tabs.TabLayoutMediator;
 import com.google.android.material.textfield.TextInputLayout;
 
 import org.apache.commons.lang3.StringUtils;
-import org.hartlandrobotics.echelon2.EchelonActivity;
-import org.hartlandrobotics.echelon2.R;
+import org.hartlandrobotics.echelonFRC.EchelonActivity;
+import org.hartlandrobotics.echelonFRC.R;
 
-import org.hartlandrobotics.echelon2.blueAlliance.models.SyncStatus;
-import org.hartlandrobotics.echelon2.status.BlueAllianceStatus;
+import org.hartlandrobotics.echelonFRC.blueAlliance.models.SyncStatus;
+import org.hartlandrobotics.echelonFRC.status.BlueAllianceStatus;
 
 import retrofit2.Call;
 import retrofit2.Callback;

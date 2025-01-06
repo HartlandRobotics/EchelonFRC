@@ -1,4 +1,4 @@
-package org.hartlandrobotics.echelon2.configuration;
+package org.hartlandrobotics.echelonFRC.configuration;
 
 import android.content.Context;
 import android.content.SharedPreferences;

@@ -1,4 +1,4 @@
-package org.hartlandrobotics.echelon2.pitScouting;
+package org.hartlandrobotics.echelonFRC.pitScouting;
 
 import static android.app.Activity.RESULT_OK;
 import static android.content.Intent.ACTION_GET_CONTENT;
@@ -26,9 +26,9 @@ import android.widget.Button;
 import android.widget.Toast;
 
 import org.apache.commons.lang3.StringUtils;
-import org.hartlandrobotics.echelon2.R;
-import org.hartlandrobotics.echelon2.database.entities.PitScout;
-import org.hartlandrobotics.echelon2.utilities.FileUtilities;
+import org.hartlandrobotics.echelonFRC.R;
+import org.hartlandrobotics.echelonFRC.database.entities.PitScout;
+import org.hartlandrobotics.echelonFRC.utilities.FileUtilities;
 
 import java.io.File;
 import java.io.FileOutputStream;

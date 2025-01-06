@@ -1,18 +1,18 @@
-package org.hartlandrobotics.echelon2.models;
+package org.hartlandrobotics.echelonFRC.models;
 
 import android.app.Application;
 
 import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.LiveData;
 
-import org.hartlandrobotics.echelon2.database.entities.DistrictEvtCrossRef;
-import org.hartlandrobotics.echelon2.database.entities.Evt;
-import org.hartlandrobotics.echelon2.database.entities.EvtMatchCrossRef;
-import org.hartlandrobotics.echelon2.database.entities.EvtTeamCrossRef;
-//import org.hartlandrobotics.echelon2.database.entities.EvtWithMatches;
-import org.hartlandrobotics.echelon2.database.entities.EvtWithMatches;
-import org.hartlandrobotics.echelon2.database.entities.EvtWithTeams;
-import org.hartlandrobotics.echelon2.database.repositories.EventRepo;
+import org.hartlandrobotics.echelonFRC.database.entities.DistrictEvtCrossRef;
+import org.hartlandrobotics.echelonFRC.database.entities.Evt;
+import org.hartlandrobotics.echelonFRC.database.entities.EvtMatchCrossRef;
+import org.hartlandrobotics.echelonFRC.database.entities.EvtTeamCrossRef;
+//import org.hartlandrobotics.echelonFRC.database.entities.EvtWithMatches;
+import org.hartlandrobotics.echelonFRC.database.entities.EvtWithMatches;
+import org.hartlandrobotics.echelonFRC.database.entities.EvtWithTeams;
+import org.hartlandrobotics.echelonFRC.database.repositories.EventRepo;
 
 import java.util.List;
 

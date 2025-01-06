@@ -1,4 +1,4 @@
-package org.hartlandrobotics.echelon2.matchScouting;
+package org.hartlandrobotics.echelonFRC.matchScouting;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.ViewModelProvider;
@@ -16,12 +16,12 @@ import com.google.android.material.checkbox.MaterialCheckBox;
 import com.google.android.material.textfield.TextInputLayout;
 import com.google.android.material.textview.MaterialTextView;
 
-import org.hartlandrobotics.echelon2.R;
-//import org.hartlandrobotics.echelon2.database.crescendo.CrescendoResult;
-import org.hartlandrobotics.echelon2.database.currentGame.CurrentGamePoints;
-import org.hartlandrobotics.echelon2.database.entities.MatchResult;
-import org.hartlandrobotics.echelon2.models.MatchResultViewModel;
-import org.hartlandrobotics.echelon2.status.BlueAllianceStatus;
+import org.hartlandrobotics.echelonFRC.R;
+//import org.hartlandrobotics.echelonFRC.database.crescendo.CrescendoResult;
+import org.hartlandrobotics.echelonFRC.database.currentGame.CurrentGamePoints;
+import org.hartlandrobotics.echelonFRC.database.entities.MatchResult;
+import org.hartlandrobotics.echelonFRC.models.MatchResultViewModel;
+import org.hartlandrobotics.echelonFRC.status.BlueAllianceStatus;
 
 public class MatchScoutingSummaryActivity extends AppCompatActivity {
     private static final String TAG = "MatchScoutingSummaryActivity";

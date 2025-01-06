@@ -1,4 +1,4 @@
-package org.hartlandrobotics.echelon2.blueAlliance.fragments;
+package org.hartlandrobotics.echelonFRC.blueAlliance.fragments;
 
 import android.content.Context;
 import android.os.Bundle;
@@ -17,15 +17,15 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.android.material.textview.MaterialTextView;
 
-import org.hartlandrobotics.echelon2.R;
-import org.hartlandrobotics.echelon2.blueAlliance.Api;
-import org.hartlandrobotics.echelon2.blueAlliance.ApiInterface;
-import org.hartlandrobotics.echelon2.blueAlliance.models.SyncMatch;
-import org.hartlandrobotics.echelon2.database.entities.EvtMatchCrossRef;
-import org.hartlandrobotics.echelon2.database.entities.Match;
-import org.hartlandrobotics.echelon2.database.repositories.EventRepo;
-import org.hartlandrobotics.echelon2.database.repositories.MatchRepo;
-import org.hartlandrobotics.echelon2.status.BlueAllianceStatus;
+import org.hartlandrobotics.echelonFRC.R;
+import org.hartlandrobotics.echelonFRC.blueAlliance.Api;
+import org.hartlandrobotics.echelonFRC.blueAlliance.ApiInterface;
+import org.hartlandrobotics.echelonFRC.blueAlliance.models.SyncMatch;
+import org.hartlandrobotics.echelonFRC.database.entities.EvtMatchCrossRef;
+import org.hartlandrobotics.echelonFRC.database.entities.Match;
+import org.hartlandrobotics.echelonFRC.database.repositories.EventRepo;
+import org.hartlandrobotics.echelonFRC.database.repositories.MatchRepo;
+import org.hartlandrobotics.echelonFRC.status.BlueAllianceStatus;
 
 import java.util.ArrayList;
 import java.util.Comparator;

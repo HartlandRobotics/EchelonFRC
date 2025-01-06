@@ -1,4 +1,4 @@
-package org.hartlandrobotics.echelon2.pitScouting;
+package org.hartlandrobotics.echelonFRC.pitScouting;
 
 import android.util.Log;
 
@@ -9,7 +9,7 @@ import androidx.lifecycle.Lifecycle;
 import androidx.viewpager2.adapter.FragmentStateAdapter;
 import androidx.viewpager2.adapter.FragmentViewHolder;
 
-import org.hartlandrobotics.echelon2.database.entities.PitScout;
+import org.hartlandrobotics.echelonFRC.database.entities.PitScout;
 
 import java.util.HashMap;
 import java.util.List;

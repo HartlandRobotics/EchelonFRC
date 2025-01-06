@@ -1,13 +1,13 @@
-package org.hartlandrobotics.echelon2.models;
+package org.hartlandrobotics.echelonFRC.models;
 
 import android.app.Application;
 
 import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.LiveData;
 
-import org.hartlandrobotics.echelon2.database.entities.EvtWithTeams;
-import org.hartlandrobotics.echelon2.database.entities.Team;
-import org.hartlandrobotics.echelon2.database.repositories.TeamRepo;
+import org.hartlandrobotics.echelonFRC.database.entities.EvtWithTeams;
+import org.hartlandrobotics.echelonFRC.database.entities.Team;
+import org.hartlandrobotics.echelonFRC.database.repositories.TeamRepo;
 
 import java.util.List;
 

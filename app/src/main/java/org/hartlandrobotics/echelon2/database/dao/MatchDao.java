@@ -1,4 +1,4 @@
-package org.hartlandrobotics.echelon2.database.dao;
+package org.hartlandrobotics.echelonFRC.database.dao;
 
 import androidx.lifecycle.LiveData;
 import androidx.room.Dao;
@@ -8,7 +8,7 @@ import androidx.room.Query;
 import androidx.room.Transaction;
 import androidx.room.Update;
 
-import org.hartlandrobotics.echelon2.database.entities.Match;
+import org.hartlandrobotics.echelonFRC.database.entities.Match;
 
 import java.util.List;
 

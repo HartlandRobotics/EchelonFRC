@@ -1,8 +1,8 @@
-package org.hartlandrobotics.echelon2.blueAlliance.models;
+package org.hartlandrobotics.echelonFRC.blueAlliance.models;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-import org.hartlandrobotics.echelon2.database.entities.District;
+import org.hartlandrobotics.echelonFRC.database.entities.District;
 
 public class SyncDistrict {
     @JsonProperty("abbreviation")

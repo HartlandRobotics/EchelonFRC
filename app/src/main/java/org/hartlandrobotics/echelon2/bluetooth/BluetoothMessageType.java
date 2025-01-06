@@ -1,4 +1,4 @@
-package org.hartlandrobotics.echelon2.bluetooth;
+package org.hartlandrobotics.echelonFRC.bluetooth;
 
 public interface BluetoothMessageType {
     int MESSAGE_READ = 1;

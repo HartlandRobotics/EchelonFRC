@@ -1,4 +1,4 @@
-package org.hartlandrobotics.echelon2.database.entities;
+package org.hartlandrobotics.echelonFRC.database.entities;
 
 
 import androidx.annotation.NonNull;
@@ -8,8 +8,8 @@ import androidx.room.Ignore;
 import androidx.room.PrimaryKey;
 
 import org.apache.commons.lang3.StringUtils;
-//import org.hartlandrobotics.echelon2.database.currentGame.CurrentGameCounts;
-import org.hartlandrobotics.echelon2.database.currentGame.CurrentGamePoints;
+//import org.hartlandrobotics.echelonFRC.database.currentGame.CurrentGameCounts;
+import org.hartlandrobotics.echelonFRC.database.currentGame.CurrentGamePoints;
 
 import java.util.UUID;
 

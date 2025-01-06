@@ -1,4 +1,4 @@
-package org.hartlandrobotics.echelon2.matchScouting;
+package org.hartlandrobotics.echelonFRC.matchScouting;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.viewpager2.widget.ViewPager2;
@@ -17,14 +17,14 @@ import com.google.android.material.button.MaterialButton;
 import com.google.android.material.textfield.TextInputLayout;
 
 import org.apache.commons.lang3.StringUtils;
-import org.hartlandrobotics.echelon2.EchelonActivity;
-import org.hartlandrobotics.echelon2.R;
-import org.hartlandrobotics.echelon2.configuration.AdminSettings;
-import org.hartlandrobotics.echelon2.configuration.AdminSettingsProvider;
-import org.hartlandrobotics.echelon2.database.entities.Match;
-import org.hartlandrobotics.echelon2.database.repositories.EventRepo;
-import org.hartlandrobotics.echelon2.status.BlueAllianceStatus;
-import org.hartlandrobotics.echelon2.utilities.FileUtilities;
+import org.hartlandrobotics.echelonFRC.EchelonActivity;
+import org.hartlandrobotics.echelonFRC.R;
+import org.hartlandrobotics.echelonFRC.configuration.AdminSettings;
+import org.hartlandrobotics.echelonFRC.configuration.AdminSettingsProvider;
+import org.hartlandrobotics.echelonFRC.database.entities.Match;
+import org.hartlandrobotics.echelonFRC.database.repositories.EventRepo;
+import org.hartlandrobotics.echelonFRC.status.BlueAllianceStatus;
+import org.hartlandrobotics.echelonFRC.utilities.FileUtilities;
 
 import java.io.File;
 import java.util.ArrayList;

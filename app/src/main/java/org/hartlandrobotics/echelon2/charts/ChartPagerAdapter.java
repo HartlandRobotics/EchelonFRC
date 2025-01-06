@@ -1,4 +1,4 @@
-package org.hartlandrobotics.echelon2.charts;
+package org.hartlandrobotics.echelonFRC.charts;
 
 import android.util.Log;
 
@@ -9,12 +9,12 @@ import androidx.lifecycle.Lifecycle;
 import androidx.viewpager2.adapter.FragmentStateAdapter;
 import androidx.viewpager2.adapter.FragmentViewHolder;
 
-import org.hartlandrobotics.echelon2.database.entities.PitScout;
-import org.hartlandrobotics.echelon2.pitScouting.PitScoutAutoFragment;
-import org.hartlandrobotics.echelon2.pitScouting.PitScoutEndGameFragment;
-import org.hartlandrobotics.echelon2.pitScouting.PitScoutPhotosFragment;
-import org.hartlandrobotics.echelon2.pitScouting.PitScoutTeamFragment;
-import org.hartlandrobotics.echelon2.pitScouting.PitScoutTeleOpFragment;
+import org.hartlandrobotics.echelonFRC.database.entities.PitScout;
+import org.hartlandrobotics.echelonFRC.pitScouting.PitScoutAutoFragment;
+import org.hartlandrobotics.echelonFRC.pitScouting.PitScoutEndGameFragment;
+import org.hartlandrobotics.echelonFRC.pitScouting.PitScoutPhotosFragment;
+import org.hartlandrobotics.echelonFRC.pitScouting.PitScoutTeamFragment;
+import org.hartlandrobotics.echelonFRC.pitScouting.PitScoutTeleOpFragment;
 
 import java.util.HashMap;
 import java.util.List;

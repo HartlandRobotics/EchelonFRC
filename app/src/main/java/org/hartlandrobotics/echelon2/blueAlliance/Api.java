@@ -1,12 +1,12 @@
-package org.hartlandrobotics.echelon2.blueAlliance;
+package org.hartlandrobotics.echelonFRC.blueAlliance;
 
 import android.content.Context;
 
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
-import org.hartlandrobotics.echelon2.configuration.AdminSettingsProvider;
-import org.hartlandrobotics.echelon2.configuration.AdminSettingsViewModel;
+import org.hartlandrobotics.echelonFRC.configuration.AdminSettingsProvider;
+import org.hartlandrobotics.echelonFRC.configuration.AdminSettingsViewModel;
 
 import okhttp3.OkHttpClient;
 import okhttp3.Request;

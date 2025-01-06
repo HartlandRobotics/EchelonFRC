@@ -1,4 +1,4 @@
-package org.hartlandrobotics.echelon2.status;
+package org.hartlandrobotics.echelonFRC.status;
 
 import android.content.Context;
 import android.content.SharedPreferences;

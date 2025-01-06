@@ -1,6 +1,6 @@
-package org.hartlandrobotics.echelon2.blueAlliance.fragments;
+package org.hartlandrobotics.echelonFRC.blueAlliance.fragments;
 
-import org.hartlandrobotics.echelon2.database.entities.District;
+import org.hartlandrobotics.echelonFRC.database.entities.District;
 
 public class DistrictListViewModel {
     private String districtKey;

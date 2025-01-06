@@ -1,4 +1,4 @@
-package org.hartlandrobotics.echelon2.charts;
+package org.hartlandrobotics.echelonFRC.charts;
 
 import android.content.Context;
 import android.graphics.Color;
@@ -33,8 +33,8 @@ import com.github.mikephil.charting.utils.ColorTemplate;
 import com.google.android.material.checkbox.MaterialCheckBox;
 import com.google.android.material.textview.MaterialTextView;
 
-import org.hartlandrobotics.echelon2.R;
-import org.hartlandrobotics.echelon2.models.TeamViewModel;
+import org.hartlandrobotics.echelonFRC.R;
+import org.hartlandrobotics.echelonFRC.models.TeamViewModel;
 
 import java.util.ArrayList;
 import java.util.Comparator;

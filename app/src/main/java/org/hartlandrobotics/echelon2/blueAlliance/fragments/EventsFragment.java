@@ -1,4 +1,4 @@
-package org.hartlandrobotics.echelon2.blueAlliance.fragments;
+package org.hartlandrobotics.echelonFRC.blueAlliance.fragments;
 
 import android.content.Context;
 import android.os.Bundle;
@@ -21,15 +21,15 @@ import com.google.android.material.textfield.TextInputLayout;
 import com.google.android.material.textview.MaterialTextView;
 
 import org.apache.commons.lang3.StringUtils;
-import org.hartlandrobotics.echelon2.R;
-import org.hartlandrobotics.echelon2.blueAlliance.Api;
-import org.hartlandrobotics.echelon2.blueAlliance.ApiInterface;
-import org.hartlandrobotics.echelon2.blueAlliance.BlueAllianceActivity;
-import org.hartlandrobotics.echelon2.blueAlliance.models.SyncEvent;
-import org.hartlandrobotics.echelon2.database.entities.DistrictEvtCrossRef;
-import org.hartlandrobotics.echelon2.database.entities.Evt;
-import org.hartlandrobotics.echelon2.database.repositories.EventRepo;
-import org.hartlandrobotics.echelon2.status.BlueAllianceStatus;
+import org.hartlandrobotics.echelonFRC.R;
+import org.hartlandrobotics.echelonFRC.blueAlliance.Api;
+import org.hartlandrobotics.echelonFRC.blueAlliance.ApiInterface;
+import org.hartlandrobotics.echelonFRC.blueAlliance.BlueAllianceActivity;
+import org.hartlandrobotics.echelonFRC.blueAlliance.models.SyncEvent;
+import org.hartlandrobotics.echelonFRC.database.entities.DistrictEvtCrossRef;
+import org.hartlandrobotics.echelonFRC.database.entities.Evt;
+import org.hartlandrobotics.echelonFRC.database.repositories.EventRepo;
+import org.hartlandrobotics.echelonFRC.status.BlueAllianceStatus;
 
 import java.util.ArrayList;
 import java.util.List;

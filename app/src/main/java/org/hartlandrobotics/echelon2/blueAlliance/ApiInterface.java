@@ -1,10 +1,10 @@
-package org.hartlandrobotics.echelon2.blueAlliance;
+package org.hartlandrobotics.echelonFRC.blueAlliance;
 
-import org.hartlandrobotics.echelon2.blueAlliance.models.SyncDistrict;
-import org.hartlandrobotics.echelon2.blueAlliance.models.SyncEvent;
-import org.hartlandrobotics.echelon2.blueAlliance.models.SyncMatch;
-import org.hartlandrobotics.echelon2.blueAlliance.models.SyncStatus;
-import org.hartlandrobotics.echelon2.blueAlliance.models.SyncTeam;
+import org.hartlandrobotics.echelonFRC.blueAlliance.models.SyncDistrict;
+import org.hartlandrobotics.echelonFRC.blueAlliance.models.SyncEvent;
+import org.hartlandrobotics.echelonFRC.blueAlliance.models.SyncMatch;
+import org.hartlandrobotics.echelonFRC.blueAlliance.models.SyncStatus;
+import org.hartlandrobotics.echelonFRC.blueAlliance.models.SyncTeam;
 
 import java.util.List;
 

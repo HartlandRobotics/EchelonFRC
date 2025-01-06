@@ -1,4 +1,4 @@
-package org.hartlandrobotics.echelon2.bluetooth;
+package org.hartlandrobotics.echelonFRC.bluetooth;
 
 import android.bluetooth.BluetoothAdapter;
 import android.bluetooth.BluetoothDevice;
@@ -11,8 +11,8 @@ import android.util.Log;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import org.apache.commons.lang3.StringUtils;
-import org.hartlandrobotics.echelon2.database.entities.MatchResult;
-import org.hartlandrobotics.echelon2.database.entities.PitScout;
+import org.hartlandrobotics.echelonFRC.database.entities.MatchResult;
+import org.hartlandrobotics.echelonFRC.database.entities.PitScout;
 
 import java.io.IOException;
 import java.io.InputStream;

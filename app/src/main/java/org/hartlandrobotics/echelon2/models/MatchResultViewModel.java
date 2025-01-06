@@ -1,4 +1,4 @@
-package org.hartlandrobotics.echelon2.models;
+package org.hartlandrobotics.echelonFRC.models;
 
 import android.app.Application;
 
@@ -7,11 +7,11 @@ import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.LiveData;
 
 import org.apache.commons.lang3.StringUtils;
-import org.hartlandrobotics.echelon2.database.dao.MatchResultDao;
-import org.hartlandrobotics.echelon2.database.entities.MatchResult;
-import org.hartlandrobotics.echelon2.database.entities.MatchResultWithTeamMatch;
-import org.hartlandrobotics.echelon2.database.entities.PitScout;
-import org.hartlandrobotics.echelon2.database.repositories.MatchResultRepo;
+import org.hartlandrobotics.echelonFRC.database.dao.MatchResultDao;
+import org.hartlandrobotics.echelonFRC.database.entities.MatchResult;
+import org.hartlandrobotics.echelonFRC.database.entities.MatchResultWithTeamMatch;
+import org.hartlandrobotics.echelonFRC.database.entities.PitScout;
+import org.hartlandrobotics.echelonFRC.database.repositories.MatchResultRepo;
 
 import java.util.List;
 

@@ -1,6 +1,6 @@
-package org.hartlandrobotics.echelon2.blueAlliance.fragments;
+package org.hartlandrobotics.echelonFRC.blueAlliance.fragments;
 
-import org.hartlandrobotics.echelon2.database.entities.Evt;
+import org.hartlandrobotics.echelonFRC.database.entities.Evt;
 
 public class EventsListViewModel {
     private String eventName;

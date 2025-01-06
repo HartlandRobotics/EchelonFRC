@@ -1,4 +1,4 @@
-package org.hartlandrobotics.echelon2;
+package org.hartlandrobotics.echelonFRC;
 
 import android.content.Context;
 import android.content.ContextWrapper;
@@ -12,16 +12,15 @@ import android.widget.Toast;
 import androidx.annotation.RequiresApi;
 import androidx.lifecycle.ViewModelProvider;
 
-//import org.hartlandrobotics.echelon2.database.currentGame.CurrentGameCounts;
-import org.hartlandrobotics.echelon2.database.entities.Match;
-import org.hartlandrobotics.echelon2.database.entities.MatchResult;
-import org.hartlandrobotics.echelon2.database.entities.MatchResultWithTeamMatch;
-import org.hartlandrobotics.echelon2.database.entities.PitScout;
-import org.hartlandrobotics.echelon2.database.entities.Team;
-import org.hartlandrobotics.echelon2.models.MatchResultViewModel;
-import org.hartlandrobotics.echelon2.models.PitScoutViewModel;
-import org.hartlandrobotics.echelon2.status.BlueAllianceStatus;
-import org.hartlandrobotics.echelon2.utilities.FileUtilities;
+import org.hartlandrobotics.echelonFRC.database.entities.Match;
+import org.hartlandrobotics.echelonFRC.database.entities.MatchResult;
+import org.hartlandrobotics.echelonFRC.database.entities.MatchResultWithTeamMatch;
+import org.hartlandrobotics.echelonFRC.database.entities.PitScout;
+import org.hartlandrobotics.echelonFRC.database.entities.Team;
+import org.hartlandrobotics.echelonFRC.models.MatchResultViewModel;
+import org.hartlandrobotics.echelonFRC.models.PitScoutViewModel;
+import org.hartlandrobotics.echelonFRC.status.BlueAllianceStatus;
+import org.hartlandrobotics.echelonFRC.utilities.FileUtilities;
 
 import java.io.File;
 import java.io.FileNotFoundException;

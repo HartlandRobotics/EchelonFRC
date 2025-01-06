@@ -1,4 +1,4 @@
-package org.hartlandrobotics.echelon2;
+package org.hartlandrobotics.echelonFRC;
 
 import android.Manifest;
 import android.content.Context;
@@ -18,15 +18,15 @@ import android.widget.AutoCompleteTextView;
 import com.google.android.material.button.MaterialButton;
 import com.google.android.material.textfield.TextInputLayout;
 
-import org.hartlandrobotics.echelon2.blueAlliance.BlueAllianceActivity;
-import org.hartlandrobotics.echelon2.charts.ChartsActivity;
-import org.hartlandrobotics.echelon2.configuration.AdminSettings;
-import org.hartlandrobotics.echelon2.configuration.AdminSettingsProvider;
-import org.hartlandrobotics.echelon2.database.entities.Season;
-import org.hartlandrobotics.echelon2.matchScouting.MatchSelectionActivity;
-import org.hartlandrobotics.echelon2.models.SeasonViewModel;
-import org.hartlandrobotics.echelon2.pitScouting.PitScoutActivity;
-import org.hartlandrobotics.echelon2.status.BlueAllianceStatus;
+import org.hartlandrobotics.echelonFRC.blueAlliance.BlueAllianceActivity;
+import org.hartlandrobotics.echelonFRC.charts.ChartsActivity;
+import org.hartlandrobotics.echelonFRC.configuration.AdminSettings;
+import org.hartlandrobotics.echelonFRC.configuration.AdminSettingsProvider;
+import org.hartlandrobotics.echelonFRC.database.entities.Season;
+import org.hartlandrobotics.echelonFRC.matchScouting.MatchSelectionActivity;
+import org.hartlandrobotics.echelonFRC.models.SeasonViewModel;
+import org.hartlandrobotics.echelonFRC.pitScouting.PitScoutActivity;
+import org.hartlandrobotics.echelonFRC.status.BlueAllianceStatus;
 
 import java.util.ArrayList;
 import java.util.List;
