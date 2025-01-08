@@ -174,6 +174,20 @@
         />
 
     <ImageButton
+        android:id="@+id/processor_decrement"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@null"
+        android:src="@drawable/button_decrement"
+        app:layout_constraintTop_toBottomOf="@id/processor"
+        app:layout_constraintBottom_toTopOf="@id/human_player"
+        app:layout_constraintLeft_toLeftOf="@id/processor"
+        app:layout_constraintRight_toLeftOf="@id/processor_text"
+        android:layout_marginStart="60dp"
+        android:layout_marginEnd="30dp"
+        />
+
+    <ImageButton
         android:id="@+id/processor"
         android:layout_width="200dp"
         android:layout_height="wrap_content"
@@ -186,6 +200,20 @@
         app:layout_constraintLeft_toLeftOf="@id/human_player"
         app:layout_constraintRight_toRightOf="@id/human_player"
         android:contentDescription="moving in auto button"
+        />
+
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/processor_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/processor"
+        app:layout_constraintLeft_toLeftOf="@+id/processor_decrement"
+        app:layout_constraintRight_toRightOf="@id/processor"
+        app:layout_constraintBottom_toTopOf="@id/human_player"
+        android:layout_marginBottom="25dp"
+        android:textSize="32sp"
+        tools:text="0"
+        android:layout_marginTop="25dp"
         />
 
     <ImageButton
