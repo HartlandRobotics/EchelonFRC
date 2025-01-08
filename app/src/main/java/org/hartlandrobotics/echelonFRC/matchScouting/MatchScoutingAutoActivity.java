@@ -132,11 +132,11 @@ public class MatchScoutingAutoActivity extends AppCompatActivity {
         reefLevelOnePoints = findViewById(R.id.reef_level_one_text);
         subtractReefLevelOne = findViewById(R.id.reef_level_one_decrement);
         autoReefLevelOne.setOnClickListener(v -> {
-            currentResult.result.setAutoInt3( Math.max(currentResult.getAuto3Counts() + 1, 0));
+            currentResult.result.setAutoInt6( Math.max(currentResult.result.getAutoInt6() + 1, 0));
             populateControlsFromData();
         });
         subtractReefLevelOne.setOnClickListener(v -> {
-            currentResult.result.setAutoInt3(Math.max(currentResult.getAuto3Counts() - 1, 0));
+            currentResult.result.setAutoInt6(Math.max(currentResult.result.getAutoInt6() - 1, 0));
             populateControlsFromData();
         });
 
