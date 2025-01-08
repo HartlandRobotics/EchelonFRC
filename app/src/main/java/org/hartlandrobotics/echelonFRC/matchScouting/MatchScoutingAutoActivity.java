@@ -132,6 +132,7 @@ public class MatchScoutingAutoActivity extends AppCompatActivity {
         reefLevelOnePoints = findViewById(R.id.reef_level_one_text);
         subtractReefLevelOne = findViewById(R.id.reef_level_one_decrement);
         autoReefLevelOne.setOnClickListener(v -> {
+            //need to update single page scoring sheet so we know what these are
             currentResult.result.setAutoInt6( Math.max(currentResult.result.getAutoInt6() + 1, 0));
             populateControlsFromData();
         });
