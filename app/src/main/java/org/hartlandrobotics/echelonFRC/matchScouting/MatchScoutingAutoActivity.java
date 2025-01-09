@@ -101,12 +101,12 @@ public class MatchScoutingAutoActivity extends AppCompatActivity {
 
     // all red text that refers from things from last year needs to be updated
     public void populateControlsFromData(){
-        reefLevelOnePoints.setText(String.valueOf(currentResult.getAuto3Counts()));
-        reefLevelTwoPoints.setText(String.valueOf(currentResult.getAuto2Counts()));
-        reefLevelThreePoints.setText(String.valueOf(currentResult.getAuto2Counts()));
-        reefLevelFourPoints.setText(String.valueOf(currentResult.getAuto2Counts()));
-        processorPoints.setText(String.valueOf(currentResult.getAuto2Counts()));
-        netPoints.setText(String.valueOf(currentResult.getAuto2Counts()));
+        reefLevelOnePoints.setText(String.valueOf(currentResult.result.getAutoInt6()));
+        reefLevelTwoPoints.setText(String.valueOf(currentResult.result.getAutoInt7()));
+        reefLevelThreePoints.setText(String.valueOf(currentResult.result.getAutoInt8()));
+        reefLevelFourPoints.setText(String.valueOf(currentResult.result.getAutoInt9()));
+        processorPoints.setText(String.valueOf(currentResult.result.getAutoInt10()));
+        netPoints.setText(String.valueOf(currentResult.result.getAutoInt11()));
 
         if(currentResult.getAuto1Counts() > 0){
             leaveLineAuto.setImageResource(R.drawable.out_line);
@@ -123,7 +123,7 @@ public class MatchScoutingAutoActivity extends AppCompatActivity {
         leaveLineAuto = findViewById(R.id.park);
         leaveLineAuto.setImageResource(R.drawable.in_line);
         leaveLineAuto.setOnClickListener(v -> {
-            currentResult.result.setAutoFlag1( !(currentResult.getAuto1Counts() > 0 ));
+            currentResult.result.setAutoFlag1( !(currentResult.result.getAutoFlag1()  ));
             populateControlsFromData();
 
         });
@@ -145,11 +145,11 @@ public class MatchScoutingAutoActivity extends AppCompatActivity {
         reefLevelTwoPoints = findViewById(R.id.reef_level_two_text);
         subtractReefLevelTwo = findViewById(R.id.reef_level_two_decrement);
         autoReefLevelTwo.setOnClickListener(v -> {
-            currentResult.result.setAutoInt3( Math.max(currentResult.getAuto3Counts() + 1, 0));
+            currentResult.result.setAutoInt7( Math.max(currentResult.result.getAutoInt7() + 1, 0));
             populateControlsFromData();
         });
         subtractReefLevelTwo.setOnClickListener(v -> {
-            currentResult.result.setAutoInt3(Math.max(currentResult.getAuto3Counts() - 1, 0));
+            currentResult.result.setAutoInt7(Math.max(currentResult.result.getAutoInt7() - 1, 0));
             populateControlsFromData();
         });
 
@@ -157,11 +157,11 @@ public class MatchScoutingAutoActivity extends AppCompatActivity {
         reefLevelThreePoints = findViewById(R.id.reef_level_three_text);
         subtractReefLevelThree = findViewById(R.id.reef_level_three_decrement);
         autoReefLevelThree.setOnClickListener(v -> {
-            currentResult.result.setAutoInt3( Math.max(currentResult.getAuto3Counts() + 1, 0));
+            currentResult.result.setAutoInt8( Math.max(currentResult.result.getAutoInt8() + 1, 0));
             populateControlsFromData();
         });
         subtractReefLevelThree.setOnClickListener(v -> {
-            currentResult.result.setAutoInt3(Math.max(currentResult.getAuto3Counts() - 1, 0));
+            currentResult.result.setAutoInt8(Math.max(currentResult.result.getAutoInt8() - 1, 0));
             populateControlsFromData();
         });
 
@@ -169,11 +169,11 @@ public class MatchScoutingAutoActivity extends AppCompatActivity {
         reefLevelFourPoints = findViewById(R.id.reef_level_four_text);
         subtractReefLevelFour = findViewById(R.id.reef_level_four_decrement);
         autoReefLevelFour.setOnClickListener(v -> {
-            currentResult.result.setAutoInt3( Math.max(currentResult.getAuto3Counts() + 1, 0));
+            currentResult.result.setAutoInt9( Math.max(currentResult.result.getAutoInt9() + 1, 0));
             populateControlsFromData();
         });
         subtractReefLevelFour.setOnClickListener(v -> {
-            currentResult.result.setAutoInt3(Math.max(currentResult.getAuto3Counts() - 1, 0));
+            currentResult.result.setAutoInt9(Math.max(currentResult.result.getAutoInt9() - 1, 0));
             populateControlsFromData();
         });
 
@@ -181,11 +181,11 @@ public class MatchScoutingAutoActivity extends AppCompatActivity {
         processorPoints = findViewById(R.id.processor_text);
         subtractProcessor = findViewById(R.id.processor_decrement);
         autoProcessor.setOnClickListener(v -> {
-            currentResult.result.setAutoInt3( Math.max(currentResult.getAuto3Counts() + 1, 0));
+            currentResult.result.setAutoInt10( Math.max(currentResult.result.getAutoInt10() + 1, 0));
             populateControlsFromData();
         });
         subtractProcessor.setOnClickListener(v -> {
-            currentResult.result.setAutoInt3(Math.max(currentResult.getAuto3Counts() - 1, 0));
+            currentResult.result.setAutoInt10(Math.max(currentResult.result.getAutoInt10() - 1, 0));
             populateControlsFromData();
         });
 
@@ -193,11 +193,11 @@ public class MatchScoutingAutoActivity extends AppCompatActivity {
         netPoints = findViewById(R.id.net_text);
         subtractNet = findViewById(R.id.net_decrement);
         autoNet.setOnClickListener(v -> {
-            currentResult.result.setAutoInt3( Math.max(currentResult.getAuto3Counts() + 1, 0));
+            currentResult.result.setAutoInt11( Math.max(currentResult.result.getAutoInt11() + 1, 0));
             populateControlsFromData();
         });
         subtractNet.setOnClickListener(v -> {
-            currentResult.result.setAutoInt3(Math.max(currentResult.getAuto3Counts() - 1, 0));
+            currentResult.result.setAutoInt11(Math.max(currentResult.result.getAutoInt11() - 1, 0));
             populateControlsFromData();
         });
 
