@@ -32,7 +32,7 @@ public class MatchResult {
     @ColumnInfo(name = "team_key")
     private String teamKey;
 
-    @ColumnInfo(name = "has_been_synced")
+    @ColumnInfo(name="has_been_synced")
     private boolean hasBeenSynced;
 
 
@@ -99,10 +99,6 @@ public class MatchResult {
 
     @ColumnInfo(name = "end_flag_5")
     private boolean endFlag5;
-
-    public boolean isHasBeenSynced() {
-        return hasBeenSynced;
-    }
 
     @ColumnInfo(name = "additional_notes")
     private String additionalNotes;
@@ -209,10 +205,8 @@ public class MatchResult {
         this.teamKey = teamKey;
     }
 
-    public boolean getHasBeenSynced(){ return hasBeenSynced; }
-    public void setHasBeenSynced(boolean hasBeenSynced){
-        this.hasBeenSynced = hasBeenSynced;
-    }
+    public boolean getHasBeenSynced() { return hasBeenSynced; }
+    public void setHasBeenSynced(boolean hasBeenSynced){ this.hasBeenSynced = hasBeenSynced; }
 
     public boolean getAutoFlag1() { return autoFlag1; }
     public void setAutoFlag1(boolean autoFlag1) { this.autoFlag1 = autoFlag1; }
