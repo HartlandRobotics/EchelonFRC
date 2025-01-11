@@ -27,25 +27,36 @@ public class MatchScoutingTeleopActivity extends AppCompatActivity {
     private static final String TEAM_KEY = "team_key_param";
 
     MaterialButton scoutingDoneButton;
-    private ImageButton ampSpeakerTeleOp;
-    private ImageButton subtractAmpSpeakerTeleOp;
-    private ImageButton speakerTeleOp;
-    private ImageButton subtractSpeakerTeleOp;
-    private ImageButton ampTeleOp;
-    private ImageButton subtractAmpTeleOp;
-    private ImageButton defensesButton;
-    private ImageButton defensesSubtractButton;
-    private MaterialTextView defensesText;
-    private MaterialTextView ampSpeakerTeleOpText;
-    private MaterialTextView speakerTeleOpText;
-    private MaterialTextView ampTeleOpText;
+    private ImageButton teleOpReefLevelOne;
+    private ImageButton teleOpReefLevelTwo;
+    private ImageButton teleOpReefLevelThree;
+    private ImageButton teleOpReefLevelFour;
+    private ImageButton teleOpProcessor;
+    private ImageButton teleOpNet;
+    private ImageButton teleOpHumanPlayer;
+    private ImageButton subtractReefLevelOne;
+    private ImageButton subtractReefLevelTwo;
+    private ImageButton subtractReefLevelThree;
+    private ImageButton subtractReefLevelFour;
+    private ImageButton subtractProcessor;
+    private ImageButton subtractNet;
+    private ImageButton subtractHumanPlayer;
+    private MaterialTextView reefLevelOnePoints;
+    private MaterialTextView reefLevelTwoPoints;
+    private MaterialTextView reefLevelThreePoints;
+    private MaterialTextView reefLevelFourPoints;
+    private MaterialTextView processorPoints;
+    private MaterialTextView netPoints;
+    private MaterialTextView humanPlayerPoints;
+    private MaterialTextView endHighHang;
+    private MaterialTextView endLowHang;
+    private MaterialTextView endPark;
 
 
-    private int ampSpeakerTeleOpDrawable;
-    private int ampTeleOpDrawable;
+    private int processorDrawable;
     private int buttonColor;
     private int buttonSelectedTextColor;
-    private int defenseDrawable;
+    private int secondaryDarkColor;
 
     MatchResultViewModel matchResultViewModel;
     CurrentGamePoints currentResult;
@@ -90,66 +101,136 @@ public class MatchScoutingTeleopActivity extends AppCompatActivity {
 
 
     public void populateControlsFromData() {
-        defensesText.setText(String.valueOf(currentResult.getDefenseCount()));
-        ampTeleOpText.setText(String.valueOf(currentResult.getTeleOpInt1Counts()));
-        speakerTeleOpText.setText(String.valueOf(currentResult.getTeleOpInt2Counts()));
-        ampSpeakerTeleOpText.setText(String.valueOf(currentResult.getTeleOpInt3Counts()));
+        reefLevelOnePoints.setText(String.valueOf(currentResult.result.getTeleOpInt6()));
+        reefLevelTwoPoints.setText(String.valueOf(currentResult.result.getTeleOpInt7()));
+        reefLevelThreePoints.setText(String.valueOf(currentResult.result.getTeleOpInt8()));
+        reefLevelFourPoints.setText(String.valueOf(currentResult.result.getTeleOpInt9()));
+        processorPoints.setText(String.valueOf(currentResult.result.getTeleOpInt10()));
+        netPoints.setText(String.valueOf(currentResult.result.getTeleOpInt11()));
+        humanPlayerPoints.setText(String.valueOf(currentResult.result.getTeleOpInt12()));
+
+        if (currentResult.result.getEndFlag3()){
+            endHighHang.setBackgroundTintList(ColorStateList.valueOf(getResources().getColor(secondaryDarkColor)));
+            endHighHang.setTextColor(getResources().getColor(buttonSelectedTextColor));
+        }
+        else{
+            endHighHang.setBackgroundTintList(ColorStateList.valueOf(getResources().getColor(buttonColor)));
+            endHighHang.setTextColor(getResources().getColor(secondaryDarkColor));
+        }
+
+        if (currentResult.result.getEndFlag2()){
+            endLowHang.setBackgroundTintList(ColorStateList.valueOf(getResources().getColor(secondaryDarkColor)));
+            endLowHang.setTextColor(getResources().getColor(buttonSelectedTextColor));
+        }
+        else{
+            endLowHang.setBackgroundTintList(ColorStateList.valueOf(getResources().getColor(buttonColor)));
+            endLowHang.setTextColor(getResources().getColor(secondaryDarkColor));
+        }
+
+        if (currentResult.result.getEndFlag1()){
+            endPark.setBackgroundTintList(ColorStateList.valueOf(getResources().getColor(secondaryDarkColor)));
+            endPark.setTextColor(getResources().getColor(buttonSelectedTextColor));
+        }
+        else{
+            endPark.setBackgroundTintList(ColorStateList.valueOf(getResources().getColor(buttonColor)));
+            endPark.setTextColor(getResources().getColor(secondaryDarkColor));
+        }
 
     }
 
     private void setupControls() {
 
-        defensesButton = findViewById(R.id.teleOpDefenses);
-        defensesButton.setImageResource(defenseDrawable);
-        defensesButton.setOnClickListener(v -> {
-            currentResult.result.setDefenseCount(currentResult.getDefenseCount()+1);
-            populateControlsFromData();
+        teleOpReefLevelOne = findViewById(R.id.reef_level_one);
+        reefLevelOnePoints = findViewById(R.id.reef_level_one_text);
+        teleOpReefLevelOne.setOnClickListener(v -> {
+                    currentResult.result.setTeleOpInt6(currentResult.result.getTeleOpInt6() + 1);
+                    populateControlsFromData();
         });
-        defensesSubtractButton = findViewById(R.id.subtractDefense);
-        defensesSubtractButton.setOnClickListener(v -> {
-            currentResult.result.setDefenseCount(Math.max(currentResult.getDefenseCount() -1, 0));
-            populateControlsFromData();
-        });
-
-        ampSpeakerTeleOp = findViewById(R.id.amplifiedSpeaker);
-        ampSpeakerTeleOpText = findViewById(R.id.teleOpAmplifiedSpeakerValue);
-        subtractAmpSpeakerTeleOp = findViewById(R.id.subtractAmplifiedSpeakerPointsTeleOp);
-        subtractAmpSpeakerTeleOp.setOnClickListener(v -> {
-            currentResult.result.setTeleOpInt3(Math.max(currentResult.getTeleOpInt3Counts() -1, 0));
-            populateControlsFromData();
-        });
-        ampSpeakerTeleOp.setImageResource(ampSpeakerTeleOpDrawable);
-        ampSpeakerTeleOp.setOnClickListener(v -> {
-            currentResult.result.setTeleOpInt3(currentResult.getTeleOpInt3Counts()+1);
+        subtractReefLevelOne = findViewById(R.id.reef_level_one_decrement);
+        subtractReefLevelOne.setOnClickListener(v -> {
+            currentResult.result.setTeleOpInt6(Math.max(currentResult.result.getTeleOpInt6() -1, 0));
             populateControlsFromData();
         });
 
-        speakerTeleOp = findViewById(R.id.teleOpSpeaker);
-        speakerTeleOpText = findViewById(R.id.teleOpSpeakerValue);
-        subtractSpeakerTeleOp = findViewById(R.id.subtractSpeakerPointsTeleOp);
-        subtractSpeakerTeleOp.setOnClickListener(v -> {
-            currentResult.result.setTeleOpInt2(Math.max(currentResult.getTeleOpInt2Counts() - 1, 0));
+        teleOpReefLevelTwo = findViewById(R.id.reef_level_two);
+        reefLevelTwoPoints = findViewById(R.id.reef_level_two_text);
+        teleOpReefLevelTwo.setOnClickListener(v -> {
+            currentResult.result.setTeleOpInt7(currentResult.result.getTeleOpInt7()+1);
             populateControlsFromData();
         });
-        speakerTeleOp.setOnClickListener(v -> {
-            currentResult.result.setTeleOpInt2(Math.max(currentResult.getTeleOpInt2Counts() + 1, 0));
-            populateControlsFromData();
-        });
-
-        ampTeleOp = findViewById(R.id.teleOpAmp);
-        ampTeleOpText = findViewById(R.id.teleOpAmpValue);
-        subtractAmpTeleOp = findViewById(R.id.subtractAmpPointsTeleOp);
-        subtractAmpTeleOp.setOnClickListener(v -> {
-            currentResult.result.setTeleOpInt1(Math.max(currentResult.getTeleOpInt1Counts() -1, 0));
-            populateControlsFromData();
-        });
-        ampTeleOp.setImageResource(ampTeleOpDrawable);
-        ampTeleOp.setOnClickListener(v -> {
-            currentResult.result.setTeleOpInt1(currentResult.getTeleOpInt1Counts()+1);
+        subtractReefLevelTwo = findViewById(R.id.reef_level_two_decrement);
+        subtractReefLevelTwo.setOnClickListener(v -> {
+            currentResult.result.setTeleOpInt7(Math.max(currentResult.result.getTeleOpInt7() -1, 0));
             populateControlsFromData();
         });
 
-        defensesText = findViewById(R.id.teleOpDefensesValue);
+        teleOpReefLevelThree = findViewById(R.id.reef_level_three);
+        reefLevelThreePoints = findViewById(R.id.reef_level_three_text);
+        teleOpReefLevelThree.setOnClickListener(v -> {
+            currentResult.result.setTeleOpInt8(currentResult.result.getTeleOpInt8()+1);
+            populateControlsFromData();
+        });
+        subtractReefLevelThree = findViewById(R.id.reef_level_three_decrement);
+        subtractReefLevelThree.setOnClickListener(v -> {
+            currentResult.result.setTeleOpInt8(Math.max(currentResult.result.getTeleOpInt8() -1, 0));
+            populateControlsFromData();
+        });
+
+        teleOpReefLevelFour = findViewById(R.id.reef_level_four);
+        reefLevelFourPoints = findViewById(R.id.reef_level_four_text);
+        teleOpReefLevelFour.setOnClickListener(v -> {
+            currentResult.result.setTeleOpInt9(currentResult.result.getTeleOpInt9()+1);
+            populateControlsFromData();
+        });
+        subtractReefLevelFour = findViewById(R.id.reef_level_four_decrement);
+        subtractReefLevelFour.setOnClickListener(v -> {
+            currentResult.result.setTeleOpInt9(Math.max(currentResult.result.getTeleOpInt9() -1, 0));
+            populateControlsFromData();
+        });
+
+        teleOpProcessor = findViewById(R.id.processor);
+        teleOpProcessor.setImageResource(processorDrawable);
+        teleOpProcessor.setOnClickListener(v -> {
+            currentResult.result.setTeleOpInt10(currentResult.result.getTeleOpInt10()+1);
+            populateControlsFromData();
+        });
+        subtractProcessor = findViewById(R.id.processor_decrement);
+        subtractProcessor.setOnClickListener(v -> {
+            currentResult.result.setTeleOpInt10(Math.max(currentResult.result.getTeleOpInt10() -1, 0));
+            populateControlsFromData();
+        });
+
+        teleOpNet = findViewById(R.id.net);
+        netPoints = findViewById(R.id.net_text);
+        teleOpNet.setOnClickListener(v -> {
+            currentResult.result.setTeleOpInt11(currentResult.result.getTeleOpInt11() + 1);
+            populateControlsFromData();
+        });
+        subtractNet = findViewById(R.id.net_decrement);
+        subtractNet.setOnClickListener(v -> {
+            currentResult.result.setTeleOpInt11(Math.max(currentResult.result.getTeleOpInt11() -1, 0));
+            populateControlsFromData();
+        });
+
+        teleOpHumanPlayer = findViewById(R.id.human_player);
+        humanPlayerPoints = findViewById(R.id.human_player_text);
+        teleOpNet.setOnClickListener(v -> {
+            currentResult.result.setTeleOpInt12(currentResult.result.getTeleOpInt12() + 1);
+            populateControlsFromData();
+        });
+        subtractHumanPlayer = findViewById(R.id.human_player_decrement);
+        subtractHumanPlayer.setOnClickListener(v -> {
+            currentResult.result.setTeleOpInt12(Math.max(currentResult.result.getTeleOpInt12() -1, 0));
+            populateControlsFromData();
+        });
+
+        reefLevelOnePoints = findViewById(R.id.reef_level_one_text);
+        reefLevelTwoPoints = findViewById(R.id.reef_level_two_text);
+        reefLevelThreePoints = findViewById(R.id.reef_level_three_text);
+        reefLevelFourPoints = findViewById(R.id.reef_level_four_text);
+        processorPoints = findViewById(R.id.processor_text);
+        netPoints = findViewById(R.id.net_text);
+        humanPlayerPoints = findViewById(R.id.human_player_text);
 
         scoutingDoneButton = findViewById(R.id.endgame);
         scoutingDoneButton.setOnClickListener(v -> {
@@ -164,14 +245,10 @@ public class MatchScoutingTeleopActivity extends AppCompatActivity {
         buttonSelectedTextColor = R.color.primaryDarkColor;
 
         if (settings.getDeviceRole().startsWith("red")) {
-            ampSpeakerTeleOpDrawable = R.drawable.amplified_speaker_red;
-            ampTeleOpDrawable = R.drawable.teleop_red_amp;
-            defenseDrawable = R.drawable.defense_red;
+            processorDrawable = R.drawable.processor_red;
             buttonColor = R.color.redAlliance;
         } else {
-            ampSpeakerTeleOpDrawable = R.drawable.amplified_speaker_blue;
-            ampTeleOpDrawable = R.drawable.auto_blue_amp;
-            defenseDrawable = R.drawable.defense_blue;
+            processorDrawable = R.drawable.processor_blue;
             buttonColor = R.color.blueAlliance;
         }
     }
