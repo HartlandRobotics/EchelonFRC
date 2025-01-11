@@ -229,7 +229,7 @@
         android:background="@null"
         android:src="@drawable/button_decrement"
         app:layout_constraintTop_toBottomOf="@id/net"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/teleOp"
         app:layout_constraintLeft_toLeftOf="@id/net"
         app:layout_constraintRight_toLeftOf="@id/net_text"
         android:layout_marginEnd="30dp"
@@ -242,7 +242,7 @@
         app:layout_constraintTop_toBottomOf="@id/net"
         app:layout_constraintLeft_toRightOf="@+id/net_decrement"
         app:layout_constraintRight_toRightOf="@id/net"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/teleOp"
         android:layout_marginBottom="25dp"
         android:textSize="32sp"
         tools:text="0"
@@ -256,7 +256,7 @@
         android:background="@null"
         android:src="@drawable/net"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/teleOp"
         app:layout_constraintLeft_toRightOf="@id/park"
         app:layout_constraintRight_toRightOf="parent"
         android:layout_marginTop="175dp"
@@ -271,6 +271,15 @@
         android:padding="20px"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
+        />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/teleOp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="TeleOp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
         />
 
 
