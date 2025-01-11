@@ -128,61 +128,61 @@ public class MatchScoutingSummaryActivity extends AppCompatActivity {
         ampNoteAutoValue = findViewById(R.id.autoAmpValue);
         ampNoteAutoDecrement = findViewById(R.id.autoAmpDecrement);
         ampNoteAutoDecrement.setOnClickListener(v -> {
-            currentResult.result.setAutoInt2(Math.max(currentResult.getAuto2Counts() - 1, 0));
+            currentResult.result.setAutoInt7(Math.max(currentResult.result.getAutoInt7() - 1, 0));
                 populateControlsFromData();
                 });
         ampNoteAutoIncrement = findViewById(R.id.autoAmpIncrement);
         ampNoteAutoIncrement.setOnClickListener(v -> {
-            currentResult.result.setAutoInt2( Math.max(currentResult.getAuto2Counts() + 1, 0));
+            currentResult.result.setAutoInt7( Math.max(currentResult.result.getAutoInt7() + 1, 0));
             populateControlsFromData();
         });
 
         speakerNoteAutoValue = findViewById(R.id.autoSpeakerValue);
         speakerNoteAutoDecrement = findViewById(R.id.autoSpeakerDecrement);
         speakerNoteAutoDecrement.setOnClickListener(v -> {
-            currentResult.result.setAutoInt3(Math.max(currentResult.getAuto3Counts() - 1, 0));
+            currentResult.result.setAutoInt8(Math.max(currentResult.result.getAutoInt8() - 1, 0));
             populateControlsFromData();
         });
         speakerNoteAutoIncrement = findViewById(R.id.autoSpeakerIncrement);
         speakerNoteAutoIncrement.setOnClickListener(v -> {
-            currentResult.result.setAutoInt3( Math.max(currentResult.getAuto3Counts() + 1, 0));
+            currentResult.result.setAutoInt8( Math.max(currentResult.result.getAutoInt8() + 1, 0));
             populateControlsFromData();
         });
 
         ampNoteTeleOpValue = findViewById(R.id.teleOpAmpValue);
         ampNoteTeleOpDecrement = findViewById(R.id.teleopAmpDecrement);
         ampNoteTeleOpDecrement.setOnClickListener(v -> {
-            currentResult.result.setTeleOpInt1( Math.max(currentResult.getTeleOpInt1Counts() - 1, 0));
+            currentResult.result.setTeleOpInt6( Math.max(currentResult.result.getTeleOpInt6() - 1, 0));
             populateControlsFromData();
         });
         ampNoteTeleOpIncrement = findViewById(R.id.teleOpAmpIncrement);
         ampNoteTeleOpIncrement.setOnClickListener(v -> {
-            currentResult.result.setTeleOpInt1(Math.max( currentResult.getTeleOpInt1Counts() + 1,0));
+            currentResult.result.setTeleOpInt6(Math.max( currentResult.result.getTeleOpInt6() + 1,0));
             populateControlsFromData();
         });
 
         neutralSpeakerNoteTeleOpValue = findViewById(R.id.teleOpSpeakerValue);
         neutralSpeakerNoteTeleOpDecrement = findViewById(R.id.teleOpSpeakerDecrement);
         neutralSpeakerNoteTeleOpDecrement.setOnClickListener(v -> {
-            currentResult.result.setTeleOpInt2(Math.max(currentResult.getTeleOpInt2Counts() - 1, 0));
+            currentResult.result.setTeleOpInt7(Math.max(currentResult.getTeleOp7Counts() - 1, 0));
             populateControlsFromData();
         });
         neutralSpeakerNoteTeleOpIncrement = findViewById(R.id.teleOpSpeakerIncrement);
         neutralSpeakerNoteTeleOpIncrement.setOnClickListener(v -> {
-            currentResult.result.setTeleOpInt2(Math.max(currentResult.getTeleOpInt2Counts() + 1, 0));
+            currentResult.result.setTeleOpInt7(Math.max(currentResult.result.getTeleOpInt7() + 1, 0));
             populateControlsFromData();
         });
 
         ampSpeakerNoteTeleOpValue = findViewById(R.id.teleOpAmplifiedSpeakerValue);
         ampSpeakerNoteTeleOpDecrement = findViewById(R.id.teleOpAmplifiedSpeakerDecrement);
         ampSpeakerNoteTeleOpDecrement.setOnClickListener(v -> {
-            currentResult.result.setTeleOpInt3(Math.max(currentResult.getTeleOpInt3Counts() - 1, 0));
+            currentResult.result.setTeleOpInt8(Math.max(currentResult.result.getTeleOpInt8() - 1, 0));
             populateControlsFromData();
         });
 
         ampSpeakerNoteTeleOpIncrement = findViewById(R.id.teleOpAmplifiedSpeakerIncrement);
         ampSpeakerNoteTeleOpIncrement.setOnClickListener(v -> {
-            currentResult.result.setTeleOpInt3(Math.max(currentResult.getTeleOpInt3Counts() + 1, 0));
+            currentResult.result.setTeleOpInt8(Math.max(currentResult.result.getTeleOpInt8() + 1, 0));
             populateControlsFromData();
         });
 

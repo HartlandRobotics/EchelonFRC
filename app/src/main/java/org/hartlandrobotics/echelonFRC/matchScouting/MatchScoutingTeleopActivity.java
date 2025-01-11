@@ -91,9 +91,9 @@ public class MatchScoutingTeleopActivity extends AppCompatActivity {
 
     public void populateControlsFromData() {
         defensesText.setText(String.valueOf(currentResult.getDefenseCount()));
-        ampTeleOpText.setText(String.valueOf(currentResult.getTeleOpInt1Counts()));
-        speakerTeleOpText.setText(String.valueOf(currentResult.getTeleOpInt2Counts()));
-        ampSpeakerTeleOpText.setText(String.valueOf(currentResult.getTeleOpInt3Counts()));
+        ampTeleOpText.setText(String.valueOf(currentResult.getTeleOp6Counts()));
+        speakerTeleOpText.setText(String.valueOf(currentResult.getTeleOp7Counts()));
+        ampSpeakerTeleOpText.setText(String.valueOf(currentResult.getTeleOp8Counts()));
 
     }
 

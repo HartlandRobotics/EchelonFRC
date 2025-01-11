@@ -84,10 +84,13 @@ public class ExportActivity extends EchelonActivity {
 
                 try (FileOutputStream outputStream = new FileOutputStream(file)) {
                     String header = "Event_Key,Match_Key,Team_Key,Match_Number,Team_Number"
-                            + ",AutoFlag1 ,AutoInt2, AutoInt3, Auto4, Auto5"
-                            + ",TeleOpInt1,TeleOpInt2,TeleOpInt3, TeleOp4, TeleOp5, DefensesCount"
+                            + ",AutoFlag1 ,AutoFlag2, AutoFlag3, AutoFlag4, AutoFlag5"
+                            + ",AutoInt6, AutoInt7, AutoInt8, AutoInt9, AutoInt10, AutoInt11"
+                            + ",TeleOpInt6, TeleOpInt7,TeleOpInt8, TeleOpInt9, TeleOpInt10,TeleOpInt11,TeleOpInt12"
                             + ",EndFlag1,EndFlag2,EndInt3,EndFlag4, EndFlag5"
-                            + ",Match_Result_Key, AdditionalNotes\n";
+                            + ",DefensesCount"
+                            + ",Match_Result_Key"
+                            + ", AdditionalNotes\n";
                     outputStream.write(header.getBytes());
                     for (MatchResultWithTeamMatch matchResultWithTeamMatch : matchResults) {
 
@@ -101,26 +104,41 @@ public class ExportActivity extends EchelonActivity {
                         dataForFile.add(mr.getTeamKey());
                         dataForFile.add(String.valueOf(m.getMatchNumber()));
                         dataForFile.add(String.valueOf(t.getTeamNumber()));
-                        dataForFile.add(String.valueOf(mr.getAutoFlag1()));
-                        dataForFile.add(String.valueOf(mr.getAutoInt2()));
-                        dataForFile.add(String.valueOf(mr.getAutoInt3()));
-                        dataForFile.add(String.valueOf(mr.getAuto4()));
-                        dataForFile.add(String.valueOf(mr.getAuto5()));
 
-                        dataForFile.add(String.valueOf(mr.getTeleOpInt1()));
-                        dataForFile.add(String.valueOf(mr.getTeleOpInt2()));
-                        dataForFile.add(String.valueOf(mr.getTeleOpInt3()));
-                        dataForFile.add(String.valueOf(mr.getTeleOp4()));
-                        dataForFile.add(String.valueOf(mr.getTeleOp5()));
-                        dataForFile.add(String.valueOf(mr.getDefenseCount()));
+                        dataForFile.add(String.valueOf(mr.getAutoFlag1()));
+                        dataForFile.add(String.valueOf(mr.getAutoFlag2()));
+                        dataForFile.add(String.valueOf(mr.getAutoFlag3()));
+                        dataForFile.add(String.valueOf(mr.getAutoFlag4()));
+                        dataForFile.add(String.valueOf(mr.getAutoFlag5()));
+
+                        dataForFile.add(String.valueOf(mr.getAutoInt6()));
+                        dataForFile.add(String.valueOf(mr.getAutoInt7()));
+                        dataForFile.add(String.valueOf(mr.getAutoInt8()));
+                        dataForFile.add(String.valueOf(mr.getAutoInt9()));
+                        dataForFile.add(String.valueOf(mr.getAutoInt10()));
+                        dataForFile.add(String.valueOf(mr.getAutoInt11()));
+
+
+
+                        dataForFile.add(String.valueOf(mr.getTeleOpInt6()));
+                        dataForFile.add(String.valueOf(mr.getTeleOpInt7()));
+                        dataForFile.add(String.valueOf(mr.getTeleOpInt8()));
+                        dataForFile.add(String.valueOf(mr.getTeleOpInt9()));
+                        dataForFile.add(String.valueOf(mr.getTeleOpInt10()));
+                        dataForFile.add(String.valueOf(mr.getTeleOpInt11()));
+                        dataForFile.add(String.valueOf(mr.getTeleOpInt12()));
+
 
                         dataForFile.add(String.valueOf(mr.getEndFlag1()));
                         dataForFile.add(String.valueOf(mr.getEndFlag2()));
-                        dataForFile.add(String.valueOf(mr.getEndInt3()));
+                        dataForFile.add(String.valueOf(mr.getEndFlag3()));
                         dataForFile.add(String.valueOf(mr.getEndFlag4()));
                         dataForFile.add(String.valueOf(mr.getEndFlag5()));
+
+                        dataForFile.add(String.valueOf(mr.getDefenseCount()));
                         dataForFile.add(mr.getMatchResultKey());
                         dataForFile.add(mr.getAdditionalNotes());
+
                         String outputString = dataForFile.stream().collect(Collectors.joining(",")) + "\n";
                         outputStream.write(outputString.getBytes());
                     }
@@ -222,27 +240,37 @@ public class ExportActivity extends EchelonActivity {
             String teamKey = columns[2];
             int matchNum = Integer.parseInt(columns[3]);
             int teamNum = Integer.parseInt(columns[4]);
-            String Auto1 = columns[5];
-            String Auto2 = columns[6];
-            String Auto3 = columns[7];
-            String Auto4 = columns[8];
-            String Auto5 = columns[9];
 
-            String TeleOp1 =columns[10];
-            String TeleOp2 =columns[11];
-            String TeleOp3 =columns[12];
-            String TeleOp4 =columns[13];
-            String TeleOp5 =columns[14];
-            String teleDef =columns[15];
+            String AutoFlag1 = columns[5];
+            String AutoFlag2 = columns[6];
+            String AutoFlag3 = columns[7];
+            String AutoFlag4 = columns[8];
+            String AutoFlag5 = columns[9];
+            String AutoInt6 = columns[10];
+            String AutoInt7 = columns[11];
+            String AutoInt8 = columns[12];
+            String AutoInt9 = columns[13];
+            String AutoInt10 = columns[14];
+            String AutoInt11 = columns[15];
 
-            String End1 =columns[16];
-            String End2 =columns[17];
-            String End3 =columns[18];
-            String End4 =columns[19];
-            String End5 =columns[20];
+            String TeleOpInt6 = columns[16];
+            String TeleOpInt7 = columns[17];
+            String TeleOpInt8 = columns[18];
+            String TeleOpInt9 = columns[19];
+            String TeleOpInt10 = columns[20];
+            String TeleOpInt11 = columns[21];
+            String TeleOpInt12 = columns[22];
 
-            String matchResultKey = columns[21];
-            String AdditionalNotes = columns[22];
+            String EndFlag1 = columns[23];
+            String EndFlag2 = columns[24];
+            String EndFlag3 = columns[25];
+            String EndFlag4 = columns[26];
+            String EndFlag5 = columns[27];
+
+            String teleDef =columns[28];
+
+            String matchResultKey = columns[29];
+            String AdditionalNotes = columns[30];
 
             MatchResult matchResult = new MatchResult(
                     matchResultKey,
@@ -250,21 +278,34 @@ public class ExportActivity extends EchelonActivity {
                     matchKey,
                     teamKey,
                     false,
-                    Auto1.equalsIgnoreCase("true"),
-                    Integer.parseInt(Auto2),
-                    Integer.parseInt(Auto3),
-                    Auto4,
-                    Auto5,
-                    Integer.parseInt(TeleOp1),
-                    Integer.parseInt(TeleOp2),
-                    Integer.parseInt(TeleOp3),
-                    TeleOp4,
-                    TeleOp5,
-                    End1.equalsIgnoreCase("true"),
-                    End2.equalsIgnoreCase("true"),
-                    Integer.parseInt(End3),
-                    End4.equalsIgnoreCase("true"),
-                    End5.equalsIgnoreCase("true"),
+
+                    AutoFlag1.equalsIgnoreCase("true"),
+                    AutoFlag2.equalsIgnoreCase("true"),
+                    AutoFlag3.equalsIgnoreCase("true"),
+                    AutoFlag4.equalsIgnoreCase("true"),
+                    AutoFlag5.equalsIgnoreCase("true"),
+
+                    Integer.parseInt(AutoInt6),
+                    Integer.parseInt(AutoInt7),
+                    Integer.parseInt(AutoInt8),
+                    Integer.parseInt(AutoInt9),
+                    Integer.parseInt(AutoInt10),
+                    Integer.parseInt(AutoInt11),
+
+                    Integer.parseInt(TeleOpInt6),
+                    Integer.parseInt(TeleOpInt7),
+                    Integer.parseInt(TeleOpInt8),
+                    Integer.parseInt(TeleOpInt9),
+                    Integer.parseInt(TeleOpInt10),
+                    Integer.parseInt(TeleOpInt11),
+                    Integer.parseInt(TeleOpInt12),
+
+                    EndFlag1.equalsIgnoreCase("true"),
+                    EndFlag2.equalsIgnoreCase("true"),
+                    EndFlag3.equalsIgnoreCase("true"),
+                    EndFlag4.equalsIgnoreCase("true"),
+                    EndFlag5.equalsIgnoreCase("true"),
+
                     AdditionalNotes,
                     Integer.parseInt(teleDef)
                  );

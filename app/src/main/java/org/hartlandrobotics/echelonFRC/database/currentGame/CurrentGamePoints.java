@@ -17,6 +17,16 @@ public class CurrentGamePoints {
         autoPoints += this.getAuto1Points();
         autoPoints += this.getAuto2Points();
         autoPoints += this.getAuto3Points();
+        autoPoints += this.getAuto4Points();
+        autoPoints += this.getAuto5Points();
+
+        autoPoints += this.getAuto6Points();
+        autoPoints += this.getAuto7Points();
+        autoPoints += this.getAuto8Points();
+        autoPoints += this.getAuto9Points();
+        autoPoints += this.getAuto10Points();
+        autoPoints += this.getAuto11Points();
+
         return autoPoints;
     }
 
@@ -25,8 +35,16 @@ public class CurrentGamePoints {
         autoCounts += this.getAuto1Counts();
         autoCounts += this.getAuto2Counts();
         autoCounts += this.getAuto3Counts();
-        autoCounts += result.getAuto4() == null ? 0 : 1;
-        autoCounts += result.getAuto5() == null ? 0 : 1;
+        autoCounts += this.getAuto4Counts();
+        autoCounts += this.getAuto5Counts();
+
+        autoCounts += this.getAuto6Counts();
+        autoCounts += this.getAuto7Counts();
+        autoCounts += this.getAuto8Counts();
+        autoCounts += this.getAuto9Counts();
+        autoCounts += this.getAuto10Counts();
+        autoCounts += this.getAuto11Counts();
+
         return autoCounts;
     }
 
@@ -37,109 +55,204 @@ public class CurrentGamePoints {
     }
     public int getAuto1Points(){
         if( result == null ) return 0;
-        return result.getAutoFlag1()? 2:0;
+        return result.getAutoFlag1()? 3:0;
     }
 
     public int getAuto2Counts(){
         if( result == null ) return 0;
-        return result.getAutoInt2();
+        return result.getAutoFlag2() ? 1:0;
     }
 
     public int getAuto2Points(){
         if( result == null ) return 0;
-        return result.getAutoInt2() * 2;
+        return result.getAutoFlag2() ? 1:0;
     }
 
     public int getAuto3Counts(){
         if( result == null ) return 0;
-        return result.getAutoInt3();
+        return result.getAutoFlag3() ? 1:0;
     }
 
     public int getAuto3Points(){
         if( result == null ) return 0;
 
-        return result.getAutoInt3() * 5;
+        return result.getAutoFlag3() ? 1:0;
     }
 
-    public boolean getAuto4(){
-        return result.getAuto4() == null ? Boolean.FALSE:Boolean.TRUE;
+    public int getAuto4Counts(){
+        return result.getAutoFlag4() ? 1:0;
     }
 
-    public void setAuto4(boolean isSet){
-        result.setAuto4(result.getAuto4() == null ? null : new Date().toString());
+    public int getAuto4Points(){
+        if( result == null ) return 0;
+
+        return result.getAutoFlag4() ? 1:0;
     }
 
-    public boolean getAuto5(){
-        return result.getAuto5() == null ? Boolean.FALSE:Boolean.TRUE;
+    public int getAuto5Counts(){
+        return result.getAutoFlag5() ? 1:0;
     }
 
-    public void setAuto5(boolean isSet){
-        result.setAuto5(result.getAuto5() == null ? null : new Date().toString());
+    public int getAuto5Points(){
+        if( result == null ) return 0;
+
+        return result.getAutoFlag5() ? 1:0;
     }
+
+    public int getAuto6Counts(){
+        return result.getAutoInt6();
+    }
+
+    public int getAuto6Points(){
+        if( result == null ) return 0;
+
+        return result.getAutoInt6() * 3;
+    }
+
+    public int getAuto7Counts(){
+        return result.getAutoInt7();
+    }
+
+    public int getAuto7Points(){
+        if( result == null ) return 0;
+
+        return result.getAutoInt7() * 4;
+    }
+
+    public int getAuto8Counts(){
+        return result.getAutoInt8();
+    }
+
+    public int getAuto8Points(){
+        if( result == null ) return 0;
+
+        return result.getAutoInt8() * 6;
+    }
+
+    public int getAuto9Counts(){
+        return result.getAutoInt9();
+    }
+
+    public int getAuto9Points(){
+        if( result == null ) return 0;
+
+        return result.getAutoInt9() * 7;
+    }
+
+    public int getAuto10Counts(){
+        return result.getAutoInt10();
+    }
+
+    public int getAuto10Points(){
+        if( result == null ) return 0;
+
+        return result.getAutoInt10() * 6;
+    }
+
+    public int getAuto11Counts(){
+        return result.getAutoInt11();
+    }
+
+    public int getAuto11Points(){
+        if( result == null ) return 0;
+
+        return result.getAutoInt11() * 4;
+    }
+
 
     public int getTeleOpPoints() {
 
         int teleOpPoints = 0;
-        teleOpPoints += this.getTeleOpInt1Points();
-        teleOpPoints += this.getTeleOpInt2Points();
-        teleOpPoints += this.getTeleOpInt3Points();
+        teleOpPoints += this.getTeleOp6Points();
+        teleOpPoints += this.getTeleOp7Points();
+        teleOpPoints += this.getTeleOp8Points();
+        teleOpPoints += this.getTeleOp9Points();
+        teleOpPoints += this.getTeleOp10Points();
+        teleOpPoints += this.getTeleOp11Points();
         return teleOpPoints;
     }
 
     public int getTeleOpCounts() {
 
         int teleOpCounts = 0;
-        teleOpCounts += this.getTeleOpInt1Points();
-        teleOpCounts += this.getTeleOpInt2Points();
-        teleOpCounts += this.getTeleOpInt3Points();
-        teleOpCounts += result.getTeleOp4() == null ? 0 : 1;
-        teleOpCounts += result.getTeleOp5() == null ? 0 : 1;
+        teleOpCounts += this.getTeleOp6Points();
+        teleOpCounts += this.getTeleOp7Points();
+        teleOpCounts += this.getTeleOp8Points();
+        teleOpCounts += this.getTeleOp9Points();
+        teleOpCounts += this.getTeleOp10Points();
+        teleOpCounts += this.getTeleOp11Points();
         return teleOpCounts;
     }
 
-    public int getTeleOpInt1Counts(){
+    public int getTeleOp6Counts(){
         if( result == null ) return 0;
-        return result.getTeleOpInt1();
+        return result.getTeleOpInt6();
     }
 
-    public int getTeleOpInt1Points(){
+    public int getTeleOp6Points(){
         if( result == null ) return 0;
-        return result.getTeleOpInt1()*1;
+        return result.getTeleOpInt6() * 2;
     }
 
-    public int getTeleOpInt2Counts(){
+    public int getTeleOp7Counts(){
         if( result == null ) return 0;
-        return result.getTeleOpInt2();
+        return result.getTeleOpInt7();
     }
 
-    public int getTeleOpInt2Points(){
+    public int getTeleOp7Points(){
         if( result == null ) return 0;
-        return result.getTeleOpInt2() * 2;
+        return result.getTeleOpInt7() * 3;
     }
 
-    public int getTeleOpInt3Counts(){
+
+    public int getTeleOp8Counts(){
         if( result == null ) return 0;
-        return result.getTeleOpInt3();
+        return result.getTeleOpInt8();
     }
-    public int getTeleOpInt3Points(){
+
+    public int getTeleOp8Points(){
         if( result == null ) return 0;
-        return result.getTeleOpInt3()*5;
+        return result.getTeleOpInt8() * 4;
     }
 
-    public boolean getTeleOp4(){
-        return result.getTeleOp4() == null ? Boolean.FALSE:Boolean.TRUE;
+    public int getTeleOp9Counts(){
+        if( result == null ) return 0;
+        return result.getTeleOpInt9();
     }
 
-    public void setTeleOp4(boolean isSet){
-        result.setTeleOp4(result.getTeleOp4() == null ? null : new Date().toString());
+    public int getTeleOp9Points(){
+        if( result == null ) return 0;
+        return result.getTeleOpInt9() * 5;
     }
 
-    public boolean getTeleOp5(){
-        return result.getTeleOp5() == null ? Boolean.FALSE:Boolean.TRUE;
+    public int getTeleOp10Counts(){
+        if( result == null ) return 0;
+        return result.getTeleOpInt10();
     }
 
-    public void setTeleOp5(boolean isSet){
-        result.setTeleOp5(result.getTeleOp5() == null ? null : new Date().toString());
+    public int getTeleOp10Points(){
+        if( result == null ) return 0;
+        return result.getTeleOpInt10() * 6;
+    }
+
+    public int getTeleOp11Counts(){
+        if( result == null ) return 0;
+        return result.getTeleOpInt11();
+    }
+
+    public int getTeleOp11Points(){
+        if( result == null ) return 0;
+        return result.getTeleOpInt11() * 4;
+    }
+
+    public int getTeleOp12Counts(){
+        if( result == null ) return 0;
+        return result.getTeleOpInt12();
+    }
+
+    public int getTeleOp12Points(){
+        if( result == null ) return 0;
+        return result.getTeleOpInt12() * 1;
     }
 
     public int getDefenseCount(){
@@ -152,7 +265,7 @@ public class CurrentGamePoints {
         int endPoints = 0;
         endPoints += this.getEndFlag1Points();
         endPoints += this.getEndFlag2Points();
-        endPoints += this.getEndInt3Points();
+        endPoints += this.getEndFlag3Points();
         endPoints += this.getEndFlag4Points();
         endPoints += this.getEndFlag5Points();
         return endPoints;
@@ -162,14 +275,14 @@ public class CurrentGamePoints {
         int endCounts = 0;
         endCounts += this.getEndFlag1Counts();
         endCounts += this.getEndFlag2Counts();
-        endCounts += this.getEndInt3Counts();
+        endCounts += this.getEndFlag3Counts();
         endCounts += this.getEndFlag4Counts();
         endCounts += this.getEndFlag5Counts();
         return endCounts;
     }
 
     public int getEndFlag1Points(){
-        return result.getEndFlag1() ? 1:0;
+        return result.getEndFlag1() ? 2:0;
     }
 
     public int getEndFlag1Counts(){
@@ -177,34 +290,33 @@ public class CurrentGamePoints {
     }
 
     public int getEndFlag2Points(){
-        return result.getEndFlag2() ? 3:0;
+        return result.getEndFlag2() ? 6:0;
     }
 
     public int getEndFlag2Counts(){
         return result.getEndFlag2() ? 1:0;
     }
 
-    public int getEndInt3Points(){
-        return result.getEndInt3();
+    public int getEndFlag3Points(){
+        return result.getEndFlag3() ? 12:0;
     }
-
-    public int getEndInt3Counts(){
-        return result.getEndInt3();
+    public int getEndFlag3Counts(){
+        return result.getEndFlag3() ? 1:0;
+    }
+    public int getEndFlag4Counts(){
+        return result.getEndFlag4() ? 1:0;
     }
 
     public int getEndFlag4Points(){
-        return result.getEndFlag4()?2:0;
-    }
-
-    public int getEndFlag4Counts(){
-        return result.getEndFlag4()? 1:0;
-    }
-    public int getEndFlag5Points(){
-        return result.getEndFlag5()?5:0;
+        return result.getEndFlag4() ? 1:0;
     }
 
     public int getEndFlag5Counts(){
-        return result.getEndFlag5()? 1:0;
+        return result.getEndFlag5() ? 1:0;
+    }
+
+    public int getEndFlag5Points(){
+        return result.getEndFlag5() ? 1:0;
     }
 
 
