@@ -31,25 +31,344 @@
         android:layout_width="214dp"
         android:layout_height="0dp"
         android:background="#CCD1D1"
-        android:textColor="@color/cardview_dark_background"
         android:minWidth="70dp"
         android:text=" Autonomous"
-        app:layout_constraintTop_toBottomOf="@+id/additionalNotes"
+        android:textColor="@color/cardview_dark_background"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/teleopLabel"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/additionalNotes"
         />
-    
+
     <com.google.android.material.checkbox.MaterialCheckBox
         android:id="@+id/autoParkCheckbox"
         android:layout_width="138dp"
-        android:layout_height="50dp"
+        android:layout_height="25dp"
         android:text="Left Park Line"
         android:textColor="@color/cardview_dark_background"
-        app:layout_constraintTop_toTopOf="@+id/autoLabel"
-        app:layout_constraintBottom_toTopOf="@+id/autoSpeakerLabel"
+        android:textSize="12dp"
+        android:layout_marginTop="20dp"
+        app:layout_constraintBottom_toTopOf="@+id/autoLevelOneLabel"
+        app:layout_constraintEnd_toEndOf="@+id/autoLabel"
+        app:layout_constraintStart_toStartOf="@+id/autoLabel"
+        app:layout_constraintTop_toTopOf="@+id/autoLabel" />
+
+    <ImageButton
+            android:id="@+id/autoLevelOneDecrement"
+            android:layout_width="50dp"
+            android:layout_height="25dp"
+            android:text="-"
+            android:src="@drawable/button_decrement_small"
+            app:layout_constraintTop_toTopOf="@+id/autoLevelOneLabel"
+            app:layout_constraintBottom_toBottomOf="@+id/autoLevelOneValue"
+            app:layout_constraintStart_toStartOf="@+id/autoLabel"
+            app:layout_constraintEnd_toStartOf="@+id/autoLevelOneLabel"
+            />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/autoLevelOneLabel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="12dp"
+            android:minWidth="70dp"
+            android:text="Level One"
+            android:textAlignment="center"
+            android:textColor="@color/cardview_dark_background"
+            app:layout_constraintTop_toBottomOf="@+id/autoParkCheckbox"
+            app:layout_constraintBottom_toTopOf="@+id/autoLevelOneValue"
+            app:layout_constraintStart_toStartOf="@+id/autoLabel"
+            app:layout_constraintEnd_toEndOf="@+id/autoLabel"
+            />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/autoLevelOneValue"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:minWidth="70dp"
+            android:text="0"
+            android:textAlignment="center"
+            android:textColor="@color/cardview_dark_background"
+            android:textSize="12dp"
+            app:layout_constraintBottom_toTopOf="@+id/autoLevelTwoLabel"
+            app:layout_constraintEnd_toEndOf="@+id/autoLabel"
+            app:layout_constraintStart_toStartOf="@+id/autoLabel"
+            app:layout_constraintTop_toBottomOf="@id/autoLevelOneLabel" />
+
+        <ImageButton
+            android:id="@+id/autoLevelOneIncrement"
+            android:layout_width="50dp"
+            android:layout_height="25dp"
+            android:text="+"
+            android:src="@drawable/button_increment_small"
+            app:layout_constraintTop_toTopOf="@+id/autoLevelOneLabel"
+            app:layout_constraintBottom_toBottomOf="@+id/autoLevelOneValue"
+            app:layout_constraintEnd_toEndOf="@+id/autoLabel"
+            app:layout_constraintStart_toEndOf="@+id/autoLevelOneLabel"
+            />
+
+    <ImageButton
+        android:id="@+id/autoLevelTwoDecrement"
+        android:layout_width="50dp"
+        android:layout_height="25dp"
+        android:text="-"
+        android:src="@drawable/button_decrement_small"
+        app:layout_constraintTop_toTopOf="@+id/autoLevelTwoLabel"
+        app:layout_constraintBottom_toBottomOf="@+id/autoLevelTwoValue"
+        app:layout_constraintStart_toStartOf="@+id/autoLabel"
+        app:layout_constraintEnd_toStartOf="@+id/autoLevelTwoLabel"
+        />
+
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/autoLevelTwoLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="12dp"
+        android:minWidth="70dp"
+        android:text="Level Two"
+        android:textAlignment="center"
+        android:textColor="@color/cardview_dark_background"
+        app:layout_constraintTop_toBottomOf="@+id/autoLevelOneValue"
+        app:layout_constraintBottom_toTopOf="@+id/autoLevelTwoValue"
         app:layout_constraintStart_toStartOf="@+id/autoLabel"
         app:layout_constraintEnd_toEndOf="@+id/autoLabel"
+        />
+
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/autoLevelTwoValue"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:minWidth="70dp"
+        android:text="0"
+        android:textAlignment="center"
+        android:textColor="@color/cardview_dark_background"
+        android:textSize="12dp"
+        app:layout_constraintBottom_toTopOf="@+id/autoLevelThreeLabel"
+        app:layout_constraintEnd_toEndOf="@+id/autoLabel"
+        app:layout_constraintStart_toStartOf="@+id/autoLabel"
+        app:layout_constraintTop_toBottomOf="@id/autoLevelTwoLabel" />
+
+    <ImageButton
+        android:id="@+id/autoLevelTwoIncrement"
+        android:layout_width="50dp"
+        android:layout_height="25dp"
+        android:text="+"
+        android:src="@drawable/button_increment_small"
+        app:layout_constraintTop_toTopOf="@+id/autoLevelTwoLabel"
+        app:layout_constraintBottom_toBottomOf="@+id/autoLevelTwoValue"
+        app:layout_constraintEnd_toEndOf="@+id/autoLabel"
+        app:layout_constraintStart_toEndOf="@+id/autoLevelTwoLabel"
+        />
+
+    <ImageButton
+        android:id="@+id/autoLevelThreeDecrement"
+        android:layout_width="50dp"
+        android:layout_height="25dp"
+        android:text="-"
+        android:src="@drawable/button_decrement_small"
+        app:layout_constraintTop_toTopOf="@+id/autoLevelThreeLabel"
+        app:layout_constraintBottom_toBottomOf="@+id/autoLevelThreeValue"
+        app:layout_constraintStart_toStartOf="@+id/autoLabel"
+        app:layout_constraintEnd_toStartOf="@+id/autoLevelThreeLabel"
+        />
+
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/autoLevelThreeLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="12dp"
+        android:minWidth="70dp"
+        android:text="Level Three"
+        android:textAlignment="center"
+        android:textColor="@color/cardview_dark_background"
+        app:layout_constraintTop_toBottomOf="@+id/autoLevelTwoValue"
+        app:layout_constraintBottom_toTopOf="@+id/autoLevelThreeValue"
+        app:layout_constraintStart_toStartOf="@+id/autoLabel"
+        app:layout_constraintEnd_toEndOf="@+id/autoLabel"
+        />
+
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/autoLevelThreeValue"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:minWidth="70dp"
+        android:text="0"
+        android:textAlignment="center"
+        android:textColor="@color/cardview_dark_background"
+        android:textSize="12dp"
+        app:layout_constraintBottom_toTopOf="@+id/autoLevelFourLabel"
+        app:layout_constraintEnd_toEndOf="@+id/autoLabel"
+        app:layout_constraintStart_toStartOf="@+id/autoLabel"
+        app:layout_constraintTop_toBottomOf="@id/autoLevelThreeLabel" />
+
+    <ImageButton
+        android:id="@+id/autoLevelThreeIncrement"
+        android:layout_width="50dp"
+        android:layout_height="25dp"
+        android:text="+"
+        android:src="@drawable/button_increment_small"
+        app:layout_constraintTop_toTopOf="@+id/autoLevelThreeLabel"
+        app:layout_constraintBottom_toBottomOf="@+id/autoLevelThreeValue"
+        app:layout_constraintEnd_toEndOf="@+id/autoLabel"
+        app:layout_constraintStart_toEndOf="@+id/autoLevelThreeLabel"
+        />
+
+    <ImageButton
+        android:id="@+id/autoLevelFourDecrement"
+        android:layout_width="50dp"
+        android:layout_height="25dp"
+        android:text="-"
+        android:src="@drawable/button_decrement_small"
+        app:layout_constraintTop_toTopOf="@+id/autoLevelFourLabel"
+        app:layout_constraintBottom_toBottomOf="@+id/autoLevelFourValue"
+        app:layout_constraintStart_toStartOf="@+id/autoLabel"
+        app:layout_constraintEnd_toStartOf="@+id/autoLevelFourLabel"
+        />
+
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/autoLevelFourLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="12dp"
+        android:minWidth="70dp"
+        android:text="Level Four"
+        android:textAlignment="center"
+        android:textColor="@color/cardview_dark_background"
+        app:layout_constraintTop_toBottomOf="@+id/autoLevelThreeValue"
+        app:layout_constraintBottom_toTopOf="@+id/autoLevelFourValue"
+        app:layout_constraintStart_toStartOf="@+id/autoLabel"
+        app:layout_constraintEnd_toEndOf="@+id/autoLabel"
+        />
+
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/autoLevelFourValue"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:minWidth="70dp"
+        android:text="0"
+        android:textAlignment="center"
+        android:textColor="@color/cardview_dark_background"
+        android:textSize="12dp"
+        app:layout_constraintBottom_toTopOf="@+id/autoProcessorLabel"
+        app:layout_constraintEnd_toEndOf="@+id/autoLabel"
+        app:layout_constraintStart_toStartOf="@+id/autoLabel"
+        app:layout_constraintTop_toBottomOf="@id/autoLevelFourLabel" />
+
+    <ImageButton
+        android:id="@+id/autoLevelFourIncrement"
+        android:layout_width="50dp"
+        android:layout_height="25dp"
+        android:text="+"
+        android:src="@drawable/button_increment_small"
+        app:layout_constraintTop_toTopOf="@+id/autoLevelFourLabel"
+        app:layout_constraintBottom_toBottomOf="@+id/autoLevelFourValue"
+        app:layout_constraintEnd_toEndOf="@+id/autoLabel"
+        app:layout_constraintStart_toEndOf="@+id/autoLevelFourLabel"
+        />
+
+    <ImageButton
+        android:id="@+id/autoProcessorDecrement"
+        android:layout_width="50dp"
+        android:layout_height="25dp"
+        android:text="-"
+        android:src="@drawable/button_decrement_small"
+        app:layout_constraintTop_toTopOf="@+id/autoProcessorLabel"
+        app:layout_constraintBottom_toBottomOf="@+id/autoProcessorValue"
+        app:layout_constraintStart_toStartOf="@+id/autoLabel"
+        app:layout_constraintEnd_toStartOf="@+id/autoProcessorLabel"
+        />
+
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/autoProcessorLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="12dp"
+        android:minWidth="70dp"
+        android:text="Processor"
+        android:textAlignment="center"
+        android:textColor="@color/cardview_dark_background"
+        app:layout_constraintTop_toBottomOf="@+id/autoLevelFourValue"
+        app:layout_constraintBottom_toTopOf="@+id/autoProcessorValue"
+        app:layout_constraintStart_toStartOf="@+id/autoLabel"
+        app:layout_constraintEnd_toEndOf="@+id/autoLabel"
+        />
+
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/autoProcessorValue"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:minWidth="70dp"
+        android:text="0"
+        android:textAlignment="center"
+        android:textColor="@color/cardview_dark_background"
+        android:textSize="12dp"
+        app:layout_constraintBottom_toTopOf="@id/autoNetLabel"
+        app:layout_constraintEnd_toEndOf="@+id/autoLabel"
+        app:layout_constraintStart_toStartOf="@+id/autoLabel"
+        app:layout_constraintTop_toBottomOf="@id/autoProcessorLabel" />
+
+    <ImageButton
+        android:id="@+id/autoProcessorIncrement"
+        android:layout_width="50dp"
+        android:layout_height="25dp"
+        android:text="+"
+        android:src="@drawable/button_increment_small"
+        app:layout_constraintTop_toTopOf="@+id/autoProcessorLabel"
+        app:layout_constraintBottom_toBottomOf="@+id/autoProcessorValue"
+        app:layout_constraintEnd_toEndOf="@+id/autoLabel"
+        app:layout_constraintStart_toEndOf="@+id/autoProcessorLabel"
+        />
+
+    <ImageButton
+        android:id="@+id/autoNetDecrement"
+        android:layout_width="50dp"
+        android:layout_height="25dp"
+        android:text="-"
+        android:src="@drawable/button_decrement_small"
+        app:layout_constraintTop_toTopOf="@+id/autoNetLabel"
+        app:layout_constraintBottom_toBottomOf="@+id/autoNetValue"
+        app:layout_constraintStart_toStartOf="@+id/autoLabel"
+        app:layout_constraintEnd_toStartOf="@+id/autoNetLabel"
+        />
+
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/autoNetLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="12dp"
+        android:minWidth="70dp"
+        android:text="Net"
+        android:textAlignment="center"
+        android:textColor="@color/cardview_dark_background"
+        app:layout_constraintTop_toBottomOf="@+id/autoProcessorValue"
+        app:layout_constraintBottom_toTopOf="@+id/autoNetValue"
+        app:layout_constraintStart_toStartOf="@+id/autoLabel"
+        app:layout_constraintEnd_toEndOf="@+id/autoLabel"
+        />
+
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/autoNetValue"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:minWidth="70dp"
+        android:text="0"
+        android:textAlignment="center"
+        android:textColor="@color/cardview_dark_background"
+        android:textSize="12dp"
+        app:layout_constraintBottom_toBottomOf="@id/autoLabel"
+        app:layout_constraintEnd_toEndOf="@+id/autoLabel"
+        app:layout_constraintStart_toStartOf="@+id/autoLabel"
+        app:layout_constraintTop_toTopOf="@id/autoNetLabel" />
+
+    <ImageButton
+        android:id="@+id/autoNetIncrement"
+        android:layout_width="50dp"
+        android:layout_height="25dp"
+        android:text="+"
+        android:src="@drawable/button_increment_small"
+        app:layout_constraintTop_toTopOf="@+id/autoNetLabel"
+        app:layout_constraintBottom_toBottomOf="@+id/autoNetValue"
+        app:layout_constraintEnd_toEndOf="@+id/autoLabel"
+        app:layout_constraintStart_toEndOf="@+id/autoNetLabel"
         />
 
     <com.google.android.material.textview.MaterialTextView
@@ -65,6 +384,400 @@
         app:layout_constraintEnd_toStartOf="@+id/endLabel"
         />
 
+
+
+
+
+
+    <ImageButton
+        android:id="@+id/teleopLevelOneDecrement"
+        android:layout_width="50dp"
+        android:layout_height="25dp"
+        android:text="-"
+        android:src="@drawable/button_decrement_small"
+        app:layout_constraintTop_toTopOf="@+id/teleopLevelOneLabel"
+        app:layout_constraintBottom_toBottomOf="@+id/teleopLevelOneValue"
+        app:layout_constraintStart_toStartOf="@+id/teleopLabel"
+        app:layout_constraintEnd_toStartOf="@+id/teleopLevelOneLabel"
+        />
+
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/teleopLevelOneLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="25dp"
+        android:textSize="12dp"
+        android:minWidth="70dp"
+        android:text="Level One"
+        android:textAlignment="center"
+        android:textColor="@color/cardview_dark_background"
+        app:layout_constraintTop_toTopOf="@+id/teleopLabel"
+        app:layout_constraintBottom_toTopOf="@+id/teleopLevelOneValue"
+        app:layout_constraintStart_toStartOf="@+id/teleopLabel"
+        app:layout_constraintEnd_toEndOf="@+id/teleopLabel"
+        />
+
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/teleopLevelOneValue"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:minWidth="70dp"
+        android:text="0"
+        android:textAlignment="center"
+        android:textColor="@color/cardview_dark_background"
+        android:textSize="12dp"
+        app:layout_constraintBottom_toTopOf="@+id/teleopLevelTwoLabel"
+        app:layout_constraintEnd_toEndOf="@+id/teleopLabel"
+        app:layout_constraintStart_toStartOf="@+id/teleopLabel"
+        app:layout_constraintTop_toBottomOf="@id/teleopLevelOneLabel" />
+
+    <ImageButton
+        android:id="@+id/teleopLevelOneIncrement"
+        android:layout_width="50dp"
+        android:layout_height="25dp"
+        android:text="+"
+        android:src="@drawable/button_increment_small"
+        app:layout_constraintTop_toTopOf="@+id/teleopLevelOneLabel"
+        app:layout_constraintBottom_toBottomOf="@+id/teleopLevelOneValue"
+        app:layout_constraintEnd_toEndOf="@+id/teleopLabel"
+        app:layout_constraintStart_toEndOf="@+id/teleopLevelOneLabel"
+        />
+
+    <ImageButton
+        android:id="@+id/teleopLevelTwoDecrement"
+        android:layout_width="50dp"
+        android:layout_height="25dp"
+        android:text="-"
+        android:src="@drawable/button_decrement_small"
+        app:layout_constraintTop_toTopOf="@+id/teleopLevelTwoLabel"
+        app:layout_constraintBottom_toBottomOf="@+id/teleopLevelTwoValue"
+        app:layout_constraintStart_toStartOf="@+id/teleopLabel"
+        app:layout_constraintEnd_toStartOf="@+id/teleopLevelTwoLabel"
+        />
+
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/teleopLevelTwoLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="12dp"
+        android:minWidth="70dp"
+        android:text="Level Two"
+        android:textAlignment="center"
+        android:textColor="@color/cardview_dark_background"
+        app:layout_constraintTop_toBottomOf="@+id/teleopLevelOneValue"
+        app:layout_constraintBottom_toTopOf="@+id/teleopLevelTwoValue"
+        app:layout_constraintStart_toStartOf="@+id/teleopLabel"
+        app:layout_constraintEnd_toEndOf="@+id/teleopLabel"
+        />
+
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/teleopLevelTwoValue"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:minWidth="70dp"
+        android:text="0"
+        android:textAlignment="center"
+        android:textColor="@color/cardview_dark_background"
+        android:textSize="12dp"
+        app:layout_constraintBottom_toTopOf="@+id/teleopLevelThreeLabel"
+        app:layout_constraintEnd_toEndOf="@+id/teleopLabel"
+        app:layout_constraintStart_toStartOf="@+id/teleopLabel"
+        app:layout_constraintTop_toBottomOf="@id/teleopLevelTwoLabel" />
+
+    <ImageButton
+        android:id="@+id/teleopLevelTwoIncrement"
+        android:layout_width="50dp"
+        android:layout_height="25dp"
+        android:text="+"
+        android:src="@drawable/button_increment_small"
+        app:layout_constraintTop_toTopOf="@+id/teleopLevelTwoLabel"
+        app:layout_constraintBottom_toBottomOf="@+id/teleopLevelTwoValue"
+        app:layout_constraintEnd_toEndOf="@+id/teleopLabel"
+        app:layout_constraintStart_toEndOf="@+id/teleopLevelTwoLabel"
+        />
+
+    <ImageButton
+        android:id="@+id/teleopLevelThreeDecrement"
+        android:layout_width="50dp"
+        android:layout_height="25dp"
+        android:text="-"
+        android:src="@drawable/button_decrement_small"
+        app:layout_constraintTop_toTopOf="@+id/teleopLevelThreeLabel"
+        app:layout_constraintBottom_toBottomOf="@+id/teleopLevelThreeValue"
+        app:layout_constraintStart_toStartOf="@+id/teleopLabel"
+        app:layout_constraintEnd_toStartOf="@+id/teleopLevelThreeLabel"
+        />
+
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/teleopLevelThreeLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="12dp"
+        android:minWidth="70dp"
+        android:text="Level Three"
+        android:textAlignment="center"
+        android:textColor="@color/cardview_dark_background"
+        app:layout_constraintTop_toBottomOf="@+id/teleopLevelTwoLabel"
+        app:layout_constraintBottom_toTopOf="@+id/teleopLevelThreeValue"
+        app:layout_constraintStart_toStartOf="@+id/teleopLabel"
+        app:layout_constraintEnd_toEndOf="@+id/teleopLabel"
+        />
+
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/teleopLevelThreeValue"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:minWidth="70dp"
+        android:text="0"
+        android:textAlignment="center"
+        android:textColor="@color/cardview_dark_background"
+        android:textSize="12dp"
+        app:layout_constraintBottom_toTopOf="@+id/teleopLevelFourLabel"
+        app:layout_constraintEnd_toEndOf="@+id/teleopLabel"
+        app:layout_constraintStart_toStartOf="@+id/teleopLabel"
+        app:layout_constraintTop_toBottomOf="@id/teleopLevelThreeLabel" />
+
+    <ImageButton
+        android:id="@+id/teleopLevelThreeIncrement"
+        android:layout_width="50dp"
+        android:layout_height="25dp"
+        android:text="+"
+        android:src="@drawable/button_increment_small"
+        app:layout_constraintTop_toTopOf="@+id/teleopLevelThreeLabel"
+        app:layout_constraintBottom_toBottomOf="@+id/teleopLevelThreeValue"
+        app:layout_constraintEnd_toEndOf="@+id/teleopLabel"
+        app:layout_constraintStart_toEndOf="@+id/teleopLevelThreeLabel"
+        />
+
+    <ImageButton
+        android:id="@+id/teleopLevelFourDecrement"
+        android:layout_width="50dp"
+        android:layout_height="25dp"
+        android:text="-"
+        android:src="@drawable/button_decrement_small"
+        app:layout_constraintTop_toTopOf="@+id/teleopLevelFourLabel"
+        app:layout_constraintBottom_toBottomOf="@+id/teleopLevelFourValue"
+        app:layout_constraintStart_toStartOf="@+id/teleopLabel"
+        app:layout_constraintEnd_toStartOf="@+id/teleopLevelFourLabel"
+        />
+
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/teleopLevelFourLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="12dp"
+        android:minWidth="70dp"
+        android:text="Level Four"
+        android:textAlignment="center"
+        android:textColor="@color/cardview_dark_background"
+        app:layout_constraintTop_toBottomOf="@+id/teleopLevelThreeValue"
+        app:layout_constraintBottom_toTopOf="@+id/teleopLevelFourValue"
+        app:layout_constraintStart_toStartOf="@+id/teleopLabel"
+        app:layout_constraintEnd_toEndOf="@+id/teleopLabel"
+        />
+
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/teleopLevelFourValue"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:minWidth="70dp"
+        android:text="0"
+        android:textAlignment="center"
+        android:textColor="@color/cardview_dark_background"
+        android:textSize="12dp"
+        app:layout_constraintBottom_toTopOf="@+id/teleopProcessorLabel"
+        app:layout_constraintEnd_toEndOf="@+id/teleopLabel"
+        app:layout_constraintStart_toStartOf="@+id/teleopLabel"
+        app:layout_constraintTop_toBottomOf="@id/teleopLevelFourLabel" />
+
+    <ImageButton
+        android:id="@+id/teleopLevelFourIncrement"
+        android:layout_width="50dp"
+        android:layout_height="25dp"
+        android:text="+"
+        android:src="@drawable/button_increment_small"
+        app:layout_constraintTop_toTopOf="@+id/teleopLevelFourLabel"
+        app:layout_constraintBottom_toBottomOf="@+id/teleopLevelFourValue"
+        app:layout_constraintEnd_toEndOf="@+id/teleopLabel"
+        app:layout_constraintStart_toEndOf="@+id/teleopLevelFourLabel"
+        />
+
+    <ImageButton
+        android:id="@+id/teleopProcessorDecrement"
+        android:layout_width="50dp"
+        android:layout_height="25dp"
+        android:text="-"
+        android:src="@drawable/button_decrement_small"
+        app:layout_constraintTop_toTopOf="@+id/teleopProcessorLabel"
+        app:layout_constraintBottom_toBottomOf="@+id/teleopProcessorValue"
+        app:layout_constraintStart_toStartOf="@+id/teleopLabel"
+        app:layout_constraintEnd_toStartOf="@+id/teleopProcessorLabel"
+        />
+
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/teleopProcessorLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="12dp"
+        android:minWidth="70dp"
+        android:text="Processor"
+        android:textAlignment="center"
+        android:textColor="@color/cardview_dark_background"
+        app:layout_constraintTop_toBottomOf="@+id/teleopLevelFourValue"
+        app:layout_constraintBottom_toTopOf="@+id/teleopProcessorValue"
+        app:layout_constraintStart_toStartOf="@+id/teleopLabel"
+        app:layout_constraintEnd_toEndOf="@+id/teleopLabel"
+        />
+
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/teleopProcessorValue"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:minWidth="70dp"
+        android:text="0"
+        android:textAlignment="center"
+        android:textColor="@color/cardview_dark_background"
+        android:textSize="12dp"
+        app:layout_constraintBottom_toTopOf="@id/teleopNetLabel"
+        app:layout_constraintEnd_toEndOf="@+id/teleopLabel"
+        app:layout_constraintStart_toStartOf="@+id/teleopLabel"
+        app:layout_constraintTop_toBottomOf="@id/teleopProcessorLabel" />
+
+    <ImageButton
+        android:id="@+id/teleopProcessorIncrement"
+        android:layout_width="50dp"
+        android:layout_height="25dp"
+        android:text="+"
+        android:src="@drawable/button_increment_small"
+        app:layout_constraintTop_toTopOf="@+id/teleopProcessorLabel"
+        app:layout_constraintBottom_toBottomOf="@+id/teleopProcessorValue"
+        app:layout_constraintEnd_toEndOf="@+id/teleopLabel"
+        app:layout_constraintStart_toEndOf="@+id/teleopProcessorLabel"
+        />
+
+    <ImageButton
+        android:id="@+id/teleopNetDecrement"
+        android:layout_width="50dp"
+        android:layout_height="25dp"
+        android:text="-"
+        android:src="@drawable/button_decrement_small"
+        app:layout_constraintTop_toTopOf="@+id/teleopNetLabel"
+        app:layout_constraintBottom_toBottomOf="@+id/teleopNetValue"
+        app:layout_constraintStart_toStartOf="@+id/teleopLabel"
+        app:layout_constraintEnd_toStartOf="@+id/teleopNetLabel"
+        />
+
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/teleopNetLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="12dp"
+        android:minWidth="70dp"
+        android:text="Net"
+        android:textAlignment="center"
+        android:textColor="@color/cardview_dark_background"
+        app:layout_constraintTop_toBottomOf="@+id/teleopProcessorValue"
+        app:layout_constraintBottom_toTopOf="@+id/teleopNetValue"
+        app:layout_constraintStart_toStartOf="@+id/teleopLabel"
+        app:layout_constraintEnd_toEndOf="@+id/teleopLabel"
+        />
+
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/teleopNetValue"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:minWidth="70dp"
+        android:text="0"
+        android:textAlignment="center"
+        android:textColor="@color/cardview_dark_background"
+        android:textSize="12dp"
+        app:layout_constraintBottom_toTopOf="@id/teleopHumanLabel"
+        app:layout_constraintEnd_toEndOf="@+id/teleopLabel"
+        app:layout_constraintStart_toStartOf="@+id/teleopLabel"
+        app:layout_constraintTop_toTopOf="@id/teleopNetLabel" />
+
+    <ImageButton
+        android:id="@+id/teleopNetIncrement"
+        android:layout_width="50dp"
+        android:layout_height="25dp"
+        android:text="+"
+        android:src="@drawable/button_increment_small"
+        app:layout_constraintTop_toTopOf="@+id/teleopNetLabel"
+        app:layout_constraintBottom_toBottomOf="@+id/teleopNetValue"
+        app:layout_constraintEnd_toEndOf="@+id/teleopLabel"
+        app:layout_constraintStart_toEndOf="@+id/teleopNetLabel"
+        />
+
+    <ImageButton
+        android:id="@+id/teleopHumanDecrement"
+        android:layout_width="50dp"
+        android:layout_height="25dp"
+        android:text="-"
+        android:src="@drawable/button_decrement_small"
+        app:layout_constraintTop_toTopOf="@+id/teleopHumanLabel"
+        app:layout_constraintBottom_toBottomOf="@+id/teleopHumanValue"
+        app:layout_constraintStart_toStartOf="@+id/teleopLabel"
+        app:layout_constraintEnd_toStartOf="@+id/teleopHumanLabel"
+        />
+
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/teleopHumanLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="12dp"
+        android:minWidth="70dp"
+        android:text="Human Player"
+        android:textAlignment="center"
+        android:textColor="@color/cardview_dark_background"
+        app:layout_constraintTop_toBottomOf="@+id/teleopNetValue"
+        app:layout_constraintBottom_toTopOf="@+id/teleopHumanValue"
+        app:layout_constraintStart_toStartOf="@+id/teleopLabel"
+        app:layout_constraintEnd_toEndOf="@+id/teleopLabel"
+        />
+
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/teleopHumanValue"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:minWidth="70dp"
+        android:text="0"
+        android:textAlignment="center"
+        android:textColor="@color/cardview_dark_background"
+        android:textSize="12dp"
+        app:layout_constraintBottom_toBottomOf="@id/teleopLabel"
+        app:layout_constraintEnd_toEndOf="@+id/teleopLabel"
+        app:layout_constraintStart_toStartOf="@+id/teleopLabel"
+        app:layout_constraintTop_toTopOf="@id/teleopHumanLabel" />
+
+    <ImageButton
+        android:id="@+id/teleopHumanIncrement"
+        android:layout_width="50dp"
+        android:layout_height="25dp"
+        android:text="+"
+        android:src="@drawable/button_increment_small"
+        app:layout_constraintTop_toTopOf="@+id/teleopHumanLabel"
+        app:layout_constraintBottom_toBottomOf="@+id/teleopHumanValue"
+        app:layout_constraintEnd_toEndOf="@+id/teleopLabel"
+        app:layout_constraintStart_toEndOf="@+id/teleopHumanLabel"
+        />
+
+
+
+
+
+
+
+
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/matchSummarySaveButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Submit"
+        app:layout_constraintBottom_toBottomOf="@id/endLabel"
+        app:layout_constraintEnd_toEndOf="parent"
+        />
+
     <com.google.android.material.textview.MaterialTextView
         android:id="@+id/endLabel"
         android:layout_width="214dp"
@@ -78,440 +791,481 @@
         app:layout_constraintEnd_toStartOf="@id/matchSummarySaveButton"
         />
 
-
-    <ImageButton
-        android:id="@+id/autoSpeakerDecrement"
-        android:layout_width="50dp"
-        android:layout_height="wrap_content"
-        android:text="-"
-        android:src="@drawable/button_decrement"
-        app:layout_constraintTop_toTopOf="@+id/autoSpeakerLabel"
-        app:layout_constraintBottom_toBottomOf="@+id/autoSpeakerValue"
-        app:layout_constraintStart_toStartOf="@+id/autoLabel"
-        app:layout_constraintEnd_toStartOf="@+id/autoSpeakerLabel"
-        />
-
-    <com.google.android.material.textview.MaterialTextView
-        android:id="@+id/autoSpeakerLabel"
+    <RadioGroup
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:minWidth="70dp"
-        android:text="Speaker"
-        android:textAlignment="center"
+        app:layout_constraintTop_toTopOf="@+id/endLabel"
+        app:layout_constraintBottom_toBottomOf="@+id/endLabel"
+        app:layout_constraintStart_toStartOf="@+id/endLabel"
+        app:layout_constraintEnd_toEndOf="@+id/endLabel"
+        >
+
+    <com.google.android.material.radiobutton.MaterialRadioButton
+        android:id="@+id/highRadioButton"
+        android:layout_width="138dp"
+        android:layout_height="25dp"
+        android:text="High Hang"
         android:textColor="@color/cardview_dark_background"
-        app:layout_constraintTop_toBottomOf="@+id/autoParkCheckbox"
-        app:layout_constraintBottom_toTopOf="@+id/autoSpeakerValue"
-        app:layout_constraintStart_toStartOf="@+id/autoLabel"
-        app:layout_constraintEnd_toEndOf="@+id/autoLabel"
-        />
+        android:textSize="12dp"
+        android:layout_marginTop="20dp"
+        app:layout_constraintBottom_toTopOf="@+id/lowRadioButton"
+        app:layout_constraintEnd_toEndOf="@+id/endLabel"
+        app:layout_constraintStart_toStartOf="@+id/endLabel"
+        app:layout_constraintTop_toTopOf="@+id/endLabel" />
 
-    <com.google.android.material.textview.MaterialTextView
-        android:id="@+id/autoSpeakerValue"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:minWidth="70dp"
-        android:text="0"
-        android:textSize="20dp"
-        android:textAlignment="center"
+    <com.google.android.material.radiobutton.MaterialRadioButton
+        android:id="@+id/lowRadioButton"
+        android:layout_width="138dp"
+        android:layout_height="25dp"
+        android:text="Low Hang"
         android:textColor="@color/cardview_dark_background"
-        app:layout_constraintTop_toTopOf="@+id/autoSpeakerLabel"
-        app:layout_constraintBottom_toTopOf="@+id/autoAmpLabel"
-        app:layout_constraintStart_toStartOf="@+id/autoLabel"
-        app:layout_constraintEnd_toEndOf="@+id/autoLabel"
-        />
+        android:textSize="12dp"
+        android:layout_marginTop="20dp"
+        app:layout_constraintBottom_toTopOf="@+id/parkRadioButton"
+        app:layout_constraintEnd_toEndOf="@+id/endLabel"
+        app:layout_constraintStart_toStartOf="@+id/endLabel"
+        app:layout_constraintTop_toButtonOf="@+id/highRadioButton" />
 
-    <ImageButton
-        android:id="@+id/autoSpeakerIncrement"
-        android:layout_width="50dp"
-        android:layout_height="wrap_content"
-        android:text="+"
-        android:src="@drawable/button_increment"
-        app:layout_constraintTop_toTopOf="@+id/autoSpeakerLabel"
-        app:layout_constraintBottom_toBottomOf="@+id/autoSpeakerValue"
-        app:layout_constraintEnd_toEndOf="@+id/autoLabel"
-        app:layout_constraintStart_toEndOf="@+id/autoSpeakerLabel"
-        />
-
-    <ImageButton
-        android:id="@+id/autoAmpDecrement"
-        android:layout_width="50dp"
-        android:layout_height="wrap_content"
-        android:text="-"
-        android:src="@drawable/button_decrement"
-        app:layout_constraintStart_toStartOf="@+id/autoLabel"
-        app:layout_constraintEnd_toStartOf="@+id/autoAmpLabel"
-        app:layout_constraintTop_toTopOf="@+id/autoAmpLabel"
-        app:layout_constraintBottom_toBottomOf="@+id/autoAmpValue"
-        />
-
-    <com.google.android.material.textview.MaterialTextView
-        android:id="@+id/autoAmpLabel"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:minWidth="70dp"
-        android:text="AMP"
-        android:textAlignment="center"
+    <com.google.android.material.radiobutton.MaterialRadioButton
+        android:id="@+id/parkRadioButton"
+        android:layout_width="138dp"
+        android:layout_height="25dp"
+        android:text="Park"
         android:textColor="@color/cardview_dark_background"
-        app:layout_constraintTop_toBottomOf="@+id/autoSpeakerValue"
-        app:layout_constraintBottom_toTopOf="@+id/autoAmpValue"
-        app:layout_constraintStart_toStartOf="@+id/autoLabel"
-        app:layout_constraintEnd_toEndOf="@+id/autoLabel"
-        />
+        android:textSize="12dp"
+        android:layout_marginTop="20dp"
+        app:layout_constraintBottom_toBottomOf="@id/endLabel"
+        app:layout_constraintEnd_toEndOf="@+id/endLabel"
+        app:layout_constraintStart_toStartOf="@+id/endLabel"
+        app:layout_constraintTop_toBottomOf="@+id/lowRadioButton" />
+    </RadioGroup>
 
-    <com.google.android.material.textview.MaterialTextView
-        android:id="@+id/autoAmpValue"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:minWidth="70dp"
-        android:text="0"
-        android:textAlignment="center"
-        android:textColor="@color/cardview_dark_background"
-        android:textSize="20dp"
-        app:layout_constraintTop_toTopOf="@+id/autoAmpLabel"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="@+id/autoLabel"
-        app:layout_constraintEnd_toEndOf="@+id/autoLabel"
-        />
 
-    <ImageButton
-        android:id="@+id/autoAmpIncrement"
-        android:layout_width="50dp"
-        android:layout_height="wrap_content"
-        android:text="+"
-        android:src="@drawable/button_increment"
-        app:layout_constraintTop_toTopOf="@+id/autoAmpLabel"
-        app:layout_constraintBottom_toBottomOf="@+id/autoAmpValue"
-        app:layout_constraintStart_toEndOf="@+id/autoAmpLabel"
-        app:layout_constraintEnd_toEndOf="@+id/autoLabel"
-        />
+<!--    <ImageButton-->
+<!--        android:id="@+id/autoSpeakerDecrement"-->
+<!--        android:layout_width="50dp"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:text="-"-->
+<!--        android:src="@drawable/button_decrement"-->
+<!--        app:layout_constraintTop_toTopOf="@+id/autoSpeakerLabel"-->
+<!--        app:layout_constraintBottom_toBottomOf="@+id/autoSpeakerValue"-->
+<!--        app:layout_constraintStart_toStartOf="@+id/autoLabel"-->
+<!--        app:layout_constraintEnd_toStartOf="@+id/autoSpeakerLabel"-->
+<!--        />-->
+
+<!--    <com.google.android.material.textview.MaterialTextView-->
+<!--        android:id="@+id/autoSpeakerLabel"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:minWidth="70dp"-->
+<!--        android:text="Speaker"-->
+<!--        android:textAlignment="center"-->
+<!--        android:textColor="@color/cardview_dark_background"-->
+<!--        app:layout_constraintTop_toBottomOf="@+id/autoParkCheckbox"-->
+<!--        app:layout_constraintBottom_toTopOf="@+id/autoSpeakerValue"-->
+<!--        app:layout_constraintStart_toStartOf="@+id/autoLabel"-->
+<!--        app:layout_constraintEnd_toEndOf="@+id/autoLabel"-->
+<!--        />-->
+
+<!--    <com.google.android.material.textview.MaterialTextView-->
+<!--        android:id="@+id/autoSpeakerValue"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:minWidth="70dp"-->
+<!--        android:text="0"-->
+<!--        android:textAlignment="center"-->
+<!--        android:textColor="@color/cardview_dark_background"-->
+<!--        android:textSize="20dp"-->
+<!--        app:layout_constraintBottom_toTopOf="@+id/autoAmpLabel"-->
+<!--        app:layout_constraintEnd_toEndOf="@+id/autoLabel"-->
+<!--        app:layout_constraintStart_toStartOf="@+id/autoLabel"-->
+<!--        app:layout_constraintTop_toTopOf="parent" />-->
+
+<!--    <ImageButton-->
+<!--        android:id="@+id/autoSpeakerIncrement"-->
+<!--        android:layout_width="50dp"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:text="+"-->
+<!--        android:src="@drawable/button_increment"-->
+<!--        app:layout_constraintTop_toTopOf="@+id/autoSpeakerLabel"-->
+<!--        app:layout_constraintBottom_toBottomOf="@+id/autoSpeakerValue"-->
+<!--        app:layout_constraintEnd_toEndOf="@+id/autoLabel"-->
+<!--        app:layout_constraintStart_toEndOf="@+id/autoSpeakerLabel"-->
+<!--        />-->
+
+<!--    <ImageButton-->
+<!--        android:id="@+id/autoAmpDecrement"-->
+<!--        android:layout_width="50dp"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:text="-"-->
+<!--        android:src="@drawable/button_decrement"-->
+<!--        app:layout_constraintStart_toStartOf="@+id/autoLabel"-->
+<!--        app:layout_constraintEnd_toStartOf="@+id/autoAmpLabel"-->
+<!--        app:layout_constraintTop_toTopOf="@+id/autoAmpLabel"-->
+<!--        app:layout_constraintBottom_toBottomOf="@+id/autoAmpValue"-->
+<!--        />-->
+
+<!--    <com.google.android.material.textview.MaterialTextView-->
+<!--        android:id="@+id/autoAmpLabel"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:minWidth="70dp"-->
+<!--        android:text="AMP"-->
+<!--        android:textAlignment="center"-->
+<!--        android:textColor="@color/cardview_dark_background"-->
+<!--        app:layout_constraintTop_toBottomOf="@+id/autoSpeakerValue"-->
+<!--        app:layout_constraintBottom_toTopOf="@+id/autoAmpValue"-->
+<!--        app:layout_constraintStart_toStartOf="@+id/autoLabel"-->
+<!--        app:layout_constraintEnd_toEndOf="@+id/autoLabel"-->
+<!--        />-->
+
+<!--    <com.google.android.material.textview.MaterialTextView-->
+<!--        android:id="@+id/autoAmpValue"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:minWidth="70dp"-->
+<!--        android:text="0"-->
+<!--        android:textAlignment="center"-->
+<!--        android:textColor="@color/cardview_dark_background"-->
+<!--        android:textSize="20dp"-->
+<!--        app:layout_constraintTop_toTopOf="@+id/autoAmpLabel"-->
+<!--        app:layout_constraintBottom_toBottomOf="parent"-->
+<!--        app:layout_constraintStart_toStartOf="@+id/autoLabel"-->
+<!--        app:layout_constraintEnd_toEndOf="@+id/autoLabel"-->
+<!--        />-->
+
+<!--    <ImageButton-->
+<!--        android:id="@+id/autoAmpIncrement"-->
+<!--        android:layout_width="50dp"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:text="+"-->
+<!--        android:src="@drawable/button_increment"-->
+<!--        app:layout_constraintTop_toTopOf="@+id/autoAmpLabel"-->
+<!--        app:layout_constraintBottom_toBottomOf="@+id/autoAmpValue"-->
+<!--        app:layout_constraintStart_toEndOf="@+id/autoAmpLabel"-->
+<!--        app:layout_constraintEnd_toEndOf="@+id/autoLabel"-->
+<!--        />-->
 
     <!-- aaaaaaaaaaaaaaaaaaaaaaaaaa -->
 
-    <ImageButton
-        android:id="@+id/teleOpAmplifiedSpeakerDecrement"
-        android:layout_width="50dp"
-        android:layout_height="wrap_content"
-        android:text="-"
-        android:src="@drawable/button_decrement"
-        app:layout_constraintTop_toTopOf="@+id/teleOpAmplifiedSpeakerLabel"
-        app:layout_constraintBottom_toBottomOf="@+id/teleOpAmplifiedSpeakerValue"
-        app:layout_constraintStart_toStartOf="@+id/teleopLabel"
-        app:layout_constraintEnd_toStartOf="@+id/teleOpAmplifiedSpeakerLabel"
-        />
+<!--    <ImageButton-->
+<!--        android:id="@+id/teleOpAmplifiedSpeakerDecrement"-->
+<!--        android:layout_width="50dp"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:text="-"-->
+<!--        android:src="@drawable/button_decrement"-->
+<!--        app:layout_constraintTop_toTopOf="@+id/teleOpAmplifiedSpeakerLabel"-->
+<!--        app:layout_constraintBottom_toBottomOf="@+id/teleOpAmplifiedSpeakerValue"-->
+<!--        app:layout_constraintStart_toStartOf="@+id/teleopLabel"-->
+<!--        app:layout_constraintEnd_toStartOf="@+id/teleOpAmplifiedSpeakerLabel"-->
+<!--        />-->
 
-    <com.google.android.material.textview.MaterialTextView
-        android:id="@+id/teleOpAmplifiedSpeakerLabel"
-        android:layout_width="82dp"
-        android:layout_height="43dp"
-        android:minWidth="70dp"
-        android:text="Amplified Speaker"
-        android:textAlignment="center"
-        android:textColor="@color/cardview_dark_background"
-        app:layout_constraintTop_toTopOf="@id/teleopLabel"
-        app:layout_constraintBottom_toBottomOf="@+id/teleOpAmplifiedSpeakerValue"
-        app:layout_constraintStart_toStartOf="@+id/teleopLabel"
-        app:layout_constraintEnd_toEndOf="@+id/teleopLabel"
-        />
+<!--    <com.google.android.material.textview.MaterialTextView-->
+<!--        android:id="@+id/teleOpAmplifiedSpeakerLabel"-->
+<!--        android:layout_width="82dp"-->
+<!--        android:layout_height="43dp"-->
+<!--        android:minWidth="70dp"-->
+<!--        android:text="Amplified Speaker"-->
+<!--        android:textAlignment="center"-->
+<!--        android:textColor="@color/cardview_dark_background"-->
+<!--        app:layout_constraintTop_toTopOf="@id/teleopLabel"-->
+<!--        app:layout_constraintBottom_toBottomOf="@+id/teleOpAmplifiedSpeakerValue"-->
+<!--        app:layout_constraintStart_toStartOf="@+id/teleopLabel"-->
+<!--        app:layout_constraintEnd_toEndOf="@+id/teleopLabel"-->
+<!--        />-->
 
-    <com.google.android.material.textview.MaterialTextView
-        android:id="@+id/teleOpAmplifiedSpeakerValue"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:minWidth="70dp"
-        android:text="0"
-        android:textSize="20dp"
-        android:textAlignment="center"
-        android:textColor="@color/cardview_dark_background"
-        app:layout_constraintTop_toBottomOf="@+id/teleOpAmplifiedSpeakerLabel"
-        app:layout_constraintBottom_toTopOf="@+id/teleOpSpeakerLabel"
-        app:layout_constraintStart_toStartOf="@+id/teleopLabel"
-        app:layout_constraintEnd_toEndOf="@+id/teleopLabel"
-        />
+<!--    <com.google.android.material.textview.MaterialTextView-->
+<!--        android:id="@+id/teleOpAmplifiedSpeakerValue"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:minWidth="70dp"-->
+<!--        android:text="0"-->
+<!--        android:textSize="20dp"-->
+<!--        android:textAlignment="center"-->
+<!--        android:textColor="@color/cardview_dark_background"-->
+<!--        app:layout_constraintTop_toBottomOf="@+id/teleOpAmplifiedSpeakerLabel"-->
+<!--        app:layout_constraintBottom_toTopOf="@+id/teleOpSpeakerLabel"-->
+<!--        app:layout_constraintStart_toStartOf="@+id/teleopLabel"-->
+<!--        app:layout_constraintEnd_toEndOf="@+id/teleopLabel"-->
+<!--        />-->
 
-    <ImageButton
-        android:id="@+id/teleOpAmplifiedSpeakerIncrement"
-        android:layout_width="50dp"
-        android:layout_height="wrap_content"
-        android:text="+"
-        android:src="@drawable/button_increment"
-        app:layout_constraintStart_toEndOf="@+id/teleOpAmplifiedSpeakerLabel"
-        app:layout_constraintEnd_toEndOf="@+id/teleopLabel"
-        app:layout_constraintTop_toTopOf="@+id/teleOpAmplifiedSpeakerLabel"
-        app:layout_constraintBottom_toBottomOf="@+id/teleOpAmplifiedSpeakerValue"
-        />
-
-
-    <ImageButton
-        android:id="@+id/teleOpSpeakerDecrement"
-        android:layout_width="50dp"
-        android:layout_height="wrap_content"
-        android:text="-"
-        android:src="@drawable/button_decrement"
-        app:layout_constraintTop_toTopOf="@+id/teleOpSpeakerLabel"
-        app:layout_constraintBottom_toBottomOf="@+id/teleOpSpeakerValue"
-        app:layout_constraintStart_toStartOf="@+id/teleopLabel"
-        app:layout_constraintEnd_toStartOf="@+id/teleOpSpeakerLabel"
-
-        android:textSize="65sp"
-        android:layout_margin="10dp"
-        />
-
-    <com.google.android.material.textview.MaterialTextView
-        android:id="@+id/teleOpSpeakerLabel"
-        android:layout_width="79dp"
-        android:layout_height="22dp"
-        android:minWidth="70dp"
-        android:text="Speaker"
-        android:textAlignment="center"
-        android:textColor="@color/cardview_dark_background"
-        app:layout_constraintTop_toBottomOf="@+id/teleOpAmplifiedSpeakerValue"
-        app:layout_constraintBottom_toTopOf="@+id/teleOpSpeakerValue"
-        app:layout_constraintStart_toStartOf="@+id/teleopLabel"
-        app:layout_constraintEnd_toEndOf="@+id/teleopLabel"
-        />
+<!--    <ImageButton-->
+<!--        android:id="@+id/teleOpAmplifiedSpeakerIncrement"-->
+<!--        android:layout_width="50dp"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:text="+"-->
+<!--        android:src="@drawable/button_increment"-->
+<!--        app:layout_constraintStart_toEndOf="@+id/teleOpAmplifiedSpeakerLabel"-->
+<!--        app:layout_constraintEnd_toEndOf="@+id/teleopLabel"-->
+<!--        app:layout_constraintTop_toTopOf="@+id/teleOpAmplifiedSpeakerLabel"-->
+<!--        app:layout_constraintBottom_toBottomOf="@+id/teleOpAmplifiedSpeakerValue"-->
+<!--        />-->
 
 
-    <com.google.android.material.textview.MaterialTextView
-        android:id="@+id/teleOpSpeakerValue"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:minWidth="70dp"
-        android:text="0"
-        android:textAlignment="center"
-        android:textColor="@color/cardview_dark_background"
-        android:textSize="20dp"
-        app:layout_constraintTop_toTopOf="@+id/teleOpSpeakerLabel"
-        app:layout_constraintBottom_toTopOf="@+id/teleOpAmpLabel"
-        app:layout_constraintStart_toStartOf="@+id/teleopLabel"
-        app:layout_constraintEnd_toEndOf="@+id/teleopLabel"
-        />
+<!--    <ImageButton-->
+<!--        android:id="@+id/teleOpSpeakerDecrement"-->
+<!--        android:layout_width="50dp"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:text="-"-->
+<!--        android:src="@drawable/button_decrement"-->
+<!--        app:layout_constraintTop_toTopOf="@+id/teleOpSpeakerLabel"-->
+<!--        app:layout_constraintBottom_toBottomOf="@+id/teleOpSpeakerValue"-->
+<!--        app:layout_constraintStart_toStartOf="@+id/teleopLabel"-->
+<!--        app:layout_constraintEnd_toStartOf="@+id/teleOpSpeakerLabel"-->
 
-    <ImageButton
-        android:id="@+id/teleOpSpeakerIncrement"
-        android:layout_width="50dp"
-        android:layout_height="wrap_content"
-        android:text="+"
-        android:src="@drawable/button_increment"
-        app:layout_constraintTop_toTopOf="@+id/teleOpSpeakerLabel"
-        app:layout_constraintBottom_toBottomOf="@+id/teleOpSpeakerValue"
-        app:layout_constraintStart_toEndOf="@+id/teleOpSpeakerLabel"
-        app:layout_constraintEnd_toEndOf="@id/teleopLabel"
-        />
+<!--        android:textSize="65sp"-->
+<!--        android:layout_margin="10dp"-->
+<!--        />-->
 
-    <ImageButton
-        android:id="@+id/teleopAmpDecrement"
-        android:layout_width="50dp"
-        android:layout_height="wrap_content"
-        android:text="-"
-        android:src="@drawable/button_decrement"
-        app:layout_constraintTop_toTopOf="@+id/teleOpAmpLabel"
-        app:layout_constraintBottom_toBottomOf="@+id/teleOpAmpValue"
-        app:layout_constraintStart_toStartOf="@+id/teleopLabel"
-        app:layout_constraintEnd_toStartOf="@+id/teleOpAmpLabel"
-        />
-
-    <com.google.android.material.textview.MaterialTextView
-        android:id="@+id/teleOpAmpLabel"
-        android:layout_width="83dp"
-        android:layout_height="27dp"
-        android:minWidth="70dp"
-        android:text="AMP"
-        android:textAlignment="center"
-        android:textColor="@color/cardview_dark_background"
-        app:layout_constraintTop_toBottomOf="@+id/teleOpSpeakerValue"
-        app:layout_constraintBottom_toBottomOf="@+id/teleOpAmpValue"
-        app:layout_constraintStart_toStartOf="@+id/teleopLabel"
-        app:layout_constraintEnd_toEndOf="@+id/teleopLabel"
-        />
+<!--    <com.google.android.material.textview.MaterialTextView-->
+<!--        android:id="@+id/teleOpSpeakerLabel"-->
+<!--        android:layout_width="79dp"-->
+<!--        android:layout_height="22dp"-->
+<!--        android:minWidth="70dp"-->
+<!--        android:text="Speaker"-->
+<!--        android:textAlignment="center"-->
+<!--        android:textColor="@color/cardview_dark_background"-->
+<!--        app:layout_constraintTop_toBottomOf="@+id/teleOpAmplifiedSpeakerValue"-->
+<!--        app:layout_constraintBottom_toTopOf="@+id/teleOpSpeakerValue"-->
+<!--        app:layout_constraintStart_toStartOf="@+id/teleopLabel"-->
+<!--        app:layout_constraintEnd_toEndOf="@+id/teleopLabel"-->
+<!--        />-->
 
 
-    <com.google.android.material.textview.MaterialTextView
-        android:id="@+id/teleOpAmpValue"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:minWidth="70dp"
-        android:text="0"
-        android:textAlignment="center"
-        android:textColor="@color/cardview_dark_background"
-        android:textSize="20dp"
-        app:layout_constraintTop_toTopOf="@+id/teleOpAmpLabel"
-        app:layout_constraintBottom_toTopOf="@+id/teleOpDefensesLabel"
-        app:layout_constraintStart_toStartOf="@+id/teleopLabel"
-        app:layout_constraintEnd_toEndOf="@+id/teleopLabel"
-        />
+<!--    <com.google.android.material.textview.MaterialTextView-->
+<!--        android:id="@+id/teleOpSpeakerValue"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:minWidth="70dp"-->
+<!--        android:text="0"-->
+<!--        android:textAlignment="center"-->
+<!--        android:textColor="@color/cardview_dark_background"-->
+<!--        android:textSize="20dp"-->
+<!--        app:layout_constraintTop_toTopOf="@+id/teleOpSpeakerLabel"-->
+<!--        app:layout_constraintBottom_toTopOf="@+id/teleOpAmpLabel"-->
+<!--        app:layout_constraintStart_toStartOf="@+id/teleopLabel"-->
+<!--        app:layout_constraintEnd_toEndOf="@+id/teleopLabel"-->
+<!--        />-->
 
-    <ImageButton
-        android:id="@+id/teleOpAmpIncrement"
-        android:layout_width="50dp"
-        android:layout_height="wrap_content"
-        android:text="+"
-        android:src="@drawable/button_increment"
-        app:layout_constraintTop_toTopOf="@+id/teleOpAmpLabel"
-        app:layout_constraintBottom_toBottomOf="@+id/teleOpAmpValue"
-        app:layout_constraintStart_toEndOf="@+id/teleOpAmpLabel"
-        app:layout_constraintEnd_toEndOf="@+id/teleopLabel"
-        />
+<!--    <ImageButton-->
+<!--        android:id="@+id/teleOpSpeakerIncrement"-->
+<!--        android:layout_width="50dp"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:text="+"-->
+<!--        android:src="@drawable/button_increment"-->
+<!--        app:layout_constraintTop_toTopOf="@+id/teleOpSpeakerLabel"-->
+<!--        app:layout_constraintBottom_toBottomOf="@+id/teleOpSpeakerValue"-->
+<!--        app:layout_constraintStart_toEndOf="@+id/teleOpSpeakerLabel"-->
+<!--        app:layout_constraintEnd_toEndOf="@id/teleopLabel"-->
+<!--        />-->
 
-    <ImageButton
-        android:id="@+id/teleOpDefensesDecrement"
-        android:layout_width="50dp"
-        android:layout_height="wrap_content"
-        android:text="-"
-        android:src="@drawable/button_decrement"
-        app:layout_constraintTop_toTopOf="@+id/teleOpDefensesLabel"
-        app:layout_constraintBottom_toBottomOf="@+id/teleOpDefensesValue"
-        app:layout_constraintStart_toStartOf="@+id/teleopLabel"
-        app:layout_constraintEnd_toStartOf="@+id/teleOpDefensesLabel"
-        />
+<!--    <ImageButton-->
+<!--        android:id="@+id/teleopAmpDecrement"-->
+<!--        android:layout_width="50dp"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:text="-"-->
+<!--        android:src="@drawable/button_decrement"-->
+<!--        app:layout_constraintTop_toTopOf="@+id/teleOpAmpLabel"-->
+<!--        app:layout_constraintBottom_toBottomOf="@+id/teleOpAmpValue"-->
+<!--        app:layout_constraintStart_toStartOf="@+id/teleopLabel"-->
+<!--        app:layout_constraintEnd_toStartOf="@+id/teleOpAmpLabel"-->
+<!--        />-->
 
-    <com.google.android.material.textview.MaterialTextView
-        android:id="@+id/teleOpDefensesLabel"
-        android:layout_width="83dp"
-        android:layout_height="27dp"
-        android:minWidth="70dp"
-        android:text="Defense"
-        android:textAlignment="center"
-        android:textColor="@color/cardview_dark_background"
-        app:layout_constraintTop_toBottomOf="@+id/teleOpAmpValue"
-        app:layout_constraintBottom_toTopOf="@+id/teleOpDefensesValue"
-        app:layout_constraintStart_toStartOf="@+id/teleopLabel"
-        app:layout_constraintEnd_toEndOf="@+id/teleopLabel"
-        />
-
-    <com.google.android.material.textview.MaterialTextView
-        android:id="@+id/teleOpDefensesValue"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:minWidth="70dp"
-        android:text="0"
-        android:textAlignment="center"
-        android:textColor="@color/cardview_dark_background"
-        android:textSize="20dp"
-        app:layout_constraintTop_toTopOf="@+id/teleOpDefensesLabel"
-        app:layout_constraintBottom_toBottomOf="@+id/teleopLabel"
-        app:layout_constraintStart_toStartOf="@+id/teleopLabel"
-        app:layout_constraintEnd_toEndOf="@+id/teleopLabel"
-        />
-
-    <ImageButton
-        android:id="@+id/teleOpDefensesIncrement"
-        android:layout_width="50dp"
-        android:layout_height="wrap_content"
-        android:text="+"
-        android:src="@drawable/button_increment"
-        app:layout_constraintTop_toTopOf="@+id/teleOpDefensesLabel"
-        app:layout_constraintBottom_toBottomOf="@+id/teleOpDefensesValue"
-        app:layout_constraintStart_toEndOf="@+id/teleOpDefensesLabel"
-        app:layout_constraintEnd_toEndOf="@+id/teleopLabel"
-        />
+<!--    <com.google.android.material.textview.MaterialTextView-->
+<!--        android:id="@+id/teleOpAmpLabel"-->
+<!--        android:layout_width="83dp"-->
+<!--        android:layout_height="27dp"-->
+<!--        android:minWidth="70dp"-->
+<!--        android:text="AMP"-->
+<!--        android:textAlignment="center"-->
+<!--        android:textColor="@color/cardview_dark_background"-->
+<!--        app:layout_constraintTop_toBottomOf="@+id/teleOpSpeakerValue"-->
+<!--        app:layout_constraintBottom_toBottomOf="@+id/teleOpAmpValue"-->
+<!--        app:layout_constraintStart_toStartOf="@+id/teleopLabel"-->
+<!--        app:layout_constraintEnd_toEndOf="@+id/teleopLabel"-->
+<!--        />-->
 
 
-    <com.google.android.material.checkbox.MaterialCheckBox
-        android:id="@+id/endOnstageCheckbox"
-        android:layout_width="202dp"
-        android:layout_height="45dp"
-        android:text="Onstage"
-        android:textColor="@color/cardview_dark_background"
-        app:layout_constraintBottom_toTopOf="@+id/endParkCheckbox"
-        app:layout_constraintStart_toStartOf="@+id/endLabel"
-        app:layout_constraintTop_toTopOf="@+id/endLabel"
-        />
+<!--    <com.google.android.material.textview.MaterialTextView-->
+<!--        android:id="@+id/teleOpAmpValue"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:minWidth="70dp"-->
+<!--        android:text="0"-->
+<!--        android:textAlignment="center"-->
+<!--        android:textColor="@color/cardview_dark_background"-->
+<!--        android:textSize="20dp"-->
+<!--        app:layout_constraintTop_toTopOf="@+id/teleOpAmpLabel"-->
+<!--        app:layout_constraintBottom_toTopOf="@+id/teleOpDefensesLabel"-->
+<!--        app:layout_constraintStart_toStartOf="@+id/teleopLabel"-->
+<!--        app:layout_constraintEnd_toEndOf="@+id/teleopLabel"-->
+<!--        />-->
 
-    <com.google.android.material.checkbox.MaterialCheckBox
-        android:id="@+id/endParkCheckbox"
-        android:layout_width="202dp"
-        android:layout_height="45dp"
-        android:text="Parked"
-        android:textColor="@color/cardview_dark_background"
-        app:layout_constraintTop_toBottomOf="@+id/endOnstageCheckbox"
-        app:layout_constraintBottom_toTopOf="@+id/trapCheckbox"
-        app:layout_constraintStart_toStartOf="@+id/endLabel"
-        />
+<!--    <ImageButton-->
+<!--        android:id="@+id/teleOpAmpIncrement"-->
+<!--        android:layout_width="50dp"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:text="+"-->
+<!--        android:src="@drawable/button_increment"-->
+<!--        app:layout_constraintTop_toTopOf="@+id/teleOpAmpLabel"-->
+<!--        app:layout_constraintBottom_toBottomOf="@+id/teleOpAmpValue"-->
+<!--        app:layout_constraintStart_toEndOf="@+id/teleOpAmpLabel"-->
+<!--        app:layout_constraintEnd_toEndOf="@+id/teleopLabel"-->
+<!--        />-->
+
+<!--    <ImageButton-->
+<!--        android:id="@+id/teleOpDefensesDecrement"-->
+<!--        android:layout_width="50dp"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:text="-"-->
+<!--        android:src="@drawable/button_decrement"-->
+<!--        app:layout_constraintTop_toTopOf="@+id/teleOpDefensesLabel"-->
+<!--        app:layout_constraintBottom_toBottomOf="@+id/teleOpDefensesValue"-->
+<!--        app:layout_constraintStart_toStartOf="@+id/teleopLabel"-->
+<!--        app:layout_constraintEnd_toStartOf="@+id/teleOpDefensesLabel"-->
+<!--        />-->
+
+<!--    <com.google.android.material.textview.MaterialTextView-->
+<!--        android:id="@+id/teleOpDefensesLabel"-->
+<!--        android:layout_width="83dp"-->
+<!--        android:layout_height="27dp"-->
+<!--        android:minWidth="70dp"-->
+<!--        android:text="Defense"-->
+<!--        android:textAlignment="center"-->
+<!--        android:textColor="@color/cardview_dark_background"-->
+<!--        app:layout_constraintTop_toBottomOf="@+id/teleOpAmpValue"-->
+<!--        app:layout_constraintBottom_toTopOf="@+id/teleOpDefensesValue"-->
+<!--        app:layout_constraintStart_toStartOf="@+id/teleopLabel"-->
+<!--        app:layout_constraintEnd_toEndOf="@+id/teleopLabel"-->
+<!--        />-->
+
+<!--    <com.google.android.material.textview.MaterialTextView-->
+<!--        android:id="@+id/teleOpDefensesValue"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:minWidth="70dp"-->
+<!--        android:text="0"-->
+<!--        android:textAlignment="center"-->
+<!--        android:textColor="@color/cardview_dark_background"-->
+<!--        android:textSize="20dp"-->
+<!--        app:layout_constraintTop_toTopOf="@+id/teleOpDefensesLabel"-->
+<!--        app:layout_constraintBottom_toBottomOf="@+id/teleopLabel"-->
+<!--        app:layout_constraintStart_toStartOf="@+id/teleopLabel"-->
+<!--        app:layout_constraintEnd_toEndOf="@+id/teleopLabel"-->
+<!--        />-->
+
+<!--    <ImageButton-->
+<!--        android:id="@+id/teleOpDefensesIncrement"-->
+<!--        android:layout_width="50dp"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:text="+"-->
+<!--        android:src="@drawable/button_increment"-->
+<!--        app:layout_constraintTop_toTopOf="@+id/teleOpDefensesLabel"-->
+<!--        app:layout_constraintBottom_toBottomOf="@+id/teleOpDefensesValue"-->
+<!--        app:layout_constraintStart_toEndOf="@+id/teleOpDefensesLabel"-->
+<!--        app:layout_constraintEnd_toEndOf="@+id/teleopLabel"-->
+<!--        />-->
 
 
-    <com.google.android.material.checkbox.MaterialCheckBox
-        android:id="@+id/trapCheckbox"
-        android:layout_width="202dp"
-        android:layout_height="45dp"
-        android:text="Trap"
-        android:textColor="@color/cardview_dark_background"
-        app:layout_constraintTop_toBottomOf="@+id/endParkCheckbox"
-        app:layout_constraintBottom_toTopOf="@+id/harmonyCheckbox"
-        app:layout_constraintStart_toStartOf="@+id/endLabel"
-        />
+<!--    <com.google.android.material.checkbox.MaterialCheckBox-->
+<!--        android:id="@+id/endOnstageCheckbox"-->
+<!--        android:layout_width="202dp"-->
+<!--        android:layout_height="45dp"-->
+<!--        android:text="Onstage"-->
+<!--        android:textColor="@color/cardview_dark_background"-->
+<!--        app:layout_constraintBottom_toTopOf="@+id/endParkCheckbox"-->
+<!--        app:layout_constraintStart_toStartOf="@+id/endLabel"-->
+<!--        app:layout_constraintTop_toTopOf="@+id/endLabel"-->
+<!--        />-->
 
-    <com.google.android.material.checkbox.MaterialCheckBox
-        android:id="@+id/harmonyCheckbox"
-        android:layout_width="202dp"
-        android:layout_height="45dp"
-        android:text="Harmony"
-        android:textColor="@color/cardview_dark_background"
-        app:layout_constraintTop_toBottomOf="@+id/trapCheckbox"
-        app:layout_constraintBottom_toBottomOf="@+id/endSpotlightLabel"
-        app:layout_constraintStart_toStartOf="@+id/endLabel"
-        />
+<!--    <com.google.android.material.checkbox.MaterialCheckBox-->
+<!--        android:id="@+id/endParkCheckbox"-->
+<!--        android:layout_width="202dp"-->
+<!--        android:layout_height="45dp"-->
+<!--        android:text="Parked"-->
+<!--        android:textColor="@color/cardview_dark_background"-->
+<!--        app:layout_constraintTop_toBottomOf="@+id/endOnstageCheckbox"-->
+<!--        app:layout_constraintBottom_toTopOf="@+id/trapCheckbox"-->
+<!--        app:layout_constraintStart_toStartOf="@+id/endLabel"-->
+<!--        />-->
 
 
-    <ImageButton
-        android:id="@+id/endSpotlightDecrement"
-        android:layout_width="50dp"
-        android:layout_height="wrap_content"
-        android:text="-"
-        android:src="@drawable/button_decrement"
-        app:layout_constraintTop_toTopOf="@+id/endSpotlightLabel"
-        app:layout_constraintBottom_toBottomOf="@+id/endLabel"
-        app:layout_constraintStart_toStartOf="@+id/endLabel"
-        app:layout_constraintEnd_toStartOf="@+id/endSpotlightLabel"
-        />
+<!--    <com.google.android.material.checkbox.MaterialCheckBox-->
+<!--        android:id="@+id/trapCheckbox"-->
+<!--        android:layout_width="202dp"-->
+<!--        android:layout_height="45dp"-->
+<!--        android:text="Trap"-->
+<!--        android:textColor="@color/cardview_dark_background"-->
+<!--        app:layout_constraintTop_toBottomOf="@+id/endParkCheckbox"-->
+<!--        app:layout_constraintBottom_toTopOf="@+id/harmonyCheckbox"-->
+<!--        app:layout_constraintStart_toStartOf="@+id/endLabel"-->
+<!--        />-->
 
-    <com.google.android.material.textview.MaterialTextView
-        android:id="@+id/endSpotlightLabel"
-        android:layout_width="83dp"
-        android:layout_height="27dp"
-        android:minWidth="70dp"
-        android:text="Spotlight"
-        android:textAlignment="center"
-        android:textColor="@color/cardview_dark_background"
-        app:layout_constraintTop_toBottomOf="@+id/harmonyCheckbox"
-        app:layout_constraintBottom_toTopOf="@+id/endSpotlightValue"
-        app:layout_constraintStart_toStartOf="@+id/endLabel"
-        app:layout_constraintEnd_toEndOf="@+id/endLabel"
-        />
+<!--    <com.google.android.material.checkbox.MaterialCheckBox-->
+<!--        android:id="@+id/harmonyCheckbox"-->
+<!--        android:layout_width="202dp"-->
+<!--        android:layout_height="45dp"-->
+<!--        android:text="Harmony"-->
+<!--        android:textColor="@color/cardview_dark_background"-->
+<!--        app:layout_constraintTop_toBottomOf="@+id/trapCheckbox"-->
+<!--        app:layout_constraintBottom_toBottomOf="@+id/endSpotlightLabel"-->
+<!--        app:layout_constraintStart_toStartOf="@+id/endLabel"-->
+<!--        />-->
 
-    <com.google.android.material.textview.MaterialTextView
-        android:id="@+id/endSpotlightValue"
-        android:layout_width="82dp"
-        android:layout_height="26dp"
-        android:minWidth="70dp"
-        android:text="0"
-        android:textAlignment="center"
-        android:textColor="@color/cardview_dark_background"
-        android:textSize="20dp"
-        app:layout_constraintTop_toTopOf="@+id/endSpotlightLabel"
-        app:layout_constraintBottom_toBottomOf="@+id/endLabel"
-        app:layout_constraintStart_toStartOf="@+id/endLabel"
-        app:layout_constraintEnd_toEndOf="@+id/endLabel"
-        />
 
-    <ImageButton
-        android:id="@+id/endSpotlightIncrement"
-        android:layout_width="50dp"
-        android:layout_height="wrap_content"
-        android:text="+"
-        android:src="@drawable/button_increment"
-        app:layout_constraintBottom_toBottomOf="@+id/endLabel"
-        app:layout_constraintEnd_toEndOf="@+id/endLabel"
-        app:layout_constraintStart_toEndOf="@+id/endSpotlightLabel"
-        app:layout_constraintTop_toTopOf="@+id/endSpotlightLabel"
-        />
+<!--    <ImageButton-->
+<!--        android:id="@+id/endSpotlightDecrement"-->
+<!--        android:layout_width="50dp"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:text="-"-->
+<!--        android:src="@drawable/button_decrement"-->
+<!--        app:layout_constraintTop_toTopOf="@+id/endSpotlightLabel"-->
+<!--        app:layout_constraintBottom_toBottomOf="@+id/endLabel"-->
+<!--        app:layout_constraintStart_toStartOf="@+id/endLabel"-->
+<!--        app:layout_constraintEnd_toStartOf="@+id/endSpotlightLabel"-->
+<!--        />-->
 
-    <com.google.android.material.button.MaterialButton
-        android:id="@+id/matchSummarySaveButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Submit"
-        app:layout_constraintBottom_toBottomOf="@id/endLabel"
-        app:layout_constraintEnd_toEndOf="parent"
-        />
+<!--    <com.google.android.material.textview.MaterialTextView-->
+<!--        android:id="@+id/endSpotlightLabel"-->
+<!--        android:layout_width="83dp"-->
+<!--        android:layout_height="27dp"-->
+<!--        android:minWidth="70dp"-->
+<!--        android:text="Spotlight"-->
+<!--        android:textAlignment="center"-->
+<!--        android:textColor="@color/cardview_dark_background"-->
+<!--        app:layout_constraintTop_toBottomOf="@+id/harmonyCheckbox"-->
+<!--        app:layout_constraintBottom_toTopOf="@+id/endSpotlightValue"-->
+<!--        app:layout_constraintStart_toStartOf="@+id/endLabel"-->
+<!--        app:layout_constraintEnd_toEndOf="@+id/endLabel"-->
+<!--        />-->
+
+<!--    <com.google.android.material.textview.MaterialTextView-->
+<!--        android:id="@+id/endSpotlightValue"-->
+<!--        android:layout_width="82dp"-->
+<!--        android:layout_height="26dp"-->
+<!--        android:minWidth="70dp"-->
+<!--        android:text="0"-->
+<!--        android:textAlignment="center"-->
+<!--        android:textColor="@color/cardview_dark_background"-->
+<!--        android:textSize="20dp"-->
+<!--        app:layout_constraintTop_toTopOf="@+id/endSpotlightLabel"-->
+<!--        app:layout_constraintBottom_toBottomOf="@+id/endLabel"-->
+<!--        app:layout_constraintStart_toStartOf="@+id/endLabel"-->
+<!--        app:layout_constraintEnd_toEndOf="@+id/endLabel"-->
+<!--        />-->
+
+<!--    <ImageButton-->
+<!--        android:id="@+id/endSpotlightIncrement"-->
+<!--        android:layout_width="50dp"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:text="+"-->
+<!--        android:src="@drawable/button_increment"-->
+<!--        app:layout_constraintBottom_toBottomOf="@+id/endLabel"-->
+<!--        app:layout_constraintEnd_toEndOf="@+id/endLabel"-->
+<!--        app:layout_constraintStart_toEndOf="@+id/endSpotlightLabel"-->
+<!--        app:layout_constraintTop_toTopOf="@+id/endSpotlightLabel"-->
+<!--        />-->
+
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
