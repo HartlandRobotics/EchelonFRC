@@ -26,31 +26,45 @@ public class MatchResultViewModel extends AndroidViewModel {
 
     public MatchResult getDefault(String eventKey, String matchKey, String teamKey
     ) {
-
         MatchResult matchResult = new MatchResult(
                 StringUtils.EMPTY,
                 eventKey,
                 matchKey,
                 teamKey,
                 false,
-                false,
-                0,
-                0,
-                null,
-                null,
-                0,
-                0,
-                0,
-                null,
-                null,
+
+        false,
+        false,
                 false,
                 false,
+                false,
+
+        0,
                 0,
+                0,
+                0,
+                0,
+                0,
+
+
+        0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+
+
+         false,
                 false,
                 false,
-                StringUtils.EMPTY,
-                0
-        );
+                false,
+                false,
+
+        StringUtils.EMPTY,
+        0
+);
 
         return matchResult;
     }
