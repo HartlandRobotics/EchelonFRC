@@ -13,6 +13,7 @@ import android.widget.ImageButton;
 
 import com.google.android.material.button.MaterialButton;
 import com.google.android.material.checkbox.MaterialCheckBox;
+import com.google.android.material.radiobutton.MaterialRadioButton;
 import com.google.android.material.textfield.TextInputLayout;
 import com.google.android.material.textview.MaterialTextView;
 
@@ -41,44 +42,65 @@ public class MatchScoutingSummaryActivity extends AppCompatActivity {
 
     private MaterialCheckBox leaveLineAuto;
 
-    private ImageButton ampNoteAutoDecrement;
-    private MaterialTextView ampNoteAutoValue;
-    private ImageButton ampNoteAutoIncrement;
+    private ImageButton subtractAutoReefLevelOne;
+    private MaterialTextView autoReefLevelOne;
+    private ImageButton addAutoReefLevelOne;
 
-    private ImageButton speakerNoteAutoDecrement;
-    private MaterialTextView speakerNoteAutoValue;
-    private ImageButton speakerNoteAutoIncrement;
+    private ImageButton subtractAutoReefLevelTwo;
+    private MaterialTextView autoReefLevelTwo;
+    private ImageButton addAutoReefLevelTwo;
+
+    private ImageButton subtractAutoReefLevelThree;
+    private MaterialTextView autoReefLevelThree;
+    private ImageButton addAutoReefLevelThree;
+
+    private ImageButton subtractAutoReefLevelFour;
+    private MaterialTextView autoReefLevelFour;
+    private ImageButton addAutoReefLevelFour;
+
+    private ImageButton subtractAutoProcessor;
+    private MaterialTextView autoProcessor;
+    private ImageButton addAutoProcessor;
+
+    private ImageButton subtractAutoNet;
+    private MaterialTextView autoNet;
+    private ImageButton addAutoNet;
 
     // TeleOp
 
-    private ImageButton ampNoteTeleOpDecrement;
-    private MaterialTextView ampNoteTeleOpValue;
-    private ImageButton ampNoteTeleOpIncrement;
+    private ImageButton subtractTeleOpReefLevelOne;
+    private MaterialTextView teleOpReefLevelOne;
+    private ImageButton addTeleOpReefLevelOne;
 
-    private ImageButton neutralSpeakerNoteTeleOpDecrement;
-    private MaterialTextView neutralSpeakerNoteTeleOpValue;
-    private ImageButton neutralSpeakerNoteTeleOpIncrement;
+    private ImageButton subtractTeleOpReefLevelTwo;
+    private MaterialTextView teleOpReefLevelTwo;
+    private ImageButton addTeleOpReefLevelTwo;
 
-    private ImageButton ampSpeakerNoteTeleOpDecrement;
-    private MaterialTextView ampSpeakerNoteTeleOpValue;
-    private ImageButton ampSpeakerNoteTeleOpIncrement;
+    private ImageButton subtractTeleOpReefLevelThree;
+    private MaterialTextView teleOpReefLevelThree;
+    private ImageButton addTeleOpReefLevelThree;
+
+    private ImageButton subtractTeleOpReefLevelFour;
+    private MaterialTextView teleOpReefLevelFour;
+    private ImageButton addTeleOpReefLevelFour;
+
+    private ImageButton subtractTeleOpProcessor;
+    private MaterialTextView teleOpProcessor;
+    private ImageButton addTeleOpProcessor;
+
+    private ImageButton subtractTeleOpNet;
+    private MaterialTextView teleOpNet;
+    private ImageButton addTeleOpNet;
+
+    private ImageButton subtractHumanPlayer;
+    private MaterialTextView humanPlayer;
+    private ImageButton addHumanPlayer;
 
     // Endgame
 
-    private MaterialCheckBox endPark;
-    private MaterialCheckBox endOnstage;
-
-    private ImageButton endSpotlightDecrement;
-    private MaterialTextView endSpotlightValue;
-    private ImageButton endSpotlightIncrement;
-
-    private ImageButton teleOpDefensesDecrement;
-    private MaterialTextView teleOpDefensesValue;
-    private ImageButton teleOpDefensesIncrement;
-
-    private MaterialCheckBox endHarmony;
-    private MaterialCheckBox endTrapNote;
-
+   private MaterialRadioButton endHighHang;
+    private MaterialRadioButton endLowHang;
+    private MaterialRadioButton endPark;
     private TextInputLayout additionalNotesLayout;
 
     private MaterialButton submitButton;
@@ -125,113 +147,181 @@ public class MatchScoutingSummaryActivity extends AppCompatActivity {
             populateControlsFromData();
         });
 
-        ampNoteAutoValue = findViewById(R.id.autoAmpValue);
-        ampNoteAutoDecrement = findViewById(R.id.autoAmpDecrement);
-        ampNoteAutoDecrement.setOnClickListener(v -> {
-            currentResult.result.setAutoInt7(Math.max(currentResult.result.getAutoInt7() - 1, 0));
+        autoReefLevelOne = findViewById(R.id.autoLevelOneLabel);
+        subtractAutoReefLevelOne = findViewById(R.id.autoLevelOneDecrement);
+        subtractAutoReefLevelOne.setOnClickListener(v -> {
+            currentResult.result.setAutoInt6(Math.max(currentResult.result.getAutoInt6() - 1, 0));
                 populateControlsFromData();
                 });
-        ampNoteAutoIncrement = findViewById(R.id.autoAmpIncrement);
-        ampNoteAutoIncrement.setOnClickListener(v -> {
+        addAutoReefLevelOne = findViewById(R.id.autoLevelOneIncrement);
+        addAutoReefLevelOne.setOnClickListener(v -> {
+            currentResult.result.setAutoInt6( Math.max(currentResult.result.getAutoInt6() + 1, 0));
+            populateControlsFromData();
+        });
+
+        autoReefLevelTwo = findViewById(R.id.autoLevelTwoLabel);
+        subtractAutoReefLevelTwo = findViewById(R.id.autoLevelTwoDecrement);
+        subtractAutoReefLevelTwo.setOnClickListener(v -> {
+            currentResult.result.setAutoInt7(Math.max(currentResult.result.getAutoInt7() - 1, 0));
+            populateControlsFromData();
+        });
+        addAutoReefLevelTwo = findViewById(R.id.autoLevelTwoIncrement);
+        addAutoReefLevelTwo.setOnClickListener(v -> {
             currentResult.result.setAutoInt7( Math.max(currentResult.result.getAutoInt7() + 1, 0));
             populateControlsFromData();
         });
 
-        speakerNoteAutoValue = findViewById(R.id.autoSpeakerValue);
-        speakerNoteAutoDecrement = findViewById(R.id.autoSpeakerDecrement);
-        speakerNoteAutoDecrement.setOnClickListener(v -> {
+        autoReefLevelThree = findViewById(R.id.autoLevelThreeLabel);
+        subtractAutoReefLevelThree = findViewById(R.id.autoLevelThreeDecrement);
+        subtractAutoReefLevelThree.setOnClickListener(v -> {
             currentResult.result.setAutoInt8(Math.max(currentResult.result.getAutoInt8() - 1, 0));
             populateControlsFromData();
         });
-        speakerNoteAutoIncrement = findViewById(R.id.autoSpeakerIncrement);
-        speakerNoteAutoIncrement.setOnClickListener(v -> {
+        addAutoReefLevelThree = findViewById(R.id.autoLevelThreeIncrement);
+        addAutoReefLevelThree.setOnClickListener(v -> {
             currentResult.result.setAutoInt8( Math.max(currentResult.result.getAutoInt8() + 1, 0));
             populateControlsFromData();
         });
 
-        ampNoteTeleOpValue = findViewById(R.id.teleOpAmpValue);
-        ampNoteTeleOpDecrement = findViewById(R.id.teleopAmpDecrement);
-        ampNoteTeleOpDecrement.setOnClickListener(v -> {
-            currentResult.result.setTeleOpInt6( Math.max(currentResult.result.getTeleOpInt6() - 1, 0));
+        autoReefLevelFour = findViewById(R.id.autoLevelFourLabel);
+        subtractAutoReefLevelFour = findViewById(R.id.autoLevelFourDecrement);
+        subtractAutoReefLevelFour.setOnClickListener(v -> {
+            currentResult.result.setAutoInt9(Math.max(currentResult.result.getAutoInt9() - 1, 0));
             populateControlsFromData();
         });
-        ampNoteTeleOpIncrement = findViewById(R.id.teleOpAmpIncrement);
-        ampNoteTeleOpIncrement.setOnClickListener(v -> {
-            currentResult.result.setTeleOpInt6(Math.max( currentResult.result.getTeleOpInt6() + 1,0));
-            populateControlsFromData();
-        });
-
-        neutralSpeakerNoteTeleOpValue = findViewById(R.id.teleOpSpeakerValue);
-        neutralSpeakerNoteTeleOpDecrement = findViewById(R.id.teleOpSpeakerDecrement);
-        neutralSpeakerNoteTeleOpDecrement.setOnClickListener(v -> {
-            currentResult.result.setTeleOpInt7(Math.max(currentResult.getTeleOp7Counts() - 1, 0));
-            populateControlsFromData();
-        });
-        neutralSpeakerNoteTeleOpIncrement = findViewById(R.id.teleOpSpeakerIncrement);
-        neutralSpeakerNoteTeleOpIncrement.setOnClickListener(v -> {
-            currentResult.result.setTeleOpInt7(Math.max(currentResult.result.getTeleOpInt7() + 1, 0));
+        addAutoReefLevelFour = findViewById(R.id.autoLevelFourIncrement);
+        addAutoReefLevelFour.setOnClickListener(v -> {
+            currentResult.result.setAutoInt9( Math.max(currentResult.result.getAutoInt9() + 1, 0));
             populateControlsFromData();
         });
 
-        ampSpeakerNoteTeleOpValue = findViewById(R.id.teleOpAmplifiedSpeakerValue);
-        ampSpeakerNoteTeleOpDecrement = findViewById(R.id.teleOpAmplifiedSpeakerDecrement);
-        ampSpeakerNoteTeleOpDecrement.setOnClickListener(v -> {
+        autoProcessor = findViewById(R.id.autoProcessorLabel);
+        subtractAutoProcessor = findViewById(R.id.autoProcessorDecrement);
+        subtractAutoProcessor.setOnClickListener(v -> {
+            currentResult.result.setAutoInt10(Math.max(currentResult.result.getAutoInt10() - 1, 0));
+            populateControlsFromData();
+        });
+        addAutoProcessor = findViewById(R.id.autoProcessorIncrement);
+        addAutoProcessor.setOnClickListener(v -> {
+            currentResult.result.setAutoInt10( Math.max(currentResult.result.getAutoInt10() + 1, 0));
+            populateControlsFromData();
+        });
+
+        autoNet = findViewById(R.id.autoNetLabel);
+        subtractAutoNet = findViewById(R.id.autoNetDecrement);
+        subtractAutoNet.setOnClickListener(v -> {
+            currentResult.result.setAutoInt11(Math.max(currentResult.result.getAutoInt11() - 1, 0));
+            populateControlsFromData();
+        });
+        addAutoNet = findViewById(R.id.autoNetIncrement);
+        addAutoProcessor.setOnClickListener(v -> {
+            currentResult.result.setAutoInt11( Math.max(currentResult.result.getAutoInt11() + 1, 0));
+            populateControlsFromData();
+        });
+
+//begin teleop
+
+        teleOpReefLevelOne = findViewById(R.id.teleopLevelOneLabel);
+        subtractTeleOpReefLevelOne = findViewById(R.id.teleopLevelOneDecrement);
+        subtractTeleOpReefLevelOne.setOnClickListener(v -> {
+            currentResult.result.setTeleOpInt6(Math.max(currentResult.result.getTeleOpInt6() - 1, 0));
+            populateControlsFromData();
+        });
+        addTeleOpReefLevelOne = findViewById(R.id.teleopLevelOneIncrement);
+        addTeleOpReefLevelOne.setOnClickListener(v -> {
+            currentResult.result.setTeleOpInt6( Math.max(currentResult.result.getTeleOpInt6() + 1, 0));
+            populateControlsFromData();
+        });
+
+        teleOpReefLevelTwo = findViewById(R.id.teleopLevelTwoLabel);
+        subtractTeleOpReefLevelTwo = findViewById(R.id.teleopLevelTwoDecrement);
+        subtractTeleOpReefLevelTwo.setOnClickListener(v -> {
+            currentResult.result.setTeleOpInt7(Math.max(currentResult.result.getTeleOpInt7() - 1, 0));
+            populateControlsFromData();
+        });
+        addTeleOpReefLevelTwo = findViewById(R.id.teleopLevelTwoIncrement);
+        addTeleOpReefLevelTwo.setOnClickListener(v -> {
+            currentResult.result.setTeleOpInt7( Math.max(currentResult.result.getTeleOpInt7() + 1, 0));
+            populateControlsFromData();
+        });
+
+        teleOpReefLevelThree = findViewById(R.id.teleopLevelThreeLabel);
+        subtractTeleOpReefLevelThree = findViewById(R.id.teleopLevelThreeDecrement);
+        subtractTeleOpReefLevelThree.setOnClickListener(v -> {
             currentResult.result.setTeleOpInt8(Math.max(currentResult.result.getTeleOpInt8() - 1, 0));
             populateControlsFromData();
         });
-
-        ampSpeakerNoteTeleOpIncrement = findViewById(R.id.teleOpAmplifiedSpeakerIncrement);
-        ampSpeakerNoteTeleOpIncrement.setOnClickListener(v -> {
-            currentResult.result.setTeleOpInt8(Math.max(currentResult.result.getTeleOpInt8() + 1, 0));
+        addTeleOpReefLevelThree = findViewById(R.id.teleopLevelThreeIncrement);
+        addTeleOpReefLevelThree.setOnClickListener(v -> {
+            currentResult.result.setTeleOpInt8( Math.max(currentResult.result.getTeleOpInt8() + 1, 0));
             populateControlsFromData();
         });
 
-        endPark = findViewById(R.id.endParkCheckbox);
-        endPark.setOnCheckedChangeListener((buttonView, isChecked) -> {
-            currentResult.result.setEndFlag1(isChecked);
+        teleOpReefLevelFour = findViewById(R.id.teleopLevelFourLabel);
+        subtractTeleOpReefLevelFour = findViewById(R.id.teleopLevelFourDecrement);
+        subtractTeleOpReefLevelFour.setOnClickListener(v -> {
+            currentResult.result.setTeleOpInt9(Math.max(currentResult.result.getTeleOpInt9() - 1, 0));
+            populateControlsFromData();
+        });
+        addTeleOpReefLevelFour = findViewById(R.id.teleopLevelFourIncrement);
+        addTeleOpReefLevelFour.setOnClickListener(v -> {
+            currentResult.result.setTeleOpInt9( Math.max(currentResult.result.getTeleOpInt9() + 1, 0));
             populateControlsFromData();
         });
 
-        endOnstage = findViewById(R.id.endOnstageCheckbox);
-        endOnstage.setOnCheckedChangeListener((buttonView, isChecked) -> {
+        teleOpProcessor = findViewById(R.id.teleopProcessorLabel);
+        subtractTeleOpProcessor = findViewById(R.id.teleopProcessorDecrement);
+        subtractTeleOpProcessor.setOnClickListener(v -> {
+            currentResult.result.setTeleOpInt10(Math.max(currentResult.result.getTeleOpInt10() - 1, 0));
+            populateControlsFromData();
+        });
+        addTeleOpProcessor = findViewById(R.id.teleopProcessorIncrement);
+        addTeleOpProcessor.setOnClickListener(v -> {
+            currentResult.result.setTeleOpInt10( Math.max(currentResult.result.getTeleOpInt10() + 1, 0));
+            populateControlsFromData();
+        });
+
+        teleOpNet = findViewById(R.id.teleopNetLabel);
+        subtractTeleOpNet = findViewById(R.id.teleopNetDecrement);
+        subtractTeleOpNet.setOnClickListener(v -> {
+            currentResult.result.setTeleOpInt11(Math.max(currentResult.result.getTeleOpInt11() - 1, 0));
+            populateControlsFromData();
+        });
+        addTeleOpNet = findViewById(R.id.teleopNetIncrement);
+        addTeleOpProcessor.setOnClickListener(v -> {
+            currentResult.result.setTeleOpInt11( Math.max(currentResult.result.getTeleOpInt11() + 1, 0));
+            populateControlsFromData();
+        });
+
+        humanPlayer = findViewById(R.id.teleopHumanLabel);
+        subtractHumanPlayer = findViewById(R.id.teleopHumanDecrement);
+        subtractHumanPlayer.setOnClickListener(v -> {
+            currentResult.result.setTeleOpInt12(Math.max(currentResult.result.getTeleOpInt12() - 1, 0));
+            populateControlsFromData();
+        });
+        addHumanPlayer = findViewById(R.id.teleopHumanIncrement);
+        addHumanPlayer.setOnClickListener(v -> {
+            currentResult.result.setTeleOpInt12( Math.max(currentResult.result.getTeleOpInt12() + 1, 0));
+            populateControlsFromData();
+        });
+
+    //endgame begins
+
+        endHighHang = findViewById(R.id.highRadioButton);
+        endHighHang.setOnCheckedChangeListener((buttonView, isChecked) -> {
+            currentResult.result.setEndFlag3(isChecked);
+            populateControlsFromData();
+        });
+
+        endLowHang = findViewById(R.id.lowRadioButton);
+        endHighHang.setOnCheckedChangeListener((buttonView, isChecked) -> {
             currentResult.result.setEndFlag2(isChecked);
             populateControlsFromData();
         });
 
-        endSpotlightValue = findViewById(R.id.endSpotlightValue);
-        endSpotlightDecrement = findViewById(R.id.endSpotlightDecrement);
-        endSpotlightDecrement.setOnClickListener(v -> {
-            currentResult.result.setEndInt3(Math.max(currentResult.getEndInt3Counts() -1,0));
-            populateControlsFromData();
-        });
-
-        endSpotlightIncrement = findViewById(R.id.endSpotlightIncrement);
-        endSpotlightIncrement.setOnClickListener(v -> {
-            currentResult.result.setEndInt3( Math.max(currentResult.getEndInt3Counts() + 1, 0));
-            populateControlsFromData();
-        });
-
-        endHarmony = findViewById(R.id.harmonyCheckbox);
-        endHarmony.setOnCheckedChangeListener((buttonView, isChecked) -> {
-            currentResult.result.setEndFlag4(isChecked);
-            populateControlsFromData();
-        });
-
-        endTrapNote = findViewById(R.id.trapCheckbox);
-        endTrapNote.setOnCheckedChangeListener((buttonView, isChecked) -> {
-            currentResult.result.setEndFlag5(isChecked);
-            populateControlsFromData();
-        });
-
-        teleOpDefensesValue = findViewById(R.id.teleOpDefensesValue);
-        teleOpDefensesDecrement = findViewById(R.id.teleOpDefensesDecrement);
-        teleOpDefensesDecrement.setOnClickListener(v -> {
-            currentResult.result.setDefenseCount(currentResult.getDefenseCount() - 1);
-            populateControlsFromData();
-        });
-        teleOpDefensesIncrement = findViewById(R.id.teleOpDefensesIncrement);
-        teleOpDefensesIncrement.setOnClickListener(v -> {
-            currentResult.result.setDefenseCount(currentResult.getDefenseCount() + 1 );
+        endPark = findViewById(R.id.parkRadioButton);
+        endHighHang.setOnCheckedChangeListener((buttonView, isChecked) -> {
+            currentResult.result.setEndFlag1(isChecked);
             populateControlsFromData();
         });
 
@@ -268,22 +358,24 @@ public class MatchScoutingSummaryActivity extends AppCompatActivity {
         if( currentResult == null ) return;
 
         leaveLineAuto.setChecked( currentResult.getAuto1Counts() >0 );
-        ampNoteAutoValue.setText( String.valueOf( currentResult.getAuto2Counts() ));
-        speakerNoteAutoValue.setText( String.valueOf( currentResult.getAuto3Counts() ));
+        autoReefLevelOne.setText( String.valueOf( currentResult.result.getAutoInt6() ));
+        autoReefLevelTwo.setText( String.valueOf( currentResult.result.getAutoInt7() ));
+        autoReefLevelThree.setText( String.valueOf( currentResult.result.getAutoInt8() ));
+        autoReefLevelFour.setText( String.valueOf( currentResult.result.getAutoInt9() ));
+        autoProcessor.setText( String.valueOf( currentResult.result.getAutoInt10() ));
+        autoNet.setText( String.valueOf( currentResult.result.getAutoInt11() ));
 
-        ampNoteTeleOpValue.setText( String.valueOf(currentResult.getTeleOpInt1Counts()));
-        neutralSpeakerNoteTeleOpValue.setText( String.valueOf(currentResult.getTeleOpInt2Counts()));
-        ampSpeakerNoteTeleOpValue.setText( String.valueOf( currentResult.getTeleOpInt3Counts() ));
-
-
-        teleOpDefensesValue.setText( String.valueOf( currentResult.getDefenseCount() ));
+        teleOpReefLevelOne.setText( String.valueOf(currentResult.result.getTeleOpInt6()));
+        teleOpReefLevelTwo.setText( String.valueOf(currentResult.result.getTeleOpInt7()));
+        teleOpReefLevelThree.setText( String.valueOf(currentResult.result.getTeleOpInt8()));
+        teleOpReefLevelFour.setText( String.valueOf(currentResult.result.getTeleOpInt9()));
+        teleOpProcessor.setText( String.valueOf(currentResult.result.getTeleOpInt10()));
+        teleOpNet.setText( String.valueOf(currentResult.result.getTeleOpInt11()));
+        humanPlayer.setText( String.valueOf(currentResult.result.getTeleOpInt12()));
 
         endPark.setChecked(currentResult.result.getEndFlag1());
-        endOnstage.setChecked(currentResult.result.getEndFlag2());
-        endSpotlightValue.setText( String.valueOf(currentResult.getEndInt3Counts()));
-        endHarmony.setChecked(currentResult.result.getEndFlag4());
-       endTrapNote.setChecked(currentResult.result.getEndFlag5());
-
+        endLowHang.setChecked(currentResult.result.getEndFlag2());
+        endHighHang.setChecked(currentResult.result.getEndFlag3());
 
         additionalNotesLayout.getEditText().setText(currentResult.result.getAdditionalNotes());
     }

@@ -824,7 +824,8 @@
         app:layout_constraintBottom_toTopOf="@+id/parkRadioButton"
         app:layout_constraintEnd_toEndOf="@+id/endLabel"
         app:layout_constraintStart_toStartOf="@+id/endLabel"
-        app:layout_constraintTop_toButtonOf="@+id/highRadioButton" />
+        app:layout_constraintTop_toBottomOf="@+id/highRadioButton"
+        />
 
     <com.google.android.material.radiobutton.MaterialRadioButton
         android:id="@+id/parkRadioButton"
@@ -837,7 +838,8 @@
         app:layout_constraintBottom_toBottomOf="@id/endLabel"
         app:layout_constraintEnd_toEndOf="@+id/endLabel"
         app:layout_constraintStart_toStartOf="@+id/endLabel"
-        app:layout_constraintTop_toBottomOf="@+id/lowRadioButton" />
+        app:layout_constraintTop_toBottomOf="@+id/lowRadioButton"
+        />
     </RadioGroup>
 
 

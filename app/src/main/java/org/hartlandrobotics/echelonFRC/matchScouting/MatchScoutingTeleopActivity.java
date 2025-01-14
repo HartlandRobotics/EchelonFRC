@@ -232,7 +232,7 @@ public class MatchScoutingTeleopActivity extends AppCompatActivity {
         netPoints = findViewById(R.id.net_text);
         humanPlayerPoints = findViewById(R.id.human_player_text);
 
-        scoutingDoneButton = findViewById(R.id.endgame);
+        scoutingDoneButton = findViewById(R.id.summary);
         scoutingDoneButton.setOnClickListener(v -> {
             matchResultViewModel.upsert(currentResult.result);
             MatchScoutingSummaryActivity.launch(MatchScoutingTeleopActivity.this, matchKey, teamKey);
