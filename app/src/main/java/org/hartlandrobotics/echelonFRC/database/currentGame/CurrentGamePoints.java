@@ -252,7 +252,7 @@ public class CurrentGamePoints {
 
     public int getTeleOp12Points(){
         if( result == null ) return 0;
-        return result.getTeleOpInt12() * 1;
+        return result.getTeleOpInt12() * 4;
     }
 
     public int getDefenseCount(){
