@@ -48,9 +48,9 @@ public class MatchScoutingTeleopActivity extends AppCompatActivity {
     private MaterialTextView processorPoints;
     private MaterialTextView netPoints;
     private MaterialTextView humanPlayerPoints;
-    private MaterialTextView endHighHang;
-    private MaterialTextView endLowHang;
-    private MaterialTextView endPark;
+    private MaterialButton endHighHang;
+    private MaterialButton endLowHang;
+    private MaterialButton  endPark;
 
 
     private int processorDrawable;
@@ -214,7 +214,7 @@ public class MatchScoutingTeleopActivity extends AppCompatActivity {
 
         teleOpHumanPlayer = findViewById(R.id.human_player);
         humanPlayerPoints = findViewById(R.id.human_player_text);
-        teleOpNet.setOnClickListener(v -> {
+        teleOpHumanPlayer.setOnClickListener(v -> {
             currentResult.result.setTeleOpInt12(currentResult.result.getTeleOpInt12() + 1);
             populateControlsFromData();
         });
@@ -236,6 +236,36 @@ public class MatchScoutingTeleopActivity extends AppCompatActivity {
         scoutingDoneButton.setOnClickListener(v -> {
             matchResultViewModel.upsert(currentResult.result);
             MatchScoutingSummaryActivity.launch(MatchScoutingTeleopActivity.this, matchKey, teamKey);
+        });
+
+        endHighHang = findViewById(R.id.high_hang);
+        endHighHang.setOnClickListener(v-> {
+            matchResultViewModel.upsert(currentResult.result);
+            boolean isSelected = currentResult.result.getEndFlag3();
+            if (isSelected){
+                currentResult.result.setEndFlag1(false);
+                currentResult.result.setEndFlag2(false);
+            }
+        });
+
+        endLowHang = findViewById(R.id.low_hang);
+        endLowHang.setOnClickListener(v-> {
+            matchResultViewModel.upsert(currentResult.result);
+            boolean isSelected = currentResult.result.getEndFlag2();
+            if (isSelected){
+                currentResult.result.setEndFlag1(false);
+                currentResult.result.setEndFlag3(false);
+            }
+        });
+
+        endPark = findViewById(R.id.final_park);
+        endPark.setOnClickListener(v-> {
+            matchResultViewModel.upsert(currentResult.result);
+            boolean isSelected = currentResult.result.getEndFlag1();
+            if (isSelected){
+                currentResult.result.setEndFlag3(false);
+                currentResult.result.setEndFlag2(false);
+            }
         });
     }
 
