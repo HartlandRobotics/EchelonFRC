@@ -98,9 +98,9 @@ public class MatchScoutingSummaryActivity extends AppCompatActivity {
 
     // Endgame
 
-   private MaterialRadioButton endHighHang;
-    private MaterialRadioButton endLowHang;
-    private MaterialRadioButton endPark;
+   private MaterialCheckBox endHighHang;
+    private MaterialCheckBox endLowHang;
+    private MaterialCheckBox endPark;
     private TextInputLayout additionalNotesLayout;
 
     private MaterialButton submitButton;
@@ -307,20 +307,20 @@ public class MatchScoutingSummaryActivity extends AppCompatActivity {
 
     //endgame begins
 
-        endHighHang = findViewById(R.id.highRadioButton);
+        endHighHang = findViewById(R.id.highCheckBox);
         endHighHang.setOnCheckedChangeListener((buttonView, isChecked) -> {
             currentResult.result.setEndFlag3(isChecked);
             populateControlsFromData();
         });
 
-        endLowHang = findViewById(R.id.lowRadioButton);
-        endHighHang.setOnCheckedChangeListener((buttonView, isChecked) -> {
+        endLowHang = findViewById(R.id.lowCheckBox);
+        endLowHang.setOnCheckedChangeListener((buttonView, isChecked) -> {
             currentResult.result.setEndFlag2(isChecked);
             populateControlsFromData();
         });
 
-        endPark = findViewById(R.id.parkRadioButton);
-        endHighHang.setOnCheckedChangeListener((buttonView, isChecked) -> {
+        endPark = findViewById(R.id.parkCheckBox);
+        endPark.setOnCheckedChangeListener((buttonView, isChecked) -> {
             currentResult.result.setEndFlag1(isChecked);
             populateControlsFromData();
         });
