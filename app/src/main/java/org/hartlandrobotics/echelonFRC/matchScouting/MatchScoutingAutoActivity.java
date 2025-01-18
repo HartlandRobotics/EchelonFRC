@@ -109,7 +109,7 @@ public class MatchScoutingAutoActivity extends AppCompatActivity {
         netPoints.setText(String.valueOf(currentResult.result.getAutoInt11()));
 
         if(currentResult.result.getAutoFlag1()){
-            leaveLineAuto.setImageResource(R.drawable.out_line);
+            leaveLineAuto.setImageResource(R.drawable.out_line_green);
         } else {
             leaveLineAuto.setImageResource(R.drawable.in_line_red);
         }
