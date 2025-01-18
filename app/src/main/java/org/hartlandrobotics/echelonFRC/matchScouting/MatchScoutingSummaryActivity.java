@@ -214,7 +214,7 @@ public class MatchScoutingSummaryActivity extends AppCompatActivity {
             populateControlsFromData();
         });
         addAutoNet = findViewById(R.id.autoNetIncrement);
-        addAutoProcessor.setOnClickListener(v -> {
+        addAutoNet.setOnClickListener(v -> {
             currentResult.result.setAutoInt11( Math.max(currentResult.result.getAutoInt11() + 1, 0));
             populateControlsFromData();
         });
@@ -288,7 +288,7 @@ public class MatchScoutingSummaryActivity extends AppCompatActivity {
             populateControlsFromData();
         });
         addTeleOpNet = findViewById(R.id.teleopNetIncrement);
-        addTeleOpProcessor.setOnClickListener(v -> {
+        addTeleOpNet.setOnClickListener(v -> {
             currentResult.result.setTeleOpInt11( Math.max(currentResult.result.getTeleOpInt11() + 1, 0));
             populateControlsFromData();
         });
