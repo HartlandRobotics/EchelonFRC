@@ -240,12 +240,14 @@ public class MatchScoutingTeleopActivity extends AppCompatActivity {
 
         endHighHang = findViewById(R.id.high_hang);
         endHighHang.setOnClickListener(v-> {
-            matchResultViewModel.upsert(currentResult.result);
+            currentResult.result.setEndFlag3(!currentResult.result.getEndFlag3());
             boolean isSelected = currentResult.result.getEndFlag3();
             if (isSelected){
                 currentResult.result.setEndFlag1(false);
                 currentResult.result.setEndFlag2(false);
             }
+            matchResultViewModel.upsert(currentResult.result);
+
         });
 
         endLowHang = findViewById(R.id.low_hang);
