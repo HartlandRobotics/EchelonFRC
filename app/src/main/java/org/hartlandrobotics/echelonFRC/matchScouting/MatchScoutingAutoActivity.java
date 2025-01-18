@@ -111,7 +111,7 @@ public class MatchScoutingAutoActivity extends AppCompatActivity {
         if(currentResult.result.getAutoFlag1()){
             leaveLineAuto.setImageResource(R.drawable.out_line_green);
         } else {
-            leaveLineAuto.setImageResource(R.drawable.in_line_red);
+            leaveLineAuto.setImageResource(parkDrawable);
         }
     }
 
@@ -178,6 +178,7 @@ public class MatchScoutingAutoActivity extends AppCompatActivity {
         });
 
         autoProcessor = findViewById(R.id.processor);
+        autoProcessor.setImageResource(processorDrawable);
         processorPoints = findViewById(R.id.processor_text);
         subtractProcessor = findViewById(R.id.processor_decrement);
         autoProcessor.setOnClickListener(v -> {
@@ -213,13 +214,9 @@ public class MatchScoutingAutoActivity extends AppCompatActivity {
 
         if (settings.getDeviceRole().startsWith("red")){
             parkDrawable = R.drawable.in_line_red;
-        } else {
-            parkDrawable = R.drawable.in_line_blue;
-        }
-
-        if (settings.getDeviceRole().startsWith("red")){
             processorDrawable = R.drawable.processor_red;
         } else {
+            parkDrawable = R.drawable.in_line_blue;
             processorDrawable = R.drawable.processor_blue;
         }
     }
