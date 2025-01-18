@@ -273,6 +273,8 @@ public class MatchScoutingTeleopActivity extends AppCompatActivity {
         AdminSettings settings = AdminSettingsProvider.getAdminSettings(getApplicationContext());
 
         buttonSelectedTextColor = R.color.primaryDarkColor;
+        secondaryDarkColor = R.color.secondaryDarkColor;
+
 
         if (settings.getDeviceRole().startsWith("red")) {
             processorDrawable = R.drawable.processor_red;
