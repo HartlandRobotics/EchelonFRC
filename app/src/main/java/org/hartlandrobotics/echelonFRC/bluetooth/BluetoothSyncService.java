@@ -359,7 +359,7 @@ public class BluetoothSyncService {
             // Keep listening to the InputStream while connected
             while ( currentState == STATE_CONNECTED ) {
                 try {
-                    if( getCurrentDeviceName().equals( "captain_" + teamNumber )) {
+                    if( getCurrentDeviceName().contains( "aptain" )) {
                        // captain tablet consuming data sent from scouting tablet
                         String result = "";
                         boolean isDone = false;
