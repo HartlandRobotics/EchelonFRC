@@ -48,9 +48,9 @@ public class MatchScoutingTeleopActivity extends AppCompatActivity {
     private MaterialTextView processorPoints;
     private MaterialTextView netPoints;
     private MaterialTextView humanPlayerPoints;
-    private MaterialTextView endHighHang;
-    private MaterialTextView endLowHang;
-    private MaterialTextView endPark;
+    private MaterialButton endHighHang;
+    private MaterialButton endLowHang;
+    private MaterialButton  endPark;
 
 
     private int processorDrawable;
@@ -214,7 +214,7 @@ public class MatchScoutingTeleopActivity extends AppCompatActivity {
 
         teleOpHumanPlayer = findViewById(R.id.human_player);
         humanPlayerPoints = findViewById(R.id.human_player_text);
-        teleOpNet.setOnClickListener(v -> {
+        teleOpHumanPlayer.setOnClickListener(v -> {
             currentResult.result.setTeleOpInt12(currentResult.result.getTeleOpInt12() + 1);
             populateControlsFromData();
         });
@@ -237,12 +237,48 @@ public class MatchScoutingTeleopActivity extends AppCompatActivity {
             matchResultViewModel.upsert(currentResult.result);
             MatchScoutingSummaryActivity.launch(MatchScoutingTeleopActivity.this, matchKey, teamKey);
         });
+
+        endHighHang = findViewById(R.id.high_hang);
+        endHighHang.setOnClickListener(v-> {
+            currentResult.result.setEndFlag3(!currentResult.result.getEndFlag3());
+            boolean isSelected = currentResult.result.getEndFlag3();
+            if (isSelected){
+                currentResult.result.setEndFlag1(false);
+                currentResult.result.setEndFlag2(false);
+            }
+            matchResultViewModel.upsert(currentResult.result);
+
+        });
+
+        endLowHang = findViewById(R.id.low_hang);
+        endLowHang.setOnClickListener(v-> {
+            currentResult.result.setEndFlag2(!currentResult.result.getEndFlag2());
+            boolean isSelected = currentResult.result.getEndFlag2();
+            if (isSelected){
+                currentResult.result.setEndFlag1(false);
+                currentResult.result.setEndFlag3(false);
+            }
+            matchResultViewModel.upsert(currentResult.result);
+        });
+
+        endPark = findViewById(R.id.final_park);
+        endPark.setOnClickListener(v-> {
+            currentResult.result.setEndFlag1(!currentResult.result.getEndFlag1());
+            boolean isSelected = currentResult.result.getEndFlag1();
+            if (isSelected){
+                currentResult.result.setEndFlag3(false);
+                currentResult.result.setEndFlag2(false);
+            }
+            matchResultViewModel.upsert(currentResult.result);
+        });
     }
 
     public void setupColor() {
         AdminSettings settings = AdminSettingsProvider.getAdminSettings(getApplicationContext());
 
         buttonSelectedTextColor = R.color.primaryDarkColor;
+        secondaryDarkColor = R.color.secondaryDarkColor;
+
 
         if (settings.getDeviceRole().startsWith("red")) {
             processorDrawable = R.drawable.processor_red;

@@ -98,9 +98,9 @@ public class MatchScoutingSummaryActivity extends AppCompatActivity {
 
     // Endgame
 
-   private MaterialRadioButton endHighHang;
-    private MaterialRadioButton endLowHang;
-    private MaterialRadioButton endPark;
+   private MaterialCheckBox endHighHang;
+    private MaterialCheckBox endLowHang;
+    private MaterialCheckBox endPark;
     private TextInputLayout additionalNotesLayout;
 
     private MaterialButton submitButton;
@@ -147,7 +147,7 @@ public class MatchScoutingSummaryActivity extends AppCompatActivity {
             populateControlsFromData();
         });
 
-        autoReefLevelOne = findViewById(R.id.autoLevelOneLabel);
+        autoReefLevelOne = findViewById(R.id.autoLevelOneValue);
         subtractAutoReefLevelOne = findViewById(R.id.autoLevelOneDecrement);
         subtractAutoReefLevelOne.setOnClickListener(v -> {
             currentResult.result.setAutoInt6(Math.max(currentResult.result.getAutoInt6() - 1, 0));
@@ -159,7 +159,7 @@ public class MatchScoutingSummaryActivity extends AppCompatActivity {
             populateControlsFromData();
         });
 
-        autoReefLevelTwo = findViewById(R.id.autoLevelTwoLabel);
+        autoReefLevelTwo = findViewById(R.id.autoLevelTwoValue);
         subtractAutoReefLevelTwo = findViewById(R.id.autoLevelTwoDecrement);
         subtractAutoReefLevelTwo.setOnClickListener(v -> {
             currentResult.result.setAutoInt7(Math.max(currentResult.result.getAutoInt7() - 1, 0));
@@ -171,7 +171,7 @@ public class MatchScoutingSummaryActivity extends AppCompatActivity {
             populateControlsFromData();
         });
 
-        autoReefLevelThree = findViewById(R.id.autoLevelThreeLabel);
+        autoReefLevelThree = findViewById(R.id.autoLevelThreeValue);
         subtractAutoReefLevelThree = findViewById(R.id.autoLevelThreeDecrement);
         subtractAutoReefLevelThree.setOnClickListener(v -> {
             currentResult.result.setAutoInt8(Math.max(currentResult.result.getAutoInt8() - 1, 0));
@@ -183,7 +183,7 @@ public class MatchScoutingSummaryActivity extends AppCompatActivity {
             populateControlsFromData();
         });
 
-        autoReefLevelFour = findViewById(R.id.autoLevelFourLabel);
+        autoReefLevelFour = findViewById(R.id.autoLevelFourValue);
         subtractAutoReefLevelFour = findViewById(R.id.autoLevelFourDecrement);
         subtractAutoReefLevelFour.setOnClickListener(v -> {
             currentResult.result.setAutoInt9(Math.max(currentResult.result.getAutoInt9() - 1, 0));
@@ -195,7 +195,7 @@ public class MatchScoutingSummaryActivity extends AppCompatActivity {
             populateControlsFromData();
         });
 
-        autoProcessor = findViewById(R.id.autoProcessorLabel);
+        autoProcessor = findViewById(R.id.autoProcessorValue);
         subtractAutoProcessor = findViewById(R.id.autoProcessorDecrement);
         subtractAutoProcessor.setOnClickListener(v -> {
             currentResult.result.setAutoInt10(Math.max(currentResult.result.getAutoInt10() - 1, 0));
@@ -207,21 +207,21 @@ public class MatchScoutingSummaryActivity extends AppCompatActivity {
             populateControlsFromData();
         });
 
-        autoNet = findViewById(R.id.autoNetLabel);
+        autoNet = findViewById(R.id.autoNetValue);
         subtractAutoNet = findViewById(R.id.autoNetDecrement);
         subtractAutoNet.setOnClickListener(v -> {
             currentResult.result.setAutoInt11(Math.max(currentResult.result.getAutoInt11() - 1, 0));
             populateControlsFromData();
         });
         addAutoNet = findViewById(R.id.autoNetIncrement);
-        addAutoProcessor.setOnClickListener(v -> {
+        addAutoNet.setOnClickListener(v -> {
             currentResult.result.setAutoInt11( Math.max(currentResult.result.getAutoInt11() + 1, 0));
             populateControlsFromData();
         });
 
 //begin teleop
 
-        teleOpReefLevelOne = findViewById(R.id.teleopLevelOneLabel);
+        teleOpReefLevelOne = findViewById(R.id.teleopLevelOneValue);
         subtractTeleOpReefLevelOne = findViewById(R.id.teleopLevelOneDecrement);
         subtractTeleOpReefLevelOne.setOnClickListener(v -> {
             currentResult.result.setTeleOpInt6(Math.max(currentResult.result.getTeleOpInt6() - 1, 0));
@@ -233,7 +233,7 @@ public class MatchScoutingSummaryActivity extends AppCompatActivity {
             populateControlsFromData();
         });
 
-        teleOpReefLevelTwo = findViewById(R.id.teleopLevelTwoLabel);
+        teleOpReefLevelTwo = findViewById(R.id.teleopLevelTwoValue);
         subtractTeleOpReefLevelTwo = findViewById(R.id.teleopLevelTwoDecrement);
         subtractTeleOpReefLevelTwo.setOnClickListener(v -> {
             currentResult.result.setTeleOpInt7(Math.max(currentResult.result.getTeleOpInt7() - 1, 0));
@@ -245,7 +245,7 @@ public class MatchScoutingSummaryActivity extends AppCompatActivity {
             populateControlsFromData();
         });
 
-        teleOpReefLevelThree = findViewById(R.id.teleopLevelThreeLabel);
+        teleOpReefLevelThree = findViewById(R.id.teleopLevelThreeValue);
         subtractTeleOpReefLevelThree = findViewById(R.id.teleopLevelThreeDecrement);
         subtractTeleOpReefLevelThree.setOnClickListener(v -> {
             currentResult.result.setTeleOpInt8(Math.max(currentResult.result.getTeleOpInt8() - 1, 0));
@@ -257,7 +257,7 @@ public class MatchScoutingSummaryActivity extends AppCompatActivity {
             populateControlsFromData();
         });
 
-        teleOpReefLevelFour = findViewById(R.id.teleopLevelFourLabel);
+        teleOpReefLevelFour = findViewById(R.id.teleopLevelFourValue);
         subtractTeleOpReefLevelFour = findViewById(R.id.teleopLevelFourDecrement);
         subtractTeleOpReefLevelFour.setOnClickListener(v -> {
             currentResult.result.setTeleOpInt9(Math.max(currentResult.result.getTeleOpInt9() - 1, 0));
@@ -269,7 +269,7 @@ public class MatchScoutingSummaryActivity extends AppCompatActivity {
             populateControlsFromData();
         });
 
-        teleOpProcessor = findViewById(R.id.teleopProcessorLabel);
+        teleOpProcessor = findViewById(R.id.teleopProcessorValue);
         subtractTeleOpProcessor = findViewById(R.id.teleopProcessorDecrement);
         subtractTeleOpProcessor.setOnClickListener(v -> {
             currentResult.result.setTeleOpInt10(Math.max(currentResult.result.getTeleOpInt10() - 1, 0));
@@ -281,19 +281,19 @@ public class MatchScoutingSummaryActivity extends AppCompatActivity {
             populateControlsFromData();
         });
 
-        teleOpNet = findViewById(R.id.teleopNetLabel);
+        teleOpNet = findViewById(R.id.teleopNetValue);
         subtractTeleOpNet = findViewById(R.id.teleopNetDecrement);
         subtractTeleOpNet.setOnClickListener(v -> {
             currentResult.result.setTeleOpInt11(Math.max(currentResult.result.getTeleOpInt11() - 1, 0));
             populateControlsFromData();
         });
         addTeleOpNet = findViewById(R.id.teleopNetIncrement);
-        addTeleOpProcessor.setOnClickListener(v -> {
+        addTeleOpNet.setOnClickListener(v -> {
             currentResult.result.setTeleOpInt11( Math.max(currentResult.result.getTeleOpInt11() + 1, 0));
             populateControlsFromData();
         });
 
-        humanPlayer = findViewById(R.id.teleopHumanLabel);
+        humanPlayer = findViewById(R.id.teleopHumanValue);
         subtractHumanPlayer = findViewById(R.id.teleopHumanDecrement);
         subtractHumanPlayer.setOnClickListener(v -> {
             currentResult.result.setTeleOpInt12(Math.max(currentResult.result.getTeleOpInt12() - 1, 0));
@@ -307,20 +307,20 @@ public class MatchScoutingSummaryActivity extends AppCompatActivity {
 
     //endgame begins
 
-        endHighHang = findViewById(R.id.highRadioButton);
+        endHighHang = findViewById(R.id.highCheckBox);
         endHighHang.setOnCheckedChangeListener((buttonView, isChecked) -> {
             currentResult.result.setEndFlag3(isChecked);
             populateControlsFromData();
         });
 
-        endLowHang = findViewById(R.id.lowRadioButton);
-        endHighHang.setOnCheckedChangeListener((buttonView, isChecked) -> {
+        endLowHang = findViewById(R.id.lowCheckBox);
+        endLowHang.setOnCheckedChangeListener((buttonView, isChecked) -> {
             currentResult.result.setEndFlag2(isChecked);
             populateControlsFromData();
         });
 
-        endPark = findViewById(R.id.parkRadioButton);
-        endHighHang.setOnCheckedChangeListener((buttonView, isChecked) -> {
+        endPark = findViewById(R.id.parkCheckBox);
+        endPark.setOnCheckedChangeListener((buttonView, isChecked) -> {
             currentResult.result.setEndFlag1(isChecked);
             populateControlsFromData();
         });
