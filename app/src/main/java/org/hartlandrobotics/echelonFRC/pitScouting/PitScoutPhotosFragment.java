@@ -19,6 +19,7 @@ import androidx.fragment.app.Fragment;
 import androidx.viewpager.widget.ViewPager;
 
 import android.provider.MediaStore;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -41,6 +42,8 @@ public class PitScoutPhotosFragment extends Fragment {
         // Required empty public constructor
     }
 
+    private static String TAG = "PitScoutPhotosFragment";
+
     private Button cameraButton;
     private Button nextPicture;
     private Button backPicture;
@@ -49,6 +52,8 @@ public class PitScoutPhotosFragment extends Fragment {
     PitScout data;
     private int teamNumber;
 
+    ActivityResultLauncher<Intent> cameraActivityResultLauncher;
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -56,6 +61,7 @@ public class PitScoutPhotosFragment extends Fragment {
 
     public void setData(PitScout data){
         this.data = data;
+        populateImagesArea();
     }
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -65,9 +71,34 @@ public class PitScoutPhotosFragment extends Fragment {
         nextPicture = view.findViewById(R.id.nextPic);
         backPicture = view.findViewById(R.id.backPic);
 
-        teamNumber = Integer.parseInt(trimTeamNumber(data.getTeamKey()));
-        SetupImagesArea(view);
-        setupNextAndBackButton();
+        cameraActivityResultLauncher = registerForActivityResult(
+                new ActivityResultContracts.StartActivityForResult(),
+                result -> {
+                    int resultCode = result.getResultCode();
+
+                    if (resultCode == RESULT_OK) {
+                        Log.e(TAG, "onActivityResult " + "before photo" );
+                        Bitmap photo = (Bitmap) (result.getData().getExtras().get("data"));
+                        Log.e(TAG, "onActivityResult " + photo );
+                        SaveImage( photo );
+                        //populateImagesArea();
+
+
+
+                        //Bitmap photo = (Bitmap) data.getExtras().get( "data" );
+                        //Log.e(TAG, "onActivityResult " + "before save " + photo.getByteCount() );
+
+
+                    }
+                }
+        );
+
+        if(data != null) {
+            teamNumber = Integer.parseInt(trimTeamNumber(data.getTeamKey()));
+            SetupImagesArea(view);
+            setupNextAndBackButton();
+        }
+
 
         return view;
     }
@@ -97,48 +128,70 @@ public class PitScoutPhotosFragment extends Fragment {
 
     private void SetupImagesArea(View view){
         cameraButton = view.findViewById(R.id.photoButton);
-        robotImagesPager = view.findViewById(R.id.picture_view_pager);
-        robotImageAdapter = new RobotImage(getActivity().getApplicationContext(), teamNumber);
-    }
-
-    private void populateImagesArea(){
-        robotImagesPager.setAdapter(robotImageAdapter);
-
-        cameraButton.setOnClickListener(view -> {
+        cameraButton.setOnClickListener(vw -> {
             try{
                 Intent cameraIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-                startActivityForResult(cameraIntent, CAMERA_PIC_REQUEST);
+                cameraActivityResultLauncher.launch(cameraIntent);
+                //startActivityForResult(cameraIntent, CAMERA_PIC_REQUEST);
             }
             catch(Exception e){
                 e.printStackTrace();
                 Toast.makeText(getActivity().getApplicationContext(), "Couldn't load photo", Toast.LENGTH_LONG).show();
             }
         });
+        robotImagesPager = view.findViewById(R.id.picture_view_pager);
+        robotImageAdapter = new RobotImage(getActivity().getApplicationContext(), teamNumber);
+    }
+
+    private void populateImagesArea(){
+        if(robotImageAdapter == null) return;
+
+
+
+//        robotImagesPager.setAdapter(robotImageAdapter);
+        teamNumber = Integer.parseInt( trimTeamNumber(data.getTeamKey() ) );
+
+        robotImageAdapter = new RobotImage(getActivity().getApplicationContext(), teamNumber);
+        robotImagesPager.setAdapter(robotImageAdapter);
+        robotImageAdapter.notifyDataSetChanged();
+
+//        cameraButton.setOnClickListener(view -> {
+//            try{
+//                Intent cameraIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+//
+//                cameraActivityResultLauncher.launch(cameraIntent);
+//                //startActivityForResult(cameraIntent, CAMERA_PIC_REQUEST);
+//            }
+//            catch(Exception e){
+//                e.printStackTrace();
+//                Toast.makeText(getActivity().getApplicationContext(), "Couldn't load photo", Toast.LENGTH_LONG).show();
+//            }
+//        });
     }
 
     private static final int CAMERA_PIC_REQUEST = 22;
 
-    @Override
-    public void onActivityResult(final int requestCode, int resultCode, Intent data) {
-        super.onActivityResult( requestCode, resultCode, data );
-        try {
-            switch ( requestCode ) {
-                case CAMERA_PIC_REQUEST:
-                    if ( resultCode == RESULT_OK ) {
-                        try {
-                            Bitmap photo = (Bitmap) data.getExtras().get( "data" );
-                            SaveImage( photo );
-                        } catch ( Exception e ) {
-                        }
-                    }
-                    break;
-                default:
-                    break;
-            }
-        } catch ( Exception e ) {
-            Toast.makeText( getActivity(), e.getMessage(), Toast.LENGTH_LONG );
-        }
-    }
+//    @Override
+//    public void onActivityResult(final int requestCode, int resultCode, Intent data) {
+//        super.onActivityResult( requestCode, resultCode, data );
+//        try {
+//            switch ( requestCode ) {
+//                case CAMERA_PIC_REQUEST:
+//                    if ( resultCode == RESULT_OK ) {
+//                        try {
+//                            Bitmap photo = (Bitmap) data.getExtras().get( "data" );
+//                            SaveImage( photo );
+//                        } catch ( Exception e ) {
+//                        }
+//                    }
+//                    break;
+//                default:
+//                    break;
+//            }
+//        } catch ( Exception e ) {
+//            Toast.makeText( getActivity(), e.getMessage(), Toast.LENGTH_LONG );
+//        }
+//    }
 
 
     private void SaveImage(Bitmap finalBitmap) {
@@ -169,7 +222,9 @@ public class PitScoutPhotosFragment extends Fragment {
             t.show();
 
         }
-        robotImagesPager.getAdapter().notifyDataSetChanged();
+        //robotImagesPager.getAdapter().notifyDataSetChanged();
+        populateImagesArea();
+
     }
 
     private int getNextFileNumber(File[] files) {
