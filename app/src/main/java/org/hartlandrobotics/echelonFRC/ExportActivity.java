@@ -118,8 +118,6 @@ public class ExportActivity extends EchelonActivity {
                         dataForFile.add(String.valueOf(mr.getAutoInt10()));
                         dataForFile.add(String.valueOf(mr.getAutoInt11()));
 
-
-
                         dataForFile.add(String.valueOf(mr.getTeleOpInt6()));
                         dataForFile.add(String.valueOf(mr.getTeleOpInt7()));
                         dataForFile.add(String.valueOf(mr.getTeleOpInt8()));

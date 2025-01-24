@@ -277,8 +277,16 @@ public class MatchResult {
     public boolean getEndFlag5() { return endFlag5; }
     public void setEndFlag5(boolean endFlag5) { this.endFlag5 = endFlag5; }
 
-    public String getAdditionalNotes(){ return additionalNotes; }
+    public String getAdditionalNotes(){
+        if(StringUtils.isBlank(additionalNotes)){
+            additionalNotes = "empty";
+        }
+        return additionalNotes;
+    }
     public void setAdditionalNotes( String additionalNotes ){
+        if(StringUtils.isBlank(additionalNotes)){
+            additionalNotes = "empty";
+        }
         this.additionalNotes = additionalNotes;
     }
 
