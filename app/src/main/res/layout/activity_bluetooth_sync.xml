@@ -210,46 +210,6 @@
 
         </LinearLayout>
 
-        <!-- Sub Devices -->
-        <LinearLayout
-            android:id="@+id/altLayout"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:layout_weight=".33"
-            >
-
-            <com.google.android.material.button.MaterialButton
-                android:id="@+id/alt1SyncButton"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Fetch Alt1 Data"
-                app:icon="@drawable/outline_download_24"
-                android:layout_gravity="center"
-                />
-
-            <com.google.android.material.button.MaterialButton
-                android:id="@+id/alt2SyncButton"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Fetch Alt2 Data"
-                app:icon="@drawable/outline_download_24"
-                android:layout_gravity="center"
-                />
-
-            <com.google.android.material.button.MaterialButton
-                android:id="@+id/alt3SyncButton"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Fetch Alt3 Data"
-                app:icon="@drawable/outline_download_24"
-                android:layout_gravity="center"
-                />
-
-        </LinearLayout>
-
-
-
     </LinearLayout>
 
     <com.google.android.material.textview.MaterialTextView

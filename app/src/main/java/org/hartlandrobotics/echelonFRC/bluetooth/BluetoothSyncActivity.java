@@ -60,10 +60,6 @@ public class BluetoothSyncActivity extends EchelonActivity {
     MaterialButton blue2SyncButton;
     MaterialButton blue3SyncButton;
 
-    MaterialButton alt1SyncButton;
-    MaterialButton alt2SyncButton;
-    MaterialButton alt3SyncButton;
-
     RecyclerView logRecyclerView;
     LogLinesAdapter logLinesAdapter;
 
@@ -167,10 +163,6 @@ public class BluetoothSyncActivity extends EchelonActivity {
         buttonsByDeviceName.put("blue_1_" + teamNumber, blue1SyncButton);
         buttonsByDeviceName.put("blue_2_" + teamNumber, blue2SyncButton);
         buttonsByDeviceName.put("blue_3_" + teamNumber, blue3SyncButton);
-
-        buttonsByDeviceName.put("alt_1_" + teamNumber, alt1SyncButton);
-        buttonsByDeviceName.put("alt_2_" + teamNumber, alt2SyncButton);
-        buttonsByDeviceName.put("alt_3_" + teamNumber, alt3SyncButton);
     }
 
     private void setupControls(){
@@ -230,23 +222,7 @@ public class BluetoothSyncActivity extends EchelonActivity {
                 pullDeviceData("blue3", blue3SyncButton)
         );
 
-
-
-        alt1SyncButton = findViewById(R.id.alt1SyncButton);
-        alt1SyncButton.setOnClickListener(v ->
-                pullDeviceData("alt1", alt1SyncButton)
-        );
-
-        alt2SyncButton = findViewById(R.id.alt2SyncButton);
-        alt2SyncButton.setOnClickListener(v ->
-                pullDeviceData("alt2", alt2SyncButton)
-        );
-
-        alt3SyncButton = findViewById(R.id.alt3SyncButton);
-        alt3SyncButton.setOnClickListener(v ->
-                pullDeviceData("alt3", alt3SyncButton)
-        );
-
+        
         logRecyclerView = findViewById(R.id.sync_log_text);
         logLinesAdapter = new LogLinesAdapter( this );
         logRecyclerView.setLayoutManager( new LinearLayoutManager( this ) );
