@@ -189,8 +189,7 @@ public class ExportActivity extends EchelonActivity {
                         psData.add(String.valueOf(ps.getHasAutonomous()));
                         psData.add(String.valueOf(ps.getHelpCreatingAuto()));
                         psData.add(ps.getCodingLanguage());
-                        psData.add(String.valueOf(ps.getShootsInAuto()));
-                        psData.add(String.valueOf(ps.getPercentAutoShots()));
+                        psData.add(String.valueOf(ps.getPointsScoredInAuto()));
                         psData.add(String.valueOf(ps.getBallsPickedOrShotInAuto()));
                         psData.add(String.valueOf(ps.getCanShoot()));
                         psData.add(String.valueOf(ps.getShootingAccuracy()));
