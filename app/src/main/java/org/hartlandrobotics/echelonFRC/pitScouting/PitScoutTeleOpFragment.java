@@ -20,9 +20,8 @@ public class PitScoutTeleOpFragment extends Fragment {
     public static final String TAG = "PitScoutTeleOpFragment";
 
 
-    RadioGroup doesShootGroup;
-    TextInputLayout shootingAccuracyLayout;
-    RadioGroup goalPreferenceGroup;
+    RadioGroup pickOffGround;
+    TextInputLayout scoringMethodLayout;
     RadioGroup defenseGroup;
     PitScout data;
 
@@ -67,17 +66,21 @@ public class PitScoutTeleOpFragment extends Fragment {
     }
 
     private void setupControls(View view) {
-        doesShootGroup = view.findViewById(R.id.doesRobotShoot);
-        doesShootGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+            if (data == null) {
+                return;
+            }
+        pickOffGround = view.findViewById(R.id.pickOffGround);
+        pickOffGround.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(RadioGroup group, int checkedId) {
-                boolean canShoot = checkedId == R.id.robotShootYes;
-                data.setCanShoot(canShoot);
+                boolean offGroundYes = checkedId == R.id.offGroundYes;
+                data.setOffGroundYes(offGroundYes);
             }
         });
 
-        shootingAccuracyLayout = view.findViewById(R.id.shootingAccuracy);
-        goalPreferenceGroup = view.findViewById(R.id.goalPreference);
+        String scoringMethod = StringUtils.defaultIfBlank(data.getScoringMethod(), StringUtils.EMPTY);
+        scoringMethodLayout.getEditText().setText(scoringMethod);
+
         defenseGroup = view.findViewById(R.id.robotDefense);
 
         areControlsSetup = true;
@@ -85,17 +88,15 @@ public class PitScoutTeleOpFragment extends Fragment {
 
     public void populateDataFromControls() {
         Log.i(TAG, "populate data from controls");
-        boolean doesShoot = doesShootGroup.getCheckedRadioButtonId() == R.id.robotShootYes;
-        data.setCanShoot(doesShoot);
 
-        String shootingPercentageText = StringUtils.defaultIfBlank(shootingAccuracyLayout.getEditText().getEditableText().toString(), "0");
-        data.setShootingAccuracy(Double.valueOf(shootingPercentageText));
-
-        String preferredGoal = goalPreferenceGroup.getCheckedRadioButtonId() == R.id.goalPreferenceHigh ? "high" : "low";
-        data.setPreferredGoal(preferredGoal);
+        boolean offGroundYes = pickOffGround.getCheckedRadioButtonId() == R.id.offGroundYes;
+        data.setOffGroundYes(offGroundYes);
 
         boolean canPlayDefense = defenseGroup.getCheckedRadioButtonId() == R.id.robotDefenseYes;
         data.setCanPlayDefense(canPlayDefense);
+
+        String scoringMethod = scoringMethodLayout.getEditText().getText().toString();
+        data.setScoringMethod(scoringMethod);
     }
 
     private void populateControlsFromData() {
@@ -105,20 +106,14 @@ public class PitScoutTeleOpFragment extends Fragment {
         }
 
         // check that controls have been established
-        if(doesShootGroup == null) return;
+        if(pickOffGround == null) return;
 
 
         Log.i(TAG, "populate controls from data");
-        boolean canShoot = data.getCanShoot();
-        int canShootSelection = canShoot ? R.id.robotShootYes : R.id.robotShootNo;
-        doesShootGroup.check(canShootSelection);
+        boolean offGroundYes = data.getPickOffGround();
+        int offGroundYesSelection = offGroundYes ? R.id.offGroundYes : R.id.offGroundNo;
+        pickOffGround.check(offGroundYesSelection);
 
-        String shootingPercentageText = String.valueOf( data.getShootingAccuracy());
-        shootingAccuracyLayout.getEditText().setText(shootingPercentageText);
-
-        String preferredGoalText = StringUtils.defaultIfBlank( data.getPreferredGoal(), "low");
-        int preferredGoalSelection = preferredGoalText.equals("high") ? R.id.goalPreferenceHigh : R.id.goalPreferenceLow;
-        goalPreferenceGroup.check(preferredGoalSelection);
 
         boolean canPlayDefense = data.getCanPlayDefense();
         int canPlayDefenseSelection = canPlayDefense ? R.id.robotDefenseYes : R.id.robotDefenseNo;

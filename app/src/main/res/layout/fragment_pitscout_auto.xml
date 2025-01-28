@@ -100,10 +100,10 @@
         android:orientation="vertical"
         >
         <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/autoBallCount"
+            android:id="@+id/autoPointsScored"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="How much cargo do you shoot?"
+            android:hint="How many points do you score?"
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
             >
 
@@ -117,22 +117,8 @@
 
         </com.google.android.material.textfield.TextInputLayout>
 
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/shootingPercentage"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="How many shots do you make out of 10?"
-            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-            >
 
-        <com.google.android.material.textfield.TextInputEditText
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="0"
-            android:inputType="number"
-            />
 
-        </com.google.android.material.textfield.TextInputLayout>
 
 
     </LinearLayout>

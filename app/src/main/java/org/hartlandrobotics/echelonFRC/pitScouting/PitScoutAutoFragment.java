@@ -31,8 +31,7 @@ public class PitScoutAutoFragment extends Fragment {
     LinearLayout missingAutoLayout;
     LinearLayout hasAutoLayout;
     TextInputLayout autoLanguage;
-    TextInputLayout shotCount;
-    TextInputLayout shootingPercentage;
+    TextInputLayout pointsScored;
 
 
     PitScout data;
@@ -77,6 +76,9 @@ public class PitScoutAutoFragment extends Fragment {
     }
 
     private void setupControls(View view) {
+        if (data == null) {
+            return;
+        }
         hasAutoLayout = view.findViewById(R.id.hasAutoLayout);
 
         hasAutoGroup = view.findViewById(R.id.hasAutoGroup);
@@ -84,9 +86,7 @@ public class PitScoutAutoFragment extends Fragment {
             setVisibility();
         });
 
-        shotCount = view.findViewById(R.id.autoBallCount);
-
-        shootingPercentage = view.findViewById(R.id.shootingPercentage);
+        pointsScored = view.findViewById(R.id.autoPointsScored);
 
         missingAutoLayout = view.findViewById(R.id.missingAutoLayout);
 
@@ -115,12 +115,9 @@ public class PitScoutAutoFragment extends Fragment {
         boolean hasAuto = hasAutoGroup.getCheckedRadioButtonId() == R.id.hasAutoYes;
         data.setHasAutonomous(hasAuto);
 
-        String ballCountString = StringUtils.defaultIfBlank(shotCount.getEditText().getText().toString(), "0");
-        int ballCount = Integer.parseInt(ballCountString.toString());
-        data.setBallsPickedOrShotInAuto(ballCount);
-
-        double shootingPercentageText = Double.valueOf(StringUtils.defaultIfBlank(shootingPercentage.getEditText().getText().toString(), "0"));
-        data.setPercentAutoShots(shootingPercentageText);
+        String pointsScoredString = StringUtils.defaultIfBlank(pointsScored.getEditText().getText().toString(), "0");
+        int pointsScored = Integer.parseInt(pointsScoredString.toString());
+        data.setPointsScoredInAuto(pointsScored);
 
         boolean wantsHelp = hasAutoGroup.getCheckedRadioButtonId() == R.id.helpAutoYes;
         data.setHelpCreatingAuto(wantsHelp);
@@ -140,11 +137,8 @@ public class PitScoutAutoFragment extends Fragment {
         int hasAutoCheckedButtonId = data.getHasAutonomous() ? R.id.hasAutoYes : R.id.hasAutoNo;
         hasAutoGroup.check(hasAutoCheckedButtonId);
 
-        double shootingPercentageValue = data.getPercentAutoShots();
-        shootingPercentage.getEditText().setText( String.valueOf(shootingPercentageValue));
-
-        String ballsShotInAuto = StringUtils.defaultIfBlank(String.valueOf(data.getBallsPickedOrShotInAuto()), "0");
-        shotCount.getEditText().setText(ballsShotInAuto);
+        String pointsScoredInAuto = StringUtils.defaultIfBlank(String.valueOf(data.getPointsScoredInAuto()), "0");
+        pointsScored.getEditText().setText(pointsScoredInAuto);
 
         boolean wantsHelpWithAuto = data.getHelpCreatingAuto();
         int wantsHelpCheckedButtonId = wantsHelpWithAuto ? R.id.helpAutoYes : R.id.helpAutoNo;
@@ -157,6 +151,9 @@ public class PitScoutAutoFragment extends Fragment {
     }
 
     public void setVisibility() {
+        if (data == null) {
+            return;
+        }
         if (hasAutoGroup.getCheckedRadioButtonId() == R.id.hasAutoYes) {
             missingAutoLayout.setVisibility(View.GONE);
             hasAutoLayout.setVisibility(View.VISIBLE);
