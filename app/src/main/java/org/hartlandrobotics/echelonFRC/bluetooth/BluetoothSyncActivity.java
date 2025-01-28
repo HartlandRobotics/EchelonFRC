@@ -151,10 +151,6 @@ public class BluetoothSyncActivity extends EchelonActivity {
         deviceNameByRole.put("blue2", "blue_2_" + teamNumber);
         deviceNameByRole.put("blue3", "blue_3_" + teamNumber);
 
-        deviceNameByRole.put("alt1", "alt_1_" + teamNumber);
-        deviceNameByRole.put("alt2", "alt_2_" + teamNumber);
-        deviceNameByRole.put("alt3", "alt_3_" + teamNumber);
-
         buttonsByDeviceName = new HashMap<>();
         buttonsByDeviceName.put("red_1_" + teamNumber, red1SyncButton);
         buttonsByDeviceName.put("red_2_" + teamNumber, red2SyncButton);
@@ -222,7 +218,7 @@ public class BluetoothSyncActivity extends EchelonActivity {
                 pullDeviceData("blue3", blue3SyncButton)
         );
 
-        
+
         logRecyclerView = findViewById(R.id.sync_log_text);
         logLinesAdapter = new LogLinesAdapter( this );
         logRecyclerView.setLayoutManager( new LinearLayoutManager( this ) );
