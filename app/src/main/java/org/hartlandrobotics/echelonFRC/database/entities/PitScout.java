@@ -44,17 +44,17 @@ public class PitScout {
     @ColumnInfo(name = "balls_picked_or_shot_in_auto")
     private int ballsPickedOrShotInAuto;
 
-    @ColumnInfo(name = "can_shoot")
-    private boolean canShoot;
+    @ColumnInfo(name = "pick_off_ground")
+    private boolean pickOffGround;
 
-    @ColumnInfo(name = "shooting_accuracy")
-    private double shootingAccuracy;
-
-    @ColumnInfo(name = "preferred_goal")
-    private String preferredGoal;
+    @ColumnInfo(name = "off_ground_yes")
+    private boolean offGroundYes;
 
     @ColumnInfo(name = "can_play_defense")
     private boolean canPlayDefense;
+
+    @ColumnInfo(name = "scoring_method")
+    private String scoringMethod;
 
     @ColumnInfo(name = "can_robot_hang")
     private boolean canRobotHang;
@@ -89,7 +89,7 @@ public class PitScout {
 
     public PitScout(@NonNull String pitScoutKey, @NonNull String eventKey, @NonNull String teamKey, boolean hasBeenSynced,
                     boolean hasAutonomous, boolean helpCreatingAuto, @NonNull String codingLanguage, int pointsScoredInAuto,
-                    boolean canShoot, double shootingAccuracy, @NonNull String preferredGoal, boolean canPlayDefense, boolean canRobotHang, int highestHangBar, int hangTime, @NonNull String preferredHangingSpot, int sideSwing, int driverExperience, int operatorExperience, double humanPlayerAccuracy, @NonNull String extraNotes) {
+                    boolean pickOffGround, boolean offGroundYes, @NonNull String scoringMethod, boolean canPlayDefense, boolean canRobotHang, int highestHangBar, int hangTime, @NonNull String preferredHangingSpot, int sideSwing, int driverExperience, int operatorExperience, double humanPlayerAccuracy, @NonNull String extraNotes) {
         if(StringUtils.isBlank(pitScoutKey)){
             pitScoutKey = UUID.randomUUID().toString();
         }
@@ -102,9 +102,9 @@ public class PitScout {
         this.helpCreatingAuto = helpCreatingAuto;
         this.codingLanguage = codingLanguage;
         this.pointsScoredInAuto = pointsScoredInAuto;
-        this.canShoot = canShoot;
-        this.shootingAccuracy = shootingAccuracy;
-        this.preferredGoal = preferredGoal;
+        this.scoringMethod = scoringMethod;
+        this.pickOffGround = pickOffGround;
+        this.offGroundYes = offGroundYes;
         this.canPlayDefense = canPlayDefense;
         this.canRobotHang = canRobotHang;
         this.highestHangBar = highestHangBar;
@@ -193,33 +193,20 @@ public class PitScout {
         this.ballsPickedOrShotInAuto = ballsPickedOrShotInAuto;
     }
 
-    public boolean getCanShoot() {
-        return canShoot;
+    public void setOffGroundYes(boolean offGroundYes) {
+        this.offGroundYes = offGroundYes;
     }
 
-    public void setCanShoot(boolean canShoot) {
-        this.canShoot = canShoot;
-    }
-
-    public double getShootingAccuracy() {
-        return shootingAccuracy;
-    }
-
-    public void setShootingAccuracy(double shootingAccuracy) {
-        this.shootingAccuracy = shootingAccuracy;
-    }
-
-    @NonNull
-    public String getPreferredGoal() {
-        return preferredGoal;
-    }
-
-    public void setPreferredGoal(@NonNull String preferredGoal) {
-        this.preferredGoal = preferredGoal;
+    public boolean getOffGroundYes() {
+        return offGroundYes;
     }
 
     public boolean getCanPlayDefense() {
         return canPlayDefense;
+    }
+
+    public boolean getPickOffGround() {
+        return offGroundYes;
     }
 
     public void setCanPlayDefense(boolean canPlayDefense) {
@@ -295,5 +282,13 @@ public class PitScout {
 
     public void setExtraNotes(@NonNull String extraNotes) {
         this.extraNotes = extraNotes;
+    }
+
+    public String getScoringMethod() {
+        return scoringMethod;
+    }
+
+    public void setScoringMethod(@NonNull String scoringMethod) {
+        this.scoringMethod = scoringMethod;
     }
 }
