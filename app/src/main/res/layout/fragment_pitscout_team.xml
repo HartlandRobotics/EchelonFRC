@@ -12,6 +12,22 @@
         android:orientation="vertical">
 
         <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/driveTrain"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Drive Train"
+            >
+
+        <AutoCompleteTextView
+            android:id="@+id/driveTrainAutoComplete"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="none"
+            />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/driverSeasonNumber"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -42,16 +58,16 @@
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/humanShotAccuracy"
+            android:id="@+id/humanPositionPref"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="How many shots out of 10 does your human player make?"
+            android:hint="What position does your Human Player prefer?"
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:inputType="number"
+                android:inputType="text"
                 />
 
         </com.google.android.material.textfield.TextInputLayout>

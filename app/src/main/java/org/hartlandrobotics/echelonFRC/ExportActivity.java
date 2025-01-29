@@ -181,7 +181,7 @@ public class ExportActivity extends EchelonActivity {
             pitScoutViewModel.getPitScoutByEvent(status.getEventKey()).observe(this, pitScoutResults -> {
                 try{
                     FileOutputStream outputStream = new FileOutputStream(file);
-                    String header = "Team_Key,Has_Autonomous,Help_With_Auto,Coding_Language,Shoots_Auto,Percent_Auto_Shots,Balls_Picked_Or_Shot_Auto,Can_Shoot,Shooting_Accuracy,Preferred_Goal,Can_Play_Defense,Can_Robot_Hang,Highest_Hang_Bar,Hang_Time,Preferred_Hanging_Spot,Side_Swing,Driver_Experience,Operator_Experience,Human_Player_Accuracy,Extra_Notes\n";
+                    String header = "Team_Key,Has_Autonomous,Help_With_Auto,Coding_Language,Shoots_Auto,Percent_Auto_Shots,Balls_Picked_Or_Shot_Auto,Can_Shoot,Shooting_Accuracy,Preferred_Goal,Can_Play_Defense,Can_Robot_Hang,Highest_Hang_Bar,Hang_Time,Preferred_Hanging_Spot,Side_Swing,Driver_Experience,Operator_Experience,Human_Position_Pref,Robot_Drive_Train,Extra_Notes\n";
                     outputStream.write(header.getBytes());
                     for(PitScout ps: pitScoutResults){
                         List<String> psData = new ArrayList<>();
@@ -193,14 +193,11 @@ public class ExportActivity extends EchelonActivity {
                         psData.add(String.valueOf(ps.getBallsPickedOrShotInAuto()));
                         psData.add(String.valueOf(ps.getOffGroundYes()));
                         psData.add(String.valueOf(ps.getCanPlayDefense()));
-                        psData.add(String.valueOf(ps.getCanRobotHang()));
-                        psData.add(String.valueOf(ps.getHighestHangBar()));
                         psData.add(String.valueOf(ps.getHangTime()));
-                        psData.add(ps.getPreferredHangingSpot());
-                        psData.add(String.valueOf(ps.getSideSwing()));
                         psData.add(String.valueOf(ps.getDriverExperience()));
                         psData.add(String.valueOf(ps.getOperatorExperience()));
-                        psData.add(String.valueOf(ps.getHumanPlayerAccuracy()));
+                        psData.add(String.valueOf(ps.getHumanPositionPref()));
+                        psData.add(ps.getRobotDriveTrain());
                         psData.add(ps.getExtraNotes());
                         String outputString = psData.stream().collect(Collectors.joining(",")) + "\n";
                         outputStream.write(outputString.getBytes());

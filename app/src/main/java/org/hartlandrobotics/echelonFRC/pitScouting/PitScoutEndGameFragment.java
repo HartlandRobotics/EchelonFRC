@@ -20,8 +20,6 @@ import org.hartlandrobotics.echelonFRC.database.entities.PitScout;
 public class PitScoutEndGameFragment extends Fragment {
 
     TextInputLayout hangTimeLayout;
-    RadioGroup hangPreferenceGroup;
-    TextInputLayout robotSwingLayout;
 
     public PitScoutEndGameFragment() {
         // Required empty public constructor
@@ -63,8 +61,6 @@ public class PitScoutEndGameFragment extends Fragment {
 
     private void setupControls(View view){
         hangTimeLayout = view.findViewById(R.id.hangTime);
-        hangPreferenceGroup = view.findViewById(R.id.hangPreference);
-        robotSwingLayout = view.findViewById(R.id.robotSwing);
     }
 
     public void populateDataFromControls(){
@@ -74,27 +70,7 @@ public class PitScoutEndGameFragment extends Fragment {
         String hangTimeText = StringUtils.defaultIfBlank(hangTimeLayout.getEditText().getText().toString(), "0");
         data.setHangTime(Integer.valueOf(hangTimeText));
 
-        String hangPreference = "none";
-        int hangPreferenceSelection = hangPreferenceGroup.getCheckedRadioButtonId();
-        switch( hangPreferenceSelection ){
-            case R.id.hangPreferenceLeft:
-                hangPreference = "left";
-                break;
-            case R.id.hangPreferenceCenter:
-                hangPreference = "center";
-                break;
-            case R.id.hangPreferenceRight:
-                hangPreference = "right";
-                break;
-            default:
-                hangPreference = "none";
         }
-        data.setPreferredHangingSpot(hangPreference);
-
-        String swingInchesText = StringUtils.defaultIfBlank(robotSwingLayout.getEditText().getText().toString(), "0");
-        int swingInches = Integer.valueOf( swingInchesText );
-        data.setSideSwing(swingInches);
-    }
 
     private void populateControlsFromData(){
         if( data == null ){
@@ -106,24 +82,5 @@ public class PitScoutEndGameFragment extends Fragment {
         String hangTimeText = String.valueOf(data.getHangTime());
         hangTimeLayout.getEditText().setText(hangTimeText);
 
-        int hangPreferenceSelection = R.id.hangPreferenceNo;
-        String hangingPreference = StringUtils.defaultIfBlank(data.getPreferredHangingSpot(), "none");
-        switch( hangingPreference ){
-            case "left":
-                hangPreferenceSelection = R.id.hangPreferenceLeft;
-                break;
-            case "center":
-                hangPreferenceSelection = R.id.hangPreferenceCenter;
-                break;
-            case "right":
-                hangPreferenceSelection = R.id.hangPreferenceRight;
-                break;
-            default:
-                hangPreferenceSelection = R.id.hangPreferenceNo;
-        }
-        hangPreferenceGroup.check(hangPreferenceSelection);
-
-        String sideSwingSeconds = String.valueOf( data.getSideSwing());
-        robotSwingLayout.getEditText().setText(sideSwingSeconds);
     }
 }

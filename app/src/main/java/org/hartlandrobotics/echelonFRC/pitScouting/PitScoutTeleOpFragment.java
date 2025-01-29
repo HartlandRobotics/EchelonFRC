@@ -78,6 +78,7 @@ public class PitScoutTeleOpFragment extends Fragment {
             }
         });
 
+        scoringMethodLayout = view.findViewById(R.id.scoringMethod);
         String scoringMethod = StringUtils.defaultIfBlank(data.getScoringMethod(), StringUtils.EMPTY);
         scoringMethodLayout.getEditText().setText(scoringMethod);
 

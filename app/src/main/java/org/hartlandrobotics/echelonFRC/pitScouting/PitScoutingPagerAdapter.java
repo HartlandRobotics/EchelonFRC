@@ -22,14 +22,12 @@ public class PitScoutingPagerAdapter extends FragmentStateAdapter {
     private static final int AUTO_POSITION = 0;
     private static final int TELEOP_POSITION = 1;
     private static final int ENDGAME_POSITION = 2;
-    private static final int ROBOT_POSITION = 3;
-    private static final int TEAM_POSITION = 4;
-    private static final int PHOTOS_POSITION = 5;
+    private static final int TEAM_POSITION = 3;
+    private static final int PHOTOS_POSITION = 4;
 
     private PitScoutAutoFragment autoFragment;
     private PitScoutTeleOpFragment teleOpFragment;
     private PitScoutEndGameFragment endGameFragment;
-    private PitScoutRobotFragment robotFragment;
     private PitScoutTeamFragment teamFragment;
     private PitScoutPhotosFragment photosFragment;
 
@@ -50,9 +48,6 @@ public class PitScoutingPagerAdapter extends FragmentStateAdapter {
         if( teleOpFragment != null ){
             teleOpFragment.setData(data);
         }
-        if( robotFragment != null ){
-            robotFragment.setData(data);
-        }
         if( teamFragment != null ){
             teamFragment.setData(data);
         }
@@ -68,13 +63,12 @@ public class PitScoutingPagerAdapter extends FragmentStateAdapter {
     public static final String TAG = "PitScoutPagerAdapter";
     private Map<Integer, String> titleByPosition = new HashMap<>();
     public String getTabTitle(int position){
-        if( titleByPosition.size() == 0 ){
+        if( titleByPosition.isEmpty() ){
             titleByPosition.put(0,"Auto");
             titleByPosition.put(1,"Tele Op");
             titleByPosition.put(2, "End  Game");
-            titleByPosition.put(3, "Robot");
-            titleByPosition.put(4, "Team");
-            titleByPosition.put(5, "Photos");
+            titleByPosition.put(3, "Team");
+            titleByPosition.put(4, "Photos");
         }
         return titleByPosition.get(position);
     }
@@ -91,10 +85,6 @@ public class PitScoutingPagerAdapter extends FragmentStateAdapter {
         if( endGameFragment != null ){
             Log.i(TAG, "populate end game fragment data");
             endGameFragment.populateDataFromControls();
-        }
-        if( robotFragment != null ){
-            Log.i(TAG, "populate robot fragment data");
-            robotFragment.populateDataFromControls();
         }
         if( teamFragment != null ){
             Log.i(TAG, "populate team fragment data");
@@ -124,11 +114,6 @@ public class PitScoutingPagerAdapter extends FragmentStateAdapter {
                 endGameFragment = new PitScoutEndGameFragment();
                 endGameFragment.setData(data);
                 return endGameFragment;
-            case ROBOT_POSITION:
-                Log.i(TAG, "creating new Robot Fragment");
-                robotFragment = new PitScoutRobotFragment();
-                robotFragment.setData(data);
-                return robotFragment;
             case TEAM_POSITION:
                 Log.i(TAG, "creating new Team Fragment");
                 teamFragment = new PitScoutTeamFragment();

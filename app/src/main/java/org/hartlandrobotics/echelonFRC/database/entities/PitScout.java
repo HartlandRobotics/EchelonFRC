@@ -56,20 +56,8 @@ public class PitScout {
     @ColumnInfo(name = "scoring_method")
     private String scoringMethod;
 
-    @ColumnInfo(name = "can_robot_hang")
-    private boolean canRobotHang;
-
-    @ColumnInfo(name = "highest_hang_bar")
-    private int highestHangBar;
-
     @ColumnInfo(name = "hang_time")
     private int hangTime;
-
-    @ColumnInfo(name = "preferred_hanging_spot")
-    private String preferredHangingSpot;
-
-    @ColumnInfo(name = "side_swing")
-    private int sideSwing;
 
     @ColumnInfo(name = "driver_experience")
     private int driverExperience;
@@ -77,8 +65,11 @@ public class PitScout {
     @ColumnInfo(name = "operator_experience")
     private int operatorExperience;
 
-    @ColumnInfo(name = "human_player_accuracy")
-    private double humanPlayerAccuracy;
+    @ColumnInfo(name = "human_position_pref")
+    private double humanPositionPref;
+
+    @ColumnInfo(name = "robot_drive_train")
+    private String robotDriveTrain;
 
     @ColumnInfo(name = "extra_notes")
     private String extraNotes;
@@ -89,7 +80,7 @@ public class PitScout {
 
     public PitScout(@NonNull String pitScoutKey, @NonNull String eventKey, @NonNull String teamKey, boolean hasBeenSynced,
                     boolean hasAutonomous, boolean helpCreatingAuto, @NonNull String codingLanguage, int pointsScoredInAuto,
-                    boolean pickOffGround, boolean offGroundYes, @NonNull String scoringMethod, boolean canPlayDefense, boolean canRobotHang, int highestHangBar, int hangTime, @NonNull String preferredHangingSpot, int sideSwing, int driverExperience, int operatorExperience, double humanPlayerAccuracy, @NonNull String extraNotes) {
+                    boolean pickOffGround, boolean offGroundYes, @NonNull String scoringMethod, boolean canPlayDefense, int hangTime, int driverExperience, int operatorExperience, double humanPositionPref, @NonNull String robotDriveTrain,  @NonNull String extraNotes) {
         if(StringUtils.isBlank(pitScoutKey)){
             pitScoutKey = UUID.randomUUID().toString();
         }
@@ -106,14 +97,11 @@ public class PitScout {
         this.pickOffGround = pickOffGround;
         this.offGroundYes = offGroundYes;
         this.canPlayDefense = canPlayDefense;
-        this.canRobotHang = canRobotHang;
-        this.highestHangBar = highestHangBar;
         this.hangTime = hangTime;
-        this.preferredHangingSpot = preferredHangingSpot;
-        this.sideSwing = sideSwing;
         this.driverExperience = driverExperience;
         this.operatorExperience = operatorExperience;
-        this.humanPlayerAccuracy = humanPlayerAccuracy;
+        this.humanPositionPref = humanPositionPref;
+        this.robotDriveTrain = robotDriveTrain;
         this.extraNotes = extraNotes;
     }
 
@@ -213,45 +201,12 @@ public class PitScout {
         this.canPlayDefense = canPlayDefense;
     }
 
-    public boolean getCanRobotHang() {
-        return canRobotHang;
-    }
-
-    public void setCanRobotHang(boolean canRobotHang) {
-        this.canRobotHang = canRobotHang;
-    }
-
-    public int getHighestHangBar() {
-        return highestHangBar;
-    }
-
-    public void setHighestHangBar(int highestHangBar) {
-        this.highestHangBar = highestHangBar;
-    }
-
     public int getHangTime() {
         return hangTime;
     }
 
     public void setHangTime(int hangTime) {
         this.hangTime = hangTime;
-    }
-
-    @NonNull
-    public String getPreferredHangingSpot() {
-        return preferredHangingSpot;
-    }
-
-    public void setPreferredHangingSpot(@NonNull String preferredHangingSpot) {
-        this.preferredHangingSpot = preferredHangingSpot;
-    }
-
-    public int getSideSwing() {
-        return sideSwing;
-    }
-
-    public void setSideSwing(int sideSwing) {
-        this.sideSwing = sideSwing;
     }
 
     public int getDriverExperience() {
@@ -270,9 +225,15 @@ public class PitScout {
         this.operatorExperience = operatorExperience;
     }
 
-    public double getHumanPlayerAccuracy() { return humanPlayerAccuracy; }
-    public void setHumanPlayerAccuracy( double humanPlayerAccuracy ){
-        this.humanPlayerAccuracy = humanPlayerAccuracy;
+    public double getHumanPositionPref() { return humanPositionPref; }
+    public void setHumanPositionPref( double humanPositionPref ){
+        this.humanPositionPref = humanPositionPref;
+    }
+
+    @NonNull
+    public String getRobotDriveTrain() {return robotDriveTrain; }
+    public void setRobotDriveTrain(@NonNull String robotDriveTrain) {
+        this.robotDriveTrain = robotDriveTrain;
     }
 
     @NonNull
