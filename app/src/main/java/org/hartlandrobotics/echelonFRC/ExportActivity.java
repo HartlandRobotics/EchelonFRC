@@ -12,6 +12,7 @@ import android.widget.Toast;
 import androidx.annotation.RequiresApi;
 import androidx.lifecycle.ViewModelProvider;
 
+import org.apache.commons.lang3.StringUtils;
 import org.hartlandrobotics.echelonFRC.database.entities.Match;
 import org.hartlandrobotics.echelonFRC.database.entities.MatchResult;
 import org.hartlandrobotics.echelonFRC.database.entities.MatchResultWithTeamMatch;
@@ -206,17 +207,55 @@ public class ExportActivity extends EchelonActivity {
 
                     FileWriter fw = new FileWriter(file.getAbsoluteFile());
                     BufferedWriter bw = new BufferedWriter(fw);
-                    String content = strBegin;
+                    StringBuilder content = new StringBuilder(strBegin);
 
                     for(PitScout ps: pitScoutResults){
                         String psData = "<h2>" + ps.getTeamKey() + "</h2>";
-                        content += psData;
+                        content.append(psData);
+                        psData = "<h3>Auto</h3>" ;
+                        content.append(psData);
+                        psData = "<p>Does your team perform autonomous?" + ps.getHasAutonomous() + "</p>";
+                        content.append(psData);
+                        psData = "<p>Would you like help creating one?" + ps.getHelpCreatingAuto() + "</p>";
+                        content.append(psData);
+                        psData = "<p>What programming language do you use?" + ps.getCodingLanguage() + "</p>";
+                        content.append(psData);
+                        psData = "<p>How many points do you score in autonomous?" + ps.getPointsScoredInAuto() + "</p>";
+                        content.append(psData);
+
+                        psData = "<h3>TeleOp</h3>";
+                        content.append(psData);
+                        psData = "<p>Can you pick up off the ground?" + ps.getPickOffGround() + "</p>";
+                        content.append(psData);
+                        psData = "<p>Are you willing to play defense?" + ps.getCanPlayDefense() + "</p>";
+                        content.append(psData);
+                        psData = "<p>What is your preferred scoring method?" + ps.getScoringMethod() + "</p>";
+                        content.append(psData);
+
+                        psData = "<h3>Endgame</h3>";
+                        content.append(psData);
+                        psData = "<p>How long does it take you to hang?" + ps.getHangTime() + "</p>";
+                        content.append(psData);
+
+                        psData = "<h3>Team</h3>";
+                        content.append(psData);
+                        psData = "<p>What drive train do you have?" + ps.getRobotDriveTrain() + "</p>";
+                        content.append(psData);
+                        psData = "<p>How many seasons has your driver been in?" + ps.getDriverExperience() + "</p>";
+                        content.append(psData);
+                        psData = "<p>How many seasons has your operator been in?" + ps.getOperatorExperience() + "</p>";
+                        content.append(psData);
+                        psData = "<p>What is your preferred human player position?" + ps.getHumanPositionPref() + "</p>";
+                        content.append(psData);
+                        psData = "<p>Additional Notes" + ps.getExtraNotes() + "</p>";
+                        content.append(psData);
+
 
 
                         //outputStream.write(" ");
                     }
-                    content += strEnd;
-                    bw.write(content);
+                    content.append (strEnd);
+                    bw.write(content.toString());
                     bw.close();
                    // outputStream.close();
                     Toast.makeText(this, "export Pit Scout: ", Toast.LENGTH_LONG).show();
