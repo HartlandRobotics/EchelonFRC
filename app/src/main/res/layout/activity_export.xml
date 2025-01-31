@@ -29,7 +29,7 @@
         android:id="@+id/exportPitScouting"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:text="Pit Scouting -> CSV"
+        android:text="Pit Scouting -> HTML"
         app:layout_constraintBottom_toTopOf="@id/importMatchCSV"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.501"

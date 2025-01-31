@@ -22,9 +22,11 @@ import org.hartlandrobotics.echelonFRC.models.PitScoutViewModel;
 import org.hartlandrobotics.echelonFRC.status.BlueAllianceStatus;
 import org.hartlandrobotics.echelonFRC.utilities.FileUtilities;
 
+import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.text.SimpleDateFormat;
@@ -172,38 +174,51 @@ public class ExportActivity extends EchelonActivity {
             String path = externalFilesDir.getAbsolutePath();
             File[] files = getFilePathsForPitScout();
             PitScoutViewModel pitScoutViewModel = new PitScoutViewModel(getApplication());
-            SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy_MM_dd_HH_mm");
-            Date date = new Date();
-            String dateForFile = dateFormat.format(date);
-            String fileName = "PitScout_Data_" + dateForFile + ".csv";
+
+            String fileName = "PitScout_Data.html";
             File file = new File(externalFilesDir, fileName);
 
+
+            String strBegin = "<!DOCTYPE html>" +
+                    "<html>" +
+                    "<head>" +
+                    "<link type=\"text/css\" rel=\"stylesheet\" href=\"css/materialize.min.css\" media=\"screen,projection\"/>" +
+                    "<meta name=\"viewport\" content=\"width=device-width, initial-scale=1,0\"/>" +
+                    "</head>" +
+                    "<body>" +
+                    "<h1> Pit Scout <h1>";
+            String strEnd = "<script type=\"text/javascript\" src=\"js/materialize.min.js\"></script>" +
+                    "</body>" +
+                    "</html>";
+            if(!file.exists()) {
+                try {
+                    file.createNewFile();
+                } catch (IOException e) {
+                    Log.e("In Catch for Creating File", "Exception trying to export pitscout data", e);
+                    String message = e.getLocalizedMessage();
+                    Toast.makeText(this, "export Pit Scout error: " + message, Toast.LENGTH_LONG).show();
+                    throw new RuntimeException(e);
+                }
+            }
             pitScoutViewModel.getPitScoutByEvent(status.getEventKey()).observe(this, pitScoutResults -> {
                 try{
-                    FileOutputStream outputStream = new FileOutputStream(file);
-                    String header = "Team_Key,Has_Autonomous,Help_With_Auto,Coding_Language,Shoots_Auto,Percent_Auto_Shots,Balls_Picked_Or_Shot_Auto,Can_Shoot,Shooting_Accuracy,Preferred_Goal,Can_Play_Defense,Can_Robot_Hang,Highest_Hang_Bar,Hang_Time,Preferred_Hanging_Spot,Side_Swing,Driver_Experience,Operator_Experience,Human_Position_Pref,Robot_Drive_Train,Extra_Notes\n";
-                    outputStream.write(header.getBytes());
-                    for(PitScout ps: pitScoutResults){
-                        List<String> psData = new ArrayList<>();
-                        psData.add(ps.getTeamKey());
-                        psData.add(String.valueOf(ps.getHasAutonomous()));
-                        psData.add(String.valueOf(ps.getHelpCreatingAuto()));
-                        psData.add(ps.getCodingLanguage());
-                        psData.add(String.valueOf(ps.getPointsScoredInAuto()));
-                        psData.add(String.valueOf(ps.getBallsPickedOrShotInAuto()));
-                        psData.add(String.valueOf(ps.getOffGroundYes()));
-                        psData.add(String.valueOf(ps.getCanPlayDefense()));
-                        psData.add(String.valueOf(ps.getHangTime()));
-                        psData.add(String.valueOf(ps.getDriverExperience()));
-                        psData.add(String.valueOf(ps.getOperatorExperience()));
-                        psData.add(String.valueOf(ps.getHumanPositionPref()));
-                        psData.add(ps.getRobotDriveTrain());
-                        psData.add(ps.getExtraNotes());
-                        String outputString = psData.stream().collect(Collectors.joining(",")) + "\n";
-                        outputStream.write(outputString.getBytes());
-                    }
-                    outputStream.close();
+                    //FileOutputStream outputStream = new FileOutputStream(file);
 
+                    FileWriter fw = new FileWriter(file.getAbsoluteFile());
+                    BufferedWriter bw = new BufferedWriter(fw);
+                    String content = strBegin;
+
+                    for(PitScout ps: pitScoutResults){
+                        String psData = "<h2>" + ps.getTeamKey() + "</h2>";
+                        content += psData;
+
+
+                        //outputStream.write(" ");
+                    }
+                    content += strEnd;
+                    bw.write(content);
+                    bw.close();
+                   // outputStream.close();
                     Toast.makeText(this, "export Pit Scout: ", Toast.LENGTH_LONG).show();
                 }
                 catch(Exception e){
