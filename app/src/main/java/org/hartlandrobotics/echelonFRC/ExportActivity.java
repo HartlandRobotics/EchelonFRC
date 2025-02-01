@@ -210,8 +210,8 @@ public class ExportActivity extends EchelonActivity {
                     StringBuilder content = new StringBuilder(strBegin);
 
                     for(PitScout ps: pitScoutResults){
-                        content.append( "<h2>" + ps.getTeamKey() + "</h2>")
-                                .append( "<h3>Auto</h3>")
+                        content.append( "<a href=\"#" + ps.getTeamKey().substring(3) + " \"><h2 id="+ ps.getTeamKey().substring(3) + " class=team> Team " + ps.getTeamKey().substring(3) + "</h2> </a>")
+                                .append( "<h3 class=tab>Auto</h3>")
                                 .append("<ol>")
                                 .append("<li>")
                                 .append ("<p class=question>Does your team perform autonomous?</p>")
@@ -236,7 +236,7 @@ public class ExportActivity extends EchelonActivity {
                                 .append("</li>")
                                 .append("</ol>")
 
-                                .append ( "<h3>TeleOp</h3>")
+                                .append ( "<h3 class=tab>TeleOp</h3>")
                                 .append("<ol>")
                                 .append("<li>")
                                 .append ("<p class=question>Can you pick up off the ground?</p>")
@@ -253,7 +253,7 @@ public class ExportActivity extends EchelonActivity {
                                 .append("</ol>")
 
 
-                                .append ("<h3>Endgame</h3>")
+                                .append ("<h3 class=tab>Endgame</h3>")
                                 .append("<ol>")
                                 .append("<li>")
                                 .append ("<p class=question>How long does it take you to hang?</p>")
@@ -261,7 +261,7 @@ public class ExportActivity extends EchelonActivity {
                                 .append("</li>")
                                 .append("</ol>")
 
-                                .append ("<h3>Team</h3>")
+                                .append ("<h3 class=tab>Team</h3>")
                                 .append("<ol>")
                                 .append("<li>")
                                 .append ("<p class=question>What drive train do you have?</p>")
