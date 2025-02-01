@@ -60,13 +60,13 @@ public class ExportActivity extends EchelonActivity {
         matchResultViewModel = new ViewModelProvider(this).get(MatchResultViewModel.class);
 
         exportMatchResultsButton = findViewById(R.id.exportMatchResults);
-        //exportMatchResults();
         setupExportCSVButton();
+
         exportPitScoutResultsButton = findViewById(R.id.exportPitScouting);
         exportPitScoutResults();
+
         importCSVMatchButton = findViewById(R.id.importMatchCSV);
         setupCSVImportButton();
-
     }
 
     public void exportMatchResults() throws RuntimeException {
