@@ -184,6 +184,7 @@ public class ExportActivity extends EchelonActivity {
                     "<html>" +
                     "<head>" +
                     "<link type=\"text/css\" rel=\"stylesheet\" href=\"css/materialize.min.css\" media=\"screen,projection\"/>" +
+                    "<link type=\"text/css\" rel=\"stylesheet\" href=\"css/pitscout.css\"/>" +
                     "<meta name=\"viewport\" content=\"width=device-width, initial-scale=1,0\"/>" +
                     "</head>" +
                     "<body>" +
@@ -210,7 +211,8 @@ public class ExportActivity extends EchelonActivity {
                     for(PitScout ps: pitScoutResults){
                         content.append( "<h2>" + ps.getTeamKey() + "</h2>")
                                 .append( "<h3>Auto</h3>")
-                                .append ("<p>Does your team perform autonomous?" + ps.getHasAutonomous() + "</p>")
+                                .append ("<p class=question>Does your team perform autonomous?</p>")
+                                .append ("<p class=answer>").append(ps.getHasAutonomous()).append("</p>")
                                 .append ("<p>Would you like help creating one?" + ps.getHelpCreatingAuto() + "</p>")
                                 .append ("<p>What programming language do you use?" + ps.getCodingLanguage() + "</p>")
                                 .append ("<p>How many points do you score in autonomous?" + ps.getPointsScoredInAuto() + "</p>")
