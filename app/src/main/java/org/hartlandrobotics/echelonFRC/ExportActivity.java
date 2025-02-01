@@ -12,6 +12,7 @@ import android.widget.Toast;
 import androidx.annotation.RequiresApi;
 import androidx.lifecycle.ViewModelProvider;
 
+import org.apache.commons.lang3.BooleanUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.hartlandrobotics.echelonFRC.database.entities.Match;
 import org.hartlandrobotics.echelonFRC.database.entities.MatchResult;
@@ -211,26 +212,80 @@ public class ExportActivity extends EchelonActivity {
                     for(PitScout ps: pitScoutResults){
                         content.append( "<h2>" + ps.getTeamKey() + "</h2>")
                                 .append( "<h3>Auto</h3>")
+                                .append("<ol>")
+                                .append("<li>")
                                 .append ("<p class=question>Does your team perform autonomous?</p>")
                                 .append ("<p class=answer>").append(ps.getHasAutonomous()).append("</p>")
-                                .append ("<p>Would you like help creating one?" + ps.getHelpCreatingAuto() + "</p>")
-                                .append ("<p>What programming language do you use?" + ps.getCodingLanguage() + "</p>")
-                                .append ("<p>How many points do you score in autonomous?" + ps.getPointsScoredInAuto() + "</p>")
+                                .append("</li>")
+                                .append("<li>")
+                                .append ("<p class=question>Would you like help creating one?</p>")
+                                .append ("<p class=answer>").append(ps.getHelpCreatingAuto()).append("</p>")
+                                .append("</li>");
+
+                                String codingLanguage = ps.getCodingLanguage();
+                                if (!StringUtils.isBlank(codingLanguage)){
+                                    content.append("<li>")
+                                    .append ("<p class=question>What programming language do you use?</p>")
+                                    .append ("<p class=answer>").append(codingLanguage).append("</p>")
+                                    .append("</li>");
+                                }
+
+                                content.append("<li>")
+                                .append ("<p class=question>How many points do you score in autonomous?</p>")
+                                .append ("<p class=answer>").append(ps.getPointsScoredInAuto()).append("</p>")
+                                .append("</li>")
+                                .append("</ol>")
 
                                 .append ( "<h3>TeleOp</h3>")
-                                .append ("<p>Can you pick up off the ground?" + ps.getPickOffGround() + "</p>")
-                                .append ( "<p>Are you willing to play defense?" + ps.getCanPlayDefense() + "</p>")
-                                .append ("<p>What is your preferred scoring method?" + ps.getScoringMethod() + "</p>")
+                                .append("<ol>")
+                                .append("<li>")
+                                .append ("<p class=question>Can you pick up off the ground?</p>")
+                                .append ("<p class=answer>").append(ps.getPickOffGround()).append("</p>")
+                                .append("</li>")
+                                .append("<li>")
+                                .append ("<p class=question>Are you willing to play defense?</p>")
+                                .append ("<p class=answer>").append(ps.getCanPlayDefense()).append("</p>")
+                                .append("</li>")
+                                .append("<li>")
+                                .append ("<p class=question>What is your preferred scoring method?</p>")
+                                .append ("<p class=answer>").append(ps.getScoringMethod()).append("</p>")
+                                .append("</li>")
+                                .append("</ol>")
+
 
                                 .append ("<h3>Endgame</h3>")
-                                .append ("<p>How long does it take you to hang?" + ps.getHangTime() + "</p>")
+                                .append("<ol>")
+                                .append("<li>")
+                                .append ("<p class=question>How long does it take you to hang?</p>")
+                                .append ("<p class=answer>").append(ps.getHangTime()).append("</p>")
+                                .append("</li>")
+                                .append("</ol>")
 
                                 .append ("<h3>Team</h3>")
-                                .append ("<p>What drive train do you have?" + ps.getRobotDriveTrain() + "</p>")
-                                .append ("<p>How many seasons has your driver been in?" + ps.getDriverExperience() + "</p>")
-                                .append ("<p>How many seasons has your operator been in?" + ps.getOperatorExperience() + "</p>")
-                                .append ("<p>What is your preferred human player position?" + ps.getHumanPositionPref() + "</p>")
-                                .append ("<p>Additional Notes" + ps.getExtraNotes() + "</p>");
+                                .append("<ol>")
+                                .append("<li>")
+                                .append ("<p class=question>What drive train do you have?</p>")
+                                .append ("<p class=answer>").append(ps.getRobotDriveTrain()).append("</p>")
+                                .append("</li>")
+                                .append("<li>")
+                                .append ("<p class=question>How many seasons has your driver been in?</p>")
+                                .append ("<p class=answer>").append(ps.getDriverExperience()).append("</p>")
+                                .append("</li>")
+                                .append("<li>")
+                                .append ("<p class=question>How many seasons has your operator been in?()</p>")
+                                .append ("<p class=answer>").append(ps.getOperatorExperience()).append("</p>")
+                                .append("</li>")
+                                .append("<li>")
+                                .append ("<p class=question>What is your preferred human player position?</p>")
+                                .append ("<p class=answer>").append(ps.getHumanPositionPref()).append("</p>")
+                                .append("</li>")
+                                .append("<li>")
+                                .append ("<p class=question>Additional Notes</p>")
+                                .append ("<p class=answer>").append(ps.getExtraNotes()).append("</p>")
+                                .append("</li>")
+                                .append("</ol>");
+
+
 
                         //outputStream.write(" ");
                     }
