@@ -189,7 +189,7 @@ public class ExportActivity extends EchelonActivity {
                     "<meta name=\"viewport\" content=\"width=device-width, initial-scale=1,0\"/>" +
                     "</head>" +
                     "<body>" +
-                    "<h1> Pit Scout <h1>";
+                    "<h1> Pit Scout </h1>";
             String strEnd = "<script type=\"text/javascript\" src=\"js/materialize.min.js\"></script>" +
                     "</body>" +
                     "</html>";
@@ -208,8 +208,15 @@ public class ExportActivity extends EchelonActivity {
                     FileWriter fw = new FileWriter(file.getAbsoluteFile());
                     BufferedWriter bw = new BufferedWriter(fw);
                     StringBuilder content = new StringBuilder(strBegin);
-
+                    content.append ("<div class=teamlinks>");
                     for(PitScout ps: pitScoutResults){
+                        content.append("<a href=\"#" + ps.getTeamKey().substring(3) + "\">" + ps.getTeamKey().substring(3) + " </a>");
+                    }
+                    content.append ("</div>");
+
+
+
+                        for(PitScout ps: pitScoutResults){
                         content.append( "<a href=\"#" + ps.getTeamKey().substring(3) + " \"><h2 id="+ ps.getTeamKey().substring(3) + " class=team> Team " + ps.getTeamKey().substring(3) + "</h2> </a>")
                                 .append( "<h3 class=tab>Auto</h3>")
                                 .append("<ol>")
@@ -284,6 +291,8 @@ public class ExportActivity extends EchelonActivity {
                                 .append ("<p class=answer>").append(ps.getExtraNotes()).append("</p>")
                                 .append("</li>")
                                 .append("</ol>");
+
+                                content.append ("<a class=totop href=\"#\">Go to top</a>");
 
 
 
