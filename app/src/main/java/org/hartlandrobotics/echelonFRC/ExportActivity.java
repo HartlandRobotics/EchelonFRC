@@ -208,47 +208,27 @@ public class ExportActivity extends EchelonActivity {
                     StringBuilder content = new StringBuilder(strBegin);
 
                     for(PitScout ps: pitScoutResults){
-                        String psData = "<h2>" + ps.getTeamKey() + "</h2>";
-                        content.append(psData);
-                        psData = "<h3>Auto</h3>" ;
-                        content.append(psData);
-                        psData = "<p>Does your team perform autonomous?" + ps.getHasAutonomous() + "</p>";
-                        content.append(psData);
-                        psData = "<p>Would you like help creating one?" + ps.getHelpCreatingAuto() + "</p>";
-                        content.append(psData);
-                        psData = "<p>What programming language do you use?" + ps.getCodingLanguage() + "</p>";
-                        content.append(psData);
-                        psData = "<p>How many points do you score in autonomous?" + ps.getPointsScoredInAuto() + "</p>";
-                        content.append(psData);
+                        content.append( "<h2>" + ps.getTeamKey() + "</h2>")
+                                .append( "<h3>Auto</h3>")
+                                .append ("<p>Does your team perform autonomous?" + ps.getHasAutonomous() + "</p>")
+                                .append ("<p>Would you like help creating one?" + ps.getHelpCreatingAuto() + "</p>")
+                                .append ("<p>What programming language do you use?" + ps.getCodingLanguage() + "</p>")
+                                .append ("<p>How many points do you score in autonomous?" + ps.getPointsScoredInAuto() + "</p>")
 
-                        psData = "<h3>TeleOp</h3>";
-                        content.append(psData);
-                        psData = "<p>Can you pick up off the ground?" + ps.getPickOffGround() + "</p>";
-                        content.append(psData);
-                        psData = "<p>Are you willing to play defense?" + ps.getCanPlayDefense() + "</p>";
-                        content.append(psData);
-                        psData = "<p>What is your preferred scoring method?" + ps.getScoringMethod() + "</p>";
-                        content.append(psData);
+                                .append ( "<h3>TeleOp</h3>")
+                                .append ("<p>Can you pick up off the ground?" + ps.getPickOffGround() + "</p>")
+                                .append ( "<p>Are you willing to play defense?" + ps.getCanPlayDefense() + "</p>")
+                                .append ("<p>What is your preferred scoring method?" + ps.getScoringMethod() + "</p>")
 
-                        psData = "<h3>Endgame</h3>";
-                        content.append(psData);
-                        psData = "<p>How long does it take you to hang?" + ps.getHangTime() + "</p>";
-                        content.append(psData);
+                                .append ("<h3>Endgame</h3>")
+                                .append ("<p>How long does it take you to hang?" + ps.getHangTime() + "</p>")
 
-                        psData = "<h3>Team</h3>";
-                        content.append(psData);
-                        psData = "<p>What drive train do you have?" + ps.getRobotDriveTrain() + "</p>";
-                        content.append(psData);
-                        psData = "<p>How many seasons has your driver been in?" + ps.getDriverExperience() + "</p>";
-                        content.append(psData);
-                        psData = "<p>How many seasons has your operator been in?" + ps.getOperatorExperience() + "</p>";
-                        content.append(psData);
-                        psData = "<p>What is your preferred human player position?" + ps.getHumanPositionPref() + "</p>";
-                        content.append(psData);
-                        psData = "<p>Additional Notes" + ps.getExtraNotes() + "</p>";
-                        content.append(psData);
-
-
+                                .append ("<h3>Team</h3>")
+                                .append ("<p>What drive train do you have?" + ps.getRobotDriveTrain() + "</p>")
+                                .append ("<p>How many seasons has your driver been in?" + ps.getDriverExperience() + "</p>")
+                                .append ("<p>How many seasons has your operator been in?" + ps.getOperatorExperience() + "</p>")
+                                .append ("<p>What is your preferred human player position?" + ps.getHumanPositionPref() + "</p>")
+                                .append ("<p>Additional Notes" + ps.getExtraNotes() + "</p>");
 
                         //outputStream.write(" ");
                     }
