@@ -203,8 +203,6 @@ public class ExportActivity extends EchelonActivity {
             }
             pitScoutViewModel.getPitScoutByEvent(status.getEventKey()).observe(this, pitScoutResults -> {
                 try{
-                    //FileOutputStream outputStream = new FileOutputStream(file);
-
                     FileWriter fw = new FileWriter(file.getAbsoluteFile());
                     BufferedWriter bw = new BufferedWriter(fw);
                     StringBuilder content = new StringBuilder(strBegin);
