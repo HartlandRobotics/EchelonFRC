@@ -15,7 +15,7 @@
             android:id="@+id/pickOffGround"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:checkedButton="@id/offGroundYes"
+            android:checkedButton="@id/offGroundNo"
             android:orientation="horizontal">
 
             <com.google.android.material.textview.MaterialTextView
@@ -25,16 +25,16 @@
                 />
 
             <com.google.android.material.radiobutton.MaterialRadioButton
-                android:id="@+id/offGroundNo"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="No" />
-
-            <com.google.android.material.radiobutton.MaterialRadioButton
                 android:id="@+id/offGroundYes"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Yes" />
+
+            <com.google.android.material.radiobutton.MaterialRadioButton
+                android:id="@+id/offGroundNo"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="No" />
 
         </RadioGroup>
 
