@@ -109,7 +109,7 @@ public class MatchScoutingTeleopActivity extends AppCompatActivity {
         netPoints.setText(String.valueOf(currentResult.result.getTeleOpInt11()));
         humanPlayerPoints.setText(String.valueOf(currentResult.result.getTeleOpInt12()));
 
-        if (currentResult.result.getEndFlag3()){
+        if (currentResult.result.getEndFlag2()){
             endHighHang.setBackgroundTintList(ColorStateList.valueOf(getResources().getColor(secondaryDarkColor)));
             endHighHang.setTextColor(getResources().getColor(buttonSelectedTextColor));
         }
@@ -118,7 +118,7 @@ public class MatchScoutingTeleopActivity extends AppCompatActivity {
             endHighHang.setTextColor(getResources().getColor(secondaryDarkColor));
         }
 
-        if (currentResult.result.getEndFlag2()){
+        if (currentResult.result.getEndFlag3()){
             endLowHang.setBackgroundTintList(ColorStateList.valueOf(getResources().getColor(secondaryDarkColor)));
             endLowHang.setTextColor(getResources().getColor(buttonSelectedTextColor));
         }
@@ -240,11 +240,11 @@ public class MatchScoutingTeleopActivity extends AppCompatActivity {
 
         endHighHang = findViewById(R.id.high_hang);
         endHighHang.setOnClickListener(v-> {
-            currentResult.result.setEndFlag3(!currentResult.result.getEndFlag3());
-            boolean isSelected = currentResult.result.getEndFlag3();
+            currentResult.result.setEndFlag2(!currentResult.result.getEndFlag2());
+            boolean isSelected = currentResult.result.getEndFlag2();
             if (isSelected){
                 currentResult.result.setEndFlag1(false);
-                currentResult.result.setEndFlag2(false);
+                currentResult.result.setEndFlag3(false);
             }
             matchResultViewModel.upsert(currentResult.result);
 
@@ -252,11 +252,11 @@ public class MatchScoutingTeleopActivity extends AppCompatActivity {
 
         endLowHang = findViewById(R.id.low_hang);
         endLowHang.setOnClickListener(v-> {
-            currentResult.result.setEndFlag2(!currentResult.result.getEndFlag2());
-            boolean isSelected = currentResult.result.getEndFlag2();
+            currentResult.result.setEndFlag3(!currentResult.result.getEndFlag3());
+            boolean isSelected = currentResult.result.getEndFlag3();
             if (isSelected){
                 currentResult.result.setEndFlag1(false);
-                currentResult.result.setEndFlag3(false);
+                currentResult.result.setEndFlag2(false);
             }
             matchResultViewModel.upsert(currentResult.result);
         });

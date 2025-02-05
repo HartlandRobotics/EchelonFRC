@@ -309,13 +309,13 @@ public class MatchScoutingSummaryActivity extends AppCompatActivity {
 
         endHighHang = findViewById(R.id.highCheckBox);
         endHighHang.setOnCheckedChangeListener((buttonView, isChecked) -> {
-            currentResult.result.setEndFlag3(isChecked);
+            currentResult.result.setEndFlag2(isChecked);
             populateControlsFromData();
         });
 
         endLowHang = findViewById(R.id.lowCheckBox);
         endLowHang.setOnCheckedChangeListener((buttonView, isChecked) -> {
-            currentResult.result.setEndFlag2(isChecked);
+            currentResult.result.setEndFlag3(isChecked);
             populateControlsFromData();
         });
 
@@ -374,8 +374,8 @@ public class MatchScoutingSummaryActivity extends AppCompatActivity {
         humanPlayer.setText( String.valueOf(currentResult.result.getTeleOpInt12()));
 
         endPark.setChecked(currentResult.result.getEndFlag1());
-        endLowHang.setChecked(currentResult.result.getEndFlag2());
-        endHighHang.setChecked(currentResult.result.getEndFlag3());
+        endLowHang.setChecked(currentResult.result.getEndFlag3());
+        endHighHang.setChecked(currentResult.result.getEndFlag2());
 
         additionalNotesLayout.getEditText().setText(currentResult.result.getAdditionalNotes());
     }
