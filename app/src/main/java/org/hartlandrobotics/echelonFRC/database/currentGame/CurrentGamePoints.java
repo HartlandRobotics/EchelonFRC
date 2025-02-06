@@ -169,6 +169,7 @@ public class CurrentGamePoints {
         teleOpPoints += this.getTeleOp9Points();
         teleOpPoints += this.getTeleOp10Points();
         teleOpPoints += this.getTeleOp11Points();
+        teleOpPoints += this.getTeleOp12Points();
         return teleOpPoints;
     }
 
@@ -181,6 +182,7 @@ public class CurrentGamePoints {
         teleOpCounts += this.getTeleOp9Points();
         teleOpCounts += this.getTeleOp10Points();
         teleOpCounts += this.getTeleOp11Points();
+        teleOpCounts += this.getTeleOp12Points();
         return teleOpCounts;
     }
 

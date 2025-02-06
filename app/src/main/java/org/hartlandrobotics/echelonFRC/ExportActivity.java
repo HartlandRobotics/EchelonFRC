@@ -189,7 +189,7 @@ public class ExportActivity extends EchelonActivity {
                     "<meta name=\"viewport\" content=\"width=device-width, initial-scale=1,0\"/>" +
                     "</head>" +
                     "<body>" +
-                    "<h1> Pit Scout <h1>";
+                    "<h1> Pit Scout </h1>";
             String strEnd = "<script type=\"text/javascript\" src=\"js/materialize.min.js\"></script>" +
                     "</body>" +
                     "</html>";
@@ -208,10 +208,17 @@ public class ExportActivity extends EchelonActivity {
                     FileWriter fw = new FileWriter(file.getAbsoluteFile());
                     BufferedWriter bw = new BufferedWriter(fw);
                     StringBuilder content = new StringBuilder(strBegin);
-
+                    content.append ("<div class=teamlinks>");
                     for(PitScout ps: pitScoutResults){
-                        content.append( "<h2>" + ps.getTeamKey() + "</h2>")
-                                .append( "<h3>Auto</h3>")
+                        content.append("<a href=\"#" + ps.getTeamKey().substring(3) + "\">" + ps.getTeamKey().substring(3) + " </a>");
+                    }
+                    content.append ("</div>");
+
+
+
+                        for(PitScout ps: pitScoutResults){
+                        content.append( "<a href=\"#" + ps.getTeamKey().substring(3) + " \"><h2 id="+ ps.getTeamKey().substring(3) + " class=team> Team " + ps.getTeamKey().substring(3) + "</h2> </a>")
+                                .append( "<h3 class=tab>Auto</h3>")
                                 .append("<ol>")
                                 .append("<li>")
                                 .append ("<p class=question>Does your team perform autonomous?</p>")
@@ -236,7 +243,7 @@ public class ExportActivity extends EchelonActivity {
                                 .append("</li>")
                                 .append("</ol>")
 
-                                .append ( "<h3>TeleOp</h3>")
+                                .append ( "<h3 class=tab>TeleOp</h3>")
                                 .append("<ol>")
                                 .append("<li>")
                                 .append ("<p class=question>Can you pick up off the ground?</p>")
@@ -253,7 +260,7 @@ public class ExportActivity extends EchelonActivity {
                                 .append("</ol>")
 
 
-                                .append ("<h3>Endgame</h3>")
+                                .append ("<h3 class=tab>Endgame</h3>")
                                 .append("<ol>")
                                 .append("<li>")
                                 .append ("<p class=question>How long does it take you to hang?</p>")
@@ -261,7 +268,7 @@ public class ExportActivity extends EchelonActivity {
                                 .append("</li>")
                                 .append("</ol>")
 
-                                .append ("<h3>Team</h3>")
+                                .append ("<h3 class=tab>Team</h3>")
                                 .append("<ol>")
                                 .append("<li>")
                                 .append ("<p class=question>What drive train do you have?</p>")
@@ -284,6 +291,8 @@ public class ExportActivity extends EchelonActivity {
                                 .append ("<p class=answer>").append(ps.getExtraNotes()).append("</p>")
                                 .append("</li>")
                                 .append("</ol>");
+
+                                content.append ("<a class=totop href=\"#\">Go to top</a>");
 
 
 
