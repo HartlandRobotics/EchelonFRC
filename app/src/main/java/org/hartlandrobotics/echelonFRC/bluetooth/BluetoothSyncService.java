@@ -26,7 +26,9 @@ import java.util.stream.Collectors;
 
 public class BluetoothSyncService {
     private static final String TAG = "BluetoothSyncerService";
+
     private static final String SERVICE_NAME = "BluetoothSyncerInsecure";
+
     private static final UUID SERVICE_UUID = UUID.fromString( "a7b92250-830c-4541-a741-23ac168bfd6f" );
 
     // Constants that indicate the current connection state
@@ -103,6 +105,9 @@ public class BluetoothSyncService {
     }
 
     public synchronized void updateState(){
+        if(bluetoothAdapter !=null){
+            Log.e(TAG, "getting state" + String.valueOf(currentState) + " " + String.valueOf(bluetoothAdapter.getState()));
+        }
     }
 
     public synchronized void start() {
@@ -129,11 +134,17 @@ public class BluetoothSyncService {
         if ( currentState == STATE_CONNECTING && connectThread != null ) {
             connectThread.cancel();
             connectThread = null;
+            Log.e(TAG, "connecting state is connecting");
+        }else{
+            Log.e(TAG, "connecting state is not connecting");
         }
 
         if ( connectedThread != null ) {
             connectedThread.cancel();
             connectedThread = null;
+            Log.e(TAG, "connecting thread is not null");
+        }else{
+            Log.e(TAG, "connecting thread is null");
         }
 
         connectThread = new ConnectThread( device );
