@@ -97,6 +97,13 @@ public class BluetoothSyncActivity extends EchelonActivity {
 
     }
 
+    @Override
+    protected void onResume() {
+        super.onResume();
+
+        Log.e(TAG, "onResume  called");
+    }
+
     private void setupData(){
         // only need this if this is a non captain tablet
         BlueAllianceStatus blueAllianceStatus = new BlueAllianceStatus(getApplicationContext());
