@@ -310,25 +310,33 @@ public class MatchScoutingSummaryActivity extends AppCompatActivity {
         endHighHang = findViewById(R.id.highCheckBox);
         endHighHang.setOnCheckedChangeListener((buttonView, isChecked) -> {
             currentResult.result.setEndFlag2(isChecked);
+            if(isChecked){
+                currentResult.result.setEndFlag1(false);
+                currentResult.result.setEndFlag3(false);
+            }
 
-            currentResult.result.setEndFlag1(false);
-            currentResult.result.setEndFlag3(false);
             populateControlsFromData();
         });
 
         endLowHang = findViewById(R.id.lowCheckBox);
         endLowHang.setOnCheckedChangeListener((buttonView, isChecked) -> {
             currentResult.result.setEndFlag3(isChecked);
-            currentResult.result.setEndFlag1(false);
-            currentResult.result.setEndFlag2(false);
+            if(isChecked){
+                currentResult.result.setEndFlag1(false);
+                currentResult.result.setEndFlag2(false);
+            }
+
             populateControlsFromData();
         });
 
         endPark = findViewById(R.id.parkCheckBox);
         endPark.setOnCheckedChangeListener((buttonView, isChecked) -> {
             currentResult.result.setEndFlag1(isChecked);
-            currentResult.result.setEndFlag2(false);
-            currentResult.result.setEndFlag3(false);
+            if(isChecked){
+                currentResult.result.setEndFlag2(false);
+                currentResult.result.setEndFlag3(false);
+            }
+
             populateControlsFromData();
         });
 
