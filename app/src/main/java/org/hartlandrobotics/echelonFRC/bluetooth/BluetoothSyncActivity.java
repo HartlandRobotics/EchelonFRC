@@ -113,7 +113,7 @@ public class BluetoothSyncActivity extends EchelonActivity {
         matchResultViewModel = new ViewModelProvider(this).get(MatchResultViewModel.class);
         matchResultViewModel.getMatchResultsByEvent(blueAllianceStatus.getEventKey()).observe(this, mrList -> {
             logLinesAdapter.addStatusItem("Match results loaded");
-            if( mrList == null || mrList.size() == 0){
+            if( mrList == null || mrList.isEmpty()){
                 matchResults = new ArrayList<>();
                 logLinesAdapter.addStatusItem("No match results on this device");
             } else {
@@ -126,7 +126,7 @@ public class BluetoothSyncActivity extends EchelonActivity {
             matchResultsUnsyncedText.setText( String.valueOf(unsyncedCount));
 
             pitscoutViewModel.getPitScoutByEvent(blueAllianceStatus.getEventKey()).observe(this, psList -> {
-                if( psList == null || psList.size() == 0){
+                if( psList == null || psList.isEmpty()){
                     pitScoutResults = new ArrayList<>();
                     logLinesAdapter.addStatusItem("No pitscout results onthis device");
                 } else {
