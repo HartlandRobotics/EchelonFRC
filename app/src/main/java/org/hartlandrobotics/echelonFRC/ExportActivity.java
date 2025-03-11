@@ -98,8 +98,9 @@ public class ExportActivity extends EchelonActivity {
                             + ",Match_Result_Key"
                             + ", AdditionalNotes\n";
                     outputStream.write(header.getBytes());
+                    int timesRan=0;
                     for (MatchResultWithTeamMatch matchResultWithTeamMatch : matchResults) {
-
+                        timesRan++;
                         MatchResult mr = matchResultWithTeamMatch.matchResult;
                         Match m = matchResultWithTeamMatch.match;
                         Team t = matchResultWithTeamMatch.team;
@@ -141,7 +142,13 @@ public class ExportActivity extends EchelonActivity {
 
                         dataForFile.add(String.valueOf(mr.getDefenseCount()));
                         dataForFile.add(mr.getMatchResultKey());
-                        dataForFile.add(StringEscapeUtils.escapeCsv( mr.getAdditionalNotes() ));
+                        dataForFile.add(StringEscapeUtils.escapeCsv(
+                                mr.getAdditionalNotes()
+                                        .replaceAll(",",".")
+                                        .replaceAll("\"",StringUtils.EMPTY)
+                                        .replaceAll("\n",StringUtils.EMPTY)
+                                        .replaceAll("'",StringUtils.EMPTY)
+                        ));
 
                         String outputString = dataForFile.stream().collect(Collectors.joining(",")) + "\n";
                         outputStream.write(outputString.getBytes());

@@ -183,7 +183,7 @@ public class MatchResult {
         this.endFlag4 = endFlag4;
         this.endFlag5 = endFlag5;
 
-        this.additionalNotes = additionalNotes;
+        this.additionalNotes = additionalNotes.replaceAll(",",".").replaceAll("\"",StringUtils.EMPTY).replaceAll("\n",StringUtils.EMPTY);
         this.defenseCount = defenseCount;
     }
 
@@ -281,13 +281,14 @@ public class MatchResult {
         if(StringUtils.isBlank(additionalNotes)){
             additionalNotes = "empty";
         }
-        return additionalNotes;
+        return additionalNotes.replaceAll(",",".");
     }
     public void setAdditionalNotes( String additionalNotes ){
         if(StringUtils.isBlank(additionalNotes)){
             additionalNotes = "empty";
         }
-        this.additionalNotes = additionalNotes;
+        this.additionalNotes = additionalNotes.replaceAll(",",".");
+
     }
 
     public int getDefenseCount(){ return defenseCount; }
