@@ -151,7 +151,9 @@ public class PitScoutPhotosFragment extends Fragment {
 //        robotImagesPager.setAdapter(robotImageAdapter);
         teamNumber = Integer.parseInt( trimTeamNumber(data.getTeamKey() ) );
 
-        robotImageAdapter = new RobotImage(getActivity().getApplicationContext(), teamNumber);
+        robotImageAdapter = new RobotImage
+                //(getParentFragment().getContext(), teamNumber);
+                (getActivity().getApplicationContext(), teamNumber);
         robotImagesPager.setAdapter(robotImageAdapter);
         robotImageAdapter.notifyDataSetChanged();
 
