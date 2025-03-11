@@ -12,8 +12,10 @@ import android.widget.Toast;
 import androidx.annotation.RequiresApi;
 import androidx.lifecycle.ViewModelProvider;
 
-import org.apache.commons.lang3.BooleanUtils;
+
+import org.apache.commons.lang3.StringEscapeUtils;
 import org.apache.commons.lang3.StringUtils;
+//import org.apache.commons.text.StringEscapeUtils;
 import org.hartlandrobotics.echelonFRC.database.entities.Match;
 import org.hartlandrobotics.echelonFRC.database.entities.MatchResult;
 import org.hartlandrobotics.echelonFRC.database.entities.MatchResultWithTeamMatch;
@@ -139,7 +141,7 @@ public class ExportActivity extends EchelonActivity {
 
                         dataForFile.add(String.valueOf(mr.getDefenseCount()));
                         dataForFile.add(mr.getMatchResultKey());
-                        dataForFile.add(mr.getAdditionalNotes());
+                        dataForFile.add(StringEscapeUtils.escapeCsv( mr.getAdditionalNotes() ));
 
                         String outputString = dataForFile.stream().collect(Collectors.joining(",")) + "\n";
                         outputStream.write(outputString.getBytes());
@@ -323,44 +325,55 @@ public class ExportActivity extends EchelonActivity {
         for(int lineIndex = 1; lineIndex < inputLines.size(); lineIndex++){
             timesRan++;
             String currentLine = inputLines.get(lineIndex);
+            if( !StringUtils.isBlank(currentLine)){
             String[] columns = currentLine.split(",");
+
+            String header = "Event_Key,Match_Key,Team_Key,Match_Number,Team_Number"
+                    + ",AutoFlag1 ,AutoFlag2, AutoFlag3, AutoFlag4, AutoFlag5"
+                    + ",AutoInt6, AutoInt7, AutoInt8, AutoInt9, AutoInt10, AutoInt11"
+                    + ",TeleOpInt6, TeleOpInt7,TeleOpInt8, TeleOpInt9, TeleOpInt10,TeleOpInt11,TeleOpInt12"
+                    + ",EndFlag1,EndFlag2,EndInt3,EndFlag4, EndFlag5"
+                    + ",DefensesCount"
+                    + ",Match_Result_Key"
+                    + ", AdditionalNotes\n";
 
             String eventKey = columns[0];
             String matchKey = columns[1];
             String teamKey = columns[2];
-            int matchNum = Integer.parseInt(columns[3]);
-            int teamNum = Integer.parseInt(columns[4]);
+            //int matchNum = Integer.parseInt(columns[3]);
+            //int teamNum = Integer.parseInt(columns[4]);
 
-            String AutoFlag1 = columns[5];
-            String AutoFlag2 = columns[6];
-            String AutoFlag3 = columns[7];
-            String AutoFlag4 = columns[8];
-            String AutoFlag5 = columns[9];
-            String AutoInt6 = columns[10];
-            String AutoInt7 = columns[11];
-            String AutoInt8 = columns[12];
-            String AutoInt9 = columns[13];
-            String AutoInt10 = columns[14];
-            String AutoInt11 = columns[15];
+            String AutoFlag1 = StringUtils.defaultIfBlank( columns[5],"false");
+            String AutoFlag2 = StringUtils.defaultIfBlank( columns[6],"false");
+            String AutoFlag3 = StringUtils.defaultIfBlank( columns[7],"false");
+            String AutoFlag4 = StringUtils.defaultIfBlank( columns[8],"false");
+            String AutoFlag5 = StringUtils.defaultIfBlank( columns[9],"false");
 
-            String TeleOpInt6 = columns[16];
-            String TeleOpInt7 = columns[17];
-            String TeleOpInt8 = columns[18];
-            String TeleOpInt9 = columns[19];
-            String TeleOpInt10 = columns[20];
-            String TeleOpInt11 = columns[21];
-            String TeleOpInt12 = columns[22];
+            String AutoInt6 = StringUtils.defaultIfBlank( columns[10],"0");
+            String AutoInt7 = StringUtils.defaultIfBlank( columns[11],"0");
+            String AutoInt8 = StringUtils.defaultIfBlank( columns[12],"0");
+            String AutoInt9 = StringUtils.defaultIfBlank( columns[13],"0");
+            String AutoInt10 = StringUtils.defaultIfBlank( columns[14],"0");
+            String AutoInt11 = StringUtils.defaultIfBlank( columns[15],"0");
 
-            String EndFlag1 = columns[23];
-            String EndFlag2 = columns[24];
-            String EndFlag3 = columns[25];
-            String EndFlag4 = columns[26];
-            String EndFlag5 = columns[27];
+            String TeleOpInt6 = StringUtils.defaultIfBlank( columns[16],"0");
+            String TeleOpInt7 = StringUtils.defaultIfBlank( columns[17],"0");
+            String TeleOpInt8 = StringUtils.defaultIfBlank( columns[18],"0");
+            String TeleOpInt9 = StringUtils.defaultIfBlank( columns[19],"0");
+            String TeleOpInt10 = StringUtils.defaultIfBlank( columns[20],"0");
+            String TeleOpInt11 = StringUtils.defaultIfBlank( columns[21],"0");
+            String TeleOpInt12 = StringUtils.defaultIfBlank( columns[22],"0");
 
-            String teleDef =columns[28];
+            String EndFlag1 = StringUtils.defaultIfBlank( columns[23],"false");
+            String EndFlag2 = StringUtils.defaultIfBlank( columns[24],"false");
+            String EndFlag3 = StringUtils.defaultIfBlank( columns[25],"false");
+            String EndFlag4 = StringUtils.defaultIfBlank( columns[26],"false");
+            String EndFlag5 = StringUtils.defaultIfBlank( columns[27],"false");
+
+            String teleDef = StringUtils.defaultIfBlank( columns[28],"0");
 
             String matchResultKey = columns[29];
-            String AdditionalNotes = columns[30];
+            String AdditionalNotes = StringUtils.defaultIfBlank( columns[30],"empty");
 
             MatchResult matchResult = new MatchResult(
                     matchResultKey,
@@ -400,6 +413,7 @@ public class ExportActivity extends EchelonActivity {
                     Integer.parseInt(teleDef)
                  );
             matchResultViewModel.upsert(matchResult);
+        }
         }
         Log.e(this.getLocalClassName(), "Times ran: " + timesRan);
     }
