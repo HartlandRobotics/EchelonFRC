@@ -174,18 +174,24 @@ public class MatchScoutingAutoActivity extends AppCompatActivity {
         autoRightBlue = findViewById(R.id.auto_right_blue);
         autoRightBlue.setOnClickListener(v -> {
             currentResult.result.setAutoFlag2( !(currentResult.result.getAutoFlag2()  ));
+            currentResult.result.setAutoFlag3(false);
+            currentResult.result.setAutoFlag4(false);
             populateControlsFromData();
         });
 
         autoCenterBlue = findViewById(R.id.auto_center_blue);
         autoCenterBlue.setOnClickListener(v -> {
             currentResult.result.setAutoFlag3( !(currentResult.result.getAutoFlag3()  ));
+            currentResult.result.setAutoFlag2(false);
+            currentResult.result.setAutoFlag4(false);
             populateControlsFromData();
         });
 
         autoLeftBlue = findViewById(R.id.auto_left_blue);
         autoLeftBlue.setOnClickListener(v -> {
             currentResult.result.setAutoFlag4( !(currentResult.result.getAutoFlag4()  ));
+            currentResult.result.setAutoFlag3(false);
+            currentResult.result.setAutoFlag2(false);
             populateControlsFromData();
         });
 
