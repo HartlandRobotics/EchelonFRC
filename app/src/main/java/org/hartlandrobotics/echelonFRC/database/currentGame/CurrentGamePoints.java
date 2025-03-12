@@ -65,7 +65,7 @@ public class CurrentGamePoints {
 
     public int getAuto2Points(){
         if( result == null ) return 0;
-        return result.getAutoFlag2() ? 1:0;
+        return 0;
     }
 
     public int getAuto3Counts(){
@@ -76,7 +76,7 @@ public class CurrentGamePoints {
     public int getAuto3Points(){
         if( result == null ) return 0;
 
-        return result.getAutoFlag3() ? 1:0;
+        return 0;
     }
 
     public int getAuto4Counts(){
@@ -86,7 +86,7 @@ public class CurrentGamePoints {
     public int getAuto4Points(){
         if( result == null ) return 0;
 
-        return result.getAutoFlag4() ? 1:0;
+        return 0;
     }
 
     public int getAuto5Counts(){

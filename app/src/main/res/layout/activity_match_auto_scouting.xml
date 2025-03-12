@@ -249,6 +249,123 @@
         android:layout_marginTop="25dp"
         />
 
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/auto_left_red"
+        android:layout_width="175dp"
+        android:layout_height="wrap_content"
+        android:backgroundTint="@color/redAlliance"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/auto_center_red"
+        app:layout_constraintRight_toRightOf="@id/auto_right_red"
+        app:layout_constraintLeft_toLeftOf="@id/auto_right_red"
+        android:visibility="gone"
+        android:text="Left"
+        />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/auto_center_red"
+        android:layout_width="175dp"
+        android:layout_height="wrap_content"
+        android:backgroundTint="@color/redAlliance"
+        app:layout_constraintTop_toBottomOf="@id/auto_left_red"
+        app:layout_constraintBottom_toTopOf="@id/auto_right_red"
+        app:layout_constraintRight_toRightOf="@id/auto_right_red"
+        app:layout_constraintLeft_toLeftOf="@id/auto_right_red"
+        android:layout_marginTop="5dp"
+        android:layout_marginHorizontal="5dp"
+        android:visibility="gone"
+        android:text="Center"
+
+        />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/auto_right_red"
+        android:layout_width="170dp"
+        android:layout_height="wrap_content"
+        android:backgroundTint="@color/redAlliance"
+        app:layout_constraintBottom_toTopOf="@id/net"
+        app:layout_constraintTop_toBottomOf="@id/auto_center_red"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintLeft_toRightOf="@id/processor"
+        android:layout_marginTop="5dp"
+        android:layout_marginHorizontal="5dp"
+        android:visibility="gone"
+        android:text="Right"
+        />
+
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/red_drivers_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toTopOf="@id/auto_center_red"
+        app:layout_constraintLeft_toRightOf="@+id/processor"
+        app:layout_constraintRight_toLeftOf="@id/auto_center_red"
+        app:layout_constraintBottom_toBottomOf="@id/auto_center_red"
+        android:layout_marginBottom="25dp"
+        android:textSize="32sp"
+        tools:text="Drivers"
+        android:visibility="gone"
+        android:layout_marginTop="25dp"
+        />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/auto_right_blue"
+        android:layout_width="175dp"
+        android:layout_height="wrap_content"
+        android:backgroundTint="@color/blueAlliance"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/auto_center_blue"
+        app:layout_constraintRight_toRightOf="@id/auto_left_blue"
+        app:layout_constraintLeft_toLeftOf="@id/auto_left_blue"
+        android:visibility="visible"
+        android:text="Right"
+        />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/auto_center_blue"
+        android:layout_width="175dp"
+        android:layout_height="wrap_content"
+        android:backgroundTint="@color/blueAlliance"
+        app:layout_constraintTop_toBottomOf="@id/auto_right_blue"
+        app:layout_constraintBottom_toTopOf="@id/auto_left_blue"
+        app:layout_constraintRight_toRightOf="@id/auto_left_blue"
+        app:layout_constraintLeft_toLeftOf="@id/auto_left_blue"
+        android:layout_marginTop="5dp"
+        android:layout_marginHorizontal="5dp"
+        android:visibility="visible"
+        android:text="Center"
+
+        />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/auto_left_blue"
+        android:layout_width="170dp"
+        android:layout_height="wrap_content"
+        android:backgroundTint="@color/blueAlliance"
+        app:layout_constraintBottom_toTopOf="@id/net"
+        app:layout_constraintTop_toBottomOf="@id/auto_center_blue"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintLeft_toRightOf="@id/processor"
+        android:layout_marginTop="5dp"
+        android:layout_marginHorizontal="5dp"
+        android:visibility="visible"
+        android:text="Left"
+        />
+
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/drivers_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toTopOf="@id/auto_center_blue"
+        app:layout_constraintLeft_toRightOf="@+id/auto_center_blue"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintBottom_toBottomOf="@id/auto_center_blue"
+        android:textSize="32sp"
+        tools:text="Drivers"
+        android:visibility="visible"
+        android:layout_marginTop="25dp"
+        />
+
     <ImageButton
         android:id="@+id/net"
         android:layout_width="wrap_content"
