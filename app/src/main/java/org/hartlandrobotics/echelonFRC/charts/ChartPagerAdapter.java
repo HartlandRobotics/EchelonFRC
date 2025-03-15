@@ -30,11 +30,13 @@ public class ChartPagerAdapter extends FragmentStateAdapter {
     private static final int TREND_AUTO_POSITION = 1;
     private static final int TREND_TELEOP_POSITION = 2;
     private static final int TREND_ENDGAME_POSITION = 3;
+    private static final int ALLIANCE_SELECTION_POSITION = 4;
 
     private ChartAggAverageFragment aggAverageFragment;
     private ChartAutoTrendFragment chartAutoTrendFragment;
     private ChartTeleOpTrendFragment chartTeleOpTrendFragment;
     private ChartEndGameTrendFragment chartEndGameTrendFragment;
+    private AllianceSelectionFragment allianceSelectionFragment;
     private List<TeamListViewModel> allTeamNumbers;
 
     public ChartPagerAdapter(@NonNull FragmentManager fragmentManager, Lifecycle lifecycle) {
@@ -43,11 +45,12 @@ public class ChartPagerAdapter extends FragmentStateAdapter {
 
     private Map<Integer, String> titleByPosition = new HashMap<>();
     public String getTabTitle(int position){
-        if( titleByPosition.size() == 0 ){
+        if(titleByPosition.isEmpty()){
             titleByPosition.put(0,"Average Points");
             titleByPosition.put(1,"Trend Auto");
             titleByPosition.put(2, "Trend TeleOp");
             titleByPosition.put(3, "Trend EndGame");
+            titleByPosition.put(4,"Alliance Selection");
         }
         return titleByPosition.get(position);
     }
@@ -72,6 +75,11 @@ public class ChartPagerAdapter extends FragmentStateAdapter {
                 Log.i(TAG, "creating new EndGame Fragment");
                 chartEndGameTrendFragment = new ChartEndGameTrendFragment();
                 return chartEndGameTrendFragment;
+            case ALLIANCE_SELECTION_POSITION:
+                Log.i(TAG, "creating new Alliance Selection Fragment");
+                allianceSelectionFragment = new AllianceSelectionFragment();
+                return chartEndGameTrendFragment;
+
             default:
                 throw new IllegalArgumentException("invalid tab selection for charts activity");
         }
@@ -84,7 +92,7 @@ public class ChartPagerAdapter extends FragmentStateAdapter {
 
     @Override
     public int getItemCount() {
-        return 4;
+        return 5;
     }
 
     public void updateFragmentData(List<TeamListViewModel> allTeamNumbers, List<ChartsActivity.TeamDataViewModel> allTeamData) {
