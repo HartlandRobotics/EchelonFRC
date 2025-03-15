@@ -78,7 +78,7 @@ public class ChartPagerAdapter extends FragmentStateAdapter {
             case ALLIANCE_SELECTION_POSITION:
                 Log.i(TAG, "creating new Alliance Selection Fragment");
                 allianceSelectionFragment = new AllianceSelectionFragment();
-                return chartEndGameTrendFragment;
+                return allianceSelectionFragment;
 
             default:
                 throw new IllegalArgumentException("invalid tab selection for charts activity");
@@ -114,6 +114,10 @@ public class ChartPagerAdapter extends FragmentStateAdapter {
 
         if( chartEndGameTrendFragment != null){
             chartEndGameTrendFragment.setData(allTeamNumbers);
+        }
+
+        if(allianceSelectionFragment != null){
+            allianceSelectionFragment.setData(allTeamNumbers);
         }
 
 
