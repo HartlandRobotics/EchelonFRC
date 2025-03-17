@@ -50,11 +50,11 @@ public class MatchScoutingAutoActivity extends AppCompatActivity {
     private MaterialButton autoRightBlue;
     private MaterialButton autoCenterBlue;
     private MaterialButton autoLeftBlue;
-    private MaterialTextView driversText;
+    private MaterialButton driversText;
     private MaterialButton autoLeftRed;
     private MaterialButton autoCenterRed;
     private MaterialButton autoRightRed;
-    private MaterialTextView redDriversText;
+    private MaterialButton redDriversText;
 
     private int buttonColor;
     private int buttonSelectedTextColor;
