@@ -1,14 +1,19 @@
 package org.hartlandrobotics.echelonFRC.matchScouting;
 
+import androidx.annotation.DrawableRes;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.ViewModelProvider;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
 import android.content.res.ColorStateList;
+import android.graphics.drawable.Drawable;
+import android.media.Image;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 
 import com.google.android.material.button.MaterialButton;
 import com.google.android.material.textview.MaterialTextView;
@@ -50,11 +55,11 @@ public class MatchScoutingAutoActivity extends AppCompatActivity {
     private MaterialButton autoRightBlue;
     private MaterialButton autoCenterBlue;
     private MaterialButton autoLeftBlue;
-    private MaterialTextView driversText;
+    private ImageButton driversText;
     private MaterialButton autoLeftRed;
     private MaterialButton autoCenterRed;
     private MaterialButton autoRightRed;
-    private MaterialTextView redDriversText;
+    private ImageButton redDriversText;
 
     private int buttonColor;
     private int buttonSelectedTextColor;
@@ -170,6 +175,7 @@ public class MatchScoutingAutoActivity extends AppCompatActivity {
 
     }
 
+    @SuppressLint({"ResourceType", "UseCompatLoadingForDrawables"})
     public void preSetupControls(){
         autoRightBlue = findViewById(R.id.auto_right_blue);
         autoRightBlue.setOnClickListener(v -> {
@@ -195,8 +201,6 @@ public class MatchScoutingAutoActivity extends AppCompatActivity {
             populateControlsFromData();
         });
 
-        driversText = findViewById(R.id.drivers_text);
-
         autoLeftRed = findViewById(R.id.auto_left_red);
         autoLeftRed.setOnClickListener(v -> {
             currentResult.result.setAutoFlag4( !(currentResult.result.getAutoFlag4()  ));
@@ -216,6 +220,9 @@ public class MatchScoutingAutoActivity extends AppCompatActivity {
         });
 
         redDriversText = findViewById(R.id.red_drivers_text);
+
+        driversText = findViewById(R.id.drivers_text);
+
     }
     public void setupControls(){
 

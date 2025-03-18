@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:weightSum="100"
+    tools:context=".charts.ChartAutoTrendFragment"
+    >
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:weightSum="100"
+        tools:context=".charts.ChartAutoTrendFragment"
+        >
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/team1Selection"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="25"
+            android:hint="Select Team"
+            android:paddingTop="2dp"
+            >
+
+            <AutoCompleteTextView
+                android:id="@+id/team1SelectionAutoComplete"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="none"
+                />
+        </com.google.android.material.textfield.TextInputLayout>
+
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/team2Selection"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_weight="25"
+        android:hint="Select Team"
+        android:paddingTop="2dp"
+        >
+
+        <AutoCompleteTextView
+            android:id="@+id/team2SelectionAutoComplete"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="none"
+            />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/team3Selection"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_weight="25"
+        android:hint="Select Team"
+        android:paddingTop="2dp"
+        >
+
+        <AutoCompleteTextView
+            android:id="@+id/team3SelectionAutoComplete"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="none"
+            />
+    </com.google.android.material.textfield.TextInputLayout>
+
+
+    <ListView
+        android:id="@+id/team_list"
+        android:layout_width="0dp"
+        android:layout_height="85dp"
+        android:layout_weight="25"
+        tools:listitem="@layout/list_item_alliance_selection"
+        />
+
+</LinearLayout>
+
+</LinearLayout>
