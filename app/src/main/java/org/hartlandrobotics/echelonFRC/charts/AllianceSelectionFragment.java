@@ -6,6 +6,9 @@ import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.DividerItemDecoration;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -22,8 +25,11 @@ import android.widget.ListView;
 import com.google.android.material.checkbox.MaterialCheckBox;
 import com.google.android.material.textview.MaterialTextView;
 
+import org.hartlandrobotics.echelonFRC.MatchScheduleActivity;
 import org.hartlandrobotics.echelonFRC.R;
+import org.hartlandrobotics.echelonFRC.database.entities.MatchResult;
 
+import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -39,6 +45,10 @@ public class AllianceSelectionFragment extends Fragment {
     private ListViewItemCheckboxBaseAdapter teamListAdapter;
 
     private List<TeamListViewModel> allTeamNumbers;
+    private List<ChartsActivity.TeamDataViewModel> allTeamData;
+
+    RecyclerView teamRecycler;
+
 
     public AllianceSelectionFragment() {
         // Required empty public constructor
@@ -97,13 +107,17 @@ public class AllianceSelectionFragment extends Fragment {
         //teamNumberRecycler.setLayoutManager(new LinearLayoutManager(getActivity()));
         teamNumberListView.setAdapter(teamListAdapter);
 
+        teamRecycler = view.findViewById(R.id.team_recycler);
 
-        setData(((ChartsActivity)getActivity()).getAllTeamNumbers());
+
+
+        setData(((ChartsActivity)getActivity()).getAllTeamNumbers(), ((ChartsActivity)getActivity()).allTeamsData);
+
 
         setupDropDown();
     }
 
-    public void setData(List<TeamListViewModel> allTeamNumbers){
+    public void setData(List<TeamListViewModel> allTeamNumbers, List<ChartsActivity.TeamDataViewModel> allTeamData){
         sortedTeamNumbers = allTeamNumbers.stream()
                 .sorted(Comparator.comparingInt(TeamListViewModel::getTeamInteger))
                 .map(TeamListViewModel::getTeamNumber)
@@ -112,6 +126,15 @@ public class AllianceSelectionFragment extends Fragment {
         this.allTeamNumbers = allTeamNumbers;
         teamListAdapter.setTeams(allTeamNumbers);
         teamListAdapter.notifyDataSetChanged();
+
+        matchListAdapter = new MatchScheduleActivity.MatchListAdapter(this);
+
+        this.allTeamData = allTeamData;
+        teamRecycler.setLayoutManager(new LinearLayoutManager(this));
+        teamRecycler.setAdapter(matchListAdapter);
+        teamRecycler.addItemDecoration(new DividerItemDecoration(this, LinearLayoutManager.VERTICAL));
+
+
 
     }
 

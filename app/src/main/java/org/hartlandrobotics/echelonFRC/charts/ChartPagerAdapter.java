@@ -117,7 +117,7 @@ public class ChartPagerAdapter extends FragmentStateAdapter {
         }
 
         if(allianceSelectionFragment != null){
-            allianceSelectionFragment.setData(allTeamNumbers);
+            allianceSelectionFragment.setData(allTeamNumbers,allTeamData);
         }
 
 
