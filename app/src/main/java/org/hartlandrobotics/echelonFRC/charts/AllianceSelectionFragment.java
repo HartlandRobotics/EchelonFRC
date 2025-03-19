@@ -54,6 +54,7 @@ public class AllianceSelectionFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view= inflater.inflate(R.layout.fragment_alliance_selection, container, false);
+
         teamNumber1AutoComplete = view.findViewById(R.id.team1SelectionAutoComplete);
         teamNumber1AutoComplete.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
@@ -89,6 +90,14 @@ public class AllianceSelectionFragment extends Fragment {
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState){
+        super.onViewCreated(view, savedInstanceState);
+
+        teamListAdapter = new ListViewItemCheckboxBaseAdapter(getContext());
+        teamNumberListView = view.findViewById(R.id.team_list);
+        //teamNumberRecycler.setLayoutManager(new LinearLayoutManager(getActivity()));
+        teamNumberListView.setAdapter(teamListAdapter);
+
+
         setData(((ChartsActivity)getActivity()).getAllTeamNumbers());
 
         setupDropDown();
@@ -99,6 +108,11 @@ public class AllianceSelectionFragment extends Fragment {
                 .sorted(Comparator.comparingInt(TeamListViewModel::getTeamInteger))
                 .map(TeamListViewModel::getTeamNumber)
                 .collect(Collectors.toList());
+
+        this.allTeamNumbers = allTeamNumbers;
+        teamListAdapter.setTeams(allTeamNumbers);
+        teamListAdapter.notifyDataSetChanged();
+
     }
 
     public void setupDropDown(){
@@ -106,6 +120,7 @@ public class AllianceSelectionFragment extends Fragment {
             Log.i("AllianceSelectionFragment", "No teams");
             return;
         }
+
         Log.i("AllianceSelectionFragment", "setupDropDown with" + sortedTeamNumbers.size() + "teams");
         ArrayAdapter teamNumber1Adapter = new ArrayAdapter(getContext(), R.layout.dropdown_item, sortedTeamNumbers);
         teamNumber1AutoComplete.setAdapter(teamNumber1Adapter);
@@ -113,6 +128,7 @@ public class AllianceSelectionFragment extends Fragment {
         teamNumber2AutoComplete.setAdapter(teamNumber2Adapter);
         ArrayAdapter teamNumber3Adapter = new ArrayAdapter(getContext(), R.layout.dropdown_item, sortedTeamNumbers);
         teamNumber3AutoComplete.setAdapter(teamNumber3Adapter);
+
     }
 
     public class ListViewItemCheckboxBaseAdapter extends BaseAdapter {

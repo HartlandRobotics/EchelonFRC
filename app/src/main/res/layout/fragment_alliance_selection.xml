@@ -12,7 +12,7 @@
     <LinearLayout
         android:orientation="horizontal"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         android:weightSum="100"
         tools:context=".charts.ChartAutoTrendFragment"
         >
@@ -76,7 +76,7 @@
     <ListView
         android:id="@+id/team_list"
         android:layout_width="0dp"
-        android:layout_height="85dp"
+        android:layout_height="wrap_content"
         android:layout_weight="25"
         tools:listitem="@layout/list_item_alliance_selection"
         />
