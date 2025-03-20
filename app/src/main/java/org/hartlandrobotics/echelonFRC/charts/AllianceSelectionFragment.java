@@ -6,9 +6,6 @@ import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-import androidx.recyclerview.widget.DividerItemDecoration;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
 
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -25,11 +22,10 @@ import android.widget.ListView;
 import com.google.android.material.checkbox.MaterialCheckBox;
 import com.google.android.material.textview.MaterialTextView;
 
+import org.apache.commons.lang3.StringUtils;
 import org.hartlandrobotics.echelonFRC.MatchScheduleActivity;
 import org.hartlandrobotics.echelonFRC.R;
-import org.hartlandrobotics.echelonFRC.database.entities.MatchResult;
 
-import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -44,10 +40,14 @@ public class AllianceSelectionFragment extends Fragment {
     private ListView teamNumberListView;
     private ListViewItemCheckboxBaseAdapter teamListAdapter;
 
+    private ListView teamDataListView;
+    private ListDataViewItemBaseAdapter teamDataListAdapter;
+
+
     private List<TeamListViewModel> allTeamNumbers;
     private List<ChartsActivity.TeamDataViewModel> allTeamData;
 
-    RecyclerView teamRecycler;
+
 
 
     public AllianceSelectionFragment() {
@@ -70,8 +70,10 @@ public class AllianceSelectionFragment extends Fragment {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id){
                 Log.i("AllianceSelectionFragment", "item clicked");
+                if(position != 0){
                 String teamNumber = sortedTeamNumbers.get(position);
                 teamData = ((ChartsActivity) getActivity()).getTeamData(teamNumber);
+                }
             }
         });
 
@@ -104,11 +106,11 @@ public class AllianceSelectionFragment extends Fragment {
 
         teamListAdapter = new ListViewItemCheckboxBaseAdapter(getContext());
         teamNumberListView = view.findViewById(R.id.team_list);
-        //teamNumberRecycler.setLayoutManager(new LinearLayoutManager(getActivity()));
         teamNumberListView.setAdapter(teamListAdapter);
 
-        teamRecycler = view.findViewById(R.id.team_recycler);
-
+        teamDataListAdapter = new ListDataViewItemBaseAdapter(getContext());
+        teamDataListView = view.findViewById(R.id.team_data_listview);
+        teamDataListView.setAdapter(teamDataListAdapter);
 
 
         setData(((ChartsActivity)getActivity()).getAllTeamNumbers(), ((ChartsActivity)getActivity()).allTeamsData);
@@ -122,18 +124,18 @@ public class AllianceSelectionFragment extends Fragment {
                 .sorted(Comparator.comparingInt(TeamListViewModel::getTeamInteger))
                 .map(TeamListViewModel::getTeamNumber)
                 .collect(Collectors.toList());
+        sortedTeamNumbers.add(0,StringUtils.EMPTY);
 
         this.allTeamNumbers = allTeamNumbers;
         teamListAdapter.setTeams(allTeamNumbers);
         teamListAdapter.notifyDataSetChanged();
 
-        matchListAdapter = new MatchScheduleActivity.MatchListAdapter(this);
+
+                //new MatchScheduleActivity.MatchListAdapter(this);
 
         this.allTeamData = allTeamData;
-        teamRecycler.setLayoutManager(new LinearLayoutManager(this));
-        teamRecycler.setAdapter(matchListAdapter);
-        teamRecycler.addItemDecoration(new DividerItemDecoration(this, LinearLayoutManager.VERTICAL));
-
+        teamDataListAdapter.setTeamsData(allTeamData);
+        teamDataListAdapter.notifyDataSetChanged();
 
 
     }
@@ -206,4 +208,63 @@ public class AllianceSelectionFragment extends Fragment {
             return rowView;
         };
     }
+    public class ListDataViewItemBaseAdapter extends BaseAdapter {
+        Context context;
+        List<ChartsActivity.TeamDataViewModel> teamDataViewModels;
+
+        public ListDataViewItemBaseAdapter(Context context) {
+            this.context = context;
+        }
+
+        public void setTeamsData(List<ChartsActivity.TeamDataViewModel> teamDataViewModels) {
+            this.teamDataViewModels = teamDataViewModels;
+        }
+
+        @Override
+        public int getCount() {
+            if( this.teamDataViewModels == null ) return 0;
+            return this.teamDataViewModels.size();
+        }
+
+        @Override
+        public ChartsActivity.TeamDataViewModel getItem(int index) {
+            return this.teamDataViewModels.get(index);
+        }
+
+        @Override
+        public long getItemId(int position) {
+            return position;
+        }
+
+        public View getView(int position,View view,ViewGroup parent) {
+            LayoutInflater inflater=getActivity().getLayoutInflater();
+            View rowView=inflater.inflate(R.layout.list_item_alliance_selection_team_data, null,true);
+
+            MaterialTextView teamNumberText = rowView.findViewById(R.id.team_number);
+            //MaterialCheckBox teamSelectedCheckBox = rowView.findViewById(R.id.team_visible);
+
+            ChartsActivity.TeamDataViewModel teamListDataViewModel = teamDataViewModels.get(position);
+            int theTeamNumber = teamListDataViewModel.getTeamNumber();
+            teamNumberText.setText( String.valueOf(theTeamNumber) );
+            int i;
+            i=10;
+            //teamNumber.setText(teamListViewModel.getTeamNumber());
+            //teamSelectedCheckBox.setChecked(teamListViewModel.getIsSelected());
+            //teamSelectedCheckBox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            //    @Override
+            //    public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+            //        ViewParent layoutViewParent = buttonView.getParent();
+            //        ListView listView =  (ListView) layoutViewParent.getParent();
+            //        int position = listView.getPositionForView(buttonView);
+            //        teamViewModels.get(position).setIsSelected(isChecked);
+
+                    //setVisibleTeams();
+            //    }
+            //});
+            return rowView;
+        };
+
+
+    }
+
 }

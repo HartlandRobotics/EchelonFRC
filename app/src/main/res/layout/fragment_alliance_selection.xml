@@ -81,20 +81,20 @@
     android:layout_gravity="end"
     >
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/team_recycler"
+    <ListView
+        android:id="@+id/team_data_listview"
         android:layout_width="0dp"
-        android:layout_height="0dp"
+        android:layout_height="wrap_content"
         tools:listitem="@layout/list_item_alliance_selection_team_data"
         android:layout_weight="40"
-
+        android:divider="@null"
         />
 
     <ListView
         android:id="@+id/team_list"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_weight="25"
+        android:layout_weight="10"
         tools:listitem="@layout/list_item_alliance_selection"
         />
 
