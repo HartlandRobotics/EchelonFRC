@@ -30,6 +30,8 @@ import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
 
+
+
 public class AllianceSelectionFragment extends Fragment {
     private AutoCompleteTextView teamNumber1AutoComplete;
     private AutoCompleteTextView teamNumber2AutoComplete;
@@ -241,13 +243,46 @@ public class AllianceSelectionFragment extends Fragment {
             View rowView=inflater.inflate(R.layout.list_item_alliance_selection_team_data, null,true);
 
             MaterialTextView teamNumberText = rowView.findViewById(R.id.team_number);
+            MaterialTextView autoNumberText = rowView.findViewById(R.id.autoNumber);
+            MaterialTextView teleOpNumberText = rowView.findViewById(R.id.teleOpNumber);
+            MaterialTextView endGameNumberText = rowView.findViewById(R.id.endGameNumber);
+            MaterialTextView totalNumberText = rowView.findViewById(R.id.totalNumber);
+
             //MaterialCheckBox teamSelectedCheckBox = rowView.findViewById(R.id.team_visible);
 
             ChartsActivity.TeamDataViewModel teamListDataViewModel = teamDataViewModels.get(position);
             int theTeamNumber = teamListDataViewModel.getTeamNumber();
             teamNumberText.setText( String.valueOf(theTeamNumber) );
-            int i;
-            i=10;
+
+            float theAutoNumber = teamListDataViewModel.getAutoAverage();
+            autoNumberText.setText( String.valueOf(theAutoNumber));
+
+            float theTeleOpNumber = teamListDataViewModel.getTeleOpAverage();
+            teleOpNumberText.setText(String.valueOf(theTeleOpNumber));
+
+            float theEndGameNumber = teamListDataViewModel.getEndGameAverage();
+            endGameNumberText.setText(String.valueOf(theEndGameNumber));
+
+            float theTotalNumber = teamListDataViewModel.getTotalAverage();
+            totalNumberText.setText(String.valueOf(theTotalNumber));
+
+            if(!StringUtils.isBlank(teamNumber1AutoComplete.getText())){
+                int teamNum = Integer.parseInt(teamNumber1AutoComplete.getText().toString());
+                ChartsActivity.TeamDataViewModel vm = allTeamData.stream().filter(ad -> ad.getTeamNumber() == teamNum).findFirst().get();
+                theTotalNumber += vm.getTotalAverage();
+                totalNumberText.setText(String.valueOf(theTotalNumber));
+            }
+
+
+            if(!StringUtils.isBlank(teamNumber2AutoComplete.getText())){
+                int teamNum = Integer.parseInt(teamNumber2AutoComplete.getText().toString());
+                ChartsActivity.TeamDataViewModel vm = allTeamData.stream().filter(ad -> ad.getTeamNumber() == teamNum).findFirst().get();
+                theTotalNumber += vm.getTotalAverage();
+                totalNumberText.setText(String.valueOf(theTotalNumber));
+            }
+
+
+
             //teamNumber.setText(teamListViewModel.getTeamNumber());
             //teamSelectedCheckBox.setChecked(teamListViewModel.getIsSelected());
             //teamSelectedCheckBox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {

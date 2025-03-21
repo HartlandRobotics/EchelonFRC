@@ -92,7 +92,7 @@ public class ChartPagerAdapter extends FragmentStateAdapter {
 
     @Override
     public int getItemCount() {
-        return 5;
+        return 4;
     }
 
     public void updateFragmentData(List<TeamListViewModel> allTeamNumbers, List<ChartsActivity.TeamDataViewModel> allTeamData) {
