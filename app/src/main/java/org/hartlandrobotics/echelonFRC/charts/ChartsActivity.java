@@ -122,10 +122,10 @@ public class ChartsActivity extends EchelonActivity {
                 int size = matchResults.size();// == 0 ? 1 : matchResults.size();
                 TeamDataViewModel teamData = new TeamDataViewModel(
                         teamNumber,
-                        autoTotal/size,
-                        teleOpTotal/size,
-                        endGameTotal/size,
-                        total/size,
+                        (float)autoTotal/size,
+                        (float)teleOpTotal/size,
+                        (float)endGameTotal/size,
+                        (float)total/size,
                         autoScores,
                         teleOpScores,
                         endGameScores

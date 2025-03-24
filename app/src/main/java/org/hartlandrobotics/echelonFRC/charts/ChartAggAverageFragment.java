@@ -109,13 +109,12 @@ public class ChartAggAverageFragment extends Fragment {
     public void setVisibleTeams(){
         List<String> visibleTeamNumbers = allTeamNumbers.stream()
                 .filter(TeamListViewModel::getIsSelected)
-                .map( teamListViewModel -> teamListViewModel.getTeamNumber() )
+                .map(TeamListViewModel::getTeamNumber)
                 .collect(Collectors.toList());
 
         visibleTeamData = allTeamData.stream()
                 .filter( teamData -> {
-                    boolean isVisible = visibleTeamNumbers.contains( String.valueOf(teamData.getTeamNumber()) );
-                    return isVisible;
+                    return visibleTeamNumbers.contains( String.valueOf(teamData.getTeamNumber()) );
                 })
                 .sorted(Comparator.comparingDouble(ChartsActivity.TeamDataViewModel::getTotalAverage).reversed())
                 .limit(35)
