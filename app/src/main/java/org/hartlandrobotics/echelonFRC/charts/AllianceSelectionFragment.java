@@ -283,22 +283,22 @@ public class AllianceSelectionFragment extends Fragment {
             teamNumberText.setText( String.valueOf(theTeamNumber) );
 
             float theAutoNumber = teamListDataViewModel.getAutoAverage();
-            autoNumberText.setText( String.valueOf(theAutoNumber));
+            autoNumberText.setText(String.format("%.2s", theAutoNumber));
 
             float theTeleOpNumber = teamListDataViewModel.getTeleOpAverage();
-            teleOpNumberText.setText(String.valueOf(theTeleOpNumber));
+            teleOpNumberText.setText(String.format("%.2s", theTeleOpNumber));
 
             float theEndGameNumber = teamListDataViewModel.getEndGameAverage();
-            endGameNumberText.setText(String.valueOf(theEndGameNumber));
+            endGameNumberText.setText(String.format("%.2s", theEndGameNumber));
 
             float theTotalNumber = teamListDataViewModel.getTotalAverage();
-            totalNumberText.setText(String.valueOf(theTotalNumber));
+            totalNumberText.setText(String.format("%.2s", theTotalNumber));
 
             if(!StringUtils.isBlank(teamNumber1AutoComplete.getText())){
                 int teamNum = Integer.parseInt(teamNumber1AutoComplete.getText().toString());
                 ChartsActivity.TeamDataViewModel vm = allTeamData.stream().filter(ad -> ad.getTeamNumber() == teamNum).findFirst().get();
                 theTotalNumber += vm.getTotalAverage();
-                totalNumberText.setText(String.valueOf(theTotalNumber));
+                totalNumberText.setText(String.format("%.2s", theTotalNumber));
             }
 
 
@@ -306,14 +306,14 @@ public class AllianceSelectionFragment extends Fragment {
                 int teamNum = Integer.parseInt(teamNumber2AutoComplete.getText().toString());
                 ChartsActivity.TeamDataViewModel vm = allTeamData.stream().filter(ad -> ad.getTeamNumber() == teamNum).findFirst().get();
                 theTotalNumber += vm.getTotalAverage();
-                totalNumberText.setText(String.valueOf(theTotalNumber));
+                totalNumberText.setText(String.format("%.2s", theTotalNumber));
             }
 
             if(!StringUtils.isBlank(teamNumber3AutoComplete.getText())){
                 int teamNum = Integer.parseInt(teamNumber3AutoComplete.getText().toString());
                 ChartsActivity.TeamDataViewModel vm = allTeamData.stream().filter(ad -> ad.getTeamNumber() == teamNum).findFirst().get();
                 theTotalNumber += vm.getTotalAverage();
-                totalNumberText.setText(String.valueOf(theTotalNumber));
+                totalNumberText.setText(String.format("%.2s", theTotalNumber));
             }
 
 
