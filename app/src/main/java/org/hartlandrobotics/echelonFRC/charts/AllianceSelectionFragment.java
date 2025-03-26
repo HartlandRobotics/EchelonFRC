@@ -52,6 +52,7 @@ public class AllianceSelectionFragment extends Fragment {
 
     private List<TeamListViewModel> allTeamNumbers;
     private List<ChartsActivity.TeamDataViewModel> allTeamData;
+    private List<ChartsActivity.TeamDataViewModel> visibleTeamData;
 
 
 
@@ -144,10 +145,29 @@ public class AllianceSelectionFragment extends Fragment {
                 //new MatchScheduleActivity.MatchListAdapter(this);
 
         this.allTeamData = new ArrayList<ChartsActivity.TeamDataViewModel>( allTeamData );
-        teamDataListAdapter.setTeamsData(allTeamData);
+
+        setVisibleTeams();
+
+        teamDataListAdapter.setTeamsData(this.visibleTeamData);
         teamDataListAdapter.notifyDataSetChanged();
 
 
+
+
+    }
+    public void setVisibleTeams(){
+        List<String> visibleTeamNumbers = allTeamNumbers.stream()
+                .filter(TeamListViewModel::getIsSelected)
+                .map(TeamListViewModel::getTeamNumber)
+                .collect(Collectors.toList());
+
+        visibleTeamData = allTeamData.stream()
+                .filter( teamData -> {
+                    return visibleTeamNumbers.contains( String.valueOf(teamData.getTeamNumber()) );
+                })
+                .sorted(Comparator.comparingDouble(ChartsActivity.TeamDataViewModel::getTotalAverage).reversed())
+                .limit(35)
+                .collect(Collectors.toList());
     }
 
     public void setupDropDown(){
@@ -212,7 +232,7 @@ public class AllianceSelectionFragment extends Fragment {
                     int position = listView.getPositionForView(buttonView);
                     teamViewModels.get(position).setIsSelected(isChecked);
 
-                    //setVisibleTeams();
+                    setVisibleTeams();
                     }
             });
             return rowView;
