@@ -22,7 +22,7 @@
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_weight="30"
+            android:layout_weight="33"
             android:hint="Select Team"
 
             >
@@ -41,7 +41,7 @@
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_weight="20"
+        android:layout_weight="33"
         android:hint="Select Team"
         android:paddingTop="2dp"
         >
@@ -59,7 +59,7 @@
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_weight="30"
+        android:layout_weight="33"
         android:hint="Select Team"
         android:paddingTop="2dp"
         >

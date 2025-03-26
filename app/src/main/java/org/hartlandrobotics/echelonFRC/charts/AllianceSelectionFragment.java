@@ -26,6 +26,7 @@ import org.apache.commons.lang3.StringUtils;
 import org.hartlandrobotics.echelonFRC.MatchScheduleActivity;
 import org.hartlandrobotics.echelonFRC.R;
 
+import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -37,7 +38,10 @@ public class AllianceSelectionFragment extends Fragment {
     private AutoCompleteTextView teamNumber2AutoComplete;
     private AutoCompleteTextView teamNumber3AutoComplete;
     private List<String> sortedTeamNumbers;
-    ChartsActivity.TeamDataViewModel teamData;
+    ChartsActivity.TeamDataViewModel teamData1;
+    ChartsActivity.TeamDataViewModel teamData2;
+    ChartsActivity.TeamDataViewModel teamData3;
+
 
     private ListView teamNumberListView;
     private ListViewItemCheckboxBaseAdapter teamListAdapter;
@@ -74,7 +78,8 @@ public class AllianceSelectionFragment extends Fragment {
                 Log.i("AllianceSelectionFragment", "item clicked");
                 if(position != 0){
                 String teamNumber = sortedTeamNumbers.get(position);
-                teamData = ((ChartsActivity) getActivity()).getTeamData(teamNumber);
+                teamData1 = ((ChartsActivity) getActivity()).getTeamData(teamNumber);
+                teamDataListAdapter.notifyDataSetChanged();
                 }
             }
         });
@@ -85,7 +90,8 @@ public class AllianceSelectionFragment extends Fragment {
             public void onItemClick(AdapterView<?> parent, View view, int position, long id){
                 Log.i("AllianceSelectionFragment", "item clicked");
                 String teamNumber = sortedTeamNumbers.get(position);
-                teamData = ((ChartsActivity) getActivity()).getTeamData(teamNumber);
+                teamData2 = ((ChartsActivity) getActivity()).getTeamData(teamNumber);
+                teamDataListAdapter.notifyDataSetChanged();
             }
         });
 
@@ -95,7 +101,8 @@ public class AllianceSelectionFragment extends Fragment {
             public void onItemClick(AdapterView<?> parent, View view, int position, long id){
                 Log.i("AllianceSelectionFragment", "item clicked");
                 String teamNumber = sortedTeamNumbers.get(position);
-                teamData = ((ChartsActivity) getActivity()).getTeamData(teamNumber);
+                teamData3 = ((ChartsActivity) getActivity()).getTeamData(teamNumber);
+                teamDataListAdapter.notifyDataSetChanged();
             }
         });
 
@@ -122,20 +129,21 @@ public class AllianceSelectionFragment extends Fragment {
     }
 
     public void setData(List<TeamListViewModel> allTeamNumbers, List<ChartsActivity.TeamDataViewModel> allTeamData){
-        sortedTeamNumbers = allTeamNumbers.stream()
+        this.allTeamNumbers = new ArrayList<TeamListViewModel>( allTeamNumbers );
+
+        sortedTeamNumbers = this.allTeamNumbers.stream()
                 .sorted(Comparator.comparingInt(TeamListViewModel::getTeamInteger))
                 .map(TeamListViewModel::getTeamNumber)
                 .collect(Collectors.toList());
         sortedTeamNumbers.add(0,StringUtils.EMPTY);
 
-        this.allTeamNumbers = allTeamNumbers;
-        teamListAdapter.setTeams(allTeamNumbers);
+        teamListAdapter.setTeams(this.allTeamNumbers);
         teamListAdapter.notifyDataSetChanged();
 
 
                 //new MatchScheduleActivity.MatchListAdapter(this);
 
-        this.allTeamData = allTeamData;
+        this.allTeamData = new ArrayList<ChartsActivity.TeamDataViewModel>( allTeamData );
         teamDataListAdapter.setTeamsData(allTeamData);
         teamDataListAdapter.notifyDataSetChanged();
 
@@ -276,6 +284,13 @@ public class AllianceSelectionFragment extends Fragment {
 
             if(!StringUtils.isBlank(teamNumber2AutoComplete.getText())){
                 int teamNum = Integer.parseInt(teamNumber2AutoComplete.getText().toString());
+                ChartsActivity.TeamDataViewModel vm = allTeamData.stream().filter(ad -> ad.getTeamNumber() == teamNum).findFirst().get();
+                theTotalNumber += vm.getTotalAverage();
+                totalNumberText.setText(String.valueOf(theTotalNumber));
+            }
+
+            if(!StringUtils.isBlank(teamNumber3AutoComplete.getText())){
+                int teamNum = Integer.parseInt(teamNumber3AutoComplete.getText().toString());
                 ChartsActivity.TeamDataViewModel vm = allTeamData.stream().filter(ad -> ad.getTeamNumber() == teamNum).findFirst().get();
                 theTotalNumber += vm.getTotalAverage();
                 totalNumberText.setText(String.valueOf(theTotalNumber));

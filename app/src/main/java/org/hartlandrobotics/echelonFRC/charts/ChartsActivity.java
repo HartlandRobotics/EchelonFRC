@@ -119,7 +119,7 @@ public class ChartsActivity extends EchelonActivity {
 
                 // size is only used to calculate averages.
                 // 1 is default since it is multiplicitive identity
-                int size = matchResults.size();// == 0 ? 1 : matchResults.size();
+                int size = matchResults.isEmpty() ? 1 : matchResults.size();
                 TeamDataViewModel teamData = new TeamDataViewModel(
                         teamNumber,
                         (float)autoTotal/size,
@@ -154,7 +154,7 @@ public class ChartsActivity extends EchelonActivity {
                 .filter( td -> td.getTeamNumber() == Integer.valueOf(teamNumber))
                 .findFirst();
 
-        return teamData.isPresent() ? teamData.get() : null;
+        return teamData.orElse(null);
     }
 
 
