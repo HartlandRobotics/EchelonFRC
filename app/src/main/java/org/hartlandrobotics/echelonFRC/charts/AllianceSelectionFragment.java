@@ -145,11 +145,11 @@ public class AllianceSelectionFragment extends Fragment {
                 //new MatchScheduleActivity.MatchListAdapter(this);
 
         this.allTeamData = new ArrayList<ChartsActivity.TeamDataViewModel>( allTeamData );
-
         setVisibleTeams();
 
-        teamDataListAdapter.setTeamsData(this.visibleTeamData);
+        teamDataListAdapter.setTeamsData(this.allTeamData);
         teamDataListAdapter.notifyDataSetChanged();
+
 
 
 
@@ -187,6 +187,8 @@ public class AllianceSelectionFragment extends Fragment {
     }
 
     public class ListViewItemCheckboxBaseAdapter extends BaseAdapter {
+        public final String TAG = "ListViewItemCheckboxBaseAdapter";
+
         Context context;
         List<TeamListViewModel> teamViewModels;
 
@@ -233,6 +235,11 @@ public class AllianceSelectionFragment extends Fragment {
                     teamViewModels.get(position).setIsSelected(isChecked);
 
                     setVisibleTeams();
+
+                    //notifyDataSetChanged();
+                    teamDataListAdapter.notifyDataSetChanged();
+
+                    Log.e(TAG, "onCheckedChanged: "+ isChecked );
                     }
             });
             return rowView;
@@ -285,6 +292,12 @@ public class AllianceSelectionFragment extends Fragment {
             teamNumberText.setText( String.valueOf(theTeamNumber) );
 
             Log.e(TAG, "theTeamNumber: " + theTeamNumber );
+            boolean vis = visibleTeamData.stream().filter( vtd -> vtd.getTeamNumber() == theTeamNumber).collect(Collectors.toList()).isEmpty();
+            Log.e(TAG, "if visable: " + vis );
+            if( vis ) {
+                view.setVisibility(View.GONE);
+                rowView.setVisibility(View.GONE);
+            }
 
             float theAutoNumber = teamListDataViewModel.getAutoAverage();
             autoNumberText.setText(String.format("%.2s", theAutoNumber));
