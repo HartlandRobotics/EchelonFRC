@@ -1,5 +1,7 @@
 package org.hartlandrobotics.echelonFRC.charts;
 
+import static android.graphics.Color.GRAY;
+
 import android.content.Context;
 import android.os.Bundle;
 
@@ -122,6 +124,7 @@ public class AllianceSelectionFragment extends Fragment {
         teamDataListView = view.findViewById(R.id.team_data_listview);
         teamDataListView.setAdapter(teamDataListAdapter);
 
+        // use visible all
 
         setData(((ChartsActivity)getActivity()).getAllTeamNumbers(), ((ChartsActivity)getActivity()).allTeamsData);
 
@@ -147,8 +150,12 @@ public class AllianceSelectionFragment extends Fragment {
         this.allTeamData = new ArrayList<ChartsActivity.TeamDataViewModel>( allTeamData );
         setVisibleTeams();
 
-        teamDataListAdapter.setTeamsData(this.allTeamData);
-        teamDataListAdapter.notifyDataSetChanged();
+        if( visibleTeamData != null ) {
+            //teamDataListAdapter.setTeamsData(this.allTeamData);
+            teamDataListAdapter.setTeamsData(this.visibleTeamData);
+
+            teamDataListAdapter.notifyDataSetChanged();
+        }
 
 
 
@@ -279,6 +286,10 @@ public class AllianceSelectionFragment extends Fragment {
             LayoutInflater inflater=getActivity().getLayoutInflater();
             View rowView=inflater.inflate(R.layout.list_item_alliance_selection_team_data, null,true);
 
+            if(position % 2 == 0) {
+                rowView.setBackgroundColor(GRAY);
+            }
+
             MaterialTextView teamNumberText = rowView.findViewById(R.id.team_number);
             MaterialTextView autoNumberText = rowView.findViewById(R.id.autoNumber);
             MaterialTextView teleOpNumberText = rowView.findViewById(R.id.teleOpNumber);
@@ -295,8 +306,10 @@ public class AllianceSelectionFragment extends Fragment {
             boolean vis = visibleTeamData.stream().filter( vtd -> vtd.getTeamNumber() == theTeamNumber).collect(Collectors.toList()).isEmpty();
             Log.e(TAG, "if visable: " + vis );
             if( vis ) {
-                view.setVisibility(View.GONE);
-                rowView.setVisibility(View.GONE);
+                if(view != null) {
+                    view.setVisibility(View.GONE);
+                    rowView.setVisibility(View.GONE);
+                }
             }
 
             float theAutoNumber = teamListDataViewModel.getAutoAverage();
