@@ -13,7 +13,7 @@
       android:layout_width="match_parent"
       android:layout_height="70dp"
       android:orientation="horizontal"
-      android:weightSum="100"
+      android:layout_weight="25"
 
       >
 
@@ -22,7 +22,7 @@
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_weight="33"
+            android:layout_weight="25"
             android:hint="Select Team"
 
             >
@@ -41,7 +41,7 @@
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_weight="33"
+        android:layout_weight="25"
         android:hint="Select Team"
         android:paddingTop="2dp"
         >
@@ -59,7 +59,7 @@
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_weight="33"
+        android:layout_weight="25"
         android:hint="Select Team"
         android:paddingTop="2dp"
         >
@@ -71,6 +71,22 @@
             android:inputType="none"
             />
     </com.google.android.material.textfield.TextInputLayout>
+
+      <com.google.android.material.textfield.TextInputLayout
+          android:layout_width="200dp"
+          android:layout_height="wrap_content"
+          android:hint="manual"
+          android:layout_marginTop="18dp"
+          >
+
+          <com.google.android.material.textfield.TextInputEditText
+              android:layout_width="200dp"
+              android:layout_height="wrap_content"
+              android:inputType="number"
+              android:layout_weight="25"
+              />
+      </com.google.android.material.textfield.TextInputLayout>
+
   </LinearLayout>
 
 <LinearLayout
