@@ -219,6 +219,8 @@ public class AllianceSelectionFragment extends Fragment {
         };
     }
     public class ListDataViewItemBaseAdapter extends BaseAdapter {
+
+        public final String TAG = "ListDataViewItemBaseAdapter";
         Context context;
         List<ChartsActivity.TeamDataViewModel> teamDataViewModels;
 
@@ -262,6 +264,8 @@ public class AllianceSelectionFragment extends Fragment {
             int theTeamNumber = teamListDataViewModel.getTeamNumber();
             teamNumberText.setText( String.valueOf(theTeamNumber) );
 
+            Log.e(TAG, "theTeamNumber: " + theTeamNumber );
+
             float theAutoNumber = teamListDataViewModel.getAutoAverage();
             autoNumberText.setText( String.valueOf(theAutoNumber));
 
@@ -281,7 +285,6 @@ public class AllianceSelectionFragment extends Fragment {
                 totalNumberText.setText(String.valueOf(theTotalNumber));
             }
 
-
             if(!StringUtils.isBlank(teamNumber2AutoComplete.getText())){
                 int teamNum = Integer.parseInt(teamNumber2AutoComplete.getText().toString());
                 ChartsActivity.TeamDataViewModel vm = allTeamData.stream().filter(ad -> ad.getTeamNumber() == teamNum).findFirst().get();
@@ -296,21 +299,6 @@ public class AllianceSelectionFragment extends Fragment {
                 totalNumberText.setText(String.valueOf(theTotalNumber));
             }
 
-
-
-            //teamNumber.setText(teamListViewModel.getTeamNumber());
-            //teamSelectedCheckBox.setChecked(teamListViewModel.getIsSelected());
-            //teamSelectedCheckBox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-            //    @Override
-            //    public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-            //        ViewParent layoutViewParent = buttonView.getParent();
-            //        ListView listView =  (ListView) layoutViewParent.getParent();
-            //        int position = listView.getPositionForView(buttonView);
-            //        teamViewModels.get(position).setIsSelected(isChecked);
-
-                    //setVisibleTeams();
-            //    }
-            //});
             return rowView;
         };
 
