@@ -83,6 +83,8 @@
               android:layout_height="wrap_content"
               android:inputType="number"
               android:layout_weight="25"
+              android:id="@+id/manual_input"
+
               />
       </com.google.android.material.textfield.TextInputLayout>
 

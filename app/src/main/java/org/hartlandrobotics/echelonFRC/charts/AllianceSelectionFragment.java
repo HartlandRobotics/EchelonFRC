@@ -1,6 +1,7 @@
 package org.hartlandrobotics.echelonFRC.charts;
 
 import static android.graphics.Color.GRAY;
+//import static android.graphics.Color.parseColor
 
 import android.content.Context;
 import android.os.Bundle;
@@ -22,6 +23,8 @@ import android.widget.CompoundButton;
 import android.widget.ListView;
 
 import com.google.android.material.checkbox.MaterialCheckBox;
+import com.google.android.material.textfield.TextInputEditText;
+import com.google.android.material.textfield.TextInputLayout;
 import com.google.android.material.textview.MaterialTextView;
 
 import org.apache.commons.lang3.StringUtils;
@@ -39,6 +42,7 @@ public class AllianceSelectionFragment extends Fragment {
     private AutoCompleteTextView teamNumber1AutoComplete;
     private AutoCompleteTextView teamNumber2AutoComplete;
     private AutoCompleteTextView teamNumber3AutoComplete;
+    private TextInputEditText manualOverride;
     private List<String> sortedTeamNumbers;
     ChartsActivity.TeamDataViewModel teamData1;
     ChartsActivity.TeamDataViewModel teamData2;
@@ -108,6 +112,9 @@ public class AllianceSelectionFragment extends Fragment {
                 teamDataListAdapter.notifyDataSetChanged();
             }
         });
+
+        manualOverride = view.findViewById(R.id.manual_input);
+
 
         return view;
     }
@@ -287,7 +294,7 @@ public class AllianceSelectionFragment extends Fragment {
             View rowView=inflater.inflate(R.layout.list_item_alliance_selection_team_data, null,true);
 
             if(position % 2 == 0) {
-                rowView.setBackgroundColor(GRAY);
+                rowView.setBackgroundColor(android.graphics.Color.parseColor("#d9d9d9"));
             }
 
             MaterialTextView teamNumberText = rowView.findViewById(R.id.team_number);
@@ -301,10 +308,11 @@ public class AllianceSelectionFragment extends Fragment {
             ChartsActivity.TeamDataViewModel teamListDataViewModel = teamDataViewModels.get(position);
             int theTeamNumber = teamListDataViewModel.getTeamNumber();
             teamNumberText.setText( String.valueOf(theTeamNumber) );
+            //Log.e(TAG, "teamNumber: " + theTeamNumber );
 
             Log.e(TAG, "theTeamNumber: " + theTeamNumber );
             boolean vis = visibleTeamData.stream().filter( vtd -> vtd.getTeamNumber() == theTeamNumber).collect(Collectors.toList()).isEmpty();
-            Log.e(TAG, "if visable: " + vis );
+            //Log.e(TAG, "if visable: " + vis );
             if( vis ) {
                 if(view != null) {
                     view.setVisibility(View.GONE);
@@ -313,37 +321,53 @@ public class AllianceSelectionFragment extends Fragment {
             }
 
             float theAutoNumber = teamListDataViewModel.getAutoAverage();
-            autoNumberText.setText(String.format("%.2s", theAutoNumber));
+            autoNumberText.setText(String.format("%.2f", theAutoNumber));
 
             float theTeleOpNumber = teamListDataViewModel.getTeleOpAverage();
-            teleOpNumberText.setText(String.format("%.2s", theTeleOpNumber));
+            teleOpNumberText.setText(String.format("%.2f", theTeleOpNumber));
 
             float theEndGameNumber = teamListDataViewModel.getEndGameAverage();
-            endGameNumberText.setText(String.format("%.2s", theEndGameNumber));
+            endGameNumberText.setText(String.format("%3.2f", theEndGameNumber));
 
             float theTotalNumber = teamListDataViewModel.getTotalAverage();
-            totalNumberText.setText(String.format("%.2s", theTotalNumber));
+            totalNumberText.setText(String.format("%4.2f", theTotalNumber));
 
             if(!StringUtils.isBlank(teamNumber1AutoComplete.getText())){
                 int teamNum = Integer.parseInt(teamNumber1AutoComplete.getText().toString());
                 ChartsActivity.TeamDataViewModel vm = allTeamData.stream().filter(ad -> ad.getTeamNumber() == teamNum).findFirst().get();
                 theTotalNumber += vm.getTotalAverage();
-                totalNumberText.setText(String.format("%.2s", theTotalNumber));
+                totalNumberText.setText(String.format("%4.2f", theTotalNumber));
+                Log.e(TAG, "thetotalvalue1: "+theTotalNumber );
             }
 
             if(!StringUtils.isBlank(teamNumber2AutoComplete.getText())){
                 int teamNum = Integer.parseInt(teamNumber2AutoComplete.getText().toString());
                 ChartsActivity.TeamDataViewModel vm = allTeamData.stream().filter(ad -> ad.getTeamNumber() == teamNum).findFirst().get();
                 theTotalNumber += vm.getTotalAverage();
-                totalNumberText.setText(String.format("%.2s", theTotalNumber));
+                totalNumberText.setText(String.format("%4.2f", theTotalNumber));
+                Log.e(TAG, "thetotalvalue2: "+theTotalNumber );
+
             }
 
             if(!StringUtils.isBlank(teamNumber3AutoComplete.getText())){
                 int teamNum = Integer.parseInt(teamNumber3AutoComplete.getText().toString());
                 ChartsActivity.TeamDataViewModel vm = allTeamData.stream().filter(ad -> ad.getTeamNumber() == teamNum).findFirst().get();
                 theTotalNumber += vm.getTotalAverage();
-                totalNumberText.setText(String.format("%.2s", theTotalNumber));
+                totalNumberText.setText(String.format("%4.2f", theTotalNumber));
+                Log.e(TAG, "thetotalvalue3: "+theTotalNumber );
+
             }
+
+            String manualOverrideText = manualOverride.getText().toString();
+            if(!StringUtils.isBlank(manualOverrideText)){
+                totalNumberText.setText(
+                        String.valueOf(
+                                Float.parseFloat(totalNumberText.getText().toString())
+                               -
+                               Float.parseFloat(manualOverrideText))
+                        );
+            }
+
 
             return rowView;
         };
