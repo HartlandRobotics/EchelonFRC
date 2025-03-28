@@ -163,10 +163,6 @@ public class AllianceSelectionFragment extends Fragment {
             teamDataListAdapter.notifyDataSetChanged();
         }
 
-
-
-
-
     }
     public void setVisibleTeams(){
         List<String> visibleTeamNumbers = allTeamNumbers.stream()

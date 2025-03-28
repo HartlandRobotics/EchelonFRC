@@ -31,6 +31,7 @@ import com.github.mikephil.charting.data.BarEntry;
 import com.github.mikephil.charting.interfaces.datasets.IBarDataSet;
 import com.github.mikephil.charting.utils.ColorTemplate;
 import com.google.android.material.checkbox.MaterialCheckBox;
+import com.google.android.material.navigation.NavigationBarView;
 import com.google.android.material.textview.MaterialTextView;
 
 import org.hartlandrobotics.echelonFRC.R;
@@ -87,18 +88,15 @@ public class ChartAggAverageFragment extends Fragment {
             }
         });
 
-
-
         aggScoringChart = view.findViewById(R.id.agg_average_chart);
         setupChart();
-
     }
 
     public void setData(List<TeamListViewModel> allTeamNumbers, List<ChartsActivity.TeamDataViewModel> allTeamData) {
-        this.allTeamNumbers = allTeamNumbers;
-        this.allTeamData = allTeamData;
+        this.allTeamNumbers = new ArrayList<>( allTeamNumbers);
+        this.allTeamData = new ArrayList<>(allTeamData);
 
-        teamListAdapter.setTeams(allTeamNumbers);
+        teamListAdapter.setTeams(this.allTeamNumbers);
         teamListAdapter.notifyDataSetChanged();
 
         setVisibleTeams();
@@ -107,7 +105,7 @@ public class ChartAggAverageFragment extends Fragment {
     }
 
     public void setVisibleTeams(){
-        List<String> visibleTeamNumbers = allTeamNumbers.stream()
+        List<String> visibleTeamNumbers = this.allTeamNumbers.stream()
                 .filter(TeamListViewModel::getIsSelected)
                 .map(TeamListViewModel::getTeamNumber)
                 .collect(Collectors.toList());
