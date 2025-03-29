@@ -43,6 +43,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public class ChartAggAverageFragment extends Fragment {
+    public final String TAG = "ChartAggAverageFragment";
 
     private BarChart aggScoringChart;
     private ListView teamNumberListView;
@@ -88,13 +89,19 @@ public class ChartAggAverageFragment extends Fragment {
             }
         });
 
+        setData( ((ChartsActivity)getActivity()).allTeamNumbers,((ChartsActivity)getActivity()).allTeamsData);
+
         aggScoringChart = view.findViewById(R.id.agg_average_chart);
         setupChart();
     }
 
     public void setData(List<TeamListViewModel> allTeamNumbers, List<ChartsActivity.TeamDataViewModel> allTeamData) {
-        this.allTeamNumbers = new ArrayList<>( allTeamNumbers);
-        this.allTeamData = new ArrayList<>(allTeamData);
+        if( this.allTeamNumbers == null) {
+            this.allTeamNumbers = new ArrayList<>(allTeamNumbers);
+        }
+        if( this.allTeamData == null) {
+            this.allTeamData = new ArrayList<>(allTeamData);
+        }
 
         teamListAdapter.setTeams(this.allTeamNumbers);
         teamListAdapter.notifyDataSetChanged();
@@ -110,16 +117,27 @@ public class ChartAggAverageFragment extends Fragment {
                 .map(TeamListViewModel::getTeamNumber)
                 .collect(Collectors.toList());
 
-        visibleTeamData = allTeamData.stream()
+        if(visibleTeamData == null){
+            visibleTeamData = new ArrayList<ChartsActivity.TeamDataViewModel>();
+        } else {
+            visibleTeamData.clear();
+        }
+        visibleTeamData.addAll(
+                allTeamData.stream()
                 .filter( teamData -> {
                     return visibleTeamNumbers.contains( String.valueOf(teamData.getTeamNumber()) );
                 })
                 .sorted(Comparator.comparingDouble(ChartsActivity.TeamDataViewModel::getTotalAverage).reversed())
                 .limit(35)
-                .collect(Collectors.toList());
+                .collect(Collectors.toList())
+                );
     }
 
     public void setupChart(){
+
+        teamListAdapter.notifyDataSetChanged();
+
+
         aggScoringChart.getDescription().setEnabled(false);
         aggScoringChart.setPinchZoom(false);
         aggScoringChart.setTouchEnabled(false);
@@ -146,6 +164,9 @@ public class ChartAggAverageFragment extends Fragment {
         l.setFormSize(8f);
         l.setFormToTextSpace(4f);
         l.setXEntrySpace(6f);
+
+
+        setupChartData();
     }
 
     private int[] getChartColors() {
@@ -158,6 +179,13 @@ public class ChartAggAverageFragment extends Fragment {
     }
 
     public void setupChartData(){
+        if(allTeamData == null){
+            return;
+        }
+        if( aggScoringChart == null ){
+            return;
+        }
+
         XAxis xLabels = aggScoringChart.getXAxis();
         xLabels.setAxisMinimum(0);
         xLabels.setDrawLabels(true);
@@ -168,7 +196,7 @@ public class ChartAggAverageFragment extends Fragment {
         xLabels.setValueFormatter((value, axis) -> {
             int val = Math.min( Math.max(0, (int)Math.floor(value) ), visibleTeamData.size()-1);
             String label = String.valueOf( visibleTeamData.get(val).getTeamNumber() );
-            Log.e("CHARTLABEL", String.valueOf(val) + "-" +  String.valueOf(label));
+       //     Log.e("CHARTLABEL", String.valueOf(val) + "-" +  String.valueOf(label));
             return label;
         });
 
@@ -213,6 +241,7 @@ public class ChartAggAverageFragment extends Fragment {
 
 
     public class ListViewItemCheckboxBaseAdapter extends BaseAdapter {
+        static final String TAG= "ListViewItemCheckboxBaseAdapter";
         Context context;
         List<TeamListViewModel> teamViewModels;
 

@@ -170,13 +170,20 @@ public class AllianceSelectionFragment extends Fragment {
                 .map(TeamListViewModel::getTeamNumber)
                 .collect(Collectors.toList());
 
-        visibleTeamData = allTeamData.stream()
+        if(visibleTeamData == null){
+            visibleTeamData = new ArrayList<ChartsActivity.TeamDataViewModel>();
+        } else {
+            visibleTeamData.clear();
+        }
+        visibleTeamData.addAll(
+                allTeamData.stream()
                 .filter( teamData -> {
                     return visibleTeamNumbers.contains( String.valueOf(teamData.getTeamNumber()) );
                 })
                 .sorted(Comparator.comparingDouble(ChartsActivity.TeamDataViewModel::getTotalAverage).reversed())
                 .limit(35)
-                .collect(Collectors.toList());
+                .collect(Collectors.toList())
+        );
     }
 
     public void setupDropDown(){
