@@ -24,7 +24,7 @@
             android:exported="false"
             android:screenOrientation="landscape" />
         <activity
-            android:name=".MatchScheduleActivity"
+            android:name=".matchSchedule.MatchScheduleActivity"
             android:exported="false"
             android:screenOrientation="landscape" />
         <activity
@@ -67,7 +67,7 @@
             android:exported="true"
             android:screenOrientation="landscape" />
         <activity
-            android:name=".MainActivity"
+            android:name=".matchSchedule.MainActivity"
             android:exported="true"
             android:screenOrientation="landscape">
             <intent-filter>

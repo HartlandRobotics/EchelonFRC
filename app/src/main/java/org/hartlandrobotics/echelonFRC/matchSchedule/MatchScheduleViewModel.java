@@ -1,4 +1,4 @@
-package org.hartlandrobotics.echelonFRC;
+package org.hartlandrobotics.echelonFRC.matchSchedule;
 
 import org.apache.commons.math3.distribution.TDistribution;
 

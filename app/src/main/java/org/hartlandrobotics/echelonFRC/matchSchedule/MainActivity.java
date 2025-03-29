@@ -1,10 +1,9 @@
-package org.hartlandrobotics.echelonFRC;
+package org.hartlandrobotics.echelonFRC.matchSchedule;
 
 import android.Manifest;
 import android.content.Context;
 import android.content.Intent;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
+
 import androidx.core.app.ActivityCompat;
 import androidx.lifecycle.ViewModelProvider;
 
@@ -18,7 +17,8 @@ import android.widget.AutoCompleteTextView;
 import com.google.android.material.button.MaterialButton;
 import com.google.android.material.textfield.TextInputLayout;
 
-import org.hartlandrobotics.echelonFRC.blueAlliance.BlueAllianceActivity;
+import org.hartlandrobotics.echelonFRC.EchelonActivity;
+import org.hartlandrobotics.echelonFRC.R;
 import org.hartlandrobotics.echelonFRC.charts.ChartsActivity;
 import org.hartlandrobotics.echelonFRC.configuration.AdminSettings;
 import org.hartlandrobotics.echelonFRC.configuration.AdminSettingsProvider;

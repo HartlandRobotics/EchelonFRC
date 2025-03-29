@@ -1,4 +1,4 @@
-package org.hartlandrobotics.echelonFRC;
+package org.hartlandrobotics.echelonFRC.matchSchedule;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.DividerItemDecoration;
@@ -20,6 +20,8 @@ import com.google.android.material.textfield.TextInputLayout;
 import com.google.android.material.textview.MaterialTextView;
 
 import org.apache.commons.lang3.StringUtils;
+import org.hartlandrobotics.echelonFRC.EchelonActivity;
+import org.hartlandrobotics.echelonFRC.R;
 import org.hartlandrobotics.echelonFRC.database.currentGame.CurrentGamePoints;
 import org.hartlandrobotics.echelonFRC.database.entities.Match;
 import org.hartlandrobotics.echelonFRC.database.entities.MatchResult;

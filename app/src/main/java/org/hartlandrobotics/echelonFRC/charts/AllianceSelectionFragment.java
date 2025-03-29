@@ -1,6 +1,5 @@
 package org.hartlandrobotics.echelonFRC.charts;
 
-import static android.graphics.Color.GRAY;
 //import static android.graphics.Color.parseColor
 
 import android.content.Context;
@@ -24,12 +23,10 @@ import android.widget.ListView;
 
 import com.google.android.material.checkbox.MaterialCheckBox;
 import com.google.android.material.textfield.TextInputEditText;
-import com.google.android.material.textfield.TextInputLayout;
-import com.google.android.material.textview.MaterialTextView;
+        import com.google.android.material.textview.MaterialTextView;
 
 import org.apache.commons.lang3.StringUtils;
-import org.hartlandrobotics.echelonFRC.MatchScheduleActivity;
-import org.hartlandrobotics.echelonFRC.R;
+        import org.hartlandrobotics.echelonFRC.R;
 
 import java.util.ArrayList;
 import java.util.Comparator;
