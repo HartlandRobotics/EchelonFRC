@@ -34,4 +34,20 @@ public class MatchSchedulePlayoffsFragment extends Fragment {
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_match_schedule_quals, container, false);
     }
+
+    private void setupControls(View view) {
+        //fill later
+    }
+
+    public void populateDataFromControls() {
+        //fill later
+    }
+
+    public  void populateControlFromData() {
+        //fill later
+    }
+
+    public void setVisibility(){
+        //fill later
+    }
 }
