@@ -1,4 +1,4 @@
-package org.hartlandrobotics.echelonFRC.matchSchedule;
+package org.hartlandrobotics.echelonFRC;
 
 import android.Manifest;
 import android.content.Context;
@@ -17,12 +17,11 @@ import android.widget.AutoCompleteTextView;
 import com.google.android.material.button.MaterialButton;
 import com.google.android.material.textfield.TextInputLayout;
 
-import org.hartlandrobotics.echelonFRC.EchelonActivity;
-import org.hartlandrobotics.echelonFRC.R;
 import org.hartlandrobotics.echelonFRC.charts.ChartsActivity;
 import org.hartlandrobotics.echelonFRC.configuration.AdminSettings;
 import org.hartlandrobotics.echelonFRC.configuration.AdminSettingsProvider;
 import org.hartlandrobotics.echelonFRC.database.entities.Season;
+import org.hartlandrobotics.echelonFRC.matchSchedule.MatchScheduleActivity;
 import org.hartlandrobotics.echelonFRC.matchScouting.MatchSelectionActivity;
 import org.hartlandrobotics.echelonFRC.models.SeasonViewModel;
 import org.hartlandrobotics.echelonFRC.pitScouting.PitScoutActivity;

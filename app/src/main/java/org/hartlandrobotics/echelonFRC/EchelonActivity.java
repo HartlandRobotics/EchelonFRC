@@ -9,7 +9,6 @@ import androidx.appcompat.widget.Toolbar;
 
 import org.hartlandrobotics.echelonFRC.blueAlliance.BlueAllianceActivity;
 import org.hartlandrobotics.echelonFRC.bluetooth.BluetoothSyncActivity;
-import org.hartlandrobotics.echelonFRC.matchSchedule.MainActivity;
 
 public abstract class EchelonActivity extends AppCompatActivity {
     private TextView pageName;
