@@ -122,65 +122,65 @@ public class MatchScheduleActivity extends EchelonActivity {
                     MatchScheduleViewModel matchScheduleViewModel = new MatchScheduleViewModel();
                     matchScheduleViewModel.setMatchNumber(match.getMatchNumber());
 
-//                    int red1Average = getAverageByTeam(match.getRed1TeamKey());
-//                    matchScheduleViewModel.setRed1(match.getRed1TeamKey());
-//                    matchScheduleViewModel.setRed1Average(red1Average);
-//                    matchScheduleViewModel.setRed1Auto( getAverageAutoPointsByTeam(match.getRed1TeamKey()) );
-//                    matchScheduleViewModel.setRed1TeleOp( getAverageTeleOpPointsByTeam(match.getRed1TeamKey()) );
-//                    matchScheduleViewModel.setRed1End( getAverageEndPointsByTeam(match.getRed1TeamKey()) );
-//                    matchScheduleViewModel.setRed1StdDeviation(getStdDeviationByTeam(match.getRed1TeamKey()));
-//                    matchScheduleViewModel.setMatchCount(Math.max(matchScheduleViewModel.getMatchCount(),
-//                            getSize(match.getRed1TeamKey())));
-//
-//                    int red2Average = getAverageByTeam(match.getRed2TeamKey());
-//                    matchScheduleViewModel.setRed2(match.getRed2TeamKey());
-//                    matchScheduleViewModel.setRed2Average(red2Average);
-//                    matchScheduleViewModel.setRed2Auto( getAverageAutoPointsByTeam(match.getRed2TeamKey()) );
-//                    matchScheduleViewModel.setRed2TeleOp( getAverageTeleOpPointsByTeam(match.getRed2TeamKey()) );
-//                    matchScheduleViewModel.setRed2End( getAverageEndPointsByTeam(match.getRed2TeamKey()) );
-//                    matchScheduleViewModel.setRed2StdDeviation(getStdDeviationByTeam(match.getRed2TeamKey()));
-//                    matchScheduleViewModel.setMatchCount(Math.max(matchScheduleViewModel.getMatchCount(),
-//                            getSize(match.getRed2TeamKey())));
-//
-//                    int red3Average = getAverageByTeam(match.getRed3TeamKey());
-//                    matchScheduleViewModel.setRed3(match.getRed3TeamKey());
-//                    matchScheduleViewModel.setRed3Average(red3Average);
-//                    matchScheduleViewModel.setRed3Auto( getAverageAutoPointsByTeam(match.getRed3TeamKey()) );
-//                    matchScheduleViewModel.setRed3TeleOp( getAverageTeleOpPointsByTeam(match.getRed3TeamKey()) );
-//                    matchScheduleViewModel.setRed3End( getAverageEndPointsByTeam(match.getRed3TeamKey()) );
-//                    matchScheduleViewModel.setRed3StdDeviation(getStdDeviationByTeam(match.getRed3TeamKey()));
-//                    matchScheduleViewModel.setMatchCount(Math.max(matchScheduleViewModel.getMatchCount(),
-//                            getSize(match.getRed3TeamKey())));
-//
-//                    int blue1Average = getAverageByTeam(match.getBlue1TeamKey());
-//                    matchScheduleViewModel.setBlue1(match.getBlue1TeamKey());
-//                    matchScheduleViewModel.setBlue1Average(blue1Average);
-//                    matchScheduleViewModel.setBlue1Auto( getAverageAutoPointsByTeam(match.getBlue1TeamKey()) );
-//                    matchScheduleViewModel.setBlue1TeleOp( getAverageTeleOpPointsByTeam(match.getBlue1TeamKey()) );
-//                    matchScheduleViewModel.setBlue1End( getAverageEndPointsByTeam(match.getBlue1TeamKey()) );
-//                    matchScheduleViewModel.setBlue1StdDeviation(getStdDeviationByTeam(match.getBlue1TeamKey()));
-//                    matchScheduleViewModel.setMatchCount(Math.max(matchScheduleViewModel.getMatchCount(),
-//                            getSize(match.getBlue1TeamKey())));
-//
-//                    int blue2Average = getAverageByTeam(match.getBlue2TeamKey());
-//                    matchScheduleViewModel.setBlue2(match.getBlue2TeamKey());
-//                    matchScheduleViewModel.setBlue2Average(blue2Average);
-//                    matchScheduleViewModel.setBlue2Auto( getAverageAutoPointsByTeam(match.getBlue2TeamKey()) );
-//                    matchScheduleViewModel.setBlue2TeleOp( getAverageTeleOpPointsByTeam(match.getBlue2TeamKey()) );
-//                    matchScheduleViewModel.setBlue2End( getAverageEndPointsByTeam(match.getBlue2TeamKey()) );
-//                    matchScheduleViewModel.setBlue2StdDeviation(getStdDeviationByTeam(match.getBlue2TeamKey()));
-//                    matchScheduleViewModel.setMatchCount(Math.max(matchScheduleViewModel.getMatchCount(),
-//                            getSize(match.getBlue2TeamKey())));
-//
-//                    int blue3Average = getAverageByTeam(match.getBlue3TeamKey());
-//                    matchScheduleViewModel.setBlue3(match.getBlue3TeamKey());
-//                    matchScheduleViewModel.setBlue3Average(blue3Average);
-//                    matchScheduleViewModel.setBlue3Auto( getAverageAutoPointsByTeam(match.getBlue3TeamKey()) );
-//                    matchScheduleViewModel.setBlue3TeleOp( getAverageTeleOpPointsByTeam(match.getBlue3TeamKey()) );
-//                    matchScheduleViewModel.setBlue3End( getAverageEndPointsByTeam(match.getBlue3TeamKey()) );
-//                    matchScheduleViewModel.setBlue3StdDeviation(getStdDeviationByTeam(match.getBlue3TeamKey()));
-//                    matchScheduleViewModel.setMatchCount(Math.max(matchScheduleViewModel.getMatchCount(),
-//                            getSize(match.getBlue3TeamKey())));
+                    int red1Average = getAverageByTeam(match.getRed1TeamKey());
+                    matchScheduleViewModel.setRed1(match.getRed1TeamKey());
+                    matchScheduleViewModel.setRed1Average(red1Average);
+                    matchScheduleViewModel.setRed1Auto( getAverageAutoPointsByTeam(match.getRed1TeamKey()) );
+                    matchScheduleViewModel.setRed1TeleOp( getAverageTeleOpPointsByTeam(match.getRed1TeamKey()) );
+                    matchScheduleViewModel.setRed1End( getAverageEndPointsByTeam(match.getRed1TeamKey()) );
+                    matchScheduleViewModel.setRed1StdDeviation(getStdDeviationByTeam(match.getRed1TeamKey()));
+                    matchScheduleViewModel.setMatchCount(Math.max(matchScheduleViewModel.getMatchCount(),
+                            getSize(match.getRed1TeamKey())));
+
+                    int red2Average = getAverageByTeam(match.getRed2TeamKey());
+                    matchScheduleViewModel.setRed2(match.getRed2TeamKey());
+                    matchScheduleViewModel.setRed2Average(red2Average);
+                    matchScheduleViewModel.setRed2Auto( getAverageAutoPointsByTeam(match.getRed2TeamKey()) );
+                    matchScheduleViewModel.setRed2TeleOp( getAverageTeleOpPointsByTeam(match.getRed2TeamKey()) );
+                    matchScheduleViewModel.setRed2End( getAverageEndPointsByTeam(match.getRed2TeamKey()) );
+                    matchScheduleViewModel.setRed2StdDeviation(getStdDeviationByTeam(match.getRed2TeamKey()));
+                    matchScheduleViewModel.setMatchCount(Math.max(matchScheduleViewModel.getMatchCount(),
+                            getSize(match.getRed2TeamKey())));
+
+                    int red3Average = getAverageByTeam(match.getRed3TeamKey());
+                    matchScheduleViewModel.setRed3(match.getRed3TeamKey());
+                    matchScheduleViewModel.setRed3Average(red3Average);
+                    matchScheduleViewModel.setRed3Auto( getAverageAutoPointsByTeam(match.getRed3TeamKey()) );
+                    matchScheduleViewModel.setRed3TeleOp( getAverageTeleOpPointsByTeam(match.getRed3TeamKey()) );
+                    matchScheduleViewModel.setRed3End( getAverageEndPointsByTeam(match.getRed3TeamKey()) );
+                    matchScheduleViewModel.setRed3StdDeviation(getStdDeviationByTeam(match.getRed3TeamKey()));
+                    matchScheduleViewModel.setMatchCount(Math.max(matchScheduleViewModel.getMatchCount(),
+                            getSize(match.getRed3TeamKey())));
+
+                    int blue1Average = getAverageByTeam(match.getBlue1TeamKey());
+                    matchScheduleViewModel.setBlue1(match.getBlue1TeamKey());
+                    matchScheduleViewModel.setBlue1Average(blue1Average);
+                    matchScheduleViewModel.setBlue1Auto( getAverageAutoPointsByTeam(match.getBlue1TeamKey()) );
+                    matchScheduleViewModel.setBlue1TeleOp( getAverageTeleOpPointsByTeam(match.getBlue1TeamKey()) );
+                    matchScheduleViewModel.setBlue1End( getAverageEndPointsByTeam(match.getBlue1TeamKey()) );
+                    matchScheduleViewModel.setBlue1StdDeviation(getStdDeviationByTeam(match.getBlue1TeamKey()));
+                    matchScheduleViewModel.setMatchCount(Math.max(matchScheduleViewModel.getMatchCount(),
+                            getSize(match.getBlue1TeamKey())));
+
+                    int blue2Average = getAverageByTeam(match.getBlue2TeamKey());
+                    matchScheduleViewModel.setBlue2(match.getBlue2TeamKey());
+                    matchScheduleViewModel.setBlue2Average(blue2Average);
+                    matchScheduleViewModel.setBlue2Auto( getAverageAutoPointsByTeam(match.getBlue2TeamKey()) );
+                    matchScheduleViewModel.setBlue2TeleOp( getAverageTeleOpPointsByTeam(match.getBlue2TeamKey()) );
+                    matchScheduleViewModel.setBlue2End( getAverageEndPointsByTeam(match.getBlue2TeamKey()) );
+                    matchScheduleViewModel.setBlue2StdDeviation(getStdDeviationByTeam(match.getBlue2TeamKey()));
+                    matchScheduleViewModel.setMatchCount(Math.max(matchScheduleViewModel.getMatchCount(),
+                            getSize(match.getBlue2TeamKey())));
+
+                    int blue3Average = getAverageByTeam(match.getBlue3TeamKey());
+                    matchScheduleViewModel.setBlue3(match.getBlue3TeamKey());
+                    matchScheduleViewModel.setBlue3Average(blue3Average);
+                    matchScheduleViewModel.setBlue3Auto( getAverageAutoPointsByTeam(match.getBlue3TeamKey()) );
+                    matchScheduleViewModel.setBlue3TeleOp( getAverageTeleOpPointsByTeam(match.getBlue3TeamKey()) );
+                    matchScheduleViewModel.setBlue3End( getAverageEndPointsByTeam(match.getBlue3TeamKey()) );
+                    matchScheduleViewModel.setBlue3StdDeviation(getStdDeviationByTeam(match.getBlue3TeamKey()));
+                    matchScheduleViewModel.setMatchCount(Math.max(matchScheduleViewModel.getMatchCount(),
+                            getSize(match.getBlue3TeamKey())));
 
                     viewModels.add(matchScheduleViewModel);
                 }
@@ -195,8 +195,7 @@ public class MatchScheduleActivity extends EchelonActivity {
         tabLayout = findViewById(R.id.matchScheduleLayout);
         Log.i(TAG, "setupTabLayout: " + tabLayout);
 
-        int x = R.id.schedulePager;
-        matchScheduleViewPager = findViewById(x);
+        matchScheduleViewPager = findViewById(R.id.schedulePager);
         matchSchedulePagerAdapter = new MatchSchedulePagerAdapter(getSupportFragmentManager(), getLifecycle());
         matchScheduleViewPager.setAdapter(matchSchedulePagerAdapter);
 

@@ -1,5 +1,7 @@
 package org.hartlandrobotics.echelonFRC.matchSchedule;
 
+import android.util.Log;
+
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
@@ -18,7 +20,7 @@ public class MatchSchedulePagerAdapter extends FragmentStateAdapter {
     private static final int QUALIFICATIONS = 0;
     private static final int PLAYOFFS = 1;
 
-    //private ScheduleQualFragment qualFragment;
+    private MatchScheduleQualsFragment qualFragment;
     //private SchedulePlayoffsFragment playoffsFragment;
 
     public MatchSchedulePagerAdapter(
@@ -46,19 +48,17 @@ public class MatchSchedulePagerAdapter extends FragmentStateAdapter {
             titleByPosition.put(1, "Playoffs");
         }
 
-        return StringUtils.EMPTY;
+        return titleByPosition.get(position);
     }
 
     @NonNull
     @Override
-
     public Fragment createFragment(int position) {
         switch (position){
             case QUALIFICATIONS:
-                //Log.i(TAG, "creating new Qualifications Fragment");
-                // qualFragment = new ScheduleQualFragment();
-                //return qualFragment;
-                break;
+                Log.i(TAG, "creating new Qualifications Fragment");
+                qualFragment = new MatchScheduleQualsFragment();
+                return qualFragment;
             case PLAYOFFS:
                 //Log.i(TAG, "creating new Playoffs Fragment");
                 //playoffsFragment = new ScheduleQualFragment();
@@ -66,8 +66,8 @@ public class MatchSchedulePagerAdapter extends FragmentStateAdapter {
                 break;
         }
 
-        return null;
-        
+
+        return qualFragment;
     }
 
     @Override
