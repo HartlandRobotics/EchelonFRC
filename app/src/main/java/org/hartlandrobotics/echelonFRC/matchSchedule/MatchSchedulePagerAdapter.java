@@ -21,7 +21,7 @@ public class MatchSchedulePagerAdapter extends FragmentStateAdapter {
     private static final int PLAYOFFS = 1;
 
     private MatchScheduleQualsFragment qualFragment;
-    //private SchedulePlayoffsFragment playoffsFragment;
+    private MatchScheduleQualsFragment playoffsFragment;
 
     public MatchSchedulePagerAdapter(
         @NonNull FragmentManager fragmentManager, Lifecycle lifecycle) {
@@ -60,14 +60,13 @@ public class MatchSchedulePagerAdapter extends FragmentStateAdapter {
                 qualFragment = new MatchScheduleQualsFragment();
                 return qualFragment;
             case PLAYOFFS:
-                //Log.i(TAG, "creating new Playoffs Fragment");
-                //playoffsFragment = new ScheduleQualFragment();
-                //return playoffsFragment;
-                break;
+                Log.i(TAG, "creating new Playoffs Fragment");
+                playoffsFragment = new MatchScheduleQualsFragment();
+                return playoffsFragment;
+            default:
+                throw new IllegalArgumentException("invalid tab selection for match schedule activity");
+
         }
-
-
-        return qualFragment;
     }
 
     @Override
