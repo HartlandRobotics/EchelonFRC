@@ -47,7 +47,6 @@ public class MatchSchedulePagerAdapter extends FragmentStateAdapter {
         }
 
         return StringUtils.EMPTY;
-
     }
 
     @NonNull
@@ -77,6 +76,6 @@ public class MatchSchedulePagerAdapter extends FragmentStateAdapter {
     }
 
     @Override
-    public  int getItemCount(){return 5;}
+    public  int getItemCount(){return 2;}
 }
 
