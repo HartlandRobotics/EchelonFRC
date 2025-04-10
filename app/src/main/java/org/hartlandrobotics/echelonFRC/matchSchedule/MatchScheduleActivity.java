@@ -1,9 +1,5 @@
 package org.hartlandrobotics.echelonFRC.matchSchedule;
 
-import androidx.annotation.NonNull;
-import androidx.recyclerview.widget.DividerItemDecoration;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
 import androidx.viewpager2.widget.ViewPager2;
 
 
@@ -11,20 +7,11 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.provider.Settings;
-import android.text.Editable;
-import android.text.TextWatcher;
 import android.util.Log;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.LinearLayout;
 
 import com.google.android.material.tabs.TabLayout;
 import com.google.android.material.tabs.TabLayoutMediator;
-import com.google.android.material.textfield.TextInputLayout;
-import com.google.android.material.textview.MaterialTextView;
 
-import org.apache.commons.lang3.StringUtils;
 import org.hartlandrobotics.echelonFRC.EchelonActivity;
 import org.hartlandrobotics.echelonFRC.R;
 import org.hartlandrobotics.echelonFRC.database.currentGame.CurrentGamePoints;
@@ -35,11 +22,9 @@ import org.hartlandrobotics.echelonFRC.database.repositories.MatchResultRepo;
 import org.hartlandrobotics.echelonFRC.status.BlueAllianceStatus;
 
 import java.util.ArrayList;
-import java.util.Comparator;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.stream.Collectors;
 
 public class MatchScheduleActivity extends EchelonActivity {
     private static final String TAG = "MatchScheduleActivity";
@@ -50,8 +35,8 @@ public class MatchScheduleActivity extends EchelonActivity {
 
     EventRepo eventRepo;
     MatchResultRepo matchResultRepo;
-    Map<String, List<MatchResult>> matchResultsByTeam = new HashMap<>();
-    List<MatchScheduleViewModel> viewModels = new ArrayList<>();
+    public Map<String, List<MatchResult>> matchResultsByTeam = new HashMap<>();
+    public List<MatchScheduleViewModel> matchScheduleViewModels = new ArrayList<>();
     //TextInputLayout teamSearchLayout;
     //RecyclerView matchRecycler;
     //MatchListAdapter matchListAdapter;
@@ -72,6 +57,8 @@ public class MatchScheduleActivity extends EchelonActivity {
         setupToolbar("Match Schedule");
 
         setupTabLayout();
+
+        setupData();
 
 
 //       teamSearchLayout = findViewById(R.id.team_search);
@@ -98,7 +85,9 @@ public class MatchScheduleActivity extends EchelonActivity {
         //matchRecycler.setLayoutManager(new LinearLayoutManager(this));
         //matchRecycler.setAdapter(matchListAdapter);
         //matchRecycler.addItemDecoration(new DividerItemDecoration(this, LinearLayoutManager.VERTICAL));
+    }
 
+    public void setupData(){
         BlueAllianceStatus status = new BlueAllianceStatus(getApplicationContext());
         String currentEvent = status.getEventKey();
 
@@ -182,7 +171,7 @@ public class MatchScheduleActivity extends EchelonActivity {
                     matchScheduleViewModel.setMatchCount(Math.max(matchScheduleViewModel.getMatchCount(),
                             getSize(match.getBlue3TeamKey())));
 
-                    viewModels.add(matchScheduleViewModel);
+                    matchScheduleViewModels.add(matchScheduleViewModel);
                 }
 
                 //matchListAdapter.setMatches(viewModels);

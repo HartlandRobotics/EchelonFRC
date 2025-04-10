@@ -72,6 +72,7 @@ public class MatchSchedulePagerAdapter extends FragmentStateAdapter {
     @Override
     public void onBindViewHolder(@NonNull FragmentViewHolder holder, int position, @NonNull List<Object> payloads) {
         super.onBindViewHolder(holder, position, payloads);
+        Log.i(TAG, "onBindViewHolder: ");
     }
 
     @Override

@@ -4,9 +4,11 @@ import android.content.Context;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -47,8 +49,21 @@ public class MatchScheduleQualsFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+        Log.i(TAG, "onCreateView: ");
+
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_match_schedule_quals, container, false);
+    }
+
+    @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+
+        MatchScheduleActivity activity = (MatchScheduleActivity)getActivity();
+
+        Log.i(TAG, "onViewCreated: ");
+        Log.i(TAG, "onViewCreated: " + activity.matchScheduleViewModels.size() );
+
     }
 
     private void setupControls(View view) {
@@ -186,6 +201,11 @@ public class MatchScheduleQualsFragment extends Fragment {
             }else{
                 holder.setDisplayText("No Match Data Yet...");
             }
+        }
+
+        @Override
+        public void onBindViewHolder(@NonNull MatchScheduleViewHolder holder, int position, @NonNull List<Object> payloads) {
+            super.onBindViewHolder(holder, position, payloads);
         }
 
         void setTeamFilter(String filter){
