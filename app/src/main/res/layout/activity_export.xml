@@ -2,10 +2,9 @@
 <androidx.constraintlayout.widget.ConstraintLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ExportActivity">
+    >
 
     <include
         android:id="@+id/actionBar"
@@ -13,40 +12,95 @@
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize" />
 
-    <com.google.android.material.button.MaterialButton
-        android:id="@+id/exportMatchResults"
-        android:layout_width="0dp"
+    <LinearLayout
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Matches -> CSV"
+        android:orientation="horizontal"
         app:layout_constraintTop_toBottomOf="@id/actionBar"
-        app:layout_constraintBottom_toTopOf="@id/exportPitScouting"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintWidth_percent="0.33"
-        />
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        android:layout_marginTop="75dp"
+        >
 
-    <com.google.android.material.button.MaterialButton
-        android:id="@+id/exportPitScouting"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:text="Pit Scouting -> HTML"
-        app:layout_constraintBottom_toTopOf="@id/importMatchCSV"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.501"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/exportMatchResults"
-        app:layout_constraintWidth_percent="0.33" />
+        <LinearLayout
+            android:id="@+id/left_column"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="@id/right_column"
+            android:layout_marginRight="50dp"
 
-    <com.google.android.material.button.MaterialButton
-        android:id="@+id/importMatchCSV"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:text="CSV -> Matches"
-        app:layout_constraintTop_toBottomOf="@id/exportPitScouting"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintWidth_percent="0.33"
-        />
+            >
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/exportCaptainsMatchResults"
+                android:layout_width="380dp"
+                android:layout_height="60dp"
+                android:text="Matches Captain -> CSV" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/exportRedOneMatchResults"
+                android:layout_width="380dp"
+                android:layout_height="60dp"
+                android:text="Matches Red 1 -> CSV" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/exportRedTwoMatchResults"
+                android:layout_width="380dp"
+                android:layout_height="60dp"
+                android:text="Matches Red 2 -> CSV" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/exportRedThreeMatchResults"
+                android:layout_width="380dp"
+                android:layout_height="60dp"
+                android:text="Matches Red 3 -> CSV" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/exportBlueOneMatchResults"
+                android:layout_width="380dp"
+                android:layout_height="60dp"
+                android:text="Matches Blue 1 -> CSV" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/exportBlueTwoMatchResults"
+                android:layout_width="380dp"
+                android:layout_height="60dp"
+                android:text="Matches Blue 2 -> CSV" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/exportBlueThreeMatchResults"
+                android:layout_width="380dp"
+                android:layout_height="60dp"
+                android:text="Matches Blue 3 -> CSV" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/right_column"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintLeft_toRightOf="@id/left_column"
+            app:layout_constraintRight_toRightOf="parent"
+            android:layout_marginLeft="50dp"
+
+            >
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/exportPitScouting"
+                android:layout_width="380dp"
+                android:layout_height="60dp"
+                android:text="Pit Scouting -> HTML" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/importMatchCSV"
+                android:layout_width="380dp"
+                android:layout_height="60dp"
+                android:text="CSV -> Matches" />
+
+        </LinearLayout>
+    </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

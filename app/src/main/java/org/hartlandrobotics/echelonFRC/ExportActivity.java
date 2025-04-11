@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
 
@@ -16,6 +17,8 @@ import androidx.lifecycle.ViewModelProvider;
 import org.apache.commons.lang3.StringEscapeUtils;
 import org.apache.commons.lang3.StringUtils;
 //import org.apache.commons.text.StringEscapeUtils;
+import org.hartlandrobotics.echelonFRC.configuration.AdminSettings;
+import org.hartlandrobotics.echelonFRC.configuration.AdminSettingsProvider;
 import org.hartlandrobotics.echelonFRC.database.entities.Match;
 import org.hartlandrobotics.echelonFRC.database.entities.MatchResult;
 import org.hartlandrobotics.echelonFRC.database.entities.MatchResultWithTeamMatch;
@@ -42,11 +45,20 @@ import java.util.stream.Stream;
 
 public class ExportActivity extends EchelonActivity {
 
-    private Button exportMatchResultsButton;
+    private Button exportCaptainsMatchResultsButton;
+    private Button exportRedOneMatchResultsButton;
+    private Button exportRedTwoMatchResultsButton;
+    private Button exportRedThreeMatchResultsButton;
+    private Button exportBlueOneMatchResultsButton;
+    private Button exportBlueTwoMatchResultsButton;
+    private Button exportBlueThreeMatchResultsButton;
     private Button exportPitScoutResultsButton;
     private Button importCSVMatchButton;
 
     private MatchResultViewModel matchResultViewModel;
+    AdminSettings adminSettings;
+    String role;
+
 
     public static void launch(Context context){
         Intent intent = new Intent( context, ExportActivity.class );
@@ -60,9 +72,36 @@ public class ExportActivity extends EchelonActivity {
         setContentView(R.layout.activity_export);
         setupToolbar("Export Data");
 
+        adminSettings= AdminSettingsProvider.getAdminSettings(this);
+        role = adminSettings.getDeviceRole();
+
         matchResultViewModel = new ViewModelProvider(this).get(MatchResultViewModel.class);
 
-        exportMatchResultsButton = findViewById(R.id.exportMatchResults);
+        exportCaptainsMatchResultsButton = findViewById(R.id.exportCaptainsMatchResults);
+        exportRedOneMatchResultsButton = findViewById(R.id.exportRedOneMatchResults);
+        if(!role.equalsIgnoreCase("Red1")){
+            exportRedOneMatchResultsButton.setVisibility(View.GONE);
+        }
+        exportRedTwoMatchResultsButton = findViewById(R.id.exportRedTwoMatchResults);
+        if(!role.equalsIgnoreCase("Red2")){
+            exportRedTwoMatchResultsButton.setVisibility(View.GONE);
+        }
+        exportRedThreeMatchResultsButton = findViewById(R.id.exportRedThreeMatchResults);
+        if(!role.equalsIgnoreCase("Red3")){
+            exportRedThreeMatchResultsButton.setVisibility(View.GONE);
+        }
+        exportBlueOneMatchResultsButton = findViewById(R.id.exportBlueOneMatchResults);
+        if(!role.equalsIgnoreCase("Blue1")){
+            exportBlueOneMatchResultsButton.setVisibility(View.GONE);
+        }
+        exportBlueTwoMatchResultsButton = findViewById(R.id.exportBlueTwoMatchResults);
+        if(!role.equalsIgnoreCase("Blue2")){
+            exportBlueTwoMatchResultsButton.setVisibility(View.GONE);
+        }
+        exportBlueThreeMatchResultsButton = findViewById(R.id.exportBlueThreeMatchResults);
+        if(!role.equalsIgnoreCase("Blue3")){
+            exportBlueThreeMatchResultsButton.setVisibility(View.GONE);
+        }
         setupExportCSVButton();
 
         exportPitScoutResultsButton = findViewById(R.id.exportPitScouting);
@@ -72,7 +111,7 @@ public class ExportActivity extends EchelonActivity {
         setupCSVImportButton();
     }
 
-    public void exportMatchResults() throws RuntimeException {
+    public void exportMatchResults(String fileName) throws RuntimeException {
             Context appContext = getApplicationContext();
             BlueAllianceStatus status = new BlueAllianceStatus(appContext);
             File externalFilesDir = getFilePathForMatch();
@@ -80,10 +119,10 @@ public class ExportActivity extends EchelonActivity {
             String path = externalFilesDir.getAbsolutePath();
             File[] files = getFilePathsForMatch();
             MatchResultViewModel matchResultViewModel = new MatchResultViewModel(getApplication());
-            SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy_MM_dd_HH_mm");
-            Date date = new Date();
-            String dateForFile = dateFormat.format(date);
-            String fileName = "Match_Data_" + dateForFile + ".csv";
+            //SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy_MM_dd_HH_mm");
+            //Date date = new Date();
+            //String dateForFile = dateFormat.format(date);
+            //fileName = "Match_Data_" += dateForFile + ".csv";
             File file = new File( externalFilesDir, fileName);
 
             matchResultViewModel.getMatchResultsWithTeamMatchByEvent(status.getEventKey()).observe(this, matchResults -> {
@@ -110,7 +149,7 @@ public class ExportActivity extends EchelonActivity {
                         dataForFile.add(mr.getMatchKey());
                         dataForFile.add(mr.getTeamKey());
                         dataForFile.add(String.valueOf(m.getMatchNumber()));
-                        dataForFile.add(String.valueOf(t.getTeamNumber()));
+                        dataForFile.add(String.valueOf(mr.getTeamKey().substring(3)));
 
                         dataForFile.add(String.valueOf(mr.getAutoFlag1()));
                         dataForFile.add(String.valueOf(mr.getAutoFlag2()));
@@ -144,7 +183,7 @@ public class ExportActivity extends EchelonActivity {
                         dataForFile.add(mr.getMatchResultKey());
                         dataForFile.add(StringEscapeUtils.escapeCsv(
                                 mr.getAdditionalNotes()
-                                        .replaceAll(",",".")
+                                        .replaceAll(",","_")
                                         .replaceAll("\"",StringUtils.EMPTY)
                                         .replaceAll("\n",StringUtils.EMPTY)
                                         .replaceAll("'",StringUtils.EMPTY)
@@ -164,9 +203,71 @@ public class ExportActivity extends EchelonActivity {
  }
 
     public void setupExportCSVButton(){
-        exportMatchResultsButton.setOnClickListener((view) -> {
+
+
+        exportCaptainsMatchResultsButton.setOnClickListener((view) -> {
             try {
-                exportMatchResults();
+                exportMatchResults("matchResultsCaptain.csv");
+                Toast.makeText(this, "export Matches: ", Toast.LENGTH_LONG).show();
+
+            } catch (RuntimeException e) {
+                String message = e.getLocalizedMessage();
+                Toast.makeText(this, "export Matches error: " + message, Toast.LENGTH_LONG).show();
+            }
+        });
+        exportRedOneMatchResultsButton.setOnClickListener((view) -> {
+            try {
+                exportMatchResults("matchResultsRedOne.csv");
+                Toast.makeText(this, "export Matches: ", Toast.LENGTH_LONG).show();
+
+            } catch (RuntimeException e) {
+                String message = e.getLocalizedMessage();
+                Toast.makeText(this, "export Matches error: " + message, Toast.LENGTH_LONG).show();
+            }
+        });
+        exportRedTwoMatchResultsButton.setOnClickListener((view) -> {
+            try {
+                exportMatchResults("matchResultsRedTwo.csv");
+                Toast.makeText(this, "export Matches: ", Toast.LENGTH_LONG).show();
+
+            } catch (RuntimeException e) {
+                String message = e.getLocalizedMessage();
+                Toast.makeText(this, "export Matches error: " + message, Toast.LENGTH_LONG).show();
+            }
+        });
+        exportRedThreeMatchResultsButton.setOnClickListener((view) -> {
+            try {
+                exportMatchResults("matchResultsRedThree.csv");
+                Toast.makeText(this, "export Matches: ", Toast.LENGTH_LONG).show();
+
+            } catch (RuntimeException e) {
+                String message = e.getLocalizedMessage();
+                Toast.makeText(this, "export Matches error: " + message, Toast.LENGTH_LONG).show();
+            }
+        });
+        exportBlueOneMatchResultsButton.setOnClickListener((view) -> {
+            try {
+                exportMatchResults("matchResultsBlueOne.csv");
+                Toast.makeText(this, "export Matches: ", Toast.LENGTH_LONG).show();
+
+            } catch (RuntimeException e) {
+                String message = e.getLocalizedMessage();
+                Toast.makeText(this, "export Matches error: " + message, Toast.LENGTH_LONG).show();
+            }
+        });
+        exportBlueTwoMatchResultsButton.setOnClickListener((view) -> {
+            try {
+                exportMatchResults("matchResultsBlueTwo.csv");
+                Toast.makeText(this, "export Matches: ", Toast.LENGTH_LONG).show();
+
+            } catch (RuntimeException e) {
+                String message = e.getLocalizedMessage();
+                Toast.makeText(this, "export Matches error: " + message, Toast.LENGTH_LONG).show();
+            }
+        });
+        exportBlueThreeMatchResultsButton.setOnClickListener((view) -> {
+            try {
+                exportMatchResults("matchResultsBlueThree.csv");
                 Toast.makeText(this, "export Matches: ", Toast.LENGTH_LONG).show();
 
             } catch (RuntimeException e) {
