@@ -6,6 +6,8 @@ import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.DividerItemDecoration;
+import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.util.Log;
@@ -28,6 +30,10 @@ import java.util.stream.Collectors;
 public class MatchScheduleQualsFragment extends Fragment {
 
     private static final String TAG = "MatchScheduleQualsFragment";
+
+    RecyclerView matchRecycler;
+    MatchListAdapter matchListAdapter;
+
 
 
     public MatchScheduleQualsFragment() {
@@ -59,11 +65,23 @@ public class MatchScheduleQualsFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
+
+
         MatchScheduleActivity activity = (MatchScheduleActivity)getActivity();
 
         Log.i(TAG, "onViewCreated: ");
         Log.i(TAG, "onViewCreated: " + activity.matchScheduleViewModels.size() );
 
+        matchListAdapter = new MatchListAdapter(activity);
+
+        matchRecycler = view.findViewById(R.id.match_recycler);
+        matchRecycler.setLayoutManager(new LinearLayoutManager(activity));
+        matchRecycler.setAdapter(matchListAdapter);
+        matchRecycler.addItemDecoration(new DividerItemDecoration(activity, LinearLayoutManager.VERTICAL));
+
+        matchListAdapter.setMatches(activity.matchScheduleViewModels);
+
+        Log.i(TAG, "onViewCreated matchScheduleViewModels sizr: " + activity.matchScheduleViewModels.size() );
     }
 
     private void setupControls(View view) {
@@ -201,11 +219,6 @@ public class MatchScheduleQualsFragment extends Fragment {
             }else{
                 holder.setDisplayText("No Match Data Yet...");
             }
-        }
-
-        @Override
-        public void onBindViewHolder(@NonNull MatchScheduleViewHolder holder, int position, @NonNull List<Object> payloads) {
-            super.onBindViewHolder(holder, position, payloads);
         }
 
         void setTeamFilter(String filter){
