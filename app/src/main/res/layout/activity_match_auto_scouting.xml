@@ -11,22 +11,25 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintRight_toLeftOf="@id/center_block"
+        app:layout_constraintTop_toTopOf="parent"
+        >
 
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:orientation="horizontal">
+            android:orientation="horizontal"
+            android:layout_marginTop="15dp"
+            >
 
             <ImageButton
                 android:id="@+id/active_fuel_decrement"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_margin="10dp"
                 android:background="@null"
                 android:src="@drawable/button_decrement"
-                app:layout_constraintBottom_toBottomOf="@id/active_fuel"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintRight_toLeftOf="@id/active_fuel"
                 app:layout_constraintTop_toTopOf="@id/active_fuel" />
@@ -47,6 +50,7 @@
                 android:id="@+id/active_fuel_text"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_margin="25dp"
                 android:textSize="32sp"
                 app:layout_constraintBottom_toBottomOf="@id/active_fuel"
                 app:layout_constraintLeft_toRightOf="@+id/active_fuel"
@@ -57,20 +61,21 @@
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:orientation="horizontal">
+            android:orientation="horizontal"
+            android:layout_marginTop="15dp"
+            >
 
             <ImageButton
                 android:id="@+id/missed_fuel_decrement"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_margin="10dp"
                 android:background="@null"
                 android:src="@drawable/button_decrement"
                 app:layout_constraintBottom_toBottomOf="@id/missed_fuel"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintRight_toLeftOf="@id/missed_fuel"
-                app:layout_constraintTop_toTopOf="@id/missed_fuel"
-
-                />
+                app:layout_constraintTop_toTopOf="@id/missed_fuel" />
 
             <ImageButton
                 android:id="@+id/missed_fuel"
@@ -88,7 +93,7 @@
                 android:id="@+id/missed_fuel_text"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="25dp"
+                android:layout_margin="25dp"
                 android:textSize="32sp"
                 app:layout_constraintBottom_toBottomOf="@id/missed_fuel"
                 app:layout_constraintLeft_toRightOf="@+id/missed_fuel"
@@ -99,12 +104,15 @@
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:orientation="horizontal">
+            android:orientation="horizontal"
+            android:layout_marginTop="15dp"
+            >
 
             <ImageButton
                 android:id="@+id/inactive_fuel_decrement"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_margin="10dp"
                 android:background="@null"
                 android:src="@drawable/button_decrement"
                 app:layout_constraintBottom_toBottomOf="@id/inactive_fuel"
@@ -130,6 +138,7 @@
                 android:id="@+id/inactive_fuel_text"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_margin="25dp"
                 android:textSize="32sp"
                 app:layout_constraintBottom_toBottomOf="@id/inactive_fuel"
                 app:layout_constraintLeft_toRightOf="@+id/inactive_fuel"
@@ -144,11 +153,13 @@
         android:layout_height="wrap_content"
         android:orientation="vertical"
         app:layout_constraintLeft_toRightOf="@id/left_block"
+        app:layout_constraintRight_toRightOf="@id/right_block"
         app:layout_constraintTop_toTopOf="parent">
 
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginTop="15dp"
             android:orientation="horizontal">
 
             <ImageButton
@@ -157,10 +168,10 @@
                 android:layout_height="wrap_content"
                 android:background="@null"
                 android:src="@drawable/button_decrement"
-                app:layout_constraintBottom_toBottomOf="@id/human_fuel"
-                app:layout_constraintLeft_toRightOf="@id/inactive_fuel_text"
-                app:layout_constraintRight_toLeftOf="@id/human_fuel"
-                app:layout_constraintTop_toTopOf="@id/human_fuel" />
+
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toLeftOf="@id/passing"
+                app:layout_constraintTop_toTopOf="@id/passing" />
 
             <ImageButton
                 android:id="@+id/passing"
@@ -169,7 +180,6 @@
                 android:background="@null"
                 android:contentDescription="moving in auto button"
                 android:src="@drawable/passing_fuel"
-                app:layout_constraintBottom_toTopOf="@id/human_fuel"
                 app:layout_constraintLeft_toRightOf="@id/passing_decrement"
                 app:layout_constraintRight_toLeftOf="@id/passing_text"
                 app:layout_constraintTop_toTopOf="parent" />
@@ -186,85 +196,78 @@
                 tools:text="0" />
         </LinearLayout>
 
-        <ImageButton
-            android:id="@+id/human_fuel_decrement"
+        <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:background="@null"
-            android:src="@drawable/button_decrement"
-            app:layout_constraintBottom_toBottomOf="@id/passing"
-            app:layout_constraintLeft_toRightOf="@id/active_fuel_text"
-            app:layout_constraintRight_toLeftOf="@id/passing"
-            app:layout_constraintTop_toTopOf="@id/passing" />
+            android:layout_marginTop="15dp"
+            android:orientation="horizontal">
 
-        <ImageButton
-            android:id="@+id/human_fuel"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:background="@null"
-            android:contentDescription="moving in auto button"
-            android:src="@drawable/human_player_fuel"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintLeft_toRightOf="@id/inactive_fuel"
-            app:layout_constraintTop_toBottomOf="@id/passing" />
+            <ImageButton
+                android:id="@+id/human_fuel_decrement"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@null"
+                android:src="@drawable/button_decrement"
+                app:layout_constraintRight_toLeftOf="@id/human_fuel"
+                app:layout_constraintTop_toTopOf="@id/human_fuel" />
 
-        <com.google.android.material.textview.MaterialTextView
-            android:id="@+id/human_fuel_text"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="25dp"
-            android:layout_marginBottom="25dp"
-            android:textSize="32sp"
-            app:layout_constraintLeft_toRightOf="@+id/human_fuel"
-            app:layout_constraintRight_toRightOf="@id/human_fuel"
-            app:layout_constraintTop_toTopOf="@id/human_fuel"
-            tools:text="0" />
+            <ImageButton
+                android:id="@+id/human_fuel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@null"
+                android:contentDescription="moving in auto button"
+                android:src="@drawable/human_player_fuel"
+                app:layout_constraintLeft_toRightOf="@id/human_fuel_decrement"
+                app:layout_constraintTop_toBottomOf="@id/passing" />
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/human_fuel_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="32sp"
+                app:layout_constraintLeft_toRightOf="@+id/human_fuel"
+                app:layout_constraintTop_toTopOf="@id/human_fuel"
+                tools:text="0" />
+        </LinearLayout>
     </LinearLayout>
 
-
-    <com.google.android.material.button.MaterialButton
-        android:id="@+id/high_climb"
-        android:layout_width="175dp"
+    <LinearLayout
+        android:id="@+id/right_block"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:backgroundTint="@color/blueAlliance"
-        android:text="High"
-        android:visibility="visible"
-        app:layout_constraintBottom_toTopOf="@id/mid_climb"
-        app:layout_constraintHorizontal_bias="0.6"
-        app:layout_constraintLeft_toLeftOf="@id/low_climb"
-        app:layout_constraintRight_toRightOf="@id/low_climb"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:orientation="vertical"
 
-    <com.google.android.material.button.MaterialButton
-        android:id="@+id/mid_climb"
-        android:layout_width="175dp"
-        android:layout_height="wrap_content"
-        android:layout_marginHorizontal="5dp"
-        android:layout_marginTop="5dp"
-        android:backgroundTint="@color/blueAlliance"
-        android:text="Mid"
-        android:visibility="visible"
-        app:layout_constraintBottom_toTopOf="@id/low_climb"
-        app:layout_constraintLeft_toLeftOf="@id/low_climb"
-        app:layout_constraintRight_toRightOf="@id/low_climb"
-        app:layout_constraintTop_toBottomOf="@id/high_climb"
-
-        />
-
-    <com.google.android.material.button.MaterialButton
-        android:id="@+id/low_climb"
-        android:layout_width="170dp"
-        android:layout_height="wrap_content"
-        android:layout_marginHorizontal="5dp"
-        android:layout_marginTop="5dp"
-        android:backgroundTint="@color/blueAlliance"
-        android:text="Low"
-        android:visibility="visible"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toRightOf="@id/human_fuel_text"
+        app:layout_constraintLeft_toRightOf="@id/center_block"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/mid_climb" />
+        app:layout_constraintTop_toTopOf="parent">
 
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/high_climb"
+            android:layout_width="175dp"
+            android:layout_height="wrap_content"
+            android:backgroundTint="@color/blueAlliance"
+            android:text="High"
+            android:visibility="visible" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/mid_climb"
+            android:layout_width="175dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:backgroundTint="@color/blueAlliance"
+            android:text="Mid"
+            android:visibility="visible" />
+
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/low_climb"
+            android:layout_width="170dp"
+            android:layout_height="wrap_content"
+            android:backgroundTint="@color/blueAlliance"
+            android:text="Low"
+            android:visibility="visible" />
+    </LinearLayout>
 
     <com.google.android.material.textview.MaterialTextView
         android:id="@+id/teamKeyText"
@@ -282,178 +285,5 @@
         android:text="TeleOp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
-
-
-    <!--
-        <ImageButton
-            android:id="@+id/autoSpeaker"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:background="@null"
-            android:src="@drawable/auto_speaker"
-            app:layout_constraintTop_toBottomOf="@id/park"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintLeft_toLeftOf="@id/subtractSpeakerPointsAuto"
-            app:layout_constraintRight_toRightOf="@id/speakerPoints"
-            android:contentDescription="speaker note auto button"
-            />
-
-
-        <com.google.android.material.textview.MaterialTextView
-            android:id="@+id/speakerPoints"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textSize="48sp"
-            tools:layout_editor_absoluteX="279dp"
-            tools:layout_editor_absoluteY="223dp"
-            tools:text="0"
-            app:layout_constraintTop_toTopOf="@id/autoSpeaker"
-            app:layout_constraintBottom_toBottomOf="@id/autoSpeaker"
-            app:layout_constraintLeft_toRightOf="@id/autoSpeaker"
-            app:layout_constraintRight_toLeftOf="@id/subtractAmpPoints"
-            />
-
-        <ImageButton
-            android:id="@+id/subtractSpeakerPointsAuto"
-            android:src="@drawable/button_decrement"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:background="@null"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="@id/autoSpeaker"
-            app:layout_constraintBottom_toBottomOf="@id/autoSpeaker"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toLeftOf="@id/autoSpeaker"
-            />
-
-        <ImageButton
-            android:id="@+id/autoAmp"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:background="@null"
-            android:src="@drawable/auto_blue_amp"
-            tools:layout_editor_absoluteX="380dp"
-            tools:layout_editor_absoluteY="97dp"
-            app:layout_constraintTop_toBottomOf="@id/park"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintLeft_toRightOf="@id/subtractAmpPoints"
-            app:layout_constraintRight_toRightOf="@id/ampPointsAuto"
-            android:contentDescription="amp note auto button"
-            />
-
-        <com.google.android.material.textview.MaterialTextView
-            android:id="@+id/ampPointsAuto"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textSize="48sp"
-            tools:layout_editor_absoluteX="642dp"
-            tools:layout_editor_absoluteY="223dp"
-            tools:text="0"
-            app:layout_constraintTop_toTopOf="@id/autoAmp"
-            app:layout_constraintBottom_toBottomOf="@id/autoAmp"
-            app:layout_constraintLeft_toRightOf="@id/autoAmp"
-            app:layout_constraintRight_toRightOf="parent"
-            />
-
-        <ImageButton
-            android:id="@+id/subtractAmpPoints"
-            android:src="@drawable/button_decrement"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:background="@null"
-            app:layout_constraintTop_toTopOf="@id/autoAmp"
-            app:layout_constraintBottom_toBottomOf="@id/autoAmp"
-            app:layout_constraintLeft_toRightOf="@id/speakerPoints"
-            app:layout_constraintRight_toLeftOf="@id/autoAmp"
-            />
-
-
-        <com.google.android.material.button.MaterialButton
-            android:id="@+id/teleOp"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="TeleOp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            />
-    -->
-
-
-    <!--    <ImageButton-->
-    <!--        android:id="@+id/topHub"-->
-    <!--        android:layout_width="500dp"-->
-    <!--        android:layout_height="wrap_content"-->
-    <!--        android:src="@drawable/frc_hub_top_blue"-->
-    <!--        android:background="@null"-->
-    <!--        app:layout_constraintTop_toTopOf="parent"-->
-    <!--        app:layout_constraintStart_toStartOf="parent"-->
-    <!--        />-->
-
-    <!--    <com.google.android.material.textview.MaterialTextView-->
-    <!--        android:id="@+id/topHubText"-->
-    <!--        android:layout_width="wrap_content"-->
-    <!--        android:layout_height="wrap_content"-->
-    <!--        app:layout_constraintTop_toTopOf="parent"-->
-    <!--        app:layout_constraintStart_toEndOf="@+id/topHub"-->
-    <!--        android:layout_marginTop="30dp"-->
-    <!--        android:textSize="48sp"-->
-    <!--        tools:text="0"-->
-    <!--        />-->
-
-    <!--    <ImageButton-->
-    <!--        android:id="@+id/bottomHub"-->
-    <!--        android:layout_width="500dp"-->
-    <!--        android:layout_height="wrap_content"-->
-    <!--        android:src="@drawable/frc_hub_bottom_blue"-->
-    <!--        android:background="@null"-->
-    <!--        app:layout_constraintTop_toBottomOf="@id/topHub"-->
-    <!--        app:layout_constraintStart_toStartOf="parent"-->
-    <!--        />-->
-
-    <!--    <com.google.android.material.textview.MaterialTextView-->
-    <!--        android:id="@+id/bottomHubText"-->
-    <!--        android:layout_width="wrap_content"-->
-    <!--        android:layout_height="wrap_content"-->
-    <!--        app:layout_constraintStart_toEndOf="@+id/bottomHub"-->
-    <!--        app:layout_constraintTop_toTopOf="@+id/bottomHub"-->
-    <!--        android:textSize="48sp"-->
-    <!--        tools:text="0"-->
-    <!--        />-->
-
-    <!--    <com.google.android.material.textview.MaterialTextView-->
-    <!--        android:id="@+id/humanPlayerText"-->
-    <!--        android:layout_width="wrap_content"-->
-    <!--        android:layout_height="wrap_content"-->
-    <!--        app:layout_constraintTop_toTopOf="parent"-->
-    <!--        app:layout_constraintBottom_toTopOf="@+id/humanPlayer"-->
-    <!--        app:layout_constraintEnd_toEndOf="@+id/humanPlayer"-->
-    <!--        app:layout_constraintStart_toStartOf="@+id/humanPlayer"-->
-    <!--        android:textSize="48sp"-->
-    <!--        tools:text="0"-->
-    <!--        />-->
-
-    <!--    <ImageButton-->
-    <!--        android:id="@+id/humanPlayer"-->
-    <!--        android:layout_width="150dp"-->
-    <!--        android:layout_height="200dp"-->
-    <!--        android:src="@drawable/human_player_blue"-->
-    <!--        android:scaleType="fitCenter"-->
-    <!--        android:background="@null"-->
-    <!--        app:layout_constraintTop_toBottomOf="@+id/humanPlayerText"-->
-    <!--        app:layout_constraintEnd_toEndOf="parent"-->
-    <!--        android:layout_marginRight="50dp"-->
-    <!--        />-->
-
-    <!--    <ImageButton-->
-    <!--        android:id="@+id/taxiTarmac"-->
-    <!--        android:layout_width="150dp"-->
-    <!--        android:layout_height="150dp"-->
-    <!--        android:src="@drawable/taxi_tarmac_blue"-->
-    <!--        android:scaleType="fitCenter"-->
-    <!--        android:background="@null"-->
-    <!--        app:layout_constraintTop_toBottomOf="@+id/humanPlayer"-->
-    <!--        app:layout_constraintEnd_toEndOf="parent"-->
-    <!--        android:layout_marginRight="50dp"-->
-    <!--        />-->
 
 </androidx.constraintlayout.widget.ConstraintLayout>
