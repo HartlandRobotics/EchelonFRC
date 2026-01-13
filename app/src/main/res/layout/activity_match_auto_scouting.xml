@@ -39,7 +39,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:background="@null"
-                android:contentDescription="moving in auto button"
+                android:contentDescription="@string/filler"
                 android:src="@drawable/active_fuel"
                 app:layout_constraintBottom_toTopOf="@id/missed_fuel"
                 app:layout_constraintLeft_toRightOf="@id/active_fuel_decrement"
@@ -71,6 +71,7 @@
                 android:layout_height="wrap_content"
                 android:layout_margin="25dp"
                 android:background="@null"
+                android:contentDescription="@string/filler"
                 android:src="@drawable/button_decrement"
                 app:layout_constraintBottom_toBottomOf="@id/missed_fuel"
                 app:layout_constraintLeft_toLeftOf="parent"
@@ -82,7 +83,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:background="@null"
-                android:contentDescription="moving in auto button"
+                android:contentDescription="@string/filler"
                 android:src="@drawable/missed_fuel"
                 app:layout_constraintBottom_toTopOf="@id/inactive_fuel"
                 app:layout_constraintLeft_toRightOf="@id/missed_fuel_decrement"
@@ -114,12 +115,12 @@
                 android:layout_height="wrap_content"
                 android:layout_margin="25dp"
                 android:background="@null"
+                android:contentDescription="@string/filler"
                 android:src="@drawable/button_decrement"
                 app:layout_constraintBottom_toBottomOf="@id/inactive_fuel"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintRight_toLeftOf="@id/inactive_fuel"
                 app:layout_constraintTop_toTopOf="@id/inactive_fuel"
-
                 />
 
             <ImageButton
@@ -127,7 +128,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:background="@null"
-                android:contentDescription="moving in auto button"
+                android:contentDescription="@string/filler"
                 android:src="@drawable/inactive_fuel"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintLeft_toRightOf="@id/inactive_fuel_decrement"
@@ -167,10 +168,9 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="25dp"
-
                 android:background="@null"
+                android:contentDescription="@string/filler"
                 android:src="@drawable/button_decrement"
-
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintRight_toLeftOf="@id/passing"
                 app:layout_constraintTop_toTopOf="@id/passing" />
@@ -180,7 +180,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:background="@null"
-                android:contentDescription="moving in auto button"
+                android:contentDescription="@string/filler"
                 android:src="@drawable/passing_fuel"
                 app:layout_constraintLeft_toRightOf="@id/passing_decrement"
                 app:layout_constraintRight_toLeftOf="@id/passing_text"
@@ -212,14 +212,16 @@
                 android:background="@null"
                 android:src="@drawable/button_decrement"
                 app:layout_constraintRight_toLeftOf="@id/human_fuel"
-                app:layout_constraintTop_toTopOf="@id/human_fuel" />
+                app:layout_constraintTop_toTopOf="@id/human_fuel"
+                android:contentDescription="@string/filler"
+                />
 
             <ImageButton
                 android:id="@+id/human_fuel"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:background="@null"
-                android:contentDescription="moving in auto button"
+                android:contentDescription="@string/filler"
                 android:src="@drawable/human_player_fuel"
                 app:layout_constraintLeft_toRightOf="@id/human_fuel_decrement"
                 app:layout_constraintTop_toBottomOf="@id/passing" />
@@ -278,7 +280,7 @@
         android:id="@+id/teamKeyText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:padding="20px"
+        android:padding="20dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         tools:text="FRC 3536" />
