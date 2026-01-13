@@ -6,387 +6,274 @@
     android:layout_height="match_parent"
     tools:context="matchScouting.MatchScoutingAutoActivity">
 
-<!--    I commented out the entirety of the previous year's code, but don't delete it yet, it's just easier to copy and paste... -->
-
-    <ImageButton
-        android:id="@+id/reef_level_four_decrement"
+    <LinearLayout
+        android:id="@+id/left_block"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:background="@null"
-        android:src="@drawable/button_decrement"
-        app:layout_constraintTop_toTopOf="@id/reef_level_four"
-        app:layout_constraintBottom_toBottomOf="@id/reef_level_four"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toLeftOf="@id/reef_level_four"
-        android:layout_marginStart="30dp"
-        android:layout_marginEnd="30dp"
-        />
-
-    <ImageButton
-        android:id="@+id/reef_level_four"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:background="@null"
-        android:src="@drawable/reef_level_four"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintBottom_toTopOf="@id/reef_level_three"
-        app:layout_constraintLeft_toRightOf="@id/reef_level_four_decrement"
-        app:layout_constraintRight_toRightOf="@id/reef_level_one"
-        android:contentDescription="moving in auto button"
-        />
-
-    <com.google.android.material.textview.MaterialTextView
-        android:id="@+id/reef_level_four_text"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:layout_constraintTop_toTopOf="@id/reef_level_four"
-        app:layout_constraintLeft_toRightOf="@+id/reef_level_four"
-        android:textSize="32sp"
-        tools:text="0"
-        android:layout_marginTop="25dp"
-        />
-
-
-    <ImageButton
-        android:id="@+id/reef_level_three_decrement"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:background="@null"
-        android:src="@drawable/button_decrement"
-        app:layout_constraintTop_toTopOf="@id/reef_level_three"
-        app:layout_constraintBottom_toBottomOf="@id/reef_level_three"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toLeftOf="@id/reef_level_three"
-        android:layout_marginStart="30dp"
-        android:layout_marginEnd="30dp"
-        />
-
-    <ImageButton
-        android:id="@+id/reef_level_three"
-        android:layout_width="200dp"
-        android:layout_height="wrap_content"
-        android:background="@null"
-        android:src="@drawable/reef_level_three"
-        tools:layout_editor_absoluteX="252dp"
-        tools:layout_editor_absoluteY="16dp"
-        app:layout_constraintTop_toBottomOf="@id/reef_level_four"
-        app:layout_constraintBottom_toTopOf="@id/reef_level_two"
-        app:layout_constraintLeft_toRightOf="@id/reef_level_three_decrement"
-        app:layout_constraintRight_toRightOf="@id/reef_level_one"
-        android:contentDescription="moving in auto button"
-        />
-
-    <com.google.android.material.textview.MaterialTextView
-        android:id="@+id/reef_level_three_text"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:layout_constraintTop_toTopOf="@id/reef_level_three"
-        app:layout_constraintLeft_toRightOf="@+id/reef_level_three"
-        android:textSize="32sp"
-        tools:text="0"
-        android:layout_marginTop="25dp"
-        />
-
-    <ImageButton
-        android:id="@+id/reef_level_two_decrement"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:background="@null"
-        android:src="@drawable/button_decrement"
-        app:layout_constraintTop_toTopOf="@id/reef_level_two"
-        app:layout_constraintBottom_toBottomOf="@id/reef_level_two"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toLeftOf="@id/reef_level_two"
-        android:layout_marginStart="30dp"
-        android:layout_marginEnd="30dp"
-        />
-
-    <ImageButton
-        android:id="@+id/reef_level_two"
-        android:layout_width="200dp"
-        android:layout_height="wrap_content"
-        android:background="@null"
-        android:src="@drawable/reef_level_two"
-        tools:layout_editor_absoluteX="252dp"
-        tools:layout_editor_absoluteY="16dp"
-        app:layout_constraintTop_toBottomOf="@id/reef_level_three"
-        app:layout_constraintBottom_toTopOf="@id/reef_level_one"
-        app:layout_constraintLeft_toRightOf="@id/reef_level_two_decrement"
-        app:layout_constraintRight_toRightOf="@id/reef_level_one"
-        android:contentDescription="moving in auto button"
-        />
-
-    <com.google.android.material.textview.MaterialTextView
-        android:id="@+id/reef_level_two_text"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:layout_constraintTop_toTopOf="@id/reef_level_two"
-        app:layout_constraintLeft_toRightOf="@+id/reef_level_two"
-        android:textSize="32sp"
-        tools:text="0"
-        android:layout_marginTop="25dp"
-        />
-
-    <ImageButton
-        android:id="@+id/reef_level_one_decrement"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:background="@null"
-        android:src="@drawable/button_decrement"
-        app:layout_constraintTop_toTopOf="@id/reef_level_one"
-        app:layout_constraintBottom_toBottomOf="@id/reef_level_one"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toLeftOf="@id/reef_level_one"
-        android:layout_marginStart="30dp"
-        android:layout_marginEnd="30dp"
-        />
-
-    <ImageButton
-        android:id="@+id/reef_level_one"
-        android:layout_width="200dp"
-        android:layout_height="wrap_content"
-        android:background="@null"
-        android:src="@drawable/reef_level_one"
-        tools:layout_editor_absoluteX="252dp"
-        tools:layout_editor_absoluteY="16dp"
-        app:layout_constraintTop_toBottomOf="@id/reef_level_two"
+        android:orientation="vertical"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toRightOf="@id/reef_level_one_decrement"
-        app:layout_constraintRight_toLeftOf="@id/reef_level_one_text"
-        android:contentDescription="moving in auto button"
-        />
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
 
-    <com.google.android.material.textview.MaterialTextView
-        android:id="@+id/reef_level_one_text"
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <ImageButton
+                android:id="@+id/active_fuel_decrement"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@null"
+                android:src="@drawable/button_decrement"
+                app:layout_constraintBottom_toBottomOf="@id/active_fuel"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toLeftOf="@id/active_fuel"
+                app:layout_constraintTop_toTopOf="@id/active_fuel" />
+
+            <ImageButton
+                android:id="@+id/active_fuel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@null"
+                android:contentDescription="moving in auto button"
+                android:src="@drawable/active_fuel"
+                app:layout_constraintBottom_toTopOf="@id/missed_fuel"
+                app:layout_constraintLeft_toRightOf="@id/active_fuel_decrement"
+                app:layout_constraintRight_toLeftOf="@id/active_fuel_text"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/active_fuel_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="32sp"
+                app:layout_constraintBottom_toBottomOf="@id/active_fuel"
+                app:layout_constraintLeft_toRightOf="@+id/active_fuel"
+                app:layout_constraintTop_toTopOf="@id/active_fuel"
+                tools:text="0" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <ImageButton
+                android:id="@+id/missed_fuel_decrement"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@null"
+                android:src="@drawable/button_decrement"
+                app:layout_constraintBottom_toBottomOf="@id/missed_fuel"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toLeftOf="@id/missed_fuel"
+                app:layout_constraintTop_toTopOf="@id/missed_fuel"
+
+                />
+
+            <ImageButton
+                android:id="@+id/missed_fuel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@null"
+                android:contentDescription="moving in auto button"
+                android:src="@drawable/missed_fuel"
+                app:layout_constraintBottom_toTopOf="@id/inactive_fuel"
+                app:layout_constraintLeft_toRightOf="@id/missed_fuel_decrement"
+                app:layout_constraintRight_toLeftOf="@id/missed_fuel_text"
+                app:layout_constraintTop_toBottomOf="@id/active_fuel" />
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/missed_fuel_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="25dp"
+                android:textSize="32sp"
+                app:layout_constraintBottom_toBottomOf="@id/missed_fuel"
+                app:layout_constraintLeft_toRightOf="@+id/missed_fuel"
+                app:layout_constraintTop_toTopOf="@id/missed_fuel"
+                tools:text="0" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <ImageButton
+                android:id="@+id/inactive_fuel_decrement"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@null"
+                android:src="@drawable/button_decrement"
+                app:layout_constraintBottom_toBottomOf="@id/inactive_fuel"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toLeftOf="@id/inactive_fuel"
+                app:layout_constraintTop_toTopOf="@id/inactive_fuel"
+
+                />
+
+            <ImageButton
+                android:id="@+id/inactive_fuel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@null"
+                android:contentDescription="moving in auto button"
+                android:src="@drawable/inactive_fuel"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintLeft_toRightOf="@id/inactive_fuel_decrement"
+                app:layout_constraintRight_toLeftOf="@id/inactive_fuel_text"
+                app:layout_constraintTop_toBottomOf="@id/missed_fuel" />
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/inactive_fuel_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="32sp"
+                app:layout_constraintBottom_toBottomOf="@id/inactive_fuel"
+                app:layout_constraintLeft_toRightOf="@+id/inactive_fuel"
+                app:layout_constraintTop_toTopOf="@id/inactive_fuel"
+                tools:text="0" />
+        </LinearLayout>
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/center_block"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:layout_constraintTop_toTopOf="@id/reef_level_one"
-        app:layout_constraintLeft_toRightOf="@+id/reef_level_one"
-        android:textSize="32sp"
-        tools:text="0"
-        android:layout_marginTop="25dp"
-        />
+        android:orientation="vertical"
+        app:layout_constraintLeft_toRightOf="@id/left_block"
+        app:layout_constraintTop_toTopOf="parent">
 
-    <ImageButton
-        android:id="@+id/processor_decrement"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:background="@null"
-        android:src="@drawable/button_decrement"
-        app:layout_constraintTop_toBottomOf="@id/processor"
-        app:layout_constraintBottom_toTopOf="@id/park"
-        app:layout_constraintLeft_toLeftOf="@id/processor"
-        app:layout_constraintRight_toLeftOf="@id/processor_text"
-        android:layout_marginStart="60dp"
-        android:layout_marginEnd="30dp"
-        />
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
 
-    <ImageButton
-        android:id="@+id/processor"
-        android:layout_width="200dp"
-        android:layout_height="wrap_content"
-        android:background="@null"
-        android:src="@drawable/processor_blue"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintBottom_toTopOf="@id/park"
-        app:layout_constraintLeft_toLeftOf="@id/park"
-        app:layout_constraintRight_toRightOf="@id/park"
-        android:contentDescription="moving in auto button"
-        />
+            <ImageButton
+                android:id="@+id/passing_decrement"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@null"
+                android:src="@drawable/button_decrement"
+                app:layout_constraintBottom_toBottomOf="@id/human_fuel"
+                app:layout_constraintLeft_toRightOf="@id/inactive_fuel_text"
+                app:layout_constraintRight_toLeftOf="@id/human_fuel"
+                app:layout_constraintTop_toTopOf="@id/human_fuel" />
 
-    <com.google.android.material.textview.MaterialTextView
-        android:id="@+id/processor_text"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@id/processor"
-        app:layout_constraintLeft_toLeftOf="@+id/processor_decrement"
-        app:layout_constraintRight_toRightOf="@id/processor"
-        app:layout_constraintBottom_toTopOf="@id/park"
-        android:layout_marginBottom="25dp"
-        android:textSize="32sp"
-        tools:text="0"
-        android:layout_marginTop="25dp"
-        />
+            <ImageButton
+                android:id="@+id/passing"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@null"
+                android:contentDescription="moving in auto button"
+                android:src="@drawable/passing_fuel"
+                app:layout_constraintBottom_toTopOf="@id/human_fuel"
+                app:layout_constraintLeft_toRightOf="@id/passing_decrement"
+                app:layout_constraintRight_toLeftOf="@id/passing_text"
+                app:layout_constraintTop_toTopOf="parent" />
 
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/passing_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="25dp"
+                android:layout_marginBottom="25dp"
+                android:textSize="32sp"
+                app:layout_constraintLeft_toRightOf="@+id/passing"
+                app:layout_constraintTop_toTopOf="@id/passing"
+                tools:text="0" />
+        </LinearLayout>
 
-    <ImageButton
-        android:id="@+id/park"
-        android:layout_width="200dp"
-        android:layout_height="wrap_content"
-        android:background="@null"
-        android:contentDescription="moving in auto button"
-        android:src="@drawable/in_line_blue"
-        app:layout_constraintTop_toBottomOf="@id/processor"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toRightOf="@id/reef_level_one"
-        app:layout_constraintRight_toLeftOf="@id/net"
-        />
+        <ImageButton
+            android:id="@+id/human_fuel_decrement"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@null"
+            android:src="@drawable/button_decrement"
+            app:layout_constraintBottom_toBottomOf="@id/passing"
+            app:layout_constraintLeft_toRightOf="@id/active_fuel_text"
+            app:layout_constraintRight_toLeftOf="@id/passing"
+            app:layout_constraintTop_toTopOf="@id/passing" />
 
-    <ImageButton
-        android:id="@+id/net_decrement"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:background="@null"
-        android:src="@drawable/button_decrement"
-        app:layout_constraintTop_toBottomOf="@id/net"
-        app:layout_constraintBottom_toTopOf="@id/teleOp"
-        app:layout_constraintLeft_toLeftOf="@id/net"
-        app:layout_constraintRight_toLeftOf="@id/net_text"
-        android:layout_marginEnd="30dp"
-        />
+        <ImageButton
+            android:id="@+id/human_fuel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@null"
+            android:contentDescription="moving in auto button"
+            android:src="@drawable/human_player_fuel"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toRightOf="@id/inactive_fuel"
+            app:layout_constraintTop_toBottomOf="@id/passing" />
 
-    <com.google.android.material.textview.MaterialTextView
-        android:id="@+id/net_text"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@id/net"
-        app:layout_constraintLeft_toRightOf="@+id/net_decrement"
-        app:layout_constraintRight_toRightOf="@id/net"
-        app:layout_constraintBottom_toTopOf="@id/teleOp"
-        android:layout_marginBottom="25dp"
-        android:textSize="32sp"
-        tools:text="0"
-        android:layout_marginTop="25dp"
-        />
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/human_fuel_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="25dp"
+            android:layout_marginBottom="25dp"
+            android:textSize="32sp"
+            app:layout_constraintLeft_toRightOf="@+id/human_fuel"
+            app:layout_constraintRight_toRightOf="@id/human_fuel"
+            app:layout_constraintTop_toTopOf="@id/human_fuel"
+            tools:text="0" />
+    </LinearLayout>
+
 
     <com.google.android.material.button.MaterialButton
-        android:id="@+id/auto_left_red"
+        android:id="@+id/high_climb"
         android:layout_width="175dp"
         android:layout_height="wrap_content"
-        android:backgroundTint="@color/redAlliance"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintBottom_toTopOf="@id/auto_center_red"
-        app:layout_constraintRight_toRightOf="@id/auto_right_red"
-        app:layout_constraintLeft_toLeftOf="@id/auto_right_red"
-        android:visibility="gone"
-        android:text="Left"
-        />
+        android:backgroundTint="@color/blueAlliance"
+        android:text="High"
+        android:visibility="visible"
+        app:layout_constraintBottom_toTopOf="@id/mid_climb"
+        app:layout_constraintHorizontal_bias="0.6"
+        app:layout_constraintLeft_toLeftOf="@id/low_climb"
+        app:layout_constraintRight_toRightOf="@id/low_climb"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <com.google.android.material.button.MaterialButton
-        android:id="@+id/auto_center_red"
+        android:id="@+id/mid_climb"
         android:layout_width="175dp"
         android:layout_height="wrap_content"
-        android:backgroundTint="@color/redAlliance"
-        app:layout_constraintTop_toBottomOf="@id/auto_left_red"
-        app:layout_constraintBottom_toTopOf="@id/auto_right_red"
-        app:layout_constraintRight_toRightOf="@id/auto_right_red"
-        app:layout_constraintLeft_toLeftOf="@id/auto_right_red"
-        android:layout_marginTop="5dp"
         android:layout_marginHorizontal="5dp"
-        android:visibility="gone"
-        android:text="Center"
+        android:layout_marginTop="5dp"
+        android:backgroundTint="@color/blueAlliance"
+        android:text="Mid"
+        android:visibility="visible"
+        app:layout_constraintBottom_toTopOf="@id/low_climb"
+        app:layout_constraintLeft_toLeftOf="@id/low_climb"
+        app:layout_constraintRight_toRightOf="@id/low_climb"
+        app:layout_constraintTop_toBottomOf="@id/high_climb"
 
         />
 
     <com.google.android.material.button.MaterialButton
-        android:id="@+id/auto_right_red"
+        android:id="@+id/low_climb"
         android:layout_width="170dp"
         android:layout_height="wrap_content"
-        android:backgroundTint="@color/redAlliance"
-        app:layout_constraintBottom_toTopOf="@id/net"
-        app:layout_constraintTop_toBottomOf="@id/auto_center_red"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintLeft_toRightOf="@id/processor"
-        android:layout_marginTop="5dp"
         android:layout_marginHorizontal="5dp"
-        android:visibility="gone"
-        android:text="Right"
-        />
-
-    <ImageButton
-        android:id="@+id/red_drivers_text"
-        android:src="@drawable/red_driver_pov"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:layout_constraintTop_toTopOf="@id/auto_center_red"
-        app:layout_constraintLeft_toRightOf="@+id/processor"
-        app:layout_constraintRight_toLeftOf="@id/auto_center_red"
-        app:layout_constraintBottom_toBottomOf="@id/auto_center_red"
-        android:layout_marginBottom="25dp"
-        android:visibility="gone"
-        android:layout_marginTop="25dp"
-        />
-
-    <com.google.android.material.button.MaterialButton
-        android:id="@+id/auto_right_blue"
-        android:layout_width="175dp"
-        android:layout_height="wrap_content"
-        android:backgroundTint="@color/blueAlliance"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintBottom_toTopOf="@id/auto_center_blue"
-        app:layout_constraintRight_toRightOf="@id/auto_left_blue"
-        app:layout_constraintLeft_toLeftOf="@id/auto_left_blue"
-        android:visibility="visible"
-        android:text="Right"
-        />
-
-    <com.google.android.material.button.MaterialButton
-        android:id="@+id/auto_center_blue"
-        android:layout_width="175dp"
-        android:layout_height="wrap_content"
-        android:backgroundTint="@color/blueAlliance"
-        app:layout_constraintTop_toBottomOf="@id/auto_right_blue"
-        app:layout_constraintBottom_toTopOf="@id/auto_left_blue"
-        app:layout_constraintRight_toRightOf="@id/auto_left_blue"
-        app:layout_constraintLeft_toLeftOf="@id/auto_left_blue"
         android:layout_marginTop="5dp"
-        android:layout_marginHorizontal="5dp"
-        android:visibility="visible"
-        android:text="Center"
-
-        />
-
-    <com.google.android.material.button.MaterialButton
-        android:id="@+id/auto_left_blue"
-        android:layout_width="170dp"
-        android:layout_height="wrap_content"
         android:backgroundTint="@color/blueAlliance"
-        app:layout_constraintBottom_toTopOf="@id/net"
-        app:layout_constraintTop_toBottomOf="@id/auto_center_blue"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintLeft_toRightOf="@id/processor"
-        android:layout_marginTop="5dp"
-        android:layout_marginHorizontal="5dp"
+        android:text="Low"
         android:visibility="visible"
-        android:text="Left"
-        />
-
-    <ImageButton
-        android:id="@+id/drivers_text"
-        android:src="@drawable/blue_driver_pov"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:layout_constraintTop_toTopOf="@id/auto_center_blue"
-        app:layout_constraintLeft_toRightOf="@+id/auto_center_blue"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toRightOf="@id/human_fuel_text"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintBottom_toBottomOf="@id/auto_center_blue"
-        android:visibility="visible"
-        android:layout_marginTop="25dp"
-        />
+        app:layout_constraintTop_toBottomOf="@id/mid_climb" />
 
-    <ImageButton
-        android:id="@+id/net"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:background="@null"
-        android:src="@drawable/net"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintBottom_toTopOf="@id/teleOp"
-        app:layout_constraintLeft_toRightOf="@id/park"
-        app:layout_constraintRight_toRightOf="parent"
-        android:layout_marginTop="175dp"
-        android:contentDescription="moving in auto button"
-        />
 
     <com.google.android.material.textview.MaterialTextView
         android:id="@+id/teamKeyText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        tools:text="FRC 3536"
         android:padding="20px"
-        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
-        />
+        app:layout_constraintStart_toStartOf="parent"
+        tools:text="FRC 3536" />
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/teleOp"
@@ -394,184 +281,179 @@
         android:layout_height="wrap_content"
         android:text="TeleOp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        />
+        app:layout_constraintEnd_toEndOf="parent" />
 
 
-<!--
-    <ImageButton
-        android:id="@+id/autoSpeaker"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:background="@null"
-        android:src="@drawable/auto_speaker"
-        app:layout_constraintTop_toBottomOf="@id/park"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toLeftOf="@id/subtractSpeakerPointsAuto"
-        app:layout_constraintRight_toRightOf="@id/speakerPoints"
-        android:contentDescription="speaker note auto button"
-        />
+    <!--
+        <ImageButton
+            android:id="@+id/autoSpeaker"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@null"
+            android:src="@drawable/auto_speaker"
+            app:layout_constraintTop_toBottomOf="@id/park"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toLeftOf="@id/subtractSpeakerPointsAuto"
+            app:layout_constraintRight_toRightOf="@id/speakerPoints"
+            android:contentDescription="speaker note auto button"
+            />
 
 
-    <com.google.android.material.textview.MaterialTextView
-        android:id="@+id/speakerPoints"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textSize="48sp"
-        tools:layout_editor_absoluteX="279dp"
-        tools:layout_editor_absoluteY="223dp"
-        tools:text="0"
-        app:layout_constraintTop_toTopOf="@id/autoSpeaker"
-        app:layout_constraintBottom_toBottomOf="@id/autoSpeaker"
-        app:layout_constraintLeft_toRightOf="@id/autoSpeaker"
-        app:layout_constraintRight_toLeftOf="@id/subtractAmpPoints"
-        />
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/speakerPoints"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="48sp"
+            tools:layout_editor_absoluteX="279dp"
+            tools:layout_editor_absoluteY="223dp"
+            tools:text="0"
+            app:layout_constraintTop_toTopOf="@id/autoSpeaker"
+            app:layout_constraintBottom_toBottomOf="@id/autoSpeaker"
+            app:layout_constraintLeft_toRightOf="@id/autoSpeaker"
+            app:layout_constraintRight_toLeftOf="@id/subtractAmpPoints"
+            />
 
-    <ImageButton
-        android:id="@+id/subtractSpeakerPointsAuto"
-        android:src="@drawable/button_decrement"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:background="@null"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@id/autoSpeaker"
-        app:layout_constraintBottom_toBottomOf="@id/autoSpeaker"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toLeftOf="@id/autoSpeaker"
-        />
+        <ImageButton
+            android:id="@+id/subtractSpeakerPointsAuto"
+            android:src="@drawable/button_decrement"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@null"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@id/autoSpeaker"
+            app:layout_constraintBottom_toBottomOf="@id/autoSpeaker"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toLeftOf="@id/autoSpeaker"
+            />
 
-    <ImageButton
-        android:id="@+id/autoAmp"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:background="@null"
-        android:src="@drawable/auto_blue_amp"
-        tools:layout_editor_absoluteX="380dp"
-        tools:layout_editor_absoluteY="97dp"
-        app:layout_constraintTop_toBottomOf="@id/park"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toRightOf="@id/subtractAmpPoints"
-        app:layout_constraintRight_toRightOf="@id/ampPointsAuto"
-        android:contentDescription="amp note auto button"
-        />
+        <ImageButton
+            android:id="@+id/autoAmp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@null"
+            android:src="@drawable/auto_blue_amp"
+            tools:layout_editor_absoluteX="380dp"
+            tools:layout_editor_absoluteY="97dp"
+            app:layout_constraintTop_toBottomOf="@id/park"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toRightOf="@id/subtractAmpPoints"
+            app:layout_constraintRight_toRightOf="@id/ampPointsAuto"
+            android:contentDescription="amp note auto button"
+            />
 
-    <com.google.android.material.textview.MaterialTextView
-        android:id="@+id/ampPointsAuto"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textSize="48sp"
-        tools:layout_editor_absoluteX="642dp"
-        tools:layout_editor_absoluteY="223dp"
-        tools:text="0"
-        app:layout_constraintTop_toTopOf="@id/autoAmp"
-        app:layout_constraintBottom_toBottomOf="@id/autoAmp"
-        app:layout_constraintLeft_toRightOf="@id/autoAmp"
-        app:layout_constraintRight_toRightOf="parent"
-        />
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/ampPointsAuto"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="48sp"
+            tools:layout_editor_absoluteX="642dp"
+            tools:layout_editor_absoluteY="223dp"
+            tools:text="0"
+            app:layout_constraintTop_toTopOf="@id/autoAmp"
+            app:layout_constraintBottom_toBottomOf="@id/autoAmp"
+            app:layout_constraintLeft_toRightOf="@id/autoAmp"
+            app:layout_constraintRight_toRightOf="parent"
+            />
 
-    <ImageButton
-        android:id="@+id/subtractAmpPoints"
-        android:src="@drawable/button_decrement"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:background="@null"
-        app:layout_constraintTop_toTopOf="@id/autoAmp"
-        app:layout_constraintBottom_toBottomOf="@id/autoAmp"
-        app:layout_constraintLeft_toRightOf="@id/speakerPoints"
-        app:layout_constraintRight_toLeftOf="@id/autoAmp"
-        />
-
-
-    <com.google.android.material.button.MaterialButton
-        android:id="@+id/teleOp"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="TeleOp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        />
--->
+        <ImageButton
+            android:id="@+id/subtractAmpPoints"
+            android:src="@drawable/button_decrement"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@null"
+            app:layout_constraintTop_toTopOf="@id/autoAmp"
+            app:layout_constraintBottom_toBottomOf="@id/autoAmp"
+            app:layout_constraintLeft_toRightOf="@id/speakerPoints"
+            app:layout_constraintRight_toLeftOf="@id/autoAmp"
+            />
 
 
-
-
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/teleOp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="TeleOp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            />
+    -->
 
 
     <!--    <ImageButton-->
-<!--        android:id="@+id/topHub"-->
-<!--        android:layout_width="500dp"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        android:src="@drawable/frc_hub_top_blue"-->
-<!--        android:background="@null"-->
-<!--        app:layout_constraintTop_toTopOf="parent"-->
-<!--        app:layout_constraintStart_toStartOf="parent"-->
-<!--        />-->
+    <!--        android:id="@+id/topHub"-->
+    <!--        android:layout_width="500dp"-->
+    <!--        android:layout_height="wrap_content"-->
+    <!--        android:src="@drawable/frc_hub_top_blue"-->
+    <!--        android:background="@null"-->
+    <!--        app:layout_constraintTop_toTopOf="parent"-->
+    <!--        app:layout_constraintStart_toStartOf="parent"-->
+    <!--        />-->
 
-<!--    <com.google.android.material.textview.MaterialTextView-->
-<!--        android:id="@+id/topHubText"-->
-<!--        android:layout_width="wrap_content"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        app:layout_constraintTop_toTopOf="parent"-->
-<!--        app:layout_constraintStart_toEndOf="@+id/topHub"-->
-<!--        android:layout_marginTop="30dp"-->
-<!--        android:textSize="48sp"-->
-<!--        tools:text="0"-->
-<!--        />-->
+    <!--    <com.google.android.material.textview.MaterialTextView-->
+    <!--        android:id="@+id/topHubText"-->
+    <!--        android:layout_width="wrap_content"-->
+    <!--        android:layout_height="wrap_content"-->
+    <!--        app:layout_constraintTop_toTopOf="parent"-->
+    <!--        app:layout_constraintStart_toEndOf="@+id/topHub"-->
+    <!--        android:layout_marginTop="30dp"-->
+    <!--        android:textSize="48sp"-->
+    <!--        tools:text="0"-->
+    <!--        />-->
 
-<!--    <ImageButton-->
-<!--        android:id="@+id/bottomHub"-->
-<!--        android:layout_width="500dp"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        android:src="@drawable/frc_hub_bottom_blue"-->
-<!--        android:background="@null"-->
-<!--        app:layout_constraintTop_toBottomOf="@id/topHub"-->
-<!--        app:layout_constraintStart_toStartOf="parent"-->
-<!--        />-->
+    <!--    <ImageButton-->
+    <!--        android:id="@+id/bottomHub"-->
+    <!--        android:layout_width="500dp"-->
+    <!--        android:layout_height="wrap_content"-->
+    <!--        android:src="@drawable/frc_hub_bottom_blue"-->
+    <!--        android:background="@null"-->
+    <!--        app:layout_constraintTop_toBottomOf="@id/topHub"-->
+    <!--        app:layout_constraintStart_toStartOf="parent"-->
+    <!--        />-->
 
-<!--    <com.google.android.material.textview.MaterialTextView-->
-<!--        android:id="@+id/bottomHubText"-->
-<!--        android:layout_width="wrap_content"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        app:layout_constraintStart_toEndOf="@+id/bottomHub"-->
-<!--        app:layout_constraintTop_toTopOf="@+id/bottomHub"-->
-<!--        android:textSize="48sp"-->
-<!--        tools:text="0"-->
-<!--        />-->
+    <!--    <com.google.android.material.textview.MaterialTextView-->
+    <!--        android:id="@+id/bottomHubText"-->
+    <!--        android:layout_width="wrap_content"-->
+    <!--        android:layout_height="wrap_content"-->
+    <!--        app:layout_constraintStart_toEndOf="@+id/bottomHub"-->
+    <!--        app:layout_constraintTop_toTopOf="@+id/bottomHub"-->
+    <!--        android:textSize="48sp"-->
+    <!--        tools:text="0"-->
+    <!--        />-->
 
-<!--    <com.google.android.material.textview.MaterialTextView-->
-<!--        android:id="@+id/humanPlayerText"-->
-<!--        android:layout_width="wrap_content"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        app:layout_constraintTop_toTopOf="parent"-->
-<!--        app:layout_constraintBottom_toTopOf="@+id/humanPlayer"-->
-<!--        app:layout_constraintEnd_toEndOf="@+id/humanPlayer"-->
-<!--        app:layout_constraintStart_toStartOf="@+id/humanPlayer"-->
-<!--        android:textSize="48sp"-->
-<!--        tools:text="0"-->
-<!--        />-->
+    <!--    <com.google.android.material.textview.MaterialTextView-->
+    <!--        android:id="@+id/humanPlayerText"-->
+    <!--        android:layout_width="wrap_content"-->
+    <!--        android:layout_height="wrap_content"-->
+    <!--        app:layout_constraintTop_toTopOf="parent"-->
+    <!--        app:layout_constraintBottom_toTopOf="@+id/humanPlayer"-->
+    <!--        app:layout_constraintEnd_toEndOf="@+id/humanPlayer"-->
+    <!--        app:layout_constraintStart_toStartOf="@+id/humanPlayer"-->
+    <!--        android:textSize="48sp"-->
+    <!--        tools:text="0"-->
+    <!--        />-->
 
-<!--    <ImageButton-->
-<!--        android:id="@+id/humanPlayer"-->
-<!--        android:layout_width="150dp"-->
-<!--        android:layout_height="200dp"-->
-<!--        android:src="@drawable/human_player_blue"-->
-<!--        android:scaleType="fitCenter"-->
-<!--        android:background="@null"-->
-<!--        app:layout_constraintTop_toBottomOf="@+id/humanPlayerText"-->
-<!--        app:layout_constraintEnd_toEndOf="parent"-->
-<!--        android:layout_marginRight="50dp"-->
-<!--        />-->
+    <!--    <ImageButton-->
+    <!--        android:id="@+id/humanPlayer"-->
+    <!--        android:layout_width="150dp"-->
+    <!--        android:layout_height="200dp"-->
+    <!--        android:src="@drawable/human_player_blue"-->
+    <!--        android:scaleType="fitCenter"-->
+    <!--        android:background="@null"-->
+    <!--        app:layout_constraintTop_toBottomOf="@+id/humanPlayerText"-->
+    <!--        app:layout_constraintEnd_toEndOf="parent"-->
+    <!--        android:layout_marginRight="50dp"-->
+    <!--        />-->
 
-<!--    <ImageButton-->
-<!--        android:id="@+id/taxiTarmac"-->
-<!--        android:layout_width="150dp"-->
-<!--        android:layout_height="150dp"-->
-<!--        android:src="@drawable/taxi_tarmac_blue"-->
-<!--        android:scaleType="fitCenter"-->
-<!--        android:background="@null"-->
-<!--        app:layout_constraintTop_toBottomOf="@+id/humanPlayer"-->
-<!--        app:layout_constraintEnd_toEndOf="parent"-->
-<!--        android:layout_marginRight="50dp"-->
-<!--        />-->
+    <!--    <ImageButton-->
+    <!--        android:id="@+id/taxiTarmac"-->
+    <!--        android:layout_width="150dp"-->
+    <!--        android:layout_height="150dp"-->
+    <!--        android:src="@drawable/taxi_tarmac_blue"-->
+    <!--        android:scaleType="fitCenter"-->
+    <!--        android:background="@null"-->
+    <!--        app:layout_constraintTop_toBottomOf="@+id/humanPlayer"-->
+    <!--        app:layout_constraintEnd_toEndOf="parent"-->
+    <!--        android:layout_marginRight="50dp"-->
+    <!--        />-->
 
 </androidx.constraintlayout.widget.ConstraintLayout>
