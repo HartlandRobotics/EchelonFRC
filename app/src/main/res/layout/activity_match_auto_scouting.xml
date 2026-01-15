@@ -85,7 +85,6 @@
                 android:background="@null"
                 android:contentDescription="@string/filler"
                 android:src="@drawable/missed_fuel"
-                app:layout_constraintBottom_toTopOf="@id/inactive_fuel"
                 app:layout_constraintLeft_toRightOf="@id/missed_fuel_decrement"
                 app:layout_constraintRight_toLeftOf="@id/missed_fuel_text"
                 app:layout_constraintTop_toBottomOf="@id/active_fuel" />
@@ -102,50 +101,6 @@
                 tools:text="0" />
         </LinearLayout>
 
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:layout_marginTop="15dp"
-            >
-
-            <ImageButton
-                android:id="@+id/inactive_fuel_decrement"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_margin="25dp"
-                android:background="@null"
-                android:contentDescription="@string/filler"
-                android:src="@drawable/button_decrement"
-                app:layout_constraintBottom_toBottomOf="@id/inactive_fuel"
-                app:layout_constraintLeft_toLeftOf="parent"
-                app:layout_constraintRight_toLeftOf="@id/inactive_fuel"
-                app:layout_constraintTop_toTopOf="@id/inactive_fuel"
-                />
-
-            <ImageButton
-                android:id="@+id/inactive_fuel"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:background="@null"
-                android:contentDescription="@string/filler"
-                android:src="@drawable/inactive_fuel"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintLeft_toRightOf="@id/inactive_fuel_decrement"
-                app:layout_constraintRight_toLeftOf="@id/inactive_fuel_text"
-                app:layout_constraintTop_toBottomOf="@id/missed_fuel" />
-
-            <com.google.android.material.textview.MaterialTextView
-                android:id="@+id/inactive_fuel_text"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_margin="25dp"
-                android:textSize="32sp"
-                app:layout_constraintBottom_toBottomOf="@id/inactive_fuel"
-                app:layout_constraintLeft_toRightOf="@+id/inactive_fuel"
-                app:layout_constraintTop_toTopOf="@id/inactive_fuel"
-                tools:text="0" />
-        </LinearLayout>
     </LinearLayout>
 
     <LinearLayout
@@ -255,7 +210,7 @@
             android:layout_height="wrap_content"
             android:backgroundTint="@color/blueAlliance"
             android:text="High"
-            android:visibility="visible" />
+            android:visibility="invisible" />
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/mid_climb"
@@ -264,7 +219,7 @@
             android:layout_marginTop="5dp"
             android:backgroundTint="@color/blueAlliance"
             android:text="Mid"
-            android:visibility="visible" />
+            android:visibility="invisible" />
 
 
         <com.google.android.material.button.MaterialButton
