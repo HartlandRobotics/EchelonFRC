@@ -132,7 +132,7 @@ public class MatchScoutingAutoActivity extends AppCompatActivity {
 
         activeFuelDecrement = findViewById(R.id.active_fuel_decrement);
         activeFuelDecrement.setOnClickListener(v -> {
-            currentResult.result.setAutoInt6( Math.min(currentResult.result.getAutoInt6() - 1, 0));
+            currentResult.result.setAutoInt6( Math.max(currentResult.result.getAutoInt6() - 1, 0));
             populateControlsFromData();
         });
 
@@ -145,7 +145,7 @@ public class MatchScoutingAutoActivity extends AppCompatActivity {
 
         missedFuelDecrement = findViewById(R.id.missed_fuel_decrement);
         missedFuelDecrement.setOnClickListener(v -> {
-            currentResult.result.setAutoInt7( Math.min(currentResult.result.getAutoInt7() - 1, 0));
+            currentResult.result.setAutoInt7( Math.max(currentResult.result.getAutoInt7() - 1, 0));
             populateControlsFromData();
         });
 
@@ -158,7 +158,7 @@ public class MatchScoutingAutoActivity extends AppCompatActivity {
 
         passingDecrement = findViewById(R.id.passing_decrement);
         passingDecrement.setOnClickListener(v -> {
-            currentResult.result.setAutoInt8( Math.min(currentResult.result.getAutoInt8() - 1, 0));
+            currentResult.result.setAutoInt8( Math.max(currentResult.result.getAutoInt8() - 1, 0));
             populateControlsFromData();
         });
 
@@ -171,7 +171,7 @@ public class MatchScoutingAutoActivity extends AppCompatActivity {
 
         humanFuelDecrement = findViewById(R.id.human_fuel_decrement);
         humanFuelDecrement.setOnClickListener(v -> {
-            currentResult.result.setAutoInt9( Math.min(currentResult.result.getAutoInt9() - 1, 0));
+            currentResult.result.setAutoInt9( Math.max(currentResult.result.getAutoInt9() - 1, 0));
             populateControlsFromData();
         });
 
@@ -202,9 +202,11 @@ public class MatchScoutingAutoActivity extends AppCompatActivity {
         secondaryDarkColor = R.color.secondaryDarkColor;
 
         if (settings.getDeviceRole().startsWith("red")){
-            lowClimb.setBackgroundTintList(ColorStateList.valueOf(getResources().getColor(R.color.secondaryDarkColor)));
+            buttonColor = R.color.redAlliance;
+            lowClimb.setBackgroundTintList(ColorStateList.valueOf(getResources().getColor(buttonColor)));
             lowClimb.setTextColor(getResources().getColor(buttonSelectedTextColor));
         } else {
+            buttonColor = R.color.blueAlliance;
             lowClimb.setBackgroundTintList(ColorStateList.valueOf(getResources().getColor(buttonColor)));
             lowClimb.setTextColor(getResources().getColor(R.color.secondaryDarkColor));
         }
