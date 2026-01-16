@@ -58,7 +58,6 @@ public class MatchScoutingAutoActivity extends AppCompatActivity {
 
 
     MatchResultViewModel matchResultViewModel;
-    //CrescendoResult crescendoResult;
     CurrentGamePoints currentResult;
 
     String matchKey;
@@ -79,7 +78,6 @@ public class MatchScoutingAutoActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_match_auto_scouting);
 
-        preSetupControls();
         setupColor();
         setupControls();
 
@@ -120,14 +118,7 @@ public class MatchScoutingAutoActivity extends AppCompatActivity {
             lowClimb.setTextColor(getResources().getColor(secondaryDarkColor));
         }
     }
-    @SuppressLint({"ResourceType", "UseCompatLoadingForDrawables"})
-    public void preSetupControls(){
-        lowClimb = findViewById(R.id.low_climb);
-        lowClimb.setOnClickListener(v -> {
-            currentResult.result.setAutoFlag1( !(currentResult.result.getAutoFlag1()  ));
-            populateControlsFromData();
-        });
-    }
+
     public void setupControls(){
 
         activeFuelDecrement = findViewById(R.id.active_fuel_decrement);
@@ -182,6 +173,7 @@ public class MatchScoutingAutoActivity extends AppCompatActivity {
             populateControlsFromData();
         });
 
+        lowClimb = findViewById(R.id.low_climb);
         lowClimb.setOnClickListener(view -> {
             currentResult.result.setAutoFlag3 (!currentResult.result.getAutoFlag3());
             lowClimb.setChecked(currentResult.result.getAutoFlag3());
