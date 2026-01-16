@@ -241,10 +241,10 @@
         tools:text="FRC 3536" />
 
     <com.google.android.material.button.MaterialButton
-        android:id="@+id/teleOp"
+        android:id="@+id/matchSummarySaveButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="TeleOp"
+        android:text="Summary"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
 

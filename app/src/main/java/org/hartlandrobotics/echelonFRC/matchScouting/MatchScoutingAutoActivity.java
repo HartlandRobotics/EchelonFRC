@@ -31,35 +31,22 @@ public class MatchScoutingAutoActivity extends AppCompatActivity {
     private static final String MATCH_KEY = "match_key_param";
     private static final String TEAM_KEY = "team_key_param";
 
-    private ImageButton leaveLineAuto;
-    private ImageButton autoReefLevelOne;
-    private ImageButton autoReefLevelTwo;
-    private ImageButton autoReefLevelThree;
-    private ImageButton autoReefLevelFour;
-    private ImageButton autoProcessor;
-    private ImageButton autoNet;
+    private ImageButton activeFuelDecrement;
+    private ImageButton activeFuel;
+    private MaterialTextView activeFuelText;
+    private ImageButton missedFuelDecrement;
+    private ImageButton missedFuel;
+    private MaterialTextView missedFuelText;
+    private ImageButton passingDecrement;
+    private ImageButton passing;
+    private MaterialTextView passingText;
+    private ImageButton humanFuelDecrement;
+    private ImageButton humanFuel;
+    private MaterialTextView humanFuelText;
+    private MaterialButton lowClimb;
 
     // we are finally going to use text buttons to let them take away things on the screen so they don't keep crying about it
-    private ImageButton subtractReefLevelOne;
-    private ImageButton subtractReefLevelTwo;
-    private ImageButton subtractReefLevelThree;
-    private ImageButton subtractReefLevelFour;
-    private ImageButton subtractProcessor;
-    private ImageButton subtractNet;
-    private MaterialTextView reefLevelOnePoints;
-    private MaterialTextView reefLevelTwoPoints;
-    private MaterialTextView reefLevelThreePoints;
-    private MaterialTextView reefLevelFourPoints;
-    private MaterialTextView processorPoints;
-    private MaterialTextView netPoints;
-    private MaterialButton autoRightBlue;
-    private MaterialButton autoCenterBlue;
-    private MaterialButton autoLeftBlue;
-    private ImageButton driversText;
-    private MaterialButton autoLeftRed;
-    private MaterialButton autoCenterRed;
-    private MaterialButton autoRightRed;
-    private ImageButton redDriversText;
+
 
     private int buttonColor;
     private int buttonSelectedTextColor;
@@ -67,8 +54,6 @@ public class MatchScoutingAutoActivity extends AppCompatActivity {
 
    private MaterialTextView teamKeyText;
 
-    int parkDrawable;
-    int processorDrawable;
 
 
 
@@ -121,192 +106,87 @@ public class MatchScoutingAutoActivity extends AppCompatActivity {
 
     // all red text that refers from things from last year needs to be updated
     public void populateControlsFromData(){
-        reefLevelOnePoints.setText(String.valueOf(currentResult.result.getAutoInt6()));
-        reefLevelTwoPoints.setText(String.valueOf(currentResult.result.getAutoInt7()));
-        reefLevelThreePoints.setText(String.valueOf(currentResult.result.getAutoInt8()));
-        reefLevelFourPoints.setText(String.valueOf(currentResult.result.getAutoInt9()));
-        processorPoints.setText(String.valueOf(currentResult.result.getAutoInt10()));
-        netPoints.setText(String.valueOf(currentResult.result.getAutoInt11()));
+        activeFuelText.setText(String.valueOf(currentResult.result.getAutoInt6()));
+        missedFuelText.setText(String.valueOf(currentResult.result.getAutoInt7()));
+        passingText.setText(String.valueOf(currentResult.result.getAutoInt8()));
+        humanFuelText.setText(String.valueOf(currentResult.result.getAutoInt9()));
 
-        if(currentResult.result.getAutoFlag1()){
-            leaveLineAuto.setImageResource(R.drawable.out_line_green);
-        } else {
-            leaveLineAuto.setImageResource(parkDrawable);
+        if (currentResult.result.getAutoFlag3()) {
+            lowClimb.setBackgroundTintList(ColorStateList.valueOf(getResources().getColor(secondaryDarkColor)));
+            lowClimb.setTextColor(getResources().getColor(buttonSelectedTextColor));
         }
-
-        if (currentResult.result.getAutoFlag2()){
-            autoRightBlue.setBackgroundTintList(ColorStateList.valueOf(getResources().getColor(secondaryDarkColor)));
-            autoRightBlue.setTextColor(getResources().getColor(buttonSelectedTextColor));
-            autoRightRed.setBackgroundTintList(ColorStateList.valueOf(getResources().getColor(secondaryDarkColor)));
-            autoRightRed.setTextColor(getResources().getColor(buttonSelectedTextColor));
+        else {
+            lowClimb.setBackgroundTintList(ColorStateList.valueOf(getResources().getColor(buttonColor)));
+            lowClimb.setTextColor(getResources().getColor(secondaryDarkColor));
         }
-        else{
-            autoRightBlue.setBackgroundTintList(ColorStateList.valueOf(getResources().getColor(buttonColor)));
-            autoRightBlue.setTextColor(getResources().getColor(secondaryDarkColor));
-            autoRightRed.setBackgroundTintList(ColorStateList.valueOf(getResources().getColor(buttonColor)));
-            autoRightRed.setTextColor(getResources().getColor(secondaryDarkColor));
-        }
-
-        if (currentResult.result.getAutoFlag3()){
-            autoCenterBlue.setBackgroundTintList(ColorStateList.valueOf(getResources().getColor(secondaryDarkColor)));
-            autoCenterBlue.setTextColor(getResources().getColor(buttonSelectedTextColor));
-            autoCenterRed.setBackgroundTintList(ColorStateList.valueOf(getResources().getColor(secondaryDarkColor)));
-            autoCenterRed.setTextColor(getResources().getColor(buttonSelectedTextColor));
-        }
-        else{
-            autoCenterBlue.setBackgroundTintList(ColorStateList.valueOf(getResources().getColor(buttonColor)));
-            autoCenterBlue.setTextColor(getResources().getColor(secondaryDarkColor));
-            autoCenterRed.setBackgroundTintList(ColorStateList.valueOf(getResources().getColor(buttonColor)));
-            autoCenterRed.setTextColor(getResources().getColor(secondaryDarkColor));
-        }
-
-        if (currentResult.result.getAutoFlag4()){
-            autoLeftBlue.setBackgroundTintList(ColorStateList.valueOf(getResources().getColor(secondaryDarkColor)));
-            autoLeftBlue.setTextColor(getResources().getColor(buttonSelectedTextColor));
-            autoLeftRed.setBackgroundTintList(ColorStateList.valueOf(getResources().getColor(secondaryDarkColor)));
-            autoLeftRed.setTextColor(getResources().getColor(buttonSelectedTextColor));
-        }
-        else{
-            autoLeftBlue.setBackgroundTintList(ColorStateList.valueOf(getResources().getColor(buttonColor)));
-            autoLeftBlue.setTextColor(getResources().getColor(secondaryDarkColor));
-            autoLeftRed.setBackgroundTintList(ColorStateList.valueOf(getResources().getColor(buttonColor)));
-            autoLeftRed.setTextColor(getResources().getColor(secondaryDarkColor));
-        }
-
     }
-
     @SuppressLint({"ResourceType", "UseCompatLoadingForDrawables"})
     public void preSetupControls(){
-        autoRightBlue = findViewById(R.id.auto_right_blue);
-        autoRightBlue.setOnClickListener(v -> {
-            currentResult.result.setAutoFlag2( !(currentResult.result.getAutoFlag2()  ));
-            currentResult.result.setAutoFlag3(false);
-            currentResult.result.setAutoFlag4(false);
+        lowClimb = findViewById(R.id.low_climb);
+        lowClimb.setOnClickListener(v -> {
+            currentResult.result.setAutoFlag1( !(currentResult.result.getAutoFlag1()  ));
             populateControlsFromData();
         });
-
-        autoCenterBlue = findViewById(R.id.auto_center_blue);
-        autoCenterBlue.setOnClickListener(v -> {
-            currentResult.result.setAutoFlag3( !(currentResult.result.getAutoFlag3()  ));
-            currentResult.result.setAutoFlag2(false);
-            currentResult.result.setAutoFlag4(false);
-            populateControlsFromData();
-        });
-
-        autoLeftBlue = findViewById(R.id.auto_left_blue);
-        autoLeftBlue.setOnClickListener(v -> {
-            currentResult.result.setAutoFlag4( !(currentResult.result.getAutoFlag4()  ));
-            currentResult.result.setAutoFlag3(false);
-            currentResult.result.setAutoFlag2(false);
-            populateControlsFromData();
-        });
-
-        autoLeftRed = findViewById(R.id.auto_left_red);
-        autoLeftRed.setOnClickListener(v -> {
-            currentResult.result.setAutoFlag4( !(currentResult.result.getAutoFlag4()  ));
-            populateControlsFromData();
-        });
-
-        autoCenterRed = findViewById(R.id.auto_center_red);
-        autoCenterRed.setOnClickListener(v -> {
-            currentResult.result.setAutoFlag3( !(currentResult.result.getAutoFlag3()  ));
-            populateControlsFromData();
-        });
-
-        autoRightRed = findViewById(R.id.auto_right_red);
-        autoRightRed.setOnClickListener(v -> {
-            currentResult.result.setAutoFlag2( !(currentResult.result.getAutoFlag2()  ));
-            populateControlsFromData();
-        });
-
-        redDriversText = findViewById(R.id.red_drivers_text);
-
-        driversText = findViewById(R.id.drivers_text);
-
     }
     public void setupControls(){
 
-        leaveLineAuto = findViewById(R.id.park);
-        leaveLineAuto.setImageResource(R.drawable.in_line);
-        leaveLineAuto.setOnClickListener(v -> {
-            currentResult.result.setAutoFlag1( !(currentResult.result.getAutoFlag1()  ));
+        activeFuelDecrement = findViewById(R.id.active_fuel_decrement);
+        activeFuelDecrement.setOnClickListener(v -> {
+            currentResult.result.setAutoInt6( Math.min(currentResult.result.getAutoInt6() - 1, 0));
             populateControlsFromData();
-
         });
 
-        autoReefLevelOne = findViewById(R.id.reef_level_one);
-        reefLevelOnePoints = findViewById(R.id.reef_level_one_text);
-        subtractReefLevelOne = findViewById(R.id.reef_level_one_decrement);
-        autoReefLevelOne.setOnClickListener(v -> {
-            //need to update single page scoring sheet so we know what these are
+        activeFuel = findViewById(R.id.active_fuel);
+        activeFuelText = findViewById(R.id.active_fuel_text);
+        activeFuel.setOnClickListener(v -> {
             currentResult.result.setAutoInt6( Math.max(currentResult.result.getAutoInt6() + 1, 0));
             populateControlsFromData();
         });
-        subtractReefLevelOne.setOnClickListener(v -> {
-            currentResult.result.setAutoInt6(Math.max(currentResult.result.getAutoInt6() - 1, 0));
+
+        missedFuelDecrement = findViewById(R.id.missed_fuel_decrement);
+        missedFuelDecrement.setOnClickListener(v -> {
+            currentResult.result.setAutoInt7( Math.min(currentResult.result.getAutoInt7() - 1, 0));
             populateControlsFromData();
         });
 
-        autoReefLevelTwo = findViewById(R.id.reef_level_two);
-        reefLevelTwoPoints = findViewById(R.id.reef_level_two_text);
-        subtractReefLevelTwo = findViewById(R.id.reef_level_two_decrement);
-        autoReefLevelTwo.setOnClickListener(v -> {
+        missedFuel = findViewById(R.id.missed_fuel);
+        missedFuelText = findViewById(R.id.missed_fuel_text);
+        missedFuel.setOnClickListener(v -> {
             currentResult.result.setAutoInt7( Math.max(currentResult.result.getAutoInt7() + 1, 0));
             populateControlsFromData();
         });
-        subtractReefLevelTwo.setOnClickListener(v -> {
-            currentResult.result.setAutoInt7(Math.max(currentResult.result.getAutoInt7() - 1, 0));
+
+        passingDecrement = findViewById(R.id.passing_decrement);
+        passingDecrement.setOnClickListener(v -> {
+            currentResult.result.setAutoInt8( Math.min(currentResult.result.getAutoInt8() - 1, 0));
             populateControlsFromData();
         });
 
-        autoReefLevelThree = findViewById(R.id.reef_level_three);
-        reefLevelThreePoints = findViewById(R.id.reef_level_three_text);
-        subtractReefLevelThree = findViewById(R.id.reef_level_three_decrement);
-        autoReefLevelThree.setOnClickListener(v -> {
+        passing = findViewById(R.id.passing);
+        passingText = findViewById(R.id.passing_text);
+        passing.setOnClickListener(v -> {
             currentResult.result.setAutoInt8( Math.max(currentResult.result.getAutoInt8() + 1, 0));
             populateControlsFromData();
         });
-        subtractReefLevelThree.setOnClickListener(v -> {
-            currentResult.result.setAutoInt8(Math.max(currentResult.result.getAutoInt8() - 1, 0));
+
+        humanFuelDecrement = findViewById(R.id.human_fuel_decrement);
+        humanFuelDecrement.setOnClickListener(v -> {
+            currentResult.result.setAutoInt9( Math.min(currentResult.result.getAutoInt9() - 1, 0));
             populateControlsFromData();
         });
 
-        autoReefLevelFour = findViewById(R.id.reef_level_four);
-        reefLevelFourPoints = findViewById(R.id.reef_level_four_text);
-        subtractReefLevelFour = findViewById(R.id.reef_level_four_decrement);
-        autoReefLevelFour.setOnClickListener(v -> {
+        humanFuel = findViewById(R.id.human_fuel);
+        humanFuelText = findViewById(R.id.human_fuel_text);
+        humanFuel.setOnClickListener(v -> {
             currentResult.result.setAutoInt9( Math.max(currentResult.result.getAutoInt9() + 1, 0));
             populateControlsFromData();
         });
-        subtractReefLevelFour.setOnClickListener(v -> {
-            currentResult.result.setAutoInt9(Math.max(currentResult.result.getAutoInt9() - 1, 0));
-            populateControlsFromData();
+
+        lowClimb.setOnClickListener(view -> {
+            currentResult.result.setAutoFlag3 (!currentResult.result.getAutoFlag3());
         });
 
-        autoProcessor = findViewById(R.id.processor);
-        autoProcessor.setImageResource(processorDrawable);
-        processorPoints = findViewById(R.id.processor_text);
-        subtractProcessor = findViewById(R.id.processor_decrement);
-        autoProcessor.setOnClickListener(v -> {
-            currentResult.result.setAutoInt10( Math.max(currentResult.result.getAutoInt10() + 1, 0));
-            populateControlsFromData();
-        });
-        subtractProcessor.setOnClickListener(v -> {
-            currentResult.result.setAutoInt10(Math.max(currentResult.result.getAutoInt10() - 1, 0));
-            populateControlsFromData();
-        });
 
-        autoNet = findViewById(R.id.net);
-        netPoints = findViewById(R.id.net_text);
-        subtractNet = findViewById(R.id.net_decrement);
-        autoNet.setOnClickListener(v -> {
-            currentResult.result.setAutoInt11( Math.max(currentResult.result.getAutoInt11() + 1, 0));
-            populateControlsFromData();
-        });
-        subtractNet.setOnClickListener(v -> {
-            currentResult.result.setAutoInt11(Math.max(currentResult.result.getAutoInt11() - 1, 0));
-            populateControlsFromData();
-        });
 
         MaterialButton teleOpButton = findViewById(R.id.teleOp);
         teleOpButton.setOnClickListener(v -> {
@@ -322,30 +202,11 @@ public class MatchScoutingAutoActivity extends AppCompatActivity {
         secondaryDarkColor = R.color.secondaryDarkColor;
 
         if (settings.getDeviceRole().startsWith("red")){
-            parkDrawable = R.drawable.in_line_red;
-            processorDrawable = R.drawable.processor_red;
-            autoLeftRed.setVisibility(View.VISIBLE);
-            autoCenterRed.setVisibility(View.VISIBLE);
-            autoRightRed.setVisibility(View.VISIBLE);
-            redDriversText.setVisibility(View.VISIBLE);
-            driversText.setVisibility(View.GONE);
-            autoRightBlue.setVisibility(View.GONE);
-            autoCenterBlue.setVisibility(View.GONE);
-            autoLeftBlue.setVisibility(View.GONE);
-            buttonColor = R.color.redAlliance;
-
+            lowClimb.setBackgroundTintList(ColorStateList.valueOf(getResources().getColor(R.color.secondaryDarkColor)));
+            lowClimb.setTextColor(getResources().getColor(buttonSelectedTextColor));
         } else {
-            parkDrawable = R.drawable.in_line_blue;
-            processorDrawable = R.drawable.processor_blue;
-            driversText.setVisibility(View.VISIBLE);
-            autoRightBlue.setVisibility(View.VISIBLE);
-            autoCenterBlue.setVisibility(View.VISIBLE);
-            autoLeftBlue.setVisibility(View.VISIBLE);
-            autoLeftRed.setVisibility(View.GONE);
-            autoCenterRed.setVisibility(View.GONE);
-            autoRightRed.setVisibility(View.GONE);
-            redDriversText.setVisibility(View.GONE);
-            buttonColor = R.color.blueAlliance;
+            lowClimb.setBackgroundTintList(ColorStateList.valueOf(getResources().getColor(buttonColor)));
+            lowClimb.setTextColor(getResources().getColor(R.color.secondaryDarkColor));
         }
     }
 
