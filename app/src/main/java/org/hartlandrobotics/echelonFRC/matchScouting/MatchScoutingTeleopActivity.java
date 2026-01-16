@@ -230,7 +230,10 @@ public class MatchScoutingTeleopActivity extends AppCompatActivity {
 
         buttonSelectedTextColor = R.color.primaryDarkColor;
         secondaryDarkColor = R.color.secondaryDarkColor;
-
-
+        if (settings.getDeviceRole().startsWith("red")) {
+            buttonColor = R.color.redAlliance;
+        } else {
+            buttonColor = R.color.blueAlliance;
         }
+    }
 }

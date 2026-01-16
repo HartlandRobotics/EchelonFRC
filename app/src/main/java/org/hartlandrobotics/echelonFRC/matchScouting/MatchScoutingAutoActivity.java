@@ -184,6 +184,15 @@ public class MatchScoutingAutoActivity extends AppCompatActivity {
 
         lowClimb.setOnClickListener(view -> {
             currentResult.result.setAutoFlag3 (!currentResult.result.getAutoFlag3());
+            lowClimb.setChecked(currentResult.result.getAutoFlag3());
+            if( currentResult.result.getAutoFlag3()){
+                lowClimb.setBackgroundTintList(ColorStateList.valueOf(getResources().getColor(R.color.secondaryDarkColor)));
+                lowClimb.setTextColor(getResources().getColor(R.color.primaryDarkColor));
+
+            }else{
+                lowClimb.setBackgroundTintList(ColorStateList.valueOf(getResources().getColor(buttonColor)));
+                lowClimb.setTextColor(getResources().getColor(secondaryDarkColor));
+            }
         });
 
 
@@ -203,12 +212,8 @@ public class MatchScoutingAutoActivity extends AppCompatActivity {
 
         if (settings.getDeviceRole().startsWith("red")){
             buttonColor = R.color.redAlliance;
-            lowClimb.setBackgroundTintList(ColorStateList.valueOf(getResources().getColor(buttonColor)));
-            lowClimb.setTextColor(getResources().getColor(buttonSelectedTextColor));
         } else {
             buttonColor = R.color.blueAlliance;
-            lowClimb.setBackgroundTintList(ColorStateList.valueOf(getResources().getColor(buttonColor)));
-            lowClimb.setTextColor(getResources().getColor(R.color.secondaryDarkColor));
         }
     }
 
