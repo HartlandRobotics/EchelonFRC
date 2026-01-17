@@ -41,335 +41,237 @@
         />
 
     <com.google.android.material.checkbox.MaterialCheckBox
-        android:id="@+id/autoParkCheckbox"
+        android:id="@+id/autoLowClimbCheckbox"
         android:layout_width="138dp"
         android:layout_height="25dp"
-        android:text="Left Park Line"
+        android:text="Low Climb"
         android:textColor="@color/cardview_dark_background"
         android:textSize="12dp"
-        android:layout_marginTop="20dp"
-        app:layout_constraintBottom_toTopOf="@+id/autoLevelOneLabel"
+        android:layout_marginTop="50dp"
+        app:layout_constraintBottom_toTopOf="@+id/autoActiveFuelLabel"
         app:layout_constraintEnd_toEndOf="@+id/autoLabel"
         app:layout_constraintStart_toStartOf="@+id/autoLabel"
         app:layout_constraintTop_toTopOf="@+id/autoLabel" />
 
     <ImageButton
-            android:id="@+id/autoLevelOneDecrement"
+            android:id="@+id/autoActiveFuelDecrement"
             android:layout_width="50dp"
             android:layout_height="25dp"
             android:text="-"
             android:src="@drawable/button_decrement_small"
-            app:layout_constraintTop_toTopOf="@+id/autoLevelOneLabel"
-            app:layout_constraintBottom_toBottomOf="@+id/autoLevelOneValue"
+            app:layout_constraintTop_toTopOf="@+id/autoActiveFuelLabel"
+            app:layout_constraintBottom_toBottomOf="@+id/autoActiveFuelValue"
             app:layout_constraintStart_toStartOf="@+id/autoLabel"
-            app:layout_constraintEnd_toStartOf="@+id/autoLevelOneLabel"
+            app:layout_constraintEnd_toStartOf="@+id/autoActiveFuelLabel"
             />
 
         <com.google.android.material.textview.MaterialTextView
-            android:id="@+id/autoLevelOneLabel"
+            android:id="@+id/autoActiveFuelLabel"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginTop="40dp"
             android:textSize="12dp"
             android:minWidth="70dp"
-            android:text="Level One"
+            android:text="Active Fuel"
             android:textAlignment="center"
             android:textColor="@color/cardview_dark_background"
-            app:layout_constraintTop_toBottomOf="@+id/autoParkCheckbox"
-            app:layout_constraintBottom_toTopOf="@+id/autoLevelOneValue"
+            app:layout_constraintTop_toBottomOf="@+id/autoLowClimbCheckbox"
+            app:layout_constraintBottom_toTopOf="@+id/autoActiveFuelValue"
             app:layout_constraintStart_toStartOf="@+id/autoLabel"
             app:layout_constraintEnd_toEndOf="@+id/autoLabel"
             />
 
         <com.google.android.material.textview.MaterialTextView
-            android:id="@+id/autoLevelOneValue"
+            android:id="@+id/autoActiveFuelValue"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:minWidth="70dp"
+            android:layout_marginBottom="50dp"
             android:text="0"
             android:textAlignment="center"
             android:textColor="@color/cardview_dark_background"
             android:textSize="12dp"
-            app:layout_constraintBottom_toTopOf="@+id/autoLevelTwoLabel"
+            app:layout_constraintBottom_toTopOf="@+id/autoMissedFuelLabel"
             app:layout_constraintEnd_toEndOf="@+id/autoLabel"
             app:layout_constraintStart_toStartOf="@+id/autoLabel"
-            app:layout_constraintTop_toBottomOf="@id/autoLevelOneLabel" />
+            app:layout_constraintTop_toBottomOf="@id/autoActiveFuelLabel" />
 
         <ImageButton
-            android:id="@+id/autoLevelOneIncrement"
+            android:id="@+id/autoActiveFuelIncrement"
             android:layout_width="50dp"
             android:layout_height="25dp"
             android:text="+"
             android:src="@drawable/button_increment_small"
-            app:layout_constraintTop_toTopOf="@+id/autoLevelOneLabel"
-            app:layout_constraintBottom_toBottomOf="@+id/autoLevelOneValue"
+            app:layout_constraintTop_toTopOf="@+id/autoActiveFuelLabel"
+            app:layout_constraintBottom_toBottomOf="@+id/autoActiveFuelValue"
             app:layout_constraintEnd_toEndOf="@+id/autoLabel"
-            app:layout_constraintStart_toEndOf="@+id/autoLevelOneLabel"
+            app:layout_constraintStart_toEndOf="@+id/autoActiveFuelLabel"
             />
 
     <ImageButton
-        android:id="@+id/autoLevelTwoDecrement"
+        android:id="@+id/autoMissedFuelDecrement"
         android:layout_width="50dp"
         android:layout_height="25dp"
         android:text="-"
         android:src="@drawable/button_decrement_small"
-        app:layout_constraintTop_toTopOf="@+id/autoLevelTwoLabel"
-        app:layout_constraintBottom_toBottomOf="@+id/autoLevelTwoValue"
+        app:layout_constraintTop_toTopOf="@+id/autoMissedFuelLabel"
+        app:layout_constraintBottom_toBottomOf="@+id/autoMissedFuelValue"
         app:layout_constraintStart_toStartOf="@+id/autoLabel"
-        app:layout_constraintEnd_toStartOf="@+id/autoLevelTwoLabel"
+        app:layout_constraintEnd_toStartOf="@+id/autoMissedFuelLabel"
         />
 
     <com.google.android.material.textview.MaterialTextView
-        android:id="@+id/autoLevelTwoLabel"
+        android:id="@+id/autoMissedFuelLabel"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textSize="12dp"
         android:minWidth="70dp"
-        android:text="Level Two"
+        android:text="Missed Fuel"
         android:textAlignment="center"
         android:textColor="@color/cardview_dark_background"
-        app:layout_constraintTop_toBottomOf="@+id/autoLevelOneValue"
-        app:layout_constraintBottom_toTopOf="@+id/autoLevelTwoValue"
+        app:layout_constraintTop_toBottomOf="@+id/autoMissedFuelValue"
+        app:layout_constraintBottom_toTopOf="@+id/autoMissedFuelValue"
         app:layout_constraintStart_toStartOf="@+id/autoLabel"
         app:layout_constraintEnd_toEndOf="@+id/autoLabel"
         />
 
     <com.google.android.material.textview.MaterialTextView
-        android:id="@+id/autoLevelTwoValue"
+        android:id="@+id/autoMissedFuelValue"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginBottom="70dp"
         android:minWidth="70dp"
         android:text="0"
         android:textAlignment="center"
         android:textColor="@color/cardview_dark_background"
         android:textSize="12dp"
-        app:layout_constraintBottom_toTopOf="@+id/autoLevelThreeLabel"
+        app:layout_constraintBottom_toTopOf="@+id/autoPassingLabel"
         app:layout_constraintEnd_toEndOf="@+id/autoLabel"
         app:layout_constraintStart_toStartOf="@+id/autoLabel"
-        app:layout_constraintTop_toBottomOf="@id/autoLevelTwoLabel" />
+        app:layout_constraintTop_toBottomOf="@id/autoMissedFuelLabel" />
 
     <ImageButton
-        android:id="@+id/autoLevelTwoIncrement"
+        android:id="@+id/autoMissedFuelIncrement"
         android:layout_width="50dp"
         android:layout_height="25dp"
         android:text="+"
         android:src="@drawable/button_increment_small"
-        app:layout_constraintTop_toTopOf="@+id/autoLevelTwoLabel"
-        app:layout_constraintBottom_toBottomOf="@+id/autoLevelTwoValue"
+        app:layout_constraintTop_toTopOf="@+id/autoMissedFuelLabel"
+        app:layout_constraintBottom_toBottomOf="@+id/autoMissedFuelValue"
         app:layout_constraintEnd_toEndOf="@+id/autoLabel"
-        app:layout_constraintStart_toEndOf="@+id/autoLevelTwoLabel"
+        app:layout_constraintStart_toEndOf="@+id/autoMissedFuelLabel"
         />
 
     <ImageButton
-        android:id="@+id/autoLevelThreeDecrement"
+        android:id="@+id/autoPassingDecrement"
         android:layout_width="50dp"
         android:layout_height="25dp"
         android:text="-"
         android:src="@drawable/button_decrement_small"
-        app:layout_constraintTop_toTopOf="@+id/autoLevelThreeLabel"
-        app:layout_constraintBottom_toBottomOf="@+id/autoLevelThreeValue"
+        app:layout_constraintTop_toTopOf="@+id/autoPassingLabel"
+        app:layout_constraintBottom_toBottomOf="@+id/autoPassingValue"
         app:layout_constraintStart_toStartOf="@+id/autoLabel"
-        app:layout_constraintEnd_toStartOf="@+id/autoLevelThreeLabel"
+        app:layout_constraintEnd_toStartOf="@+id/autoPassingLabel"
         />
 
     <com.google.android.material.textview.MaterialTextView
-        android:id="@+id/autoLevelThreeLabel"
+        android:id="@+id/autoPassingLabel"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textSize="12dp"
         android:minWidth="70dp"
-        android:text="Level Three"
+        android:text="Passing"
         android:textAlignment="center"
         android:textColor="@color/cardview_dark_background"
-        app:layout_constraintTop_toBottomOf="@+id/autoLevelTwoValue"
-        app:layout_constraintBottom_toTopOf="@+id/autoLevelThreeValue"
+        app:layout_constraintTop_toBottomOf="@+id/autoMissedFuelValue"
+        app:layout_constraintBottom_toTopOf="@+id/autoPassingValue"
         app:layout_constraintStart_toStartOf="@+id/autoLabel"
         app:layout_constraintEnd_toEndOf="@+id/autoLabel"
         />
 
     <com.google.android.material.textview.MaterialTextView
-        android:id="@+id/autoLevelThreeValue"
+        android:id="@+id/autoPassingValue"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginBottom="70dp"
         android:minWidth="70dp"
         android:text="0"
         android:textAlignment="center"
         android:textColor="@color/cardview_dark_background"
         android:textSize="12dp"
-        app:layout_constraintBottom_toTopOf="@+id/autoLevelFourLabel"
+        app:layout_constraintBottom_toTopOf="@+id/autoHumanFuelLabel"
         app:layout_constraintEnd_toEndOf="@+id/autoLabel"
         app:layout_constraintStart_toStartOf="@+id/autoLabel"
-        app:layout_constraintTop_toBottomOf="@id/autoLevelThreeLabel" />
+        app:layout_constraintTop_toBottomOf="@id/autoPassingLabel" />
 
     <ImageButton
-        android:id="@+id/autoLevelThreeIncrement"
+        android:id="@+id/autoPassingIncrement"
         android:layout_width="50dp"
         android:layout_height="25dp"
         android:text="+"
         android:src="@drawable/button_increment_small"
-        app:layout_constraintTop_toTopOf="@+id/autoLevelThreeLabel"
-        app:layout_constraintBottom_toBottomOf="@+id/autoLevelThreeValue"
+        app:layout_constraintTop_toTopOf="@+id/autoPassingLabel"
+        app:layout_constraintBottom_toBottomOf="@+id/autoPassingValue"
         app:layout_constraintEnd_toEndOf="@+id/autoLabel"
-        app:layout_constraintStart_toEndOf="@+id/autoLevelThreeLabel"
+        app:layout_constraintStart_toEndOf="@+id/autoPassingLabel"
         />
 
     <ImageButton
-        android:id="@+id/autoLevelFourDecrement"
+        android:id="@+id/autoHumanFuelDecrement"
         android:layout_width="50dp"
         android:layout_height="25dp"
         android:text="-"
         android:src="@drawable/button_decrement_small"
-        app:layout_constraintTop_toTopOf="@+id/autoLevelFourLabel"
-        app:layout_constraintBottom_toBottomOf="@+id/autoLevelFourValue"
+        app:layout_constraintTop_toTopOf="@+id/autoHumanFuelLabel"
+        app:layout_constraintBottom_toBottomOf="@+id/autoHumanFuelValue"
         app:layout_constraintStart_toStartOf="@+id/autoLabel"
-        app:layout_constraintEnd_toStartOf="@+id/autoLevelFourLabel"
+        app:layout_constraintEnd_toStartOf="@+id/autoHumanFuelLabel"
         />
 
     <com.google.android.material.textview.MaterialTextView
-        android:id="@+id/autoLevelFourLabel"
+        android:id="@+id/autoHumanFuelLabel"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textSize="12dp"
         android:minWidth="70dp"
-        android:text="Level Four"
+        android:text="Human Fuel"
         android:textAlignment="center"
         android:textColor="@color/cardview_dark_background"
-        app:layout_constraintTop_toBottomOf="@+id/autoLevelThreeValue"
-        app:layout_constraintBottom_toTopOf="@+id/autoLevelFourValue"
+        app:layout_constraintTop_toBottomOf="@+id/autoPassingValue"
+        app:layout_constraintBottom_toTopOf="@+id/autoHumanFuelValue"
         app:layout_constraintStart_toStartOf="@+id/autoLabel"
         app:layout_constraintEnd_toEndOf="@+id/autoLabel"
         />
 
     <com.google.android.material.textview.MaterialTextView
-        android:id="@+id/autoLevelFourValue"
+        android:id="@+id/autoHumanFuelValue"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginBottom="70dp"
         android:minWidth="70dp"
         android:text="0"
         android:textAlignment="center"
         android:textColor="@color/cardview_dark_background"
         android:textSize="12dp"
-        app:layout_constraintBottom_toTopOf="@+id/autoProcessorLabel"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="@+id/autoLabel"
         app:layout_constraintStart_toStartOf="@+id/autoLabel"
-        app:layout_constraintTop_toBottomOf="@id/autoLevelFourLabel" />
+        app:layout_constraintTop_toBottomOf="@id/autoHumanFuelLabel"
+        />
 
     <ImageButton
-        android:id="@+id/autoLevelFourIncrement"
+        android:id="@+id/autoHumanFuelIncrement"
         android:layout_width="50dp"
         android:layout_height="25dp"
         android:text="+"
         android:src="@drawable/button_increment_small"
-        app:layout_constraintTop_toTopOf="@+id/autoLevelFourLabel"
-        app:layout_constraintBottom_toBottomOf="@+id/autoLevelFourValue"
+        app:layout_constraintTop_toTopOf="@+id/autoHumanFuelLabel"
+        app:layout_constraintBottom_toBottomOf="@+id/autoHumanFuelValue"
         app:layout_constraintEnd_toEndOf="@+id/autoLabel"
-        app:layout_constraintStart_toEndOf="@+id/autoLevelFourLabel"
+        app:layout_constraintStart_toEndOf="@+id/autoHumanFuelLabel"
         />
 
-    <ImageButton
-        android:id="@+id/autoProcessorDecrement"
-        android:layout_width="50dp"
-        android:layout_height="25dp"
-        android:text="-"
-        android:src="@drawable/button_decrement_small"
-        app:layout_constraintTop_toTopOf="@+id/autoProcessorLabel"
-        app:layout_constraintBottom_toBottomOf="@+id/autoProcessorValue"
-        app:layout_constraintStart_toStartOf="@+id/autoLabel"
-        app:layout_constraintEnd_toStartOf="@+id/autoProcessorLabel"
-        />
 
-    <com.google.android.material.textview.MaterialTextView
-        android:id="@+id/autoProcessorLabel"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textSize="12dp"
-        android:minWidth="70dp"
-        android:text="Processor"
-        android:textAlignment="center"
-        android:textColor="@color/cardview_dark_background"
-        app:layout_constraintTop_toBottomOf="@+id/autoLevelFourValue"
-        app:layout_constraintBottom_toTopOf="@+id/autoProcessorValue"
-        app:layout_constraintStart_toStartOf="@+id/autoLabel"
-        app:layout_constraintEnd_toEndOf="@+id/autoLabel"
-        />
-
-    <com.google.android.material.textview.MaterialTextView
-        android:id="@+id/autoProcessorValue"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:minWidth="70dp"
-        android:text="0"
-        android:textAlignment="center"
-        android:textColor="@color/cardview_dark_background"
-        android:textSize="12dp"
-        app:layout_constraintBottom_toTopOf="@id/autoNetLabel"
-        app:layout_constraintEnd_toEndOf="@+id/autoLabel"
-        app:layout_constraintStart_toStartOf="@+id/autoLabel"
-        app:layout_constraintTop_toBottomOf="@id/autoProcessorLabel" />
-
-    <ImageButton
-        android:id="@+id/autoProcessorIncrement"
-        android:layout_width="50dp"
-        android:layout_height="25dp"
-        android:text="+"
-        android:src="@drawable/button_increment_small"
-        app:layout_constraintTop_toTopOf="@+id/autoProcessorLabel"
-        app:layout_constraintBottom_toBottomOf="@+id/autoProcessorValue"
-        app:layout_constraintEnd_toEndOf="@+id/autoLabel"
-        app:layout_constraintStart_toEndOf="@+id/autoProcessorLabel"
-        />
-
-    <ImageButton
-        android:id="@+id/autoNetDecrement"
-        android:layout_width="50dp"
-        android:layout_height="25dp"
-        android:text="-"
-        android:src="@drawable/button_decrement_small"
-        app:layout_constraintTop_toTopOf="@+id/autoNetLabel"
-        app:layout_constraintBottom_toBottomOf="@+id/autoNetValue"
-        app:layout_constraintStart_toStartOf="@+id/autoLabel"
-        app:layout_constraintEnd_toStartOf="@+id/autoNetLabel"
-        />
-
-    <com.google.android.material.textview.MaterialTextView
-        android:id="@+id/autoNetLabel"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textSize="12dp"
-        android:minWidth="70dp"
-        android:text="Net"
-        android:textAlignment="center"
-        android:textColor="@color/cardview_dark_background"
-        app:layout_constraintTop_toBottomOf="@+id/autoProcessorValue"
-        app:layout_constraintBottom_toTopOf="@+id/autoNetValue"
-        app:layout_constraintStart_toStartOf="@+id/autoLabel"
-        app:layout_constraintEnd_toEndOf="@+id/autoLabel"
-        />
-
-    <com.google.android.material.textview.MaterialTextView
-        android:id="@+id/autoNetValue"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:minWidth="70dp"
-        android:text="0"
-        android:textAlignment="center"
-        android:textColor="@color/cardview_dark_background"
-        android:textSize="12dp"
-        app:layout_constraintBottom_toBottomOf="@id/autoLabel"
-        app:layout_constraintEnd_toEndOf="@+id/autoLabel"
-        app:layout_constraintStart_toStartOf="@+id/autoLabel"
-        app:layout_constraintTop_toTopOf="@id/autoNetLabel" />
-
-    <ImageButton
-        android:id="@+id/autoNetIncrement"
-        android:layout_width="50dp"
-        android:layout_height="25dp"
-        android:text="+"
-        android:src="@drawable/button_increment_small"
-        app:layout_constraintTop_toTopOf="@+id/autoNetLabel"
-        app:layout_constraintBottom_toBottomOf="@+id/autoNetValue"
-        app:layout_constraintEnd_toEndOf="@+id/autoLabel"
-        app:layout_constraintStart_toEndOf="@+id/autoNetLabel"
-        />
 
     <com.google.android.material.textview.MaterialTextView
         android:id="@+id/teleopLabel"
@@ -384,390 +286,223 @@
         app:layout_constraintEnd_toStartOf="@+id/endLabel"
         />
 
-
-
-
-
-
     <ImageButton
-        android:id="@+id/teleopLevelOneDecrement"
+        android:id="@+id/teleOpActiveFuelDecrement"
         android:layout_width="50dp"
         android:layout_height="25dp"
         android:text="-"
         android:src="@drawable/button_decrement_small"
-        app:layout_constraintTop_toTopOf="@+id/teleopLevelOneLabel"
-        app:layout_constraintBottom_toBottomOf="@+id/teleopLevelOneValue"
+        app:layout_constraintTop_toTopOf="@+id/teleOpActiveFuelLabel"
+        app:layout_constraintBottom_toBottomOf="@+id/teleOpActiveFuelValue"
         app:layout_constraintStart_toStartOf="@+id/teleopLabel"
-        app:layout_constraintEnd_toStartOf="@+id/teleopLevelOneLabel"
+        app:layout_constraintEnd_toStartOf="@+id/teleOpActiveFuelLabel"
         />
 
     <com.google.android.material.textview.MaterialTextView
-        android:id="@+id/teleopLevelOneLabel"
+        android:id="@+id/teleOpActiveFuelLabel"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="25dp"
+        android:layout_marginTop="40dp"
         android:textSize="12dp"
         android:minWidth="70dp"
-        android:text="Level One"
+        android:text="Active Fuel"
         android:textAlignment="center"
         android:textColor="@color/cardview_dark_background"
         app:layout_constraintTop_toTopOf="@+id/teleopLabel"
-        app:layout_constraintBottom_toTopOf="@+id/teleopLevelOneValue"
+        app:layout_constraintBottom_toTopOf="@+id/teleOpActiveFuelValue"
         app:layout_constraintStart_toStartOf="@+id/teleopLabel"
         app:layout_constraintEnd_toEndOf="@+id/teleopLabel"
         />
 
     <com.google.android.material.textview.MaterialTextView
-        android:id="@+id/teleopLevelOneValue"
+        android:id="@+id/teleOpActiveFuelValue"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:minWidth="70dp"
+        android:layout_marginBottom="50dp"
         android:text="0"
         android:textAlignment="center"
         android:textColor="@color/cardview_dark_background"
         android:textSize="12dp"
-        app:layout_constraintBottom_toTopOf="@+id/teleopLevelTwoLabel"
+        app:layout_constraintBottom_toTopOf="@+id/teleOpMissedFuelLabel"
         app:layout_constraintEnd_toEndOf="@+id/teleopLabel"
         app:layout_constraintStart_toStartOf="@+id/teleopLabel"
-        app:layout_constraintTop_toBottomOf="@id/teleopLevelOneLabel" />
+        app:layout_constraintTop_toBottomOf="@id/teleOpActiveFuelLabel" />
 
     <ImageButton
-        android:id="@+id/teleopLevelOneIncrement"
+        android:id="@+id/teleOpActiveFuelIncrement"
         android:layout_width="50dp"
         android:layout_height="25dp"
         android:text="+"
         android:src="@drawable/button_increment_small"
-        app:layout_constraintTop_toTopOf="@+id/teleopLevelOneLabel"
-        app:layout_constraintBottom_toBottomOf="@+id/teleopLevelOneValue"
+        app:layout_constraintTop_toTopOf="@+id/teleOpActiveFuelLabel"
+        app:layout_constraintBottom_toBottomOf="@+id/teleOpActiveFuelValue"
         app:layout_constraintEnd_toEndOf="@+id/teleopLabel"
-        app:layout_constraintStart_toEndOf="@+id/teleopLevelOneLabel"
+        app:layout_constraintStart_toEndOf="@+id/teleOpActiveFuelLabel"
         />
 
     <ImageButton
-        android:id="@+id/teleopLevelTwoDecrement"
+        android:id="@+id/teleOpMissedFuelDecrement"
         android:layout_width="50dp"
         android:layout_height="25dp"
         android:text="-"
         android:src="@drawable/button_decrement_small"
-        app:layout_constraintTop_toTopOf="@+id/teleopLevelTwoLabel"
-        app:layout_constraintBottom_toBottomOf="@+id/teleopLevelTwoValue"
+        app:layout_constraintTop_toTopOf="@+id/teleOpMissedFuelLabel"
+        app:layout_constraintBottom_toBottomOf="@+id/teleOpMissedFuelValue"
         app:layout_constraintStart_toStartOf="@+id/teleopLabel"
-        app:layout_constraintEnd_toStartOf="@+id/teleopLevelTwoLabel"
+        app:layout_constraintEnd_toStartOf="@+id/teleOpMissedFuelLabel"
         />
 
     <com.google.android.material.textview.MaterialTextView
-        android:id="@+id/teleopLevelTwoLabel"
+        android:id="@+id/teleOpMissedFuelLabel"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textSize="12dp"
         android:minWidth="70dp"
-        android:text="Level Two"
+        android:text="Missed Fuel"
         android:textAlignment="center"
         android:textColor="@color/cardview_dark_background"
-        app:layout_constraintTop_toBottomOf="@+id/teleopLevelOneValue"
-        app:layout_constraintBottom_toTopOf="@+id/teleopLevelTwoValue"
+        app:layout_constraintTop_toBottomOf="@+id/teleOpActiveFuelValue"
+        app:layout_constraintBottom_toTopOf="@+id/teleOpMissedFuelValue"
         app:layout_constraintStart_toStartOf="@+id/teleopLabel"
         app:layout_constraintEnd_toEndOf="@+id/teleopLabel"
         />
 
     <com.google.android.material.textview.MaterialTextView
-        android:id="@+id/teleopLevelTwoValue"
+        android:id="@+id/teleOpMissedFuelValue"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginBottom="70dp"
         android:minWidth="70dp"
         android:text="0"
         android:textAlignment="center"
         android:textColor="@color/cardview_dark_background"
         android:textSize="12dp"
-        app:layout_constraintBottom_toTopOf="@+id/teleopLevelThreeLabel"
+        app:layout_constraintBottom_toTopOf="@+id/teleOpPassingLabel"
         app:layout_constraintEnd_toEndOf="@+id/teleopLabel"
         app:layout_constraintStart_toStartOf="@+id/teleopLabel"
-        app:layout_constraintTop_toBottomOf="@id/teleopLevelTwoLabel" />
+        app:layout_constraintTop_toBottomOf="@id/teleOpMissedFuelLabel" />
 
     <ImageButton
-        android:id="@+id/teleopLevelTwoIncrement"
+        android:id="@+id/teleOpMissedFuelIncrement"
         android:layout_width="50dp"
         android:layout_height="25dp"
         android:text="+"
         android:src="@drawable/button_increment_small"
-        app:layout_constraintTop_toTopOf="@+id/teleopLevelTwoLabel"
-        app:layout_constraintBottom_toBottomOf="@+id/teleopLevelTwoValue"
+        app:layout_constraintTop_toTopOf="@+id/teleOpMissedFuelLabel"
+        app:layout_constraintBottom_toBottomOf="@+id/teleOpMissedFuelValue"
         app:layout_constraintEnd_toEndOf="@+id/teleopLabel"
-        app:layout_constraintStart_toEndOf="@+id/teleopLevelTwoLabel"
+        app:layout_constraintStart_toEndOf="@+id/teleOpMissedFuelLabel"
         />
 
     <ImageButton
-        android:id="@+id/teleopLevelThreeDecrement"
+        android:id="@+id/teleOpPassingDecrement"
         android:layout_width="50dp"
         android:layout_height="25dp"
         android:text="-"
         android:src="@drawable/button_decrement_small"
-        app:layout_constraintTop_toTopOf="@+id/teleopLevelThreeLabel"
-        app:layout_constraintBottom_toBottomOf="@+id/teleopLevelThreeValue"
+        app:layout_constraintTop_toTopOf="@+id/teleOpPassingLabel"
+        app:layout_constraintBottom_toBottomOf="@+id/teleOpPassingValue"
         app:layout_constraintStart_toStartOf="@+id/teleopLabel"
-        app:layout_constraintEnd_toStartOf="@+id/teleopLevelThreeLabel"
+        app:layout_constraintEnd_toStartOf="@+id/teleOpPassingLabel"
         />
 
     <com.google.android.material.textview.MaterialTextView
-        android:id="@+id/teleopLevelThreeLabel"
+        android:id="@+id/teleOpPassingLabel"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textSize="12dp"
         android:minWidth="70dp"
-        android:text="Level Three"
+        android:text="Passing"
         android:textAlignment="center"
         android:textColor="@color/cardview_dark_background"
-        app:layout_constraintTop_toBottomOf="@+id/teleopLevelTwoLabel"
-        app:layout_constraintBottom_toTopOf="@+id/teleopLevelThreeValue"
+        app:layout_constraintTop_toBottomOf="@+id/teleOpMissedFuelValue"
+        app:layout_constraintBottom_toTopOf="@+id/teleOpPassingValue"
         app:layout_constraintStart_toStartOf="@+id/teleopLabel"
         app:layout_constraintEnd_toEndOf="@+id/teleopLabel"
         />
 
     <com.google.android.material.textview.MaterialTextView
-        android:id="@+id/teleopLevelThreeValue"
+        android:id="@+id/teleOpPassingValue"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginBottom="70dp"
         android:minWidth="70dp"
         android:text="0"
         android:textAlignment="center"
         android:textColor="@color/cardview_dark_background"
         android:textSize="12dp"
-        app:layout_constraintBottom_toTopOf="@+id/teleopLevelFourLabel"
+        app:layout_constraintBottom_toTopOf="@+id/teleOpHumanFuelLabel"
         app:layout_constraintEnd_toEndOf="@+id/teleopLabel"
         app:layout_constraintStart_toStartOf="@+id/teleopLabel"
-        app:layout_constraintTop_toBottomOf="@id/teleopLevelThreeLabel" />
+        app:layout_constraintTop_toBottomOf="@id/teleOpPassingLabel" />
 
     <ImageButton
-        android:id="@+id/teleopLevelThreeIncrement"
+        android:id="@+id/teleOpPassingIncrement"
         android:layout_width="50dp"
         android:layout_height="25dp"
         android:text="+"
         android:src="@drawable/button_increment_small"
-        app:layout_constraintTop_toTopOf="@+id/teleopLevelThreeLabel"
-        app:layout_constraintBottom_toBottomOf="@+id/teleopLevelThreeValue"
+        app:layout_constraintTop_toTopOf="@+id/teleOpPassingLabel"
+        app:layout_constraintBottom_toBottomOf="@+id/teleOpPassingValue"
         app:layout_constraintEnd_toEndOf="@+id/teleopLabel"
-        app:layout_constraintStart_toEndOf="@+id/teleopLevelThreeLabel"
+        app:layout_constraintStart_toEndOf="@+id/teleOpPassingLabel"
         />
 
     <ImageButton
-        android:id="@+id/teleopLevelFourDecrement"
+        android:id="@+id/teleOpHumanFuelDecrement"
         android:layout_width="50dp"
         android:layout_height="25dp"
         android:text="-"
         android:src="@drawable/button_decrement_small"
-        app:layout_constraintTop_toTopOf="@+id/teleopLevelFourLabel"
-        app:layout_constraintBottom_toBottomOf="@+id/teleopLevelFourValue"
+        app:layout_constraintTop_toTopOf="@+id/teleOpHumanFuelLabel"
+        app:layout_constraintBottom_toBottomOf="@+id/teleOpHumanFuelValue"
         app:layout_constraintStart_toStartOf="@+id/teleopLabel"
-        app:layout_constraintEnd_toStartOf="@+id/teleopLevelFourLabel"
+        app:layout_constraintEnd_toStartOf="@+id/teleOpHumanFuelLabel"
         />
 
     <com.google.android.material.textview.MaterialTextView
-        android:id="@+id/teleopLevelFourLabel"
+        android:id="@+id/teleOpHumanFuelLabel"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textSize="12dp"
         android:minWidth="70dp"
-        android:text="Level Four"
+        android:text="Human Fuel"
         android:textAlignment="center"
         android:textColor="@color/cardview_dark_background"
-        app:layout_constraintTop_toBottomOf="@+id/teleopLevelThreeValue"
-        app:layout_constraintBottom_toTopOf="@+id/teleopLevelFourValue"
+        app:layout_constraintTop_toBottomOf="@+id/teleOpPassingValue"
+        app:layout_constraintBottom_toTopOf="@+id/teleOpHumanFuelValue"
         app:layout_constraintStart_toStartOf="@+id/teleopLabel"
         app:layout_constraintEnd_toEndOf="@+id/teleopLabel"
         />
 
     <com.google.android.material.textview.MaterialTextView
-        android:id="@+id/teleopLevelFourValue"
+        android:id="@+id/teleOpHumanFuelValue"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:minWidth="70dp"
-        android:text="0"
-        android:textAlignment="center"
-        android:textColor="@color/cardview_dark_background"
-        android:textSize="12dp"
-        app:layout_constraintBottom_toTopOf="@+id/teleopProcessorLabel"
-        app:layout_constraintEnd_toEndOf="@+id/teleopLabel"
-        app:layout_constraintStart_toStartOf="@+id/teleopLabel"
-        app:layout_constraintTop_toBottomOf="@id/teleopLevelFourLabel" />
-
-    <ImageButton
-        android:id="@+id/teleopLevelFourIncrement"
-        android:layout_width="50dp"
-        android:layout_height="25dp"
-        android:text="+"
-        android:src="@drawable/button_increment_small"
-        app:layout_constraintTop_toTopOf="@+id/teleopLevelFourLabel"
-        app:layout_constraintBottom_toBottomOf="@+id/teleopLevelFourValue"
-        app:layout_constraintEnd_toEndOf="@+id/teleopLabel"
-        app:layout_constraintStart_toEndOf="@+id/teleopLevelFourLabel"
-        />
-
-    <ImageButton
-        android:id="@+id/teleopProcessorDecrement"
-        android:layout_width="50dp"
-        android:layout_height="25dp"
-        android:text="-"
-        android:src="@drawable/button_decrement_small"
-        app:layout_constraintTop_toTopOf="@+id/teleopProcessorLabel"
-        app:layout_constraintBottom_toBottomOf="@+id/teleopProcessorValue"
-        app:layout_constraintStart_toStartOf="@+id/teleopLabel"
-        app:layout_constraintEnd_toStartOf="@+id/teleopProcessorLabel"
-        />
-
-    <com.google.android.material.textview.MaterialTextView
-        android:id="@+id/teleopProcessorLabel"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textSize="12dp"
-        android:minWidth="70dp"
-        android:text="Processor"
-        android:textAlignment="center"
-        android:textColor="@color/cardview_dark_background"
-        app:layout_constraintTop_toBottomOf="@+id/teleopLevelFourValue"
-        app:layout_constraintBottom_toTopOf="@+id/teleopProcessorValue"
-        app:layout_constraintStart_toStartOf="@+id/teleopLabel"
-        app:layout_constraintEnd_toEndOf="@+id/teleopLabel"
-        />
-
-    <com.google.android.material.textview.MaterialTextView
-        android:id="@+id/teleopProcessorValue"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_marginBottom="70dp"
         android:minWidth="70dp"
         android:text="0"
         android:textAlignment="center"
         android:textColor="@color/cardview_dark_background"
         android:textSize="12dp"
-        app:layout_constraintBottom_toTopOf="@id/teleopNetLabel"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="@+id/teleopLabel"
         app:layout_constraintStart_toStartOf="@+id/teleopLabel"
-        app:layout_constraintTop_toBottomOf="@id/teleopProcessorLabel" />
+        app:layout_constraintTop_toBottomOf="@id/teleOpHumanFuelLabel"
+        />
 
     <ImageButton
-        android:id="@+id/teleopProcessorIncrement"
+        android:id="@+id/teleOpHumanFuelIncrement"
         android:layout_width="50dp"
         android:layout_height="25dp"
         android:text="+"
         android:src="@drawable/button_increment_small"
-        app:layout_constraintTop_toTopOf="@+id/teleopProcessorLabel"
-        app:layout_constraintBottom_toBottomOf="@+id/teleopProcessorValue"
+        app:layout_constraintTop_toTopOf="@+id/teleOpHumanFuelLabel"
+        app:layout_constraintBottom_toBottomOf="@+id/teleOpHumanFuelValue"
         app:layout_constraintEnd_toEndOf="@+id/teleopLabel"
-        app:layout_constraintStart_toEndOf="@+id/teleopProcessorLabel"
+        app:layout_constraintStart_toEndOf="@+id/teleOpHumanFuelLabel"
         />
-
-    <ImageButton
-        android:id="@+id/teleopNetDecrement"
-        android:layout_width="50dp"
-        android:layout_height="25dp"
-        android:text="-"
-        android:src="@drawable/button_decrement_small"
-        app:layout_constraintTop_toTopOf="@+id/teleopNetLabel"
-        app:layout_constraintBottom_toBottomOf="@+id/teleopNetValue"
-        app:layout_constraintStart_toStartOf="@+id/teleopLabel"
-        app:layout_constraintEnd_toStartOf="@+id/teleopNetLabel"
-        />
-
-    <com.google.android.material.textview.MaterialTextView
-        android:id="@+id/teleopNetLabel"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textSize="12dp"
-        android:minWidth="70dp"
-        android:text="Net"
-        android:textAlignment="center"
-        android:textColor="@color/cardview_dark_background"
-        app:layout_constraintTop_toBottomOf="@+id/teleopProcessorValue"
-        app:layout_constraintBottom_toTopOf="@+id/teleopNetValue"
-        app:layout_constraintStart_toStartOf="@+id/teleopLabel"
-        app:layout_constraintEnd_toEndOf="@+id/teleopLabel"
-        />
-
-    <com.google.android.material.textview.MaterialTextView
-        android:id="@+id/teleopNetValue"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:minWidth="70dp"
-        android:text="0"
-        android:textAlignment="center"
-        android:textColor="@color/cardview_dark_background"
-        android:textSize="12dp"
-        app:layout_constraintBottom_toTopOf="@id/teleopHumanLabel"
-        app:layout_constraintEnd_toEndOf="@+id/teleopLabel"
-        app:layout_constraintStart_toStartOf="@+id/teleopLabel"
-        app:layout_constraintTop_toTopOf="@id/teleopNetLabel" />
-
-    <ImageButton
-        android:id="@+id/teleopNetIncrement"
-        android:layout_width="50dp"
-        android:layout_height="25dp"
-        android:text="+"
-        android:src="@drawable/button_increment_small"
-        app:layout_constraintTop_toTopOf="@+id/teleopNetLabel"
-        app:layout_constraintBottom_toBottomOf="@+id/teleopNetValue"
-        app:layout_constraintEnd_toEndOf="@+id/teleopLabel"
-        app:layout_constraintStart_toEndOf="@+id/teleopNetLabel"
-        />
-
-    <ImageButton
-        android:id="@+id/teleopHumanDecrement"
-        android:layout_width="50dp"
-        android:layout_height="25dp"
-        android:text="-"
-        android:src="@drawable/button_decrement_small"
-        app:layout_constraintTop_toTopOf="@+id/teleopHumanLabel"
-        app:layout_constraintBottom_toBottomOf="@+id/teleopHumanValue"
-        app:layout_constraintStart_toStartOf="@+id/teleopLabel"
-        app:layout_constraintEnd_toStartOf="@+id/teleopHumanLabel"
-        />
-
-    <com.google.android.material.textview.MaterialTextView
-        android:id="@+id/teleopHumanLabel"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textSize="12dp"
-        android:minWidth="70dp"
-        android:text="Human Player"
-        android:textAlignment="center"
-        android:textColor="@color/cardview_dark_background"
-        app:layout_constraintTop_toBottomOf="@+id/teleopNetValue"
-        app:layout_constraintBottom_toTopOf="@+id/teleopHumanValue"
-        app:layout_constraintStart_toStartOf="@+id/teleopLabel"
-        app:layout_constraintEnd_toEndOf="@+id/teleopLabel"
-        />
-
-    <com.google.android.material.textview.MaterialTextView
-        android:id="@+id/teleopHumanValue"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:minWidth="70dp"
-        android:text="0"
-        android:textAlignment="center"
-        android:textColor="@color/cardview_dark_background"
-        android:textSize="12dp"
-        app:layout_constraintBottom_toBottomOf="@id/teleopLabel"
-        app:layout_constraintEnd_toEndOf="@+id/teleopLabel"
-        app:layout_constraintStart_toStartOf="@+id/teleopLabel"
-        app:layout_constraintTop_toTopOf="@id/teleopHumanLabel" />
-
-    <ImageButton
-        android:id="@+id/teleopHumanIncrement"
-        android:layout_width="50dp"
-        android:layout_height="25dp"
-        android:text="+"
-        android:src="@drawable/button_increment_small"
-        app:layout_constraintTop_toTopOf="@+id/teleopHumanLabel"
-        app:layout_constraintBottom_toBottomOf="@+id/teleopHumanValue"
-        app:layout_constraintEnd_toEndOf="@+id/teleopLabel"
-        app:layout_constraintStart_toEndOf="@+id/teleopHumanLabel"
-        />
-
-
-
-
-
-
-
-
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/matchSummarySaveButton"
@@ -777,6 +512,9 @@
         app:layout_constraintBottom_toBottomOf="@id/endLabel"
         app:layout_constraintEnd_toEndOf="parent"
         />
+
+
+
 
     <com.google.android.material.textview.MaterialTextView
         android:id="@+id/endLabel"
@@ -792,44 +530,44 @@
         />
 
     <com.google.android.material.checkbox.MaterialCheckBox
-        android:id="@+id/highCheckBox"
+        android:id="@+id/highClimbCheckBox"
         android:layout_width="138dp"
         android:layout_height="25dp"
-        android:text="High Hang"
+        android:text="High Climb"
         android:textColor="@color/cardview_dark_background"
         android:textSize="12dp"
         android:layout_marginTop="20dp"
-        app:layout_constraintBottom_toTopOf="@+id/lowCheckBox"
+        app:layout_constraintBottom_toTopOf="@+id/midClimbCheckBox"
         app:layout_constraintEnd_toEndOf="@+id/endLabel"
         app:layout_constraintStart_toStartOf="@+id/endLabel"
         app:layout_constraintTop_toTopOf="@+id/endLabel" />
 
     <com.google.android.material.checkbox.MaterialCheckBox
-        android:id="@+id/lowCheckBox"
+        android:id="@+id/midClimbCheckBox"
         android:layout_width="138dp"
         android:layout_height="25dp"
-        android:text="Low Hang"
+        android:text="Mid Climb"
         android:textColor="@color/cardview_dark_background"
         android:textSize="12dp"
         android:layout_marginTop="20dp"
-        app:layout_constraintBottom_toTopOf="@+id/parkCheckBox"
+        app:layout_constraintBottom_toTopOf="@+id/lowClimbCheckBox"
         app:layout_constraintEnd_toEndOf="@+id/endLabel"
         app:layout_constraintStart_toStartOf="@+id/endLabel"
-        app:layout_constraintTop_toBottomOf="@+id/highCheckBox"
+        app:layout_constraintTop_toBottomOf="@+id/highClimbCheckBox"
         />
 
     <com.google.android.material.checkbox.MaterialCheckBox
-        android:id="@+id/parkCheckBox"
+        android:id="@+id/lowClimbCheckBox"
         android:layout_width="138dp"
         android:layout_height="25dp"
-        android:text="Park"
+        android:text="Low Climb"
         android:textColor="@color/cardview_dark_background"
         android:textSize="12dp"
         android:layout_marginTop="20dp"
         app:layout_constraintBottom_toBottomOf="@id/endLabel"
         app:layout_constraintEnd_toEndOf="@+id/endLabel"
         app:layout_constraintStart_toStartOf="@+id/endLabel"
-        app:layout_constraintTop_toBottomOf="@+id/lowCheckBox"
+        app:layout_constraintTop_toBottomOf="@+id/midClimbCheckBox"
         />
 
 
