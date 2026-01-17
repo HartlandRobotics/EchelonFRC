@@ -109,6 +109,8 @@ public class ExportActivity extends EchelonActivity {
         importCSVMatchButton = findViewById(R.id.importMatchCSV);
         setupCSVImportButton();
 
+        setupExportCSVButton();
+
         exportTableauResultsButton = findViewById(R.id.exportTableau);
         exportTableauResultsButton.setOnClickListener((view) -> {
             try {
