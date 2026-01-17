@@ -649,7 +649,7 @@ public class ExportActivity extends EchelonActivity {
 
     public File getImportPath(){
         ContextWrapper cw = new ContextWrapper( getApplicationContext() );
-        return FileUtilities.ensureDirectory(cw,"imports");
+        return FileUtilities.ensureDirectory(cw,"transfer");
     }
 
     private File[] getFilePathsForMatch() {
@@ -658,7 +658,7 @@ public class ExportActivity extends EchelonActivity {
 
     private File getFilePathForMatch() {
         ContextWrapper cw = new ContextWrapper(getApplicationContext() );
-        return FileUtilities.ensureDirectory(cw,"match_data");
+        return FileUtilities.ensureDirectory(cw,"transfer");
 
     }
 
