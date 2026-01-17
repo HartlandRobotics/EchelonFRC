@@ -100,6 +100,12 @@
                 android:layout_height="60dp"
                 android:text="CSV -> Matches" />
 
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/exportTableau"
+                android:layout_width="380dp"
+                android:layout_height="60dp"
+                android:text="Matches -> Tableau CSV" />
+
         </LinearLayout>
     </LinearLayout>
 

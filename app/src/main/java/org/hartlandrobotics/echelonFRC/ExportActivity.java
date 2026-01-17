@@ -54,7 +54,7 @@ public class ExportActivity extends EchelonActivity {
     private Button exportBlueThreeMatchResultsButton;
     private Button exportPitScoutResultsButton;
     private Button importCSVMatchButton;
-
+    private Button exportTableauResultsButton;
     private MatchResultViewModel matchResultViewModel;
     AdminSettings adminSettings;
     String role;
@@ -102,13 +102,25 @@ public class ExportActivity extends EchelonActivity {
         if(!role.equalsIgnoreCase("Blue3")){
             exportBlueThreeMatchResultsButton.setVisibility(View.GONE);
         }
-        setupExportCSVButton();
 
         exportPitScoutResultsButton = findViewById(R.id.exportPitScouting);
         exportPitScoutResults();
 
         importCSVMatchButton = findViewById(R.id.importMatchCSV);
         setupCSVImportButton();
+
+        exportTableauResultsButton = findViewById(R.id.exportTableau);
+        exportTableauResultsButton.setOnClickListener((view) -> {
+            try {
+                exportTableauResults("matchResultsTableau.csv");
+                Toast.makeText(this, "export Tableau Matches: ", Toast.LENGTH_LONG).show();
+
+            } catch (RuntimeException e) {
+                String message = e.getLocalizedMessage();
+                Toast.makeText(this, "export Tableau Matches error: " + message, Toast.LENGTH_LONG).show();
+            }
+        });
+
     }
 
     public void exportMatchResults(String fileName) throws RuntimeException {
@@ -201,6 +213,96 @@ public class ExportActivity extends EchelonActivity {
 
             });
  }
+    public void exportTableauResults(String fileName) throws RuntimeException {
+        Context appContext = getApplicationContext();
+        BlueAllianceStatus status = new BlueAllianceStatus(appContext);
+        File externalFilesDir = getFilePathForMatch();
+        externalFilesDir.mkdirs();
+        String path = externalFilesDir.getAbsolutePath();
+        File[] files = getFilePathsForMatch();
+        MatchResultViewModel matchResultViewModel = new MatchResultViewModel(getApplication());
+        //SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy_MM_dd_HH_mm");
+        //Date date = new Date();
+        //String dateForFile = dateFormat.format(date);
+        //fileName = "Match_Data_" += dateForFile + ".csv";
+        File file = new File( externalFilesDir, fileName);
+
+        matchResultViewModel.getMatchResultsWithTeamMatchByEvent(status.getEventKey()).observe(this, matchResults -> {
+
+            try (FileOutputStream outputStream = new FileOutputStream(file)) {
+                String header = "Event_Key,Match_Key,Team_Key,Match_Number,Team_Number"
+                        + ",AutoNotUsedFlag1 ,AutoNotUsedFlag2, AutoLowClimb, AutoNotUsedFlag4, AutoNotUsedFlag5"
+                        + ",AutoActiveFuel, AutoMissedFuel, AutoPassing, AutoHumanFuel, AutoNotUsedInt10, AutoNotUsedInt11"
+                        + ",TeleOpActiveFuel, TeleOpMissedFuel,TeleOpPassing, TeleOpHumanFuel, TeleOpNotUsedInt10,TeleOpNotUsedInt11,TeleOpNotUsedInt12"
+                        + ",EndHighClimb,EndMidClimb,EndLowClimb,EndNotUsedFlag4, EndNotUsedFlag5"
+                        + ",DefensesCount"
+                        + ",Match_Result_Key"
+                        + ", AdditionalNotes\n";
+                outputStream.write(header.getBytes());
+                int timesRan=0;
+                for (MatchResultWithTeamMatch matchResultWithTeamMatch : matchResults) {
+                    timesRan++;
+                    MatchResult mr = matchResultWithTeamMatch.matchResult;
+                    Match m = matchResultWithTeamMatch.match;
+                    Team t = matchResultWithTeamMatch.team;
+
+                    List<String> dataForFile = new ArrayList<>();
+                    dataForFile.add(mr.getEventKey());
+                    dataForFile.add(mr.getMatchKey());
+                    dataForFile.add(mr.getTeamKey());
+                    dataForFile.add(String.valueOf(m.getMatchNumber()));
+                    dataForFile.add(String.valueOf(mr.getTeamKey().substring(3)));
+
+                    dataForFile.add(String.valueOf(mr.getAutoFlag1()));
+                    dataForFile.add(String.valueOf(mr.getAutoFlag2()));
+                    dataForFile.add(String.valueOf(mr.getAutoFlag3()));
+                    dataForFile.add(String.valueOf(mr.getAutoFlag4()));
+                    dataForFile.add(String.valueOf(mr.getAutoFlag5()));
+
+                    dataForFile.add(String.valueOf(mr.getAutoInt6()));
+                    dataForFile.add(String.valueOf(mr.getAutoInt7()));
+                    dataForFile.add(String.valueOf(mr.getAutoInt8()));
+                    dataForFile.add(String.valueOf(mr.getAutoInt9()));
+                    dataForFile.add(String.valueOf(mr.getAutoInt10()));
+                    dataForFile.add(String.valueOf(mr.getAutoInt11()));
+
+                    dataForFile.add(String.valueOf(mr.getTeleOpInt6()));
+                    dataForFile.add(String.valueOf(mr.getTeleOpInt7()));
+                    dataForFile.add(String.valueOf(mr.getTeleOpInt8()));
+                    dataForFile.add(String.valueOf(mr.getTeleOpInt9()));
+                    dataForFile.add(String.valueOf(mr.getTeleOpInt10()));
+                    dataForFile.add(String.valueOf(mr.getTeleOpInt11()));
+                    dataForFile.add(String.valueOf(mr.getTeleOpInt12()));
+
+
+                    dataForFile.add(String.valueOf(mr.getEndFlag1()));
+                    dataForFile.add(String.valueOf(mr.getEndFlag2()));
+                    dataForFile.add(String.valueOf(mr.getEndFlag3()));
+                    dataForFile.add(String.valueOf(mr.getEndFlag4()));
+                    dataForFile.add(String.valueOf(mr.getEndFlag5()));
+
+                    dataForFile.add(String.valueOf(mr.getDefenseCount()));
+                    dataForFile.add(mr.getMatchResultKey());
+                    dataForFile.add(StringEscapeUtils.escapeCsv(
+                            mr.getAdditionalNotes()
+                                    .replaceAll(",","_")
+                                    .replaceAll("\"",StringUtils.EMPTY)
+                                    .replaceAll("\n",StringUtils.EMPTY)
+                                    .replaceAll("'",StringUtils.EMPTY)
+                    ));
+
+                    String outputString = dataForFile.stream().collect(Collectors.joining(",")) + "\n";
+                    outputStream.write(outputString.getBytes());
+                }
+                outputStream.close();
+            } catch (FileNotFoundException e) {
+                throw new RuntimeException(e);
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
+
+        });
+    }
 
     public void setupExportCSVButton(){
 
