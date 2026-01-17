@@ -527,105 +527,111 @@ public class ExportActivity extends EchelonActivity {
     @RequiresApi(api = Build.VERSION_CODES.O)
     public void importCSVMatches() throws IOException {
         File importPath = getImportPath();
-        File newFile = new File(importPath.getAbsolutePath().concat("/matchResults.csv"));
-        Stream<String> lines = Files.lines(newFile.toPath());
-        List<String> inputLines = lines.collect(Collectors.toList());
+        String[] filePaths = {"matchResultsRed1.csv", "matchResultsRed2.csv", "matchResultsRed3.csv", "matchResultsBlue1.csv", "matchResultsBlue2.csv", "matchResultsBlue3.csv", "matchResultsCaptain.csv"};
+        for (String filename : filePaths) {
+            File newFile = new File(importPath.getAbsolutePath().concat("/" + filename));
+            Stream<String> lines = Files.lines(newFile.toPath());
+            if(!newFile.exists()){
+                continue;
+            }
+            List<String> inputLines = lines.collect(Collectors.toList());
 
-        int timesRan = 0;
-        for(int lineIndex = 1; lineIndex < inputLines.size(); lineIndex++){
-            timesRan++;
-            String currentLine = inputLines.get(lineIndex);
-            if( !StringUtils.isBlank(currentLine)){
-            String[] columns = currentLine.split(",");
+            int timesRan = 0;
+            for (int lineIndex = 1; lineIndex < inputLines.size(); lineIndex++) {
+                timesRan++;
+                String currentLine = inputLines.get(lineIndex);
+                if (!StringUtils.isBlank(currentLine)) {
+                    String[] columns = currentLine.split(",");
 
-            String header = "Event_Key,Match_Key,Team_Key,Match_Number,Team_Number"
-                    + ",AutoFlag1 ,AutoFlag2, AutoFlag3, AutoFlag4, AutoFlag5"
-                    + ",AutoInt6, AutoInt7, AutoInt8, AutoInt9, AutoInt10, AutoInt11"
-                    + ",TeleOpInt6, TeleOpInt7,TeleOpInt8, TeleOpInt9, TeleOpInt10,TeleOpInt11,TeleOpInt12"
-                    + ",EndFlag1,EndFlag2,EndInt3,EndFlag4, EndFlag5"
-                    + ",DefensesCount"
-                    + ",Match_Result_Key"
-                    + ", AdditionalNotes\n";
+                    String header = "Event_Key,Match_Key,Team_Key,Match_Number,Team_Number"
+                            + ",AutoFlag1 ,AutoFlag2, AutoFlag3, AutoFlag4, AutoFlag5"
+                            + ",AutoInt6, AutoInt7, AutoInt8, AutoInt9, AutoInt10, AutoInt11"
+                            + ",TeleOpInt6, TeleOpInt7,TeleOpInt8, TeleOpInt9, TeleOpInt10,TeleOpInt11,TeleOpInt12"
+                            + ",EndFlag1,EndFlag2,EndInt3,EndFlag4, EndFlag5"
+                            + ",DefensesCount"
+                            + ",Match_Result_Key"
+                            + ", AdditionalNotes\n";
 
-            String eventKey = columns[0];
-            String matchKey = columns[1];
-            String teamKey = columns[2];
-            //int matchNum = Integer.parseInt(columns[3]);
-            //int teamNum = Integer.parseInt(columns[4]);
+                    String eventKey = columns[0];
+                    String matchKey = columns[1];
+                    String teamKey = columns[2];
+                    //int matchNum = Integer.parseInt(columns[3]);
+                    //int teamNum = Integer.parseInt(columns[4]);
 
-            String AutoFlag1 = StringUtils.defaultIfBlank( columns[5],"false");
-            String AutoFlag2 = StringUtils.defaultIfBlank( columns[6],"false");
-            String AutoFlag3 = StringUtils.defaultIfBlank( columns[7],"false");
-            String AutoFlag4 = StringUtils.defaultIfBlank( columns[8],"false");
-            String AutoFlag5 = StringUtils.defaultIfBlank( columns[9],"false");
+                    String AutoFlag1 = StringUtils.defaultIfBlank(columns[5], "false");
+                    String AutoFlag2 = StringUtils.defaultIfBlank(columns[6], "false");
+                    String AutoFlag3 = StringUtils.defaultIfBlank(columns[7], "false");
+                    String AutoFlag4 = StringUtils.defaultIfBlank(columns[8], "false");
+                    String AutoFlag5 = StringUtils.defaultIfBlank(columns[9], "false");
 
-            String AutoInt6 = StringUtils.defaultIfBlank( columns[10],"0");
-            String AutoInt7 = StringUtils.defaultIfBlank( columns[11],"0");
-            String AutoInt8 = StringUtils.defaultIfBlank( columns[12],"0");
-            String AutoInt9 = StringUtils.defaultIfBlank( columns[13],"0");
-            String AutoInt10 = StringUtils.defaultIfBlank( columns[14],"0");
-            String AutoInt11 = StringUtils.defaultIfBlank( columns[15],"0");
+                    String AutoInt6 = StringUtils.defaultIfBlank(columns[10], "0");
+                    String AutoInt7 = StringUtils.defaultIfBlank(columns[11], "0");
+                    String AutoInt8 = StringUtils.defaultIfBlank(columns[12], "0");
+                    String AutoInt9 = StringUtils.defaultIfBlank(columns[13], "0");
+                    String AutoInt10 = StringUtils.defaultIfBlank(columns[14], "0");
+                    String AutoInt11 = StringUtils.defaultIfBlank(columns[15], "0");
 
-            String TeleOpInt6 = StringUtils.defaultIfBlank( columns[16],"0");
-            String TeleOpInt7 = StringUtils.defaultIfBlank( columns[17],"0");
-            String TeleOpInt8 = StringUtils.defaultIfBlank( columns[18],"0");
-            String TeleOpInt9 = StringUtils.defaultIfBlank( columns[19],"0");
-            String TeleOpInt10 = StringUtils.defaultIfBlank( columns[20],"0");
-            String TeleOpInt11 = StringUtils.defaultIfBlank( columns[21],"0");
-            String TeleOpInt12 = StringUtils.defaultIfBlank( columns[22],"0");
+                    String TeleOpInt6 = StringUtils.defaultIfBlank(columns[16], "0");
+                    String TeleOpInt7 = StringUtils.defaultIfBlank(columns[17], "0");
+                    String TeleOpInt8 = StringUtils.defaultIfBlank(columns[18], "0");
+                    String TeleOpInt9 = StringUtils.defaultIfBlank(columns[19], "0");
+                    String TeleOpInt10 = StringUtils.defaultIfBlank(columns[20], "0");
+                    String TeleOpInt11 = StringUtils.defaultIfBlank(columns[21], "0");
+                    String TeleOpInt12 = StringUtils.defaultIfBlank(columns[22], "0");
 
-            String EndFlag1 = StringUtils.defaultIfBlank( columns[23],"false");
-            String EndFlag2 = StringUtils.defaultIfBlank( columns[24],"false");
-            String EndFlag3 = StringUtils.defaultIfBlank( columns[25],"false");
-            String EndFlag4 = StringUtils.defaultIfBlank( columns[26],"false");
-            String EndFlag5 = StringUtils.defaultIfBlank( columns[27],"false");
+                    String EndFlag1 = StringUtils.defaultIfBlank(columns[23], "false");
+                    String EndFlag2 = StringUtils.defaultIfBlank(columns[24], "false");
+                    String EndFlag3 = StringUtils.defaultIfBlank(columns[25], "false");
+                    String EndFlag4 = StringUtils.defaultIfBlank(columns[26], "false");
+                    String EndFlag5 = StringUtils.defaultIfBlank(columns[27], "false");
 
-            String teleDef = StringUtils.defaultIfBlank( columns[28],"0");
+                    String teleDef = StringUtils.defaultIfBlank(columns[28], "0");
 
-            String matchResultKey = columns[29];
-            String AdditionalNotes = StringUtils.defaultIfBlank( columns[30],"empty");
+                    String matchResultKey = columns[29];
+                    String AdditionalNotes = StringUtils.defaultIfBlank(columns[30], "empty");
 
-            MatchResult matchResult = new MatchResult(
-                    matchResultKey,
-                    eventKey,
-                    matchKey,
-                    teamKey,
-                    false,
+                    MatchResult matchResult = new MatchResult(
+                            matchResultKey,
+                            eventKey,
+                            matchKey,
+                            teamKey,
+                            false,
 
-                    AutoFlag1.equalsIgnoreCase("true"),
-                    AutoFlag2.equalsIgnoreCase("true"),
-                    AutoFlag3.equalsIgnoreCase("true"),
-                    AutoFlag4.equalsIgnoreCase("true"),
-                    AutoFlag5.equalsIgnoreCase("true"),
+                            AutoFlag1.equalsIgnoreCase("true"),
+                            AutoFlag2.equalsIgnoreCase("true"),
+                            AutoFlag3.equalsIgnoreCase("true"),
+                            AutoFlag4.equalsIgnoreCase("true"),
+                            AutoFlag5.equalsIgnoreCase("true"),
 
-                    Integer.parseInt(AutoInt6),
-                    Integer.parseInt(AutoInt7),
-                    Integer.parseInt(AutoInt8),
-                    Integer.parseInt(AutoInt9),
-                    Integer.parseInt(AutoInt10),
-                    Integer.parseInt(AutoInt11),
+                            Integer.parseInt(AutoInt6),
+                            Integer.parseInt(AutoInt7),
+                            Integer.parseInt(AutoInt8),
+                            Integer.parseInt(AutoInt9),
+                            Integer.parseInt(AutoInt10),
+                            Integer.parseInt(AutoInt11),
 
-                    Integer.parseInt(TeleOpInt6),
-                    Integer.parseInt(TeleOpInt7),
-                    Integer.parseInt(TeleOpInt8),
-                    Integer.parseInt(TeleOpInt9),
-                    Integer.parseInt(TeleOpInt10),
-                    Integer.parseInt(TeleOpInt11),
-                    Integer.parseInt(TeleOpInt12),
+                            Integer.parseInt(TeleOpInt6),
+                            Integer.parseInt(TeleOpInt7),
+                            Integer.parseInt(TeleOpInt8),
+                            Integer.parseInt(TeleOpInt9),
+                            Integer.parseInt(TeleOpInt10),
+                            Integer.parseInt(TeleOpInt11),
+                            Integer.parseInt(TeleOpInt12),
 
-                    EndFlag1.equalsIgnoreCase("true"),
-                    EndFlag2.equalsIgnoreCase("true"),
-                    EndFlag3.equalsIgnoreCase("true"),
-                    EndFlag4.equalsIgnoreCase("true"),
-                    EndFlag5.equalsIgnoreCase("true"),
+                            EndFlag1.equalsIgnoreCase("true"),
+                            EndFlag2.equalsIgnoreCase("true"),
+                            EndFlag3.equalsIgnoreCase("true"),
+                            EndFlag4.equalsIgnoreCase("true"),
+                            EndFlag5.equalsIgnoreCase("true"),
 
-                    AdditionalNotes,
-                    Integer.parseInt(teleDef)
-                 );
-            matchResultViewModel.upsert(matchResult);
+                            AdditionalNotes,
+                            Integer.parseInt(teleDef)
+                    );
+                    matchResultViewModel.upsert(matchResult);
+                }
+            }
         }
-        }
-        Log.e(this.getLocalClassName(), "Times ran: " + timesRan);
+        //Log.e(this.getLocalClassName(), "Times ran: " + timesRan);
     }
     @RequiresApi(api = Build.VERSION_CODES.O)
     public void setupCSVImportButton(){
