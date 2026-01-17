@@ -120,7 +120,7 @@ public class MatchScoutingSummaryActivity extends AppCompatActivity {
     }
 
     private void setupControls(){
-        autoLowClimb = findViewById(R.id.autoLowClimbCheckbox);
+        autoLowClimb = findViewById(R.id.autoLowClimbCheckBox);
         autoLowClimb.setOnCheckedChangeListener((buttonView, isChecked) -> {
             currentResult.result.setAutoFlag1(isChecked);
             populateControlsFromData();
