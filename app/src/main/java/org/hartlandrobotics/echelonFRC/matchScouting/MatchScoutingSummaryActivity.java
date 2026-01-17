@@ -122,7 +122,7 @@ public class MatchScoutingSummaryActivity extends AppCompatActivity {
     private void setupControls(){
         autoLowClimb = findViewById(R.id.autoLowClimbCheckBox);
         autoLowClimb.setOnCheckedChangeListener((buttonView, isChecked) -> {
-            currentResult.result.setAutoFlag1(isChecked);
+            currentResult.result.setAutoFlag3(isChecked);
             populateControlsFromData();
         });
 
@@ -230,6 +230,17 @@ public class MatchScoutingSummaryActivity extends AppCompatActivity {
 
         endHighClimb = findViewById(R.id.highClimbCheckBox);
         endHighClimb.setOnCheckedChangeListener((buttonView, isChecked) -> {
+            currentResult.result.setEndFlag1(isChecked);
+            if(isChecked){
+                currentResult.result.setEndFlag2(false);
+                currentResult.result.setEndFlag3(false);
+            }
+
+            populateControlsFromData();
+        });
+
+        endMidClimb = findViewById(R.id.midClimbCheckBox);
+        endMidClimb.setOnCheckedChangeListener((buttonView, isChecked) -> {
             currentResult.result.setEndFlag2(isChecked);
             if(isChecked){
                 currentResult.result.setEndFlag1(false);
@@ -239,23 +250,12 @@ public class MatchScoutingSummaryActivity extends AppCompatActivity {
             populateControlsFromData();
         });
 
-        endMidClimb = findViewById(R.id.midClimbCheckBox);
-        endMidClimb.setOnCheckedChangeListener((buttonView, isChecked) -> {
+        endLowClimb = findViewById(R.id.lowClimbCheckBox);
+        endLowClimb.setOnCheckedChangeListener((buttonView, isChecked) -> {
             currentResult.result.setEndFlag3(isChecked);
             if(isChecked){
                 currentResult.result.setEndFlag1(false);
                 currentResult.result.setEndFlag2(false);
-            }
-
-            populateControlsFromData();
-        });
-
-        endLowClimb = findViewById(R.id.lowClimbCheckBox);
-        endLowClimb.setOnCheckedChangeListener((buttonView, isChecked) -> {
-            currentResult.result.setEndFlag1(isChecked);
-            if(isChecked){
-                currentResult.result.setEndFlag2(false);
-                currentResult.result.setEndFlag3(false);
             }
 
             populateControlsFromData();
@@ -293,7 +293,7 @@ public class MatchScoutingSummaryActivity extends AppCompatActivity {
     private void populateControlsFromData() {
         if( currentResult == null ) return;
 
-        autoLowClimb.setChecked( currentResult.getAuto1Counts() >0 );
+        autoLowClimb.setChecked( currentResult.result.getAutoFlag3());
         autoActiveFuel.setText( String.valueOf( currentResult.result.getAutoInt6() ));
         autoMissedFuel.setText( String.valueOf( currentResult.result.getAutoInt7() ));
         autoPassing.setText( String.valueOf( currentResult.result.getAutoInt8() ));
@@ -304,9 +304,9 @@ public class MatchScoutingSummaryActivity extends AppCompatActivity {
         teleOpPassing.setText( String.valueOf(currentResult.result.getTeleOpInt8()));
         teleOpHumanFuel.setText( String.valueOf(currentResult.result.getTeleOpInt9()));
 
-        endLowClimb.setChecked(currentResult.result.getEndFlag1());
-        endMidClimb.setChecked(currentResult.result.getEndFlag3());
-        endHighClimb.setChecked(currentResult.result.getEndFlag2());
+        endHighClimb.setChecked(currentResult.result.getEndFlag1());
+        endMidClimb.setChecked(currentResult.result.getEndFlag2());
+        endLowClimb.setChecked(currentResult.result.getEndFlag3());
 
         additionalNotesLayout.getEditText().setText(currentResult.result.getAdditionalNotes());
     }
