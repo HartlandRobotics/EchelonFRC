@@ -7,6 +7,7 @@
     <color name="secondaryLightColor">#ffffcf</color>
     <color name="secondaryDarkColor">#cbc26d</color>
     <color name="primaryTextColor">#ffeb3b</color>
+    <color name="hrYellowTextColor">#fecc09</color>
     <color name="secondaryTextColor">#000000</color>
     <color name="blueAlliance">#8a85f5</color>
     <color name="redAlliance">#f18186</color>
