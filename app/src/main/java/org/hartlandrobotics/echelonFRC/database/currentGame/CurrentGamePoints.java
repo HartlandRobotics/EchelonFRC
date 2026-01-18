@@ -55,12 +55,12 @@ public class CurrentGamePoints {
     }
     public int getAuto1Points(){
         if( result == null ) return 0;
-        return result.getAutoFlag1()? 3:0;
+        return result.getAutoFlag1()? 0:0;
     }
 
     public int getAuto2Counts(){
         if( result == null ) return 0;
-        return result.getAutoFlag2() ? 1:0;
+        return result.getAutoFlag2() ? 0:0;
     }
 
     public int getAuto2Points(){
@@ -74,9 +74,7 @@ public class CurrentGamePoints {
     }
 
     public int getAuto3Points(){
-        if( result == null ) return 0;
-
-        return 0;
+       return result.getAutoFlag2() ? 15:0;
     }
 
     public int getAuto4Counts(){
@@ -96,7 +94,7 @@ public class CurrentGamePoints {
     public int getAuto5Points(){
         if( result == null ) return 0;
 
-        return result.getAutoFlag5() ? 1:0;
+        return result.getAutoFlag5() ? 0:0;
     }
 
     public int getAuto6Counts(){
@@ -106,7 +104,7 @@ public class CurrentGamePoints {
     public int getAuto6Points(){
         if( result == null ) return 0;
 
-        return result.getAutoInt6() * 3;
+        return result.getAutoInt6() * 1;
     }
 
     public int getAuto7Counts(){
@@ -116,7 +114,7 @@ public class CurrentGamePoints {
     public int getAuto7Points(){
         if( result == null ) return 0;
 
-        return result.getAutoInt7() * 4;
+        return result.getAutoInt7() * 0;
     }
 
     public int getAuto8Counts(){
@@ -126,7 +124,7 @@ public class CurrentGamePoints {
     public int getAuto8Points(){
         if( result == null ) return 0;
 
-        return result.getAutoInt8() * 6;
+        return result.getAutoInt8() * 0;
     }
 
     public int getAuto9Counts(){
@@ -136,7 +134,7 @@ public class CurrentGamePoints {
     public int getAuto9Points(){
         if( result == null ) return 0;
 
-        return result.getAutoInt9() * 7;
+        return result.getAutoInt9() * 1;
     }
 
     public int getAuto10Counts(){
@@ -146,7 +144,7 @@ public class CurrentGamePoints {
     public int getAuto10Points(){
         if( result == null ) return 0;
 
-        return result.getAutoInt10() * 6;
+        return result.getAutoInt10() * 0;
     }
 
     public int getAuto11Counts(){
@@ -156,7 +154,7 @@ public class CurrentGamePoints {
     public int getAuto11Points(){
         if( result == null ) return 0;
 
-        return result.getAutoInt11() * 4;
+        return result.getAutoInt11() * 0;
     }
 
 
@@ -193,7 +191,7 @@ public class CurrentGamePoints {
 
     public int getTeleOp6Points(){
         if( result == null ) return 0;
-        return result.getTeleOpInt6() * 2;
+        return result.getTeleOpInt6() * 1;
     }
 
     public int getTeleOp7Counts(){
@@ -203,7 +201,7 @@ public class CurrentGamePoints {
 
     public int getTeleOp7Points(){
         if( result == null ) return 0;
-        return result.getTeleOpInt7() * 3;
+        return result.getTeleOpInt7() * 0;
     }
 
 
@@ -214,7 +212,7 @@ public class CurrentGamePoints {
 
     public int getTeleOp8Points(){
         if( result == null ) return 0;
-        return result.getTeleOpInt8() * 4;
+        return result.getTeleOpInt8() * 0;
     }
 
     public int getTeleOp9Counts(){
@@ -224,7 +222,7 @@ public class CurrentGamePoints {
 
     public int getTeleOp9Points(){
         if( result == null ) return 0;
-        return result.getTeleOpInt9() * 5;
+        return result.getTeleOpInt9() * 1;
     }
 
     public int getTeleOp10Counts(){
@@ -234,7 +232,7 @@ public class CurrentGamePoints {
 
     public int getTeleOp10Points(){
         if( result == null ) return 0;
-        return result.getTeleOpInt10() * 6;
+        return result.getTeleOpInt10() * 0;
     }
 
     public int getTeleOp11Counts(){
@@ -244,7 +242,7 @@ public class CurrentGamePoints {
 
     public int getTeleOp11Points(){
         if( result == null ) return 0;
-        return result.getTeleOpInt11() * 4;
+        return result.getTeleOpInt11() * 0;
     }
 
     public int getTeleOp12Counts(){
@@ -254,7 +252,7 @@ public class CurrentGamePoints {
 
     public int getTeleOp12Points(){
         if( result == null ) return 0;
-        return result.getTeleOpInt12() * 4;
+        return result.getTeleOpInt12() * 0;
     }
 
     public int getDefenseCount(){
@@ -284,7 +282,7 @@ public class CurrentGamePoints {
     }
 
     public int getEndFlag1Points(){
-        return result.getEndFlag1() ? 2:0;
+        return result.getEndFlag1() ? 30:0;
     }
 
     public int getEndFlag1Counts(){
@@ -292,7 +290,7 @@ public class CurrentGamePoints {
     }
 
     public int getEndFlag2Points(){
-        return result.getEndFlag2() ? 6:0;
+        return result.getEndFlag2() ? 20:0;
     }
 
     public int getEndFlag2Counts(){
@@ -300,7 +298,7 @@ public class CurrentGamePoints {
     }
 
     public int getEndFlag3Points(){
-        return result.getEndFlag3() ? 12:0;
+        return result.getEndFlag3() ? 10:0;
     }
     public int getEndFlag3Counts(){
         return result.getEndFlag3() ? 1:0;
@@ -310,15 +308,15 @@ public class CurrentGamePoints {
     }
 
     public int getEndFlag4Points(){
-        return result.getEndFlag4() ? 1:0;
+        return result.getEndFlag4() ? 0:0;
     }
 
     public int getEndFlag5Counts(){
-        return result.getEndFlag5() ? 1:0;
+        return result.getEndFlag5() ? 0:0;
     }
 
     public int getEndFlag5Points(){
-        return result.getEndFlag5() ? 1:0;
+        return result.getEndFlag5() ? 0:0;
     }
 
 
