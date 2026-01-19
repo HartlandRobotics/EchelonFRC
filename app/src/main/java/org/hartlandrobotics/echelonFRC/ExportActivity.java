@@ -133,10 +133,6 @@ public class ExportActivity extends EchelonActivity {
             String path = externalFilesDir.getAbsolutePath();
             File[] files = getFilePathsForMatch();
             MatchResultViewModel matchResultViewModel = new MatchResultViewModel(getApplication());
-            //SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy_MM_dd_HH_mm");
-            //Date date = new Date();
-            //String dateForFile = dateFormat.format(date);
-            //fileName = "Match_Data_" += dateForFile + ".csv";
             File file = new File( externalFilesDir, fileName);
 
             matchResultViewModel.getMatchResultsWithTeamMatchByEvent(status.getEventKey()).observe(this, matchResults -> {
@@ -223,10 +219,6 @@ public class ExportActivity extends EchelonActivity {
         String path = externalFilesDir.getAbsolutePath();
         File[] files = getFilePathsForMatch();
         MatchResultViewModel matchResultViewModel = new MatchResultViewModel(getApplication());
-        //SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy_MM_dd_HH_mm");
-        //Date date = new Date();
-        //String dateForFile = dateFormat.format(date);
-        //fileName = "Match_Data_" += dateForFile + ".csv";
         File file = new File( externalFilesDir, fileName);
 
         matchResultViewModel.getMatchResultsWithTeamMatchByEvent(status.getEventKey()).observe(this, matchResults -> {
@@ -307,13 +299,10 @@ public class ExportActivity extends EchelonActivity {
     }
 
     public void setupExportCSVButton(){
-
-
         exportCaptainsMatchResultsButton.setOnClickListener((view) -> {
             try {
                 exportMatchResults("matchResultsCaptain.csv");
                 Toast.makeText(this, "export Matches: ", Toast.LENGTH_LONG).show();
-
             } catch (RuntimeException e) {
                 String message = e.getLocalizedMessage();
                 Toast.makeText(this, "export Matches error: " + message, Toast.LENGTH_LONG).show();
@@ -323,8 +312,8 @@ public class ExportActivity extends EchelonActivity {
             try {
                 exportMatchResults("matchResultsRedOne.csv");
                 Toast.makeText(this, "export Matches: ", Toast.LENGTH_LONG).show();
-
-            } catch (RuntimeException e) {
+            }
+            catch (RuntimeException e) {
                 String message = e.getLocalizedMessage();
                 Toast.makeText(this, "export Matches error: " + message, Toast.LENGTH_LONG).show();
             }
@@ -334,7 +323,8 @@ public class ExportActivity extends EchelonActivity {
                 exportMatchResults("matchResultsRedTwo.csv");
                 Toast.makeText(this, "export Matches: ", Toast.LENGTH_LONG).show();
 
-            } catch (RuntimeException e) {
+            }
+            catch (RuntimeException e) {
                 String message = e.getLocalizedMessage();
                 Toast.makeText(this, "export Matches error: " + message, Toast.LENGTH_LONG).show();
             }
@@ -343,8 +333,8 @@ public class ExportActivity extends EchelonActivity {
             try {
                 exportMatchResults("matchResultsRedThree.csv");
                 Toast.makeText(this, "export Matches: ", Toast.LENGTH_LONG).show();
-
-            } catch (RuntimeException e) {
+            }
+            catch (RuntimeException e) {
                 String message = e.getLocalizedMessage();
                 Toast.makeText(this, "export Matches error: " + message, Toast.LENGTH_LONG).show();
             }
@@ -353,8 +343,8 @@ public class ExportActivity extends EchelonActivity {
             try {
                 exportMatchResults("matchResultsBlueOne.csv");
                 Toast.makeText(this, "export Matches: ", Toast.LENGTH_LONG).show();
-
-            } catch (RuntimeException e) {
+            }
+            catch (RuntimeException e) {
                 String message = e.getLocalizedMessage();
                 Toast.makeText(this, "export Matches error: " + message, Toast.LENGTH_LONG).show();
             }
@@ -363,8 +353,8 @@ public class ExportActivity extends EchelonActivity {
             try {
                 exportMatchResults("matchResultsBlueTwo.csv");
                 Toast.makeText(this, "export Matches: ", Toast.LENGTH_LONG).show();
-
-            } catch (RuntimeException e) {
+            }
+            catch (RuntimeException e) {
                 String message = e.getLocalizedMessage();
                 Toast.makeText(this, "export Matches error: " + message, Toast.LENGTH_LONG).show();
             }
@@ -373,8 +363,8 @@ public class ExportActivity extends EchelonActivity {
             try {
                 exportMatchResults("matchResultsBlueThree.csv");
                 Toast.makeText(this, "export Matches: ", Toast.LENGTH_LONG).show();
-
-            } catch (RuntimeException e) {
+            }
+            catch (RuntimeException e) {
                 String message = e.getLocalizedMessage();
                 Toast.makeText(this, "export Matches error: " + message, Toast.LENGTH_LONG).show();
             }

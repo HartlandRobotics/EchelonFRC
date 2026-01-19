@@ -9,8 +9,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
 import org.hartlandrobotics.echelonFRC.blueAlliance.BlueAllianceActivity;
-import org.hartlandrobotics.echelonFRC.bluetooth.BluetoothSyncActivity;
-import org.hartlandrobotics.echelonFRC.configuration.AdminSettings;
+
 
 public abstract class EchelonActivity extends AppCompatActivity {
     private TextView pageName;
@@ -40,9 +39,6 @@ public abstract class EchelonActivity extends AppCompatActivity {
     }
     public void homePressed(MenuItem item) {
         MainActivity.launch(this);
-    }
-    public void bluetoothPressed(MenuItem item) {
-        BluetoothSyncActivity.launch(this);
     }
     public void exportPressed(MenuItem item){ ExportActivity.launch(this); }
 }

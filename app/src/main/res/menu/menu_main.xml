@@ -3,12 +3,6 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <item
-        android:id="@+id/miBluetooth"
-        android:icon="@drawable/bluetooth_image"
-        android:onClick="bluetoothPressed"
-        android:title=""
-        app:showAsAction="ifRoom|withText" />
-    <item
         android:id="@+id/miBlueAlliance"
         android:icon="@drawable/tba_lamp"
         android:onClick="blueAlliancePressed"

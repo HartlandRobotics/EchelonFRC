@@ -35,8 +35,9 @@ import java.util.stream.Collectors;
 
 public class MainActivity extends EchelonActivity {
 
+    AdminSettings adminSettings;
     private BlueAllianceStatus status;
-    String deviceName;
+    String deviceRole;
 
     private MaterialButton startScouting;
     private MaterialButton pitScouting;
@@ -60,7 +61,8 @@ public class MainActivity extends EchelonActivity {
         setupToolbar("Home");
 
         status= new BlueAllianceStatus(getApplicationContext());
-        deviceName = Settings.Secure.getString(getContentResolver(), "bluetooth_name");
+        adminSettings= AdminSettingsProvider.getAdminSettings(this);
+        deviceRole = adminSettings.getDeviceRole();
 
         setupStartScoutingButton();
         setupPitScoutingButton();
@@ -76,13 +78,13 @@ public class MainActivity extends EchelonActivity {
     private void handlePermissions() {
         int REQUEST_REQUIRED_PERMISSIONS = 1;
         String[] REQUIRED_PERMISSIONS = {
-                Manifest.permission.READ_EXTERNAL_STORAGE,
-                Manifest.permission.WRITE_EXTERNAL_STORAGE,
+                //Manifest.permission.READ_EXTERNAL_STORAGE,
+                //Manifest.permission.WRITE_EXTERNAL_STORAGE,
                 Manifest.permission.INTERNET,
-                Manifest.permission.ACCESS_NETWORK_STATE,
-                Manifest.permission.BLUETOOTH,
-                Manifest.permission.BLUETOOTH_ADMIN,
-                Manifest.permission.ACCESS_COARSE_LOCATION
+                //Manifest.permission.ACCESS_NETWORK_STATE,
+                //Manifest.permission.BLUETOOTH,
+                //Manifest.permission.BLUETOOTH_ADMIN,
+                //Manifest.permission.ACCESS_COARSE_LOCATION
         };
 
         boolean requestNeeded = false;
@@ -120,7 +122,7 @@ public class MainActivity extends EchelonActivity {
         chartsButton = findViewById(R.id.charts_button);
         chartsButton.setOnClickListener( v -> ChartsActivity.launch(MainActivity.this));
 
-        if( deviceName.contains("aptain" ) || deviceName.contains("oach")){
+        if( deviceRole.equalsIgnoreCase("captain" ) || deviceRole.contains("coach")){
             chartsButton.setVisibility(View.VISIBLE);
         }
     }
@@ -129,7 +131,7 @@ public class MainActivity extends EchelonActivity {
         accuracyButton = findViewById(R.id.main_admin_accuracy_config);
         accuracyButton.setOnClickListener( v -> AccountabilityActivity.launch(MainActivity.this));
 
-        if( deviceName.contains("aptain" ) || deviceName.contains("oach")){
+        if( deviceRole.contains("aptain" ) || deviceRole.contains("oach")){
             accuracyButton.setVisibility(View.VISIBLE);
         }
     }
@@ -146,12 +148,8 @@ public class MainActivity extends EchelonActivity {
         TextInputLayout eventLayout = findViewById(R.id.event_status_layout);
         eventLayout.getEditText().setText(status.getEventKey());
 
-        AdminSettings adminSettings = AdminSettingsProvider.getAdminSettings(this);
         TextInputLayout deviceLayout = findViewById(R.id.device_status_layout);
-        //if(adminSettings != null) {
-            String deviceRole = adminSettings.getDeviceRole();
-         deviceLayout.getEditText().setText(deviceRole);
-        //}
+        deviceLayout.getEditText().setText(deviceRole);
     }
 
     List<Season> seasons = new ArrayList<>();
@@ -196,12 +194,8 @@ public class MainActivity extends EchelonActivity {
                 setupStatus();
                 setEnabled(true);
             });
-
-
-
         });
     }
-
 
     private void setEnabled(boolean seasonSelected){
            startScouting.setEnabled(seasonSelected);

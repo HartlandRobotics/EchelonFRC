@@ -20,6 +20,8 @@ import com.google.android.material.textfield.TextInputLayout;
 import com.google.android.material.textview.MaterialTextView;
 
 import org.apache.commons.lang3.StringUtils;
+import org.hartlandrobotics.echelonFRC.configuration.AdminSettings;
+import org.hartlandrobotics.echelonFRC.configuration.AdminSettingsProvider;
 import org.hartlandrobotics.echelonFRC.database.currentGame.CurrentGamePoints;
 import org.hartlandrobotics.echelonFRC.database.entities.Match;
 import org.hartlandrobotics.echelonFRC.database.entities.MatchResult;
@@ -42,7 +44,8 @@ public class MatchScheduleActivity extends EchelonActivity {
     TextInputLayout teamSearchLayout;
     RecyclerView matchRecycler;
     MatchListAdapter matchListAdapter;
-    String deviceName;
+    AdminSettings adminSettings;
+    String deviceRole;
 
     public static void launch(Context context) {
         Intent intent = new Intent(context, MatchScheduleActivity.class);
@@ -54,7 +57,8 @@ public class MatchScheduleActivity extends EchelonActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_match_schedule);
 
-        deviceName = Settings.Secure.getString(getContentResolver(), "bluetooth_name");
+        adminSettings= AdminSettingsProvider.getAdminSettings(this);
+        deviceRole = adminSettings.getDeviceRole();
 
         setupToolbar("Match Schedule");
 
@@ -326,7 +330,7 @@ public class MatchScheduleActivity extends EchelonActivity {
             bluePercentage = itemView.findViewById(R.id.blue_percentage_prediction);
 
             predictionLayout = itemView.findViewById(R.id.prediction_layout);
-            if( !( deviceName.contains("aptain" ) || deviceName.contains("oach"))){
+            if( !( deviceRole.equalsIgnoreCase("captain" ) || deviceRole.equalsIgnoreCase("coach"))){
                 predictionLayout.setVisibility(View.INVISIBLE);
             }
 
