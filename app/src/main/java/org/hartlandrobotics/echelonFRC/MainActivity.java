@@ -42,6 +42,8 @@ public class MainActivity extends EchelonActivity {
     private MaterialButton pitScouting;
     private MaterialButton matchSchedule;
     private MaterialButton chartsButton;
+    private MaterialButton accuracyButton;
+
 
     private AutoCompleteTextView seasonsAutoComplete;
 
@@ -64,6 +66,7 @@ public class MainActivity extends EchelonActivity {
         setupPitScoutingButton();
         setupMatchScheduleButton();
         setupChartsButton();
+        setupAccuracyButton();
 
         setupSeasonSelection();
 
@@ -119,6 +122,15 @@ public class MainActivity extends EchelonActivity {
 
         if( deviceName.contains("aptain" ) || deviceName.contains("oach")){
             chartsButton.setVisibility(View.VISIBLE);
+        }
+    }
+
+    private void setupAccuracyButton(){
+        accuracyButton = findViewById(R.id.main_admin_accuracy_config);
+        accuracyButton.setOnClickListener( v -> AccountabilityActivity.launch(MainActivity.this));
+
+        if( deviceName.contains("aptain" ) || deviceName.contains("oach")){
+            accuracyButton.setVisibility(View.VISIBLE);
         }
     }
 
