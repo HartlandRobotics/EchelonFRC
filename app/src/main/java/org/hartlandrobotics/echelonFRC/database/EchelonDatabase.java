@@ -98,6 +98,9 @@ public abstract class EchelonDatabase extends RoomDatabase {
 
                 Season reefscapeSeason = new Season("Reefscape", 2025);
                 sd.insert(reefscapeSeason);
+
+                Season rebuiltSeason = new Season("Rebuilt", 2026);
+                sd.insert(rebuiltSeason);
             });
         }
 
