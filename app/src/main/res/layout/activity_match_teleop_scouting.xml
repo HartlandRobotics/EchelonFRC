@@ -14,13 +14,15 @@
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toLeftOf="@id/center_block"
         app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+
         >
 
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            android:layout_marginTop="15dp"
+            android:layout_marginVertical="25dp"
             >
 
             <ImageButton
@@ -62,7 +64,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            android:layout_marginTop="15dp"
+            android:layout_marginVertical="25dp"
             >
 
             <ImageButton
@@ -110,13 +112,16 @@
         android:orientation="vertical"
         app:layout_constraintLeft_toRightOf="@id/left_block"
         app:layout_constraintRight_toRightOf="@id/right_block"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        >
 
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="15dp"
-            android:orientation="horizontal">
+            android:layout_marginVertical="25dp"
+            android:orientation="horizontal"
+            >
 
             <ImageButton
                 android:id="@+id/passing_decrement"
@@ -156,8 +161,9 @@
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="15dp"
-            android:orientation="horizontal">
+            android:layout_marginVertical="25dp"
+            android:orientation="horizontal"
+            >
 
             <ImageButton
                 android:id="@+id/human_fuel_decrement"
