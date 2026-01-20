@@ -14,13 +14,14 @@
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toLeftOf="@id/center_block"
         app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
         >
 
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            android:layout_marginTop="15dp"
+            android:layout_marginVertical="25dp"
             >
 
             <ImageButton
@@ -30,9 +31,7 @@
                 android:layout_margin="25dp"
                 android:background="@null"
                 android:src="@drawable/button_decrement"
-                app:layout_constraintLeft_toLeftOf="parent"
-                app:layout_constraintRight_toLeftOf="@id/active_fuel"
-                app:layout_constraintTop_toTopOf="@id/active_fuel" />
+                />
 
             <ImageButton
                 android:id="@+id/active_fuel"
@@ -41,10 +40,7 @@
                 android:background="@null"
                 android:contentDescription="@string/filler"
                 android:src="@drawable/active_fuel"
-                app:layout_constraintBottom_toTopOf="@id/missed_fuel"
-                app:layout_constraintLeft_toRightOf="@id/active_fuel_decrement"
-                app:layout_constraintRight_toLeftOf="@id/active_fuel_text"
-                app:layout_constraintTop_toTopOf="parent" />
+                />
 
             <com.google.android.material.textview.MaterialTextView
                 android:id="@+id/active_fuel_text"
@@ -52,17 +48,15 @@
                 android:layout_height="wrap_content"
                 android:layout_margin="25dp"
                 android:textSize="32sp"
-                app:layout_constraintBottom_toBottomOf="@id/active_fuel"
-                app:layout_constraintLeft_toRightOf="@+id/active_fuel"
-                app:layout_constraintTop_toTopOf="@id/active_fuel"
-                tools:text="0" />
+                tools:text="0"
+                />
         </LinearLayout>
 
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            android:layout_marginTop="15dp"
+            android:layout_marginVertical="25dp"
             >
 
             <ImageButton
@@ -73,10 +67,7 @@
                 android:background="@null"
                 android:contentDescription="@string/filler"
                 android:src="@drawable/button_decrement"
-                app:layout_constraintBottom_toBottomOf="@id/missed_fuel"
-                app:layout_constraintLeft_toLeftOf="parent"
-                app:layout_constraintRight_toLeftOf="@id/missed_fuel"
-                app:layout_constraintTop_toTopOf="@id/missed_fuel" />
+                />
 
             <ImageButton
                 android:id="@+id/missed_fuel"
@@ -85,9 +76,7 @@
                 android:background="@null"
                 android:contentDescription="@string/filler"
                 android:src="@drawable/missed_fuel"
-                app:layout_constraintLeft_toRightOf="@id/missed_fuel_decrement"
-                app:layout_constraintRight_toLeftOf="@id/missed_fuel_text"
-                app:layout_constraintTop_toBottomOf="@id/active_fuel" />
+                />
 
             <com.google.android.material.textview.MaterialTextView
                 android:id="@+id/missed_fuel_text"
@@ -95,9 +84,6 @@
                 android:layout_height="wrap_content"
                 android:layout_margin="25dp"
                 android:textSize="32sp"
-                app:layout_constraintBottom_toBottomOf="@id/missed_fuel"
-                app:layout_constraintLeft_toRightOf="@+id/missed_fuel"
-                app:layout_constraintTop_toTopOf="@id/missed_fuel"
                 tools:text="0" />
         </LinearLayout>
 
@@ -110,13 +96,19 @@
         android:orientation="vertical"
         app:layout_constraintLeft_toRightOf="@id/left_block"
         app:layout_constraintRight_toRightOf="@id/right_block"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+
+        >
 
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="15dp"
-            android:orientation="horizontal">
+            android:orientation="horizontal"
+            android:layout_marginVertical="25dp"
+
+            >
 
             <ImageButton
                 android:id="@+id/passing_decrement"
@@ -157,7 +149,9 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="15dp"
-            android:orientation="horizontal">
+            android:orientation="horizontal"
+            android:layout_marginVertical="25dp"
+            >
 
             <ImageButton
                 android:id="@+id/human_fuel_decrement"
@@ -166,8 +160,6 @@
                 android:layout_marginTop="25dp"
                 android:background="@null"
                 android:src="@drawable/button_decrement"
-                app:layout_constraintRight_toLeftOf="@id/human_fuel"
-                app:layout_constraintTop_toTopOf="@id/human_fuel"
                 android:contentDescription="@string/filler"
                 />
 
@@ -178,8 +170,7 @@
                 android:background="@null"
                 android:contentDescription="@string/filler"
                 android:src="@drawable/human_player_fuel"
-                app:layout_constraintLeft_toRightOf="@id/human_fuel_decrement"
-                app:layout_constraintTop_toBottomOf="@id/passing" />
+                />
 
             <com.google.android.material.textview.MaterialTextView
                 android:id="@+id/human_fuel_text"
@@ -187,8 +178,6 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="25dp"
                 android:textSize="32sp"
-                app:layout_constraintLeft_toRightOf="@+id/human_fuel"
-                app:layout_constraintTop_toTopOf="@id/human_fuel"
                 tools:text="0" />
         </LinearLayout>
     </LinearLayout>
@@ -199,10 +188,10 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="35dp"
         android:orientation="vertical"
-
         app:layout_constraintLeft_toRightOf="@id/center_block"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toTopOf="parent"
+        >
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/high_climb"
