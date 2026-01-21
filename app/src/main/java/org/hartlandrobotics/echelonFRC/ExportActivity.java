@@ -651,7 +651,6 @@ public class ExportActivity extends EchelonActivity {
     private File getFilePathForMatch() {
         ContextWrapper cw = new ContextWrapper(getApplicationContext() );
         return FileUtilities.ensureDirectory(cw,"transfer");
-
     }
 
     private File[] getFilePathsForPitScout(){
