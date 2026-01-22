@@ -186,6 +186,7 @@ public class ChartAggAverageFragment extends Fragment {
             return;
         }
 
+
         XAxis xLabels = aggScoringChart.getXAxis();
         xLabels.setAxisMinimum(0);
         xLabels.setDrawLabels(true);
@@ -194,12 +195,12 @@ public class ChartAggAverageFragment extends Fragment {
         xLabels.setCenterAxisLabels(true);
         xLabels.setPosition(XAxis.XAxisPosition.BOTTOM);
         xLabels.setValueFormatter((value, axis) -> {
-            int val = Math.min( Math.max(0, (int)Math.floor(value) ), visibleTeamData.size()-1);
-            String label = String.valueOf( visibleTeamData.get(val).getTeamNumber() );
-       //     Log.e("CHARTLABEL", String.valueOf(val) + "-" +  String.valueOf(label));
+            int val = Math.min(Math.max(0, (int) Math.floor(value)), visibleTeamData.size() - 1);
+            String label = visibleTeamData.isEmpty()? "0" : String.valueOf(visibleTeamData.get(val).getTeamNumber());
+            //     Log.e("CHARTLABEL", String.valueOf(val) + "-" +  String.valueOf(label));
             return label;
         });
-
+        
         ArrayList<BarEntry> yVals1 = new ArrayList<BarEntry>();
 
         for(int teamIndex = 0; teamIndex<visibleTeamData.size(); teamIndex++ ){
