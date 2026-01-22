@@ -39,6 +39,10 @@ public class MainActivity extends EchelonActivity {
     private BlueAllianceStatus status;
     String deviceRole;
 
+    private boolean isStudentTablet;
+    private boolean isAdminTablet;
+    private boolean hasSelectedSeason;
+
     private MaterialButton startScouting;
     private MaterialButton pitScouting;
     private MaterialButton matchSchedule;
@@ -63,6 +67,8 @@ public class MainActivity extends EchelonActivity {
         status= new BlueAllianceStatus(getApplicationContext());
         adminSettings= AdminSettingsProvider.getAdminSettings(this);
         deviceRole = adminSettings.getDeviceRole();
+        isStudentTablet = deviceRole.startsWith("red") || deviceRole.startsWith("blue");
+        isAdminTablet = deviceRole.startsWith("coach") || deviceRole.startsWith("captain");
 
         setupStartScoutingButton();
         setupPitScoutingButton();
@@ -78,13 +84,7 @@ public class MainActivity extends EchelonActivity {
     private void handlePermissions() {
         int REQUEST_REQUIRED_PERMISSIONS = 1;
         String[] REQUIRED_PERMISSIONS = {
-                //Manifest.permission.READ_EXTERNAL_STORAGE,
-                //Manifest.permission.WRITE_EXTERNAL_STORAGE,
                 Manifest.permission.INTERNET,
-                //Manifest.permission.ACCESS_NETWORK_STATE,
-                //Manifest.permission.BLUETOOTH,
-                //Manifest.permission.BLUETOOTH_ADMIN,
-                //Manifest.permission.ACCESS_COARSE_LOCATION
         };
 
         boolean requestNeeded = false;
@@ -122,7 +122,7 @@ public class MainActivity extends EchelonActivity {
         chartsButton = findViewById(R.id.charts_button);
         chartsButton.setOnClickListener( v -> ChartsActivity.launch(MainActivity.this));
 
-        if( deviceRole.equalsIgnoreCase("captain" ) || deviceRole.contains("coach")){
+        if( isAdminTablet ){
             chartsButton.setVisibility(View.VISIBLE);
         }
     }
@@ -131,7 +131,7 @@ public class MainActivity extends EchelonActivity {
         accuracyButton = findViewById(R.id.main_admin_accuracy_config);
         accuracyButton.setOnClickListener( v -> AccountabilityActivity.launch(MainActivity.this));
 
-        if( deviceRole.contains("aptain" ) || deviceRole.contains("oach")){
+        if( isAdminTablet ){
             accuracyButton.setVisibility(View.VISIBLE);
         }
     }
@@ -183,7 +183,8 @@ public class MainActivity extends EchelonActivity {
 
                 seasonsAutoComplete.setText(selectedText, false);
             }
-            setEnabled(foundIndex.isPresent());
+            hasSelectedSeason = foundIndex.isPresent();
+            setEnabled();
 
             seasonsAutoComplete.setOnItemClickListener((parent, view, position, id) -> {
                 Season selectedSeason = seasons.get(position);
@@ -192,13 +193,17 @@ public class MainActivity extends EchelonActivity {
                 String selectedText = status.getSeason() + " - " + status.getYear();
                 seasonsAutoComplete.setText(selectedText, false);
                 setupStatus();
-                setEnabled(true);
+                hasSelectedSeason = true;
+                setEnabled();
             });
         });
     }
 
-    private void setEnabled(boolean seasonSelected){
-           startScouting.setEnabled(seasonSelected);
-           pitScouting.setEnabled(seasonSelected);
+    private void setEnabled(){
+        startScouting.setEnabled(hasSelectedSeason && isStudentTablet);
+        pitScouting.setEnabled(hasSelectedSeason && isAdminTablet);
+        matchSchedule.setEnabled(hasSelectedSeason);
+        chartsButton.setEnabled(hasSelectedSeason && isAdminTablet);
+        accuracyButton.setEnabled(isAdminTablet);
     }
 }
