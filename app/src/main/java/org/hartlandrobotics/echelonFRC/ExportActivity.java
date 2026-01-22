@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.LinearLayout;
 import android.widget.Toast;
 
 import androidx.annotation.RequiresApi;
@@ -45,6 +46,8 @@ import java.util.stream.Stream;
 
 public class ExportActivity extends EchelonActivity {
 
+    private LinearLayout rightLayout;
+
     private Button exportCaptainsMatchResultsButton;
     private Button exportRedOneMatchResultsButton;
     private Button exportRedTwoMatchResultsButton;
@@ -77,7 +80,6 @@ public class ExportActivity extends EchelonActivity {
 
         matchResultViewModel = new ViewModelProvider(this).get(MatchResultViewModel.class);
 
-        exportCaptainsMatchResultsButton = findViewById(R.id.exportCaptainsMatchResults);
         exportRedOneMatchResultsButton = findViewById(R.id.exportRedOneMatchResults);
         if(!role.equalsIgnoreCase("Red1")){
             exportRedOneMatchResultsButton.setVisibility(View.GONE);
@@ -102,6 +104,12 @@ public class ExportActivity extends EchelonActivity {
         if(!role.equalsIgnoreCase("Blue3")){
             exportBlueThreeMatchResultsButton.setVisibility(View.GONE);
         }
+        exportCaptainsMatchResultsButton = findViewById(R.id.exportCaptainsMatchResults);
+        if(role.equalsIgnoreCase("coach") || role.equalsIgnoreCase("captain")){
+            exportCaptainsMatchResultsButton.setVisibility(View.VISIBLE);
+        }else{
+            exportCaptainsMatchResultsButton.setVisibility(View.GONE);
+        }
 
         exportPitScoutResultsButton = findViewById(R.id.exportPitScouting);
         exportPitScoutResults();
@@ -122,6 +130,9 @@ public class ExportActivity extends EchelonActivity {
                 Toast.makeText(this, "export Tableau Matches error: " + message, Toast.LENGTH_LONG).show();
             }
         });
+
+        rightLayout = findViewById(R.id.right_column);
+        rightLayout.setVisibility(View.GONE);
 
     }
 
