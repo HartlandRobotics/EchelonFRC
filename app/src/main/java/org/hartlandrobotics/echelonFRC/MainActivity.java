@@ -81,7 +81,7 @@ public class MainActivity extends EchelonActivity {
                 //Manifest.permission.READ_EXTERNAL_STORAGE,
                 //Manifest.permission.WRITE_EXTERNAL_STORAGE,
                 Manifest.permission.INTERNET,
-                Manifest.permission.ACCESS_NETWORK_STATE,
+                //Manifest.permission.ACCESS_NETWORK_STATE,
                 //Manifest.permission.BLUETOOTH,
                 //Manifest.permission.BLUETOOTH_ADMIN,
                 //Manifest.permission.ACCESS_COARSE_LOCATION
@@ -106,9 +106,6 @@ public class MainActivity extends EchelonActivity {
     private void setupStartScoutingButton(){
         startScouting = this.findViewById(R.id.main_admin_start_scouting);
         startScouting.setOnClickListener(view -> MatchSelectionActivity.launch(MainActivity.this, null));
-        if(deviceRole.startsWith("coach")||deviceRole.startsWith("captain")){
-            startScouting.setEnabled(false);
-        }
     }
 
     private void setupPitScoutingButton(){
@@ -186,13 +183,7 @@ public class MainActivity extends EchelonActivity {
 
                 seasonsAutoComplete.setText(selectedText, false);
             }
-            if (deviceRole.startsWith("red") || deviceRole.startsWith("blue")) {
-                    setEnabled(foundIndex.isPresent());
-            }
-            else {
-                setEnabled(false);
-            }
-
+            setEnabled(foundIndex.isPresent());
 
             seasonsAutoComplete.setOnItemClickListener((parent, view, position, id) -> {
                 Season selectedSeason = seasons.get(position);
@@ -201,9 +192,7 @@ public class MainActivity extends EchelonActivity {
                 String selectedText = status.getSeason() + " - " + status.getYear();
                 seasonsAutoComplete.setText(selectedText, false);
                 setupStatus();
-                if(deviceRole.startsWith("red")||deviceRole.startsWith("blue")) {
-                    setEnabled(true);
-                }
+                setEnabled(true);
             });
         });
     }

@@ -135,7 +135,6 @@ public class ChartsActivity extends EchelonActivity {
 
 
             updateFragmentData(allTeamNumbers, allTeamsData);
-
             //setupChart();
         });
 
@@ -143,7 +142,6 @@ public class ChartsActivity extends EchelonActivity {
     public void updateFragmentData(List<TeamListViewModel> allTeamNumbers, List<TeamDataViewModel> allTeamsData){
         chartPagerAdapter.updateFragmentData(allTeamNumbers, allTeamsData);
         chartPagerAdapter.notifyDataSetChanged();
-
     }
 
     public List<TeamListViewModel> getAllTeamNumbers(){
