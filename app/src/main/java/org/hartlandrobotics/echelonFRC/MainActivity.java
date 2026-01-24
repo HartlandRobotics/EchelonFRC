@@ -123,7 +123,7 @@ public class MainActivity extends EchelonActivity {
         chartsButton.setOnClickListener( v -> ChartsActivity.launch(MainActivity.this));
 
         if( isAdminTablet){
-            accuracyButton.setVisibility(View.VISIBLE);
+            chartsButton.setVisibility(View.VISIBLE);
         }
     }
 
