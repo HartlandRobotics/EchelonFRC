@@ -19,12 +19,16 @@ public class PitScoutingPagerAdapter extends FragmentStateAdapter {
 
     private PitScout data;
 
-    private static final int AUTO_POSITION = 0;
-    private static final int TELEOP_POSITION = 1;
-    private static final int ENDGAME_POSITION = 2;
-    private static final int TEAM_POSITION = 3;
-    private static final int PHOTOS_POSITION = 4;
+    public static final  int ROBOT1_POSITION = 0;
+    public static final  int ROBOT2_POSITION = 1;
+    private static final int AUTO_POSITION = 2;
+    private static final int TELEOP_POSITION = 3;
+    private static final int ENDGAME_POSITION = 4;
+    private static final int TEAM_POSITION = 5;
+    private static final int PHOTOS_POSITION = 6;
 
+    private PitScoutRobot1Fragment pitScoutRobot1Fragment;
+    private PitScoutRobot2Fragment pitScoutRobot2Fragment;
     private PitScoutAutoFragment autoFragment;
     private PitScoutTeleOpFragment teleOpFragment;
     private PitScoutEndGameFragment endGameFragment;
@@ -42,6 +46,12 @@ public class PitScoutingPagerAdapter extends FragmentStateAdapter {
         this.data = data;
         if( data == null ) return;
 
+        if (pitScoutRobot1Fragment != null){
+//            pitScoutRobot1.setData(data);
+        }
+        if (pitScoutRobot2Fragment != null){
+//            pitScoutRobot2.setData(data);
+        }
         if( autoFragment != null ){
             autoFragment.setData(data);
         }
@@ -64,16 +74,25 @@ public class PitScoutingPagerAdapter extends FragmentStateAdapter {
     private Map<Integer, String> titleByPosition = new HashMap<>();
     public String getTabTitle(int position){
         if( titleByPosition.isEmpty() ){
-            titleByPosition.put(0,"Auto");
-            titleByPosition.put(1,"Tele Op");
-            titleByPosition.put(2, "End  Game");
-            titleByPosition.put(3, "Team");
-            titleByPosition.put(4, "Photos");
+            titleByPosition.put(0,"Robot");
+            titleByPosition.put(1,"Robot Cont.");
+            titleByPosition.put(2,"Tele Op");
+            titleByPosition.put(3, "End  Game");
+            titleByPosition.put(4, "Team");
+            titleByPosition.put(5, "Photos");
         }
         return titleByPosition.get(position);
     }
 
     public void updatePitScoutData(){
+        if (pitScoutRobot1Fragment != null){
+            Log.i(TAG, "populating robot 1 fragment data");
+//            pitScoutRobot1.populateDataFromControls();
+        }
+        if (pitScoutRobot2Fragment != null){
+            Log.i(TAG, "populating robot 2 fragment data");
+//            pitScoutRobot2.populateDataFromControls();
+        }
         if( autoFragment != null ){
             Log.i(TAG, "populating auto fragment data");
             autoFragment.populateDataFromControls();
@@ -99,6 +118,14 @@ public class PitScoutingPagerAdapter extends FragmentStateAdapter {
     @Override
     public Fragment createFragment(int position) {
         switch (position){
+            case ROBOT1_POSITION:
+                Log.i(TAG, "creating new Robot 1 Fragment");
+                pitScoutRobot1Fragment = new PitScoutRobot1Fragment();
+                return pitScoutRobot1Fragment;
+            case ROBOT2_POSITION:
+                Log.i(TAG, "creating new Robot 2 Fragment");
+                pitScoutRobot2Fragment = new PitScoutRobot2Fragment();
+                return pitScoutRobot2Fragment;
             case AUTO_POSITION:
                 Log.i(TAG,"creating new Auto Fragment");
                 autoFragment = new PitScoutAutoFragment();
@@ -136,6 +163,6 @@ public class PitScoutingPagerAdapter extends FragmentStateAdapter {
 
     @Override
     public int getItemCount() {
-        return 5;
+        return 6;
     }
 }

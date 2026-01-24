@@ -45,7 +45,7 @@
         app:layout_constraintTop_toBottomOf="@id/teamSelection"
         app:layout_constraintVertical_bias="0.0"
         app:tabIndicatorColor="@color/primaryTextColor"
-        app:tabTextColor="@color/primaryTextColor"></com.google.android.material.tabs.TabLayout>
+        app:tabTextColor="@color/primaryTextColor"/>
 
     <com.google.android.material.textview.MaterialTextView
         android:id="@+id/select_team_text"
