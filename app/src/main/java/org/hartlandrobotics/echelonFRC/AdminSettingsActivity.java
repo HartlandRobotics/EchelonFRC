@@ -16,6 +16,7 @@ import com.google.android.material.textfield.TextInputLayout;
 import org.apache.commons.lang3.StringUtils;
 import org.hartlandrobotics.echelonFRC.configuration.AdminSettingsProvider;
 import org.hartlandrobotics.echelonFRC.configuration.AdminSettingsViewModel;
+import org.hartlandrobotics.echelonFRC.utilities.ThemeDetector;
 
 import java.util.HashMap;
 
@@ -23,6 +24,7 @@ public class AdminSettingsActivity extends EchelonActivity {
     private static final String LOG_TAG = AdminSettingsActivity.class.getSimpleName();
 
     private MaterialButtonToggleGroup deviceRoleGroup;
+    private MaterialButton coachButton;
     private HashMap<Integer, String> buttonRoleById;
     private HashMap<String, Integer> buttonRoleByText;
 
@@ -126,6 +128,10 @@ public class AdminSettingsActivity extends EchelonActivity {
         buttonRoleById.put(R.id.coach, "coach");
 
         deviceRoleGroup = findViewById(R.id.deviceRoleSelection);
+        coachButton = findViewById(R.id.coach);
+        if( ThemeDetector.isDarkTheme(this) ){
+            coachButton.setTextColor( getResources().getColor(R.color.design_default_color_on_primary) );
+        }
         deviceRoleGroup.addOnButtonCheckedListener(new MaterialButtonToggleGroup.OnButtonCheckedListener() {
             @Override
             public void onButtonChecked(MaterialButtonToggleGroup group, int checkedId, boolean isChecked) {
