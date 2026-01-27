@@ -3,38 +3,44 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="horizontal"
+    android:orientation="vertical"
     tools:context=".pitScouting.PitScoutTeleOpFragment">
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical">
+        <CheckBox
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Can they pass?"/>
 
         <RadioGroup
-            android:id="@+id/pickOffGround"
+            android:id="@+id/rolePrefrence"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:checkedButton="@id/offGroundNo"
+            android:checkedButton="@id/rolePrefrenceNeither"
             android:orientation="horizontal">
 
             <com.google.android.material.textview.MaterialTextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Can you pick up off the ground?"
+                android:text="What role do they prefer?"
                 />
 
             <com.google.android.material.radiobutton.MaterialRadioButton
-                android:id="@+id/offGroundYes"
+                android:id="@+id/rolePrefrenceScoring"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Yes" />
+                android:text="Scoring" />
 
             <com.google.android.material.radiobutton.MaterialRadioButton
-                android:id="@+id/offGroundNo"
+                android:id="@+id/rolePrefrencePassing"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="No" />
+                android:text="Passing" />
+
+            <com.google.android.material.radiobutton.MaterialRadioButton
+                android:id="@+id/rolePrefrenceNeither"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Neither" />
 
         </RadioGroup>
 
@@ -48,7 +54,7 @@
             <com.google.android.material.textview.MaterialTextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Are you willing to play defense?"
+                android:text="Do they have experience playing defense?"
                 />
 
             <com.google.android.material.radiobutton.MaterialRadioButton
@@ -66,18 +72,87 @@
         </RadioGroup>
 
         <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/scoringMethod"
+            android:id="@+id/fuelPerSecondIngest"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Preferred Scoring Method (Processor, Reef, Net)"
-            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+            android:hint="How many fuel do they ingest per second?"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            >
 
             <com.google.android.material.textfield.TextInputEditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:text="0"
+                android:inputType="number"
                 />
 
         </com.google.android.material.textfield.TextInputLayout>
 
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/fuelPerSecondShooting"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="How many fuel do they shoot per second?"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            >
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="0"
+                android:inputType="number"
+                />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <RadioGroup
+            android:id="@+id/shootingProcess"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:orientation="horizontal">
+
+        <com.google.android.material.textview.MaterialTextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="How do they Shoot?"
+            />
+
+        <com.google.android.material.radiobutton.MaterialRadioButton
+            android:id="@+id/shootingProcessMoving"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Moving" />
+
+        <com.google.android.material.radiobutton.MaterialRadioButton
+            android:id="@+id/shootingProcessStandstill"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Stand Still"
+            android:layout_marginRight="20dp"/>
+        </RadioGroup>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/shootingPosition"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Where are they standstill?"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            >
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="text"
+                />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+
     </LinearLayout>
+
 </LinearLayout>
