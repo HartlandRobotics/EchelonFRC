@@ -4,12 +4,16 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="horizontal"
-    tools:context=".pitScouting.PitScoutAutoFragment">
+    tools:context=".pitScouting.PitScoutAutoFragment"
+    android:weightSum="1"
+   >
 
+    <!--left column-->
     <LinearLayout
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical"
+        android:layout_weight=".5"
         >
 
         <LinearLayout
@@ -100,10 +104,10 @@
         android:orientation="vertical"
         >
         <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/autoPointsScored"
+            android:id="@+id/autoFuelScored"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="How many points do you score?"
+            android:hint="How many fuel do you score?"
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
             >
 
@@ -112,16 +116,60 @@
                 android:layout_height="wrap_content"
                 android:text="0"
                 android:inputType="number"
-
                 />
 
         </com.google.android.material.textfield.TextInputLayout>
 
-
-
-
+    </LinearLayout>
 
     </LinearLayout>
+
+    <!--right column-->
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_weight=".5"
+        android:orientation="vertical"
+        >
+
+       <CheckBox
+           android:layout_width="wrap_content"
+           android:layout_height="wrap_content"
+           android:text="Can they hang?" >
+       </CheckBox>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/autoWhereHang"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Where do they hang?"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="text" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/autoHowHang"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="How do they hang?"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="text" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <CheckBox
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Goes over center line"
+            />
+
 
     </LinearLayout>
 

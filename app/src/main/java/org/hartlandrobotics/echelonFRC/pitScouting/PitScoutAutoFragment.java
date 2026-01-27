@@ -86,7 +86,7 @@ public class PitScoutAutoFragment extends Fragment {
             setVisibility();
         });
 
-        pointsScored = view.findViewById(R.id.autoPointsScored);
+        pointsScored = view.findViewById(R.id.autoFuelScored);
 
         missingAutoLayout = view.findViewById(R.id.missingAutoLayout);
 
@@ -154,20 +154,20 @@ public class PitScoutAutoFragment extends Fragment {
         if (data == null) {
             return;
         }
-        if (hasAutoGroup.getCheckedRadioButtonId() == R.id.hasAutoYes) {
-            missingAutoLayout.setVisibility(View.GONE);
-            hasAutoLayout.setVisibility(View.VISIBLE);
-            autoLanguage.setVisibility(View.GONE);
-        } else {
-            missingAutoLayout.setVisibility(View.VISIBLE);
-            hasAutoLayout.setVisibility(View.GONE);
-            autoLanguage.setVisibility(View.VISIBLE);
-        }
-
-        if (helpAutoGroup.getCheckedRadioButtonId() == R.id.helpAutoNo) {
-            autoLanguage.setVisibility(View.GONE);
-        } else {
-            autoLanguage.setVisibility(View.VISIBLE);
-        }
+//        if (hasAutoGroup.getCheckedRadioButtonId() == R.id.hasAutoYes) {
+//            missingAutoLayout.setVisibility(View.GONE);
+//            hasAutoLayout.setVisibility(View.VISIBLE);
+//            autoLanguage.setVisibility(View.GONE);
+//        } else {
+//            missingAutoLayout.setVisibility(View.VISIBLE);
+//            hasAutoLayout.setVisibility(View.GONE);
+//            autoLanguage.setVisibility(View.VISIBLE);
+//        }
+//
+//        if (helpAutoGroup.getCheckedRadioButtonId() == R.id.helpAutoNo) {
+//            autoLanguage.setVisibility(View.GONE);
+//        } else {
+//            autoLanguage.setVisibility(View.VISIBLE);
+//        }
     }
 }

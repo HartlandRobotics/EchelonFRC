@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".pitScouting.PitScoutTeamFragment">
+    tools:context=".pitScouting.PitScoutRobot1Fragment">
 
 
     <com.google.android.material.textfield.TextInputLayout
@@ -21,10 +21,6 @@
             android:inputType="none"/>
     </com.google.android.material.textfield.TextInputLayout>
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Where can they go?"/>
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -50,7 +46,7 @@
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Turret, solid in bot, 1-2 ball, 3 ball">
+        android:hint="Shooter type (Turret, solid in bot, 1-2 fuel, 3 fuel)">
 
         <com.google.android.material.textfield.TextInputEditText
             android:layout_width="match_parent"
@@ -87,16 +83,25 @@
 
     </com.google.android.material.textfield.TextInputLayout>
 
-    <TextView
+    <RadioGroup
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Do they have an over bumper intake?" />
-    <CheckBox
-        android:id="@+id/intakeType"
+        android:orientation="horizontal">
+    <RadioButton
+        android:id="@+id/overBumperIntake"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Over Bumper Intake"
+        android:checked="false"
+        android:layout_marginRight="15dp"/>
+
+    <RadioButton
+        android:id="@+id/passthroughBumperIntake"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Passthrough bumper Intake"
         android:checked="false"/>
+    </RadioGroup>
 
 </LinearLayout>
 
