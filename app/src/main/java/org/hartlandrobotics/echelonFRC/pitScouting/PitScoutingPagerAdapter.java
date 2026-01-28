@@ -82,7 +82,7 @@ public class PitScoutingPagerAdapter extends FragmentStateAdapter {
     public void updatePitScoutData(){
         if (pitScoutRobot1Fragment != null){
             Log.i(TAG, "populating robot 1 fragment data");
-//            pitScoutRobot1.populateDataFromControls();
+            pitScoutRobot1Fragment.populateDataFromControls();
         }
         if (pitScoutRobot2Fragment != null){
             Log.i(TAG, "populating robot 2 fragment data");

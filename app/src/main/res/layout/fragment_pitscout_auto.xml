@@ -5,15 +5,15 @@
     android:layout_height="match_parent"
     android:orientation="horizontal"
     tools:context=".pitScouting.PitScoutAutoFragment"
-    android:weightSum="1"
+    android:weightSum="2"
    >
 
     <!--left column-->
     <LinearLayout
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:layout_weight=".5"
+        android:layout_weight="1"
         >
 
         <LinearLayout
@@ -126,9 +126,9 @@
 
     <!--right column-->
     <LinearLayout
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="match_parent"
-        android:layout_weight=".5"
+        android:layout_weight="1"
         android:orientation="vertical"
         >
 

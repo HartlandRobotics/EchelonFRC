@@ -42,9 +42,9 @@ public class PitScoutRobot1Fragment extends Fragment {
         return view;
     }
     private void setupControls(View view) {
-        //if (data == null) {
-        //    return;
-        //}
+        if (data == null) {
+            return;
+        }
 
         driveTrainLayout = view.findViewById(R.id.driveTrain);
         driveTrainAutoComplete = view.findViewById(R.id.driveTrainAutoComplete);
@@ -52,6 +52,8 @@ public class PitScoutRobot1Fragment extends Fragment {
         defaultDriveTrain = driveTrains[0];
         ArrayAdapter adapterDriveTrain = new ArrayAdapter(getActivity(), R.layout.dropdown_item, driveTrains);
         driveTrainAutoComplete.setAdapter(adapterDriveTrain);
+
+
 
     }
 
@@ -62,6 +64,10 @@ public class PitScoutRobot1Fragment extends Fragment {
     }
 
     public void populateDataFromControls() {
+        String robot_drivetrain = driveTrainAutoComplete.getText().toString();
+
+        int i;
+        i = 10;
     }
 
     public void populateControlsFromData() {

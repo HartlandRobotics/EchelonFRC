@@ -140,7 +140,7 @@
             android:id="@+id/shootingPosition"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Where are they standstill?"
+            android:hint="Position (If Stand Still)"
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
             >
 
