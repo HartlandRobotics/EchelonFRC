@@ -11,6 +11,13 @@
         android:layout_height="wrap_content"
         android:orientation="vertical">
 
+        <CheckBox
+            android:id="@+id/endHang"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Can they hang?" >
+        </CheckBox>
+
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/hangTime"
             android:layout_width="match_parent"
@@ -23,8 +30,67 @@
             android:layout_height="wrap_content"
             android:inputType="number"
             />
-
         </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/endWhereHang"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Where do they hang?"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="text" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/endHowHang"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="How do they hang?"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="text" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Where do they hang?">
+        </TextView>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+        <CheckBox
+            android:id="@+id/endHighClimb"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="High"
+            android:layout_marginRight="10dp">
+        </CheckBox>
+
+        <CheckBox
+            android:id="@+id/endMidClimb"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Mid"
+            android:layout_marginRight="10dp">
+        </CheckBox>
+
+        <CheckBox
+            android:id="@+id/endLowClimb"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Low" >
+        </CheckBox>
+        </LinearLayout>
 
     </LinearLayout>
 </LinearLayout>
