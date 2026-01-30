@@ -83,7 +83,7 @@ public class PitScoutActivity extends EchelonActivity {
         //teamViewModel.getAllTeams().observe(this, ts -> {
 
             teams = evtWithTeams.teams.stream()
-                    .sorted(Comparator.comparingInt(t -> t.getTeamNumber()))
+                    .sorted(Comparator.comparingInt( Team::getTeamNumber ))
                     .collect(Collectors.toList());
 
 

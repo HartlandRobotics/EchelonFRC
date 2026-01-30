@@ -2,6 +2,8 @@ package org.hartlandrobotics.echelonFRC.pitScouting;
 
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
 import android.view.LayoutInflater;
@@ -12,6 +14,7 @@ import android.widget.AutoCompleteTextView;
 
 import com.google.android.material.textfield.TextInputLayout;
 
+import org.apache.commons.lang3.StringUtils;
 import org.hartlandrobotics.echelonFRC.R;
 import org.hartlandrobotics.echelonFRC.database.entities.PitScout;
 
@@ -24,13 +27,19 @@ public class PitScoutRobot1Fragment extends Fragment {
     String defaultDriveTrain;
 
 
-
     PitScout data;
 
-    @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
+    public PitScoutRobot1Fragment() {
+        // Required empty public constructor
     }
+
+    public void setData(PitScout data) {
+        this.data = data;
+        populateControlsFromData();
+    }
+
+    @Override
+    public void onCreate(Bundle savedInstanceState) { super.onCreate(savedInstanceState); }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -41,11 +50,20 @@ public class PitScoutRobot1Fragment extends Fragment {
 
         return view;
     }
-    private void setupControls(View view) {
-        if (data == null) {
-            return;
-        }
 
+    @Override
+    public void onResume(){
+        super.onResume();
+        populateControlsFromData();
+    }
+
+    @Override
+    public void onPause() {
+        super.onPause();
+        populateDataFromControls();
+    }
+
+    private void setupControls(View view) {
         driveTrainLayout = view.findViewById(R.id.driveTrain);
         driveTrainAutoComplete = view.findViewById(R.id.driveTrainAutoComplete);
         String[] driveTrains = getResources().getStringArray(R.array.drive_train);
@@ -54,31 +72,29 @@ public class PitScoutRobot1Fragment extends Fragment {
         driveTrainAutoComplete.setAdapter(adapterDriveTrain);
 
 
-
     }
 
 
-        public void setData(PitScout data) {
-        this.data = data;
-        populateControlsFromData();
-    }
+
 
     public void populateDataFromControls() {
-        String robot_drivetrain = driveTrainAutoComplete.getText().toString();
 
-        int i;
-        i = 10;
+        if( data == null) return;
+
+        String driveTrain = StringUtils.defaultIfBlank(driveTrainLayout.getEditText().getText().toString(), StringUtils.EMPTY);
+        data.setRobotDriveTrain(driveTrain);
+
     }
 
     public void populateControlsFromData() {
+        if( data == null ) return;
+
+
+        String driveType = StringUtils.defaultIfBlank(data.getRobotDriveTrain(), defaultDriveTrain);
+        driveTrainAutoComplete.setText(driveType,false);
     }
 
 
-
-
-    public PitScoutRobot1Fragment() {
-        // Required empty public constructor
-    }
 
 
 }

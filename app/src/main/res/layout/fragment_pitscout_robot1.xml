@@ -6,7 +6,6 @@
     android:orientation="vertical"
     tools:context=".pitScouting.PitScoutRobot1Fragment">
 
-
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/driveTrain"
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
@@ -18,7 +17,8 @@
             android:id="@+id/driveTrainAutoComplete"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:inputType="none"/>
+            android:inputType="none" />
+
     </com.google.android.material.textfield.TextInputLayout>
 
     <LinearLayout
@@ -26,21 +26,22 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal">
 
-
         <CheckBox
             android:id="@+id/traversesHump"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Over hump"
-            android:checked="false"/>
+            android:checked="false"
+            android:text="Over hump" />
+
         <CheckBox
             android:id="@+id/traversesTrench"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Under trench"
-            android:checked="false"/>
+            android:checked="false"
+            android:text="Under trench" />
 
     </LinearLayout>
+
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/shooterType"
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
@@ -87,22 +88,21 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal">
-    <RadioButton
-        android:id="@+id/overBumperIntake"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Over Bumper Intake"
-        android:checked="false"
-        android:layout_marginRight="15dp"/>
 
-    <RadioButton
-        android:id="@+id/passthroughBumperIntake"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Passthrough bumper Intake"
-        android:checked="false"/>
+        <RadioButton
+            android:id="@+id/overBumperIntake"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="15dp"
+            android:checked="true"
+            android:text="Over Bumper Intake" />
+
+        <RadioButton
+            android:id="@+id/passthroughBumperIntake"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:checked="false"
+            android:text="Passthrough bumper Intake" />
     </RadioGroup>
 
 </LinearLayout>
-
-

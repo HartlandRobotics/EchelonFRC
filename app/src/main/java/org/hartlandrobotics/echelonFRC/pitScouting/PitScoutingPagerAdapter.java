@@ -45,10 +45,10 @@ public class PitScoutingPagerAdapter extends FragmentStateAdapter {
         if( data == null ) return;
 
         if (pitScoutRobot1Fragment != null){
-//            pitScoutRobot1.setData(data);
+            pitScoutRobot1Fragment.setData(data);
         }
         if (pitScoutRobot2Fragment != null){
-//            pitScoutRobot2.setData(data);
+            pitScoutRobot2Fragment.setData(data);
         }
         if( autoFragment != null ){
             autoFragment.setData(data);
@@ -112,10 +112,12 @@ public class PitScoutingPagerAdapter extends FragmentStateAdapter {
             case ROBOT1_POSITION:
                 Log.i(TAG, "creating new Robot 1 Fragment");
                 pitScoutRobot1Fragment = new PitScoutRobot1Fragment();
+                pitScoutRobot1Fragment.setData(data);
                 return pitScoutRobot1Fragment;
             case ROBOT2_POSITION:
                 Log.i(TAG, "creating new Robot 2 Fragment");
                 pitScoutRobot2Fragment = new PitScoutRobot2Fragment();
+                pitScoutRobot2Fragment.setData(data);
                 return pitScoutRobot2Fragment;
             case AUTO_POSITION:
                 Log.i(TAG,"creating new Auto Fragment");
