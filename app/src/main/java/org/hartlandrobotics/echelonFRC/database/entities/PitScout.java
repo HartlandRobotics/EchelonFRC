@@ -53,6 +53,16 @@ public class PitScout {
 
     @ColumnInfo(name="robot_fuel_capacity")
     private int fuelCapacity;
+    @ColumnInfo(name="robot_ground_fuel")
+    private boolean groundFuel;
+    @ColumnInfo(name="robot_human_fuel")
+    private boolean humanFuel;
+    @ColumnInfo(name="robot_human_accuracy")
+    private String humanAccuracy;
+    @ColumnInfo(name="robot_additional_notes")
+    private String additionalNotes;
+
+
 
     @ColumnInfo(name = "points_in_auto")
     private int pointsScoredInAuto;
@@ -231,6 +241,35 @@ public class PitScout {
     public void setFuelCapacity(int fuelCapacity){
         this.fuelCapacity = fuelCapacity;
     }
+
+    public boolean getGroundFuel(){
+        return groundFuel;
+    }
+    public void setGroundFuel(boolean groundFuel) {
+        this.groundFuel = groundFuel;
+    }
+
+    public boolean getHumanFuel(){
+        return humanFuel;
+    }
+    public void setHumanFuel(boolean humanFuel){
+        this.humanFuel = humanFuel;
+    }
+    public String getHumanAccuracy(){
+        return humanAccuracy;
+    }
+    public void setHumanAccuracy(String humanAccuracy){
+        this.humanAccuracy = humanAccuracy;
+    }
+
+    public String getAdditionalNotes(){
+        return additionalNotes;
+    }
+    public void setAdditionalNotes(String additionalNotes){
+        this.additionalNotes = additionalNotes;
+    }
+
+
 
     public int getPointsScoredInAuto() {
         return pointsScoredInAuto;

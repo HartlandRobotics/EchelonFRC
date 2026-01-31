@@ -23,6 +23,10 @@ public class PitScoutRobot2Fragment extends Fragment {
     private static final String TAG = "PitScoutRobot2Fragment";
 
     TextInputLayout fuelCapacityLayout;
+    CheckBox groundFuelCheckBox;
+    CheckBox humanFuelCheckBox;
+    TextInputLayout humanAccuracyLayout;
+    TextInputLayout additonalNotesLayout;
     PitScout data;
 
     public PitScoutRobot2Fragment() {
@@ -63,6 +67,12 @@ public class PitScoutRobot2Fragment extends Fragment {
 
         fuelCapacityLayout = view.findViewById(R.id.fuelCapacity);
 
+        groundFuelCheckBox = view.findViewById(R.id.ground_fuel);
+        humanFuelCheckBox = view.findViewById(R.id.human_fuel);
+
+        humanAccuracyLayout = view.findViewById(R.id.humanAccuracy);
+        additonalNotesLayout = view.findViewById(R.id.additionalNotes);
+
 
     }
 
@@ -74,6 +84,14 @@ public class PitScoutRobot2Fragment extends Fragment {
         int fuelCapacity = Integer.parseInt(fuelCapacityLayout.getEditText().getText().toString());
         data.setFuelCapacity(fuelCapacity);
 
+        data.setGroundFuel( groundFuelCheckBox.isChecked() );
+        data.setHumanFuel( humanFuelCheckBox.isChecked() );
+
+        String humanAccuracy = humanAccuracyLayout.getEditText().getText().toString();
+        data.setHumanAccuracy(humanAccuracy);
+        String additionalNotes = additonalNotesLayout.getEditText().getText().toString();
+        data.setAdditionalNotes(additionalNotes);
+
 
     }
 
@@ -81,11 +99,22 @@ public class PitScoutRobot2Fragment extends Fragment {
         if (data == null) return;
         if(fuelCapacityLayout==null) return;
 
-
-
         int fuelCapacity = data.getFuelCapacity();
         fuelCapacityLayout.getEditText().setText(String.valueOf(fuelCapacity));
+
+        groundFuelCheckBox.setChecked(data.getGroundFuel());
+        humanFuelCheckBox.setChecked(data.getHumanFuel());
+
+        String humanAccuracy = data.getHumanAccuracy();
+        humanAccuracyLayout.getEditText().setText(humanAccuracy);
+
+        String additionalNotes = data.getAdditionalNotes();
+        additonalNotesLayout.getEditText().setText(additionalNotes);
+
+
     }
+
+
 
 }
 

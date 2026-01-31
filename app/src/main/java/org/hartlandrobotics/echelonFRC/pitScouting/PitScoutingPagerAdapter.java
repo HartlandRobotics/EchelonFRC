@@ -86,7 +86,7 @@ public class PitScoutingPagerAdapter extends FragmentStateAdapter {
         }
         if (pitScoutRobot2Fragment != null){
             Log.i(TAG, "populating robot 2 fragment data");
-//            pitScoutRobot2.populateDataFromControls();
+           pitScoutRobot2Fragment.populateDataFromControls();
         }
         if( autoFragment != null ){
             Log.i(TAG, "populating auto fragment data");
