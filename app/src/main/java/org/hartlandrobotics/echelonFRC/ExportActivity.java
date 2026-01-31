@@ -454,7 +454,7 @@ public class ExportActivity extends EchelonActivity {
 
                                 content.append("<li>")
                                 .append ("<p class=question>How many points do you score in autonomous?</p>")
-                                .append ("<p class=answer>").append(ps.getPointsScoredInAuto()).append("</p>")
+                                .append ("<p class=answer>").append(ps.getAutoFuelScoredText()).append("</p>")
                                 .append("</li>")
                                 .append("</ol>")
 

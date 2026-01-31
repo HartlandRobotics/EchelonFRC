@@ -31,7 +31,8 @@ public class PitScoutAutoFragment extends Fragment {
     LinearLayout missingAutoLayout;
     LinearLayout hasAutoLayout;
     TextInputLayout autoLanguage;
-    TextInputLayout pointsScored;
+    TextInputLayout autoFuelScored;
+
 
 
     PitScout data;
@@ -85,7 +86,7 @@ public class PitScoutAutoFragment extends Fragment {
             setVisibility();
         });
 
-        pointsScored = view.findViewById(R.id.autoFuelScored);
+        autoFuelScored = view.findViewById(R.id.autoFuelScored);
 
         missingAutoLayout = view.findViewById(R.id.missingAutoLayout);
 
@@ -114,9 +115,9 @@ public class PitScoutAutoFragment extends Fragment {
         boolean hasAuto = hasAutoGroup.getCheckedRadioButtonId() == R.id.hasAutoYes;
         data.setHasAutonomous(hasAuto);
 
-        String pointsScoredString = StringUtils.defaultIfBlank(pointsScored.getEditText().getText().toString(), "0");
-        int pointsScored = Integer.parseInt(pointsScoredString.toString());
-        data.setPointsScoredInAuto(pointsScored);
+        String autoFuelScoredString = StringUtils.defaultIfBlank(autoFuelScored.getEditText().getText().toString(), "0");
+        int autoFuelScored = Integer.parseInt(autoFuelScoredString.toString());
+        data.setAutoFuelScoredText(autoFuelScored);
 
         boolean wantsHelp = hasAutoGroup.getCheckedRadioButtonId() == R.id.helpAutoYes;
         data.setHelpCreatingAuto(wantsHelp);
@@ -136,8 +137,8 @@ public class PitScoutAutoFragment extends Fragment {
         int hasAutoCheckedButtonId = data.getHasAutonomous() ? R.id.hasAutoYes : R.id.hasAutoNo;
         hasAutoGroup.check(hasAutoCheckedButtonId);
 
-        String pointsScoredInAuto = StringUtils.defaultIfBlank(String.valueOf(data.getPointsScoredInAuto()), "0");
-        pointsScored.getEditText().setText(pointsScoredInAuto);
+        String autoFuelScoredText = StringUtils.defaultIfBlank(String.valueOf(data.getAutoFuelScored()), "0");
+        autoFuelScored.getEditText().setText(autoFuelScoredText);
 
         boolean wantsHelpWithAuto = data.getHelpCreatingAuto();
         int wantsHelpCheckedButtonId = wantsHelpWithAuto ? R.id.helpAutoYes : R.id.helpAutoNo;
@@ -153,20 +154,5 @@ public class PitScoutAutoFragment extends Fragment {
         if (data == null) {
             return;
         }
-//        if (hasAutoGroup.getCheckedRadioButtonId() == R.id.hasAutoYes) {
-//            missingAutoLayout.setVisibility(View.GONE);
-//            hasAutoLayout.setVisibility(View.VISIBLE);
-//            autoLanguage.setVisibility(View.GONE);
-//        } else {
-//            missingAutoLayout.setVisibility(View.VISIBLE);
-//            hasAutoLayout.setVisibility(View.GONE);
-//            autoLanguage.setVisibility(View.VISIBLE);
-//        }
-//
-//        if (helpAutoGroup.getCheckedRadioButtonId() == R.id.helpAutoNo) {
-//            autoLanguage.setVisibility(View.GONE);
-//        } else {
-//            autoLanguage.setVisibility(View.VISIBLE);
-//        }
     }
 }

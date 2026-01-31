@@ -29,14 +29,7 @@ public class PitScout {
     @ColumnInfo(name = "synced")
     private boolean hasBeenSynced;
 
-    @ColumnInfo(name = "has_autonomous")
-    private boolean hasAutonomous;
 
-    @ColumnInfo(name = "help_creating_auto")
-    private boolean helpCreatingAuto;
-
-    @ColumnInfo(name = "coding_language")
-    private String codingLanguage;
 
     @ColumnInfo(name="robot_traverses_hump")
     private boolean traversesHump;
@@ -46,7 +39,7 @@ public class PitScout {
     private String shooterType;
     @ColumnInfo(name="robot_size")
     private String robotSize;
-    @ColumnInfo(name="intake_size")
+    @ColumnInfo(name="robot_intake_size")
     private String intakeSize;
     @ColumnInfo(name="robot_intake_type")
     private int intakeType;
@@ -63,15 +56,22 @@ public class PitScout {
     private String additionalNotes;
 
 
+    @ColumnInfo(name = "auto_has_autonomous")
+    private boolean hasAutonomous;
 
-    @ColumnInfo(name = "points_in_auto")
-    private int pointsScoredInAuto;
+    @ColumnInfo(name = "auto_help_creating_auto")
+    private boolean helpCreatingAuto;
+
+    @ColumnInfo(name = "auto_coding_language")
+    private String codingLanguage;
+    @ColumnInfo(name = "auto_fuel_scored")
+    private int autoFuelScoredText;
 
     @ColumnInfo(name = "balls_picked_or_shot_in_auto")
     private int ballsPickedOrShotInAuto;
 
-    @ColumnInfo(name = "pick_off_ground")
-    private boolean pickOffGround;
+    //@ColumnInfo(name = "pick_off_ground")
+    //private boolean pickOffGround;
 
     @ColumnInfo(name = "off_ground_yes")
     private boolean offGroundYes;
@@ -106,7 +106,7 @@ public class PitScout {
 
     public PitScout(@NonNull String pitScoutKey, @NonNull String eventKey, @NonNull String teamKey, boolean hasBeenSynced,
                     boolean hasAutonomous, boolean helpCreatingAuto, @NonNull String codingLanguage, int pointsScoredInAuto,
-                    boolean pickOffGround, boolean offGroundYes, @NonNull String scoringMethod, boolean canPlayDefense, int hangTime, int driverExperience, int operatorExperience, double humanPositionPref, @NonNull String robotDriveTrain,  @NonNull String extraNotes) {
+                    boolean groundFuel, boolean offGroundYes, @NonNull String scoringMethod, boolean canPlayDefense, int hangTime, int driverExperience, int operatorExperience, double humanPositionPref, @NonNull String robotDriveTrain,  @NonNull String extraNotes) {
         if(StringUtils.isBlank(pitScoutKey)){
             pitScoutKey = UUID.randomUUID().toString();
         }
@@ -118,9 +118,9 @@ public class PitScout {
         this.hasAutonomous = hasAutonomous;
         this.helpCreatingAuto = helpCreatingAuto;
         this.codingLanguage = codingLanguage;
-        this.pointsScoredInAuto = pointsScoredInAuto;
+        this.autoFuelScoredText = pointsScoredInAuto;
         this.scoringMethod = scoringMethod;
-        this.pickOffGround = pickOffGround;
+        this.groundFuel = groundFuel;
         this.offGroundYes = offGroundYes;
         this.canPlayDefense = canPlayDefense;
         this.hangTime = hangTime;
@@ -271,12 +271,12 @@ public class PitScout {
 
 
 
-    public int getPointsScoredInAuto() {
-        return pointsScoredInAuto;
+    public int getAutoFuelScoredText() {
+        return autoFuelScoredText;
     }
 
-    public void setPointsScoredInAuto(int pointsScoredInAuto) {
-        this.pointsScoredInAuto = pointsScoredInAuto;
+    public void setAutoFuelScoredText (int autoFuelScoredText) {
+        this.autoFuelScoredText = autoFuelScoredText;
     }
 
     public int getBallsPickedOrShotInAuto() {

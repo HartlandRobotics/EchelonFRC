@@ -7,14 +7,10 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
-import android.widget.AutoCompleteTextView;
 import android.widget.CheckBox;
-import android.widget.RadioGroup;
 
 import com.google.android.material.textfield.TextInputLayout;
 
-import org.apache.commons.lang3.StringUtils;
 import org.hartlandrobotics.echelonFRC.R;
 import org.hartlandrobotics.echelonFRC.database.entities.PitScout;
 
@@ -26,7 +22,7 @@ public class PitScoutRobot2Fragment extends Fragment {
     CheckBox groundFuelCheckBox;
     CheckBox humanFuelCheckBox;
     TextInputLayout humanAccuracyLayout;
-    TextInputLayout additonalNotesLayout;
+    TextInputLayout additionalNotesLayout;
     PitScout data;
 
     public PitScoutRobot2Fragment() {
@@ -71,7 +67,7 @@ public class PitScoutRobot2Fragment extends Fragment {
         humanFuelCheckBox = view.findViewById(R.id.human_fuel);
 
         humanAccuracyLayout = view.findViewById(R.id.humanAccuracy);
-        additonalNotesLayout = view.findViewById(R.id.additionalNotes);
+        additionalNotesLayout = view.findViewById(R.id.additionalNotes);
 
 
     }
@@ -89,7 +85,7 @@ public class PitScoutRobot2Fragment extends Fragment {
 
         String humanAccuracy = humanAccuracyLayout.getEditText().getText().toString();
         data.setHumanAccuracy(humanAccuracy);
-        String additionalNotes = additonalNotesLayout.getEditText().getText().toString();
+        String additionalNotes = additionalNotesLayout.getEditText().getText().toString();
         data.setAdditionalNotes(additionalNotes);
 
 
@@ -109,7 +105,7 @@ public class PitScoutRobot2Fragment extends Fragment {
         humanAccuracyLayout.getEditText().setText(humanAccuracy);
 
         String additionalNotes = data.getAdditionalNotes();
-        additonalNotesLayout.getEditText().setText(additionalNotes);
+        additionalNotesLayout.getEditText().setText(additionalNotes);
 
 
     }
