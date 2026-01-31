@@ -22,9 +22,8 @@ import org.hartlandrobotics.echelonFRC.database.entities.PitScout;
 public class PitScoutRobot2Fragment extends Fragment {
     private static final String TAG = "PitScoutRobot2Fragment";
 
-    PitScout data;
-    
     TextInputLayout fuelCapacityLayout;
+    PitScout data;
 
     public PitScoutRobot2Fragment() {
         // Required empty public constructor
@@ -48,8 +47,14 @@ public class PitScoutRobot2Fragment extends Fragment {
         return view;
     }
 
+    //@Override
+    //public void onStart(){
+    //    super.onStart();
+    //    populateControlsFromData();
+    //}
+
     @Override
-    public void onResume(){
+    public void onResume() {
         super.onResume();
         populateControlsFromData();
     }
@@ -64,30 +69,43 @@ public class PitScoutRobot2Fragment extends Fragment {
 
         fuelCapacityLayout = view.findViewById(R.id.fuelCapacity);
 
+
     }
 
 
-
-
     public void populateDataFromControls() {
-        if( data == null) return;
+        if (data == null) return;
+        View v = fuelCapacityLayout;
 
-        String fuelCapacity = fuelCapacityLayout.getEditText().getText().toString();
-        data.setFuelCapacity(fuelCapacity);
-
+        //String fuelCapacity = fuelCapacityLayout.getEditText().getText().toString();
+        //data.setFuelCapacity(fuelCapacity);
 
 
     }
 
     public void populateControlsFromData() {
-        if( data == null ) return;
+        if (data == null) return;
+        if(fuelCapacityLayout==null) return;
 
-        String fuelCapacity = data.getFuelCapacity();
-        fuelCapacityLayout.getEditText().setText(fuelCapacity);
 
-        }
 
+        int fuelCapacity = data.getFuelCapacity();
+        Fragment f = this;
+        Object o = fuelCapacityLayout;
+        //fuelCapacityLayout.getEditText().setText(fuelCapacity);
+        //this.getView().findViewById(R.id.fuelCapacity);
+
+
+        int i;
+        i=10;
+
+        fuelCapacityLayout.getEditText().setText(String.valueOf(fuelCapacity));
+
+
+        i=11;
     }
+
+}
 
 
 

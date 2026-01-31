@@ -52,7 +52,7 @@ public class PitScout {
     private int intakeType;
 
     @ColumnInfo(name="robot_fuel_capacity")
-    private String fuelCapacity;
+    private int fuelCapacity;
 
     @ColumnInfo(name = "points_in_auto")
     private int pointsScoredInAuto;
@@ -225,10 +225,10 @@ public class PitScout {
         this.intakeType = intakeType;
     }
 
-    public String getFuelCapacity(){
+    public int getFuelCapacity(){
         return fuelCapacity;
     }
-    public void setFuelCapacity(String fuelCapacity){
+    public void setFuelCapacity(int fuelCapacity){
         this.fuelCapacity = fuelCapacity;
     }
 
