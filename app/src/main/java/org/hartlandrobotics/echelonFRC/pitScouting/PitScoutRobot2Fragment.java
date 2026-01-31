@@ -47,12 +47,6 @@ public class PitScoutRobot2Fragment extends Fragment {
         return view;
     }
 
-    //@Override
-    //public void onStart(){
-    //    super.onStart();
-    //    populateControlsFromData();
-    //}
-
     @Override
     public void onResume() {
         super.onResume();
@@ -75,10 +69,10 @@ public class PitScoutRobot2Fragment extends Fragment {
 
     public void populateDataFromControls() {
         if (data == null) return;
-        View v = fuelCapacityLayout;
+        if(fuelCapacityLayout==null) return;
 
-        //String fuelCapacity = fuelCapacityLayout.getEditText().getText().toString();
-        //data.setFuelCapacity(fuelCapacity);
+        int fuelCapacity = Integer.parseInt(fuelCapacityLayout.getEditText().getText().toString());
+        data.setFuelCapacity(fuelCapacity);
 
 
     }
@@ -90,19 +84,7 @@ public class PitScoutRobot2Fragment extends Fragment {
 
 
         int fuelCapacity = data.getFuelCapacity();
-        Fragment f = this;
-        Object o = fuelCapacityLayout;
-        //fuelCapacityLayout.getEditText().setText(fuelCapacity);
-        //this.getView().findViewById(R.id.fuelCapacity);
-
-
-        int i;
-        i=10;
-
         fuelCapacityLayout.getEditText().setText(String.valueOf(fuelCapacity));
-
-
-        i=11;
     }
 
 }
