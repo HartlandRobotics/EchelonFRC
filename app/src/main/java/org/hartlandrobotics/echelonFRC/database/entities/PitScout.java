@@ -44,8 +44,15 @@ public class PitScout {
     private boolean underTrench;
     @ColumnInfo(name="robot_shooter_type")
     private String shooterType;
+    @ColumnInfo(name="robot_size")
+    private String robotSize;
+    @ColumnInfo(name="intake_size")
+    private String intakeSize;
     @ColumnInfo(name="robot_intake_type")
     private int intakeType;
+
+    @ColumnInfo(name="robot_fuel_capacity")
+    private String fuelCapacity;
 
     @ColumnInfo(name = "points_in_auto")
     private int pointsScoredInAuto;
@@ -197,11 +204,32 @@ public class PitScout {
         this.shooterType = shooterType;
     }
 
+    public String getRobotSize(){
+        return robotSize;
+    }
+    public void setRobotSize(String robotSize){
+        this.robotSize = robotSize;
+    }
+
+    public String getIntakeSize(){
+        return intakeSize;
+    }
+    public void setIntakeSize(String intakeSize){
+        this.intakeSize = intakeSize;
+    }
+
     public int getIntakeType(){
         return intakeType;
     }
     public void setIntakeType(int intakeType) {
         this.intakeType = intakeType;
+    }
+
+    public String getFuelCapacity(){
+        return fuelCapacity;
+    }
+    public void setFuelCapacity(String fuelCapacity){
+        this.fuelCapacity = fuelCapacity;
     }
 
     public int getPointsScoredInAuto() {

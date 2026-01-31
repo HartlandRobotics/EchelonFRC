@@ -2,8 +2,6 @@ package org.hartlandrobotics.echelonFRC.pitScouting;
 
 import android.os.Bundle;
 
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
 import android.view.LayoutInflater;
@@ -30,6 +28,8 @@ public class PitScoutRobot1Fragment extends Fragment {
     CheckBox traversesHumpCheckBox;
     CheckBox underTrenchCheckBox;
     TextInputLayout shooterTypeLayout;
+    TextInputLayout robotSizeLayout;
+    TextInputLayout intakeSizeLayout;
 
     RadioGroup intakeGroup;
 
@@ -74,6 +74,8 @@ public class PitScoutRobot1Fragment extends Fragment {
     }
 
     private void setupControls(View view) {
+
+
         driveTrainLayout = view.findViewById(R.id.driveTrain);
         driveTrainAutoComplete = view.findViewById(R.id.driveTrainAutoComplete);
         String[] driveTrains = getResources().getStringArray(R.array.drive_train);
@@ -85,6 +87,8 @@ public class PitScoutRobot1Fragment extends Fragment {
         underTrenchCheckBox = view.findViewById(R.id.underTrench);
 
         shooterTypeLayout = view.findViewById(R.id.shooterType);
+        robotSizeLayout = view.findViewById(R.id.sizeOfRobot);
+        intakeSizeLayout = view.findViewById(R.id.sizeOfIntake);
 
         intakeGroup = view.findViewById(R.id.intakeGroup);
     }
@@ -104,6 +108,10 @@ public class PitScoutRobot1Fragment extends Fragment {
 
         String shooterType = shooterTypeLayout.getEditText().getText().toString();
         data.setShooterType(shooterType);
+        String robotSize = robotSizeLayout.getEditText().getText().toString();
+        data.setRobotSize(robotSize);
+        String intakeSize = intakeSizeLayout.getEditText().getText().toString();
+        data.setIntakeSize(intakeSize);
 
         int intakeSelectedId = intakeGroup.getCheckedRadioButtonId();
         if( intakeSelectedId == R.id.overBumperIntake ){
@@ -127,6 +135,12 @@ public class PitScoutRobot1Fragment extends Fragment {
 
         String shooterType = data.getShooterType();
         shooterTypeLayout.getEditText().setText(shooterType);
+
+        String robotSize = data.getRobotSize();
+        robotSizeLayout.getEditText().setText(robotSize);
+
+        String intakeSize = data.getIntakeSize();
+        intakeSizeLayout.getEditText().setText(intakeSize);
 
         int intakeType = data.getIntakeType();
         switch (intakeType){
