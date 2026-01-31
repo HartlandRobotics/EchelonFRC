@@ -38,6 +38,15 @@ public class PitScout {
     @ColumnInfo(name = "coding_language")
     private String codingLanguage;
 
+    @ColumnInfo(name="robot_traverses_hump")
+    private boolean traversesHump;
+    @ColumnInfo(name="robot_under_trench")
+    private boolean underTrench;
+    @ColumnInfo(name="robot_shooter_type")
+    private String shooterType;
+    @ColumnInfo(name="robot_intake_type")
+    private int intakeType;
+
     @ColumnInfo(name = "points_in_auto")
     private int pointsScoredInAuto;
 
@@ -163,6 +172,36 @@ public class PitScout {
 
     public void setCodingLanguage(@NonNull String codingLanguage) {
         this.codingLanguage = codingLanguage;
+    }
+
+
+    public boolean getTraversesHump(){
+        return traversesHump;
+    }
+    public void setTraversesHump(boolean traversesHump) {
+        this.traversesHump = traversesHump;
+    }
+
+    public boolean getUnderTrench(){
+        return underTrench;
+    }
+    public void setUnderTrench(boolean underTrench){
+        this.underTrench = underTrench;
+    }
+
+
+    public String getShooterType(){
+        return shooterType;
+    }
+    public void setShooterType(String shooterType){
+        this.shooterType = shooterType;
+    }
+
+    public int getIntakeType(){
+        return intakeType;
+    }
+    public void setIntakeType(int intakeType) {
+        this.intakeType = intakeType;
     }
 
     public int getPointsScoredInAuto() {

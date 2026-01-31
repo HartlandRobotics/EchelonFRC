@@ -34,7 +34,7 @@
             android:text="Over hump" />
 
         <CheckBox
-            android:id="@+id/traversesTrench"
+            android:id="@+id/underTrench"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:checked="false"
@@ -85,6 +85,7 @@
     </com.google.android.material.textfield.TextInputLayout>
 
     <RadioGroup
+        android:id="@+id/intakeGroup"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal">

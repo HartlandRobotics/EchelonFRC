@@ -11,6 +11,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
+import android.widget.CheckBox;
+import android.widget.RadioGroup;
 
 import com.google.android.material.textfield.TextInputLayout;
 
@@ -24,6 +26,14 @@ public class PitScoutRobot1Fragment extends Fragment {
 
     TextInputLayout driveTrainLayout;
     AutoCompleteTextView driveTrainAutoComplete;
+
+    CheckBox traversesHumpCheckBox;
+    CheckBox underTrenchCheckBox;
+    TextInputLayout shooterTypeLayout;
+
+    RadioGroup intakeGroup;
+
+
     String defaultDriveTrain;
 
 
@@ -71,7 +81,12 @@ public class PitScoutRobot1Fragment extends Fragment {
         ArrayAdapter adapterDriveTrain = new ArrayAdapter(getActivity(), R.layout.dropdown_item, driveTrains);
         driveTrainAutoComplete.setAdapter(adapterDriveTrain);
 
+        traversesHumpCheckBox = view.findViewById(R.id.traversesHump);
+        underTrenchCheckBox = view.findViewById(R.id.underTrench);
 
+        shooterTypeLayout = view.findViewById(R.id.shooterType);
+
+        intakeGroup = view.findViewById(R.id.intakeGroup);
     }
 
 
@@ -84,6 +99,20 @@ public class PitScoutRobot1Fragment extends Fragment {
         String driveTrain = StringUtils.defaultIfBlank(driveTrainLayout.getEditText().getText().toString(), StringUtils.EMPTY);
         data.setRobotDriveTrain(driveTrain);
 
+        data.setTraversesHump( traversesHumpCheckBox.isChecked() );
+        data.setUnderTrench( underTrenchCheckBox.isChecked() );
+
+        String shooterType = shooterTypeLayout.getEditText().getText().toString();
+        data.setShooterType(shooterType);
+
+        int intakeSelectedId = intakeGroup.getCheckedRadioButtonId();
+        if( intakeSelectedId == R.id.overBumperIntake ){
+            data.setIntakeType(0);
+        }else{
+            data.setIntakeType(1);
+        }
+
+
     }
 
     public void populateControlsFromData() {
@@ -92,6 +121,23 @@ public class PitScoutRobot1Fragment extends Fragment {
 
         String driveType = StringUtils.defaultIfBlank(data.getRobotDriveTrain(), defaultDriveTrain);
         driveTrainAutoComplete.setText(driveType,false);
+
+        traversesHumpCheckBox.setChecked(data.getTraversesHump());
+        underTrenchCheckBox.setChecked(data.getUnderTrench());
+
+        String shooterType = data.getShooterType();
+        shooterTypeLayout.getEditText().setText(shooterType);
+
+        int intakeType = data.getIntakeType();
+        switch (intakeType){
+            case 0:
+                intakeGroup.check(R.id.overBumperIntake);
+                break;
+            case 1:
+                intakeGroup.check(R.id.passthroughBumperIntake);
+                break;
+        }
+        
     }
 
 
