@@ -68,7 +68,7 @@ public class PitScoutEndGameFragment extends Fragment {
         if( hangTimeLayout == null ) return;
 
         String hangTimeText = StringUtils.defaultIfBlank(hangTimeLayout.getEditText().getText().toString(), "0");
-        data.setHangTime(Integer.valueOf(hangTimeText));
+        //data.setHangTime(Integer.valueOf(hangTimeText));
 
         }
 
@@ -79,8 +79,8 @@ public class PitScoutEndGameFragment extends Fragment {
 
         if( hangTimeLayout == null ) return;
 
-        String hangTimeText = String.valueOf(data.getHangTime());
-        hangTimeLayout.getEditText().setText(hangTimeText);
+        //String hangTimeText = String.valueOf(data.getHangTime());
+        //hangTimeLayout.getEditText().setText(hangTimeText);
 
     }
 }

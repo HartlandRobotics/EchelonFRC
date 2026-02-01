@@ -20,11 +20,12 @@ public class PitScoutViewModel extends AndroidViewModel {
         pitScoutRepo = new PitScoutRepo(app);
     }
 
-    public PitScout getDefault(String eventKey, String currentTeamKey){
+    public PitScout getDefault(String yearKey, String eventKey, String currentTeamKey){
         PitScout ps = new PitScout();
-        ps.setPitScoutKey(UUID.randomUUID().toString());
+        ps.setYearKey(yearKey);
         ps.setEventKey(eventKey);
         ps.setTeamKey(currentTeamKey);
+        ps.setPitScoutKey(yearKey + "_" + eventKey + "_" + currentTeamKey);
 
         return ps;
     }

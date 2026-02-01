@@ -45,7 +45,7 @@ public class PitScoutActivity extends EchelonActivity {
 
 
     PitScoutViewModel pitScoutViewModel;
-    private PitScout data;
+    public PitScout data;
 
     public static void launch(Context context) {
         Intent intent = new Intent(context, PitScoutActivity.class);
@@ -105,7 +105,7 @@ public class PitScoutActivity extends EchelonActivity {
                     pitScoutViewModel.getPitScout(eventKey, currentTeam.getTeamKey())
                             .observe(PitScoutActivity.this, ps->{
                                 if( ps == null ){
-                                    data = pitScoutViewModel.getDefault(status.getEventKey(), currentTeam.getTeamKey());
+                                    data = pitScoutViewModel.getDefault(status.getYear(), status.getEventKey(), currentTeam.getTeamKey());
                                 } else {
                                     data = ps;
                                 }

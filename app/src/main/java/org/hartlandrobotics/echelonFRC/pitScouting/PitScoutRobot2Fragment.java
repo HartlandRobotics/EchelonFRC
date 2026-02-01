@@ -50,6 +50,7 @@ public class PitScoutRobot2Fragment extends Fragment {
     @Override
     public void onResume() {
         super.onResume();
+        setupControls(requireView());
         populateControlsFromData();
     }
 
@@ -85,10 +86,9 @@ public class PitScoutRobot2Fragment extends Fragment {
 
         String humanAccuracy = humanAccuracyLayout.getEditText().getText().toString();
         data.setHumanAccuracy(humanAccuracy);
+
         String additionalNotes = additionalNotesLayout.getEditText().getText().toString();
         data.setAdditionalNotes(additionalNotes);
-
-
     }
 
     public void populateControlsFromData() {

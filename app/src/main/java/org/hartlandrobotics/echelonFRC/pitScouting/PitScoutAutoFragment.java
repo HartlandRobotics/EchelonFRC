@@ -30,8 +30,7 @@ public class PitScoutAutoFragment extends Fragment {
     String defaultProgrammingLanguage;
     LinearLayout missingAutoLayout;
     LinearLayout hasAutoLayout;
-    TextInputLayout autoLanguage;
-    TextInputLayout autoFuelScored;
+    TextInputLayout autoFuelScoredLayout;
 
 
 
@@ -64,7 +63,9 @@ public class PitScoutAutoFragment extends Fragment {
     @Override
     public void onResume() {
         super.onResume();
-        Log.i(TAG, "OnResume running");
+
+        setupControls(requireView());
+
         populateControlsFromData();
     }
 
@@ -86,7 +87,7 @@ public class PitScoutAutoFragment extends Fragment {
             setVisibility();
         });
 
-        autoFuelScored = view.findViewById(R.id.autoFuelScored);
+        autoFuelScoredLayout = view.findViewById(R.id.autoFuelScored);
 
         missingAutoLayout = view.findViewById(R.id.missingAutoLayout);
 
@@ -95,13 +96,12 @@ public class PitScoutAutoFragment extends Fragment {
             setVisibility();
         });
 
-        autoLanguage = view.findViewById(R.id.autoLanguage);
 
         programmingLanguageLayout = view.findViewById(R.id.autoLanguage);
         programmingLanguageAutoComplete = view.findViewById(R.id.autoLanguageAutoComplete);
         String[] languages = getResources().getStringArray(R.array.programming_languages);
         defaultProgrammingLanguage = languages[0];
-        ArrayAdapter adapter = new ArrayAdapter(getActivity(), R.layout.dropdown_item, languages);
+        ArrayAdapter<String> adapter = new ArrayAdapter<String>(requireActivity(), R.layout.dropdown_item, languages);
         programmingLanguageAutoComplete.setAdapter(adapter);
 
     }
@@ -115,30 +115,30 @@ public class PitScoutAutoFragment extends Fragment {
         boolean hasAuto = hasAutoGroup.getCheckedRadioButtonId() == R.id.hasAutoYes;
         data.setHasAutonomous(hasAuto);
 
-        String autoFuelScoredString = StringUtils.defaultIfBlank(autoFuelScored.getEditText().getText().toString(), "0");
-        int autoFuelScored = Integer.parseInt(autoFuelScoredString.toString());
-        data.setAutoFuelScoredText(autoFuelScored);
-
         boolean wantsHelp = hasAutoGroup.getCheckedRadioButtonId() == R.id.helpAutoYes;
         data.setHelpCreatingAuto(wantsHelp);
 
         String codingLanguage = StringUtils.defaultIfBlank(programmingLanguageAutoComplete.getEditableText().toString(), StringUtils.EMPTY);
         data.setCodingLanguage(codingLanguage);
+
+        int autoFuelScored = Integer.parseInt(StringUtils.defaultIfBlank(autoFuelScoredLayout.getEditText().getText().toString(), "0"));
+        data.setAutoFuelScored(autoFuelScored);
+
+
+
     }
 
     public void populateControlsFromData() {
-        if (data == null) {
-            return;
-        }
-
+        if (data == null) { return; }
         if( hasAutoGroup == null ) return;
+
         Log.i(TAG, "populating controls from data");
 
         int hasAutoCheckedButtonId = data.getHasAutonomous() ? R.id.hasAutoYes : R.id.hasAutoNo;
         hasAutoGroup.check(hasAutoCheckedButtonId);
 
         String autoFuelScoredText = StringUtils.defaultIfBlank(String.valueOf(data.getAutoFuelScored()), "0");
-        autoFuelScored.getEditText().setText(autoFuelScoredText);
+        autoFuelScoredLayout.getEditText().setText(autoFuelScoredText);
 
         boolean wantsHelpWithAuto = data.getHelpCreatingAuto();
         int wantsHelpCheckedButtonId = wantsHelpWithAuto ? R.id.helpAutoYes : R.id.helpAutoNo;
@@ -151,8 +151,17 @@ public class PitScoutAutoFragment extends Fragment {
     }
 
     public void setVisibility() {
-        if (data == null) {
-            return;
-        }
+        Log.i(TAG, "start of visibility");
+
+        if (data == null) { return; }
+        if( hasAutoGroup == null ) return;
+
+        Log.i(TAG, "end of visibility");
+
+        programmingLanguageLayout.setVisibility( data.getHasAutonomous() ? View.GONE : View.VISIBLE);
+
+
+        int i;
+        i = 10;
     }
 }

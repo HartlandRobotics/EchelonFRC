@@ -4,6 +4,7 @@ import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -64,6 +65,7 @@ public class PitScoutRobot1Fragment extends Fragment {
     @Override
     public void onResume(){
         super.onResume();
+        setupControls(requireView());
         populateControlsFromData();
     }
 
@@ -80,7 +82,7 @@ public class PitScoutRobot1Fragment extends Fragment {
         driveTrainAutoComplete = view.findViewById(R.id.driveTrainAutoComplete);
         String[] driveTrains = getResources().getStringArray(R.array.drive_train);
         defaultDriveTrain = driveTrains[0];
-        ArrayAdapter adapterDriveTrain = new ArrayAdapter(getActivity(), R.layout.dropdown_item, driveTrains);
+        ArrayAdapter<String> adapterDriveTrain = new ArrayAdapter<String>(requireActivity(), R.layout.dropdown_item, driveTrains);
         driveTrainAutoComplete.setAdapter(adapterDriveTrain);
 
         traversesHumpCheckBox = view.findViewById(R.id.traversesHump);
@@ -124,7 +126,10 @@ public class PitScoutRobot1Fragment extends Fragment {
     }
 
     public void populateControlsFromData() {
+        Log.i(TAG, "start of populate controls from data");
+
         if( data == null ) return;
+        if( driveTrainAutoComplete == null ) return;
 
 
         String driveType = StringUtils.defaultIfBlank(data.getRobotDriveTrain(), defaultDriveTrain);
@@ -151,7 +156,9 @@ public class PitScoutRobot1Fragment extends Fragment {
                 intakeGroup.check(R.id.passthroughBumperIntake);
                 break;
         }
-        
+
+        Log.i(TAG, "end of populate controls from data");
+
     }
 
 
