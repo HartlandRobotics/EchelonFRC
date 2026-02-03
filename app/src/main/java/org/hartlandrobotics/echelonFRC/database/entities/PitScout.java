@@ -62,7 +62,14 @@ public class PitScout {
     private String codingLanguage;
     @ColumnInfo(name = "auto_fuel_scored")
     private int autoFuelScored;
-
+    @ColumnInfo(name="auto_hang")
+    private boolean autoHang;
+    @ColumnInfo(name="auto_how_hang")
+    private String autoHowHang;
+    @ColumnInfo(name="auto_where_hang")
+    private String autoWhereHang;
+    @ColumnInfo(name="auto_center_line")
+    private boolean autoCenterLine;
 
 
     @Ignore
@@ -72,7 +79,7 @@ public class PitScout {
     public PitScout(@NonNull String pitScoutKey, @NonNull String yearKey, @NonNull String eventKey, @NonNull String teamKey,
                     @NonNull String robotDriveTrain, boolean traversesHump, boolean underTrench, String shooterType, String robotSize, String intakeSize, int intakeType,
                     int fuelCapacity, boolean groundFuel, boolean humanFuel, String humanAccuracy, String additionalNotes,
-                    boolean hasAutonomous, boolean helpCreatingAuto, @NonNull String codingLanguage, int autoFuelScored
+                    boolean hasAutonomous, boolean helpCreatingAuto, @NonNull String codingLanguage, int autoFuelScored, boolean autoHang, String autoHowHang, String autoWhereHang, boolean autoCenterLine
                     ) {
 
         if(StringUtils.isBlank(pitScoutKey)){
@@ -102,6 +109,10 @@ public class PitScout {
         this.helpCreatingAuto = helpCreatingAuto;
         this.codingLanguage = codingLanguage;
         this.autoFuelScored = autoFuelScored;
+        this.autoHang = autoHang;
+        this.autoHowHang = autoHowHang;
+        this.autoWhereHang = autoWhereHang;
+        this.autoCenterLine = autoCenterLine;
     }
 
     @NonNull
@@ -237,6 +248,33 @@ public class PitScout {
    }
     public void setAutoFuelScored (int autoFuelScored) {
         this.autoFuelScored = autoFuelScored;
+    }
+
+    public boolean getAutoHang(){
+        return autoHang;
+    }
+    public void setAutoHang (boolean autoHangCheckbox) {
+        this.autoHang = autoHangCheckbox;
+    }
+
+    public String getAutoHowHang(){
+        return autoHowHang;
+    }
+    public void setAutoHowHang(String autoHowHang){
+        this.autoHowHang = autoHowHang;
+    }
+    public String getAutoWhereHang(){
+        return autoWhereHang;
+    }
+    public void setAutoWhereHang(String autoWhereHang){
+        this.autoWhereHang = autoWhereHang;
+    }
+
+    public boolean getAutoCenterLine(){
+        return autoCenterLine;
+    }
+    public void setAutoCenterLine (boolean autoCenterLine) {
+        this.autoCenterLine = autoCenterLine;
     }
 
 }

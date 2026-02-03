@@ -10,6 +10,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
+import android.widget.CheckBox;
 import android.widget.LinearLayout;
 import android.widget.RadioGroup;
 
@@ -31,6 +32,11 @@ public class PitScoutAutoFragment extends Fragment {
     LinearLayout missingAutoLayout;
     LinearLayout hasAutoLayout;
     TextInputLayout autoFuelScoredLayout;
+    CheckBox autoHangCheckbox;
+    TextInputLayout autoWhereHangLayout;
+    TextInputLayout autoHowHangLayout;
+    CheckBox autoCenterLineCheckbox;
+
 
 
 
@@ -96,6 +102,8 @@ public class PitScoutAutoFragment extends Fragment {
             setVisibility();
         });
 
+        autoHangCheckbox = view.findViewById(R.id.autoHang);
+        autoCenterLineCheckbox = view.findViewById(R.id.centerLine);
 
         programmingLanguageLayout = view.findViewById(R.id.autoLanguage);
         programmingLanguageAutoComplete = view.findViewById(R.id.autoLanguageAutoComplete);
@@ -103,6 +111,9 @@ public class PitScoutAutoFragment extends Fragment {
         defaultProgrammingLanguage = languages[0];
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(requireActivity(), R.layout.dropdown_item, languages);
         programmingLanguageAutoComplete.setAdapter(adapter);
+
+        autoHowHangLayout = view.findViewById(R.id.autoHowHang);
+        autoWhereHangLayout = view.findViewById(R.id.autoWhereHang);
 
     }
 
@@ -124,7 +135,13 @@ public class PitScoutAutoFragment extends Fragment {
         int autoFuelScored = Integer.parseInt(StringUtils.defaultIfBlank(autoFuelScoredLayout.getEditText().getText().toString(), "0"));
         data.setAutoFuelScored(autoFuelScored);
 
+        data.setAutoHang( autoHangCheckbox.isChecked() );
+        data.setAutoCenterLine( autoCenterLineCheckbox.isChecked() );
 
+        String autoWhereHang = autoWhereHangLayout.getEditText().getText().toString();
+        data.setAutoWhereHang(autoWhereHang);
+        String autoHowHang = autoHowHangLayout.getEditText().getText().toString();
+        data.setAutoHowHang(autoHowHang);
 
     }
 
@@ -146,6 +163,15 @@ public class PitScoutAutoFragment extends Fragment {
 
         String programmingLanguage = StringUtils.defaultIfBlank(data.getCodingLanguage(), defaultProgrammingLanguage);
         programmingLanguageAutoComplete.setText(programmingLanguage, false);
+
+        autoHangCheckbox.setChecked(data.getAutoHang());
+        autoCenterLineCheckbox.setChecked(data.getAutoCenterLine());
+
+        String autoWhereHang = data.getAutoWhereHang();
+        autoWhereHangLayout.getEditText().setText(autoWhereHang);
+
+        String autoHowHang = data.getAutoHowHang();
+        autoHowHangLayout.getEditText().setText(autoHowHang);
 
         setVisibility();
     }

@@ -11,6 +11,7 @@ import android.widget.CheckBox;
 
 import com.google.android.material.textfield.TextInputLayout;
 
+import org.apache.commons.lang3.StringUtils;
 import org.hartlandrobotics.echelonFRC.R;
 import org.hartlandrobotics.echelonFRC.database.entities.PitScout;
 
@@ -78,7 +79,8 @@ public class PitScoutRobot2Fragment extends Fragment {
         if (data == null) return;
         if(fuelCapacityLayout==null) return;
 
-        int fuelCapacity = Integer.parseInt(fuelCapacityLayout.getEditText().getText().toString());
+       String fuelCapacityString = StringUtils.defaultIfBlank(fuelCapacityLayout.getEditText().getText().toString(), "0");
+        int fuelCapacity = Integer.parseInt(fuelCapacityString);
         data.setFuelCapacity(fuelCapacity);
 
         data.setGroundFuel( groundFuelCheckBox.isChecked() );
