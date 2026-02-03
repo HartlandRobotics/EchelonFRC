@@ -71,6 +71,13 @@ public class PitScout {
     @ColumnInfo(name="auto_center_line")
     private boolean autoCenterLine;
 
+    @ColumnInfo(name="tele_op_can_pass")
+    private boolean teleOpCanPass;
+    @ColumnInfo(name="tele_op_role_preference")
+    private int rolePreference;
+    @ColumnInfo(name="tele_op_defense_experience")
+    private int defenseExperience;
+
 
     @Ignore
     public PitScout(){
@@ -79,7 +86,8 @@ public class PitScout {
     public PitScout(@NonNull String pitScoutKey, @NonNull String yearKey, @NonNull String eventKey, @NonNull String teamKey,
                     @NonNull String robotDriveTrain, boolean traversesHump, boolean underTrench, String shooterType, String robotSize, String intakeSize, int intakeType,
                     int fuelCapacity, boolean groundFuel, boolean humanFuel, String humanAccuracy, String additionalNotes,
-                    boolean hasAutonomous, boolean helpCreatingAuto, @NonNull String codingLanguage, int autoFuelScored, boolean autoHang, String autoHowHang, String autoWhereHang, boolean autoCenterLine
+                    boolean hasAutonomous, boolean helpCreatingAuto, @NonNull String codingLanguage, int autoFuelScored, boolean autoHang, String autoHowHang, String autoWhereHang, boolean autoCenterLine,
+                    boolean teleOpCanPass, int rolePreference, int defenseExperience
                     ) {
 
         if(StringUtils.isBlank(pitScoutKey)){
@@ -113,6 +121,10 @@ public class PitScout {
         this.autoHowHang = autoHowHang;
         this.autoWhereHang = autoWhereHang;
         this.autoCenterLine = autoCenterLine;
+
+        this.teleOpCanPass = teleOpCanPass;
+        this.rolePreference = rolePreference;
+        this.defenseExperience = defenseExperience;
     }
 
     @NonNull
@@ -276,5 +288,27 @@ public class PitScout {
     public void setAutoCenterLine (boolean autoCenterLine) {
         this.autoCenterLine = autoCenterLine;
     }
+
+    public boolean getTeleOpCanPass(){
+        return teleOpCanPass;
+    }
+    public void setTeleOpCanPass(boolean teleOpCanPass) {
+        this.teleOpCanPass = teleOpCanPass;
+    }
+
+    public int getDefenseExperience(){
+        return defenseExperience;
+    }
+    public void setDefenseExperience(int defenseExperience) {
+        this.defenseExperience = defenseExperience;
+    }
+
+    public int getRolePreference(){
+        return rolePreference;
+    }
+    public void setRolePreference(int rolePreference) {
+        this.rolePreference = rolePreference;
+    }
+
 
 }

@@ -8,6 +8,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.CheckBox;
 import android.widget.RadioGroup;
 
 import com.google.android.material.textfield.TextInputLayout;
@@ -19,8 +20,12 @@ import org.hartlandrobotics.echelonFRC.database.entities.PitScout;
 public class PitScoutTeleOpFragment extends Fragment {
     public static final String TAG = "PitScoutTeleOpFragment";
 
+    CheckBox teleOpCanPassCheckbox;
+    RadioGroup rolePreferenceGroup;
+    RadioGroup defenseExperienceGroup;
 
-//    RadioGroup pickOffGround;
+
+    //    RadioGroup pickOffGround;
 //    TextInputLayout scoringMethodLayout;
 //    RadioGroup defenseGroup;
     PitScout data;
@@ -46,7 +51,7 @@ public class PitScoutTeleOpFragment extends Fragment {
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_pitscout_tele_op, container, false);
 
-        //setupControls(view);
+        setupControls(view);
 
         return view;
     }
@@ -66,9 +71,15 @@ public class PitScoutTeleOpFragment extends Fragment {
     }
 
     private void setupControls(View view) {
-            if (data == null) {
-                return;
-            }
+        if (data == null) {
+            return;
+        }
+
+        teleOpCanPassCheckbox = view.findViewById(R.id.canPass);
+
+        rolePreferenceGroup = view.findViewById(R.id.rolePrefrence);
+        defenseExperienceGroup = view.findViewById(R.id.teleOpDefense);
+
 //        pickOffGround = view.findViewById(R.id.rolePrefrence);
 //        pickOffGround.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
 //            @Override
@@ -90,6 +101,27 @@ public class PitScoutTeleOpFragment extends Fragment {
     public void populateDataFromControls() {
         Log.i(TAG, "populate data from controls");
 
+        data.setTeleOpCanPass( teleOpCanPassCheckbox.isChecked() );
+
+        int rolePreferenceId = rolePreferenceGroup.getCheckedRadioButtonId();
+        if( rolePreferenceId == R.id.rolePrefrenceScoring ){
+            data.setRolePreference(0);
+        }else if( rolePreferenceId == R.id.rolePrefrencePassing ){
+            data.setRolePreference(1);
+        } else {
+            data.setRolePreference(2);
+        }
+
+        int defenseExperienceId = defenseExperienceGroup.getCheckedRadioButtonId();
+        if( defenseExperienceId == R.id.robotDefenseYes ){
+            data.setDefenseExperience(0);
+        } else {
+            data.setDefenseExperience(1);
+        }
+
+
+
+
 //        boolean offGroundYes = pickOffGround.getCheckedRadioButtonId() == R.id.offGroundYes;
 //        data.setOffGroundYes(offGroundYes);
 //
@@ -105,6 +137,32 @@ public class PitScoutTeleOpFragment extends Fragment {
             Log.i(TAG, "no data to bind");
             return;
         }
+        if (teleOpCanPassCheckbox == null) return;
+
+        int rolePreference = data.getRolePreference();
+        switch (rolePreference){
+            case 0:
+                rolePreferenceGroup.check(R.id.rolePrefrenceScoring);
+                break;
+            case 1:
+                rolePreferenceGroup.check(R.id.rolePrefrencePassing);
+                break;
+            case 2:
+                rolePreferenceGroup.check(R.id.rolePrefrenceNeither);
+                break;
+        }
+
+        int defenseExperience = data.getDefenseExperience();
+        switch (defenseExperience){
+            case 0:
+                defenseExperienceGroup.check(R.id.robotDefenseYes);
+                break;
+            case 1:
+                defenseExperienceGroup.check(R.id.robotDefenseNo);
+                break;
+        }
+
+        teleOpCanPassCheckbox.setChecked(data.getTeleOpCanPass());
 
         // check that controls have been established
 //        if(pickOffGround == null) return;
