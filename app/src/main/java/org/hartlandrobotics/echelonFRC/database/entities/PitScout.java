@@ -9,8 +9,6 @@ import androidx.room.PrimaryKey;
 
 import org.apache.commons.lang3.StringUtils;
 
-import java.util.UUID;
-
 @Entity(tableName = "pit_scout")
 public class PitScout {
     @PrimaryKey
@@ -78,6 +76,20 @@ public class PitScout {
     @ColumnInfo(name="tele_op_defense_experience")
     private int defenseExperience;
 
+    @ColumnInfo(name="end_hang")
+    private boolean endHang;
+    @ColumnInfo(name="hang_time")
+    private int hangTime;
+    @ColumnInfo(name="end_where_hang")
+    private String endWhereHang;
+    @ColumnInfo(name="end_how_hang")
+    private String endHowHang;
+    @ColumnInfo(name="end_high_climb")
+    private boolean endHighClimb;
+    @ColumnInfo(name="end_mid_climb")
+    private boolean endMidClimb;
+    @ColumnInfo(name="end_low_climb")
+    private boolean endLowClimb;
 
     @Ignore
     public PitScout(){
@@ -125,6 +137,14 @@ public class PitScout {
         this.teleOpCanPass = teleOpCanPass;
         this.rolePreference = rolePreference;
         this.defenseExperience = defenseExperience;
+
+        this.endHang = endHang;
+        this.hangTime = hangTime;
+        this.endWhereHang = endWhereHang;
+        this.endHowHang = endHowHang;
+        this.endHighClimb = endHighClimb;
+        this.endMidClimb = endMidClimb;
+        this.endLowClimb = endLowClimb;
     }
 
     @NonNull
@@ -239,7 +259,7 @@ public class PitScout {
    public boolean getHasAutonomous() {
        return hasAutonomous;
    }
-    public void setHasAutonomous(boolean hasAutonomous) {
+   public void setHasAutonomous(boolean hasAutonomous) {
         this.hasAutonomous = hasAutonomous;
     }
    public boolean getHelpCreatingAuto() {
@@ -310,5 +330,28 @@ public class PitScout {
         this.rolePreference = rolePreference;
     }
 
+    public boolean getEndHang() {
+        return endHang;
+    }
+    public void setEndHang(boolean endHang) {
+        this.endHang = endHang;
+    }
 
+    public int getHangTime(){return hangTime;}
+    public void setHangTime(int hangTime){this.hangTime = hangTime;}
+    public String getEndWhereHang(){return endWhereHang;}
+    public void setEndWhereHang(String endWhereHang){this.endWhereHang = endWhereHang;}
+    public String getEndHowHang(){
+        return endHowHang;
+    }
+    public void setEndHowHang(String endHowHang){
+        this.endHowHang = endHowHang;
+    }
+
+    public boolean getEndHighClimb(){return endHighClimb;}
+    public void setEndHighClimb(boolean endHighClimb){this.endHighClimb = endHighClimb;}
+    public boolean getEndMidClimb(){return endMidClimb;}
+    public void setEndMidClimb(boolean endMidClimb){this.endMidClimb = endMidClimb;}
+    public boolean getEndLowClimb(){return endLowClimb;}
+    public void setEndLowClimb(boolean endLowClimb){this.endLowClimb = endLowClimb;}
 }

@@ -16,6 +16,7 @@ import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.contract.ActivityResultContract;
 import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentActivity;
 import androidx.viewpager.widget.ViewPager;
 
 import android.provider.MediaStore;
@@ -144,13 +145,16 @@ public class PitScoutPhotosFragment extends Fragment {
     }
 
     private void populateImagesArea(){
+        FragmentActivity activity = this.getActivity();
+        if (activity == null) return;
+
         if(robotImageAdapter == null) return;
 
 
 //        robotImagesPager.setAdapter(robotImageAdapter);
         teamNumber = Integer.parseInt( trimTeamNumber(data.getTeamKey() ) );
 
-        robotImageAdapter = new RobotImage(requireActivity(),teamNumber);
+        robotImageAdapter = new RobotImage(activity,teamNumber);
                 //(getParentFragment().getContext(), teamNumber);
                 //(getActivity().getApplicationContext(), teamNumber);
         robotImagesPager.setAdapter(robotImageAdapter);
