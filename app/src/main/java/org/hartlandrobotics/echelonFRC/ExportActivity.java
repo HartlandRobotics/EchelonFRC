@@ -59,12 +59,25 @@ public class ExportActivity extends EchelonActivity {
     private Button importCSVMatchButton;
     private Button exportTableauResultsButton;
     private MatchResultViewModel matchResultViewModel;
+
+    private boolean isStudentTablet;
+    private boolean isAdminTablet;
+    private boolean hasSelectedSeason;
+
+    private boolean isRed1;
+    private boolean isRed2;
+    private boolean isRed3;
+
+    private boolean isBlue1;
+    private boolean isBlue2;
+    private boolean isBlue3;
+
     AdminSettings adminSettings;
     String role;
 
 
-    public static void launch(Context context){
-        Intent intent = new Intent( context, ExportActivity.class );
+    public static void launch(Context context) {
+        Intent intent = new Intent(context, ExportActivity.class);
         context.startActivity(intent);
     }
 
@@ -75,41 +88,39 @@ public class ExportActivity extends EchelonActivity {
         setContentView(R.layout.activity_export);
         setupToolbar("Export Data");
 
-        adminSettings= AdminSettingsProvider.getAdminSettings(this);
+        adminSettings = AdminSettingsProvider.getAdminSettings(this);
         role = adminSettings.getDeviceRole();
+        isStudentTablet = role.startsWith("red") || role.startsWith("blue");
+        isAdminTablet = role.startsWith("coach") || role.startsWith("captain");
+        isRed1 = role.equalsIgnoreCase("Red1");
+        isRed2 = role.equalsIgnoreCase("Red2");
+        isRed3 = role.equalsIgnoreCase("Red3");
+        isBlue1 = role.equalsIgnoreCase("Blue1");
+        isBlue2 = role.equalsIgnoreCase("Blue2");
+        isBlue3 = role.equalsIgnoreCase("Blue3");
 
         matchResultViewModel = new ViewModelProvider(this).get(MatchResultViewModel.class);
 
         exportRedOneMatchResultsButton = findViewById(R.id.exportRedOneMatchResults);
-        if(!role.equalsIgnoreCase("Red1")){
-            exportRedOneMatchResultsButton.setVisibility(View.GONE);
-        }
+        exportRedOneMatchResultsButton.setVisibility(isRed1 ? View.VISIBLE : View.GONE);
+
         exportRedTwoMatchResultsButton = findViewById(R.id.exportRedTwoMatchResults);
-        if(!role.equalsIgnoreCase("Red2")){
-            exportRedTwoMatchResultsButton.setVisibility(View.GONE);
-        }
+        exportRedTwoMatchResultsButton.setVisibility(isRed2 ? View.VISIBLE : View.GONE);
+
         exportRedThreeMatchResultsButton = findViewById(R.id.exportRedThreeMatchResults);
-        if(!role.equalsIgnoreCase("Red3")){
-            exportRedThreeMatchResultsButton.setVisibility(View.GONE);
-        }
+        exportRedThreeMatchResultsButton.setVisibility(isRed3 ? View.VISIBLE : View.GONE);
+
         exportBlueOneMatchResultsButton = findViewById(R.id.exportBlueOneMatchResults);
-        if(!role.equalsIgnoreCase("Blue1")){
-            exportBlueOneMatchResultsButton.setVisibility(View.GONE);
-        }
+        exportBlueOneMatchResultsButton.setVisibility(isBlue1 ? View.VISIBLE : View.GONE);
+
         exportBlueTwoMatchResultsButton = findViewById(R.id.exportBlueTwoMatchResults);
-        if(!role.equalsIgnoreCase("Blue2")){
-            exportBlueTwoMatchResultsButton.setVisibility(View.GONE);
-        }
+        exportBlueTwoMatchResultsButton.setVisibility(isBlue2 ? View.VISIBLE : View.GONE);
+
         exportBlueThreeMatchResultsButton = findViewById(R.id.exportBlueThreeMatchResults);
-        if(!role.equalsIgnoreCase("Blue3")){
-            exportBlueThreeMatchResultsButton.setVisibility(View.GONE);
-        }
+        exportBlueThreeMatchResultsButton.setVisibility(isBlue3 ? View.VISIBLE : View.GONE);
+        
         exportCaptainsMatchResultsButton = findViewById(R.id.exportCaptainsMatchResults);
-        if(role.equalsIgnoreCase("coach") || role.equalsIgnoreCase("captain")){
-            exportCaptainsMatchResultsButton.setVisibility(View.VISIBLE);
-        }else{
-            exportCaptainsMatchResultsButton.setVisibility(View.GONE);
-        }
+        exportCaptainsMatchResultsButton.setVisibility(isAdminTablet ? View.VISIBLE: View.GONE);
 
         exportPitScoutResultsButton = findViewById(R.id.exportPitScouting);
         exportPitScoutResults();
@@ -132,97 +143,13 @@ public class ExportActivity extends EchelonActivity {
         });
 
         rightLayout = findViewById(R.id.right_column);
-        rightLayout.setVisibility(View.GONE);
+        if (!isAdminTablet) {
+            rightLayout.setVisibility(View.GONE);
+        }
 
     }
 
     public void exportMatchResults(String fileName) throws RuntimeException {
-            Context appContext = getApplicationContext();
-            BlueAllianceStatus status = new BlueAllianceStatus(appContext);
-            File externalFilesDir = getFilePathForMatch();
-            externalFilesDir.mkdirs();
-            String path = externalFilesDir.getAbsolutePath();
-            File[] files = getFilePathsForMatch();
-            MatchResultViewModel matchResultViewModel = new MatchResultViewModel(getApplication());
-            File file = new File( externalFilesDir, fileName);
-
-            matchResultViewModel.getMatchResultsWithTeamMatchByEvent(status.getEventKey()).observe(this, matchResults -> {
-
-                try (FileOutputStream outputStream = new FileOutputStream(file)) {
-                    String header = "Event_Key,Match_Key,Team_Key,Match_Number,Team_Number"
-                            + ",AutoFlag1 ,AutoFlag2, AutoFlag3, AutoFlag4, AutoFlag5"
-                            + ",AutoInt6, AutoInt7, AutoInt8, AutoInt9, AutoInt10, AutoInt11"
-                            + ",TeleOpInt6, TeleOpInt7,TeleOpInt8, TeleOpInt9, TeleOpInt10,TeleOpInt11,TeleOpInt12"
-                            + ",EndFlag1,EndFlag2,EndInt3,EndFlag4, EndFlag5"
-                            + ",DefensesCount"
-                            + ",Match_Result_Key"
-                            + ", AdditionalNotes\n";
-                    outputStream.write(header.getBytes());
-                    int timesRan=0;
-                    for (MatchResultWithTeamMatch matchResultWithTeamMatch : matchResults) {
-                        timesRan++;
-                        MatchResult mr = matchResultWithTeamMatch.matchResult;
-                        Match m = matchResultWithTeamMatch.match;
-                        Team t = matchResultWithTeamMatch.team;
-
-                        List<String> dataForFile = new ArrayList<>();
-                        dataForFile.add(mr.getEventKey());
-                        dataForFile.add(mr.getMatchKey());
-                        dataForFile.add(mr.getTeamKey());
-                        dataForFile.add(String.valueOf(m.getMatchNumber()));
-                        dataForFile.add(String.valueOf(mr.getTeamKey().substring(3)));
-
-                        dataForFile.add(String.valueOf(mr.getAutoFlag1()));
-                        dataForFile.add(String.valueOf(mr.getAutoFlag2()));
-                        dataForFile.add(String.valueOf(mr.getAutoFlag3()));
-                        dataForFile.add(String.valueOf(mr.getAutoFlag4()));
-                        dataForFile.add(String.valueOf(mr.getAutoFlag5()));
-
-                        dataForFile.add(String.valueOf(mr.getAutoInt6()));
-                        dataForFile.add(String.valueOf(mr.getAutoInt7()));
-                        dataForFile.add(String.valueOf(mr.getAutoInt8()));
-                        dataForFile.add(String.valueOf(mr.getAutoInt9()));
-                        dataForFile.add(String.valueOf(mr.getAutoInt10()));
-                        dataForFile.add(String.valueOf(mr.getAutoInt11()));
-
-                        dataForFile.add(String.valueOf(mr.getTeleOpInt6()));
-                        dataForFile.add(String.valueOf(mr.getTeleOpInt7()));
-                        dataForFile.add(String.valueOf(mr.getTeleOpInt8()));
-                        dataForFile.add(String.valueOf(mr.getTeleOpInt9()));
-                        dataForFile.add(String.valueOf(mr.getTeleOpInt10()));
-                        dataForFile.add(String.valueOf(mr.getTeleOpInt11()));
-                        dataForFile.add(String.valueOf(mr.getTeleOpInt12()));
-
-
-                        dataForFile.add(String.valueOf(mr.getEndFlag1()));
-                        dataForFile.add(String.valueOf(mr.getEndFlag2()));
-                        dataForFile.add(String.valueOf(mr.getEndFlag3()));
-                        dataForFile.add(String.valueOf(mr.getEndFlag4()));
-                        dataForFile.add(String.valueOf(mr.getEndFlag5()));
-
-                        dataForFile.add(String.valueOf(mr.getDefenseCount()));
-                        dataForFile.add(mr.getMatchResultKey());
-                        dataForFile.add(StringEscapeUtils.escapeCsv(
-                                mr.getAdditionalNotes()
-                                        .replaceAll(",","_")
-                                        .replaceAll("\"",StringUtils.EMPTY)
-                                        .replaceAll("\n",StringUtils.EMPTY)
-                                        .replaceAll("'",StringUtils.EMPTY)
-                        ));
-
-                        String outputString = dataForFile.stream().collect(Collectors.joining(",")) + "\n";
-                        outputStream.write(outputString.getBytes());
-                    }
-                    outputStream.close();
-                } catch (FileNotFoundException e) {
-                    throw new RuntimeException(e);
-                } catch (IOException e) {
-                    throw new RuntimeException(e);
-                }
-
-            });
- }
-    public void exportTableauResults(String fileName) throws RuntimeException {
         Context appContext = getApplicationContext();
         BlueAllianceStatus status = new BlueAllianceStatus(appContext);
         File externalFilesDir = getFilePathForMatch();
@@ -230,21 +157,21 @@ public class ExportActivity extends EchelonActivity {
         String path = externalFilesDir.getAbsolutePath();
         File[] files = getFilePathsForMatch();
         MatchResultViewModel matchResultViewModel = new MatchResultViewModel(getApplication());
-        File file = new File( externalFilesDir, fileName);
+        File file = new File(externalFilesDir, fileName);
 
         matchResultViewModel.getMatchResultsWithTeamMatchByEvent(status.getEventKey()).observe(this, matchResults -> {
 
             try (FileOutputStream outputStream = new FileOutputStream(file)) {
                 String header = "Event_Key,Match_Key,Team_Key,Match_Number,Team_Number"
-                        + ",AutoNotUsedFlag1 ,AutoNotUsedFlag2, AutoLowClimb, AutoNotUsedFlag4, AutoNotUsedFlag5"
-                        + ",AutoActiveFuel, AutoMissedFuel, AutoPassing, AutoHumanFuel, AutoNotUsedInt10, AutoNotUsedInt11"
-                        + ",TeleOpActiveFuel, TeleOpMissedFuel,TeleOpPassing, TeleOpHumanFuel, TeleOpNotUsedInt10,TeleOpNotUsedInt11,TeleOpNotUsedInt12"
-                        + ",EndHighClimb,EndMidClimb,EndLowClimb,EndNotUsedFlag4, EndNotUsedFlag5"
+                        + ",AutoFlag1 ,AutoFlag2, AutoFlag3, AutoFlag4, AutoFlag5"
+                        + ",AutoInt6, AutoInt7, AutoInt8, AutoInt9, AutoInt10, AutoInt11"
+                        + ",TeleOpInt6, TeleOpInt7,TeleOpInt8, TeleOpInt9, TeleOpInt10,TeleOpInt11,TeleOpInt12"
+                        + ",EndFlag1,EndFlag2,EndInt3,EndFlag4, EndFlag5"
                         + ",DefensesCount"
                         + ",Match_Result_Key"
                         + ", AdditionalNotes\n";
                 outputStream.write(header.getBytes());
-                int timesRan=0;
+                int timesRan = 0;
                 for (MatchResultWithTeamMatch matchResultWithTeamMatch : matchResults) {
                     timesRan++;
                     MatchResult mr = matchResultWithTeamMatch.matchResult;
@@ -290,10 +217,10 @@ public class ExportActivity extends EchelonActivity {
                     dataForFile.add(mr.getMatchResultKey());
                     dataForFile.add(StringEscapeUtils.escapeCsv(
                             mr.getAdditionalNotes()
-                                    .replaceAll(",","_")
-                                    .replaceAll("\"",StringUtils.EMPTY)
-                                    .replaceAll("\n",StringUtils.EMPTY)
-                                    .replaceAll("'",StringUtils.EMPTY)
+                                    .replaceAll(",", "_")
+                                    .replaceAll("\"", StringUtils.EMPTY)
+                                    .replaceAll("\n", StringUtils.EMPTY)
+                                    .replaceAll("'", StringUtils.EMPTY)
                     ));
 
                     String outputString = dataForFile.stream().collect(Collectors.joining(",")) + "\n";
@@ -309,7 +236,94 @@ public class ExportActivity extends EchelonActivity {
         });
     }
 
-    public void setupExportCSVButton(){
+    public void exportTableauResults(String fileName) throws RuntimeException {
+        Context appContext = getApplicationContext();
+        BlueAllianceStatus status = new BlueAllianceStatus(appContext);
+        File externalFilesDir = getFilePathForMatch();
+        externalFilesDir.mkdirs();
+        String path = externalFilesDir.getAbsolutePath();
+        File[] files = getFilePathsForMatch();
+        MatchResultViewModel matchResultViewModel = new MatchResultViewModel(getApplication());
+        File file = new File(externalFilesDir, fileName);
+
+        matchResultViewModel.getMatchResultsWithTeamMatchByEvent(status.getEventKey()).observe(this, matchResults -> {
+
+            try (FileOutputStream outputStream = new FileOutputStream(file)) {
+                String header = "Event_Key,Match_Key,Team_Key,Match_Number,Team_Number"
+                        + ",AutoNotUsedFlag1 ,AutoNotUsedFlag2, AutoLowClimb, AutoNotUsedFlag4, AutoNotUsedFlag5"
+                        + ",AutoActiveFuel, AutoMissedFuel, AutoPassing, AutoHumanFuel, AutoNotUsedInt10, AutoNotUsedInt11"
+                        + ",TeleOpActiveFuel, TeleOpMissedFuel,TeleOpPassing, TeleOpHumanFuel, TeleOpNotUsedInt10,TeleOpNotUsedInt11,TeleOpNotUsedInt12"
+                        + ",EndHighClimb,EndMidClimb,EndLowClimb,EndNotUsedFlag4, EndNotUsedFlag5"
+                        + ",DefensesCount"
+                        + ",Match_Result_Key"
+                        + ", AdditionalNotes\n";
+                outputStream.write(header.getBytes());
+                int timesRan = 0;
+                for (MatchResultWithTeamMatch matchResultWithTeamMatch : matchResults) {
+                    timesRan++;
+                    MatchResult mr = matchResultWithTeamMatch.matchResult;
+                    Match m = matchResultWithTeamMatch.match;
+                    Team t = matchResultWithTeamMatch.team;
+
+                    List<String> dataForFile = new ArrayList<>();
+                    dataForFile.add(mr.getEventKey());
+                    dataForFile.add(mr.getMatchKey());
+                    dataForFile.add(mr.getTeamKey());
+                    dataForFile.add(String.valueOf(m.getMatchNumber()));
+                    dataForFile.add(String.valueOf(mr.getTeamKey().substring(3)));
+
+                    dataForFile.add(String.valueOf(mr.getAutoFlag1()));
+                    dataForFile.add(String.valueOf(mr.getAutoFlag2()));
+                    dataForFile.add(String.valueOf(mr.getAutoFlag3()));
+                    dataForFile.add(String.valueOf(mr.getAutoFlag4()));
+                    dataForFile.add(String.valueOf(mr.getAutoFlag5()));
+
+                    dataForFile.add(String.valueOf(mr.getAutoInt6()));
+                    dataForFile.add(String.valueOf(mr.getAutoInt7()));
+                    dataForFile.add(String.valueOf(mr.getAutoInt8()));
+                    dataForFile.add(String.valueOf(mr.getAutoInt9()));
+                    dataForFile.add(String.valueOf(mr.getAutoInt10()));
+                    dataForFile.add(String.valueOf(mr.getAutoInt11()));
+
+                    dataForFile.add(String.valueOf(mr.getTeleOpInt6()));
+                    dataForFile.add(String.valueOf(mr.getTeleOpInt7()));
+                    dataForFile.add(String.valueOf(mr.getTeleOpInt8()));
+                    dataForFile.add(String.valueOf(mr.getTeleOpInt9()));
+                    dataForFile.add(String.valueOf(mr.getTeleOpInt10()));
+                    dataForFile.add(String.valueOf(mr.getTeleOpInt11()));
+                    dataForFile.add(String.valueOf(mr.getTeleOpInt12()));
+
+
+                    dataForFile.add(String.valueOf(mr.getEndFlag1()));
+                    dataForFile.add(String.valueOf(mr.getEndFlag2()));
+                    dataForFile.add(String.valueOf(mr.getEndFlag3()));
+                    dataForFile.add(String.valueOf(mr.getEndFlag4()));
+                    dataForFile.add(String.valueOf(mr.getEndFlag5()));
+
+                    dataForFile.add(String.valueOf(mr.getDefenseCount()));
+                    dataForFile.add(mr.getMatchResultKey());
+                    dataForFile.add(StringEscapeUtils.escapeCsv(
+                            mr.getAdditionalNotes()
+                                    .replaceAll(",", "_")
+                                    .replaceAll("\"", StringUtils.EMPTY)
+                                    .replaceAll("\n", StringUtils.EMPTY)
+                                    .replaceAll("'", StringUtils.EMPTY)
+                    ));
+
+                    String outputString = dataForFile.stream().collect(Collectors.joining(",")) + "\n";
+                    outputStream.write(outputString.getBytes());
+                }
+                outputStream.close();
+            } catch (FileNotFoundException e) {
+                throw new RuntimeException(e);
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
+
+        });
+    }
+
+    public void setupExportCSVButton() {
         exportCaptainsMatchResultsButton.setOnClickListener((view) -> {
             try {
                 exportMatchResults("matchResultsCaptain.csv");
@@ -323,8 +337,7 @@ public class ExportActivity extends EchelonActivity {
             try {
                 exportMatchResults("matchResultsRedOne.csv");
                 Toast.makeText(this, "export Matches: ", Toast.LENGTH_LONG).show();
-            }
-            catch (RuntimeException e) {
+            } catch (RuntimeException e) {
                 String message = e.getLocalizedMessage();
                 Toast.makeText(this, "export Matches error: " + message, Toast.LENGTH_LONG).show();
             }
@@ -334,8 +347,7 @@ public class ExportActivity extends EchelonActivity {
                 exportMatchResults("matchResultsRedTwo.csv");
                 Toast.makeText(this, "export Matches: ", Toast.LENGTH_LONG).show();
 
-            }
-            catch (RuntimeException e) {
+            } catch (RuntimeException e) {
                 String message = e.getLocalizedMessage();
                 Toast.makeText(this, "export Matches error: " + message, Toast.LENGTH_LONG).show();
             }
@@ -344,8 +356,7 @@ public class ExportActivity extends EchelonActivity {
             try {
                 exportMatchResults("matchResultsRedThree.csv");
                 Toast.makeText(this, "export Matches: ", Toast.LENGTH_LONG).show();
-            }
-            catch (RuntimeException e) {
+            } catch (RuntimeException e) {
                 String message = e.getLocalizedMessage();
                 Toast.makeText(this, "export Matches error: " + message, Toast.LENGTH_LONG).show();
             }
@@ -354,8 +365,7 @@ public class ExportActivity extends EchelonActivity {
             try {
                 exportMatchResults("matchResultsBlueOne.csv");
                 Toast.makeText(this, "export Matches: ", Toast.LENGTH_LONG).show();
-            }
-            catch (RuntimeException e) {
+            } catch (RuntimeException e) {
                 String message = e.getLocalizedMessage();
                 Toast.makeText(this, "export Matches error: " + message, Toast.LENGTH_LONG).show();
             }
@@ -364,8 +374,7 @@ public class ExportActivity extends EchelonActivity {
             try {
                 exportMatchResults("matchResultsBlueTwo.csv");
                 Toast.makeText(this, "export Matches: ", Toast.LENGTH_LONG).show();
-            }
-            catch (RuntimeException e) {
+            } catch (RuntimeException e) {
                 String message = e.getLocalizedMessage();
                 Toast.makeText(this, "export Matches error: " + message, Toast.LENGTH_LONG).show();
             }
@@ -374,15 +383,14 @@ public class ExportActivity extends EchelonActivity {
             try {
                 exportMatchResults("matchResultsBlueThree.csv");
                 Toast.makeText(this, "export Matches: ", Toast.LENGTH_LONG).show();
-            }
-            catch (RuntimeException e) {
+            } catch (RuntimeException e) {
                 String message = e.getLocalizedMessage();
                 Toast.makeText(this, "export Matches error: " + message, Toast.LENGTH_LONG).show();
             }
         });
     }
 
-    public void exportPitScoutResults(){
+    public void exportPitScoutResults() {
         exportPitScoutResultsButton.setOnClickListener((view) -> {
             Context appContext = getApplicationContext();
             BlueAllianceStatus status = new BlueAllianceStatus(appContext);
@@ -408,7 +416,7 @@ public class ExportActivity extends EchelonActivity {
             String strEnd = "<script type=\"text/javascript\" src=\"js/materialize.min.js\"></script>" +
                     "</body>" +
                     "</html>";
-            if(!file.exists()) {
+            if (!file.exists()) {
                 try {
                     file.createNewFile();
                 } catch (IOException e) {
@@ -419,107 +427,104 @@ public class ExportActivity extends EchelonActivity {
                 }
             }
             pitScoutViewModel.getPitScoutByEvent(status.getEventKey()).observe(this, pitScoutResults -> {
-                try{
+                try {
                     FileWriter fw = new FileWriter(file.getAbsoluteFile());
                     BufferedWriter bw = new BufferedWriter(fw);
                     StringBuilder content = new StringBuilder(strBegin);
-                    content.append ("<div class=teamlinks>");
-                    for(PitScout ps: pitScoutResults){
+                    content.append("<div class=teamlinks>");
+                    for (PitScout ps : pitScoutResults) {
                         content.append("<a href=\"#" + ps.getTeamKey().substring(3) + "\">" + ps.getTeamKey().substring(3) + " </a>");
                     }
-                    content.append ("</div>");
+                    content.append("</div>");
 
 
-
-                        for(PitScout ps: pitScoutResults){
-                        content.append( "<a href=\"#" + ps.getTeamKey().substring(3) + " \"><h2 id="+ ps.getTeamKey().substring(3) + " class=team> Team " + ps.getTeamKey().substring(3) + "</h2> </a>")
-                                .append( "<h3 class=tab>Auto</h3>")
+                    for (PitScout ps : pitScoutResults) {
+                        content.append("<a href=\"#" + ps.getTeamKey().substring(3) + " \"><h2 id=" + ps.getTeamKey().substring(3) + " class=team> Team " + ps.getTeamKey().substring(3) + "</h2> </a>")
+                                .append("<h3 class=tab>Auto</h3>")
                                 .append("<ol>")
                                 .append("<li>")
-                                .append ("<p class=question>Does your team perform autonomous?</p>")
-                                .append ("<p class=answer>").append(ps.getHasAutonomous()).append("</p>")
+                                .append("<p class=question>Does your team perform autonomous?</p>")
+                                .append("<p class=answer>").append(ps.getHasAutonomous()).append("</p>")
                                 .append("</li>")
                                 .append("<li>")
-                                .append ("<p class=question>Would you like help creating one?</p>")
-                                .append ("<p class=answer>").append(ps.getHelpCreatingAuto()).append("</p>")
+                                .append("<p class=question>Would you like help creating one?</p>")
+                                .append("<p class=answer>").append(ps.getHelpCreatingAuto()).append("</p>")
                                 .append("</li>");
 
-                                String codingLanguage = ps.getCodingLanguage();
-                                if (!StringUtils.isBlank(codingLanguage)){
-                                    content.append("<li>")
-                                    .append ("<p class=question>What programming language do you use?</p>")
-                                    .append ("<p class=answer>").append(codingLanguage).append("</p>")
+                        String codingLanguage = ps.getCodingLanguage();
+                        if (!StringUtils.isBlank(codingLanguage)) {
+                            content.append("<li>")
+                                    .append("<p class=question>What programming language do you use?</p>")
+                                    .append("<p class=answer>").append(codingLanguage).append("</p>")
                                     .append("</li>");
-                                }
+                        }
 
-                                content.append("<li>")
-                                .append ("<p class=question>How many points do you score in autonomous?</p>")
-                                .append ("<p class=answer>").append(ps.getAutoFuelScored()).append("</p>")
+                        content.append("<li>")
+                                .append("<p class=question>How many points do you score in autonomous?</p>")
+                                .append("<p class=answer>").append(ps.getAutoFuelScored()).append("</p>")
                                 .append("</li>")
                                 .append("</ol>")
 
-                                .append ( "<h3 class=tab>TeleOp</h3>")
+                                .append("<h3 class=tab>TeleOp</h3>")
                                 .append("<ol>")
                                 .append("<li>")
-                                .append ("<p class=question>Can you pick up off the ground?</p>")
+                                .append("<p class=question>Can you pick up off the ground?</p>")
                                 //.append ("<p class=answer>").append(ps.getPickOffGround()).append("</p>")
                                 .append("</li>")
                                 .append("<li>")
-                                .append ("<p class=question>Are you willing to play defense?</p>")
+                                .append("<p class=question>Are you willing to play defense?</p>")
                                 //.append ("<p class=answer>").append(ps.getCanPlayDefense()).append("</p>")
                                 .append("</li>")
                                 .append("<li>")
-                                .append ("<p class=question>What is your preferred scoring method?</p>")
+                                .append("<p class=question>What is your preferred scoring method?</p>")
                                 //.append ("<p class=answer>").append(ps.getScoringMethod()).append("</p>")
                                 .append("</li>")
                                 .append("</ol>")
 
 
-                                .append ("<h3 class=tab>Endgame</h3>")
+                                .append("<h3 class=tab>Endgame</h3>")
                                 .append("<ol>")
                                 .append("<li>")
-                                .append ("<p class=question>How long does it take you to hang?</p>")
+                                .append("<p class=question>How long does it take you to hang?</p>")
                                 //.append ("<p class=answer>").append(ps.getHangTime()).append("</p>")
                                 .append("</li>")
                                 .append("</ol>")
 
-                                .append ("<h3 class=tab>Team</h3>")
+                                .append("<h3 class=tab>Team</h3>")
                                 .append("<ol>")
                                 .append("<li>")
-                                .append ("<p class=question>What drive train do you have?</p>")
-                                .append ("<p class=answer>").append(ps.getRobotDriveTrain()).append("</p>")
+                                .append("<p class=question>What drive train do you have?</p>")
+                                .append("<p class=answer>").append(ps.getRobotDriveTrain()).append("</p>")
                                 .append("</li>")
                                 .append("<li>")
-                                .append ("<p class=question>How many seasons has your driver been in?</p>")
+                                .append("<p class=question>How many seasons has your driver been in?</p>")
                                 //.append ("<p class=answer>").append(ps.getDriverExperience()).append("</p>")
                                 .append("</li>")
                                 .append("<li>")
-                                .append ("<p class=question>How many seasons has your operator been in?()</p>")
+                                .append("<p class=question>How many seasons has your operator been in?()</p>")
                                 //.append ("<p class=answer>").append(ps.getOperatorExperience()).append("</p>")
                                 .append("</li>")
                                 .append("<li>")
-                                .append ("<p class=question>What is your preferred human player position?</p>")
+                                .append("<p class=question>What is your preferred human player position?</p>")
                                 //.append ("<p class=answer>").append(ps.getHumanPositionPref()).append("</p>")
                                 .append("</li>")
                                 .append("<li>")
-                                .append ("<p class=question>Additional Notes</p>")
+                                .append("<p class=question>Additional Notes</p>")
                                 //.append ("<p class=answer>").append(ps.getExtraNotes()).append("</p>")
                                 .append("</li>")
                                 .append("</ol>");
 
-                                content.append ("<a class=totop href=\"#\">Go to top</a>");
-
+                        content.append("<a class=totop href=\"#\">Go to top</a>");
 
 
                         //outputStream.write(" ");
                     }
-                    content.append (strEnd);
+                    content.append(strEnd);
                     bw.write(content.toString());
                     bw.close();
-                   // outputStream.close();
+                    // outputStream.close();
                     Toast.makeText(this, "export Pit Scout: ", Toast.LENGTH_LONG).show();
-                }
-                catch(Exception e){
+                } catch (Exception e) {
                     Log.e("In Catch for Pit Scout", "Exception trying to export pitscout data", e);
                     String message = e.getLocalizedMessage();
                     Toast.makeText(this, "export Pit Scout error: " + message, Toast.LENGTH_LONG).show();
@@ -527,6 +532,7 @@ public class ExportActivity extends EchelonActivity {
             });
         });
     }
+
     @RequiresApi(api = Build.VERSION_CODES.O)
     public void importCSVMatches() throws IOException {
         File importPath = getImportPath();
@@ -534,7 +540,7 @@ public class ExportActivity extends EchelonActivity {
         for (String filename : filePaths) {
             File newFile = new File(importPath.getAbsolutePath().concat("/" + filename));
             Stream<String> lines = Files.lines(newFile.toPath());
-            if(!newFile.exists()){
+            if (!newFile.exists()) {
                 continue;
             }
             List<String> inputLines = lines.collect(Collectors.toList());
@@ -636,23 +642,23 @@ public class ExportActivity extends EchelonActivity {
         }
         //Log.e(this.getLocalClassName(), "Times ran: " + timesRan);
     }
+
     @RequiresApi(api = Build.VERSION_CODES.O)
-    public void setupCSVImportButton(){
+    public void setupCSVImportButton() {
         importCSVMatchButton.setOnClickListener(v -> {
-            try{
+            try {
                 importCSVMatches();
                 Log.e("under setupCSVImportButton", "imported match results");
                 Toast.makeText(this, "imported matches", Toast.LENGTH_LONG).show();
-            }
-            catch(Exception E){
+            } catch (Exception E) {
                 E.printStackTrace();
             }
         });
     }
 
-    public File getImportPath(){
-        ContextWrapper cw = new ContextWrapper( getApplicationContext() );
-        return FileUtilities.ensureDirectory(cw,"transfer");
+    public File getImportPath() {
+        ContextWrapper cw = new ContextWrapper(getApplicationContext());
+        return FileUtilities.ensureDirectory(cw, "transfer");
     }
 
     private File[] getFilePathsForMatch() {
@@ -660,16 +666,16 @@ public class ExportActivity extends EchelonActivity {
     }
 
     private File getFilePathForMatch() {
-        ContextWrapper cw = new ContextWrapper(getApplicationContext() );
-        return FileUtilities.ensureDirectory(cw,"transfer");
+        ContextWrapper cw = new ContextWrapper(getApplicationContext());
+        return FileUtilities.ensureDirectory(cw, "transfer");
     }
 
-    private File[] getFilePathsForPitScout(){
+    private File[] getFilePathsForPitScout() {
         return getFilePathForPitScout().listFiles();
     }
 
-    private File getFilePathForPitScout(){
+    private File getFilePathForPitScout() {
         ContextWrapper cw = new ContextWrapper(getApplicationContext());
-        return FileUtilities.ensureDirectory(cw,"pitscout_data");
+        return FileUtilities.ensureDirectory(cw, "pitscout_data");
     }
 }
