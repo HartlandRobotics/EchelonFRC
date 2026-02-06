@@ -25,30 +25,31 @@ public class PitScout {
     @ColumnInfo(name = "team_key")
     private String teamKey;
 
-    @ColumnInfo(name = "robot_drive_train")
+    @NonNull
+    @ColumnInfo(name = "robot_drive_train",defaultValue = "")
     private String robotDriveTrain;
-    @ColumnInfo(name="robot_traverses_hump")
+    @ColumnInfo(name="robot_traverses_hump",defaultValue = "0")
     private boolean traversesHump;
-    @ColumnInfo(name="robot_under_trench")
+    @ColumnInfo(name="robot_under_trench",defaultValue = "0")
     private boolean underTrench;
-    @ColumnInfo(name="robot_shooter_type")
+    @ColumnInfo(name="robot_shooter_type", defaultValue = "")
     private String shooterType;
-    @ColumnInfo(name="robot_size")
+    @ColumnInfo(name="robot_size", defaultValue = "")
     private String robotSize;
-    @ColumnInfo(name="robot_intake_size")
+    @ColumnInfo(name="robot_intake_size", defaultValue = "")
     private String intakeSize;
-    @ColumnInfo(name="robot_intake_type")
+    @ColumnInfo(name="robot_intake_type", defaultValue = "0")
     private int intakeType;
 
-    @ColumnInfo(name="robot_fuel_capacity")
+    @ColumnInfo(name="robot_fuel_capacity", defaultValue = "0")
     private int fuelCapacity;
     @ColumnInfo(name="robot_ground_fuel")
     private boolean groundFuel;
     @ColumnInfo(name="robot_human_fuel")
     private boolean humanFuel;
-    @ColumnInfo(name="robot_human_accuracy")
+    @ColumnInfo(name="robot_human_accuracy", defaultValue = "")
     private String humanAccuracy;
-    @ColumnInfo(name="robot_additional_notes")
+    @ColumnInfo(name="robot_additional_notes", defaultValue = "")
     private String additionalNotes;
 
 
@@ -56,33 +57,33 @@ public class PitScout {
     private boolean hasAutonomous;
     @ColumnInfo(name = "auto_help_creating_auto")
     private boolean helpCreatingAuto;
-    @ColumnInfo(name = "auto_coding_language")
+    @ColumnInfo(name = "auto_coding_language", defaultValue = "")
     private String codingLanguage;
-    @ColumnInfo(name = "auto_fuel_scored")
+    @ColumnInfo(name = "auto_fuel_scored", defaultValue = "0")
     private int autoFuelScored;
-    @ColumnInfo(name="auto_hang")
+    @ColumnInfo(name="auto_hang", defaultValue = "0")
     private boolean autoHang;
-    @ColumnInfo(name="auto_how_hang")
+    @ColumnInfo(name="auto_how_hang", defaultValue = "")
     private String autoHowHang;
-    @ColumnInfo(name="auto_where_hang")
+    @ColumnInfo(name="auto_where_hang", defaultValue = "")
     private String autoWhereHang;
     @ColumnInfo(name="auto_center_line")
     private boolean autoCenterLine;
 
     @ColumnInfo(name="tele_op_can_pass")
     private boolean teleOpCanPass;
-    @ColumnInfo(name="tele_op_role_preference")
+    @ColumnInfo(name="tele_op_role_preference", defaultValue = "0")
     private int rolePreference;
-    @ColumnInfo(name="tele_op_defense_experience")
+    @ColumnInfo(name="tele_op_defense_experience", defaultValue = "0")
     private int defenseExperience;
 
     @ColumnInfo(name="end_hang")
     private boolean endHang;
-    @ColumnInfo(name="hang_time")
+    @ColumnInfo(name="end_hang_time", defaultValue = "0")
     private int hangTime;
-    @ColumnInfo(name="end_where_hang")
+    @ColumnInfo(name="end_where_hang", defaultValue = "")
     private String endWhereHang;
-    @ColumnInfo(name="end_how_hang")
+    @ColumnInfo(name="end_how_hang", defaultValue = "")
     private String endHowHang;
     @ColumnInfo(name="end_high_climb")
     private boolean endHighClimb;
@@ -92,15 +93,16 @@ public class PitScout {
     private boolean endLowClimb;
 
     @Ignore
-    public PitScout(){
-    }
+    public PitScout(){};
 
     public PitScout(@NonNull String pitScoutKey, @NonNull String yearKey, @NonNull String eventKey, @NonNull String teamKey,
                     @NonNull String robotDriveTrain, boolean traversesHump, boolean underTrench, String shooterType, String robotSize, String intakeSize, int intakeType,
                     int fuelCapacity, boolean groundFuel, boolean humanFuel, String humanAccuracy, String additionalNotes,
                     boolean hasAutonomous, boolean helpCreatingAuto, @NonNull String codingLanguage, int autoFuelScored, boolean autoHang, String autoHowHang, String autoWhereHang, boolean autoCenterLine,
-                    boolean teleOpCanPass, int rolePreference, int defenseExperience
-                    ) {
+                    boolean teleOpCanPass, int rolePreference, int defenseExperience,
+                    boolean endHang, int hangTime, String endWhereHang, String endHowHang, boolean endHighClimb, boolean endMidClimb, boolean endLowClimb
+                    )
+    {
 
         if(StringUtils.isBlank(pitScoutKey)){
             pitScoutKey = yearKey + "_" + eventKey + "_" + teamKey;
