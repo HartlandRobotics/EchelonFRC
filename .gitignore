@@ -312,3 +312,7 @@ hs_err_pid*
 
 # End of https://www.toptal.com/developers/gitignore/api/androidstudio,intellij,windows,macos
 .idea/AndroidProjectSystem.xml
+.idea/deploymentTargetSelector.xml
+.idea/markdown.xml
+.idea/migrations.xml
+.idea/runConfigurations.xml
