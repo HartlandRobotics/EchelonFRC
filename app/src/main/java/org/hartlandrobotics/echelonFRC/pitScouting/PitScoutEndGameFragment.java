@@ -121,17 +121,14 @@ public class PitScoutEndGameFragment extends Fragment {
         }
 
         endHangCheckbox.setChecked(data.getEndHang());
-                //data.getEndHang());
-
-        if (hangTimeLayout == null) return;
 
         String hangTimeText = String.valueOf(data.getHangTime());
         hangTimeLayout.getEditText().setText(hangTimeText);
 
-        String endWhereHang = data.getAutoWhereHang();
+        String endWhereHang = data.getEndWhereHang();
         endWhereHangLayout.getEditText().setText(endWhereHang);
 
-        String endHowHang = data.getAutoHowHang();
+        String endHowHang = data.getEndHowHang();
         endHowHangLayout.getEditText().setText(endHowHang);
 
         endHighClimbCheckbox.setChecked(data.getEndHighClimb());

@@ -109,6 +109,8 @@ public class PitScoutTeleOpFragment extends Fragment {
 
     public void populateDataFromControls() {
         Log.i(TAG, "populate data from controls");
+        if( data == null ) return;
+        if( teleOpCanPassCheckbox == null ) return;
 
         data.setTeleOpCanPass( teleOpCanPassCheckbox.isChecked() );
 
@@ -122,7 +124,8 @@ public class PitScoutTeleOpFragment extends Fragment {
         }
 
         int defenseExperienceId = defenseExperienceGroup.getCheckedRadioButtonId();
-        if( defenseExperienceId == R.id.robotDefenseYes ){
+        if( defenseExperienceId == R.id.robotDefenseYes
+        ){
             data.setDefenseExperience(0);
         } else {
             data.setDefenseExperience(1);
