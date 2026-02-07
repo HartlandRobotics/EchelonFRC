@@ -13,7 +13,6 @@ import org.hartlandrobotics.echelonFRC.database.entities.PitScout;
 import org.hartlandrobotics.echelonFRC.pitScouting.PitScoutAutoFragment;
 import org.hartlandrobotics.echelonFRC.pitScouting.PitScoutEndGameFragment;
 import org.hartlandrobotics.echelonFRC.pitScouting.PitScoutPhotosFragment;
-import org.hartlandrobotics.echelonFRC.pitScouting.PitScoutTeamFragment;
 import org.hartlandrobotics.echelonFRC.pitScouting.PitScoutTeleOpFragment;
 
 import java.util.HashMap;
