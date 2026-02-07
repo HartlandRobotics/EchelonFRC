@@ -75,6 +75,15 @@ public class PitScout {
     private int rolePreference;
     @ColumnInfo(name="tele_op_defense_experience")
     private int defenseExperience;
+    @ColumnInfo(name = "tele_op_fuel_per_second_ingest")
+    private int fuelPerSecondIngest;
+    @ColumnInfo(name = "tele_op_fuel_per_second_shoot")
+    private int fuelPerSecondShoot;
+    @ColumnInfo(name="tele_op_how_shoot")
+    private int howShoot;
+    @ColumnInfo(name="tele_op_position")
+    private String teleOpPosition;
+
 
     @ColumnInfo(name="end_hang")
     private boolean endHang;
@@ -99,7 +108,8 @@ public class PitScout {
                     @NonNull String robotDriveTrain, boolean traversesHump, boolean underTrench, String shooterType, String robotSize, String intakeSize, int intakeType,
                     int fuelCapacity, boolean groundFuel, boolean humanFuel, String humanAccuracy, String additionalNotes,
                     boolean hasAutonomous, boolean helpCreatingAuto, @NonNull String codingLanguage, int autoFuelScored, boolean autoHang, String autoHowHang, String autoWhereHang, boolean autoCenterLine,
-                    boolean teleOpCanPass, int rolePreference, int defenseExperience
+                    boolean teleOpCanPass, int rolePreference, int defenseExperience, int fuelPerSecondIngest, int fuelPerSecondShoot, int howShoot, String teleOpPosition,
+                    boolean endHang, int hangTime, String endWhereHang, String endHowHang, boolean endHighClimb, boolean endMidClimb, boolean endLowClimb
                     ) {
 
         if(StringUtils.isBlank(pitScoutKey)){
@@ -137,6 +147,10 @@ public class PitScout {
         this.teleOpCanPass = teleOpCanPass;
         this.rolePreference = rolePreference;
         this.defenseExperience = defenseExperience;
+        this.fuelPerSecondIngest = fuelPerSecondIngest;
+        this.fuelPerSecondShoot = fuelPerSecondShoot;
+        this.howShoot = howShoot;
+        this.teleOpPosition = teleOpPosition;
 
         this.endHang = endHang;
         this.hangTime = hangTime;
@@ -322,6 +336,32 @@ public class PitScout {
     public void setDefenseExperience(int defenseExperience) {
         this.defenseExperience = defenseExperience;
     }
+    public int getFuelPerSecondIngest() {
+        return fuelPerSecondIngest;
+    }
+    public void setFuelPerSecondIngest (int fuelPerSecondIngest) {
+        this.fuelPerSecondIngest = fuelPerSecondIngest;
+    }
+    public int getFuelPerSecondShoot() {
+        return fuelPerSecondShoot;
+    }
+    public void setFuelPerSecondShoot (int fuelPerSecondShoot) {
+        this.fuelPerSecondShoot = fuelPerSecondShoot;
+    }
+
+    public int getHowShoot(){
+        return howShoot;
+    }
+    public void setHowShoot(int howShoot) {
+        this.howShoot = howShoot;
+    }
+    public String getTeleOpPosition(){
+        return teleOpPosition;
+    }
+    public void setTeleOpPosition(String teleOpPosition){
+        this.teleOpPosition = teleOpPosition;
+    }
+
 
     public int getRolePreference(){
         return rolePreference;

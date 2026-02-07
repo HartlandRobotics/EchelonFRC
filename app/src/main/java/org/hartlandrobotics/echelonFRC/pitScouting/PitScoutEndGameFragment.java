@@ -41,6 +41,7 @@ public class PitScoutEndGameFragment extends Fragment {
 
     public void setData(PitScout data) {
         this.data = data;
+        populateControlsFromData();
     }
 
     @Override
@@ -103,7 +104,7 @@ public class PitScoutEndGameFragment extends Fragment {
         String endWhereHang = endWhereHangLayout.getEditText().getText().toString();
         data.setEndWhereHang(endWhereHang);
         String endHowHang = endHowHangLayout.getEditText().getText().toString();
-        data.setAutoHowHang(endHowHang);
+        data.setEndHowHang(endHowHang);
 
         data.setEndHighClimb(endHighClimbCheckbox.isChecked());
         data.setEndMidClimb(endMidClimbCheckbox.isChecked());
@@ -115,8 +116,12 @@ public class PitScoutEndGameFragment extends Fragment {
         if (data == null) {
             return;
         }
+        if (endHangCheckbox == null) {
+            return;
+        }
 
         endHangCheckbox.setChecked(data.getEndHang());
+                //data.getEndHang());
 
         if (hangTimeLayout == null) return;
 

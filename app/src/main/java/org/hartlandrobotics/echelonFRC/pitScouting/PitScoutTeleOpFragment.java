@@ -23,6 +23,11 @@ public class PitScoutTeleOpFragment extends Fragment {
     CheckBox teleOpCanPassCheckbox;
     RadioGroup rolePreferenceGroup;
     RadioGroup defenseExperienceGroup;
+    TextInputLayout teleOpFuelPerSecondIngestLayout;
+    TextInputLayout teleOpFuelPerSecondShootLayout;
+    RadioGroup howShootGroup;
+    TextInputLayout teleOpPositionLayout;
+
 
 
     //    RadioGroup pickOffGround;
@@ -79,6 +84,10 @@ public class PitScoutTeleOpFragment extends Fragment {
 
         rolePreferenceGroup = view.findViewById(R.id.rolePrefrence);
         defenseExperienceGroup = view.findViewById(R.id.teleOpDefense);
+        teleOpFuelPerSecondIngestLayout = view.findViewById(R.id.fuelPerSecondIngest);
+        teleOpFuelPerSecondShootLayout = view.findViewById(R.id.fuelPerSecondShooting);
+        howShootGroup = view.findViewById(R.id.shootingProcess);
+        teleOpPositionLayout = view.findViewById(R.id.shootingPosition);
 
 //        pickOffGround = view.findViewById(R.id.rolePrefrence);
 //        pickOffGround.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
@@ -119,7 +128,21 @@ public class PitScoutTeleOpFragment extends Fragment {
             data.setDefenseExperience(1);
         }
 
+        int teleOpFuelPerSecondIngest = Integer.parseInt(StringUtils.defaultIfBlank(teleOpFuelPerSecondIngestLayout.getEditText().getText().toString(), "0"));
+        data.setFuelPerSecondIngest(teleOpFuelPerSecondIngest);
 
+        int teleOpFuelPerSecondShoot = Integer.parseInt(StringUtils.defaultIfBlank(teleOpFuelPerSecondShootLayout.getEditText().getText().toString(), "0"));
+        data.setFuelPerSecondShoot(teleOpFuelPerSecondShoot);
+
+        int howShootId = howShootGroup.getCheckedRadioButtonId();
+        if( howShootId == R.id.shootingProcessMoving ){
+            data.setHowShoot(0);
+        } else {
+            data.setHowShoot(1);
+        }
+
+        String teleOpPosition = teleOpPositionLayout.getEditText().getText().toString();
+        data.setTeleOpPosition(teleOpPosition);
 
 
 //        boolean offGroundYes = pickOffGround.getCheckedRadioButtonId() == R.id.offGroundYes;
@@ -163,6 +186,25 @@ public class PitScoutTeleOpFragment extends Fragment {
         }
 
         teleOpCanPassCheckbox.setChecked(data.getTeleOpCanPass());
+
+        String teleOpFuelPerSecondIngest = StringUtils.defaultIfBlank(String.valueOf(data.getFuelPerSecondIngest()), "0");
+        teleOpFuelPerSecondIngestLayout.getEditText().setText(teleOpFuelPerSecondIngest);
+
+        String teleOpFuelPerSecondShoot = StringUtils.defaultIfBlank(String.valueOf(data.getFuelPerSecondShoot()), "0");
+        teleOpFuelPerSecondShootLayout.getEditText().setText(teleOpFuelPerSecondShoot);
+
+        int howShoot = data.getHowShoot();
+        switch (howShoot){
+            case 0:
+                howShootGroup.check(R.id.shootingProcessMoving);
+                break;
+            case 1:
+                howShootGroup.check(R.id.shootingProcessStandstill);
+                break;
+        }
+
+        String teleOpPosition = data.getTeleOpPosition();
+        teleOpPositionLayout.getEditText().setText(teleOpPosition);
 
         // check that controls have been established
 //        if(pickOffGround == null) return;
