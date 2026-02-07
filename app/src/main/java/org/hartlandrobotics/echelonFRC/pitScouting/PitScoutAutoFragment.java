@@ -37,6 +37,8 @@ public class PitScoutAutoFragment extends Fragment {
     TextInputLayout autoHowHangLayout;
     CheckBox autoCenterLineCheckbox;
 
+    LinearLayout autoRightColumn;
+
 
 
 
@@ -90,7 +92,7 @@ public class PitScoutAutoFragment extends Fragment {
 
         hasAutoGroup = view.findViewById(R.id.hasAutoGroup);
         hasAutoGroup.setOnCheckedChangeListener((group, checkedId) -> {
-            setVisibility();
+            setVisibility(checkedId != R.id.hasAutoYes);
         });
 
         autoFuelScoredLayout = view.findViewById(R.id.autoFuelScored);
@@ -99,7 +101,7 @@ public class PitScoutAutoFragment extends Fragment {
 
         helpAutoGroup = view.findViewById(R.id.helpAutoGroup);
         helpAutoGroup.setOnCheckedChangeListener((group, checkedId) -> {
-            setVisibility();
+            //setVisibility(checkedId == R.id.hasAutoYes);
         });
 
         autoHangCheckbox = view.findViewById(R.id.autoHang);
@@ -115,6 +117,9 @@ public class PitScoutAutoFragment extends Fragment {
         autoHowHangLayout = view.findViewById(R.id.autoHowHang);
         autoWhereHangLayout = view.findViewById(R.id.autoWhereHang);
 
+        autoRightColumn = view.findViewById(R.id.autoRightColumn);
+
+        setVisibility(hasAutoGroup.getCheckedRadioButtonId() != R.id.hasAutoYes);
     }
 
 
@@ -173,10 +178,9 @@ public class PitScoutAutoFragment extends Fragment {
         String autoHowHang = data.getAutoHowHang();
         autoHowHangLayout.getEditText().setText(autoHowHang);
 
-        setVisibility();
     }
 
-    public void setVisibility() {
+    public void setVisibility(boolean show) {
         Log.i(TAG, "start of visibility");
 
         if (data == null) { return; }
@@ -184,10 +188,9 @@ public class PitScoutAutoFragment extends Fragment {
 
         Log.i(TAG, "end of visibility");
 
-        programmingLanguageLayout.setVisibility( data.getHasAutonomous() ? View.GONE : View.VISIBLE);
+        missingAutoLayout.setVisibility( show ? View.VISIBLE : View.GONE);
+        autoRightColumn.setVisibility(show ? View.GONE : View.VISIBLE );
+        autoFuelScoredLayout.setVisibility(show ? View.GONE : View.VISIBLE);
 
-
-        int i;
-        i = 10;
     }
 }

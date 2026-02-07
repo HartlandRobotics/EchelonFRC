@@ -76,6 +76,9 @@ public class PitScoutEndGameFragment extends Fragment {
             return;
         }
         endHangCheckbox = view.findViewById(R.id.endHang);
+        endHangCheckbox.setOnCheckedChangeListener( (button,checked) -> {
+            setVisibility();
+        });
 
         hangTimeLayout = view.findViewById(R.id.hangTime);
         endWhereHangLayout = view.findViewById(R.id.endWhereHang);
