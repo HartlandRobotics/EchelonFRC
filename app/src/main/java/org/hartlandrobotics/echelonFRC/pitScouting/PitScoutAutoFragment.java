@@ -92,7 +92,7 @@ public class PitScoutAutoFragment extends Fragment {
 
         hasAutoGroup = view.findViewById(R.id.hasAutoGroup);
         hasAutoGroup.setOnCheckedChangeListener((group, checkedId) -> {
-            setVisibility(checkedId != R.id.hasAutoYes);
+            setVisibility();
         });
 
         autoFuelScoredLayout = view.findViewById(R.id.autoFuelScored);
@@ -101,7 +101,7 @@ public class PitScoutAutoFragment extends Fragment {
 
         helpAutoGroup = view.findViewById(R.id.helpAutoGroup);
         helpAutoGroup.setOnCheckedChangeListener((group, checkedId) -> {
-            //setVisibility(checkedId == R.id.hasAutoYes);
+            setVisibility();
         });
 
         autoHangCheckbox = view.findViewById(R.id.autoHang);
@@ -119,12 +119,11 @@ public class PitScoutAutoFragment extends Fragment {
 
         autoRightColumn = view.findViewById(R.id.autoRightColumn);
 
-        setVisibility(hasAutoGroup.getCheckedRadioButtonId() != R.id.hasAutoYes);
+        setVisibility();
     }
 
 
     public void populateDataFromControls() {
-
         if( data == null ) return;
         if( hasAutoGroup == null ) return;
 
@@ -180,17 +179,20 @@ public class PitScoutAutoFragment extends Fragment {
 
     }
 
-    public void setVisibility(boolean show) {
+    public void setVisibility() {
         Log.i(TAG, "start of visibility");
 
         if (data == null) { return; }
         if( hasAutoGroup == null ) return;
 
         Log.i(TAG, "end of visibility");
+        boolean showHasAuto = hasAutoGroup.getCheckedRadioButtonId() == R.id.hasAutoYes;
+        autoRightColumn.setVisibility( showHasAuto ? View.VISIBLE : View.GONE );
+        autoFuelScoredLayout.setVisibility( showHasAuto ? View.VISIBLE : View.GONE);
 
-        missingAutoLayout.setVisibility( show ? View.VISIBLE : View.GONE);
-        autoRightColumn.setVisibility(show ? View.GONE : View.VISIBLE );
-        autoFuelScoredLayout.setVisibility(show ? View.GONE : View.VISIBLE);
-
+        helpAutoGroup.setVisibility( showHasAuto ? View.GONE : View.VISIBLE);
+        programmingLanguageLayout.setVisibility( helpAutoGroup.getCheckedRadioButtonId() == R.id.helpAutoYes ?
+                View.VISIBLE : View.GONE
+        );
     }
 }
