@@ -242,7 +242,7 @@ public class MatchScheduleActivity extends EchelonActivity {
 
     private double getStdDeviationByTeam( String teamKey ){
         List<MatchResult> teamMatchResults = matchResultsByTeam.get(teamKey);
-        if( teamMatchResults == null || teamMatchResults.size() == 0 ) return 0;
+        if( teamMatchResults == null || teamMatchResults.isEmpty()) return 0;
 
         int totalScore = 0;
         for( MatchResult matchResult : teamMatchResults ){

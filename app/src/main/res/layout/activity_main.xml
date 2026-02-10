@@ -50,6 +50,7 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:text="Pit Scouting"
+        android:visibility="gone"
         app:layout_constraintTop_toBottomOf="@id/main_admin_start_scouting"
         app:layout_constraintBottom_toTopOf="@id/match_schedule_button"
         app:layout_constraintLeft_toLeftOf="parent"

@@ -29,6 +29,7 @@ import org.hartlandrobotics.echelonFRC.models.MatchResultViewModel;
 import org.hartlandrobotics.echelonFRC.models.PitScoutViewModel;
 import org.hartlandrobotics.echelonFRC.status.BlueAllianceStatus;
 import org.hartlandrobotics.echelonFRC.utilities.FileUtilities;
+import org.hartlandrobotics.echelonFRC.utilities.RoleUtilities;
 
 import java.io.BufferedWriter;
 import java.io.File;
@@ -60,8 +61,6 @@ public class ExportActivity extends EchelonActivity {
     private Button exportTableauResultsButton;
     private MatchResultViewModel matchResultViewModel;
 
-    private boolean isStudentTablet;
-    private boolean isAdminTablet;
     private boolean hasSelectedSeason;
 
     private boolean isRed1;
@@ -90,8 +89,6 @@ public class ExportActivity extends EchelonActivity {
 
         adminSettings = AdminSettingsProvider.getAdminSettings(this);
         role = adminSettings.getDeviceRole();
-        isStudentTablet = role.startsWith("red") || role.startsWith("blue");
-        isAdminTablet = role.startsWith("coach") || role.startsWith("captain");
         isRed1 = role.equalsIgnoreCase("Red1");
         isRed2 = role.equalsIgnoreCase("Red2");
         isRed3 = role.equalsIgnoreCase("Red3");
@@ -120,7 +117,7 @@ public class ExportActivity extends EchelonActivity {
         exportBlueThreeMatchResultsButton.setVisibility(isBlue3 ? View.VISIBLE : View.GONE);
         
         exportCaptainsMatchResultsButton = findViewById(R.id.exportCaptainsMatchResults);
-        exportCaptainsMatchResultsButton.setVisibility(isAdminTablet ? View.VISIBLE: View.GONE);
+        exportCaptainsMatchResultsButton.setVisibility(RoleUtilities.isAdminTablet(role) ? View.VISIBLE: View.GONE);
 
         exportPitScoutResultsButton = findViewById(R.id.exportPitScouting);
         exportPitScoutResults();
@@ -143,7 +140,7 @@ public class ExportActivity extends EchelonActivity {
         });
 
         rightLayout = findViewById(R.id.right_column);
-        if (!isAdminTablet) {
+        if (!RoleUtilities.isAdminTablet(role)) {
             rightLayout.setVisibility(View.GONE);
         }
 

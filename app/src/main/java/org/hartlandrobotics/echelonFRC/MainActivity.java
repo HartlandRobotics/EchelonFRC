@@ -27,6 +27,7 @@ import org.hartlandrobotics.echelonFRC.matchScouting.MatchSelectionActivity;
 import org.hartlandrobotics.echelonFRC.models.SeasonViewModel;
 import org.hartlandrobotics.echelonFRC.pitScouting.PitScoutActivity;
 import org.hartlandrobotics.echelonFRC.status.BlueAllianceStatus;
+import org.hartlandrobotics.echelonFRC.utilities.RoleUtilities;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -39,8 +40,6 @@ public class MainActivity extends EchelonActivity {
     private BlueAllianceStatus status;
     String deviceRole;
 
-    private boolean isStudentTablet;
-    private boolean isAdminTablet;
     private boolean hasSelectedSeason;
 
     private MaterialButton startScouting;
@@ -67,8 +66,6 @@ public class MainActivity extends EchelonActivity {
         status= new BlueAllianceStatus(getApplicationContext());
         adminSettings= AdminSettingsProvider.getAdminSettings(this);
         deviceRole = adminSettings.getDeviceRole();
-        isStudentTablet = deviceRole.startsWith("red") || deviceRole.startsWith("blue");
-        isAdminTablet = deviceRole.startsWith("coach") || deviceRole.startsWith("captain");
 
         setupStartScoutingButton();
         setupPitScoutingButton();
@@ -122,7 +119,7 @@ public class MainActivity extends EchelonActivity {
         chartsButton = findViewById(R.id.charts_button);
         chartsButton.setOnClickListener( v -> ChartsActivity.launch(MainActivity.this));
 
-        if( isAdminTablet){
+        if( RoleUtilities.isAdminTablet(deviceRole)){
             chartsButton.setVisibility(View.VISIBLE);
         }
     }
@@ -131,7 +128,7 @@ public class MainActivity extends EchelonActivity {
         accuracyButton = findViewById(R.id.main_admin_accuracy_config);
         accuracyButton.setOnClickListener( v -> AccountabilityActivity.launch(MainActivity.this));
 
-        if( isAdminTablet){
+        if( RoleUtilities.isAdminTablet(deviceRole)){
             accuracyButton.setVisibility(View.VISIBLE);
         }
     }
@@ -200,10 +197,10 @@ public class MainActivity extends EchelonActivity {
     }
 
     private void setEnabled(){
-           startScouting.setEnabled(hasSelectedSeason && isStudentTablet);
-           pitScouting.setEnabled(hasSelectedSeason && isAdminTablet);
+           startScouting.setEnabled(hasSelectedSeason && RoleUtilities.isStudentTablet(deviceRole));
+           pitScouting.setEnabled(hasSelectedSeason && RoleUtilities.isAdminTablet(deviceRole));
            matchSchedule.setEnabled(hasSelectedSeason);
-           chartsButton.setEnabled(hasSelectedSeason && isAdminTablet);
-           accuracyButton.setEnabled(isAdminTablet);
+           chartsButton.setEnabled(hasSelectedSeason && RoleUtilities.isAdminTablet(deviceRole));
+           accuracyButton.setEnabled(RoleUtilities.isAdminTablet(deviceRole));
     }
 }
