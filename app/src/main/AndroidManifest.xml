@@ -59,6 +59,9 @@
             android:name=".AdminSettingsActivity"
             android:exported="true"
             android:screenOrientation="landscape" />
+        <activity android:name=".AccountabilityActivity"
+            android:exported="true"
+            android:screenOrientation="landscape"/>
         <activity
             android:name=".MainActivity"
             android:exported="true"

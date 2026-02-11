@@ -23,6 +23,10 @@ public class MatchRepo {
         matchDao = db.matchDao();
     }
 
+    public LiveData<List<Match>> getMatches(){
+        return matchDao.getMatches();
+    }
+
 
     public void upsert(EvtMatchCrossRef match){
         EchelonDatabase.databaseWriteExecutor.execute(() -> {

@@ -5,5 +5,10 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
 
+    <include
+        android:id="@+id/actionBar"
+        layout="@layout/toolbar_main"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
