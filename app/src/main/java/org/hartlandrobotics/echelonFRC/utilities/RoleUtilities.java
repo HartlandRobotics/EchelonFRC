@@ -29,10 +29,10 @@ public class RoleUtilities {
             return "blue";
         }
         if (tabletName.startsWith("coach")){
-            return "coach";
+            return "yellow";
         }
         if (tabletName.startsWith("captain")){
-            return "captain";
+            return "yellow";
         }
         return StringUtils.EMPTY;
     }

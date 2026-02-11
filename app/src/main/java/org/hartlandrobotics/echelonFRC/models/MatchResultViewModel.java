@@ -24,7 +24,7 @@ public class MatchResultViewModel extends AndroidViewModel {
         matchResultRepo = new MatchResultRepo(app);
     }
 
-    public MatchResult getDefault(String eventKey, String matchKey, String teamKey
+    public MatchResult getDefault(String eventKey, String matchKey, String teamKey, String alliance
     ) {
         MatchResult matchResult = new MatchResult(
                 StringUtils.EMPTY,
@@ -32,6 +32,7 @@ public class MatchResultViewModel extends AndroidViewModel {
                 matchKey,
                 teamKey,
                 false,
+        alliance,
 
         false,
         false,

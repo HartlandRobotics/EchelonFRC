@@ -21,6 +21,7 @@ import org.hartlandrobotics.echelonFRC.database.currentGame.CurrentGamePoints;
 import org.hartlandrobotics.echelonFRC.database.entities.MatchResult;
 import org.hartlandrobotics.echelonFRC.models.MatchResultViewModel;
 import org.hartlandrobotics.echelonFRC.status.BlueAllianceStatus;
+import org.hartlandrobotics.echelonFRC.utilities.RoleUtilities;
 
 public class MatchScoutingTeleopActivity extends AppCompatActivity {
     private static final String MATCH_KEY = "match_key_param";
@@ -75,12 +76,13 @@ public class MatchScoutingTeleopActivity extends AppCompatActivity {
         teamKey = bundle.getString(TEAM_KEY);
 
         BlueAllianceStatus blueAllianceStatus = new BlueAllianceStatus(getApplicationContext());
+        AdminSettings settings = AdminSettingsProvider.getAdminSettings(getApplicationContext());
 
         matchResultViewModel = new ViewModelProvider(this).get(MatchResultViewModel.class);
         matchResultViewModel.getMatchResultByMatchTeam(matchKey, teamKey)
                 .observe(MatchScoutingTeleopActivity.this, mr -> {
                     if (mr == null) {
-                        mr = matchResultViewModel.getDefault(blueAllianceStatus.getEventKey(), matchKey, teamKey);
+                        mr = matchResultViewModel.getDefault(blueAllianceStatus.getEventKey(), matchKey, teamKey, RoleUtilities.deviceColor(settings.getDeviceRole()));
                     }
                     currentResult = MatchResult.toCurrentGamePoints(mr);
                     populateControlsFromData();

@@ -26,6 +26,7 @@ import org.hartlandrobotics.echelonFRC.database.currentGame.CurrentGamePoints;
 import org.hartlandrobotics.echelonFRC.database.entities.MatchResult;
 import org.hartlandrobotics.echelonFRC.models.MatchResultViewModel;
 import org.hartlandrobotics.echelonFRC.status.BlueAllianceStatus;
+import org.hartlandrobotics.echelonFRC.utilities.RoleUtilities;
 
 public class MatchScoutingAutoActivity extends AppCompatActivity {
     private static final String MATCH_KEY = "match_key_param";
@@ -89,12 +90,13 @@ public class MatchScoutingAutoActivity extends AppCompatActivity {
         teamKeyText.setText(teamKey);
 
         BlueAllianceStatus blueAllianceStatus = new BlueAllianceStatus(getApplicationContext());
+        AdminSettings settings = AdminSettingsProvider.getAdminSettings(getApplicationContext());
 
         matchResultViewModel = new ViewModelProvider(this).get(MatchResultViewModel.class);
         matchResultViewModel.getMatchResultByMatchTeam(matchKey, teamKey)
                 .observe(MatchScoutingAutoActivity.this, mr->{
                     if( mr == null ){
-                        mr = matchResultViewModel.getDefault(blueAllianceStatus.getEventKey(), matchKey, teamKey);
+                        mr = matchResultViewModel.getDefault(blueAllianceStatus.getEventKey(), matchKey, teamKey,RoleUtilities.deviceColor(settings.getDeviceRole()));
                     }
                     currentResult = MatchResult.toCurrentGamePoints(mr);
                     populateControlsFromData();
@@ -202,11 +204,13 @@ public class MatchScoutingAutoActivity extends AppCompatActivity {
         buttonSelectedTextColor = R.color.primaryDarkColor;
         secondaryDarkColor = R.color.secondaryDarkColor;
 
-        if (settings.getDeviceRole().startsWith("red")){
+        if (RoleUtilities.deviceColor( settings.getDeviceRole() ).equalsIgnoreCase( "red")){
             buttonColor = R.color.redAlliance;
-        } else {
+        }
+        if (RoleUtilities.deviceColor( settings.getDeviceRole() ).equalsIgnoreCase("blue")){
             buttonColor = R.color.blueAlliance;
         }
+
     }
 
 }

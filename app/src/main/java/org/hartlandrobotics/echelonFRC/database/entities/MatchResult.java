@@ -35,6 +35,8 @@ public class MatchResult {
     @ColumnInfo(name="has_been_synced")
     private boolean hasBeenSynced;
 
+    @ColumnInfo(name="alliance")
+    private String alliance;
 
     @ColumnInfo(name="auto_flag_1")
     private boolean autoFlag1;
@@ -115,6 +117,7 @@ public class MatchResult {
             @NonNull String matchKey,
             @NonNull String teamKey,
             boolean hasBeenSynced,
+            String alliance,
 
             boolean autoFlag1,
             boolean autoFlag2,
@@ -154,6 +157,7 @@ public class MatchResult {
         this.matchKey = matchKey;
         this.teamKey = teamKey;
         this.hasBeenSynced = hasBeenSynced;
+        this.alliance = alliance;
 
         this.autoFlag1 = autoFlag1;
         this.autoFlag2 = autoFlag2;
@@ -207,6 +211,9 @@ public class MatchResult {
 
     public boolean getHasBeenSynced() { return hasBeenSynced; }
     public void setHasBeenSynced(boolean hasBeenSynced){ this.hasBeenSynced = hasBeenSynced; }
+
+    public String getAlliance(){return alliance; }
+    public void setAlliance(String alliance){this.alliance = alliance;}
 
     public boolean getAutoFlag1() { return autoFlag1; }
     public void setAutoFlag1(boolean autoFlag1) { this.autoFlag1 = autoFlag1; }

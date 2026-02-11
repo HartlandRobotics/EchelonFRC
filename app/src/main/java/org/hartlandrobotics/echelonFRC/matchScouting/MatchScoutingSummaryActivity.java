@@ -18,10 +18,13 @@ import com.google.android.material.textview.MaterialTextView;
 
 import org.hartlandrobotics.echelonFRC.R;
 //import org.hartlandrobotics.echelonFRC.database.crescendo.CrescendoResult;
+import org.hartlandrobotics.echelonFRC.configuration.AdminSettings;
+import org.hartlandrobotics.echelonFRC.configuration.AdminSettingsProvider;
 import org.hartlandrobotics.echelonFRC.database.currentGame.CurrentGamePoints;
 import org.hartlandrobotics.echelonFRC.database.entities.MatchResult;
 import org.hartlandrobotics.echelonFRC.models.MatchResultViewModel;
 import org.hartlandrobotics.echelonFRC.status.BlueAllianceStatus;
+import org.hartlandrobotics.echelonFRC.utilities.RoleUtilities;
 
 public class MatchScoutingSummaryActivity extends AppCompatActivity {
     private static final String TAG = "MatchScoutingSummaryActivity";
@@ -107,12 +110,15 @@ public class MatchScoutingSummaryActivity extends AppCompatActivity {
         matchKey = bundle.getString(MATCH_KEY);
         teamKey = bundle.getString(TEAM_KEY);
         BlueAllianceStatus blueAllianceStatus = new BlueAllianceStatus(getApplicationContext());
+        AdminSettings settings = AdminSettingsProvider.getAdminSettings(getApplicationContext());
+
 
         matchResultViewModel = new ViewModelProvider(this).get(MatchResultViewModel.class);
         matchResultViewModel.getMatchResultByMatchTeam(matchKey, teamKey)
                 .observe(MatchScoutingSummaryActivity.this, mr->{
                     if(mr == null){
-                        mr = matchResultViewModel.getDefault(blueAllianceStatus.getEventKey(), matchKey, teamKey);
+                        mr = matchResultViewModel.getDefault(blueAllianceStatus.getEventKey(), matchKey, teamKey, RoleUtilities.deviceColor(settings.getDeviceRole()));
+
                     }
                     currentResult = MatchResult.toCurrentGamePoints(mr);
                     populateControlsFromData();

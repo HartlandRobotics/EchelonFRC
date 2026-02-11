@@ -159,7 +159,7 @@ public class ExportActivity extends EchelonActivity {
         matchResultViewModel.getMatchResultsWithTeamMatchByEvent(status.getEventKey()).observe(this, matchResults -> {
 
             try (FileOutputStream outputStream = new FileOutputStream(file)) {
-                String header = "Event_Key,Match_Key,Team_Key,Match_Number,Team_Number"
+                String header = "Event_Key,Match_Key,Team_Key,Match_Number,Team_Number,Alliance"
                         + ",AutoFlag1 ,AutoFlag2, AutoFlag3, AutoFlag4, AutoFlag5"
                         + ",AutoInt6, AutoInt7, AutoInt8, AutoInt9, AutoInt10, AutoInt11"
                         + ",TeleOpInt6, TeleOpInt7,TeleOpInt8, TeleOpInt9, TeleOpInt10,TeleOpInt11,TeleOpInt12"
@@ -181,6 +181,7 @@ public class ExportActivity extends EchelonActivity {
                     dataForFile.add(mr.getTeamKey());
                     dataForFile.add(String.valueOf(m.getMatchNumber()));
                     dataForFile.add(String.valueOf(mr.getTeamKey().substring(3)));
+                    dataForFile.add(mr.getAlliance());
 
                     dataForFile.add(String.valueOf(mr.getAutoFlag1()));
                     dataForFile.add(String.valueOf(mr.getAutoFlag2()));
@@ -653,7 +654,7 @@ public class ExportActivity extends EchelonActivity {
                 if (!StringUtils.isBlank(currentLine)) {
                     String[] columns = currentLine.split(",");
 
-                    String header = "Event_Key,Match_Key,Team_Key,Match_Number,Team_Number"
+                    String header = "Event_Key,Match_Key,Team_Key,Match_Number,Team_Number,Alliance"
                             + ",AutoFlag1 ,AutoFlag2, AutoFlag3, AutoFlag4, AutoFlag5"
                             + ",AutoInt6, AutoInt7, AutoInt8, AutoInt9, AutoInt10, AutoInt11"
                             + ",TeleOpInt6, TeleOpInt7,TeleOpInt8, TeleOpInt9, TeleOpInt10,TeleOpInt11,TeleOpInt12"
@@ -665,40 +666,41 @@ public class ExportActivity extends EchelonActivity {
                     String eventKey = columns[0];
                     String matchKey = columns[1];
                     String teamKey = columns[2];
+                    String alliance = columns[5];
                     //int matchNum = Integer.parseInt(columns[3]);
                     //int teamNum = Integer.parseInt(columns[4]);
 
-                    String AutoFlag1 = StringUtils.defaultIfBlank(columns[5], "false");
-                    String AutoFlag2 = StringUtils.defaultIfBlank(columns[6], "false");
-                    String AutoFlag3 = StringUtils.defaultIfBlank(columns[7], "false");
-                    String AutoFlag4 = StringUtils.defaultIfBlank(columns[8], "false");
-                    String AutoFlag5 = StringUtils.defaultIfBlank(columns[9], "false");
+                    String AutoFlag1 = StringUtils.defaultIfBlank(columns[6], "false");
+                    String AutoFlag2 = StringUtils.defaultIfBlank(columns[7], "false");
+                    String AutoFlag3 = StringUtils.defaultIfBlank(columns[8], "false");
+                    String AutoFlag4 = StringUtils.defaultIfBlank(columns[9], "false");
+                    String AutoFlag5 = StringUtils.defaultIfBlank(columns[10], "false");
 
-                    String AutoInt6 = StringUtils.defaultIfBlank(columns[10], "0");
-                    String AutoInt7 = StringUtils.defaultIfBlank(columns[11], "0");
-                    String AutoInt8 = StringUtils.defaultIfBlank(columns[12], "0");
-                    String AutoInt9 = StringUtils.defaultIfBlank(columns[13], "0");
-                    String AutoInt10 = StringUtils.defaultIfBlank(columns[14], "0");
-                    String AutoInt11 = StringUtils.defaultIfBlank(columns[15], "0");
+                    String AutoInt6 = StringUtils.defaultIfBlank(columns[11], "0");
+                    String AutoInt7 = StringUtils.defaultIfBlank(columns[12], "0");
+                    String AutoInt8 = StringUtils.defaultIfBlank(columns[13], "0");
+                    String AutoInt9 = StringUtils.defaultIfBlank(columns[14], "0");
+                    String AutoInt10 = StringUtils.defaultIfBlank(columns[15], "0");
+                    String AutoInt11 = StringUtils.defaultIfBlank(columns[16], "0");
 
-                    String TeleOpInt6 = StringUtils.defaultIfBlank(columns[16], "0");
-                    String TeleOpInt7 = StringUtils.defaultIfBlank(columns[17], "0");
-                    String TeleOpInt8 = StringUtils.defaultIfBlank(columns[18], "0");
-                    String TeleOpInt9 = StringUtils.defaultIfBlank(columns[19], "0");
-                    String TeleOpInt10 = StringUtils.defaultIfBlank(columns[20], "0");
-                    String TeleOpInt11 = StringUtils.defaultIfBlank(columns[21], "0");
-                    String TeleOpInt12 = StringUtils.defaultIfBlank(columns[22], "0");
+                    String TeleOpInt6 = StringUtils.defaultIfBlank(columns[17], "0");
+                    String TeleOpInt7 = StringUtils.defaultIfBlank(columns[18], "0");
+                    String TeleOpInt8 = StringUtils.defaultIfBlank(columns[19], "0");
+                    String TeleOpInt9 = StringUtils.defaultIfBlank(columns[20], "0");
+                    String TeleOpInt10 = StringUtils.defaultIfBlank(columns[21], "0");
+                    String TeleOpInt11 = StringUtils.defaultIfBlank(columns[22], "0");
+                    String TeleOpInt12 = StringUtils.defaultIfBlank(columns[23], "0");
 
-                    String EndFlag1 = StringUtils.defaultIfBlank(columns[23], "false");
-                    String EndFlag2 = StringUtils.defaultIfBlank(columns[24], "false");
-                    String EndFlag3 = StringUtils.defaultIfBlank(columns[25], "false");
-                    String EndFlag4 = StringUtils.defaultIfBlank(columns[26], "false");
-                    String EndFlag5 = StringUtils.defaultIfBlank(columns[27], "false");
+                    String EndFlag1 = StringUtils.defaultIfBlank(columns[24], "false");
+                    String EndFlag2 = StringUtils.defaultIfBlank(columns[25], "false");
+                    String EndFlag3 = StringUtils.defaultIfBlank(columns[26], "false");
+                    String EndFlag4 = StringUtils.defaultIfBlank(columns[27], "false");
+                    String EndFlag5 = StringUtils.defaultIfBlank(columns[28], "false");
 
-                    String teleDef = StringUtils.defaultIfBlank(columns[28], "0");
+                    String teleDef = StringUtils.defaultIfBlank(columns[29], "0");
 
-                    String matchResultKey = columns[29];
-                    String AdditionalNotes = StringUtils.defaultIfBlank(columns[30], "empty");
+                    String matchResultKey = columns[30];
+                    String AdditionalNotes = StringUtils.defaultIfBlank(columns[31], "empty");
 
                     MatchResult matchResult = new MatchResult(
                             matchResultKey,
@@ -706,6 +708,7 @@ public class ExportActivity extends EchelonActivity {
                             matchKey,
                             teamKey,
                             false,
+                            alliance,
 
                             AutoFlag1.equalsIgnoreCase("true"),
                             AutoFlag2.equalsIgnoreCase("true"),
