@@ -33,7 +33,7 @@ public abstract class EchelonActivity extends AppCompatActivity {
     public void blueAlliancePressed(MenuItem item) {
         BlueAllianceActivity.launch(this);
     }
-
+    public void scoresPressed(MenuItem item){}
     public void settingsPressed(MenuItem item) {
         AdminSettingsActivity.launch(this);
     }
