@@ -11,7 +11,7 @@
         android:layout_height="wrap_content"
         tools:text="35360"
         android:layout_marginHorizontal="10dp"
-
+        android:textSize="20dp"
         />
 
     <com.google.android.material.textview.MaterialTextView
@@ -20,6 +20,7 @@
         android:layout_height="wrap_content"
         tools:text="60.1"
         android:layout_marginHorizontal="10dp"
+        android:textSize="20dp"
 
         />
 

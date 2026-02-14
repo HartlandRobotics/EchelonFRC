@@ -35,6 +35,7 @@ import org.hartlandrobotics.echelonFRC.status.BlueAllianceStatus;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
@@ -141,7 +142,7 @@ public class OprFragment extends Fragment {
                     ObjectMapper om = new ObjectMapper();
                     SyncOpr syncOpr = om.readValue(str, SyncOpr.class);
                     OprRepo dao = new OprRepo(OprFragment.this.getActivity().getApplication());
-                    dao.upsert(syncOpr.toOprs());
+                    dao.upsert(syncOpr.toOprs().stream().sorted(Comparator.comparingDouble(Opr::getOpr).reversed()).collect(Collectors.toList()));
                 }
             });
 
