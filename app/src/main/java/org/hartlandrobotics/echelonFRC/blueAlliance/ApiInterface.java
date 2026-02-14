@@ -3,6 +3,7 @@ package org.hartlandrobotics.echelonFRC.blueAlliance;
 import org.hartlandrobotics.echelonFRC.blueAlliance.models.SyncDistrict;
 import org.hartlandrobotics.echelonFRC.blueAlliance.models.SyncEvent;
 import org.hartlandrobotics.echelonFRC.blueAlliance.models.SyncMatch;
+import org.hartlandrobotics.echelonFRC.blueAlliance.models.SyncOpr;
 import org.hartlandrobotics.echelonFRC.blueAlliance.models.SyncStatus;
 import org.hartlandrobotics.echelonFRC.blueAlliance.models.SyncTeam;
 
@@ -32,4 +33,6 @@ public interface ApiInterface {
     @GET("event/{event_key}/matches/simple")
     Call<List<SyncMatch>> getMatchesByEvent(@Path("event_key") String eventKey);
 
+    @GET("event/{event_key}/coprs")
+    Call<List<SyncOpr>> getOprsByEvent(@Path("event_key") String eventKey);
 }

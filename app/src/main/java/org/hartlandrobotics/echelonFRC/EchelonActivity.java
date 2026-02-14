@@ -9,6 +9,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
 import org.hartlandrobotics.echelonFRC.blueAlliance.BlueAllianceActivity;
+import org.hartlandrobotics.echelonFRC.blueAlliance.ScoreActivity;
 
 
 public abstract class EchelonActivity extends AppCompatActivity {
@@ -33,7 +34,7 @@ public abstract class EchelonActivity extends AppCompatActivity {
     public void blueAlliancePressed(MenuItem item) {
         BlueAllianceActivity.launch(this);
     }
-    public void scoresPressed(MenuItem item){}
+    public void scoresPressed(MenuItem item){ ScoreActivity.launch(this); }
     public void settingsPressed(MenuItem item) {
         AdminSettingsActivity.launch(this);
     }

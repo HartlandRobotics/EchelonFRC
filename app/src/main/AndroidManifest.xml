@@ -56,6 +56,10 @@
             android:exported="true"
             android:screenOrientation="landscape" />
         <activity
+            android:name=".blueAlliance.ScoreActivity"
+            android:exported="true"
+            android:screenOrientation="landscape" />
+        <activity
             android:name=".AdminSettingsActivity"
             android:exported="true"
             android:screenOrientation="landscape" />

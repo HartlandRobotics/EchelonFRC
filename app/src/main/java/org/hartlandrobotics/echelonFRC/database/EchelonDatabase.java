@@ -8,6 +8,7 @@ import org.hartlandrobotics.echelonFRC.database.dao.EvtWithMatchesDao;
 import org.hartlandrobotics.echelonFRC.database.dao.EvtWithTeamsDao;
 import org.hartlandrobotics.echelonFRC.database.dao.MatchDao;
 import org.hartlandrobotics.echelonFRC.database.dao.MatchResultDao;
+import org.hartlandrobotics.echelonFRC.database.dao.OprDao;
 import org.hartlandrobotics.echelonFRC.database.dao.PitScoutDao;
 import org.hartlandrobotics.echelonFRC.database.dao.SeasonDao;
 import org.hartlandrobotics.echelonFRC.database.dao.TeamDao;
@@ -24,6 +25,7 @@ import org.hartlandrobotics.echelonFRC.database.entities.EvtMatchCrossRef;
 import org.hartlandrobotics.echelonFRC.database.entities.EvtTeamCrossRef;
 import org.hartlandrobotics.echelonFRC.database.entities.Match;
 import org.hartlandrobotics.echelonFRC.database.entities.MatchResult;
+import org.hartlandrobotics.echelonFRC.database.entities.Opr;
 import org.hartlandrobotics.echelonFRC.database.entities.PitScout;
 import org.hartlandrobotics.echelonFRC.database.entities.Season;
 import org.hartlandrobotics.echelonFRC.database.entities.Team;
@@ -41,7 +43,8 @@ import java.util.concurrent.Executors;
         EvtMatchCrossRef.class,
         DistrictEvtCrossRef.class,
         Match.class,
-        MatchResult.class
+        MatchResult.class,
+        Opr.class
 
 }, version = 8,
         exportSchema = false
@@ -57,6 +60,7 @@ public abstract class EchelonDatabase extends RoomDatabase {
     public abstract DistrictWithEventsDao districtEventsDao();
     public abstract MatchDao matchDao();
     public abstract MatchResultDao matchResultDao();
+    public abstract OprDao oprDao();
 
 
     private static volatile EchelonDatabase _instance;
@@ -118,6 +122,8 @@ public abstract class EchelonDatabase extends RoomDatabase {
                 PitScoutDao pitScoutDao = _instance.pitScoutDao();
                 SeasonDao seasonDao = _instance.seasonDao();
                 MatchResultDao matchResultDao = _instance.matchResultDao();
+                OprDao oprDao = _instance.oprDao();
+
             } );
         }
     };
