@@ -2,34 +2,25 @@ package org.hartlandrobotics.echelonFRC.blueAlliance.fragments;
 
 import android.content.Context;
 import android.os.Bundle;
-
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.google.android.material.radiobutton.MaterialRadioButton;
 import com.google.android.material.textview.MaterialTextView;
 
 import org.hartlandrobotics.echelonFRC.R;
-import org.hartlandrobotics.echelonFRC.blueAlliance.Api;
-import org.hartlandrobotics.echelonFRC.blueAlliance.ApiInterface;
-import org.hartlandrobotics.echelonFRC.blueAlliance.BlueAllianceActivity;
 import org.hartlandrobotics.echelonFRC.blueAlliance.models.SyncOpr;
 import org.hartlandrobotics.echelonFRC.configuration.AdminSettingsProvider;
 import org.hartlandrobotics.echelonFRC.configuration.AdminSettingsViewModel;
-import org.hartlandrobotics.echelonFRC.database.entities.District;
 import org.hartlandrobotics.echelonFRC.database.entities.Opr;
-import org.hartlandrobotics.echelonFRC.database.repositories.DistrictRepo;
 import org.hartlandrobotics.echelonFRC.database.repositories.OprRepo;
 import org.hartlandrobotics.echelonFRC.status.BlueAllianceStatus;
 
@@ -37,7 +28,6 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
-import java.util.Map;
 import java.util.stream.Collectors;
 
 import okhttp3.Call;
@@ -45,12 +35,10 @@ import okhttp3.Callback;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.Response;
-//import retrofit2.Call;
 
 
 public class OprFragment extends Fragment {
     private static String TAG = "OprFragment";
-
 
     private Button oprFetchButton;
 
@@ -66,7 +54,6 @@ public class OprFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
     }
 
     @Override
@@ -77,8 +64,6 @@ public class OprFragment extends Fragment {
         oprFetchButton = fragmentView.findViewById(R.id.oprPullButton);
 
         setupCurrentOpr();
-
-
         setupPullOpr();
 
         return fragmentView;
@@ -117,10 +102,7 @@ public class OprFragment extends Fragment {
             String tbaApiKey = vm.getBlueAllianceApiKey();
 
             OkHttpClient.Builder httpClientBuilder = new OkHttpClient.Builder();
-
-
             OkHttpClient httpClient = httpClientBuilder.build();
-
             Request request = new Request.Builder()
                     .header("Accept", "application/json")
                     .header("User-Agent", userAgent)
@@ -145,14 +127,12 @@ public class OprFragment extends Fragment {
                     dao.upsert(syncOpr.toOprs().stream().sorted(Comparator.comparingDouble(Opr::getOpr).reversed()).collect(Collectors.toList()));
                 }
             });
-
         });
     }
 
     public class OprViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
         private MaterialTextView teamKeyText;
         private MaterialTextView oprText;
-
         private Opr opr;
 
         OprViewHolder(View itemView) {
@@ -161,12 +141,10 @@ public class OprFragment extends Fragment {
 
             teamKeyText = itemView.findViewById(R.id.team_key);
             oprText = itemView.findViewById(R.id.opr);
-
         }
 
         public void setOpr(Opr opr) {
             this.opr = opr;
-
             teamKeyText.setText(this.opr.getTeamKey().substring(3));
             oprText.setText(String.format("%.3f", this.opr.getOpr()));
         }
@@ -174,14 +152,12 @@ public class OprFragment extends Fragment {
         public void setTeamKeyText(String displayText) {
             teamKeyText.setText(displayText);
         }
-        @Override
-        public void onClick(View view) {
 
-        }
+        @Override
+        public void onClick(View view){}
     }
 
     public class OprListAdapter extends RecyclerView.Adapter<OprViewHolder> {
-
         private final LayoutInflater inflater;
         private List<Opr> oprs;
 
@@ -207,18 +183,15 @@ public class OprFragment extends Fragment {
 
         void setOprs(List<Opr> oprsPara) {
             oprs = new ArrayList<>();
-            for(Opr opr : oprsPara){
-                oprs.add(opr);
-            }
+            oprs.addAll(oprsPara);
+
             notifyDataSetChanged();
         }
 
         @Override
         public int getItemCount() {
             if( oprs != null ) return oprs.size();
-            return 0;        }
+            return 0;
+        }
     }
-
-
-
 }
