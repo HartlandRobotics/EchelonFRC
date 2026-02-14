@@ -30,6 +30,7 @@ import org.hartlandrobotics.echelonFRC.database.repositories.TeamRepo;
 import org.hartlandrobotics.echelonFRC.status.BlueAllianceStatus;
 
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -117,7 +118,9 @@ public class ScoreFragment extends Fragment {
                                 MatchScoreRepo matchScoreRepo = new MatchScoreRepo(ScoreFragment.this.getActivity().getApplication());
                                 List<SyncMatchScore> syncMatchScores = response.body();
                                 List<MatchScore> scores = syncMatchScores.stream()
+                                        .filter(sms -> sms.getMatchKey().contains("_qm"))
                                         .map(score -> score.toMatchScore())
+                                        .sorted(Comparator.comparingInt(MatchScore::getMatchNumber))
                                         .collect(Collectors.toList());
 
                                 matchScoreRepo.upsert(scores);
@@ -149,7 +152,7 @@ public class ScoreFragment extends Fragment {
     }
 
     public class ScoreViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
-        private final TextView matchKeyText;
+        private final TextView matchNumberText;
         private final TextView matchRedTotalText;
         private final TextView matchRedFoulText;
         private final TextView matchBlueTotalText;
@@ -161,7 +164,7 @@ public class ScoreFragment extends Fragment {
             super(itemView);
             itemView.setOnClickListener( this );
 
-            matchKeyText = itemView.findViewById( R.id.match_key );
+            matchNumberText = itemView.findViewById( R.id.match_number );
             matchRedTotalText = itemView.findViewById( R.id.red_total );
             matchRedFoulText = itemView.findViewById( R.id.red_foul );
             matchBlueTotalText = itemView.findViewById( R.id.blue_total );
@@ -171,7 +174,7 @@ public class ScoreFragment extends Fragment {
         public void setMatchScore(MatchScore matchScore ){
             this.matchScore = matchScore;
 
-            matchKeyText.setText(matchScore.getMatchKey());
+            matchNumberText.setText(String.valueOf(matchScore.getMatchNumber()));
             matchRedTotalText.setText(String.valueOf(matchScore.getRedTotal()));
             matchRedFoulText.setText(String.valueOf(matchScore.getRedFoul()));
             matchBlueTotalText.setText(String.valueOf(matchScore.getBlueTotal()));

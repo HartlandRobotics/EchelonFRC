@@ -55,9 +55,11 @@ public class SyncMatchScore {
     }
 
     public static class MatchAlliance {
-        @JsonProperty("foul_points")
+        @JsonProperty("autoCoralCount")
+        int autoCoralCount;
+        @JsonProperty("foulPoints")
         int foulPoints;
-        @JsonProperty("total_points")
+        @JsonProperty("totalPoints")
         int totalPoints;
     }
 
