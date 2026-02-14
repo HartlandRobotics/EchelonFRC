@@ -8,6 +8,7 @@ import org.hartlandrobotics.echelonFRC.database.dao.EvtWithMatchesDao;
 import org.hartlandrobotics.echelonFRC.database.dao.EvtWithTeamsDao;
 import org.hartlandrobotics.echelonFRC.database.dao.MatchDao;
 import org.hartlandrobotics.echelonFRC.database.dao.MatchResultDao;
+import org.hartlandrobotics.echelonFRC.database.dao.MatchScoreDao;
 import org.hartlandrobotics.echelonFRC.database.dao.OprDao;
 import org.hartlandrobotics.echelonFRC.database.dao.PitScoutDao;
 import org.hartlandrobotics.echelonFRC.database.dao.SeasonDao;
@@ -25,6 +26,7 @@ import org.hartlandrobotics.echelonFRC.database.entities.EvtMatchCrossRef;
 import org.hartlandrobotics.echelonFRC.database.entities.EvtTeamCrossRef;
 import org.hartlandrobotics.echelonFRC.database.entities.Match;
 import org.hartlandrobotics.echelonFRC.database.entities.MatchResult;
+import org.hartlandrobotics.echelonFRC.database.entities.MatchScore;
 import org.hartlandrobotics.echelonFRC.database.entities.Opr;
 import org.hartlandrobotics.echelonFRC.database.entities.PitScout;
 import org.hartlandrobotics.echelonFRC.database.entities.Season;
@@ -44,7 +46,8 @@ import java.util.concurrent.Executors;
         DistrictEvtCrossRef.class,
         Match.class,
         MatchResult.class,
-        Opr.class
+        Opr.class,
+        MatchScore.class,
 
 }, version = 8,
         exportSchema = false
@@ -61,6 +64,7 @@ public abstract class EchelonDatabase extends RoomDatabase {
     public abstract MatchDao matchDao();
     public abstract MatchResultDao matchResultDao();
     public abstract OprDao oprDao();
+    public abstract MatchScoreDao matchScoreDao();
 
 
     private static volatile EchelonDatabase _instance;
@@ -123,7 +127,7 @@ public abstract class EchelonDatabase extends RoomDatabase {
                 SeasonDao seasonDao = _instance.seasonDao();
                 MatchResultDao matchResultDao = _instance.matchResultDao();
                 OprDao oprDao = _instance.oprDao();
-
+                MatchScoreDao matchScoreDao = _instance.matchScoreDao();
             } );
         }
     };
