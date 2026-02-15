@@ -131,6 +131,8 @@ public class OprFragment extends Fragment {
     public class OprViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
         private MaterialTextView teamKeyText;
         private MaterialTextView oprText;
+        private MaterialTextView foulText;
+
         private Opr opr;
 
         OprViewHolder(View itemView) {
@@ -138,13 +140,16 @@ public class OprFragment extends Fragment {
             itemView.setOnClickListener(this);
 
             teamKeyText = itemView.findViewById(R.id.team_key);
-            oprText = itemView.findViewById(R.id.opr);
+            oprText = itemView.findViewById(R.id.totalPoints);
+            foulText = itemView.findViewById(R.id.foulPoints);
         }
 
         public void setOpr(Opr opr) {
             this.opr = opr;
             teamKeyText.setText(this.opr.getTeamKey().substring(3));
             oprText.setText(String.format("%.3f", this.opr.getOpr()));
+            foulText.setText(String.format("%.3f", this.opr.getFoul()));
+
         }
 
         public void setTeamKeyText(String displayText) {
