@@ -9,8 +9,6 @@ import androidx.room.Transaction;
 import androidx.room.Update;
 
 import org.hartlandrobotics.echelonFRC.database.entities.MatchScore;
-import org.hartlandrobotics.echelonFRC.database.entities.Team;
-
 import java.util.List;
 
 @Dao

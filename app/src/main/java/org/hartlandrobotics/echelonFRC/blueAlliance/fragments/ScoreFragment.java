@@ -1,5 +1,6 @@
 package org.hartlandrobotics.echelonFRC.blueAlliance.fragments;
 
+import android.app.Application;
 import android.content.Context;
 import android.os.Bundle;
 
@@ -21,12 +22,8 @@ import org.hartlandrobotics.echelonFRC.R;
 import org.hartlandrobotics.echelonFRC.blueAlliance.Api;
 import org.hartlandrobotics.echelonFRC.blueAlliance.ApiInterface;
 import org.hartlandrobotics.echelonFRC.blueAlliance.models.SyncMatchScore;
-import org.hartlandrobotics.echelonFRC.blueAlliance.models.SyncTeam;
-import org.hartlandrobotics.echelonFRC.database.entities.EvtTeamCrossRef;
 import org.hartlandrobotics.echelonFRC.database.entities.MatchScore;
-import org.hartlandrobotics.echelonFRC.database.entities.Team;
 import org.hartlandrobotics.echelonFRC.database.repositories.MatchScoreRepo;
-import org.hartlandrobotics.echelonFRC.database.repositories.TeamRepo;
 import org.hartlandrobotics.echelonFRC.status.BlueAllianceStatus;
 
 import java.util.ArrayList;
@@ -40,19 +37,8 @@ import retrofit2.Response;
 
 
 public class ScoreFragment extends Fragment {
-    private static String TAG = "ScoreFragment";
-
-    private Button scoreFetchButton;
-
-    private RecyclerView scoreRecycler;
-
+    private static final String TAG = "ScoreFragment";
     private MatchScoreListAdapter matchScoreListAdapter;
-
-
-    public ScoreFragment() {
-        // Required empty public constructor
-    }
-
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -64,10 +50,10 @@ public class ScoreFragment extends Fragment {
                              Bundle savedInstanceState) {
         View fragmentView = inflater.inflate(R.layout.fragment_score, container, false);
 
-        scoreFetchButton = fragmentView.findViewById(R.id.scorePullButton);
+        Button scoreFetchButton = fragmentView.findViewById(R.id.scorePullButton);
 
         setupCurrentScore();
-        setupPullScore();
+        setupPullScore(scoreFetchButton);
 
         return fragmentView;
     }
@@ -78,36 +64,36 @@ public class ScoreFragment extends Fragment {
 
         matchScoreListAdapter = new MatchScoreListAdapter(getActivity());
 
-        scoreRecycler = view.findViewById(R.id.score_recycler);
+        RecyclerView scoreRecycler = view.findViewById(R.id.score_recycler);
         scoreRecycler.setLayoutManager(new LinearLayoutManager(getActivity()));
         scoreRecycler.setAdapter(matchScoreListAdapter);
         scoreRecycler.addItemDecoration(new DividerItemDecoration(view.getContext(), LinearLayoutManager.VERTICAL));
 
     }
     public void setupCurrentScore(){
-        Context appContext = getActivity().getApplicationContext();
+        Context appContext = requireActivity().getApplicationContext();
         BlueAllianceStatus status = new BlueAllianceStatus(appContext);
         String eventKey = status.getEventKey();
 
-        MatchScoreRepo matchScoreRepo = new MatchScoreRepo(ScoreFragment.this.getActivity().getApplication());
+        MatchScoreRepo matchScoreRepo = new MatchScoreRepo(ScoreFragment.this.requireActivity().getApplication());
         matchScoreRepo.getMatchScores().observe(getViewLifecycleOwner(), scores -> {
             matchScoreListAdapter.setScores(scores);
         });
     }
 
-    public void setupPullScore(){
+    public void setupPullScore(Button scoreFetchButton){
         scoreFetchButton.setOnClickListener((view -> {
-            ApiInterface newApi = Api.getApiClient(getActivity().getApplication());
+            Application app = requireActivity().getApplication();
+            ApiInterface newApi = Api.getApiClient(app);
 
             try{
-                Context context = getActivity().getApplication();
-                BlueAllianceStatus status = new BlueAllianceStatus(context);
+                BlueAllianceStatus status = new BlueAllianceStatus(app.getApplicationContext());
                 String eventKey = status.getEventKey();
 
                 Call<List<SyncMatchScore>> newCall = newApi.getMatchScoresByEvent(eventKey);
                 newCall.enqueue(new Callback<List<SyncMatchScore>>() {
                     @Override
-                    public void onResponse(Call<List<SyncMatchScore>> call, Response<List<SyncMatchScore>> response) {
+                    public void onResponse(@NonNull Call<List<SyncMatchScore>> call, @NonNull Response<List<SyncMatchScore>> response) {
                         Log.i(TAG, "Successfully got response for scores");
 
                         try{
@@ -115,21 +101,17 @@ public class ScoreFragment extends Fragment {
                                 Log.i(TAG,"Couldn't pull Scores");
                             }
                             else{
-                                MatchScoreRepo matchScoreRepo = new MatchScoreRepo(ScoreFragment.this.getActivity().getApplication());
+                                MatchScoreRepo matchScoreRepo = new MatchScoreRepo(app);
                                 List<SyncMatchScore> syncMatchScores = response.body();
+                                if( syncMatchScores == null ) return;
                                 List<MatchScore> scores = syncMatchScores.stream()
                                         .filter(sms -> sms.getMatchKey().contains("_qm"))
-                                        .map(score -> score.toMatchScore())
+                                        .map(SyncMatchScore::toMatchScore)
                                         .sorted(Comparator.comparingInt(MatchScore::getMatchNumber))
                                         .collect(Collectors.toList());
 
                                 matchScoreRepo.upsert(scores);
-
                                 matchScoreListAdapter.setScores(scores);
-
-                                int i;
-                                i = 10;
-
                             }
                         }
                         catch(Exception e){
@@ -137,11 +119,9 @@ public class ScoreFragment extends Fragment {
                         }
                     }
 
-
                     @Override
-                    public void onFailure(Call<List<SyncMatchScore>> call, Throwable t) {
+                    public void onFailure(@NonNull Call<List<SyncMatchScore>> call, @NonNull Throwable t) {
                         Log.i(TAG, "Failed to get response for scores");
-
                     }
                 });
             }
@@ -151,16 +131,14 @@ public class ScoreFragment extends Fragment {
         }));
     }
 
-    public class ScoreViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
+    public static class MatchScoreViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
         private final TextView matchNumberText;
         private final TextView matchRedTotalText;
         private final TextView matchRedFoulText;
         private final TextView matchBlueTotalText;
         private final TextView matchBlueFoulText;
 
-        private MatchScore matchScore;
-
-        private ScoreViewHolder(View itemView){
+        private MatchScoreViewHolder(View itemView){
             super(itemView);
             itemView.setOnClickListener( this );
 
@@ -172,8 +150,6 @@ public class ScoreFragment extends Fragment {
         }
 
         public void setMatchScore(MatchScore matchScore ){
-            this.matchScore = matchScore;
-
             matchNumberText.setText(String.valueOf(matchScore.getMatchNumber()));
             matchRedTotalText.setText(String.valueOf(matchScore.getRedTotal()));
             matchRedFoulText.setText(String.valueOf(matchScore.getRedFoul()));
@@ -181,17 +157,11 @@ public class ScoreFragment extends Fragment {
             matchBlueFoulText.setText(String.valueOf(matchScore.getBlueFoul()));
         }
 
-
         @Override
-        public void onClick(View view) {
-
-        }
-
+        public void onClick(View view) {}
     }
 
-    public class MatchScoreListAdapter extends RecyclerView.Adapter<ScoreViewHolder> {
-
-
+    public static class MatchScoreListAdapter extends RecyclerView.Adapter<MatchScoreViewHolder> {
         private final LayoutInflater inflater;
         private List<MatchScore> scores;
 
@@ -199,22 +169,20 @@ public class ScoreFragment extends Fragment {
 
         @NonNull
         @Override
-        public ScoreViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+        public MatchScoreViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
             View itemView = inflater.inflate( R.layout.list_item_score, parent, false );
-            return new ScoreViewHolder( itemView );
+            return new MatchScoreViewHolder(itemView);
         }
 
         @Override
-        public void onBindViewHolder(@NonNull ScoreViewHolder holder, int position) {
+        public void onBindViewHolder(@NonNull MatchScoreViewHolder holder, int position) {
             if( scores != null ){
                 holder.setMatchScore( scores.get(position) );
-            } else {
-                //holder.setDisplayText("No Team Data Yet...");
             }
         }
 
         void setScores(List<MatchScore> matchScoresPara){
-            scores= new ArrayList<>();
+            scores = new ArrayList<>();
             scores.addAll(matchScoresPara);
 
             notifyDataSetChanged();
@@ -222,11 +190,7 @@ public class ScoreFragment extends Fragment {
 
         @Override
         public int getItemCount() {
-            if( scores != null ) return scores.size();
-            return 0;
+            return ( scores == null ) ? 0 : scores.size();
         }
     }
-
-
-
 }

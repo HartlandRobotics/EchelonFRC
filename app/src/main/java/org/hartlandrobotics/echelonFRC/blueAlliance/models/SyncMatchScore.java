@@ -1,11 +1,7 @@
 package org.hartlandrobotics.echelonFRC.blueAlliance.models;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-
 import org.hartlandrobotics.echelonFRC.database.entities.MatchScore;
-import org.hartlandrobotics.echelonFRC.database.entities.Team;
-
-import java.util.ArrayList;
 
 public class SyncMatchScore {
     @JsonProperty("key")
@@ -41,9 +37,8 @@ public class SyncMatchScore {
     }
 
     public MatchScore toMatchScore(){
-        MatchScore score = new MatchScore(
+        return new MatchScore(
                 getMatchKey(), getMatchNumber(), getRedTotal(), getRedFoul(), getBlueTotal(), getBlueFoul());
-        return score;
     }
 
     public static class ScoreBreakdown {

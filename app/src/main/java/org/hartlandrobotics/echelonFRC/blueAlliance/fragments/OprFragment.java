@@ -38,11 +38,9 @@ import okhttp3.Response;
 
 
 public class OprFragment extends Fragment {
-    private static String TAG = "OprFragment";
+    private static final String TAG = "OprFragment";
 
     private Button oprFetchButton;
-
-    private RecyclerView oprRecycler;
 
     private OprListAdapter oprListAdapter;
 
@@ -75,7 +73,7 @@ public class OprFragment extends Fragment {
 
         oprListAdapter = new OprListAdapter(getActivity());
 
-        oprRecycler = view.findViewById(R.id.opr_recycler);
+        RecyclerView oprRecycler = view.findViewById(R.id.opr_recycler);
         oprRecycler.setLayoutManager(new LinearLayoutManager(getActivity()));
         oprRecycler.setAdapter(oprListAdapter);
         oprRecycler.addItemDecoration(new DividerItemDecoration(view.getContext(), LinearLayoutManager.VERTICAL));
