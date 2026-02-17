@@ -24,8 +24,6 @@ public class Match {
    @ColumnInfo(name = "predicted_time")
    private int predictedTime;
 
-   @ColumnInfo(name = "red_score")
-   private int redScore;
    @ColumnInfo(name = "red_1_team_key")
    private String red1TeamKey;
 
@@ -35,8 +33,6 @@ public class Match {
    @ColumnInfo(name = "red_3_team_key")
    private String red3TeamKey;
 
-   @ColumnInfo(name = "blue_score")
-   private int blueScore;
    @ColumnInfo(name = "blue_1_team_key")
    private String blue1TeamKey;
 
@@ -48,19 +44,17 @@ public class Match {
 
    public Match(String matchKey, int matchNumber,
                 String compLevel, int matchTime, int predictedTime,
-                int redScore, String red1TeamKey, String red2TeamKey, String red3TeamKey,
-                int blueScore, String blue1TeamKey, String blue2TeamKey, String blue3TeamKey
+                String red1TeamKey, String red2TeamKey, String red3TeamKey,
+                String blue1TeamKey, String blue2TeamKey, String blue3TeamKey
    ) {
       this.matchKey = matchKey;
       this.matchNumber = matchNumber;
       this.compLevel = compLevel;
       this.matchTime = matchTime;
       this.predictedTime = predictedTime;
-      this.redScore = redScore;
       this.red1TeamKey = red1TeamKey;
       this.red2TeamKey =  red2TeamKey;
       this.red3TeamKey = red3TeamKey;
-      this.blueScore = blueScore;
       this.blue1TeamKey = blue1TeamKey;
       this.blue2TeamKey = blue2TeamKey;
       this.blue3TeamKey = blue3TeamKey;
@@ -86,7 +80,6 @@ public class Match {
       return predictedTime;
    }
 
-   public int getRedScore(){return redScore;}
    public String getRed1TeamKey(){
       return red1TeamKey;
    }
@@ -98,7 +91,6 @@ public class Match {
    public String getRed3TeamKey(){
       return red3TeamKey;
    }
-    public int getBlueScore(){return blueScore;}
 
    public String getBlue1TeamKey(){
       return blue1TeamKey;

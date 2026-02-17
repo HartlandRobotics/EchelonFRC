@@ -50,11 +50,9 @@ public class SyncMatch {
         Match match = new Match(
                 getMatchKey(), getMatchNumber(),
                 getCompLevel(), getTime(), getPredictedTime(),
-                alliances.redAlliance.score,
                 alliances.redAlliance.teamKeys.get( 0 ),
                 alliances.redAlliance.teamKeys.get( 1 ),
                 alliances.redAlliance.teamKeys.get( 2 ),
-                alliances.blueAlliance.score,
                 alliances.blueAlliance.teamKeys.get( 0 ),
                 alliances.blueAlliance.teamKeys.get( 1 ),
                 alliances.blueAlliance.teamKeys.get( 2 )
