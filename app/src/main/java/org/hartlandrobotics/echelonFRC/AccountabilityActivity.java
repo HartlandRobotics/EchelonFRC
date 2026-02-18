@@ -296,6 +296,8 @@ public class AccountabilityActivity extends EchelonActivity {
 
             team3Text.setTextColor(color);
             team3Text.setText(vm.getTablet3Name());
+
+
         }
 
         public void setDisplayText(String displayText){
@@ -333,9 +335,11 @@ public class AccountabilityActivity extends EchelonActivity {
             allHolderViewModels = vms;
 
             holderViewModels = vms.stream()
-                    .sorted(Comparator.comparingInt(AccountabilityViewModel::getMatchNumber))
+                    .sorted(Comparator.comparingDouble(AccountabilityViewModel::getPercentInaccuracy).reversed())
                     .collect(Collectors.toList());
 
+
+            //            viewModels.stream().sorted(Comparator.comparingDouble(AccountabilityViewModel::getPercentInaccuracy).reversed())
             notifyDataSetChanged();
         }
 

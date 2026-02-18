@@ -16,7 +16,7 @@
 
     <com.google.android.material.textview.MaterialTextView
         android:id="@+id/totalPoints"
-        android:layout_width="wrap_content"
+        android:layout_width="100dp"
         android:layout_height="wrap_content"
         tools:text="60.1"
         android:layout_marginHorizontal="10dp"
@@ -25,7 +25,7 @@
 
     <com.google.android.material.textview.MaterialTextView
         android:id="@+id/foulPoints"
-        android:layout_width="wrap_content"
+        android:layout_width="100dp"
         android:layout_height="wrap_content"
         tools:text="10.1"
         android:layout_marginHorizontal="10dp"

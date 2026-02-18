@@ -6,6 +6,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".blueAlliance.fragments.DistrictsFragment">
 
+
     <com.google.android.material.button.MaterialButton
         android:id="@+id/oprPullButton"
         android:layout_width="wrap_content"
@@ -13,14 +14,43 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         android:text="Fetch OPR"
-        />
 
+        />
+    <LinearLayout
+        android:id="@+id/opr_header"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toTopOf="@id/opr_recycler"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginTop="30dp"
+        >
+        <TextView
+            android:layout_width="60dp"
+            android:layout_height="wrap_content"
+            android:text="Team Number"
+            android:gravity="center_horizontal"
+            />
+        <TextView
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:text="Total"
+            android:gravity="center_horizontal"
+            />
+        <TextView
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:text="Foul"
+            android:gravity="center_horizontal"
+            />
+
+
+    </LinearLayout>
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/opr_recycler"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/oprPullButton"
+        app:layout_constraintTop_toBottomOf="@id/opr_header"
         app:layout_constraintEnd_toEndOf="parent"
         tools:listitem="@layout/list_item_opr" />
 
