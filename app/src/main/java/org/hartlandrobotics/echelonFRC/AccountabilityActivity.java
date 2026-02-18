@@ -8,6 +8,8 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
+import android.widget.AutoCompleteTextView;
 import android.widget.LinearLayout;
 
 import androidx.annotation.NonNull;
@@ -16,6 +18,7 @@ import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.google.android.material.textfield.TextInputLayout;
 import com.google.android.material.textview.MaterialTextView;
 
 import org.apache.commons.lang3.StringUtils;
@@ -51,6 +54,9 @@ public class AccountabilityActivity extends EchelonActivity {
 
     RecyclerView accuracyRecycler;
     AccuracyListAdapter accuracyListAdapter;
+    TextInputLayout calculationType;
+    AutoCompleteTextView calculationTypeAutoComplete;
+    String defaultCalculationTypes;
 
     public static void launch(Context context) {
         Intent intent = new Intent(context, AccountabilityActivity.class);
@@ -66,6 +72,14 @@ public class AccountabilityActivity extends EchelonActivity {
 
         BlueAllianceStatus status = new BlueAllianceStatus(getApplicationContext());
         String currentEvent = status.getEventKey();
+
+        calculationType = findViewById(R.id.calculationType);
+        calculationTypeAutoComplete = findViewById(R.id.calculationTypeAutoComplete);
+        String[] calculationTypes = getResources().getStringArray(R.array.calculation_type);
+        defaultCalculationTypes = calculationTypes[0];
+        ArrayAdapter<String> adapterCalculationType = new ArrayAdapter<String>(this, R.layout.dropdown_item, calculationTypes);
+        calculationTypeAutoComplete.setAdapter(adapterCalculationType);
+        calculationTypeAutoComplete.setText(defaultCalculationTypes,false);
 
         String[] allianceColors = {"red", "blue"};
         if( !viewModels.isEmpty() ) viewModels.clear();

@@ -13,11 +13,53 @@
         android:layout_height="?attr/actionBarSize" />
 
     <LinearLayout
+        android:id="@+id/calculationLayout"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    app:layout_constraintTop_toBottomOf="@id/actionBar"
+    android:weightSum="3"
+        >
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/calculationType"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:hint="Calculation"
+        android:layout_weight="1"
+        >
+
+        <AutoCompleteTextView
+            android:id="@+id/calculationTypeAutoComplete"
+            android:layout_width="200dp"
+            android:layout_height="wrap_content"
+            android:inputType="none" />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/calculationThreshold"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="0">
+
+            </com.google.android.material.textfield.TextInputEditText>
+
+        </com.google.android.material.textfield.TextInputLayout>
+    </LinearLayout>
+
+    <LinearLayout
         android:id="@+id/accuracy_header"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:orientation="horizontal"
-        app:layout_constraintTop_toBottomOf="@id/actionBar"
+        app:layout_constraintTop_toBottomOf="@id/calculationLayout"
 
         >
 
@@ -73,6 +115,8 @@
         android:layout_height="0dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintTop_toBottomOf="@id/line"
+        app:layout_constraintVertical_bias="1.0"
+        tools:layout_editor_absoluteX="121dp"
         tools:listitem="@layout/list_item_accuracy" />
 
 
