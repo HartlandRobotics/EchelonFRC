@@ -15,12 +15,53 @@
         android:text="Fetch Score"
         />
 
+<LinearLayout
+    android:id="@+id/score_header"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    app:layout_constraintBottom_toTopOf="@id/score_recycler"
+    app:layout_constraintTop_toTopOf="parent"
+    android:layout_marginTop="30dp"
 
+    >
+    <TextView
+        android:layout_width="60dp"
+        android:layout_height="wrap_content"
+        android:text="Match Number"
+        android:gravity="center_horizontal"
+        />
+    <TextView
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
+        android:text="Red Total"
+        android:gravity="center_horizontal"
+        />
+    <TextView
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
+        android:text="Red Foul"
+        android:gravity="center_horizontal"
+        />
+    <TextView
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
+        android:text="Blue Total"
+        android:gravity="center_horizontal"
+        />
+    <TextView
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
+        android:text="Blue Foul"
+        android:gravity="center_horizontal"
+        />
+
+
+</LinearLayout>
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/score_recycler"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        app:layout_constraintTop_toBottomOf="@+id/scorePullButton"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@+id/score_header"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
