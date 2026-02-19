@@ -44,7 +44,6 @@ import java.util.stream.Collectors;
 public class AccountabilityActivity extends EchelonActivity {
 
     String TAG = "AccountabilityActivity";
-    EventRepo eventRepo;
     MatchRepo matchRepo;
     MatchResultRepo matchResultRepo;
     MatchScoreRepo matchScoreRepo;
@@ -205,53 +204,12 @@ public class AccountabilityActivity extends EchelonActivity {
 
                     vm.setAllianceColor(currentAllianceColor);
                     viewModels.add(vm);
-
                 }
-
-
             }
             accuracyListAdapter.setAccuracies(viewModels);
         });
         });
         });
-
-//        matchScoreRepo.getMatchScores().observe(this, matchScores -> {
-//
-//            matchResultRepo.getMatchResultsByEvent(currentEvent).observe(this, matchResults -> {
-//                        for(MatchScore matchScore : matchScores) {
-//                            for (String allianceColor : allianceColors) {
-//                                AccountabilityViewModel vm = new AccountabilityViewModel();
-//                                vm.setMatchNumber(matchScore.getMatchNumber());
-//
-//                                if (allianceColor.equals("red")) {
-//                                    vm.setAllianceColor(allianceColor);
-//                                    vm.setBlueAlliancePoints(matchScore.getRedTotal() - matchScore.getRedFoul());
-//                                    List<MatchResult> currentMR = matchResults.stream()
-//                                            .filter(matchResult -> matchResult.getMatchKey().equals(currentEvent))
-//                                            .filter(matchResult -> matchResult.getAlliance().equals(allianceColor))
-//                                            .collect(Collectors.toList());
-//
-//
-//                                    viewModels.add(vm);
-//                                }
-//                                if (allianceColor.equals("blue")) {
-//                                    vm.setAllianceColor(allianceColor);
-//                                    vm.setBlueAlliancePoints(matchScore.getBlueTotal() - matchScore.getBlueFoul());
-//                                    viewModels.add(vm);
-//
-//                                }
-//                            }
-//                        }
-//            });
-//
-//
-//
-//
-//
-//        });
-//            accuracyListAdapter.setAccuracies(viewModels);
-//
-
     }
 
 
