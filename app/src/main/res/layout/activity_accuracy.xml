@@ -12,31 +12,39 @@
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize" />
 
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/oprPullButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Calculate"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/actionBar"
+
+        />
+
     <LinearLayout
         android:id="@+id/calculationLayout"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:orientation="horizontal"
-    app:layout_constraintTop_toBottomOf="@id/actionBar"
-    android:weightSum="3"
-        >
-
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/calculationType"
-        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
-        android:layout_width="0dp"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Calculation"
-        android:layout_weight="1"
-        >
+        android:orientation="horizontal"
+        android:weightSum="3"
+        app:layout_constraintTop_toBottomOf="@id/actionBar">
 
-        <AutoCompleteTextView
-            android:id="@+id/calculationTypeAutoComplete"
-            android:layout_width="200dp"
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/calculationType"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:inputType="none" />
+            android:layout_weight="1"
+            android:hint="Calculation">
 
-    </com.google.android.material.textfield.TextInputLayout>
+            <AutoCompleteTextView
+                android:id="@+id/calculationTypeAutoComplete"
+                android:layout_width="200dp"
+                android:layout_height="wrap_content"
+                android:inputType="none" />
+
+        </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/calculationThreshold"
@@ -66,36 +74,32 @@
         <TextView
             android:layout_width="60dp"
             android:layout_height="wrap_content"
-            android:text="Match Number"
             android:gravity="center_horizontal"
-            />
+            android:text="Match Number" />
 
         <TextView
             android:layout_width="100dp"
             android:layout_height="wrap_content"
-            android:text="Blue Alliance NP Score"
             android:gravity="center_horizontal"
-            />
+            android:text="Blue Alliance NP Score" />
 
         <TextView
             android:layout_width="150dp"
             android:layout_height="wrap_content"
-            android:text="Student Score"
             android:gravity="center_horizontal"
-            />
+            android:text="Student Score" />
 
         <TextView
             android:layout_width="100dp"
             android:layout_height="wrap_content"
-            android:text="Inaccuracy"
             android:gravity="center_horizontal"
-            />
+            android:text="Inaccuracy" />
 
         <TextView
             android:layout_width="150dp"
             android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
             android:text="Teams"
-            android:gravity="center_horizontal"
 
             />
     </LinearLayout>
