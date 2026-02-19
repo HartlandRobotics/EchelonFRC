@@ -19,8 +19,7 @@
     <LinearLayout
         android:id="@+id/opr_header"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:layout_constraintBottom_toTopOf="@id/opr_recycler"
+        android:layout_height="0dp"
         app:layout_constraintTop_toTopOf="parent"
         android:layout_marginTop="30dp"
         >
@@ -37,7 +36,7 @@
             android:gravity="center_horizontal"
             />
         <TextView
-            android:layout_width="100dp"
+            android:layout_width="120dp"
             android:layout_height="wrap_content"
             android:text="Foul"
             android:gravity="center_horizontal"
@@ -45,13 +44,21 @@
 
 
     </LinearLayout>
+    <View
+        android:id="@+id/line"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="#000000"
+        app:layout_constraintTop_toBottomOf="@id/opr_header"
+
+        />
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/opr_recycler"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="0dp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/opr_header"
-        app:layout_constraintEnd_toEndOf="parent"
-        tools:listitem="@layout/list_item_opr" />
+        app:layout_constraintTop_toBottomOf="@id/line"
+        tools:listitem="@layout/list_item_opr"
+        />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
