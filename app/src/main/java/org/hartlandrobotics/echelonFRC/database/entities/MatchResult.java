@@ -41,9 +41,6 @@ public class MatchResult {
     @ColumnInfo(name="auto_flag_1")
     private boolean autoFlag1;
 
-
-
-
     @ColumnInfo(name="auto_flag_2")
     private boolean autoFlag2;
     @ColumnInfo(name="auto_flag_3")
@@ -108,6 +105,9 @@ public class MatchResult {
     @ColumnInfo(name = "defense_count")
     private int defenseCount;
 
+    @ColumnInfo(name = "contribution", defaultValue = "0")
+    private int contribution;
+
     @Ignore
     public MatchResult(){}
 
@@ -149,7 +149,8 @@ public class MatchResult {
             boolean endFlag5,
 
             String additionalNotes,
-            int defenseCount
+            int defenseCount,
+            int contribution
     ) {
 
         this.matchResultKey = StringUtils.defaultIfBlank(matchResultKey, UUID.randomUUID().toString());
@@ -189,6 +190,8 @@ public class MatchResult {
 
         this.additionalNotes = additionalNotes.replaceAll(",",".").replaceAll("\"",StringUtils.EMPTY).replaceAll("\n",StringUtils.EMPTY);
         this.defenseCount = defenseCount;
+
+        this.contribution = contribution;
     }
 
     public String getMatchResultKey() { return matchResultKey; }
@@ -301,6 +304,14 @@ public class MatchResult {
     public int getDefenseCount(){ return defenseCount; }
     public void setDefenseCount( int defenseCount ){
         this.defenseCount = defenseCount;
+    }
+
+    public int getContribution() {
+        return contribution;
+    }
+
+    public void setContribution(int contribution) {
+        this.contribution = contribution;
     }
 
     public static CurrentGamePoints toCurrentGamePoints(MatchResult matchResult){

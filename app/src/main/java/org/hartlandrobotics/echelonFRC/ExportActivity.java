@@ -660,6 +660,7 @@ public class ExportActivity extends EchelonActivity {
                             + ",TeleOpInt6, TeleOpInt7,TeleOpInt8, TeleOpInt9, TeleOpInt10,TeleOpInt11,TeleOpInt12"
                             + ",EndFlag1,EndFlag2,EndInt3,EndFlag4, EndFlag5"
                             + ",DefensesCount"
+                            + ",Contribution"
                             + ",Match_Result_Key"
                             + ", AdditionalNotes\n";
 
@@ -699,8 +700,9 @@ public class ExportActivity extends EchelonActivity {
 
                     String teleDef = StringUtils.defaultIfBlank(columns[29], "0");
 
-                    String matchResultKey = columns[30];
-                    String AdditionalNotes = StringUtils.defaultIfBlank(columns[31], "empty");
+                    int contribution = Integer.parseInt(columns[30]);
+                    String matchResultKey = columns[31];
+                    String AdditionalNotes = StringUtils.defaultIfBlank(columns[32], "empty");
 
                     MatchResult matchResult = new MatchResult(
                             matchResultKey,
@@ -738,7 +740,8 @@ public class ExportActivity extends EchelonActivity {
                             EndFlag5.equalsIgnoreCase("true"),
 
                             AdditionalNotes,
-                            Integer.parseInt(teleDef)
+                            Integer.parseInt(teleDef),
+                            contribution
                     );
                     matchResultViewModel.upsert(matchResult);
                 }
