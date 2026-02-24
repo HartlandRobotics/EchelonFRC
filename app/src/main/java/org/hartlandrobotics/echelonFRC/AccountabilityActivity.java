@@ -89,6 +89,7 @@ public class AccountabilityActivity extends EchelonActivity {
         calculationTypeAutoComplete.setAdapter(adapterCalculationType);
         calculationTypeAutoComplete.setText(defaultCalculationTypes, false);
         inaccuracyThreshold = findViewById(R.id.calculationThreshold);
+
         calculate = findViewById(R.id.calculateButton);
         calculate.setOnClickListener(this::CalculateOnClick);
 
@@ -169,7 +170,7 @@ public class AccountabilityActivity extends EchelonActivity {
                                             }
                                             vm.setBlueAlliancePoints(matchScore.getRedTotal() - matchScore.getRedFoul());
                                             vm.setStudentPoints(studentSum);
-                                            vm.setPercentInaccuracy(Math.abs(vm.getBlueAlliancePoints() - vm.getStudentPoints()));
+                                            vm.setPercentInaccuracy( Math.abs(vm.getBlueAlliancePoints() - vm.getStudentPoints())  / (double)vm.getBlueAlliancePoints() );
                                         } else if (currentAllianceColor.equals("blue")) {
                                             {
                                                 String currentTeamKey = match.getBlue1TeamKey();
@@ -215,7 +216,7 @@ public class AccountabilityActivity extends EchelonActivity {
                                             }
                                             vm.setBlueAlliancePoints(matchScore.getBlueTotal() - matchScore.getBlueFoul());
                                             vm.setStudentPoints(studentSum);
-                                            vm.setPercentInaccuracy(Math.abs(vm.getBlueAlliancePoints() - vm.getStudentPoints()));
+                                            vm.setPercentInaccuracy(Math.abs(vm.getBlueAlliancePoints() - vm.getStudentPoints()) /(double) vm.getBlueAlliancePoints());
                                         }
 
                                         vm.setAllianceColor(currentAllianceColor);
@@ -369,7 +370,8 @@ public class AccountabilityActivity extends EchelonActivity {
             studentScoreText.setTextColor(color);
             studentScoreText.setText(String.valueOf(vm.getStudentPoints()));
 
-            inaccuracyPercentText.setText(String.valueOf(vm.getPercentInaccuracy()));
+            String text = String.format("%.2f",vm.getPercentInaccuracy());
+            inaccuracyPercentText.setText(text);
 
             team1Text.setTextColor(color);
             team1Text.setText(vm.getTablet1Name());

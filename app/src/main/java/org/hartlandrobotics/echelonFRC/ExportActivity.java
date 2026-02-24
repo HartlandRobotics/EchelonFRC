@@ -166,6 +166,7 @@ public class ExportActivity extends EchelonActivity {
                         + ",EndFlag1,EndFlag2,EndInt3,EndFlag4, EndFlag5"
                         + ",DefensesCount"
                         + ",Match_Result_Key"
+                        + ",Contributions"
                         + ", AdditionalNotes\n";
                 outputStream.write(header.getBytes());
                 int timesRan = 0;
@@ -213,6 +214,7 @@ public class ExportActivity extends EchelonActivity {
 
                     dataForFile.add(String.valueOf(mr.getDefenseCount()));
                     dataForFile.add(mr.getMatchResultKey());
+                    dataForFile.add(String.valueOf(mr.getContribution()));
                     dataForFile.add(StringEscapeUtils.escapeCsv(
                             mr.getAdditionalNotes()
                                     .replaceAll(",", "_")
@@ -254,6 +256,7 @@ public class ExportActivity extends EchelonActivity {
                         + ",EndHighClimb,EndMidClimb,EndLowClimb,EndNotUsedFlag4, EndNotUsedFlag5"
                         + ",DefensesCount"
                         + ",Match_Result_Key"
+                        + ", Contribution"
                         + ", AdditionalNotes\n";
                 outputStream.write(header.getBytes());
                 int timesRan = 0;
@@ -300,6 +303,7 @@ public class ExportActivity extends EchelonActivity {
 
                     dataForFile.add(String.valueOf(mr.getDefenseCount()));
                     dataForFile.add(mr.getMatchResultKey());
+                    dataForFile.add(String.valueOf(mr.getContribution()));
                     dataForFile.add(StringEscapeUtils.escapeCsv(
                             mr.getAdditionalNotes()
                                     .replaceAll(",", "_")

@@ -199,6 +199,9 @@ public class MainActivity extends EchelonActivity {
     private void setEnabled(){
            startScouting.setEnabled(hasSelectedSeason && RoleUtilities.isStudentTablet(deviceRole));
            pitScouting.setEnabled(hasSelectedSeason && RoleUtilities.isAdminTablet(deviceRole));
+           if(hasSelectedSeason && RoleUtilities.isAdminTablet(deviceRole)){
+               pitScouting.setVisibility(View.VISIBLE);
+           }
            matchSchedule.setEnabled(hasSelectedSeason);
            chartsButton.setEnabled(hasSelectedSeason && RoleUtilities.isAdminTablet(deviceRole));
            accuracyButton.setEnabled(RoleUtilities.isAdminTablet(deviceRole));
