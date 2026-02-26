@@ -181,7 +181,7 @@ public class ExportActivity extends EchelonActivity {
                     dataForFile.add(mr.getMatchKey());
                     dataForFile.add(mr.getTeamKey());
                     dataForFile.add(String.valueOf(m.getMatchNumber()));
-                    dataForFile.add(String.valueOf(mr.getTeamKey().substring(3)));
+                    dataForFile.add(mr.getTeamKey().substring(3));
                     dataForFile.add(mr.getAlliance());
 
                     dataForFile.add(String.valueOf(mr.getAutoFlag1()));
@@ -271,7 +271,7 @@ public class ExportActivity extends EchelonActivity {
                     dataForFile.add(mr.getMatchKey());
                     dataForFile.add(mr.getTeamKey());
                     dataForFile.add(String.valueOf(m.getMatchNumber()));
-                    dataForFile.add(String.valueOf(mr.getTeamKey().substring(3)));
+                    dataForFile.add(mr.getTeamKey().substring(3));
 
                     dataForFile.add(String.valueOf(mr.getAutoFlag1()));
                     dataForFile.add(String.valueOf(mr.getAutoFlag2()));

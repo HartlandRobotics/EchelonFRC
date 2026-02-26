@@ -251,11 +251,11 @@ public class AccountabilityActivity extends EchelonActivity {
 
                 if( vm.getPercentInaccuracy() > threshold ){
                     Log.i(TAG, "> threshold");
-                    MatchScore currentMatchScore = allMatchScores.stream().filter(ms ->{
-                        return ms.getMatchNumber() == vm.getMatchNumber();
-                    })
-                            .findFirst().get()
+                    MatchScore currentMatchScore = allMatchScores.stream().filter(ms -> ms.getMatchNumber() == vm.getMatchNumber())
+                            .findFirst()
+                            .orElse(null)
                     ;
+
                     int team1Number = Integer.parseInt(vm.getTablet1Name());
                     Opr team1Opr = allOpr.stream().filter( opr -> TeamKeyToNumber(opr.getTeamKey()) == team1Number).findFirst().get();
                     double team1Points = team1Opr.getOpr() - team1Opr.getFoul();
@@ -293,23 +293,10 @@ public class AccountabilityActivity extends EchelonActivity {
 
                     matchResultRepo.upsert(mr);
 
-                } else {
-
-                    Log.i(TAG, "< threshold ");
-
                 }
-
-
-
-                int i;
-                i = 10;
-
-
             }
 
-            //for (AccountabilityViewModel vm : viewModels) {
 
-            //}
         }
     }
 
