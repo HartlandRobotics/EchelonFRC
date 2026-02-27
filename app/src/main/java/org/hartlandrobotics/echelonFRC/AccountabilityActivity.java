@@ -221,7 +221,9 @@ public class AccountabilityActivity extends EchelonActivity {
 
                                         vm.setAllianceColor(currentAllianceColor);
 
-                                        viewModels.add(vm);
+                                        if(vm.getStudentPoints() != 0){
+                                            viewModels.add(vm);
+                                        }
                                     }
                                 }
                         accuracyListAdapter.setAccuracies(viewModels);
