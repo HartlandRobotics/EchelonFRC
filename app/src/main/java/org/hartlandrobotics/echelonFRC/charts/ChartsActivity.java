@@ -84,11 +84,14 @@ public class ChartsActivity extends EchelonActivity {
                 int autoTotal = 0;
                 int teleOpTotal = 0;
                 int endGameTotal = 0;
+                int oprTotal = 0;
                 int total = 0;
 
                 Map<Integer, Integer> autoScores = new HashMap<>();
                 Map<Integer, Integer> teleOpScores = new HashMap<>();
                 Map<Integer, Integer> endGameScores = new HashMap<>();
+                Map<Integer, Integer> oprScores = new HashMap<>();
+
                 String key = entry.getKey();
                 int teamNumber = Integer.valueOf( entry.getKey().substring(3) );
 
@@ -97,24 +100,43 @@ public class ChartsActivity extends EchelonActivity {
                     CurrentGamePoints currentGamePoints = MatchResult.toCurrentGamePoints(matchResult);
                     Integer matchNumber = Integer.valueOf(matchResult.getMatchKey().replace( matchResult.getEventKey() + "_qm", ""));
 
-                    int matchAuto = 0;
-                    matchAuto += currentGamePoints.getAutoPoints();
-                    autoScores.put(matchNumber, matchAuto);
-                    autoTotal += matchAuto;
+                    if (currentGamePoints.getContribution() == 0) {
+
+                        int matchAuto = 0;
+                        matchAuto += currentGamePoints.getAutoPoints();
+                        autoScores.put(matchNumber, matchAuto);
+                        autoTotal += matchAuto;
 
 
-                    int matchTeleOp = 0;
-                    matchTeleOp += currentGamePoints.getTeleOpPoints();
-                    teleOpScores.put(matchNumber, matchTeleOp);
-                    teleOpTotal += matchTeleOp;
+                        int matchTeleOp = 0;
+                        matchTeleOp += currentGamePoints.getTeleOpPoints();
+                        teleOpScores.put(matchNumber, matchTeleOp);
+                        teleOpTotal += matchTeleOp;
 
 
-                    int matchEndGame = 0;
-                    matchEndGame += currentGamePoints.getEndPoints();
-                    endGameTotal += matchEndGame;
-                    endGameScores.put(matchNumber, matchEndGame);
+                        int matchEndGame = 0;
+                        matchEndGame += currentGamePoints.getEndPoints();
+                        endGameTotal += matchEndGame;
+                        endGameScores.put(matchNumber, matchEndGame);
 
-                    total = autoTotal + teleOpTotal + endGameTotal;
+                        int matchOpr = 0;
+                        oprScores.put(matchNumber, matchOpr);
+
+                        total = autoTotal + teleOpTotal + endGameTotal;
+                    }
+
+                    else{
+                        autoScores.put(matchNumber, 0);
+                        teleOpScores.put(matchNumber, 0);
+                        endGameScores.put(matchNumber, 0);
+
+                        int matchOpr = 0;
+                        matchOpr += currentGamePoints.getContribution();
+                        oprTotal += matchOpr;
+                        oprScores.put(matchNumber, matchOpr);
+
+                        total = oprTotal;
+                    }
                 }
 
                 // size is only used to calculate averages.
@@ -125,10 +147,12 @@ public class ChartsActivity extends EchelonActivity {
                         (float)autoTotal/size,
                         (float)teleOpTotal/size,
                         (float)endGameTotal/size,
+                        (float)oprTotal/size,
                         (float)total/size,
                         autoScores,
                         teleOpScores,
-                        endGameScores
+                        endGameScores,
+                        oprScores
                 );
                 allTeamsData.add(teamData);
             }
@@ -149,7 +173,7 @@ public class ChartsActivity extends EchelonActivity {
     }
     public TeamDataViewModel getTeamData(String teamNumber){
         Optional<TeamDataViewModel> teamData = allTeamsData.stream()
-                .filter( td -> td.getTeamNumber() == Integer.valueOf(teamNumber))
+                .filter( td -> td.getTeamNumber() == Integer.parseInt(teamNumber))
                 .findFirst();
 
         return teamData.orElse(null);
@@ -163,30 +187,38 @@ public class ChartsActivity extends EchelonActivity {
         private float autoAverage;
         private float teleOpAverage;
         private float endGameAverage;
+        private float oprAverage;
         private float totalAverage;
         private Map<Integer, Integer> autoScores;
         private Map<Integer, Integer> teleOpScores;
         private Map<Integer, Integer> endGameScores;
+        private Map<Integer, Integer> oprScores;
 
-        public TeamDataViewModel(int teamNumber, float autoAverage, float teleOpAverage, float endGameAverage, float totalAverage,
-                                 Map<Integer, Integer> autoScores, Map<Integer, Integer> teleOpScores, Map<Integer, Integer> endGameScores){
+
+        public TeamDataViewModel(int teamNumber, float autoAverage, float teleOpAverage, float endGameAverage, float oprAverage, float totalAverage,
+                                 Map<Integer, Integer> autoScores, Map<Integer, Integer> teleOpScores, Map<Integer, Integer> endGameScores, Map<Integer, Integer> oprScores){
             this.teamNumber = teamNumber;
             this.autoAverage = autoAverage;
             this.teleOpAverage = teleOpAverage;
             this.endGameAverage = endGameAverage;
+            this.oprAverage = oprAverage;
             this.totalAverage = totalAverage;
             this.autoScores = autoScores;
             this.teleOpScores = teleOpScores;
             this.endGameScores = endGameScores;
+            this.oprScores = oprScores;
         }
 
         public int getTeamNumber() { return teamNumber; }
         public float getAutoAverage() { return autoAverage; }
         public float getTeleOpAverage() { return teleOpAverage; }
         public float getEndGameAverage() { return endGameAverage; }
+        public float getOprAverage() {return oprAverage;}
         public float getTotalAverage() { return totalAverage; }
         public Map<Integer, Integer> getAutoScores() { return autoScores; }
         public Map<Integer, Integer> getTeleOpScores() { return teleOpScores; }
         public Map<Integer, Integer> getEndGameScores() { return endGameScores; }
+        public Map<Integer, Integer> getOprScores() { return oprScores; }
+
     }
 }

@@ -11,6 +11,10 @@ public class CurrentGamePoints {
     public CurrentGamePoints(MatchResult result) {
         this.result = result;
     }
+
+    public int getContribution(){
+        return result.getContribution();
+    }
     public int getTotalPoints(){
         return getAutoPoints() + getTeleOpPoints() + getEndPoints();
     }

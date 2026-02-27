@@ -220,6 +220,7 @@ public class AccountabilityActivity extends EchelonActivity {
                                         }
 
                                         vm.setAllianceColor(currentAllianceColor);
+
                                         viewModels.add(vm);
                                     }
                                 }

@@ -124,9 +124,7 @@ public class ChartAggAverageFragment extends Fragment {
         }
         visibleTeamData.addAll(
                 allTeamData.stream()
-                .filter( teamData -> {
-                    return visibleTeamNumbers.contains( String.valueOf(teamData.getTeamNumber()) );
-                })
+                .filter( teamData -> visibleTeamNumbers.contains( String.valueOf(teamData.getTeamNumber()) ))
                 .sorted(Comparator.comparingDouble(ChartsActivity.TeamDataViewModel::getTotalAverage).reversed())
                 .limit(35)
                 .collect(Collectors.toList())
@@ -149,10 +147,7 @@ public class ChartAggAverageFragment extends Fragment {
 
         // change the position of the y-labels
         YAxis leftAxis = aggScoringChart.getAxisLeft();
-        leftAxis.setValueFormatter((value, axis) -> {
-            float val = value;
-            return String.valueOf(value);
-        });
+        leftAxis.setValueFormatter((value, axis) -> String.valueOf(value));
         leftAxis.setAxisMinimum(0f);
         aggScoringChart.getAxisRight().setEnabled(false);
 
@@ -165,15 +160,15 @@ public class ChartAggAverageFragment extends Fragment {
         l.setFormToTextSpace(4f);
         l.setXEntrySpace(6f);
 
-
         setupChartData();
     }
 
     private int[] getChartColors() {
         // have as many colors as stack-values per entry
-        int[] colors = new int[3];
+        int[] colors = new int[4];
 
         System.arraycopy(ColorTemplate.MATERIAL_COLORS, 0, colors, 0, 3);
+        colors[3] = Color.BLUE;
 
         return colors;
     }
@@ -206,7 +201,7 @@ public class ChartAggAverageFragment extends Fragment {
         for(int teamIndex = 0; teamIndex<visibleTeamData.size(); teamIndex++ ){
             ChartsActivity.TeamDataViewModel teamData = visibleTeamData.get(teamIndex);
             yVals1.add(new BarEntry( 0.5f + teamIndex,
-                    new float[]{teamData.getAutoAverage(), teamData.getTeleOpAverage(), teamData.getEndGameAverage()}
+                    new float[]{ teamData.getAutoAverage(), teamData.getTeleOpAverage(), teamData.getEndGameAverage(), teamData.getOprAverage()}
             ));
         }
 
@@ -222,7 +217,7 @@ public class ChartAggAverageFragment extends Fragment {
             set1 = new BarDataSet(yVals1, "");
             set1.setDrawIcons(false);
             set1.setColors(getChartColors());
-            set1.setStackLabels(new String[]{"Auto", "TeleOp", "EndGame"});
+            set1.setStackLabels(new String[]{ "Auto", "TeleOp", "EndGame", "OPR"});
 
             ArrayList<IBarDataSet> dataSets = new ArrayList<IBarDataSet>();
             dataSets.add(set1);
