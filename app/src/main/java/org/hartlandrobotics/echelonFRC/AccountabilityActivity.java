@@ -113,6 +113,13 @@ public class AccountabilityActivity extends EchelonActivity {
                 allMatchScores = matchScores;
                 matchResultRepo.getMatchResultsByEvent(currentEvent).observe(this, matchResults -> {
                     allMatchResults = matchResults;
+                    int highestMatchNumber = matchResults
+                            .stream()
+                            .map(mr -> Integer.parseInt(mr.getMatchKey().replace(mr.getEventKey(),"").replace("_qm","")))
+                            .max( Comparator.comparingInt(Integer::intValue))
+                            .orElse(0)
+                    ;
+
                     oprRepo.getOprs().observe(this, oprs -> {
                         allOpr = oprs;
                                 for (Match match : matches) {
@@ -221,7 +228,7 @@ public class AccountabilityActivity extends EchelonActivity {
 
                                         vm.setAllianceColor(currentAllianceColor);
 
-                                        if(vm.getStudentPoints() != 0){
+                                        if( highestMatchNumber >= vm.getMatchNumber() )  {
                                             viewModels.add(vm);
                                         }
                                     }
