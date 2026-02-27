@@ -11,6 +11,7 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 import android.widget.LinearLayout;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -177,7 +178,7 @@ public class AccountabilityActivity extends EchelonActivity {
                                             }
                                             vm.setBlueAlliancePoints(matchScore.getRedTotal() - matchScore.getRedFoul());
                                             vm.setStudentPoints(studentSum);
-                                            vm.setPercentInaccuracy( Math.abs(vm.getBlueAlliancePoints() - vm.getStudentPoints())  / (double)vm.getBlueAlliancePoints() );
+                                            vm.setPercentInaccuracy( Math.abs(vm.getBlueAlliancePoints() - vm.getStudentPoints())  * 100 / (double)vm.getBlueAlliancePoints() );
                                         } else if (currentAllianceColor.equals("blue")) {
                                             {
                                                 String currentTeamKey = match.getBlue1TeamKey();
@@ -223,7 +224,7 @@ public class AccountabilityActivity extends EchelonActivity {
                                             }
                                             vm.setBlueAlliancePoints(matchScore.getBlueTotal() - matchScore.getBlueFoul());
                                             vm.setStudentPoints(studentSum);
-                                            vm.setPercentInaccuracy(Math.abs(vm.getBlueAlliancePoints() - vm.getStudentPoints()) /(double) vm.getBlueAlliancePoints());
+                                            vm.setPercentInaccuracy(Math.abs(vm.getBlueAlliancePoints() - vm.getStudentPoints()) * 100 /(double) vm.getBlueAlliancePoints());
                                         }
 
                                         vm.setAllianceColor(currentAllianceColor);
@@ -308,6 +309,9 @@ public class AccountabilityActivity extends EchelonActivity {
 
 
         }
+
+        Toast.makeText(getApplicationContext(),"Calculated " + allMatchResults.size() + " match results", Toast.LENGTH_LONG).show();
+
     }
 
     public int MatchKeyToNumber(String matchKey) {
