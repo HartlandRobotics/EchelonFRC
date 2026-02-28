@@ -49,14 +49,14 @@
 
             <com.google.android.material.textview.MaterialTextView
                 android:id="@+id/active_fuel_text"
-                android:layout_width="wrap_content"
+                android:layout_width="65dp"
                 android:layout_height="wrap_content"
                 android:layout_margin="25dp"
                 android:textSize="32sp"
                 app:layout_constraintBottom_toBottomOf="@id/active_fuel"
                 app:layout_constraintLeft_toRightOf="@+id/active_fuel"
                 app:layout_constraintTop_toTopOf="@id/active_fuel"
-                tools:text="0" />
+                tools:text="999" />
         </LinearLayout>
 
         <LinearLayout
@@ -92,14 +92,14 @@
 
             <com.google.android.material.textview.MaterialTextView
                 android:id="@+id/missed_fuel_text"
-                android:layout_width="wrap_content"
+                android:layout_width="65dp"
                 android:layout_height="wrap_content"
                 android:layout_margin="25dp"
                 android:textSize="32sp"
                 app:layout_constraintBottom_toBottomOf="@id/missed_fuel"
                 app:layout_constraintLeft_toRightOf="@+id/missed_fuel"
                 app:layout_constraintTop_toTopOf="@id/missed_fuel"
-                tools:text="0" />
+                tools:text="999" />
         </LinearLayout>
 
     </LinearLayout>
@@ -147,14 +147,14 @@
 
             <com.google.android.material.textview.MaterialTextView
                 android:id="@+id/passing_text"
-                android:layout_width="wrap_content"
+                android:layout_width="65dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="25dp"
                 android:layout_marginBottom="25dp"
                 android:textSize="32sp"
                 app:layout_constraintLeft_toRightOf="@+id/passing"
                 app:layout_constraintTop_toTopOf="@id/passing"
-                tools:text="0" />
+                tools:text="999" />
         </LinearLayout>
 
         <LinearLayout
@@ -188,13 +188,13 @@
 
             <com.google.android.material.textview.MaterialTextView
                 android:id="@+id/human_fuel_text"
-                android:layout_width="wrap_content"
+                android:layout_width="65dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="25dp"
                 android:textSize="32sp"
                 app:layout_constraintLeft_toRightOf="@+id/human_fuel"
                 app:layout_constraintTop_toTopOf="@id/human_fuel"
-                tools:text="0" />
+                tools:text="999" />
         </LinearLayout>
     </LinearLayout>
 
