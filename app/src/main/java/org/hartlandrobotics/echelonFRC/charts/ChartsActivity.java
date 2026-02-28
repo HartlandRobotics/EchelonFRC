@@ -14,6 +14,7 @@ import org.hartlandrobotics.echelonFRC.R;
 import org.hartlandrobotics.echelonFRC.database.currentGame.CurrentGamePoints;
 import org.hartlandrobotics.echelonFRC.database.entities.MatchResult;
 import org.hartlandrobotics.echelonFRC.database.repositories.MatchResultRepo;
+import org.hartlandrobotics.echelonFRC.database.repositories.TeamRepo;
 import org.hartlandrobotics.echelonFRC.status.BlueAllianceStatus;
 
 import java.util.ArrayList;
@@ -31,6 +32,7 @@ public class ChartsActivity extends EchelonActivity {
     ChartPagerAdapter chartPagerAdapter;
 
     MatchResultRepo matchResultRepo;
+    TeamRepo teamRepo;
     Map<String, List<MatchResult>> matchResultsByTeam =  new HashMap<>();
     List<TeamListViewModel> allTeamNumbers = new ArrayList<>();
     List<TeamDataViewModel> allTeamsData = new ArrayList<>();
@@ -48,9 +50,14 @@ public class ChartsActivity extends EchelonActivity {
 
         setupToolbar("Charts");
 
-        setupTabLayout();
+        teamRepo = new TeamRepo(getApplication());
+        teamRepo.getAllTeams().observe( this, teams -> {
+            setupTabLayout();
 
-        setupData();
+            setupData();
+        });
+
+
     }
 
     public void setupTabLayout(){
