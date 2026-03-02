@@ -384,6 +384,8 @@ public class ChartAggAverageFragment extends Fragment {
                     ViewParent layoutViewParent = buttonView.getParent();
                     ListView listView = (ListView) layoutViewParent.getParent();
                     int position = listView.getPositionForView(buttonView);
+                    // need to select team
+                    
                     teamViewModels.get(position).setIsSelected(isChecked);
 
                     setVisibleTeams();

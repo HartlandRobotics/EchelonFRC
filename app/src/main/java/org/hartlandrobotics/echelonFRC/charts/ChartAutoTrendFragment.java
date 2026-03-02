@@ -40,7 +40,10 @@ public class ChartAutoTrendFragment extends Fragment {
     private String teamNumber;
 
     private List<String> sortedTeamNumbers;
-    ChartsActivity.TeamDataViewModel teamData;
+    TeamDataViewModel2 teamData;
+
+    private List<TeamDataViewModel2> allTeamData = new ArrayList<TeamDataViewModel2>();
+
 
     public ChartAutoTrendFragment() {
         // Required empty public constructor
