@@ -41,10 +41,15 @@ public class SyncTeam {
         return schoolName;
     }
 
-    public Team toTeam(){
-        Team team = new Team(
-            getTeamKey(), getTeamNumber(), getNickname(), getName(), getSchoolName());
-        return team;
+    public Team toTeam() {
+        return new Team(
+                getTeamKey(),
+                getTeamNumber(),
+                getNickname(),
+                getName(),
+                getSchoolName(),
+                true,
+                false );
     }
 }
 

@@ -83,7 +83,7 @@ public class ChartsActivity extends EchelonActivity {
 
             allTeamNumbers.addAll(
                     matchResultsByTeam.keySet().stream()
-                            .map( teamNumber -> new TeamListViewModel(teamNumber.substring(3)))
+                            .map( teamNumber -> new TeamListViewModel(teamNumber.substring(3), false))
                             .sorted(Comparator.comparingInt(TeamListViewModel::getTeamInteger))
                             .collect(Collectors.toList()));
 

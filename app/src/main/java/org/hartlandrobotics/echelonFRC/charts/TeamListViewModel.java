@@ -4,9 +4,9 @@ public class TeamListViewModel {
     private String teamNumber;
     boolean isSelected;
 
-    public TeamListViewModel( String teamNumber ){
+    public TeamListViewModel( String teamNumber, boolean selected ){
         this.teamNumber = teamNumber;
-        this.isSelected = true;
+        this.isSelected = selected;
     }
 
     public String getTeamNumber( ){

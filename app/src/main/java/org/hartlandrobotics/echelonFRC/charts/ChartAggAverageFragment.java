@@ -1,5 +1,6 @@
 package org.hartlandrobotics.echelonFRC.charts;
 
+import android.app.Application;
 import android.content.Context;
 import android.graphics.Color;
 import android.os.Bundle;
@@ -35,11 +36,20 @@ import com.google.android.material.navigation.NavigationBarView;
 import com.google.android.material.textview.MaterialTextView;
 
 import org.hartlandrobotics.echelonFRC.R;
+import org.hartlandrobotics.echelonFRC.database.currentGame.CurrentGamePoints;
+import org.hartlandrobotics.echelonFRC.database.entities.MatchResult;
+import org.hartlandrobotics.echelonFRC.database.entities.Team;
+import org.hartlandrobotics.echelonFRC.database.repositories.MatchResultRepo;
+import org.hartlandrobotics.echelonFRC.database.repositories.TeamRepo;
 import org.hartlandrobotics.echelonFRC.models.TeamViewModel;
+import org.hartlandrobotics.echelonFRC.status.BlueAllianceStatus;
+import org.hartlandrobotics.echelonFRC.utilities.TeamUtilities;
 
 import java.util.ArrayList;
 import java.util.Comparator;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.stream.Collectors;
 
 public class ChartAggAverageFragment extends Fragment {
@@ -49,10 +59,11 @@ public class ChartAggAverageFragment extends Fragment {
     private ListView teamNumberListView;
     private ListViewItemCheckboxBaseAdapter teamListAdapter;
 
+    Map<String, List<MatchResult>> matchResultsByTeam = new HashMap<>();
     private List<TeamListViewModel> allTeamNumbers;
-    private List<ChartsActivity.TeamDataViewModel> allTeamData;
+    private List<TeamDataViewModel2> allTeamData = new ArrayList<TeamDataViewModel2>();
 
-    private List<ChartsActivity.TeamDataViewModel> visibleTeamData;
+    private List<TeamDataViewModel2> visibleTeamData;
 
     public ChartAggAverageFragment() {
         // Required empty public constructor
@@ -73,34 +84,127 @@ public class ChartAggAverageFragment extends Fragment {
     }
 
     @Override
-    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState){
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
         teamListAdapter = new ListViewItemCheckboxBaseAdapter(getContext());
-
         teamNumberListView = view.findViewById(R.id.team_list);
-        //teamNumberRecycler.setLayoutManager(new LinearLayoutManager(getActivity()));
         teamNumberListView.setAdapter(teamListAdapter);
-        teamNumberListView.setOnItemClickListener( new AdapterView.OnItemClickListener(){
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Log.i("test", "test");
 
-            }
+        Application app = getActivity().getApplication();
+        BlueAllianceStatus status = new BlueAllianceStatus(app);
+        String currentEvent = status.getEventKey();
+
+        TeamRepo teamRepo = new TeamRepo(app);
+        teamRepo.getEventsWithTeams(currentEvent).observe(getViewLifecycleOwner(), eventWithTeams -> {
+            List<Team> teams = eventWithTeams.teams;
+            List<TeamListViewModel> teamListViewModels = teams.stream()
+                    .map(team -> new TeamListViewModel(String.valueOf(team.getTeamNumber()), team.isVisible()))
+                    .sorted(Comparator.comparingInt(TeamListViewModel::getTeamInteger))
+                    .collect(Collectors.toList());
+
+            allTeamNumbers = teamListViewModels;
+
+            MatchResultRepo matchResultRepo = new MatchResultRepo(app);
+            matchResultRepo.getMatchResultsByEvent(currentEvent).observe(getViewLifecycleOwner(), allMatchResults -> {
+                for (MatchResult matchResult : allMatchResults) {
+                    String teamKey = matchResult.getTeamKey();
+                    matchResultsByTeam.computeIfAbsent(teamKey, value -> new ArrayList<>());
+                    matchResultsByTeam.get(teamKey).add(matchResult);
+                }
+                for (Map.Entry<String, List<MatchResult>> entry : matchResultsByTeam.entrySet()) {
+
+                    int autoTotal = 0;
+                    int teleOpTotal = 0;
+                    int endGameTotal = 0;
+                    int oprTotal = 0;
+                    int total = 0;
+
+                    Map<Integer, Integer> autoScores = new HashMap<>();
+                    Map<Integer, Integer> teleOpScores = new HashMap<>();
+                    Map<Integer, Integer> endGameScores = new HashMap<>();
+                    Map<Integer, Integer> oprScores = new HashMap<>();
+
+                    String key = entry.getKey();
+                    int teamNumber = Integer.valueOf(entry.getKey().substring(3));
+
+                    List<MatchResult> matchResults = entry.getValue();
+                    for (MatchResult matchResult : matchResults) {
+                        CurrentGamePoints currentGamePoints = MatchResult.toCurrentGamePoints(matchResult);
+                        Integer matchNumber = Integer.valueOf(matchResult.getMatchKey().replace(matchResult.getEventKey() + "_qm", ""));
+
+                        if (currentGamePoints.getContribution() == 0) {
+
+                            int matchAuto = 0;
+                            matchAuto += currentGamePoints.getAutoPoints();
+                            autoScores.put(matchNumber, matchAuto);
+                            autoTotal += matchAuto;
+
+
+                            int matchTeleOp = 0;
+                            matchTeleOp += currentGamePoints.getTeleOpPoints();
+                            teleOpScores.put(matchNumber, matchTeleOp);
+                            teleOpTotal += matchTeleOp;
+
+
+                            int matchEndGame = 0;
+                            matchEndGame += currentGamePoints.getEndPoints();
+                            endGameTotal += matchEndGame;
+                            endGameScores.put(matchNumber, matchEndGame);
+
+                            int matchOpr = 0;
+                            oprScores.put(matchNumber, matchOpr);
+
+                            total = autoTotal + teleOpTotal + endGameTotal;
+                        } else {
+                            autoScores.put(matchNumber, 0);
+                            teleOpScores.put(matchNumber, 0);
+                            endGameScores.put(matchNumber, 0);
+
+                            int matchOpr = 0;
+                            matchOpr += currentGamePoints.getContribution();
+                            oprTotal += matchOpr;
+                            oprScores.put(matchNumber, matchOpr);
+
+                            total = oprTotal;
+                        }
+                    }
+
+                    // size is only used to calculate averages.
+                    // 1 is default since it is multiplicitive identity
+                    int size = matchResults.isEmpty() ? 1 : matchResults.size();
+                    TeamDataViewModel2 teamData = new TeamDataViewModel2(
+                            teamNumber,
+                            (float) autoTotal / size,
+                            (float) teleOpTotal / size,
+                            (float) endGameTotal / size,
+                            (float) oprTotal / size,
+                            (float) total / size,
+                            autoScores,
+                            teleOpScores,
+                            endGameScores,
+                            oprScores
+                    );
+                    allTeamData.add(teamData);
+                }
+
+                setData(allTeamNumbers, allTeamData);
+
+                aggScoringChart = view.findViewById(R.id.agg_average_chart);
+                setupChart();
+
+            });
+
         });
 
-        setData( ((ChartsActivity)getActivity()).allTeamNumbers,((ChartsActivity)getActivity()).allTeamsData);
-
-        aggScoringChart = view.findViewById(R.id.agg_average_chart);
-        setupChart();
     }
 
-    public void setData(List<TeamListViewModel> allTeamNumbers, List<ChartsActivity.TeamDataViewModel> allTeamData) {
-        if( this.allTeamNumbers == null) {
-            this.allTeamNumbers = new ArrayList<>(allTeamNumbers);
+    public void setData(List<TeamListViewModel> allTeamNumbers, List<TeamDataViewModel2> allTeamData) {
+        if (this.allTeamNumbers == null) {
+            this.allTeamNumbers = new ArrayList<>();
         }
-        if( this.allTeamData == null) {
-            this.allTeamData = new ArrayList<>(allTeamData);
+        if (this.allTeamData == null) {
+            this.allTeamData = new ArrayList<>();
         }
 
         teamListAdapter.setTeams(this.allTeamNumbers);
@@ -111,27 +215,27 @@ public class ChartAggAverageFragment extends Fragment {
         setupChartData();
     }
 
-    public void setVisibleTeams(){
+    public void setVisibleTeams() {
         List<String> visibleTeamNumbers = this.allTeamNumbers.stream()
                 .filter(TeamListViewModel::getIsSelected)
                 .map(TeamListViewModel::getTeamNumber)
                 .collect(Collectors.toList());
 
-        if(visibleTeamData == null){
-            visibleTeamData = new ArrayList<ChartsActivity.TeamDataViewModel>();
+        if (visibleTeamData == null) {
+            visibleTeamData = new ArrayList<TeamDataViewModel2>();
         } else {
             visibleTeamData.clear();
         }
         visibleTeamData.addAll(
                 allTeamData.stream()
-                .filter( teamData -> visibleTeamNumbers.contains( String.valueOf(teamData.getTeamNumber()) ))
-                .sorted(Comparator.comparingDouble(ChartsActivity.TeamDataViewModel::getTotalAverage).reversed())
-                .limit(35)
-                .collect(Collectors.toList())
-                );
+                        .filter(teamData -> visibleTeamNumbers.contains(String.valueOf(teamData.getTeamNumber())))
+                        .sorted(Comparator.comparingDouble(TeamDataViewModel2::getTotalAverage).reversed())
+                        .limit(35)
+                        .collect(Collectors.toList())
+        );
     }
 
-    public void setupChart(){
+    public void setupChart() {
 
         teamListAdapter.notifyDataSetChanged();
 
@@ -173,11 +277,11 @@ public class ChartAggAverageFragment extends Fragment {
         return colors;
     }
 
-    public void setupChartData(){
-        if(allTeamData == null){
+    public void setupChartData() {
+        if (allTeamData == null) {
             return;
         }
-        if( aggScoringChart == null ){
+        if (aggScoringChart == null) {
             return;
         }
 
@@ -191,17 +295,17 @@ public class ChartAggAverageFragment extends Fragment {
         xLabels.setPosition(XAxis.XAxisPosition.BOTTOM);
         xLabels.setValueFormatter((value, axis) -> {
             int val = Math.min(Math.max(0, (int) Math.floor(value)), visibleTeamData.size() - 1);
-            String label = visibleTeamData.isEmpty()? "0" : String.valueOf(visibleTeamData.get(val).getTeamNumber());
+            String label = visibleTeamData.isEmpty() ? "0" : String.valueOf(visibleTeamData.get(val).getTeamNumber());
             //     Log.e("CHARTLABEL", String.valueOf(val) + "-" +  String.valueOf(label));
             return label;
         });
-        
+
         ArrayList<BarEntry> yVals1 = new ArrayList<BarEntry>();
 
-        for(int teamIndex = 0; teamIndex<visibleTeamData.size(); teamIndex++ ){
-            ChartsActivity.TeamDataViewModel teamData = visibleTeamData.get(teamIndex);
-            yVals1.add(new BarEntry( 0.5f + teamIndex,
-                    new float[]{ teamData.getAutoAverage(), teamData.getTeleOpAverage(), teamData.getEndGameAverage(), teamData.getOprAverage()}
+        for (int teamIndex = 0; teamIndex < visibleTeamData.size(); teamIndex++) {
+            TeamDataViewModel2 teamData = visibleTeamData.get(teamIndex);
+            yVals1.add(new BarEntry(0.5f + teamIndex,
+                    new float[]{teamData.getAutoAverage(), teamData.getTeleOpAverage(), teamData.getEndGameAverage(), teamData.getOprAverage()}
             ));
         }
 
@@ -217,7 +321,7 @@ public class ChartAggAverageFragment extends Fragment {
             set1 = new BarDataSet(yVals1, "");
             set1.setDrawIcons(false);
             set1.setColors(getChartColors());
-            set1.setStackLabels(new String[]{ "Auto", "TeleOp", "EndGame", "OPR"});
+            set1.setStackLabels(new String[]{"Auto", "TeleOp", "EndGame", "OPR"});
 
             ArrayList<IBarDataSet> dataSets = new ArrayList<IBarDataSet>();
             dataSets.add(set1);
@@ -235,9 +339,8 @@ public class ChartAggAverageFragment extends Fragment {
     }
 
 
-
     public class ListViewItemCheckboxBaseAdapter extends BaseAdapter {
-        static final String TAG= "ListViewItemCheckboxBaseAdapter";
+        static final String TAG = "ListViewItemCheckboxBaseAdapter";
         Context context;
         List<TeamListViewModel> teamViewModels;
 
@@ -245,13 +348,13 @@ public class ChartAggAverageFragment extends Fragment {
             this.context = context;
         }
 
-        public void setTeams(List<TeamListViewModel> teamViewModels){
+        public void setTeams(List<TeamListViewModel> teamViewModels) {
             this.teamViewModels = teamViewModels;
         }
 
         @Override
         public int getCount() {
-            if( this.teamViewModels == null ) return 0;
+            if (this.teamViewModels == null) return 0;
             return this.teamViewModels.size();
         }
 
@@ -265,9 +368,9 @@ public class ChartAggAverageFragment extends Fragment {
             return position;
         }
 
-        public View getView(int position,View view,ViewGroup parent) {
-            LayoutInflater inflater=getActivity().getLayoutInflater();
-            View rowView=inflater.inflate(R.layout.list_item_agg_chart, null,true);
+        public View getView(int position, View view, ViewGroup parent) {
+            LayoutInflater inflater = getActivity().getLayoutInflater();
+            View rowView = inflater.inflate(R.layout.list_item_agg_chart, null, true);
 
             MaterialTextView teamNumber = rowView.findViewById(R.id.team_number);
             MaterialCheckBox teamSelectedCheckBox = rowView.findViewById(R.id.team_visible);
@@ -279,7 +382,7 @@ public class ChartAggAverageFragment extends Fragment {
                 @Override
                 public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                     ViewParent layoutViewParent = buttonView.getParent();
-                    ListView listView =  (ListView) layoutViewParent.getParent();
+                    ListView listView = (ListView) layoutViewParent.getParent();
                     int position = listView.getPositionForView(buttonView);
                     teamViewModels.get(position).setIsSelected(isChecked);
 
@@ -288,6 +391,8 @@ public class ChartAggAverageFragment extends Fragment {
                 }
             });
             return rowView;
-        };
+        }
+
+        ;
     }
 }

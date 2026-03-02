@@ -42,6 +42,7 @@ import org.hartlandrobotics.echelonFRC.status.BlueAllianceStatus;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
+import java.util.Locale;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
@@ -371,7 +372,7 @@ public class AccountabilityActivity extends EchelonActivity {
             studentScoreText.setTextColor(color);
             studentScoreText.setText(String.valueOf(vm.getStudentPoints()));
 
-            String text = String.format("%.2f",vm.getPercentInaccuracy());
+            String text = String.format(Locale.US, "%.2f %%",vm.getPercentInaccuracy());
             inaccuracyPercentText.setText(text);
 
             team1Text.setTextColor(color);
