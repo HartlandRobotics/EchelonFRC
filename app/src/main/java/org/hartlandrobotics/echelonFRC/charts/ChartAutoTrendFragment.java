@@ -69,7 +69,7 @@ public class ChartAutoTrendFragment extends Fragment {
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Log.i("ChartAutoTrendFragment", "item clicked");
                 String teamNumber = sortedTeamNumbers.get(position);
-                teamData = ((ChartsActivity) getActivity()).getTeamData(teamNumber);
+                //teamData = ((ChartsActivity) getActivity()).getTeamData(teamNumber);
 
                 setupChartData();
             }

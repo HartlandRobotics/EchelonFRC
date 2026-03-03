@@ -50,6 +50,7 @@ import java.util.Comparator;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 public class ChartAggAverageFragment extends Fragment {
@@ -60,6 +61,9 @@ public class ChartAggAverageFragment extends Fragment {
     private ListViewItemCheckboxBaseAdapter teamListAdapter;
 
     Map<String, List<MatchResult>> matchResultsByTeam = new HashMap<>();
+
+    private List<Team> allTeams;
+    private TeamRepo teamRepo;
     private List<TeamListViewModel> allTeamNumbers;
     private List<TeamDataViewModel2> allTeamData = new ArrayList<TeamDataViewModel2>();
 
@@ -95,15 +99,14 @@ public class ChartAggAverageFragment extends Fragment {
         BlueAllianceStatus status = new BlueAllianceStatus(app);
         String currentEvent = status.getEventKey();
 
-        TeamRepo teamRepo = new TeamRepo(app);
+        teamRepo = new TeamRepo(app);
         teamRepo.getEventsWithTeams(currentEvent).observe(getViewLifecycleOwner(), eventWithTeams -> {
-            List<Team> teams = eventWithTeams.teams;
-            List<TeamListViewModel> teamListViewModels = teams.stream()
+            allTeams = eventWithTeams.teams;
+            allTeamNumbers = allTeams.stream()
                     .map(team -> new TeamListViewModel(String.valueOf(team.getTeamNumber()), team.isVisible()))
                     .sorted(Comparator.comparingInt(TeamListViewModel::getTeamInteger))
                     .collect(Collectors.toList());
 
-            allTeamNumbers = teamListViewModels;
 
             MatchResultRepo matchResultRepo = new MatchResultRepo(app);
             matchResultRepo.getMatchResultsByEvent(currentEvent).observe(getViewLifecycleOwner(), allMatchResults -> {
@@ -385,8 +388,14 @@ public class ChartAggAverageFragment extends Fragment {
                     ListView listView = (ListView) layoutViewParent.getParent();
                     int position = listView.getPositionForView(buttonView);
                     // need to select team
-                    
-                    teamViewModels.get(position).setIsSelected(isChecked);
+                    TeamListViewModel currentVisibleItem = teamViewModels.get(position);
+                    Optional<Team> optTeam = allTeams.stream().filter(t -> t.getTeamNumber() == currentVisibleItem.getTeamInteger()).findFirst();
+                    if( optTeam.isPresent() ){
+                        Team currentTeam = optTeam.get();
+                        currentTeam.setVisible(isChecked);
+                        teamRepo.upsert(currentTeam);
+                    }
+                    currentVisibleItem.setIsSelected(isChecked);
 
                     setVisibleTeams();
                     setupChartData();
