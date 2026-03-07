@@ -104,6 +104,7 @@ public class ScoreFragment extends Fragment {
                                 MatchScoreRepo matchScoreRepo = new MatchScoreRepo(app);
                                 List<SyncMatchScore> syncMatchScores = response.body();
                                 if( syncMatchScores == null ) return;
+
                                 List<MatchScore> scores = syncMatchScores.stream()
                                         .filter(sms -> sms.getMatchKey().contains("_qm"))
                                         .map(SyncMatchScore::toMatchScore)

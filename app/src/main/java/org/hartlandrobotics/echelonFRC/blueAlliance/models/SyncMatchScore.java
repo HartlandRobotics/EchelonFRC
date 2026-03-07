@@ -22,17 +22,21 @@ public class SyncMatchScore {
     }
 
     public int getRedTotal(){
+        if(scoreBreakdown == null) return 0;
         return scoreBreakdown.redAlliance.totalPoints;
     }
 
     public int getRedFoul(){
+        if(scoreBreakdown == null) return 0;
         return scoreBreakdown.redAlliance.foulPoints;
     }
     public int getBlueTotal(){
+        if(scoreBreakdown == null) return 0;
         return scoreBreakdown.blueAlliance.totalPoints;
     }
 
     public int getBlueFoul(){
+        if(scoreBreakdown == null) return 0;
         return scoreBreakdown.blueAlliance.foulPoints;
     }
 
