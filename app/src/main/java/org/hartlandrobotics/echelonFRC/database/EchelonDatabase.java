@@ -98,9 +98,6 @@ public abstract class EchelonDatabase extends RoomDatabase {
             databaseWriteExecutor.execute(() -> {
                 SeasonDao sd = _instance.seasonDao();
 
-                Season reefscapeSeason = new Season("Reefscape", 2025);
-                sd.insert(reefscapeSeason);
-
                 Season rebuiltSeason = new Season("Rebuilt", 2026);
                 sd.insert(rebuiltSeason);
             });
