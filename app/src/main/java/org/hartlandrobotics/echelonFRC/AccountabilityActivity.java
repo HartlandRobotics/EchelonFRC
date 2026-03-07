@@ -255,7 +255,6 @@ public class AccountabilityActivity extends EchelonActivity {
                 mr.setContribution(0);
                 matchResultRepo.upsert(mr);
             } else {
-
                 AccountabilityViewModel vm = viewModels.stream()
                         .filter(viewModel -> viewModel.getMatchNumber() == MatchKeyToNumber(mr.getMatchKey()))
                         .filter(viewModel -> viewModel.getAllianceColor().equals(mr.getAlliance()))
@@ -309,6 +308,9 @@ public class AccountabilityActivity extends EchelonActivity {
             }
 
 
+        }
+        if(viewModels != null ) {
+            viewModels.clear();
         }
 
         Toast.makeText(getApplicationContext(),"Calculated " + allMatchResults.size() + " match results", Toast.LENGTH_LONG).show();
