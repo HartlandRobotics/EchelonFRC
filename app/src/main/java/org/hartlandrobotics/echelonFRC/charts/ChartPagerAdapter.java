@@ -94,28 +94,4 @@ public class ChartPagerAdapter extends FragmentStateAdapter {
         return 5;
     }
 
-    public void updateFragmentData(List<TeamListViewModel> allTeamNumbers, List<ChartsActivity.TeamDataViewModel> allTeamData) {
-        this.allTeamNumbers = allTeamNumbers;
-
-        if( allTeamNumbers == null ) return;
-
-        if( chartAutoTrendFragment != null ){
-            chartAutoTrendFragment.setData(allTeamNumbers);
-        }
-
-        if( chartTeleOpTrendFragment != null ){
-            chartTeleOpTrendFragment.setData(allTeamNumbers);
-        }
-
-        if( chartEndGameTrendFragment != null){
-            chartEndGameTrendFragment.setData(allTeamNumbers);
-        }
-
-        if(allianceSelectionFragment != null){
-            allianceSelectionFragment.setData(allTeamNumbers,allTeamData);
-        }
-
-
-
-    }
 }

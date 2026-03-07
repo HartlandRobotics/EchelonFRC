@@ -3,9 +3,11 @@ package org.hartlandrobotics.echelonFRC.utilities;
 import org.apache.commons.lang3.StringUtils;
 import org.hartlandrobotics.echelonFRC.charts.ChartsActivity;
 import org.hartlandrobotics.echelonFRC.charts.TeamDataViewModel2;
+import org.hartlandrobotics.echelonFRC.charts.TeamListViewModel;
 import org.hartlandrobotics.echelonFRC.database.entities.Team;
 
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -37,12 +39,13 @@ public class TeamUtilities {
                 .collect(Collectors.toList());
     }
 
-    public TeamDataViewModel2 teamData(int teamNumber, List<TeamDataViewModel2> allTeamsData){
-        Optional<TeamDataViewModel2> teamData = allTeamsData.stream()
-                .filter( tdvm -> tdvm.getTeamNumber() == teamNumber )
-                .findFirst();
+    public static List<TeamListViewModel> toListViewModels( List<Team> teams) {
+        List<TeamListViewModel> results = new ArrayList<>();
+        if( teams == null || teams.isEmpty() ) return results;
 
-        return teamData.orElse(null);
+        return teams.stream()
+                .map(team -> new TeamListViewModel(String.valueOf(team.getTeamNumber()), team.isVisible(), team.isSelected()))
+                .sorted(Comparator.comparingInt(TeamListViewModel::getTeamInteger))
+                .collect(Collectors.toList());
     }
-
 }

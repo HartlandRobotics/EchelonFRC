@@ -1,8 +1,8 @@
 package org.hartlandrobotics.echelonFRC.charts;
 
-import static android.graphics.Color.GRAY;
 //import static android.graphics.Color.parseColor
 
+import android.app.Application;
 import android.content.Context;
 import android.os.Bundle;
 
@@ -24,12 +24,16 @@ import android.widget.ListView;
 
 import com.google.android.material.checkbox.MaterialCheckBox;
 import com.google.android.material.textfield.TextInputEditText;
-import com.google.android.material.textfield.TextInputLayout;
-import com.google.android.material.textview.MaterialTextView;
+        import com.google.android.material.textview.MaterialTextView;
 
 import org.apache.commons.lang3.StringUtils;
-import org.hartlandrobotics.echelonFRC.MatchScheduleActivity;
-import org.hartlandrobotics.echelonFRC.R;
+        import org.hartlandrobotics.echelonFRC.R;
+import org.hartlandrobotics.echelonFRC.database.entities.Team;
+import org.hartlandrobotics.echelonFRC.database.repositories.MatchResultRepo;
+import org.hartlandrobotics.echelonFRC.database.repositories.TeamRepo;
+import org.hartlandrobotics.echelonFRC.status.BlueAllianceStatus;
+import org.hartlandrobotics.echelonFRC.utilities.MatchUtilities;
+import org.hartlandrobotics.echelonFRC.utilities.TeamUtilities;
 
 import java.util.ArrayList;
 import java.util.Comparator;
@@ -46,21 +50,24 @@ public class AllianceSelectionFragment extends Fragment {
     private AutoCompleteTextView teamNumber2AutoComplete;
     private AutoCompleteTextView teamNumber3AutoComplete;
     private TextInputEditText manualOverride;
-    private List<String> sortedTeamNumbers;
-    ChartsActivity.TeamDataViewModel teamData1;
-    ChartsActivity.TeamDataViewModel teamData2;
-    ChartsActivity.TeamDataViewModel teamData3;
-
+    //private List<String> sortedTeamNumbers;
+    TeamDataViewModel2 teamData1;
+    TeamDataViewModel2 teamData2;
+    TeamDataViewModel2 teamData3;
 
     private ListView teamNumberListView;
     private ListViewItemCheckboxBaseAdapter teamListAdapter;
-
     private ListView teamDataListView;
+
+    private List<TeamDataViewModel2> allTeamData;
+    private List<TeamDataViewModel2> visibleTeamData;
+    private List<String> sortedTeamNumbers;
+    private TeamRepo teamRepo;
+    private List<Team> allTeams;
+    private List<TeamListViewModel> allTeamViewModels;
     private ListDataViewItemBaseAdapter teamDataListAdapter;
 
-    private List<TeamListViewModel> allTeamNumbers;
-    private List<ChartsActivity.TeamDataViewModel> allTeamData;
-    private List<ChartsActivity.TeamDataViewModel> visibleTeamData;
+    private MatchResultRepo matchResultRepo;
 
     public AllianceSelectionFragment() {
         // Required empty public constructor
@@ -71,8 +78,8 @@ public class AllianceSelectionFragment extends Fragment {
         super.onCreate(savedInstanceState);
     }
 
-    public ChartsActivity.TeamDataViewModel getTeamData(String teamNumber){
-        Optional<ChartsActivity.TeamDataViewModel> teamData = this.allTeamData.stream()
+    public TeamDataViewModel2 getTeamData(String teamNumber){
+        Optional<TeamDataViewModel2> teamData = this.allTeamData.stream()
                 .filter( td -> td.getTeamNumber() == Integer.valueOf(teamNumber))
                 .findFirst();
 
@@ -83,16 +90,15 @@ public class AllianceSelectionFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view= inflater.inflate(R.layout.fragment_alliance_selection, container, false);
-
         teamNumber1AutoComplete = view.findViewById(R.id.team1SelectionAutoComplete);
         teamNumber1AutoComplete.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id){
                 Log.i("AllianceSelectionFragment", "item clicked");
                 if(position != 0){
-                String teamNumber = sortedTeamNumbers.get(position);
-                teamData1 = getTeamData(teamNumber);
-                teamDataListAdapter.notifyDataSetChanged();
+                    String teamNumber = String.valueOf( allTeams.get(position).getTeamNumber() );
+                    teamData1 = getTeamData(teamNumber);
+                    teamDataListAdapter.notifyDataSetChanged();
                 }
             }
         });
@@ -102,7 +108,7 @@ public class AllianceSelectionFragment extends Fragment {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id){
                 Log.i("AllianceSelectionFragment", "item clicked");
-                String teamNumber = sortedTeamNumbers.get(position);
+                String teamNumber = String.valueOf( allTeams.get(position).getTeamNumber() );
                 teamData2 = getTeamData(teamNumber);
                 teamDataListAdapter.notifyDataSetChanged();
             }
@@ -113,13 +119,19 @@ public class AllianceSelectionFragment extends Fragment {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id){
                 Log.i("AllianceSelectionFragment", "item clicked");
-                String teamNumber = sortedTeamNumbers.get(position);
+                String teamNumber = String.valueOf( allTeams.get(position).getTeamNumber() );
                 teamData3 = getTeamData(teamNumber);
                 teamDataListAdapter.notifyDataSetChanged();
             }
         });
 
         manualOverride = view.findViewById(R.id.manual_input);
+
+
+
+
+
+
         return view;
     }
 
@@ -135,26 +147,44 @@ public class AllianceSelectionFragment extends Fragment {
         teamDataListView = view.findViewById(R.id.team_data_listview);
         teamDataListView.setAdapter(teamDataListAdapter);
 
-        setData(((ChartsActivity)getActivity()).getAllTeamNumbers(), ((ChartsActivity)getActivity()).allTeamsData);
-        setupDropDown();
+        Application app = this.getActivity().getApplication();
+        BlueAllianceStatus status = new BlueAllianceStatus(app);
+        String currentEvent = status.getEventKey();
+
+        teamRepo = new TeamRepo(app);
+        teamRepo.getEventsWithTeams(currentEvent).observe(getViewLifecycleOwner(), eventWithTeams -> {
+            allTeams = eventWithTeams.teams;
+            allTeamViewModels = TeamUtilities.toListViewModels(allTeams);
+
+            matchResultRepo = new MatchResultRepo(app);
+            matchResultRepo.getMatchResultsByEvent(currentEvent).observe(getViewLifecycleOwner(), matchResults -> {
+                allTeamData = MatchUtilities.toViewModels(matchResults);
+
+                setData();
+                setupDropDown();
+            });
+        });
+
+
+
+
     }
 
-    public void setData(List<TeamListViewModel> allTeamNumbers, List<ChartsActivity.TeamDataViewModel> allTeamData){
-        this.allTeamNumbers = new ArrayList<TeamListViewModel>( allTeamNumbers );
+    public void setData(){
+        //if(allTeamViewModels == null) return;
 
-        sortedTeamNumbers = this.allTeamNumbers.stream()
+        sortedTeamNumbers = this.allTeamViewModels.stream()
                 .sorted(Comparator.comparingInt(TeamListViewModel::getTeamInteger))
                 .map(TeamListViewModel::getTeamNumber)
                 .collect(Collectors.toList());
         sortedTeamNumbers.add(0,StringUtils.EMPTY);
 
-        teamListAdapter.setTeams(this.allTeamNumbers);
+        teamListAdapter.setTeams(this.allTeamViewModels);
         teamListAdapter.notifyDataSetChanged();
 
 
                 //new MatchScheduleActivity.MatchListAdapter(this);
 
-        this.allTeamData = new ArrayList<ChartsActivity.TeamDataViewModel>( allTeamData );
         setVisibleTeams();
 
         if( visibleTeamData != null ) {
@@ -162,32 +192,32 @@ public class AllianceSelectionFragment extends Fragment {
             Log.e(TAG, "setData called:");
             teamDataListAdapter.notifyDataSetChanged();
         }
-
     }
     public void setVisibleTeams(){
-        List<String> visibleTeamNumbers = allTeamNumbers.stream()
-                .filter(TeamListViewModel::getIsSelected)
+        List<String> visibleTeamNumbers = allTeamViewModels.stream()
+                .filter(TeamListViewModel::isVisible)
                 .map(TeamListViewModel::getTeamNumber)
                 .collect(Collectors.toList());
 
         if(visibleTeamData == null){
-            visibleTeamData = new ArrayList<ChartsActivity.TeamDataViewModel>();
+            visibleTeamData = new ArrayList<TeamDataViewModel2>();
         } else {
             visibleTeamData.clear();
         }
+
         visibleTeamData.addAll(
                 allTeamData.stream()
                 .filter( teamData -> {
                     return visibleTeamNumbers.contains( String.valueOf(teamData.getTeamNumber()) );
                 })
-                .sorted(Comparator.comparingDouble(ChartsActivity.TeamDataViewModel::getTotalAverage).reversed())
+                .sorted(Comparator.comparingDouble(TeamDataViewModel2::getTotalAverage).reversed())
                 .limit(35)
                 .collect(Collectors.toList())
         );
     }
 
     public void setupDropDown(){
-        if(sortedTeamNumbers == null) {
+        if(allTeams == null) {
             Log.i("AllianceSelectionFragment", "No teams");
             return;
         }
@@ -241,14 +271,14 @@ public class AllianceSelectionFragment extends Fragment {
 
             TeamListViewModel teamListViewModel = teamViewModels.get(position);
             teamNumber.setText(teamListViewModel.getTeamNumber());
-            teamSelectedCheckBox.setChecked(teamListViewModel.getIsSelected());
+            teamSelectedCheckBox.setChecked(teamListViewModel.isVisible());
             teamSelectedCheckBox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
                 @Override
                 public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                     ViewParent layoutViewParent = buttonView.getParent();
                     ListView listView =  (ListView) layoutViewParent.getParent();
                     int position = listView.getPositionForView(buttonView);
-                    teamViewModels.get(position).setIsSelected(isChecked);
+                    teamViewModels.get(position).setIsVisible(isChecked);
 
                     setVisibleTeams();
 
@@ -265,13 +295,13 @@ public class AllianceSelectionFragment extends Fragment {
 
         public final String TAG = "ListDataViewItemBaseAdapter";
         Context context;
-        List<ChartsActivity.TeamDataViewModel> teamDataViewModels;
+        List<TeamDataViewModel2> teamDataViewModels;
 
         public ListDataViewItemBaseAdapter(Context context) {
             this.context = context;
         }
 
-        public void setTeamsData(List<ChartsActivity.TeamDataViewModel> teamDataViewModels) {
+        public void setTeamsData(List<TeamDataViewModel2> teamDataViewModels) {
             this.teamDataViewModels = teamDataViewModels;
         }
 
@@ -282,7 +312,7 @@ public class AllianceSelectionFragment extends Fragment {
         }
 
         @Override
-        public ChartsActivity.TeamDataViewModel getItem(int index) {
+        public TeamDataViewModel2 getItem(int index) {
             return this.teamDataViewModels.get(index);
         }
 
@@ -293,7 +323,7 @@ public class AllianceSelectionFragment extends Fragment {
 
         public View getView(int position,View view,ViewGroup parent) {
             LayoutInflater inflater=getActivity().getLayoutInflater();
-            ChartsActivity.TeamDataViewModel teamListDataViewModel = teamDataViewModels.get(position);
+            TeamDataViewModel2 teamListDataViewModel = teamDataViewModels.get(position);
             int theTeamNumber = teamListDataViewModel.getTeamNumber();
 
             boolean vis = visibleTeamData.stream().filter( vtd -> vtd.getTeamNumber() == theTeamNumber).collect(Collectors.toList()).isEmpty();
@@ -345,7 +375,7 @@ public class AllianceSelectionFragment extends Fragment {
 
             if(!StringUtils.isBlank(teamNumber1AutoComplete.getText())){
                 int teamNum = Integer.parseInt(teamNumber1AutoComplete.getText().toString());
-                ChartsActivity.TeamDataViewModel vm = allTeamData.stream().filter(ad -> ad.getTeamNumber() == teamNum).findFirst().get();
+                TeamDataViewModel2 vm = allTeamData.stream().filter(ad -> ad.getTeamNumber() == teamNum).findFirst().get();
                 theTotalNumber += vm.getTotalAverage();
                 totalNumberText.setText(String.format("%4.2f", theTotalNumber));
                 Log.e(TAG, "thetotalvalue1: "+theTotalNumber );
@@ -353,7 +383,7 @@ public class AllianceSelectionFragment extends Fragment {
 
             if(!StringUtils.isBlank(teamNumber2AutoComplete.getText())){
                 int teamNum = Integer.parseInt(teamNumber2AutoComplete.getText().toString());
-                ChartsActivity.TeamDataViewModel vm = allTeamData.stream().filter(ad -> ad.getTeamNumber() == teamNum).findFirst().get();
+                TeamDataViewModel2 vm = allTeamData.stream().filter(ad -> ad.getTeamNumber() == teamNum).findFirst().get();
                 theTotalNumber += vm.getTotalAverage();
                 totalNumberText.setText(String.format("%4.2f", theTotalNumber));
                 Log.e(TAG, "thetotalvalue2: "+theTotalNumber );
@@ -362,7 +392,7 @@ public class AllianceSelectionFragment extends Fragment {
 
             if(!StringUtils.isBlank(teamNumber3AutoComplete.getText())){
                 int teamNum = Integer.parseInt(teamNumber3AutoComplete.getText().toString());
-                ChartsActivity.TeamDataViewModel vm = allTeamData.stream().filter(ad -> ad.getTeamNumber() == teamNum).findFirst().get();
+                TeamDataViewModel2 vm = allTeamData.stream().filter(ad -> ad.getTeamNumber() == teamNum).findFirst().get();
                 theTotalNumber += vm.getTotalAverage();
                 totalNumberText.setText(String.format("%4.2f", theTotalNumber));
                 Log.e(TAG, "thetotalvalue3: "+theTotalNumber );

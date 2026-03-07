@@ -1,5 +1,6 @@
 package org.hartlandrobotics.echelonFRC.charts;
 
+import android.app.Application;
 import android.graphics.Color;
 import android.os.Bundle;
 
@@ -22,14 +23,22 @@ import com.github.mikephil.charting.data.Entry;
 import com.github.mikephil.charting.data.LineData;
 import com.github.mikephil.charting.data.LineDataSet;
 import com.github.mikephil.charting.interfaces.datasets.ILineDataSet;
+import com.google.android.material.textview.MaterialTextView;
 
 import org.hartlandrobotics.echelonFRC.R;
 import org.hartlandrobotics.echelonFRC.database.dao.MatchResultDao;
+import org.hartlandrobotics.echelonFRC.database.entities.Team;
+import org.hartlandrobotics.echelonFRC.database.repositories.MatchResultRepo;
+import org.hartlandrobotics.echelonFRC.database.repositories.TeamRepo;
 import org.hartlandrobotics.echelonFRC.pitScouting.PitScoutActivity;
+import org.hartlandrobotics.echelonFRC.status.BlueAllianceStatus;
+import org.hartlandrobotics.echelonFRC.utilities.MatchUtilities;
+import org.hartlandrobotics.echelonFRC.utilities.TeamUtilities;
 
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
+import java.util.Optional;
 import java.util.logging.Logger;
 import java.util.stream.Collectors;
 
@@ -37,18 +46,18 @@ public class ChartAutoTrendFragment extends Fragment {
 
     private LineChart autoTrendChart;
     private AutoCompleteTextView teamNumberAutoComplete;
-    private String teamNumber;
 
-    private List<String> sortedTeamNumbers;
-    TeamDataViewModel2 teamData;
+    private TeamRepo teamRepo;
+    private List<Team> allTeams;
+    private List<TeamListViewModel> allTeamViewModels;
 
+    private MatchResultRepo matchResultRepo;
     private List<TeamDataViewModel2> allTeamData = new ArrayList<TeamDataViewModel2>();
 
 
     public ChartAutoTrendFragment() {
         // Required empty public constructor
     }
-
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -68,10 +77,26 @@ public class ChartAutoTrendFragment extends Fragment {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Log.i("ChartAutoTrendFragment", "item clicked");
-                String teamNumber = sortedTeamNumbers.get(position);
-                //teamData = ((ChartsActivity) getActivity()).getTeamData(teamNumber);
 
-                setupChartData();
+                int teamNumber = allTeamViewModels.get(position).getTeamInteger();
+
+                allTeams.stream()
+                        .filter(Team::isSelected)
+                        .forEach(team -> {
+                            team.setSelected(false);
+                            //teamRepo.upsert(team);
+                        });
+
+                allTeams.stream()
+                        .filter(team -> team.getTeamNumber() == teamNumber)
+                        .forEach(team -> {
+                            team.setSelected(true);
+                            //TeamRepo repo = new TeamRepo(getActivity().getApplication());
+                            //repo.upsert(team);
+                        });
+
+                TeamDataViewModel2 teamData = MatchUtilities.teamData(teamNumber, allTeamData);
+                setupChartData(teamData);
             }
         });
 
@@ -80,26 +105,61 @@ public class ChartAutoTrendFragment extends Fragment {
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState){
-        setData(((ChartsActivity)getActivity()).getAllTeamNumbers());
+        Application app = this.getActivity().getApplication();
+        BlueAllianceStatus status = new BlueAllianceStatus(app);
+        String currentEvent = status.getEventKey();
 
-        setupDropDown();
-    }
+        teamRepo = new TeamRepo(app);
+        teamRepo.getEventsWithTeams(currentEvent).observe(getViewLifecycleOwner(), eventWithTeams -> {
+            allTeams = eventWithTeams.teams;
+            allTeamViewModels = TeamUtilities.toListViewModels(allTeams);
+            setupDropDown();
 
-    public void setData(List<TeamListViewModel> allTeamNumbers) {
-        sortedTeamNumbers = allTeamNumbers.stream()
-                .sorted(Comparator.comparingInt(TeamListViewModel::getTeamInteger))
-                .map(TeamListViewModel::getTeamNumber)
-                .collect(Collectors.toList());
+            Optional<TeamListViewModel> optSelectedListItem = allTeamViewModels.stream().filter(TeamListViewModel::isSelected).findFirst();
+
+            matchResultRepo = new MatchResultRepo(app);
+            matchResultRepo.getMatchResultsByEvent(currentEvent).observe(getViewLifecycleOwner(), matchResults -> {
+                allTeamData = MatchUtilities.toViewModels(matchResults);
+
+                String teamNumber = teamNumberAutoComplete.getText().toString();
+                Optional<TeamDataViewModel2> optTeamData =  allTeamData.stream()
+                        .filter(td -> String.valueOf(td.getTeamNumber()).equals( teamNumber))
+                        .findFirst();
+                optTeamData.ifPresent(this::setupChartData);
+            });
+        });
+
+
     }
 
     public void setupDropDown(){
-        if( sortedTeamNumbers == null ){
+        if( allTeamViewModels == null ){
             Log.i("ChartAutoTrendFragment", "No teams.");
             return;
         }
-        Log.i("ChartAutoTrendFragment", "setupDropDown with " + sortedTeamNumbers.size() + " teams");
-        ArrayAdapter teamNumberAdapter = new ArrayAdapter(getContext(), R.layout.dropdown_item, sortedTeamNumbers);
+
+        Log.i("ChartAutoTrendFragment", "setupDropDown with " + allTeamViewModels.size() + " teams");
+
+        List<String> teamNumbers = allTeamViewModels.stream()
+                .map(TeamListViewModel::getTeamNumber)
+                .collect(Collectors.toList());
+
+        Optional<TeamListViewModel> selectedTeam = allTeamViewModels.stream()
+                .filter(TeamListViewModel::isSelected)
+                .findFirst();
+
+        ArrayAdapter<String> teamNumberAdapter = new ArrayAdapter<>(requireContext(), R.layout.dropdown_item, teamNumbers);
         teamNumberAutoComplete.setAdapter(teamNumberAdapter);
+
+        if( selectedTeam.isPresent() ) {
+            TeamListViewModel teamList = selectedTeam.get();
+            teamNumberAutoComplete.setText(teamList.getTeamNumber(),false);
+            Optional<TeamDataViewModel2> teamData = allTeamData
+                    .stream()
+                    .filter( t -> t.getTeamNumber() == teamList.getTeamInteger())
+                    .findFirst();
+            teamData.ifPresent(this::setupChartData);
+        }
     }
 
     public void setupChart(){
@@ -111,8 +171,6 @@ public class ChartAutoTrendFragment extends Fragment {
         xAxis.setPosition(XAxis.XAxisPosition.BOTTOM);
         xAxis.setAxisMinimum(0);
 
-
-
         YAxis yAxis = autoTrendChart.getAxisLeft();
         yAxis.setAxisMinimum(0);
         yAxis.setDrawLabels(false);
@@ -120,11 +178,9 @@ public class ChartAutoTrendFragment extends Fragment {
         yAxis.setDrawGridLines(false);
 
         autoTrendChart.getAxisRight().setDrawAxisLine(false);
-
-
     }
 
-    public void setupChartData(){
+    public void setupChartData(TeamDataViewModel2 teamData){
         if( teamData == null ) return;
 
         ArrayList<Entry> entries = new ArrayList<>();

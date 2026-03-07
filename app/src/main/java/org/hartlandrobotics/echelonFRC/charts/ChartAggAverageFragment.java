@@ -8,16 +8,11 @@ import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
 
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.ViewParent;
-import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.BaseAdapter;
 import android.widget.CompoundButton;
 import android.widget.ListView;
@@ -32,7 +27,6 @@ import com.github.mikephil.charting.data.BarEntry;
 import com.github.mikephil.charting.interfaces.datasets.IBarDataSet;
 import com.github.mikephil.charting.utils.ColorTemplate;
 import com.google.android.material.checkbox.MaterialCheckBox;
-import com.google.android.material.navigation.NavigationBarView;
 import com.google.android.material.textview.MaterialTextView;
 
 import org.hartlandrobotics.echelonFRC.R;
@@ -41,9 +35,7 @@ import org.hartlandrobotics.echelonFRC.database.entities.MatchResult;
 import org.hartlandrobotics.echelonFRC.database.entities.Team;
 import org.hartlandrobotics.echelonFRC.database.repositories.MatchResultRepo;
 import org.hartlandrobotics.echelonFRC.database.repositories.TeamRepo;
-import org.hartlandrobotics.echelonFRC.models.TeamViewModel;
 import org.hartlandrobotics.echelonFRC.status.BlueAllianceStatus;
-import org.hartlandrobotics.echelonFRC.utilities.TeamUtilities;
 
 import java.util.ArrayList;
 import java.util.Comparator;
@@ -103,7 +95,7 @@ public class ChartAggAverageFragment extends Fragment {
         teamRepo.getEventsWithTeams(currentEvent).observe(getViewLifecycleOwner(), eventWithTeams -> {
             allTeams = eventWithTeams.teams;
             allTeamNumbers = allTeams.stream()
-                    .map(team -> new TeamListViewModel(String.valueOf(team.getTeamNumber()), team.isVisible()))
+                    .map(team -> new TeamListViewModel(String.valueOf(team.getTeamNumber()), team.isVisible(), team.isSelected()))
                     .sorted(Comparator.comparingInt(TeamListViewModel::getTeamInteger))
                     .collect(Collectors.toList());
 
@@ -220,7 +212,7 @@ public class ChartAggAverageFragment extends Fragment {
 
     public void setVisibleTeams() {
         List<String> visibleTeamNumbers = this.allTeamNumbers.stream()
-                .filter(TeamListViewModel::getIsSelected)
+                .filter(TeamListViewModel::isVisible)
                 .map(TeamListViewModel::getTeamNumber)
                 .collect(Collectors.toList());
 
@@ -380,7 +372,7 @@ public class ChartAggAverageFragment extends Fragment {
 
             TeamListViewModel teamListViewModel = teamViewModels.get(position);
             teamNumber.setText(teamListViewModel.getTeamNumber());
-            teamSelectedCheckBox.setChecked(teamListViewModel.getIsSelected());
+            teamSelectedCheckBox.setChecked(teamListViewModel.isVisible());
             teamSelectedCheckBox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
                 @Override
                 public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
@@ -395,7 +387,7 @@ public class ChartAggAverageFragment extends Fragment {
                         currentTeam.setVisible(isChecked);
                         teamRepo.upsert(currentTeam);
                     }
-                    currentVisibleItem.setIsSelected(isChecked);
+                    currentVisibleItem.setIsVisible(isChecked);
 
                     setVisibleTeams();
                     setupChartData();
