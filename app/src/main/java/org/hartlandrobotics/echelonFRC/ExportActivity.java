@@ -642,7 +642,7 @@ public class ExportActivity extends EchelonActivity {
     @RequiresApi(api = Build.VERSION_CODES.O)
     public void importCSVMatches() throws IOException {
         File importPath = getImportPath();
-        String[] filePaths = {"matchResultsRed1.csv", "matchResultsRed2.csv", "matchResultsRed3.csv", "matchResultsBlue1.csv", "matchResultsBlue2.csv", "matchResultsBlue3.csv", "matchResultsCaptain.csv"};
+        String[] filePaths = {"matchResultsRedOne.csv", "matchResultsRedTwo.csv", "matchResultsRedThree.csv", "matchResultsBlueOne.csv", "matchResultsBlueTwo.csv", "matchResultsBlueThree.csv"};
         for (String filename : filePaths) {
             File newFile = new File(importPath.getAbsolutePath().concat("/" + filename));
             Stream<String> lines = Files.lines(newFile.toPath());
@@ -704,8 +704,8 @@ public class ExportActivity extends EchelonActivity {
 
                     String teleDef = StringUtils.defaultIfBlank(columns[29], "0");
 
-                    int contribution = Integer.parseInt(columns[30]);
-                    String matchResultKey = columns[31];
+                    String matchResultKey = columns[30];
+                    int contribution = Integer.parseInt(columns[31]);
                     String AdditionalNotes = StringUtils.defaultIfBlank(columns[32], "empty");
 
                     MatchResult matchResult = new MatchResult(
