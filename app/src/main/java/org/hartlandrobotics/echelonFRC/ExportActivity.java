@@ -642,13 +642,13 @@ public class ExportActivity extends EchelonActivity {
     @RequiresApi(api = Build.VERSION_CODES.O)
     public void importCSVMatches() throws IOException {
         File importPath = getImportPath();
-        String[] filePaths = {"matchResultsRedOne.csv", "matchResultsRedTwo.csv", "matchResultsRedThree.csv", "matchResultsBlueOne.csv", "matchResultsBlueTwo.csv", "matchResultsBlueThree.csv"};
+        String[] filePaths = {"matchResultsRedOne.csv", "matchResultsRedTwo.csv", "matchResultsRedThree.csv", "matchResultsBlueOne.csv", "matchResultsBlueTwo.csv", "matchResultsBlueThree.csv", "matchResultsCaptain.csv"};
         for (String filename : filePaths) {
             File newFile = new File(importPath.getAbsolutePath().concat("/" + filename));
-            Stream<String> lines = Files.lines(newFile.toPath());
             if (!newFile.exists()) {
                 continue;
             }
+            Stream<String> lines = Files.lines(newFile.toPath());
             List<String> inputLines = lines.collect(Collectors.toList());
 
             int timesRan = 0;
@@ -759,7 +759,7 @@ public class ExportActivity extends EchelonActivity {
         importCSVMatchButton.setOnClickListener(v -> {
             try {
                 importCSVMatches();
-                Log.e("under setupCSVImportButton", "imported match results");
+                Log.i("under setupCSVImportButton", "imported match results");
                 Toast.makeText(this, "imported matches", Toast.LENGTH_LONG).show();
             } catch (Exception E) {
                 E.printStackTrace();
