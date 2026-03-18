@@ -37,6 +37,7 @@ import org.hartlandrobotics.echelonFRC.database.repositories.MatchResultRepo;
 import org.hartlandrobotics.echelonFRC.database.repositories.TeamRepo;
 import org.hartlandrobotics.echelonFRC.status.BlueAllianceStatus;
 
+import java.nio.file.Files;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.HashMap;
@@ -44,6 +45,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 public class ChartAggAverageFragment extends Fragment {
     public final String TAG = "ChartAggAverageFragment";
@@ -123,6 +125,7 @@ public class ChartAggAverageFragment extends Fragment {
                     String key = entry.getKey();
                     int teamNumber = Integer.valueOf(entry.getKey().substring(3));
 
+                    //allTeamData.clear();
                     List<MatchResult> matchResults = entry.getValue();
                     for (MatchResult matchResult : matchResults) {
                         CurrentGamePoints currentGamePoints = MatchResult.toCurrentGamePoints(matchResult);
@@ -183,7 +186,7 @@ public class ChartAggAverageFragment extends Fragment {
                     allTeamData.add(teamData);
                 }
 
-                setData(allTeamNumbers, allTeamData);
+                setData();
 
                 aggScoringChart = view.findViewById(R.id.agg_average_chart);
                 setupChart();
@@ -194,7 +197,7 @@ public class ChartAggAverageFragment extends Fragment {
 
     }
 
-    public void setData(List<TeamListViewModel> allTeamNumbers, List<TeamDataViewModel2> allTeamData) {
+    public void setData() {
         if (this.allTeamNumbers == null) {
             this.allTeamNumbers = new ArrayList<>();
         }
@@ -218,9 +221,9 @@ public class ChartAggAverageFragment extends Fragment {
 
         if (visibleTeamData == null) {
             visibleTeamData = new ArrayList<TeamDataViewModel2>();
-        } else {
-            visibleTeamData.clear();
         }
+
+        visibleTeamData.clear();
         visibleTeamData.addAll(
                 allTeamData.stream()
                         .filter(teamData -> visibleTeamNumbers.contains(String.valueOf(teamData.getTeamNumber())))
@@ -297,6 +300,7 @@ public class ChartAggAverageFragment extends Fragment {
 
         ArrayList<BarEntry> yVals1 = new ArrayList<BarEntry>();
 
+        yVals1.clear();
         for (int teamIndex = 0; teamIndex < visibleTeamData.size(); teamIndex++) {
             TeamDataViewModel2 teamData = visibleTeamData.get(teamIndex);
             yVals1.add(new BarEntry(0.5f + teamIndex,
@@ -385,7 +389,7 @@ public class ChartAggAverageFragment extends Fragment {
                     if( optTeam.isPresent() ){
                         Team currentTeam = optTeam.get();
                         currentTeam.setVisible(isChecked);
-                        teamRepo.upsert(currentTeam);
+                        //teamRepo.upsert(currentTeam);
                     }
                     currentVisibleItem.setIsVisible(isChecked);
 
