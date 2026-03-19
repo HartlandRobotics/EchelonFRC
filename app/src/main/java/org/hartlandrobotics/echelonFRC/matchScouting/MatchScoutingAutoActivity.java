@@ -33,15 +33,19 @@ public class MatchScoutingAutoActivity extends AppCompatActivity {
     private static final String TEAM_KEY = "team_key_param";
 
     private ImageButton activeFuelDecrement;
+    private ImageButton activeFuelIncrement5;
     private ImageButton activeFuel;
     private MaterialTextView activeFuelText;
     private ImageButton missedFuelDecrement;
+    private ImageButton missedFuelIncrement5;
     private ImageButton missedFuel;
     private MaterialTextView missedFuelText;
     private ImageButton passingDecrement;
+    private ImageButton passingIncrement5;
     private ImageButton passing;
     private MaterialTextView passingText;
     private ImageButton humanFuelDecrement;
+    private ImageButton humanFuelIncrement5;
     private ImageButton humanFuel;
     private MaterialTextView humanFuelText;
     private MaterialButton lowClimb;
@@ -128,6 +132,11 @@ public class MatchScoutingAutoActivity extends AppCompatActivity {
             currentResult.result.setAutoInt6( Math.max(currentResult.result.getAutoInt6() - 1, 0));
             populateControlsFromData();
         });
+        activeFuelIncrement5 = findViewById(R.id.active_fuel_increment5);
+        activeFuelIncrement5.setOnClickListener(v -> {
+            currentResult.result.setAutoInt6(currentResult.result.getAutoInt6() +5);
+            populateControlsFromData();
+        });
 
         activeFuel = findViewById(R.id.active_fuel);
         activeFuelText = findViewById(R.id.active_fuel_text);
@@ -139,6 +148,12 @@ public class MatchScoutingAutoActivity extends AppCompatActivity {
         missedFuelDecrement = findViewById(R.id.missed_fuel_decrement);
         missedFuelDecrement.setOnClickListener(v -> {
             currentResult.result.setAutoInt7( Math.max(currentResult.result.getAutoInt7() - 1, 0));
+            populateControlsFromData();
+        });
+
+        missedFuelIncrement5 = findViewById(R.id.missed_fuel_increment5);
+        missedFuelIncrement5.setOnClickListener(v -> {
+            currentResult.result.setAutoInt7(currentResult.result.getAutoInt7() +5);
             populateControlsFromData();
         });
 
@@ -154,6 +169,11 @@ public class MatchScoutingAutoActivity extends AppCompatActivity {
             currentResult.result.setAutoInt8( Math.max(currentResult.result.getAutoInt8() - 1, 0));
             populateControlsFromData();
         });
+        passingIncrement5 = findViewById(R.id.passing_fuel_increment5);
+        passingIncrement5.setOnClickListener(v -> {
+            currentResult.result.setAutoInt8(currentResult.result.getAutoInt8() +5);
+            populateControlsFromData();
+        });
 
         passing = findViewById(R.id.passing);
         passingText = findViewById(R.id.passing_text);
@@ -167,7 +187,11 @@ public class MatchScoutingAutoActivity extends AppCompatActivity {
             currentResult.result.setAutoInt9( Math.max(currentResult.result.getAutoInt9() - 1, 0));
             populateControlsFromData();
         });
-
+        humanFuelIncrement5 = findViewById(R.id.human_fuel_increment5);
+        humanFuelIncrement5.setOnClickListener(v -> {
+            currentResult.result.setAutoInt9(currentResult.result.getAutoInt9() +5);
+            populateControlsFromData();
+        });
         humanFuel = findViewById(R.id.human_fuel);
         humanFuelText = findViewById(R.id.human_fuel_text);
         humanFuel.setOnClickListener(v -> {

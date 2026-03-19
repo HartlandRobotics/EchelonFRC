@@ -41,7 +41,14 @@
                 android:contentDescription="@string/filler"
                 android:src="@drawable/active_fuel"
                 />
-
+            <ImageButton
+                android:id="@+id/active_fuel_increment5"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="25dp"
+                android:background="@null"
+                android:src="@drawable/button_increment5"
+                />
             <com.google.android.material.textview.MaterialTextView
                 android:id="@+id/active_fuel_text"
                 android:layout_width="65dp"
@@ -50,6 +57,7 @@
                 android:textSize="32sp"
                 tools:text="999"
                 />
+
         </LinearLayout>
 
         <LinearLayout
@@ -76,6 +84,14 @@
                 android:background="@null"
                 android:contentDescription="@string/filler"
                 android:src="@drawable/missed_fuel"
+                />
+            <ImageButton
+                android:id="@+id/missed_fuel_increment5"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="25dp"
+                android:background="@null"
+                android:src="@drawable/button_increment5"
                 />
 
             <com.google.android.material.textview.MaterialTextView
@@ -132,7 +148,14 @@
                 app:layout_constraintLeft_toRightOf="@id/passing_decrement"
                 app:layout_constraintRight_toLeftOf="@id/passing_text"
                 app:layout_constraintTop_toTopOf="parent" />
-
+            <ImageButton
+                android:id="@+id/passing_fuel_increment5"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="25dp"
+                android:background="@null"
+                android:src="@drawable/button_increment5"
+                />
             <com.google.android.material.textview.MaterialTextView
                 android:id="@+id/passing_text"
                 android:layout_width="65dp"
@@ -171,7 +194,14 @@
                 android:contentDescription="@string/filler"
                 android:src="@drawable/human_player_fuel"
                 />
-
+            <ImageButton
+                android:id="@+id/human_fuel_increment5"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="25dp"
+                android:background="@null"
+                android:src="@drawable/button_increment5"
+                />
             <com.google.android.material.textview.MaterialTextView
                 android:id="@+id/human_fuel_text"
                 android:layout_width="65dp"

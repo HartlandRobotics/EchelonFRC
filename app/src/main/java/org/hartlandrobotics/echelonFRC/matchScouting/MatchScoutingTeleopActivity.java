@@ -29,15 +29,19 @@ public class MatchScoutingTeleopActivity extends AppCompatActivity {
 
     MaterialButton scoutingDoneButton;
     private ImageButton activeFuelDecrement;
+    private ImageButton activeFuelIncrement5;
     private ImageButton activeFuel;
     private MaterialTextView activeFuelText;
     private ImageButton missedFuelDecrement;
+    private ImageButton missedFuelIncrement5;
     private ImageButton missedFuel;
     private MaterialTextView missedFuelText;
     private ImageButton passingDecrement;
+    private ImageButton passingIncrement5;
     private ImageButton passing;
     private MaterialTextView passingText;
     private ImageButton humanFuelDecrement;
+    private ImageButton humanFuelIncrement5;
     private ImageButton humanFuel;
     private MaterialTextView humanFuelText;
     private MaterialButton highClimb;
@@ -139,11 +143,20 @@ public class MatchScoutingTeleopActivity extends AppCompatActivity {
             currentResult.result.setTeleOpInt6(Math.max(currentResult.result.getTeleOpInt6() -1, 0));
             populateControlsFromData();
         });
-
+        activeFuelIncrement5 = findViewById(R.id.active_fuel_increment5);
+        activeFuelIncrement5.setOnClickListener(v -> {
+            currentResult.result.setTeleOpInt6(currentResult.result.getTeleOpInt6() +5);
+            populateControlsFromData();
+        });
         missedFuel = findViewById(R.id.missed_fuel);
         missedFuelText = findViewById(R.id.missed_fuel_text);
         missedFuel.setOnClickListener(v -> {
             currentResult.result.setTeleOpInt7(currentResult.result.getTeleOpInt7()+1);
+            populateControlsFromData();
+        });
+        missedFuelIncrement5 = findViewById(R.id.missed_fuel_increment5);
+        missedFuelIncrement5.setOnClickListener(v -> {
+            currentResult.result.setTeleOpInt7(currentResult.result.getTeleOpInt7() +5);
             populateControlsFromData();
         });
         missedFuelDecrement = findViewById(R.id.missed_fuel_decrement);
@@ -163,7 +176,11 @@ public class MatchScoutingTeleopActivity extends AppCompatActivity {
             currentResult.result.setTeleOpInt8(Math.max(currentResult.result.getTeleOpInt8() -1, 0));
             populateControlsFromData();
         });
-
+        passingIncrement5 = findViewById(R.id.passing_fuel_increment5);
+        passingIncrement5.setOnClickListener(v -> {
+            currentResult.result.setTeleOpInt8(currentResult.result.getTeleOpInt8() +5);
+            populateControlsFromData();
+        });
         humanFuel = findViewById(R.id.human_fuel);
         humanFuelText = findViewById(R.id.human_fuel_text);
         humanFuel.setOnClickListener(v -> {
@@ -175,7 +192,11 @@ public class MatchScoutingTeleopActivity extends AppCompatActivity {
             currentResult.result.setTeleOpInt9(Math.max(currentResult.result.getTeleOpInt9() -1, 0));
             populateControlsFromData();
         });
-
+        humanFuelIncrement5 = findViewById(R.id.human_fuel_increment5);
+        humanFuelIncrement5.setOnClickListener(v -> {
+            currentResult.result.setTeleOpInt9(currentResult.result.getTeleOpInt9() +5);
+            populateControlsFromData();
+        });
 
         activeFuelText = findViewById(R.id.active_fuel_text);
         missedFuelText = findViewById(R.id.missed_fuel_text);

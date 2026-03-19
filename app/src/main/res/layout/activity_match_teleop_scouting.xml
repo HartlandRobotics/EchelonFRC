@@ -46,7 +46,14 @@
                 app:layout_constraintLeft_toRightOf="@id/active_fuel_decrement"
                 app:layout_constraintRight_toLeftOf="@id/active_fuel_text"
                 app:layout_constraintTop_toTopOf="parent" />
-
+            <ImageButton
+                android:id="@+id/active_fuel_increment5"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="25dp"
+                android:background="@null"
+                android:src="@drawable/button_increment5"
+                />
             <com.google.android.material.textview.MaterialTextView
                 android:id="@+id/active_fuel_text"
                 android:layout_width="65dp"
@@ -89,7 +96,14 @@
                 app:layout_constraintLeft_toRightOf="@id/missed_fuel_decrement"
                 app:layout_constraintRight_toLeftOf="@id/missed_fuel_text"
                 app:layout_constraintTop_toBottomOf="@id/active_fuel" />
-
+            <ImageButton
+                android:id="@+id/missed_fuel_increment5"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="25dp"
+                android:background="@null"
+                android:src="@drawable/button_increment5"
+                />
             <com.google.android.material.textview.MaterialTextView
                 android:id="@+id/missed_fuel_text"
                 android:layout_width="65dp"
@@ -144,7 +158,14 @@
                 app:layout_constraintLeft_toRightOf="@id/passing_decrement"
                 app:layout_constraintRight_toLeftOf="@id/passing_text"
                 app:layout_constraintTop_toTopOf="parent" />
-
+            <ImageButton
+                android:id="@+id/passing_fuel_increment5"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="25dp"
+                android:background="@null"
+                android:src="@drawable/button_increment5"
+                />
             <com.google.android.material.textview.MaterialTextView
                 android:id="@+id/passing_text"
                 android:layout_width="65dp"
@@ -185,7 +206,14 @@
                 android:src="@drawable/human_player_fuel"
                 app:layout_constraintLeft_toRightOf="@id/human_fuel_decrement"
                 app:layout_constraintTop_toBottomOf="@id/passing" />
-
+            <ImageButton
+                android:id="@+id/human_fuel_increment5"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="25dp"
+                android:background="@null"
+                android:src="@drawable/button_increment5"
+                />
             <com.google.android.material.textview.MaterialTextView
                 android:id="@+id/human_fuel_text"
                 android:layout_width="65dp"
