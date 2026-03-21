@@ -76,7 +76,7 @@
             android:id="@+id/fuelPerSecondIngest"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="How many fuel do they ingest per second?"
+            android:hint="How long does it take to fill your robot? (in seconds)"
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
             >
 
@@ -93,7 +93,7 @@
             android:id="@+id/fuelPerSecondShooting"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="How many fuel do they shoot per second?"
+            android:hint="How long does it take to empty your robot? (in seconds)"
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
             >
 

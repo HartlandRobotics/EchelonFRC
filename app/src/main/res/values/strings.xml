@@ -12,6 +12,8 @@
         <item>LabView</item>
         <item>Java</item>
         <item>C++</item>
+        <item>Python</item>
+        <item>Other</item>
     </string-array>
 
     <string-array name="drive_train">
